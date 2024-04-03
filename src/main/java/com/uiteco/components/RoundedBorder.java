@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.uiteco.component;
+package com.uiteco.components;
 
-import com.uiteco.component.Icons;
+import com.uiteco.components.Icons;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;

@@ -4,7 +4,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.uiteco.component;
+package com.uiteco.components;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.border.Border;
 import javax.swing.JComponent;
 import javax.swing.border.SoftBevelBorder;
-import com.uiteco.component.RoundedBorder;
+import com.uiteco.components.RoundedBorder;
 
 
 
@@ -45,29 +45,29 @@ public class PageTemplate extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        imageAvatar2 = new com.uiteco.component.ImageAvatar();
-        imageAvatar13 = new com.uiteco.component.ImageAvatar();
-        imageAvatar14 = new com.uiteco.component.ImageAvatar();
-        imageAvatar15 = new com.uiteco.component.ImageAvatar();
-        imageAvatar16 = new com.uiteco.component.ImageAvatar();
+        imageAvatar2 = new com.uiteco.components.ImageAvatar();
+        imageAvatar13 = new com.uiteco.components.ImageAvatar();
+        imageAvatar14 = new com.uiteco.components.ImageAvatar();
+        imageAvatar15 = new com.uiteco.components.ImageAvatar();
+        imageAvatar16 = new com.uiteco.components.ImageAvatar();
         rightPanel = new javax.swing.JPanel();
         dateChooser1 = new com.raven.datechooser.DateChooser();
         jLabel1 = new javax.swing.JLabel();
-        gradientPanel1 = new com.uiteco.component.GradientPanel();
+        gradientPanel1 = new com.uiteco.components.GradientPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         centerPanel = new javax.swing.JPanel();
         searchPane = new javax.swing.JTextPane();
-        imageAvatar17 = new com.uiteco.component.ImageAvatar();
-        imageAvatar18 = new com.uiteco.component.ImageAvatar();
-        imageAvatar19 = new com.uiteco.component.ImageAvatar();
-        imageAvatar20 = new com.uiteco.component.ImageAvatar();
+        imageAvatar17 = new com.uiteco.components.ImageAvatar();
+        imageAvatar18 = new com.uiteco.components.ImageAvatar();
+        imageAvatar19 = new com.uiteco.components.ImageAvatar();
+        imageAvatar20 = new com.uiteco.components.ImageAvatar();
         label1 = new java.awt.Label();
-        backButton = new com.uiteco.component.ImageAvatar();
-        forwardButton = new com.uiteco.component.ImageAvatar();
+        backButton = new com.uiteco.components.ImageAvatar();
+        forwardButton = new com.uiteco.components.ImageAvatar();
         jButton1 = new javax.swing.JButton();
-        imageAvatar5 = new com.uiteco.component.ImageAvatar();
-        imageAvatar6 = new com.uiteco.component.ImageAvatar();
+        imageAvatar5 = new com.uiteco.components.ImageAvatar();
+        imageAvatar6 = new com.uiteco.components.ImageAvatar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(242, 243, 244));
@@ -568,22 +568,22 @@ public class PageTemplate extends javax.swing.JFrame {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.component.ImageAvatar backButton;
+    private com.uiteco.components.ImageAvatar backButton;
     private javax.swing.JPanel centerPanel;
     private com.raven.datechooser.DateChooser dateChooser1;
-    private com.uiteco.component.ImageAvatar forwardButton;
-    private com.uiteco.component.GradientPanel gradientPanel1;
-    private com.uiteco.component.ImageAvatar imageAvatar13;
-    private com.uiteco.component.ImageAvatar imageAvatar14;
-    private com.uiteco.component.ImageAvatar imageAvatar15;
-    private com.uiteco.component.ImageAvatar imageAvatar16;
-    private com.uiteco.component.ImageAvatar imageAvatar17;
-    private com.uiteco.component.ImageAvatar imageAvatar18;
-    private com.uiteco.component.ImageAvatar imageAvatar19;
-    private com.uiteco.component.ImageAvatar imageAvatar2;
-    private com.uiteco.component.ImageAvatar imageAvatar20;
-    private com.uiteco.component.ImageAvatar imageAvatar5;
-    private com.uiteco.component.ImageAvatar imageAvatar6;
+    private com.uiteco.components.ImageAvatar forwardButton;
+    private com.uiteco.components.GradientPanel gradientPanel1;
+    private com.uiteco.components.ImageAvatar imageAvatar13;
+    private com.uiteco.components.ImageAvatar imageAvatar14;
+    private com.uiteco.components.ImageAvatar imageAvatar15;
+    private com.uiteco.components.ImageAvatar imageAvatar16;
+    private com.uiteco.components.ImageAvatar imageAvatar17;
+    private com.uiteco.components.ImageAvatar imageAvatar18;
+    private com.uiteco.components.ImageAvatar imageAvatar19;
+    private com.uiteco.components.ImageAvatar imageAvatar2;
+    private com.uiteco.components.ImageAvatar imageAvatar20;
+    private com.uiteco.components.ImageAvatar imageAvatar5;
+    private com.uiteco.components.ImageAvatar imageAvatar6;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

@@ -4,6 +4,9 @@
  */
 package com.uiteco.main;
 
+import javax.swing.UIManager.*;
+import javax.swing.UIManager;
+
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,16 +16,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import com.uiteco.swing.DynamicPanel;
+import com.uiteco.swing.ContentPanel;
 
-public class UITeco {
+public class Test {
    private static final String[] LABELS = { "One", "Two", "Three", "Four",
          "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
          "Thirteen", "Fourteen", "Fifteen" };
    private static final Dimension LABEL_SIZE = new Dimension(400, 300);
 
    private static void createAndShowGui() {
-      DynamicPanel manager = new DynamicPanel();
+      ContentPanel manager = new ContentPanel();
       Random random = new Random();
 
       // I'm using JLabels as a simple substitute for your complex JPanel GUI "pages"
@@ -32,7 +35,7 @@ public class UITeco {
          label.setOpaque(true);
          label.setBackground(new Color(random.nextInt(170) + 85, random
                .nextInt(170) + 85, random.nextInt(170) + 85));
-         manager.registerPage(label, labelText);
+         manager.registerComponent(label, labelText);
       }
 
       JFrame frame = new JFrame("LayoutManagerContainer");
@@ -47,6 +50,9 @@ public class UITeco {
    public static void main(String[] args) {
       SwingUtilities.invokeLater(new Runnable() {
          public void run() {
+            for (LookAndFeelInfo i : UIManager.getInstalledLookAndFeels()) {
+                System.out.println(i.getName());
+            }
             createAndShowGui();
          }
       });

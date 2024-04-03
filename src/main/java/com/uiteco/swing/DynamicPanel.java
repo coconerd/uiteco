@@ -1,86 +1,65 @@
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.uiteco.swing;
 
 import java.awt.CardLayout;
-import java.awt.GridLayout;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.BorderFactory;
-import java.awt.BorderLayout;
-import javax.swing.border.SoftBevelBorder;
-import java.awt.Color;
 import javax.swing.JComponent;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.Dimension;
+import java.util.Vector;
 
 /**
  *
  * @author nddmi
  */
 public class DynamicPanel extends JPanel {
-    /**
-     *  Custom variables declaration
-     */
-        // Custom variables declaration
+
     private final CardLayout cardLayout;
     private final JPanel pageHolder;
+    private final Vector<String> pageHistory;
+    private static int historyIndex = 0;
 
-    /**
-     * Creates new form LayoutManagerPanel
-     * 
-     */
     public DynamicPanel() {
+        super();
+        this.pageHistory = new Vector<String>();
         cardLayout = new CardLayout();
         pageHolder = new JPanel(cardLayout);
-//        pageHolder.setBorder(BorderFactory.createEtchedBorder());
-//        setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-//        setLayout(new BorderLayout(5, 5));
-        this.setLayout(new java.awt.GridLayout(1, 1));
-//        pageHolder
         this.add(pageHolder);
     }
-    
-    public DynamicPanel(Dimension d) {
-        cardLayout = new CardLayout();
-        pageHolder = new JPanel(cardLayout);
-        pageHolder.setBorder(BorderFactory.createEtchedBorder());
 
-        setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        setLayout(new BorderLayout(5, 5));
-        add(pageHolder, BorderLayout.CENTER);
-        this.setSize(d);
+    public void previousComponent() {
+        if (historyIndex > 0) {
+            String name = this.pageHistory.get(historyIndex - 1);
+            this._showComponent(name);
+            this.historyIndex--;
+        }
     }
-    
-    public void previousPage() {
-        cardLayout.previous(pageHolder);
-    }
-    
-    public void nextPage() {
-        cardLayout.next(pageHolder);
-    }
-    
-    public void show(String name) {
-        cardLayout.show(pageHolder, name);
-    }
-    
-    public void registerPage(JComponent page, String name) {
-        pageHolder.add(name, page);
-    }
-    
 
-    
-//    private class NameComboListener implements ActionListener {
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//               show(selection);
-//        }
-//    }
+    public void nextComponent() {
+        if (historyIndex < pageHistory.size()) {
+            String name = this.pageHistory.get(historyIndex + 1);
+            this._showComponent(name);
+            this.historyIndex++;
+        }
+    }
+
+    public void showComponent(String name) {
+        // Clear page history after current spot
+        int i = this.pageHistory.size() - 1;
+        while (i >= this.historyIndex + 1) {
+            this.pageHistory.remove(i);
+            i--;
+        }
+        this._showComponent(name);
+        this.pageHistory.add(name);
+        this.historyIndex++;
+    }
+
+    public void registerComponent(JComponent comp, String name) {
+        pageHolder.add(name, comp);
+        if (this.pageHistory.size() == 0) {
+            this.pageHistory.add(name);
+        }
+    }
+
+    private void _showComponent(String name) {
+        this.cardLayout.show(this.pageHolder, name);
+    }
 }

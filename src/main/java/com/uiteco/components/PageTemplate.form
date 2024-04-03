@@ -236,7 +236,7 @@
             <Property name="text" type="java.lang.String" value="ECO"/>
           </Properties>
         </Component>
-        <Container class="com.uiteco.component.ImageAvatar" name="imageAvatar2">
+        <Container class="com.uiteco.components.ImageAvatar" name="imageAvatar2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/dhqg.png"/>
@@ -247,7 +247,7 @@
             <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
         </Container>
-        <Container class="com.uiteco.component.ImageAvatar" name="imageAvatar13">
+        <Container class="com.uiteco.components.ImageAvatar" name="imageAvatar13">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/uit.jpg"/>
@@ -258,7 +258,7 @@
             <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
           <SubComponents>
-            <Container class="com.uiteco.component.ImageAvatar" name="imageAvatar14">
+            <Container class="com.uiteco.components.ImageAvatar" name="imageAvatar14">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/IS.jpg"/>
@@ -274,7 +274,7 @@
                 <Property name="useNullLayout" type="boolean" value="true"/>
               </Layout>
             </Container>
-            <Container class="com.uiteco.component.ImageAvatar" name="imageAvatar15">
+            <Container class="com.uiteco.components.ImageAvatar" name="imageAvatar15">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/IS.jpg"/>
@@ -290,7 +290,7 @@
                 <Property name="useNullLayout" type="boolean" value="true"/>
               </Layout>
               <SubComponents>
-                <Container class="com.uiteco.component.ImageAvatar" name="imageAvatar16">
+                <Container class="com.uiteco.components.ImageAvatar" name="imageAvatar16">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/IS.jpg"/>
@@ -398,7 +398,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
         </Component>
-        <Container class="com.uiteco.component.GradientPanel" name="gradientPanel1">
+        <Container class="com.uiteco.components.GradientPanel" name="gradientPanel1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ea" green="ea" red="ff" type="rgb"/>
@@ -524,7 +524,7 @@
             </Property>
           </Properties>
         </Component>
-        <Container class="com.uiteco.component.ImageAvatar" name="imageAvatar17">
+        <Container class="com.uiteco.components.ImageAvatar" name="imageAvatar17">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icons8-search-17.png"/>
@@ -535,7 +535,7 @@
             <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
           <SubComponents>
-            <Container class="com.uiteco.component.ImageAvatar" name="imageAvatar18">
+            <Container class="com.uiteco.components.ImageAvatar" name="imageAvatar18">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/IS.jpg"/>
@@ -551,7 +551,7 @@
                 <Property name="useNullLayout" type="boolean" value="true"/>
               </Layout>
             </Container>
-            <Container class="com.uiteco.component.ImageAvatar" name="imageAvatar19">
+            <Container class="com.uiteco.components.ImageAvatar" name="imageAvatar19">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/IS.jpg"/>
@@ -567,7 +567,7 @@
                 <Property name="useNullLayout" type="boolean" value="true"/>
               </Layout>
               <SubComponents>
-                <Container class="com.uiteco.component.ImageAvatar" name="imageAvatar20">
+                <Container class="com.uiteco.components.ImageAvatar" name="imageAvatar20">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/IS.jpg"/>
@@ -589,7 +589,7 @@
         </Container>
         <Component class="java.awt.Label" name="label1">
         </Component>
-        <Container class="com.uiteco.component.ImageAvatar" name="backButton">
+        <Container class="com.uiteco.components.ImageAvatar" name="backButton">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f4" green="f3" red="f2" type="rgb"/>
@@ -603,7 +603,7 @@
             <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
         </Container>
-        <Container class="com.uiteco.component.ImageAvatar" name="forwardButton">
+        <Container class="com.uiteco.components.ImageAvatar" name="forwardButton">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f4" green="f3" red="f2" type="rgb"/>
@@ -644,7 +644,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
         </Component>
-        <Container class="com.uiteco.component.ImageAvatar" name="imageAvatar5">
+        <Container class="com.uiteco.components.ImageAvatar" name="imageAvatar5">
           <Properties>
             <Property name="borderSize" type="int" value="2"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -656,7 +656,7 @@
             <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
           <SubComponents>
-            <Container class="com.uiteco.component.ImageAvatar" name="imageAvatar6">
+            <Container class="com.uiteco.components.ImageAvatar" name="imageAvatar6">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/cat.png"/>

@@ -11,9 +11,9 @@ import javax.swing.AbstractAction;
  * @author nddmi
  */
 public class PrevAction extends AbstractAction {
-    private DynamicPanel man;
+    private ContentPanel man;
     
-    PrevAction(DynamicPanel _man, String name, Integer keyCode) {
+    PrevAction(ContentPanel _man, String name, Integer keyCode) {
         super(name);
         this.man = _man;
         putValue(MNEMONIC_KEY, keyCode);
@@ -22,7 +22,7 @@ public class PrevAction extends AbstractAction {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.man.previousPage();
+        this.man.previousComponent();
     }
     
 }
