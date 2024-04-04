@@ -33,7 +33,7 @@ public class DynamicPanel extends JPanel {
     }
 
     public void nextComponent() {
-        if (historyIndex < pageHistory.size()) {
+        if (historyIndex < pageHistory.size() - 1) {
             String name = this.pageHistory.get(historyIndex + 1);
             this._showComponent(name);
             this.historyIndex++;
