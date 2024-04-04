@@ -56,17 +56,19 @@ public class App extends javax.swing.JFrame {
         imageAvatar15 = new com.uiteco.components.ImageAvatar();
         imageAvatar16 = new com.uiteco.components.ImageAvatar();
         headerPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        nextButton = new com.uiteco.components.ImageAvatar();
+        prevButton = new com.uiteco.components.ImageAvatar();
+        jPanel2 = new javax.swing.JPanel();
+        avatar = new com.uiteco.components.ImageAvatar();
+        imageAvatar6 = new com.uiteco.components.ImageAvatar();
+        notificationButton = new javax.swing.JButton();
+        searchPaneWrapper = new javax.swing.JScrollPane();
+        searchPane = new javax.swing.JTextPane();
         imageAvatar17 = new com.uiteco.components.ImageAvatar();
         imageAvatar18 = new com.uiteco.components.ImageAvatar();
         imageAvatar19 = new com.uiteco.components.ImageAvatar();
         imageAvatar20 = new com.uiteco.components.ImageAvatar();
-        notificationButton = new javax.swing.JButton();
-        avatar = new com.uiteco.components.ImageAvatar();
-        imageAvatar6 = new com.uiteco.components.ImageAvatar();
-        nextButton = new com.uiteco.components.ImageAvatar();
-        prevButton = new com.uiteco.components.ImageAvatar();
-        searchPaneWrapper = new javax.swing.JScrollPane();
-        searchPane = new javax.swing.JTextPane();
         dynamicPanel1 = new com.uiteco.swing.DynamicPanel();
         contentPanel = new com.uiteco.swing.ContentPanel();
 
@@ -251,7 +253,7 @@ public class App extends javax.swing.JFrame {
                 .addComponent(cauLacBoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(taiKhoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 849, Short.MAX_VALUE)
                 .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dangXuatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,39 +261,10 @@ public class App extends javax.swing.JFrame {
         );
 
         headerPanel.setBackground(new java.awt.Color(242, 243, 244));
+        headerPanel.setLayout(new java.awt.BorderLayout());
 
-        imageAvatar17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-search-17.png"))); // NOI18N
-
-        imageAvatar18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IS.jpg"))); // NOI18N
-        imageAvatar17.add(imageAvatar18);
-        imageAvatar18.setBounds(0, 0, 0, 0);
-
-        imageAvatar19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IS.jpg"))); // NOI18N
-
-        imageAvatar20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IS.jpg"))); // NOI18N
-        imageAvatar19.add(imageAvatar20);
-        imageAvatar20.setBounds(0, 0, 0, 0);
-
-        imageAvatar17.add(imageAvatar19);
-        imageAvatar19.setBounds(0, 0, 0, 0);
-
-        notificationButton.setBackground(new java.awt.Color(204, 204, 204));
-        notificationButton.setForeground(new java.awt.Color(102, 102, 102));
-        notificationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-notification-17.png"))); // NOI18N
-        notificationButton.setToolTipText("Notifications");
-        notificationButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
-        notificationButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notificationButtonActionPerformed(evt);
-            }
-        });
-
-        avatar.setBorderSize(2);
-        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
-
-        imageAvatar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
-        avatar.add(imageAvatar6);
-        imageAvatar6.setBounds(0, 0, 0, 0);
+        jPanel1.setBackground(headerPanel.getBackground());
+        jPanel1.setPreferredSize(new java.awt.Dimension(100, 50));
 
         nextButton.setForeground(new java.awt.Color(242, 243, 244));
         nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-forward-36.png"))); // NOI18N
@@ -306,6 +279,49 @@ public class App extends javax.swing.JFrame {
         prevButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 prevButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(59, Short.MAX_VALUE))
+        );
+
+        headerPanel.add(jPanel1, java.awt.BorderLayout.LINE_START);
+
+        jPanel2.setBackground(headerPanel.getBackground());
+        jPanel2.setPreferredSize(new java.awt.Dimension(500, 55));
+
+        avatar.setBorderSize(2);
+        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
+
+        imageAvatar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
+        avatar.add(imageAvatar6);
+        imageAvatar6.setBounds(0, 0, 0, 0);
+
+        notificationButton.setBackground(new java.awt.Color(204, 204, 204));
+        notificationButton.setForeground(new java.awt.Color(102, 102, 102));
+        notificationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-notification-17.png"))); // NOI18N
+        notificationButton.setToolTipText("Notifications");
+        notificationButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
+        notificationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notificationButtonActionPerformed(evt);
             }
         });
 
@@ -324,44 +340,53 @@ public class App extends javax.swing.JFrame {
         searchPane.setPreferredSize(new java.awt.Dimension(210, 35));
         searchPaneWrapper.setViewportView(searchPane);
 
-        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
-        headerPanel.setLayout(headerPanelLayout);
-        headerPanelLayout.setHorizontalGroup(
-            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerPanelLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(383, 383, 383)
+        imageAvatar17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-search-17.png"))); // NOI18N
+
+        imageAvatar18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IS.jpg"))); // NOI18N
+        imageAvatar17.add(imageAvatar18);
+        imageAvatar18.setBounds(0, 0, 0, 0);
+
+        imageAvatar19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IS.jpg"))); // NOI18N
+
+        imageAvatar20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IS.jpg"))); // NOI18N
+        imageAvatar19.add(imageAvatar20);
+        imageAvatar20.setBounds(0, 0, 0, 0);
+
+        imageAvatar17.add(imageAvatar19);
+        imageAvatar19.setBounds(0, 0, 0, 0);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(123, Short.MAX_VALUE)
                 .addComponent(imageAvatar17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchPaneWrapper, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(56, 56, 56)
                 .addComponent(notificationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(avatar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(avatar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        headerPanelLayout.setVerticalGroup(
-            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerPanelLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(headerPanelLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(headerPanelLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(imageAvatar17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(headerPanelLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(searchPaneWrapper, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(headerPanelLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(notificationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(avatar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(avatar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(notificationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(imageAvatar17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchPaneWrapper, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
+
+        headerPanel.add(jPanel2, java.awt.BorderLayout.LINE_END);
+
+        dynamicPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -369,10 +394,10 @@ public class App extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
                 .addComponent(dynamicPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -600,6 +625,8 @@ public class App extends javax.swing.JFrame {
     private com.uiteco.components.ImageAvatar imageAvatar2;
     private com.uiteco.components.ImageAvatar imageAvatar20;
     private com.uiteco.components.ImageAvatar imageAvatar6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JPanel leftPanel;
     private com.uiteco.components.ImageAvatar nextButton;
