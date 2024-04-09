@@ -14,7 +14,16 @@ import java.util.Random;
 import com.uiteco.contentPanels.SuKienPanel;
 import com.uiteco.contentPanels.CuocThiPanel;
 import com.uiteco.contentPanels.CauLacBoPanel;
+import com.uiteco.contentPanels.ForumPanel;
+import com.uiteco.contentPanels.TinNhanPanel;
 import com.uiteco.contentPanels.TaiKhoanPanel;
+
+import com.uiteco.rightPanels.SuKienRightPanel;
+import com.uiteco.rightPanels.CuocThiRightPanel;
+import com.uiteco.rightPanels.CauLacBoRightPanel;
+import com.uiteco.rightPanels.ForumRightPanel;
+import com.uiteco.rightPanels.TinNhanRightPanel;
+import com.uiteco.rightPanels.TaiKhoanRightPanel;
 import java.util.Vector;
 
 
@@ -55,6 +64,8 @@ public class App extends javax.swing.JFrame {
         imageAvatar14 = new com.uiteco.components.ImageAvatar();
         imageAvatar15 = new com.uiteco.components.ImageAvatar();
         imageAvatar16 = new com.uiteco.components.ImageAvatar();
+        taiKhoanButton1 = new javax.swing.JButton();
+        taiKhoanButton2 = new javax.swing.JButton();
         headerPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         nextButton = new com.uiteco.components.ImageAvatar();
@@ -69,8 +80,8 @@ public class App extends javax.swing.JFrame {
         imageAvatar18 = new com.uiteco.components.ImageAvatar();
         imageAvatar19 = new com.uiteco.components.ImageAvatar();
         imageAvatar20 = new com.uiteco.components.ImageAvatar();
-        dynamicPanel1 = new com.uiteco.swing.DynamicPanel();
         contentPanel = new com.uiteco.swing.ContentPanel();
+        rightPanel = new com.uiteco.swing.ContentPanel();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -154,8 +165,8 @@ public class App extends javax.swing.JFrame {
         taiKhoanButton.setBackground(new java.awt.Color(255, 255, 255));
         taiKhoanButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         taiKhoanButton.setForeground(new java.awt.Color(153, 153, 153));
-        taiKhoanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-account-17.png"))); // NOI18N
-        taiKhoanButton.setText("Tài khoản");
+        taiKhoanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-forum-17.png"))); // NOI18N
+        taiKhoanButton.setText("Forum");
         taiKhoanButton.setBorderPainted(false);
         taiKhoanButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -212,6 +223,52 @@ public class App extends javax.swing.JFrame {
         imageAvatar13.add(imageAvatar15);
         imageAvatar15.setBounds(0, 0, 0, 0);
 
+        taiKhoanButton1.setBackground(new java.awt.Color(255, 255, 255));
+        taiKhoanButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        taiKhoanButton1.setForeground(new java.awt.Color(153, 153, 153));
+        taiKhoanButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-chat-17.png"))); // NOI18N
+        taiKhoanButton1.setText("Tin nhắn");
+        taiKhoanButton1.setBorderPainted(false);
+        taiKhoanButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                taiKhoanButton1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                taiKhoanButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                taiKhoanButton1MouseExited(evt);
+            }
+        });
+        taiKhoanButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taiKhoanButton1ActionPerformed(evt);
+            }
+        });
+
+        taiKhoanButton2.setBackground(new java.awt.Color(255, 255, 255));
+        taiKhoanButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        taiKhoanButton2.setForeground(new java.awt.Color(153, 153, 153));
+        taiKhoanButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-account-17.png"))); // NOI18N
+        taiKhoanButton2.setText("Tài khoản");
+        taiKhoanButton2.setBorderPainted(false);
+        taiKhoanButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                taiKhoanButton2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                taiKhoanButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                taiKhoanButton2MouseExited(evt);
+            }
+        });
+        taiKhoanButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taiKhoanButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
@@ -219,17 +276,25 @@ public class App extends javax.swing.JFrame {
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cauLacBoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(taiKhoanButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cuocThiButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dangXuatButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(suKienButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(leftPanelLayout.createSequentialGroup()
-                        .addComponent(imageAvatar13, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ecoLabel)
-                        .addGap(0, 17, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dangXuatButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(suKienButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cuocThiButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(leftPanelLayout.createSequentialGroup()
+                                .addComponent(imageAvatar13, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ecoLabel)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(leftPanelLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(taiKhoanButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(taiKhoanButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(taiKhoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cauLacBoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(12, Short.MAX_VALUE))))
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,11 +314,15 @@ public class App extends javax.swing.JFrame {
                 .addComponent(suKienButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cuocThiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cauLacBoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(taiKhoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 849, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(taiKhoanButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(taiKhoanButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
                 .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dangXuatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,7 +455,7 @@ public class App extends javax.swing.JFrame {
 
         headerPanel.add(jPanel2, java.awt.BorderLayout.LINE_END);
 
-        dynamicPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        rightPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -395,10 +464,11 @@ public class App extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0)
-                .addComponent(dynamicPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)))
+                .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,7 +477,7 @@ public class App extends javax.swing.JFrame {
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(dynamicPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rightPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -510,6 +580,38 @@ public class App extends javax.swing.JFrame {
         this.logOut();
     }//GEN-LAST:event_dangXuatButtonMouseClicked
 
+    private void taiKhoanButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_taiKhoanButton1MouseClicked
+
+    private void taiKhoanButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButton1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_taiKhoanButton1MouseEntered
+
+    private void taiKhoanButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButton1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_taiKhoanButton1MouseExited
+
+    private void taiKhoanButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taiKhoanButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_taiKhoanButton1ActionPerformed
+
+    private void taiKhoanButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButton2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_taiKhoanButton2MouseClicked
+
+    private void taiKhoanButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButton2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_taiKhoanButton2MouseEntered
+
+    private void taiKhoanButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButton2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_taiKhoanButton2MouseExited
+
+    private void taiKhoanButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taiKhoanButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_taiKhoanButton2ActionPerformed
+
     /**
      *
      * This section is for user-defined methods
@@ -524,6 +626,12 @@ public class App extends javax.swing.JFrame {
         CauLacBoPanel clb = new CauLacBoPanel();
         contentPanel.registerComponent(clb, "cauLacBoPanel");
          
+        ForumPanel fr = new ForumPanel();
+        contentPanel.registerComponent(fr, "forumPanel");
+        
+        TinNhanPanel tn = new TinNhanPanel();
+        contentPanel.registerComponent(tn, "tinNhanPanel");
+        
         TaiKhoanPanel tk = new TaiKhoanPanel();
         contentPanel.registerComponent(tk, "taiKhoanPanel");
         
@@ -543,7 +651,23 @@ public class App extends javax.swing.JFrame {
     }
     
     private void initRightPanel() {
+        SuKienRightPanel skr = new SuKienRightPanel();
+        this.rightPanel.registerComponent(skr, "suKienRightPanel");
+                
+        CuocThiRightPanel ctr = new CuocThiRightPanel();
+        contentPanel.registerComponent(ctr, "cuocThiRightPanel");
         
+        CauLacBoRightPanel clbr = new CauLacBoRightPanel();
+        contentPanel.registerComponent(clbr, "cauLacBoRightPanel");
+        
+        ForumRightPanel frr = new ForumRightPanel();
+        contentPanel.registerComponent(frr, "forumRightPanel");
+        
+        TinNhanRightPanel tnr = new TinNhanRightPanel();
+        contentPanel.registerComponent(tnr, "tinNhanRightPanel");
+        
+        TaiKhoanRightPanel tkr = new TaiKhoanRightPanel();
+        contentPanel.registerComponent(tkr, "taiKhoanRightPanel");
     }
     
     private void logOut() {
@@ -612,7 +736,6 @@ public class App extends javax.swing.JFrame {
     private com.uiteco.swing.ContentPanel contentPanel;
     private javax.swing.JButton cuocThiButton;
     private javax.swing.JButton dangXuatButton;
-    private com.uiteco.swing.DynamicPanel dynamicPanel1;
     private javax.swing.JLabel ecoLabel;
     private javax.swing.JPanel headerPanel;
     private com.uiteco.components.ImageAvatar imageAvatar13;
@@ -632,10 +755,13 @@ public class App extends javax.swing.JFrame {
     private com.uiteco.components.ImageAvatar nextButton;
     private javax.swing.JButton notificationButton;
     private com.uiteco.components.ImageAvatar prevButton;
+    private com.uiteco.swing.ContentPanel rightPanel;
     private javax.swing.JTextPane searchPane;
     private javax.swing.JScrollPane searchPaneWrapper;
     private javax.swing.JButton suKienButton;
     private javax.swing.JButton taiKhoanButton;
+    private javax.swing.JButton taiKhoanButton1;
+    private javax.swing.JButton taiKhoanButton2;
     // End of variables declaration//GEN-END:variables
 
 }
