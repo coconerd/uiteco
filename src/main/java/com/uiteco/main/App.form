@@ -43,7 +43,7 @@
                   <Component id="headerPanel" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="contentPanel" pref="810" max="32767" attributes="0"/>
+                      <Component id="contentPanel" min="-2" pref="798" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Component id="rightPanel" min="-2" pref="300" max="-2" attributes="0"/>
@@ -695,14 +695,14 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="com.uiteco.swing.ContentPanel" name="contentPanel">
-    </Component>
     <Component class="com.uiteco.swing.ContentPanel" name="rightPanel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="com.uiteco.swing.ScrollableContentPanel" name="contentPanel">
     </Component>
   </SubComponents>
 </Form>

@@ -10,18 +10,16 @@ import java.util.Vector;
  * @author nddmi
  */
 public class DynamicPanel extends JPanel {
-
-    private final CardLayout cardLayout;
-    private final JPanel pageHolder;
-    private final Vector<String> pageHistory;
-    private static int historyIndex = 0;
+    protected final CardLayout cardLayout;
+    protected final JPanel pageHolder;
+    protected final Vector<String> pageHistory;
+    protected static int historyIndex = 0;
 
     public DynamicPanel() {
-        super();
         this.pageHistory = new Vector<String>();
-        cardLayout = new CardLayout();
-        pageHolder = new JPanel(cardLayout);
-        this.add(pageHolder);
+        this.cardLayout = new CardLayout();
+        this.pageHolder = new JPanel(cardLayout);
+        this.setBorder(null);
     }
 
     public void previousComponent() {
@@ -51,7 +49,7 @@ public class DynamicPanel extends JPanel {
         this.pageHistory.add(name);
         this.historyIndex++;
     }
-
+    
     public void registerComponent(JComponent comp, String name) {
         pageHolder.add(name, comp);
         if (this.pageHistory.size() == 0) {

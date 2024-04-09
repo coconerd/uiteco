@@ -7,24 +7,19 @@ package com.uiteco.main;
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.border.SoftBevelBorder;
-import java.util.Random;
 import com.uiteco.contentPanels.SuKienPanel;
 import com.uiteco.contentPanels.CuocThiPanel;
 import com.uiteco.contentPanels.CauLacBoPanel;
 import com.uiteco.contentPanels.ForumPanel;
 import com.uiteco.contentPanels.TinNhanPanel;
 import com.uiteco.contentPanels.TaiKhoanPanel;
-
 import com.uiteco.rightPanels.SuKienRightPanel;
 import com.uiteco.rightPanels.CuocThiRightPanel;
 import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.rightPanels.ForumRightPanel;
 import com.uiteco.rightPanels.TinNhanRightPanel;
 import com.uiteco.rightPanels.TaiKhoanRightPanel;
-import java.util.Vector;
 
 
 /**
@@ -80,8 +75,8 @@ public class App extends javax.swing.JFrame {
         imageAvatar18 = new com.uiteco.components.ImageAvatar();
         imageAvatar19 = new com.uiteco.components.ImageAvatar();
         imageAvatar20 = new com.uiteco.components.ImageAvatar();
-        contentPanel = new com.uiteco.swing.ContentPanel();
         rightPanel = new com.uiteco.swing.ContentPanel();
+        contentPanel = new com.uiteco.swing.ScrollableContentPanel();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -467,7 +462,7 @@ public class App extends javax.swing.JFrame {
                     .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)))
+                        .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -733,7 +728,7 @@ public class App extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.uiteco.components.ImageAvatar avatar;
     private javax.swing.JButton cauLacBoButton;
-    private com.uiteco.swing.ContentPanel contentPanel;
+    private com.uiteco.swing.ScrollableContentPanel contentPanel;
     private javax.swing.JButton cuocThiButton;
     private javax.swing.JButton dangXuatButton;
     private javax.swing.JLabel ecoLabel;
