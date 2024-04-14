@@ -513,11 +513,13 @@ public class App extends javax.swing.JFrame {
     private void prevButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevButtonMouseClicked
         // TODO add your handling code here:
         this.contentPanel.previousComponent();
+        this.rightPanel.previousComponent();
     }//GEN-LAST:event_prevButtonMouseClicked
 
     private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked
         // TODO add your handling code here:
         this.contentPanel.nextComponent();
+        this.rightPanel.nextComponent();
     }//GEN-LAST:event_nextButtonMouseClicked
 
     private void suKienButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseClicked
@@ -610,22 +612,22 @@ public class App extends javax.swing.JFrame {
 
     private void initRightPanel() {
         SuKienRightPanel skr = new SuKienRightPanel();
-        this.rightPanel.registerComponent(skr, "suKienRightPanel");
+        rightPanel.registerComponent(skr, "suKienRightPanel");
 
         CuocThiRightPanel ctr = new CuocThiRightPanel();
-        contentPanel.registerComponent(ctr, "cuocThiRightPanel");
+        rightPanel.registerComponent(ctr, "cuocThiRightPanel");
 
         CauLacBoRightPanel clbr = new CauLacBoRightPanel();
-        contentPanel.registerComponent(clbr, "cauLacBoRightPanel");
+        rightPanel.registerComponent(clbr, "cauLacBoRightPanel");
 
         ForumRightPanel frr = new ForumRightPanel();
-        contentPanel.registerComponent(frr, "forumRightPanel");
+        rightPanel.registerComponent(frr, "forumRightPanel");
 
         TinNhanRightPanel tnr = new TinNhanRightPanel();
-        contentPanel.registerComponent(tnr, "tinNhanRightPanel");
+        rightPanel.registerComponent(tnr, "tinNhanRightPanel");
 
         TaiKhoanRightPanel tkr = new TaiKhoanRightPanel();
-        contentPanel.registerComponent(tkr, "taiKhoanRightPanel");
+        rightPanel.registerComponent(tkr, "taiKhoanRightPanel");
     }
 
     private void logOut() {
