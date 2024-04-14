@@ -13,7 +13,7 @@ public class DynamicPanel extends JPanel {
     protected final CardLayout cardLayout;
     protected final JPanel pageHolder;
     protected final Vector<String> pageHistory;
-    protected static int historyIndex = 0;
+    protected int historyIndex = 0;
 
     public DynamicPanel() {
         this.pageHistory = new Vector<String>();
