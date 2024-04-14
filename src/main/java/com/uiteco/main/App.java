@@ -7,7 +7,6 @@ package com.uiteco.main;
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
 import javax.swing.JComponent;
-import javax.swing.border.SoftBevelBorder;
 import com.uiteco.contentPanels.SuKienPanel;
 import com.uiteco.contentPanels.CuocThiPanel;
 import com.uiteco.contentPanels.CauLacBoPanel;
@@ -20,7 +19,6 @@ import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.rightPanels.ForumRightPanel;
 import com.uiteco.rightPanels.TinNhanRightPanel;
 import com.uiteco.rightPanels.TaiKhoanRightPanel;
-
 
 /**
  *
@@ -51,7 +49,7 @@ public class App extends javax.swing.JFrame {
         suKienButton = new javax.swing.JButton();
         cuocThiButton = new javax.swing.JButton();
         cauLacBoButton = new javax.swing.JButton();
-        taiKhoanButton = new javax.swing.JButton();
+        forumButton = new javax.swing.JButton();
         dangXuatButton = new javax.swing.JButton();
         ecoLabel = new javax.swing.JLabel();
         imageAvatar2 = new com.uiteco.components.ImageAvatar();
@@ -59,8 +57,7 @@ public class App extends javax.swing.JFrame {
         imageAvatar14 = new com.uiteco.components.ImageAvatar();
         imageAvatar15 = new com.uiteco.components.ImageAvatar();
         imageAvatar16 = new com.uiteco.components.ImageAvatar();
-        taiKhoanButton1 = new javax.swing.JButton();
-        taiKhoanButton2 = new javax.swing.JButton();
+        tinNhanButton = new javax.swing.JButton();
         headerPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         nextButton = new com.uiteco.components.ImageAvatar();
@@ -157,26 +154,26 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        taiKhoanButton.setBackground(new java.awt.Color(255, 255, 255));
-        taiKhoanButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        taiKhoanButton.setForeground(new java.awt.Color(153, 153, 153));
-        taiKhoanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-forum-17.png"))); // NOI18N
-        taiKhoanButton.setText("Forum");
-        taiKhoanButton.setBorderPainted(false);
-        taiKhoanButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        forumButton.setBackground(new java.awt.Color(255, 255, 255));
+        forumButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        forumButton.setForeground(new java.awt.Color(153, 153, 153));
+        forumButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-forum-17.png"))); // NOI18N
+        forumButton.setText("Forum");
+        forumButton.setBorderPainted(false);
+        forumButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                taiKhoanButtonMouseClicked(evt);
+                forumButtonMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                taiKhoanButtonMouseEntered(evt);
+                forumButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                taiKhoanButtonMouseExited(evt);
+                forumButtonMouseExited(evt);
             }
         });
-        taiKhoanButton.addActionListener(new java.awt.event.ActionListener() {
+        forumButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                taiKhoanButtonActionPerformed(evt);
+                forumButtonActionPerformed(evt);
             }
         });
 
@@ -218,49 +215,26 @@ public class App extends javax.swing.JFrame {
         imageAvatar13.add(imageAvatar15);
         imageAvatar15.setBounds(0, 0, 0, 0);
 
-        taiKhoanButton1.setBackground(new java.awt.Color(255, 255, 255));
-        taiKhoanButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        taiKhoanButton1.setForeground(new java.awt.Color(153, 153, 153));
-        taiKhoanButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-chat-17.png"))); // NOI18N
-        taiKhoanButton1.setText("Tin nhắn");
-        taiKhoanButton1.setBorderPainted(false);
-        taiKhoanButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tinNhanButton.setBackground(new java.awt.Color(255, 255, 255));
+        tinNhanButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tinNhanButton.setForeground(new java.awt.Color(153, 153, 153));
+        tinNhanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-chat-17.png"))); // NOI18N
+        tinNhanButton.setText("Tin nhắn");
+        tinNhanButton.setBorderPainted(false);
+        tinNhanButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                taiKhoanButton1MouseClicked(evt);
+                tinNhanButtonMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                taiKhoanButton1MouseEntered(evt);
+                tinNhanButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                taiKhoanButton1MouseExited(evt);
+                tinNhanButtonMouseExited(evt);
             }
         });
-        taiKhoanButton1.addActionListener(new java.awt.event.ActionListener() {
+        tinNhanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                taiKhoanButton1ActionPerformed(evt);
-            }
-        });
-
-        taiKhoanButton2.setBackground(new java.awt.Color(255, 255, 255));
-        taiKhoanButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        taiKhoanButton2.setForeground(new java.awt.Color(153, 153, 153));
-        taiKhoanButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-account-17.png"))); // NOI18N
-        taiKhoanButton2.setText("Tài khoản");
-        taiKhoanButton2.setBorderPainted(false);
-        taiKhoanButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                taiKhoanButton2MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                taiKhoanButton2MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                taiKhoanButton2MouseExited(evt);
-            }
-        });
-        taiKhoanButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                taiKhoanButton2ActionPerformed(evt);
+                tinNhanButtonActionPerformed(evt);
             }
         });
 
@@ -285,9 +259,8 @@ public class App extends javax.swing.JFrame {
                     .addGroup(leftPanelLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(taiKhoanButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(taiKhoanButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(taiKhoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tinNhanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(forumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cauLacBoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(12, Short.MAX_VALUE))))
             .addGroup(leftPanelLayout.createSequentialGroup()
@@ -312,12 +285,10 @@ public class App extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cauLacBoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(taiKhoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(forumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(taiKhoanButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(taiKhoanButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                .addComponent(tinNhanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
                 .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dangXuatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -517,20 +488,19 @@ public class App extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cauLacBoButtonActionPerformed
 
-    private void taiKhoanButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButtonMouseEntered
+    private void forumButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forumButtonMouseEntered
         // TODO add your handling code here:
-        highlightButton(taiKhoanButton);
-    }//GEN-LAST:event_taiKhoanButtonMouseEntered
+        highlightButton(forumButton);
+    }//GEN-LAST:event_forumButtonMouseEntered
 
-    private void taiKhoanButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButtonMouseExited
+    private void forumButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forumButtonMouseExited
         // TODO add your handling code here:
-        unHighlightButton(taiKhoanButton);
-        taiKhoanButton.setBorder(new SoftBevelBorder(10));
-    }//GEN-LAST:event_taiKhoanButtonMouseExited
+        unHighlightButton(forumButton);
+    }//GEN-LAST:event_forumButtonMouseExited
 
-    private void taiKhoanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taiKhoanButtonActionPerformed
+    private void forumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forumButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_taiKhoanButtonActionPerformed
+    }//GEN-LAST:event_forumButtonActionPerformed
 
     private void dangXuatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangXuatButtonActionPerformed
         // TODO add your handling code here:
@@ -553,87 +523,80 @@ public class App extends javax.swing.JFrame {
     private void suKienButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseClicked
         // TODO add your handling code here:
         this.contentPanel.showComponent("suKienPanel");
+        this.rightPanel.showComponent("suKienRightPanel");
     }//GEN-LAST:event_suKienButtonMouseClicked
 
     private void cuocThiButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuocThiButtonMouseClicked
         // TODO add your handling code here:
         this.contentPanel.showComponent("cuocThiPanel");
+        this.rightPanel.showComponent("cuocThiRightPanel");
     }//GEN-LAST:event_cuocThiButtonMouseClicked
 
     private void cauLacBoButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cauLacBoButtonMouseClicked
         // TODO add your handling code here:
         this.contentPanel.showComponent("cauLacBoPanel");
+        this.rightPanel.showComponent("cauLacBoRightPanel");
+
     }//GEN-LAST:event_cauLacBoButtonMouseClicked
 
-    private void taiKhoanButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButtonMouseClicked
+    private void forumButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forumButtonMouseClicked
         // TODO add your handling code here:
         this.contentPanel.showComponent("taiKhoanPanel");
-    }//GEN-LAST:event_taiKhoanButtonMouseClicked
+        this.rightPanel.showComponent("forumRightPanel");
+
+    }//GEN-LAST:event_forumButtonMouseClicked
 
     private void dangXuatButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dangXuatButtonMouseClicked
         // TODO add your handling code here:
         this.logOut();
     }//GEN-LAST:event_dangXuatButtonMouseClicked
 
-    private void taiKhoanButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButton1MouseClicked
+    private void tinNhanButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tinNhanButtonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_taiKhoanButton1MouseClicked
+        this.contentPanel.showComponent("tinNhanPanel");
+        this.rightPanel.showComponent("tinNhanRightPanel");
+    }//GEN-LAST:event_tinNhanButtonMouseClicked
 
-    private void taiKhoanButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButton1MouseEntered
+    private void tinNhanButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tinNhanButtonMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_taiKhoanButton1MouseEntered
+        highlightButton(tinNhanButton);
+    }//GEN-LAST:event_tinNhanButtonMouseEntered
 
-    private void taiKhoanButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButton1MouseExited
+    private void tinNhanButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tinNhanButtonMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_taiKhoanButton1MouseExited
+        unHighlightButton(tinNhanButton);
+    }//GEN-LAST:event_tinNhanButtonMouseExited
 
-    private void taiKhoanButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taiKhoanButton1ActionPerformed
+    private void tinNhanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tinNhanButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_taiKhoanButton1ActionPerformed
-
-    private void taiKhoanButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButton2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_taiKhoanButton2MouseClicked
-
-    private void taiKhoanButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButton2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_taiKhoanButton2MouseEntered
-
-    private void taiKhoanButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taiKhoanButton2MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_taiKhoanButton2MouseExited
-
-    private void taiKhoanButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taiKhoanButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_taiKhoanButton2ActionPerformed
+    }//GEN-LAST:event_tinNhanButtonActionPerformed
 
     /**
      *
      * This section is for user-defined methods
      */
-    private void initContentPanel() {        
-        SuKienPanel sk  = new SuKienPanel();
+    private void initContentPanel() {
+        SuKienPanel sk = new SuKienPanel();
         contentPanel.registerComponent(sk, "suKienPanel");
-        
+
         CuocThiPanel ct = new CuocThiPanel();
         contentPanel.registerComponent(ct, "cuocThiPanel");
-        
+
         CauLacBoPanel clb = new CauLacBoPanel();
         contentPanel.registerComponent(clb, "cauLacBoPanel");
-         
+
         ForumPanel fr = new ForumPanel();
         contentPanel.registerComponent(fr, "forumPanel");
-        
+
         TinNhanPanel tn = new TinNhanPanel();
         contentPanel.registerComponent(tn, "tinNhanPanel");
-        
+
         TaiKhoanPanel tk = new TaiKhoanPanel();
         contentPanel.registerComponent(tk, "taiKhoanPanel");
-        
+
 //        contentPanel.registerComponent(rootPane, name);
 //        contentPanel.registerComponent(rootPane, name);
 //        contentPanel.registerComponent(rootPane, name);
-        
 //        Random random = new Random();
 //        for (String labelText : contentPanelNames) {
 //            JLabel label = new JLabel(labelText, SwingConstants.CENTER);
@@ -644,27 +607,27 @@ public class App extends javax.swing.JFrame {
 //            contentPanel.registerComponent(label, labelText);
 //        }
     }
-    
+
     private void initRightPanel() {
         SuKienRightPanel skr = new SuKienRightPanel();
         this.rightPanel.registerComponent(skr, "suKienRightPanel");
-                
+
         CuocThiRightPanel ctr = new CuocThiRightPanel();
         contentPanel.registerComponent(ctr, "cuocThiRightPanel");
-        
+
         CauLacBoRightPanel clbr = new CauLacBoRightPanel();
         contentPanel.registerComponent(clbr, "cauLacBoRightPanel");
-        
+
         ForumRightPanel frr = new ForumRightPanel();
         contentPanel.registerComponent(frr, "forumRightPanel");
-        
+
         TinNhanRightPanel tnr = new TinNhanRightPanel();
         contentPanel.registerComponent(tnr, "tinNhanRightPanel");
-        
+
         TaiKhoanRightPanel tkr = new TaiKhoanRightPanel();
         contentPanel.registerComponent(tkr, "taiKhoanRightPanel");
     }
-    
+
     private void logOut() {
         System.out.println("Logged out!");
     }
@@ -732,6 +695,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JButton cuocThiButton;
     private javax.swing.JButton dangXuatButton;
     private javax.swing.JLabel ecoLabel;
+    private javax.swing.JButton forumButton;
     private javax.swing.JPanel headerPanel;
     private com.uiteco.components.ImageAvatar imageAvatar13;
     private com.uiteco.components.ImageAvatar imageAvatar14;
@@ -754,10 +718,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JTextPane searchPane;
     private javax.swing.JScrollPane searchPaneWrapper;
     private javax.swing.JButton suKienButton;
-    private javax.swing.JButton taiKhoanButton;
-    private javax.swing.JButton taiKhoanButton1;
-    private javax.swing.JButton taiKhoanButton2;
+    private javax.swing.JButton tinNhanButton;
     // End of variables declaration//GEN-END:variables
 
 }
-
