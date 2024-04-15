@@ -543,7 +543,7 @@ public class App extends javax.swing.JFrame {
 
     private void forumButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forumButtonMouseClicked
         // TODO add your handling code here:
-        this.contentPanel.showComponent("taiKhoanPanel");
+        this.contentPanel.showComponent("forumPanel");
         this.rightPanel.showComponent("forumRightPanel");
 
     }//GEN-LAST:event_forumButtonMouseClicked
