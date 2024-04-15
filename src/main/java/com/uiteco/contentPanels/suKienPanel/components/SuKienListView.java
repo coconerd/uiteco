@@ -21,13 +21,13 @@ public class SuKienListView extends javax.swing.JPanel implements PropertyChange
     public SuKienListView() {
         this.suKienListModel = new SuKienListModel();
         initComponents();
-        _populateList();
+        _postInitComponents();
     }
 
     public SuKienListView(SuKienListModel suKienListModel) {
         this.suKienListModel = suKienListModel;
         initComponents();
-        _populateList();
+        _postInitComponents();
     }
 
     @Override
@@ -36,18 +36,22 @@ public class SuKienListView extends javax.swing.JPanel implements PropertyChange
             SuKienModel eventModel = suKienListModel.getLastSuKien();
             SuKienView eventView = new SuKienView(eventModel);
             this.add(eventView);
+            this.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(0, 10)));
         } else if (event.getPropertyName().equals("suKienListRemoved")) {
             this.remove(this.getComponentCount() - 1);
         }
     }
 
-    private void _populateList() {
+    private void _postInitComponents() {
         this.suKienListModel.addPropertyChangeListener(this);
+//        this.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(0, 30))); // Add a vertical space between the flip-event-highlighter and the event-list-view (current component)
         for (SuKienModel eventModel : suKienListModel.getSuKienList()) {
             SuKienView eventView = new SuKienView(eventModel);
             this.add(eventView);
+            this.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(0, 10)));
         }
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +62,8 @@ public class SuKienListView extends javax.swing.JPanel implements PropertyChange
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setBackground(new java.awt.Color(242, 243, 244));
+        setForeground(new java.awt.Color(242, 243, 244));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
     }// </editor-fold>//GEN-END:initComponents
 

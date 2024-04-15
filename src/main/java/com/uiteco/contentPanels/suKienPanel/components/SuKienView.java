@@ -4,6 +4,8 @@
  */
 package com.uiteco.contentPanels.suKienPanel.components;
 
+import javax.swing.SwingConstants;
+
 /**
  *
  * @author nddmi
@@ -33,27 +35,32 @@ public class SuKienView extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         postedBy = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        postedAt = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         description = new javax.swing.JTextPane();
 
+        setForeground(new java.awt.Color(242, 243, 244));
         setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setBackground(new java.awt.Color(153, 255, 0));
+        jPanel1.setForeground(new java.awt.Color(242, 243, 244));
         jPanel1.setPreferredSize(new java.awt.Dimension(150, 102));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
         add(jPanel1, java.awt.BorderLayout.LINE_START);
 
         jPanel2.setBackground(new java.awt.Color(89, 165, 235));
         jPanel2.setPreferredSize(new java.awt.Dimension(150, 102));
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        jPanel2.setLayout(new java.awt.GridLayout(3, 0));
 
         postedBy.setText(suKienModel.getPostedBy());
-        jPanel2.add(postedBy, new java.awt.GridBagConstraints());
+        postedBy.setHorizontalAlignment(SwingConstants.CENTER);
+        jPanel2.add(postedBy);
 
-        jLabel1.setText(suKienModel.getPostedAt().toString());
-        jPanel2.add(jLabel1, new java.awt.GridBagConstraints());
+        postedAt.setText(suKienModel.getPostedAt().toString());
+        postedAt.setHorizontalAlignment(SwingConstants.CENTER);
+        jPanel2.add(postedAt);
 
         add(jPanel2, java.awt.BorderLayout.LINE_END);
 
@@ -95,11 +102,11 @@ public class SuKienView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane description;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel postedAt;
     private javax.swing.JLabel postedBy;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
