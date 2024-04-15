@@ -11,6 +11,16 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE210</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.homebeaver</groupId>
+            <artifactId>swingx-common</artifactId>
+            <version>1.7.6</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.homebeaver</groupId>
+            <artifactId>swingx-autocomplete</artifactId>
+            <version>1.7.6</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
