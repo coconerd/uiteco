@@ -4,22 +4,60 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.JComponent;
 import java.util.Vector;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.Component;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
  * @author nddmi
  */
 public class DynamicPanel extends JPanel {
+
     protected final CardLayout cardLayout;
     protected final JPanel pageHolder;
     protected final Vector<String> pageHistory;
-    protected int historyIndex = 0;
+    protected int historyIndex;
+    protected int innerPaddingSize;
 
     public DynamicPanel() {
-        this.pageHistory = new Vector<String>();
         this.cardLayout = new CardLayout();
         this.pageHolder = new JPanel(cardLayout);
+        this.pageHistory = new Vector<String>();
+        this.historyIndex = 0;
+        this.innerPaddingSize = 0;
         this.setBorder(null);
+    }
+
+    public DynamicPanel(int innerPaddingSize) {
+        this();
+        this.innerPaddingSize = innerPaddingSize;
+
+        // Add inner padding for DynamicPanel
+        this.addComponentListener(new ComponentAdapter() {
+            // This function will be invoked after all child components are loaded
+            @Override
+            public void componentResized(ComponentEvent e) {
+                for (Component comp : pageHolder.getComponents()) {
+                    if (!(comp instanceof JPanel)) {
+                        continue;
+                    }
+
+                    for (Component subcomp : ((JPanel) comp).getComponents()) {
+                        if (!(subcomp instanceof JPanel)) {
+                            continue;
+                        }
+
+                        ((JPanel) subcomp).setBorder(new EmptyBorder(innerPaddingSize, innerPaddingSize, innerPaddingSize, innerPaddingSize));
+                    }
+                }
+            }
+        });
+    }
+
+    public int getInnerPaddingSize() {
+        return this.innerPaddingSize;
     }
 
     public void previousComponent() {
@@ -49,7 +87,7 @@ public class DynamicPanel extends JPanel {
         this.pageHistory.add(name);
         this.historyIndex++;
     }
-    
+
     public void registerComponent(JComponent comp, String name) {
         pageHolder.add(name, comp);
         if (this.pageHistory.size() == 0) {

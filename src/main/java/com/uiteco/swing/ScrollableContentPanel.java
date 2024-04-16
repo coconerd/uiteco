@@ -9,10 +9,20 @@ import com.raven.scroll.ScrollPaneWin11;
  * @author nddmi
  */
 public class ScrollableContentPanel extends DynamicPanel {
-    private final ScrollPaneWin11 scrollPane;
-    
+
+    private ScrollPaneWin11 scrollPane;
+
     public ScrollableContentPanel() {
         super();
+        _init();
+    }
+
+    public ScrollableContentPanel(int innerPaddingSize) {
+        super(innerPaddingSize);
+        _init();
+    }
+
+    private void _init() {
         this.setLayout(new java.awt.BorderLayout());
         this.scrollPane= new ScrollPaneWin11();
         this.scrollPane.setViewportView(this.pageHolder);
