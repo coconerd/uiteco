@@ -673,6 +673,9 @@
       </Properties>
     </Component>
     <Component class="com.uiteco.swing.ScrollableContentPanel" name="contentPanel">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.uiteco.swing.ScrollableContentPanel(20)"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

@@ -73,7 +73,7 @@ public class App extends javax.swing.JFrame {
         imageAvatar19 = new com.uiteco.components.ImageAvatar();
         imageAvatar20 = new com.uiteco.components.ImageAvatar();
         rightPanel = new com.uiteco.swing.ContentPanel();
-        contentPanel = new com.uiteco.swing.ScrollableContentPanel();
+        contentPanel = new com.uiteco.swing.ScrollableContentPanel(20);
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
