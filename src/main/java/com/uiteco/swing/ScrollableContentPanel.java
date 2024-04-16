@@ -29,6 +29,5 @@ public class ScrollableContentPanel extends DynamicPanel {
         this.scrollPane.setBorder(null);
         this.scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         this.add(scrollPane, BorderLayout.CENTER);
-        this.add(scrollPane);
     }
 }
