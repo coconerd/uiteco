@@ -36,13 +36,12 @@ public class SuKienPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(242, 243, 244));
-        setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
         setForeground(new java.awt.Color(242, 243, 244));
         setLayout(new java.awt.BorderLayout(0, 24));
         add(suKienListView, java.awt.BorderLayout.CENTER);
 
-        jPanel1.setBackground(new java.awt.Color(242, 243, 244));
-        jPanel1.setPreferredSize(new java.awt.Dimension(798, 250));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel1.setPreferredSize(new java.awt.Dimension(798, 400));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -52,7 +51,7 @@ public class SuKienPanel extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 6630, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
