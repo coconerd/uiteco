@@ -21,37 +21,51 @@ public class SuKienListView extends javax.swing.JPanel implements PropertyChange
     public SuKienListView() {
         this.suKienListModel = new SuKienListModel();
         initComponents();
-        _postInitComponents();
+        _additionalInit();
+        _populateSuKienListView();
     }
 
     public SuKienListView(SuKienListModel suKienListModel) {
         this.suKienListModel = suKienListModel;
         initComponents();
-        _postInitComponents();
+        _additionalInit();
+        _populateSuKienListView();
+    }
+
+    public SuKienListModel getSuKienListModel() {
+        return this.suKienListModel;
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent event) {
-        if (event.getPropertyName().equals("suKienListAdded")) {
-            SuKienModel eventModel = suKienListModel.getLastSuKien();
-            SuKienView eventView = new SuKienView(eventModel);
-            this.add(eventView);
-            this.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(0, 10)));
-        } else if (event.getPropertyName().equals("suKienListRemoved")) {
-            this.remove(this.getComponentCount() - 1);
+    public void propertyChange(PropertyChangeEvent evt) {
+//        if (event.getPropertyName().equals("suKienListAdded")) {
+//            SuKienModel eventModel = suKienListModel.getLastSuKien();
+//            SuKienView eventView = new SuKienView(eventModel);
+//            this.add(eventView);
+//            this.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(0, 10)));
+//        } else if (event.getPropertyName().equals("suKienListRemoved")) {
+//            this.remove(this.getComponentCount() - 1);
+//        }
+
+        if (evt.getPropertyName().equals("suKienList")) {
+            removeAll();
+            _populateSuKienListView();
+            repaint();
         }
     }
 
-    private void _postInitComponents() {
+    private void _additionalInit() {
         this.suKienListModel.addPropertyChangeListener(this);
-//        this.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(0, 30))); // Add a vertical space between the flip-event-highlighter and the event-list-view (current component)
+    }
+
+    private void _populateSuKienListView() {
+        this.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(0, 30))); // Add a vertical space between the flip-event-highlighter and the event-list-view (current component)
         for (SuKienModel eventModel : suKienListModel.getSuKienList()) {
             SuKienView eventView = new SuKienView(eventModel);
             this.add(eventView);
             this.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(0, 10)));
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

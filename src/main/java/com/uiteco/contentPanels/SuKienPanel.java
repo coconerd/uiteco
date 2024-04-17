@@ -31,35 +31,104 @@ public class SuKienPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        suKienListView = new com.uiteco.contentPanels.suKienPanel.components.SuKienListView();
+        scrollPaneWin111 = new com.raven.scroll.ScrollPaneWin11();
         jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        suKienListView1 = new com.uiteco.contentPanels.suKienPanel.components.SuKienListView();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(242, 243, 244));
         setForeground(new java.awt.Color(242, 243, 244));
-        setLayout(new java.awt.BorderLayout(0, 24));
-        add(suKienListView, java.awt.BorderLayout.CENTER);
+        setPreferredSize(new java.awt.Dimension(810, 665));
+        setLayout(new java.awt.GridLayout(1, 1));
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
-        jPanel1.setPreferredSize(new java.awt.Dimension(798, 400));
+        scrollPaneWin111.setBorder(null);
+        scrollPaneWin111.setHorizontalScrollBar(null);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 798, Short.MAX_VALUE)
+        jPanel1.setBackground(new java.awt.Color(242, 243, 244));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jPanel3.setPreferredSize(new java.awt.Dimension(790, 350));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 790, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
 
-        add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.45;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 36, 0);
+        jPanel1.add(jPanel3, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.55;
+        jPanel1.add(suKienListView1, gridBagConstraints);
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+
+        jButton1.setText("previous");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jButton1);
+
+        jButton2.setText("next");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jButton2);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        jPanel1.add(jPanel2, gridBagConstraints);
+
+        scrollPaneWin111.setViewportView(jPanel1);
+
+        add(scrollPaneWin111);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        this.suKienListView1.getSuKienListModel().loadPreviousPage();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        this.suKienListView1.getSuKienListModel().loadNextpage();
+    }//GEN-LAST:event_jButton2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
-    private com.uiteco.contentPanels.suKienPanel.components.SuKienListView suKienListView;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private com.raven.scroll.ScrollPaneWin11 scrollPaneWin111;
+    private com.uiteco.contentPanels.suKienPanel.components.SuKienListView suKienListView1;
     // End of variables declaration//GEN-END:variables
 }
