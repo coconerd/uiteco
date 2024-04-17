@@ -78,7 +78,7 @@ public class App extends javax.swing.JFrame {
         imageAvatar19 = new com.uiteco.components.ImageAvatar();
         imageAvatar20 = new com.uiteco.components.ImageAvatar();
         rightPanel = new com.uiteco.swing.ContentPanel();
-        contentPanel = new com.uiteco.swing.ScrollableContentPanel(20);
+        contentPanel = new com.uiteco.swing.ContentPanel();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -436,7 +436,7 @@ public class App extends javax.swing.JFrame {
                 .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(contentPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE))
+                    .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE))
                 .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -735,7 +735,7 @@ public class App extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.uiteco.components.ImageAvatar avatar;
     private javax.swing.JButton cauLacBoButton;
-    private com.uiteco.swing.ScrollableContentPanel contentPanel;
+    private com.uiteco.swing.ContentPanel contentPanel;
     private javax.swing.JButton cuocThiButton;
     private javax.swing.JButton dangXuatButton;
     private javax.swing.JLabel ecoLabel;
