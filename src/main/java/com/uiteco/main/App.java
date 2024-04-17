@@ -540,8 +540,8 @@ public class App extends javax.swing.JFrame {
     private void suKienButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseClicked
         // TODO add your handling code here:
         if (currentButton != suKienButton) {            
-            this.contentPanel.showComponent("suKienPanel");
-            this.rightPanel.showComponent("suKienRightPanel");
+            this.contentPanel.showComponentAndTrimHistory("suKienPanel");
+            this.rightPanel.showComponentAndTrimHistory("suKienRightPanel");
             highlightButton(suKienButton);
             unHighlightButton(currentButton);
             currentButton = suKienButton;
@@ -551,8 +551,8 @@ public class App extends javax.swing.JFrame {
     private void cuocThiButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuocThiButtonMouseClicked
         // TODO add your handling code here:
         if (currentButton != cuocThiButton) {
-            this.contentPanel.showComponent("cuocThiPanel");
-            this.rightPanel.showComponent("cuocThiRightPanel");
+            this.contentPanel.showComponentAndTrimHistory("cuocThiPanel");
+            this.rightPanel.showComponentAndTrimHistory("cuocThiRightPanel");
             unHighlightButton(currentButton);
             highlightButton(cuocThiButton);
             currentButton = cuocThiButton;
@@ -562,8 +562,8 @@ public class App extends javax.swing.JFrame {
     private void cauLacBoButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cauLacBoButtonMouseClicked
         // TODO add your handling code here:
         if (currentButton != cauLacBoButton) {    
-            this.contentPanel.showComponent("cauLacBoPanel");
-            this.rightPanel.showComponent("cauLacBoRightPanel");
+            this.contentPanel.showComponentAndTrimHistory("cauLacBoPanel");
+            this.rightPanel.showComponentAndTrimHistory("cauLacBoRightPanel");
             unHighlightButton(currentButton);
             highlightButton(cauLacBoButton);
             currentButton = cauLacBoButton;
@@ -574,8 +574,8 @@ public class App extends javax.swing.JFrame {
     private void forumButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forumButtonMouseClicked
         // TODO add your handling code here:
         if (currentButton != forumButton) {
-            this.contentPanel.showComponent("taiKhoanPanel");
-            this.rightPanel.showComponent("forumRightPanel");
+            this.contentPanel.showComponentAndTrimHistory("taiKhoanPanel");
+            this.rightPanel.showComponentAndTrimHistory("forumRightPanel");
             unHighlightButton(currentButton);
             highlightButton(forumButton);
             currentButton = forumButton;
@@ -591,8 +591,8 @@ public class App extends javax.swing.JFrame {
     private void tinNhanButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tinNhanButtonMouseClicked
         // TODO add your handling code here:
         if (currentButton != tinNhanButton) {
-            this.contentPanel.showComponent("tinNhanPanel");
-            this.rightPanel.showComponent("tinNhanRightPanel");
+            this.contentPanel.showComponentAndTrimHistory("tinNhanPanel");
+            this.rightPanel.showComponentAndTrimHistory("tinNhanRightPanel");
             unHighlightButton(currentButton);
             highlightButton(tinNhanButton);
             currentButton = tinNhanButton;

@@ -3,6 +3,7 @@ package com.uiteco.swing;
 import java.awt.BorderLayout;
 import javax.swing.ScrollPaneConstants;
 import com.raven.scroll.ScrollPaneWin11;
+import java.beans.PropertyChangeEvent;
 
 /**
  *
@@ -20,6 +21,12 @@ public class ScrollableContentPanel extends DynamicPanel {
     public ScrollableContentPanel(int innerPaddingSize) {
         super(innerPaddingSize);
         _init();
+    }
+
+    
+    @Override
+    public void _propertyChangeHandler(PropertyChangeEvent evt) {
+  
     }
 
     private void _init() {
