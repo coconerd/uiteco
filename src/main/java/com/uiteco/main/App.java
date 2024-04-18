@@ -574,7 +574,7 @@ public class App extends javax.swing.JFrame {
     private void forumButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forumButtonMouseClicked
         // TODO add your handling code here:
         if (currentButton != forumButton) {
-            this.contentPanel.showComponentAndTrimHistory("taiKhoanPanel");
+            this.contentPanel.showComponentAndTrimHistory("forumPanel");
             this.rightPanel.showComponentAndTrimHistory("forumRightPanel");
             unHighlightButton(currentButton);
             highlightButton(forumButton);
