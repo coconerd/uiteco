@@ -6,6 +6,7 @@ package com.uiteco.contentPanels.suKienPanel.components;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.beans.PropertyChangeEvent;
 
 /**
  *
@@ -15,14 +16,14 @@ public class PaginationModel {
     /**
      * entries: The total amount of objects that exists in database (e.g: database has 325 SuKien => entries will have value of 325)
      */
-    private int entries;
-    private int entriesPerPage;
-    private int pageCount;
-    private int currentPage;
-    private PropertyChangeSupport propertyChangeSupport;
+    protected int entries;
+    protected int entriesPerPage;
+    protected int pageCount;
+    protected int currentPage;
+    protected PropertyChangeSupport propertyChangeSupport;
     
-    public static final int DEFAULT_ENTRIES_PER_PAGE = 100;
-
+    public static final int DEFAULT_ENTRIES_PER_PAGE = 30
+;
     
     public PaginationModel() {
         this.entriesPerPage = DEFAULT_ENTRIES_PER_PAGE;
@@ -79,14 +80,13 @@ public class PaginationModel {
         System.out.println("Debug: total entries count = " + entries);
     }
     
-    
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        this.propertyChangeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        this.propertyChangeSupport.removePropertyChangeListener(listener);
-    }
+//    public void addPropertyChangeListener(PropertyChangeListener listener) {
+//        this.propertyChangeSupport.addPropertyChangeListener(listener);
+//    }
+//
+//    public void removePropertyChangeListener(PropertyChangeListener listener) {
+//        this.propertyChangeSupport.removePropertyChangeListener(listener);
+//    }
  
     public void switchPreviousPage() {
         if (currentPage > 1) {
@@ -110,10 +110,20 @@ public class PaginationModel {
         this.propertyChangeSupport = propertyChangeSupport;
     }
     
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.propertyChangeSupport.addPropertyChangeListener(listener);
+    }
+    
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        this.propertyChangeSupport.removePropertyChangeListener(listener);
+    }
+        
     private void _init() {
+        this.setPropertyChangeSupport(new PropertyChangeSupport(this));
         this.setEntries(SuKienDAO.getCount());
         this.setPropertyChangeSupport(new PropertyChangeSupport(this));
         this.setPageCount( (int)Math.ceil( (double)entries / entriesPerPage ));
         this.setCurrentPage(1);
     }
+    
 }

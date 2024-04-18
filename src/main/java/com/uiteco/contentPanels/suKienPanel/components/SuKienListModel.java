@@ -15,24 +15,15 @@ import java.beans.PropertyChangeSupport;
  *
  * @author nddmi
  */
-public class SuKienListModel implements PropertyChangeListener {
-
+public class SuKienListModel extends PaginationModel implements PropertyChangeListener {
     private ArrayList<SuKienModel> suKienList;
-    private PropertyChangeSupport propertyChangeSupport;
-    private PaginationModel paginationModel;
 
-    public SuKienListModel(PaginationModel paginationModel) {
-        if (paginationModel == null) {
-            System.err.println("Error: SuKienListModel requires an instance of paginationModel!");
-            System.exit(0);
-        }
-        
-        this.setPropertyChangeSupport(new PropertyChangeSupport(this));
-        this.setPaginationModel(paginationModel);
-        this.paginationModel.addPropertyChangeListener(this);
+    public SuKienListModel() {
+        super();
+        this.addPropertyChangeListener(this);
         this.setSuKienList(SuKienDAO.getPageData(
-                paginationModel.getCurrentPage(),
-                paginationModel.getEntriesPerPage()
+                getCurrentPage(),
+                getEntriesPerPage()
         ));
     }
 
@@ -55,49 +46,19 @@ public class SuKienListModel implements PropertyChangeListener {
     public SuKienModel getLastSuKien() {
         return this.suKienList.getLast();
     }
-    
-    public PaginationModel getPaginationModel() {
-        return this.paginationModel;
-    }
-    
+
     public void setSuKienList(ArrayList<SuKienModel> suKienList) {
         this.suKienList = suKienList;
         // Fires a property-change event to notify SuKienListView that the list has changed. Therefore, view should be reloaded
         propertyChangeSupport.firePropertyChange("suKienList", null, null);
     }
-    
-    public PropertyChangeSupport getPropertyChangeSupport() {
-        return this.propertyChangeSupport;
-    }
 
-    public void setPropertyChangeSupport(PropertyChangeSupport propertyChangeSupport) {
-        this.propertyChangeSupport = propertyChangeSupport;
-    }
-    
-    public void setPaginationModel(PaginationModel pagionationModel) {
-        this.paginationModel = pagionationModel;
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        this.propertyChangeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        this.propertyChangeSupport.removePropertyChangeListener(listener);
-    }
-
-    /**
-     * Implements PropertyChangeListener interface to listen to page-change
-     * event from PaginationModel
-     *
-     * @param evt
-     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("currentPage")) {
             setSuKienList(SuKienDAO.getPageData(
-                    paginationModel.getCurrentPage(),
-                    paginationModel.getEntriesPerPage()
+                    getCurrentPage(),
+                    getEntriesPerPage()
             ));
         }
     }
