@@ -365,7 +365,7 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        searchPaneWrapper.setBorder(getRoundedBorder(searchPaneWrapper, 7, 2));
+        searchPaneWrapper.setBorder(RoundedBorder.getRoundedBorder(searchPaneWrapper, 7, 2));
         searchPaneWrapper.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         searchPaneWrapper.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         searchPaneWrapper.setAutoscrolls(true);
@@ -685,35 +685,6 @@ public class App extends javax.swing.JFrame {
     private void unHighlightButton(javax.swing.JButton button) {
         button.setBackground(new Color(255, 255, 255));
         button.setForeground(new Color(153, 153, 153));
-    }
-
-    private RoundedBorder getRoundedBorder(String foregroundColor, int radius, int stroke) {
-        Color background = new Color(255, 255, 255);
-        Color outline = background;
-        Color foreground;
-        if (foregroundColor.equalsIgnoreCase("white")) {
-            foreground = new Color(255, 255, 255);
-        } else if (foregroundColor.equalsIgnoreCase("black")) {
-            foreground = new Color(0, 0, 0);
-        } else if (foregroundColor.equalsIgnoreCase("grey") || foregroundColor.equalsIgnoreCase("light grey")) {
-            foreground = new Color(187, 187, 187);
-        } else {
-            foreground = new Color(255, 255, 255); // Dark grey
-        }
-        return new RoundedBorder(background, outline, foreground, radius, stroke);
-    }
-
-    private RoundedBorder getRoundedBorder(JComponent c, int radius, int stroke) {
-//        Color background = c.getBackground();
-//        Color foreground = c.getForeground();
-        if (stroke > radius) {
-            stroke = radius;
-        }
-//        final Color background = new Color(204, 204, 255);
-        final Color background = c.getBackground();
-        final Color border = Color.BLACK;
-        final Color foreground = Color.WHITE;
-        return new RoundedBorder(background, border, foreground, radius, stroke);
     }
 
     /**
