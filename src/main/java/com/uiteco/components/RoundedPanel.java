@@ -1,4 +1,4 @@
-package test;
+package com.uiteco.components;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
