@@ -9,9 +9,8 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JPanel;
 
-
 /**
- * 
+ *
  * @author Raven
  */
 public class RoundedPanel extends JPanel {
@@ -52,10 +51,40 @@ public class RoundedPanel extends JPanel {
         repaint();
     }
 
-    private int roundTopLeft = 0;
-    private int roundTopRight = 0;
-    private int roundBottomLeft = 0;
-    private int roundBottomRight = 0;
+    public static RoundedPanel getRoundedPanel(int radius) {
+        RoundedPanel roundedPanel = new RoundedPanel();
+        roundedPanel.setRoundTopLeft(radius);
+        roundedPanel.setRoundTopRight(radius);
+        roundedPanel.setRoundBottomLeft(radius);
+        roundedPanel.setRoundBottomRight(radius);
+        return roundedPanel;
+    }
+
+    public static RoundedPanel getRoundedPanel(int topLeft, int topRight, int bottomLeft, int bottomRight) {
+        RoundedPanel roundedPanel = new RoundedPanel();
+        roundedPanel.setRoundTopLeft(topLeft);
+        roundedPanel.setRoundTopRight(topRight);
+        roundedPanel.setRoundBottomLeft(bottomLeft);
+        roundedPanel.setRoundBottomRight(bottomRight);
+        return roundedPanel;
+    }
+
+    public static RoundedPanel getRoundedPanel(int radius, java.awt.LayoutManager layout) {
+        RoundedPanel roundedPanel = getRoundedPanel(radius);
+        roundedPanel.setLayout(layout);
+        return roundedPanel;
+    }
+
+    public static RoundedPanel getRoundedPanel(int topLeft, int topRight, int bottomLeft, int bottomRight, java.awt.LayoutManager layout) {
+        RoundedPanel roundedPanel = getRoundedPanel(topLeft, topRight, bottomLeft, bottomRight);
+        roundedPanel.setLayout(layout);
+        return roundedPanel;
+    }
+
+    protected int roundTopLeft = 0;
+    protected int roundTopRight = 0;
+    protected int roundBottomLeft = 0;
+    protected int roundBottomRight = 0;
 
     public RoundedPanel() {
         setOpaque(false);
@@ -81,7 +110,7 @@ public class RoundedPanel extends JPanel {
         super.paintComponent(grphcs);
     }
 
-    private Shape createRoundTopLeft() {
+    protected Shape createRoundTopLeft() {
         int width = getWidth();
         int height = getHeight();
         int roundX = Math.min(width, roundTopLeft);
@@ -92,7 +121,7 @@ public class RoundedPanel extends JPanel {
         return area;
     }
 
-    private Shape createRoundTopRight() {
+    protected Shape createRoundTopRight() {
         int width = getWidth();
         int height = getHeight();
         int roundX = Math.min(width, roundTopRight);
@@ -103,7 +132,7 @@ public class RoundedPanel extends JPanel {
         return area;
     }
 
-    private Shape createRoundBottomLeft() {
+    protected Shape createRoundBottomLeft() {
         int width = getWidth();
         int height = getHeight();
         int roundX = Math.min(width, roundBottomLeft);
@@ -114,7 +143,7 @@ public class RoundedPanel extends JPanel {
         return area;
     }
 
-    private Shape createRoundBottomRight() {
+    protected Shape createRoundBottomRight() {
         int width = getWidth();
         int height = getHeight();
         int roundX = Math.min(width, roundBottomRight);
