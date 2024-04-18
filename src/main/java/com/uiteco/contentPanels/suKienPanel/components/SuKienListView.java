@@ -51,6 +51,7 @@ public class SuKienListView extends javax.swing.JPanel implements PropertyChange
             removeAll();
             _populateSuKienListView();
             repaint();
+            revalidate();
         }
     }
 
