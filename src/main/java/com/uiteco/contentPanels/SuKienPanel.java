@@ -37,9 +37,7 @@ public class SuKienPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         suKienListView1 = new com.uiteco.contentPanels.suKienPanel.components.SuKienListView();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        pageBarView1 = new com.uiteco.contentPanels.suKienPanel.components.PaginationView();
 
         setBackground(new java.awt.Color(242, 243, 244));
         setForeground(new java.awt.Color(242, 243, 244));
@@ -81,53 +79,24 @@ public class SuKienPanel extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.55;
         jPanel1.add(suKienListView1, gridBagConstraints);
-
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
-
-        jButton1.setText("previous");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jButton1);
-
-        jButton2.setText("next");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jButton2);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel1.add(jPanel2, gridBagConstraints);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(9, 0, 0, 0);
+        jPanel1.add(pageBarView1, gridBagConstraints);
 
         scrollPaneWin111.setViewportView(jPanel1);
 
         add(scrollPaneWin111);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        this.suKienListView1.getSuKienListModel().loadPreviousPage();
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
-        this.suKienListView1.getSuKienListModel().loadNextpage();
-    }//GEN-LAST:event_jButton2MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private com.uiteco.contentPanels.suKienPanel.components.PaginationView pageBarView1;
     private com.raven.scroll.ScrollPaneWin11 scrollPaneWin111;
     private com.uiteco.contentPanels.suKienPanel.components.SuKienListView suKienListView1;
     // End of variables declaration//GEN-END:variables

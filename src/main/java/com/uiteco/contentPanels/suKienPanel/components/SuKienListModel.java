@@ -15,73 +15,37 @@ import java.beans.PropertyChangeSupport;
  *
  * @author nddmi
  */
-public class SuKienListModel {
+public class SuKienListModel implements PropertyChangeListener {
 
     private ArrayList<SuKienModel> suKienList;
     private PropertyChangeSupport propertyChangeSupport;
-    private int TOTAL;
-    private int PER_PAGE;
-    private int pageCount;
-    private int currentPage;
+    private PaginationModel paginationModel;
 
-    public SuKienListModel() {
+    public SuKienListModel(PaginationModel paginationModel) {
+        if (paginationModel == null) {
+            System.err.println("Error: SuKienListModel requires an instance of paginationModel!");
+            System.exit(0);
+        }
+        
         this.setPropertyChangeSupport(new PropertyChangeSupport(this));
-
-        this.setTOTAL(SuKienDAO.getCount());
-        this.setPER_PAGE(Math.min(30, TOTAL));
-        this.setPageCount((int) Math.ceil(TOTAL / PER_PAGE));
-
-        ArrayList<SuKienModel> pageData = SuKienDAO.getPageData(1, PER_PAGE);
-        this.setCurrentPage(1);
-        this.setSuKienList(pageData);
+        this.setPaginationModel(paginationModel);
+        this.paginationModel.addPropertyChangeListener(this);
+        this.setSuKienList(SuKienDAO.getPageData(
+                paginationModel.getCurrentPage(),
+                paginationModel.getEntriesPerPage()
+        ));
     }
 
-    public void loadPreviousPage() {
-        if (currentPage > 1) {
-            _loadPage(currentPage - 1);
-        }
+    public void addSuKien(SuKienModel suKien) {
+        this.suKienList.add(suKien);
+        // Fires a property-change event to notify SuKienListView that the list has changed. Therefore, view should be reloaded
+        this.propertyChangeSupport.firePropertyChange("SuKienList", null, suKien);
     }
 
-    public void loadNextpage() {
-        if (currentPage < pageCount) {
-            _loadPage(currentPage + 1);
-        }
-    }
-
-    public void loadPage(int page) {
-        if (page != currentPage && page >= 1 && page <= pageCount) {
-            _loadPage(page);
-        }
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        this.propertyChangeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        this.removePropertyChangeListener(listener);
-    }
-
-    public void addSuKien(SuKienModel s) {
-        this.suKienList.add(s);
-        this.propertyChangeSupport.firePropertyChange("suKienListAdded", null, null);
-    }
-
-    public void removeSuKien(SuKienModel s) {
-        this.suKienList.remove(s);
-        this.propertyChangeSupport.firePropertyChange("suKienListRemoved", null, null);
-    }
-
-    public PropertyChangeSupport getPropertyChangeSupport() {
-        return propertyChangeSupport;
-    }
-
-    public int getTOTAL() {
-        return TOTAL;
-    }
-
-    public int getPageCount() {
-        return pageCount;
+    public void removeSuKien(SuKienModel suKien) {
+        this.suKienList.remove(suKien);
+        // Fires a property-change event to notify SuKienListView that the list has changed. Therefore, view should be reloaded
+        this.propertyChangeSupport.firePropertyChange("suKienListRemoved", suKien, null);
     }
 
     public ArrayList<SuKienModel> getSuKienList() {
@@ -91,49 +55,50 @@ public class SuKienListModel {
     public SuKienModel getLastSuKien() {
         return this.suKienList.getLast();
     }
-
-    public int getPER_PAGE() {
-        return PER_PAGE;
+    
+    public PaginationModel getPaginationModel() {
+        return this.paginationModel;
     }
-
-    public int getCurrentPage() {
-        return currentPage;
+    
+    public void setSuKienList(ArrayList<SuKienModel> suKienList) {
+        this.suKienList = suKienList;
+        // Fires a property-change event to notify SuKienListView that the list has changed. Therefore, view should be reloaded
+        propertyChangeSupport.firePropertyChange("suKienList", null, null);
+    }
+    
+    public PropertyChangeSupport getPropertyChangeSupport() {
+        return this.propertyChangeSupport;
     }
 
     public void setPropertyChangeSupport(PropertyChangeSupport propertyChangeSupport) {
         this.propertyChangeSupport = propertyChangeSupport;
     }
-
-    public void setTOTAL(int TOTAL) {
-        this.TOTAL = TOTAL;
+    
+    public void setPaginationModel(PaginationModel pagionationModel) {
+        this.paginationModel = pagionationModel;
     }
 
-    public void setPER_PAGE(int PER_PAGE) {
-        this.PER_PAGE = PER_PAGE;
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.propertyChangeSupport.addPropertyChangeListener(listener);
     }
 
-    public void setPageCount(int pageCount) {
-        this.pageCount = pageCount;
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        this.propertyChangeSupport.removePropertyChangeListener(listener);
     }
 
-    public void setSuKienList(ArrayList<SuKienModel> suKienList) {
-        this.suKienList = suKienList;
-        propertyChangeSupport.firePropertyChange("suKienList", null, null);
-    }
-
-    public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
-        propertyChangeSupport.firePropertyChange("currentPage", null, null);
-    }
-
-    private void _loadPage(int page) {
-        System.out.println("Debug: page = " + page);
-        System.out.println("Debug: currentPage = " + currentPage);
-        System.out.println("Debug: pageCount = " + pageCount);
-        System.out.println("Debug: PER_PAGE = " + PER_PAGE);
-        System.out.println("Debug: TOTAL = " + TOTAL);
-        
-        setSuKienList(SuKienDAO.getPageData(page, PER_PAGE));
-        setCurrentPage(page);
+    /**
+     * Implements PropertyChangeListener interface to listen to page-change
+     * event from PaginationModel
+     *
+     * @param evt
+     */
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getPropertyName().equals("currentPage")) {
+            setSuKienList(SuKienDAO.getPageData(
+                    paginationModel.getCurrentPage(),
+                    paginationModel.getEntriesPerPage()
+            ));
+        }
     }
 }

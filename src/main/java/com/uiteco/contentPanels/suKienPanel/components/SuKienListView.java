@@ -17,6 +17,7 @@ import java.beans.PropertyChangeListener;
 public class SuKienListView extends javax.swing.JPanel implements PropertyChangeListener {
 
     private SuKienListModel suKienListModel;
+    private PaginationModel paginationModel;
 
     public SuKienListView() {
         this.suKienListModel = new SuKienListModel();
@@ -38,15 +39,6 @@ public class SuKienListView extends javax.swing.JPanel implements PropertyChange
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-//        if (event.getPropertyName().equals("suKienListAdded")) {
-//            SuKienModel eventModel = suKienListModel.getLastSuKien();
-//            SuKienView eventView = new SuKienView(eventModel);
-//            this.add(eventView);
-//            this.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(0, 10)));
-//        } else if (event.getPropertyName().equals("suKienListRemoved")) {
-//            this.remove(this.getComponentCount() - 1);
-//        }
-
         if (evt.getPropertyName().equals("suKienList")) {
             removeAll();
             _populateSuKienListView();
