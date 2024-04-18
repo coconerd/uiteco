@@ -15,6 +15,9 @@ public class ForumPanel extends javax.swing.JPanel {
      */
     public ForumPanel() {
         initComponents();
+        initTitlePanel();
+        initHeaderPanel();
+        initPostList();
     }
 
     /**
@@ -41,4 +44,942 @@ public class ForumPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+    
+    void initComponent(){
+        this.setBackground(new java.awt.Color(231,231,231));
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); 
+        this.setSize(810, 665);
+    }
+    void initTitlePanel(){
+        titlePanel = new javax.swing.JPanel();
+        titlePanel.setBackground(new java.awt.Color(231,231,231));
+        titlePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1,1,1,1));
+        titlePanel.setLayout(null);
+        
+        topicLabel = new javax.swing.JLabel();
+        statisticLabel = new javax.swing.JLabel();
+        postedByLabel = new javax.swing.JLabel();
+        
+        topicLabel.setFont(new java.awt.Font("Segoe UI", 1, 16));
+        topicLabel.setText("Topic");
+        titlePanel.add(topicLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(17,7,90,-1));
+        
+        statisticLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        statisticLabel.setText("Statistic");
+        titlePanel.add(statisticLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 7, 100, -1));
+        
+        postedByLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        postedByLabel.setText("Posted by");
+        titlePanel.add(postedByLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(677, 7, 90, -1));
+    }
+    
+    void initHeaderPanel(){
+        headerPanel = new javax.swing.JPanel();
+        headerPanel.setBackground(new java.awt.Color(0,102,102));
+        
+        topicButton.setBackground(new java.awt.Color(246,246,238));
+        topicButton.setFont(new java.awt.Font("Segoe UI",1,16));
+        topicButton.setForeground(new java.awt.Color(51,51,51));
+        topicButton.setText("TOPICS");
+        
+        lastedPostButton.setBackground(new java.awt.Color(246,246,238));
+        lastedPostButton.setFont(new java.awt.Font("Segoe UI",1,16));
+        lastedPostButton.setForeground(new java.awt.Color(51,51,51));
+        lastedPostButton.setText("LASTED POST");
+        
+        ecoForumLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ecoForumLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ecoForumLabel.setText("ECO-FORUM");
+        
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(topicButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lastedPostButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ecoForumLabel)
+                .addContainerGap())
+        );
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(topicButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lastedPostButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ecoForumLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        ); 
+    }
+    
+    void initPostList(){
+        postListPanel = new javax.swing.JPanel();
+        postListPanel.setBackground(new java.awt.Color(246, 243, 243));
+        /*Post No.1*/
+        post1Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post1Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post1Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost1.setText("Title bài đăng 1");
+
+        statisticPost1.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost1.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post1PanelLayout = new javax.swing.GroupLayout(post1Panel);
+        post1Panel.setLayout(post1PanelLayout);
+        post1PanelLayout.setHorizontalGroup(
+            post1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post1PanelLayout.createSequentialGroup()
+                .addComponent(titlePost1)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost1)
+                .addGap(21, 21, 21))
+        );
+        post1PanelLayout.setVerticalGroup(
+            post1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post1PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost1)
+                    .addComponent(titlePost1)
+                    .addComponent(nguoidangbaiPost1))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.2*/
+        post2Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post2Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post2Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost2.setText("Title bài đăng 2");
+
+        statisticPost2.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost2.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post2PanelLayout = new javax.swing.GroupLayout(post2Panel);
+        post2Panel.setLayout(post2PanelLayout);
+        post2PanelLayout.setHorizontalGroup(
+            post2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post2PanelLayout.createSequentialGroup()
+                .addComponent(titlePost2)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost2)
+                .addGap(21, 21, 21))
+        );
+        post2PanelLayout.setVerticalGroup(
+            post2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post2PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost2)
+                    .addComponent(titlePost2)
+                    .addComponent(nguoidangbaiPost2))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.3*/
+        post3Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post3Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post3Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost3.setText("Title bài đăng 3");
+
+        statisticPost3.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost3.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post3PanelLayout = new javax.swing.GroupLayout(post3Panel);
+        post3Panel.setLayout(post3PanelLayout);
+        post3PanelLayout.setHorizontalGroup(
+            post3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post3PanelLayout.createSequentialGroup()
+                .addComponent(titlePost3)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost3)
+                .addGap(21, 21, 21))
+        );
+        post3PanelLayout.setVerticalGroup(
+            post3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post3PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost3)
+                    .addComponent(titlePost3)
+                    .addComponent(nguoidangbaiPost3))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.4*/
+        post4Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post4Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post4Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost4.setText("Title bài đăng 4");
+
+        statisticPost4.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost4.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post4PanelLayout = new javax.swing.GroupLayout(post4Panel);
+        post4Panel.setLayout(post4PanelLayout);
+        post4PanelLayout.setHorizontalGroup(
+            post4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post4PanelLayout.createSequentialGroup()
+                .addComponent(titlePost4)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost4)
+                .addGap(21, 21, 21))
+        );
+        post4PanelLayout.setVerticalGroup(
+            post4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post4PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost4)
+                    .addComponent(titlePost4)
+                    .addComponent(nguoidangbaiPost4))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.5*/
+        post5Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post5Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post5Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost5.setText("Title bài đăng 5");
+
+        statisticPost5.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost5.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post5PanelLayout = new javax.swing.GroupLayout(post5Panel);
+        post5Panel.setLayout(post5PanelLayout);
+        post5PanelLayout.setHorizontalGroup(
+            post5PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post5PanelLayout.createSequentialGroup()
+                .addComponent(titlePost5)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost5)
+                .addGap(21, 21, 21))
+        );
+        post5PanelLayout.setVerticalGroup(
+            post5PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post5PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post5PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost5)
+                    .addComponent(titlePost5)
+                    .addComponent(nguoidangbaiPost5))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.6*/
+        post6Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post6Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post6Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost6.setText("Title bài đăng 6");
+
+        statisticPost6.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost6.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post6PanelLayout = new javax.swing.GroupLayout(post6Panel);
+        post6Panel.setLayout(post6PanelLayout);
+        post6PanelLayout.setHorizontalGroup(
+            post6PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post6PanelLayout.createSequentialGroup()
+                .addComponent(titlePost6)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost6)
+                .addGap(21, 21, 21))
+        );
+        post6PanelLayout.setVerticalGroup(
+            post6PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post6PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post6PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost6)
+                    .addComponent(titlePost6)
+                    .addComponent(nguoidangbaiPost6))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.7*/
+        post7Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post7Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post7Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost7.setText("Title bài đăng 7");
+
+        statisticPost7.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost7.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post7PanelLayout = new javax.swing.GroupLayout(post7Panel);
+        post7Panel.setLayout(post7PanelLayout);
+        post7PanelLayout.setHorizontalGroup(
+            post7PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post7PanelLayout.createSequentialGroup()
+                .addComponent(titlePost7)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost7)
+                .addGap(21, 21, 21))
+        );
+        post7PanelLayout.setVerticalGroup(
+            post7PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post7PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post7PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost7)
+                    .addComponent(titlePost7)
+                    .addComponent(nguoidangbaiPost7))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.8*/
+        post8Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post8Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post8Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost8.setText("Title bài đăng 8");
+
+        statisticPost8.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost8.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post8PanelLayout = new javax.swing.GroupLayout(post8Panel);
+        post8Panel.setLayout(post8PanelLayout);
+        post8PanelLayout.setHorizontalGroup(
+            post8PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post8PanelLayout.createSequentialGroup()
+                .addComponent(titlePost8)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost8)
+                .addGap(21, 21, 21))
+        );
+        post8PanelLayout.setVerticalGroup(
+            post8PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post8PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post8PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost8)
+                    .addComponent(titlePost8)
+                    .addComponent(nguoidangbaiPost8))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.9*/
+        post9Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post9Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post9Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost9.setText("Title bài đăng 9");
+
+        statisticPost9.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost9.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post9PanelLayout = new javax.swing.GroupLayout(post9Panel);
+        post9Panel.setLayout(post9PanelLayout);
+        post9PanelLayout.setHorizontalGroup(
+            post9PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post9PanelLayout.createSequentialGroup()
+                .addComponent(titlePost9)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost9)
+                .addGap(21, 21, 21))
+        );
+        post9PanelLayout.setVerticalGroup(
+            post9PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post9PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post9PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost9)
+                    .addComponent(titlePost9)
+                    .addComponent(nguoidangbaiPost9))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.10*/
+        post10Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post10Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post10Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost10.setText("Title bài đăng 10");
+
+        statisticPost10.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost10.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post10PanelLayout = new javax.swing.GroupLayout(post10Panel);
+        post10Panel.setLayout(post10PanelLayout);
+        post10PanelLayout.setHorizontalGroup(
+            post10PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post10PanelLayout.createSequentialGroup()
+                .addComponent(titlePost10)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost10)
+                .addGap(21, 21, 21))
+        );
+        post10PanelLayout.setVerticalGroup(
+            post10PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post10PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post10PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost10)
+                    .addComponent(titlePost10)
+                    .addComponent(nguoidangbaiPost10))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.11*/
+        post11Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post11Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post11Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost11.setText("Title bài đăng 11");
+
+        statisticPost11.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost11.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post11PanelLayout = new javax.swing.GroupLayout(post11Panel);
+        post11Panel.setLayout(post11PanelLayout);
+        post11PanelLayout.setHorizontalGroup(
+            post11PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post11PanelLayout.createSequentialGroup()
+                .addComponent(titlePost11)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost11)
+                .addGap(21, 21, 21))
+        );
+        post11PanelLayout.setVerticalGroup(
+            post11PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post11PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post11PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost11)
+                    .addComponent(titlePost11)
+                    .addComponent(nguoidangbaiPost11))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.12*/
+        post12Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post12Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post12Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost12.setText("Title bài đăng 12");
+
+        statisticPost12.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost12.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post12PanelLayout = new javax.swing.GroupLayout(post12Panel);
+        post12Panel.setLayout(post12PanelLayout);
+        post12PanelLayout.setHorizontalGroup(
+            post12PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post12PanelLayout.createSequentialGroup()
+                .addComponent(titlePost12)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost12)
+                .addGap(21, 21, 21))
+        );
+        post12PanelLayout.setVerticalGroup(
+            post12PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post12PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post12PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost12)
+                    .addComponent(titlePost12)
+                    .addComponent(nguoidangbaiPost12))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.13*/
+        post13Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post13Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post13Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost13.setText("Title bài đăng 13");
+
+        statisticPost13.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost13.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post13PanelLayout = new javax.swing.GroupLayout(post13Panel);
+        post13Panel.setLayout(post13PanelLayout);
+        post13PanelLayout.setHorizontalGroup(
+            post13PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post13PanelLayout.createSequentialGroup()
+                .addComponent(titlePost13)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost13)
+                .addGap(21, 21, 21))
+        );
+        post13PanelLayout.setVerticalGroup(
+            post13PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post13PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post13PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost13)
+                    .addComponent(titlePost13)
+                    .addComponent(nguoidangbaiPost13))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.14*/
+        post14Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post14Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post14Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost14.setText("Title bài đăng 14");
+
+        statisticPost14.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost14.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post14PanelLayout = new javax.swing.GroupLayout(post14Panel);
+        post14Panel.setLayout(post14PanelLayout);
+        post14PanelLayout.setHorizontalGroup(
+            post14PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post14PanelLayout.createSequentialGroup()
+                .addComponent(titlePost14)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost14)
+                .addGap(21, 21, 21))
+        );
+        post14PanelLayout.setVerticalGroup(
+            post14PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post14PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post14PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost14)
+                    .addComponent(titlePost14)
+                    .addComponent(nguoidangbaiPost14))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.15*/
+        post15Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post15Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post15Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost15.setText("Title bài đăng 15");
+
+        statisticPost15.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost15.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post15PanelLayout = new javax.swing.GroupLayout(post15Panel);
+        post15Panel.setLayout(post15PanelLayout);
+        post15PanelLayout.setHorizontalGroup(
+            post15PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post15PanelLayout.createSequentialGroup()
+                .addComponent(titlePost15)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost15)
+                .addGap(21, 21, 21))
+        );
+        post15PanelLayout.setVerticalGroup(
+            post15PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post15PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post15PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost15)
+                    .addComponent(titlePost15)
+                    .addComponent(nguoidangbaiPost15))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.16*/
+        post16Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post16Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post16Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost16.setText("Title bài đăng 16");
+
+        statisticPost16.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost16.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post16PanelLayout = new javax.swing.GroupLayout(post16Panel);
+        post16Panel.setLayout(post16PanelLayout);
+        post16PanelLayout.setHorizontalGroup(
+            post16PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post16PanelLayout.createSequentialGroup()
+                .addComponent(titlePost16)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost16)
+                .addGap(21, 21, 21))
+        );
+        post16PanelLayout.setVerticalGroup(
+            post16PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post16PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post16PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost16)
+                    .addComponent(titlePost16)
+                    .addComponent(nguoidangbaiPost16))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.17*/
+        post17Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post17Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post17Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost17.setText("Title bài đăng 17");
+
+        statisticPost17.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost17.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post17PanelLayout = new javax.swing.GroupLayout(post17Panel);
+        post17Panel.setLayout(post17PanelLayout);
+        post17PanelLayout.setHorizontalGroup(
+            post17PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post17PanelLayout.createSequentialGroup()
+                .addComponent(titlePost17)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost17)
+                .addGap(21, 21, 21))
+        );
+        post17PanelLayout.setVerticalGroup(
+            post17PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post17PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post17PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost17)
+                    .addComponent(titlePost17)
+                    .addComponent(nguoidangbaiPost17))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.18*/
+        post18Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post18Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post18Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost18.setText("Title bài đăng 18");
+
+        statisticPost18.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost18.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post18PanelLayout = new javax.swing.GroupLayout(post18Panel);
+        post18Panel.setLayout(post18PanelLayout);
+        post18PanelLayout.setHorizontalGroup(
+            post18PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post18PanelLayout.createSequentialGroup()
+                .addComponent(titlePost18)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost18)
+                .addGap(21, 21, 21))
+        );
+        post18PanelLayout.setVerticalGroup(
+            post18PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post18PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post18PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost18)
+                    .addComponent(titlePost18)
+                    .addComponent(nguoidangbaiPost18))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.19*/
+        post19Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post19Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post19Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost19.setText("Title bài đăng 19");
+
+        statisticPost19.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost19.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post19PanelLayout = new javax.swing.GroupLayout(post19Panel);
+        post19Panel.setLayout(post19PanelLayout);
+        post19PanelLayout.setHorizontalGroup(
+            post19PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post19PanelLayout.createSequentialGroup()
+                .addComponent(titlePost19)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost19)
+                .addGap(21, 21, 21))
+        );
+        post19PanelLayout.setVerticalGroup(
+            post19PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post19PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post19PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost19)
+                    .addComponent(titlePost19)
+                    .addComponent(nguoidangbaiPost19))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        /*Post No.20*/
+        post20Panel.setBackground(new java.awt.Color(239, 247, 246));
+        post20Panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        post20Panel.setPreferredSize(new java.awt.Dimension(590, 70));
+
+        titlePost20.setText("Title bài đăng 20");
+
+        statisticPost20.setText("Số lượng lượt xem, like, comment");
+
+        nguoidangbaiPost20.setText("Tên tài khoản đăng bài");
+
+        javax.swing.GroupLayout post20PanelLayout = new javax.swing.GroupLayout(post20Panel);
+        post20Panel.setLayout(post20PanelLayout);
+        post20PanelLayout.setHorizontalGroup(
+            post20PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post20PanelLayout.createSequentialGroup()
+                .addComponent(titlePost20)
+                .addGap(176, 176, 176)
+                .addComponent(statisticPost20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(nguoidangbaiPost20)
+                .addGap(21, 21, 21))
+        );
+        post20PanelLayout.setVerticalGroup(
+            post20PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(post20PanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(post20PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statisticPost20)
+                    .addComponent(titlePost20)
+                    .addComponent(nguoidangbaiPost20))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        
+        //panel contains nextButton and backButton
+        tailerPanel.setBackground(new java.awt.Color(246, 243, 243));
+
+        nextButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-right-26.png"))); // NOI18N
+        nextButton.setText("Next");
+
+        backButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-left-26.png"))); // NOI18N
+        backButton.setText("Back");
+
+        javax.swing.GroupLayout tailerPanelLayout = new javax.swing.GroupLayout(tailerPanel);
+        tailerPanel.setLayout(tailerPanelLayout);
+        tailerPanelLayout.setHorizontalGroup(
+            tailerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tailerPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nextButton)
+                .addGap(18, 18, 18))
+        );
+        tailerPanelLayout.setVerticalGroup(
+            tailerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tailerPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(tailerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
+        );
+        //add 20 postPanel into postListPanel
+        javax.swing.GroupLayout postListPanelLayout = new javax.swing.GroupLayout(postListPanel);
+        postListPanel.setLayout(postListPanelLayout);
+        postListPanelLayout.setHorizontalGroup(
+            postListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(post1Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post2Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post3Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post4Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post5Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post6Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post7Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post8Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post9Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post10Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post11Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post12Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post13Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post14Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post15Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post16Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post17Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post18Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post19Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(post20Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, postListPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tailerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+        );
+        postListPanelLayout.setVerticalGroup(
+            postListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(postListPanelLayout.createSequentialGroup()
+                .addComponent(post1Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post2Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post3Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post4Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post5Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post6Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post7Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post8Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post9Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post10Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post11Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post12Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post13Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post14Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post15Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post16Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post17Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(post18Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post19Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(post20Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tailerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+    }
+    // Variables declaration 
+    private javax.swing.JPanel titlePanel;
+    private javax.swing.JLabel topicLabel;
+    private javax.swing.JLabel statisticLabel;
+    private javax.swing.JLabel postedByLabel;
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JButton topicButton;
+    private javax.swing.JButton lastedPostButton;
+    private javax.swing.JLabel ecoForumLabel;
+    private javax.swing.JPanel postListPanel;
+    private javax.swing.JPanel post1Panel;
+    private javax.swing.JLabel titlePost1;
+    private javax.swing.JLabel statisticPost1;
+    private javax.swing.JLabel nguoidangbaiPost1;
+    private javax.swing.JPanel post2Panel;
+    private javax.swing.JLabel titlePost2;
+    private javax.swing.JLabel statisticPost2;
+    private javax.swing.JLabel nguoidangbaiPost2;
+    private javax.swing.JPanel post3Panel;
+    private javax.swing.JLabel titlePost3;
+    private javax.swing.JLabel statisticPost3;
+    private javax.swing.JLabel nguoidangbaiPost3;
+    private javax.swing.JPanel post4Panel;
+    private javax.swing.JLabel titlePost4;
+    private javax.swing.JLabel statisticPost4;
+    private javax.swing.JLabel nguoidangbaiPost4;
+    private javax.swing.JPanel post5Panel;
+    private javax.swing.JLabel titlePost5;
+    private javax.swing.JLabel statisticPost5;
+    private javax.swing.JLabel nguoidangbaiPost5;
+    private javax.swing.JPanel post6Panel;
+    private javax.swing.JLabel titlePost6;
+    private javax.swing.JLabel statisticPost6;
+    private javax.swing.JLabel nguoidangbaiPost6;
+    private javax.swing.JPanel post7Panel;
+    private javax.swing.JLabel titlePost7;
+    private javax.swing.JLabel statisticPost7;
+    private javax.swing.JLabel nguoidangbaiPost7;
+    private javax.swing.JPanel post8Panel;
+    private javax.swing.JLabel titlePost8;
+    private javax.swing.JLabel statisticPost8;
+    private javax.swing.JLabel nguoidangbaiPost8;
+    private javax.swing.JPanel post9Panel;
+    private javax.swing.JLabel titlePost9;
+    private javax.swing.JLabel statisticPost9;
+    private javax.swing.JLabel nguoidangbaiPost9;
+    private javax.swing.JPanel post10Panel;
+    private javax.swing.JLabel titlePost10;
+    private javax.swing.JLabel statisticPost10;
+    private javax.swing.JLabel nguoidangbaiPost10;
+    private javax.swing.JPanel post11Panel;
+    private javax.swing.JLabel titlePost11;
+    private javax.swing.JLabel statisticPost11;
+    private javax.swing.JLabel nguoidangbaiPost11;
+    private javax.swing.JPanel post12Panel;
+    private javax.swing.JLabel titlePost12;
+    private javax.swing.JLabel statisticPost12;
+    private javax.swing.JLabel nguoidangbaiPost12;
+    private javax.swing.JPanel post13Panel;
+    private javax.swing.JLabel titlePost13;
+    private javax.swing.JLabel statisticPost13;
+    private javax.swing.JLabel nguoidangbaiPost13;
+    private javax.swing.JPanel post14Panel;
+    private javax.swing.JLabel titlePost14;
+    private javax.swing.JLabel statisticPost14;
+    private javax.swing.JLabel nguoidangbaiPost14;
+    private javax.swing.JPanel post15Panel;
+    private javax.swing.JLabel titlePost15;
+    private javax.swing.JLabel statisticPost15;
+    private javax.swing.JLabel nguoidangbaiPost15;
+    private javax.swing.JPanel post16Panel;
+    private javax.swing.JLabel titlePost16;
+    private javax.swing.JLabel statisticPost16;
+    private javax.swing.JLabel nguoidangbaiPost16;
+    private javax.swing.JPanel post17Panel;
+    private javax.swing.JLabel titlePost17;
+    private javax.swing.JLabel statisticPost17;
+    private javax.swing.JLabel nguoidangbaiPost17;
+    private javax.swing.JPanel post18Panel;
+    private javax.swing.JLabel titlePost18;
+    private javax.swing.JLabel statisticPost18;
+    private javax.swing.JLabel nguoidangbaiPost18;
+    private javax.swing.JPanel post19Panel;
+    private javax.swing.JLabel titlePost19;
+    private javax.swing.JLabel statisticPost19;
+    private javax.swing.JLabel nguoidangbaiPost19;
+    private javax.swing.JPanel post20Panel;
+    private javax.swing.JLabel titlePost20;
+    private javax.swing.JLabel statisticPost20;
+    private javax.swing.JLabel nguoidangbaiPost20;
+    private javax.swing.JPanel tailerPanel;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JButton backButton;
 }
