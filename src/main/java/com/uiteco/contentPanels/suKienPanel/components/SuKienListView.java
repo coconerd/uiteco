@@ -28,7 +28,7 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
 
     private SuKienListModel suKienListModel;
     public int verticalGap;
-    public static int DEFAULT_VERTICAL_GAP = 20;
+    public static int DEFAULT_VERTICAL_GAP = 99;
 
     public SuKienListView() {
         setSuKienListModel(new SuKienListModel());

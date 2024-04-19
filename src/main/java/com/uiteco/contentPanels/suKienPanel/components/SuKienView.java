@@ -4,23 +4,28 @@
  */
 package com.uiteco.contentPanels.suKienPanel.components;
 
-import javax.swing.SwingConstants;
+import com.uiteco.components.RoundedGradientPanel;
 
 /**
  *
  * @author nddmi
  */
-public class SuKienView extends javax.swing.JPanel {
+public class SuKienView extends RoundedGradientPanel {
     private SuKienModel suKienModel;
     
     public SuKienView() {
         this.suKienModel = new SuKienModel();
         initComponents();
+        _additionalInit();
     }
     
     public SuKienView(SuKienModel suKienModel) {
         this.suKienModel = suKienModel;
         initComponents();
+        _additionalInit();
+    }
+    
+    private void _additionalInit() {
     }
 
     /**
@@ -32,82 +37,95 @@ public class SuKienView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        postedBy = new javax.swing.JLabel();
-        postedAt = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        title = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        description = new javax.swing.JTextPane();
+        imageAvatar1 = new com.uiteco.components.ImageAvatar();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        roundedImagePanel1 = new com.uiteco.components.RoundedImagePanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(242, 243, 244));
-        setLayout(new java.awt.BorderLayout());
+        setColor1(new java.awt.Color(255, 255, 255));
+        setColor2(new java.awt.Color(245, 245, 245));
+        setDirection(com.uiteco.components.RoundedGradientPanel.Direction.HORIZONTAL);
+        setRoundBottomLeft(20);
+        setRoundBottomRight(20);
+        setRoundTopLeft(20);
+        setRoundTopRight(20);
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 0));
-        jPanel1.setForeground(new java.awt.Color(242, 243, 244));
-        jPanel1.setPreferredSize(new java.awt.Dimension(150, 102));
-        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
-        add(jPanel1, java.awt.BorderLayout.LINE_START);
+        imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(89, 165, 235));
-        jPanel2.setPreferredSize(new java.awt.Dimension(150, 102));
-        jPanel2.setLayout(new java.awt.GridLayout(3, 0));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(2, 48, 71));
+        jLabel1.setText(suKienModel.getPostedBy());
 
-        postedBy.setText(suKienModel.getPostedBy());
-        postedBy.setHorizontalAlignment(SwingConstants.CENTER);
-        jPanel2.add(postedBy);
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel2.setText(suKienModel.getPostedAt().toString());
 
-        postedAt.setText(suKienModel.getPostedAt().toString());
-        postedAt.setHorizontalAlignment(SwingConstants.CENTER);
-        jPanel2.add(postedAt);
+        roundedImagePanel1.setImage(new javax.swing.ImageIcon(getClass().getResource("/uitgamapp.jpg"))); // NOI18N
+        roundedImagePanel1.setRoundBottomLeft(10);
+        roundedImagePanel1.setRoundBottomRight(10);
+        roundedImagePanel1.setRoundTopLeft(60);
+        roundedImagePanel1.setRoundTopRight(60);
 
-        add(jPanel2, java.awt.BorderLayout.LINE_END);
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText(suKienModel.getContent());
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText(suKienModel.getTitle());
+        jLabel4.setToolTipText("");
 
-        title.setText(suKienModel.getTitle());
-
-        String content = suKienModel.getContent();
-        int maxLength = 40;
-        String trimmedContent = content.substring(0, Math.min(content.length(), maxLength));
-        description.setText(trimmedContent);
-        jScrollPane1.setViewportView(description);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(title)
-                        .addGap(0, 218, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(title)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(roundedImagePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
         );
-
-        add(jPanel3, java.awt.BorderLayout.CENTER);
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2)))
+                .addGap(31, 31, 31)
+                .addComponent(jLabel4)
+                .addGap(0, 0, 0)
+                .addComponent(roundedImagePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextPane description;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel postedAt;
-    private javax.swing.JLabel postedBy;
-    private javax.swing.JLabel title;
+    private com.uiteco.components.ImageAvatar imageAvatar1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private com.uiteco.components.RoundedImagePanel roundedImagePanel1;
     // End of variables declaration//GEN-END:variables
 }
