@@ -461,12 +461,12 @@ public class App extends javax.swing.JFrame {
     }
     
     private void suKienButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseEntered
-        highlightButton(suKienButton);
+        highlightComponent(suKienButton);
     }//GEN-LAST:event_suKienButtonMouseEntered
 
     private void suKienButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseExited
         if (currentButton != suKienButton) {    
-            unHighlightButton(suKienButton);
+            unHighlightComponent(suKienButton);
         }
     }//GEN-LAST:event_suKienButtonMouseExited
 
@@ -476,13 +476,13 @@ public class App extends javax.swing.JFrame {
 
     private void cuocThiButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuocThiButtonMouseEntered
         // TODO add your handling code here:
-        highlightButton(cuocThiButton);
+        highlightComponent(cuocThiButton);
     }//GEN-LAST:event_cuocThiButtonMouseEntered
 
     private void cuocThiButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuocThiButtonMouseExited
         // TODO add your handling code here:
         if (currentButton != cuocThiButton) {
-            unHighlightButton(cuocThiButton);
+            unHighlightComponent(cuocThiButton);
         }
     }//GEN-LAST:event_cuocThiButtonMouseExited
 
@@ -491,13 +491,13 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_cuocThiButtonActionPerformed
 
     private void cauLacBoButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cauLacBoButtonMouseEntered
-        highlightButton(cauLacBoButton);
+        highlightComponent(cauLacBoButton);
     }//GEN-LAST:event_cauLacBoButtonMouseEntered
 
     private void cauLacBoButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cauLacBoButtonMouseExited
         // TODO add your handling code here:
         if (currentButton != cauLacBoButton) {
-            unHighlightButton(cauLacBoButton);
+            unHighlightComponent(cauLacBoButton);
         }
     }//GEN-LAST:event_cauLacBoButtonMouseExited
 
@@ -507,13 +507,13 @@ public class App extends javax.swing.JFrame {
 
     private void forumButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forumButtonMouseEntered
         // TODO add your handling code here:
-        highlightButton(forumButton);
+        highlightComponent(forumButton);
     }//GEN-LAST:event_forumButtonMouseEntered
 
     private void forumButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forumButtonMouseExited
         // TODO add your handling code here:
         if (currentButton != forumButton) {
-            unHighlightButton(forumButton);
+            unHighlightComponent(forumButton);
         }
     }//GEN-LAST:event_forumButtonMouseExited
 
@@ -546,8 +546,8 @@ public class App extends javax.swing.JFrame {
         if (currentButton != suKienButton) {            
             this.contentPanel.showComponentAndTrimHistory("suKienPanel");
             this.rightPanel.showComponentAndTrimHistory("suKienRightPanel");
-            highlightButton(suKienButton);
-            unHighlightButton(currentButton);
+            highlightComponent(suKienButton);
+            unHighlightComponent(currentButton);
             currentButton = suKienButton;
         }
     }//GEN-LAST:event_suKienButtonMouseClicked
@@ -557,8 +557,8 @@ public class App extends javax.swing.JFrame {
         if (currentButton != cuocThiButton) {
             this.contentPanel.showComponentAndTrimHistory("cuocThiPanel");
             this.rightPanel.showComponentAndTrimHistory("cuocThiRightPanel");
-            unHighlightButton(currentButton);
-            highlightButton(cuocThiButton);
+            unHighlightComponent(currentButton);
+            highlightComponent(cuocThiButton);
             currentButton = cuocThiButton;
         }
     }//GEN-LAST:event_cuocThiButtonMouseClicked
@@ -568,8 +568,8 @@ public class App extends javax.swing.JFrame {
         if (currentButton != cauLacBoButton) {    
             this.contentPanel.showComponentAndTrimHistory("cauLacBoPanel");
             this.rightPanel.showComponentAndTrimHistory("cauLacBoRightPanel");
-            unHighlightButton(currentButton);
-            highlightButton(cauLacBoButton);
+            unHighlightComponent(currentButton);
+            highlightComponent(cauLacBoButton);
             currentButton = cauLacBoButton;
         }
 
@@ -580,8 +580,8 @@ public class App extends javax.swing.JFrame {
         if (currentButton != forumButton) {
             this.contentPanel.showComponentAndTrimHistory("forumPanel");
             this.rightPanel.showComponentAndTrimHistory("forumRightPanel");
-            unHighlightButton(currentButton);
-            highlightButton(forumButton);
+            unHighlightComponent(currentButton);
+            highlightComponent(forumButton);
             currentButton = forumButton;
         }
 
@@ -597,21 +597,21 @@ public class App extends javax.swing.JFrame {
         if (currentButton != tinNhanButton) {
             this.contentPanel.showComponentAndTrimHistory("tinNhanPanel");
             this.rightPanel.showComponentAndTrimHistory("tinNhanRightPanel");
-            unHighlightButton(currentButton);
-            highlightButton(tinNhanButton);
+            unHighlightComponent(currentButton);
+            highlightComponent(tinNhanButton);
             currentButton = tinNhanButton;
         }
     }//GEN-LAST:event_tinNhanButtonMouseClicked
 
     private void tinNhanButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tinNhanButtonMouseEntered
         // TODO add your handling code here:
-        highlightButton(tinNhanButton);
+        highlightComponent(tinNhanButton);
     }//GEN-LAST:event_tinNhanButtonMouseEntered
 
     private void tinNhanButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tinNhanButtonMouseExited
         // TODO add your handling code here:
         if (currentButton != tinNhanButton) {
-            unHighlightButton(tinNhanButton);
+            unHighlightComponent(tinNhanButton);
         }
     }//GEN-LAST:event_tinNhanButtonMouseExited
 
@@ -680,15 +680,15 @@ public class App extends javax.swing.JFrame {
         System.out.println("Logged out!");
     }
 
-    private void highlightButton(javax.swing.JButton button) {
-        button.setBackground(new Color(51, 102, 255));
-        button.setForeground(new Color(255, 255, 255));
+    private void highlightComponent(JComponent comp) {
+        comp.setBackground(new Color(51, 102, 255));
+        comp.setForeground(new Color(255, 255, 255));
 
     }
 
-    private void unHighlightButton(javax.swing.JButton button) {
-        button.setBackground(new Color(255, 255, 255));
-        button.setForeground(new Color(153, 153, 153));
+    private void unHighlightComponent(JComponent comp) {
+        comp.setBackground(new Color(255, 255, 255));
+        comp.setForeground(new Color(153, 153, 153));
     }
 
     /**
