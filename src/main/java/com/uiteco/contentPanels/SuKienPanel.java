@@ -33,71 +33,26 @@ public class SuKienPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        scrollPaneWin111 = new com.raven.scroll.ScrollPaneWin11();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        suKienListView1 = new com.uiteco.contentPanels.suKienPanel.components.SuKienListView();
-        pageBarView1 = new com.uiteco.contentPanels.suKienPanel.components.PaginationView();
+        scrollPaneWin11 = new com.raven.scroll.ScrollPaneWin11();
+        containerPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(242, 243, 244));
         setForeground(new java.awt.Color(242, 243, 244));
         setPreferredSize(new java.awt.Dimension(810, 665));
         setLayout(new java.awt.GridLayout(1, 1));
 
-        scrollPaneWin111.setBorder(null);
-        scrollPaneWin111.setHorizontalScrollBar(null);
+        scrollPaneWin11.setBorder(null);
 
-        jPanel1.setBackground(new java.awt.Color(242, 243, 244));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        containerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        containerPanel.setLayout(new java.awt.GridBagLayout());
+        scrollPaneWin11.setViewportView(containerPanel);
 
-        jPanel3.setPreferredSize(new java.awt.Dimension(790, 350));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.45;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 36, 0);
-        jPanel1.add(jPanel3, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.55;
-        jPanel1.add(suKienListView1, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(9, 0, 0, 0);
-        jPanel1.add(pageBarView1, gridBagConstraints);
-
-        scrollPaneWin111.setViewportView(jPanel1);
-
-        add(scrollPaneWin111);
+        add(scrollPaneWin11);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private com.uiteco.contentPanels.suKienPanel.components.PaginationView pageBarView1;
-    private com.raven.scroll.ScrollPaneWin11 scrollPaneWin111;
-    private com.uiteco.contentPanels.suKienPanel.components.SuKienListView suKienListView1;
+    private javax.swing.JPanel containerPanel;
+    private com.raven.scroll.ScrollPaneWin11 scrollPaneWin11;
     // End of variables declaration//GEN-END:variables
 }
