@@ -31,10 +31,11 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
     public static int DEFAULT_VERTICAL_GAP = 20;
 
     public SuKienListView() {
-        this.suKienListModel = new SuKienListModel();
-        this.verticalGap = DEFAULT_VERTICAL_GAP;
-        _additionalInit();
+        setSuKienListModel(new SuKienListModel());
+        setVerticalGap(DEFAULT_VERTICAL_GAP);
         initComponents();
+        _additionalInit();
+        
         javax.swing.SwingUtilities.invokeLater(() -> {
             _populateSuKienList();
             _populatePaginationBar();
@@ -42,20 +43,31 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
     }
 
     public SuKienListView(SuKienListModel suKienListModel, int verticalGap) {
-        this.suKienListModel = suKienListModel;
-        this.verticalGap = verticalGap;
+        setSuKienListModel(suKienListModel);
+        setVerticalGap(verticalGap);
         initComponents();
         _additionalInit();
-        _populateSuKienList();
-        _populatePaginationBar();
+
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            _populateSuKienList();
+            _populatePaginationBar();
+        });
     }
 
     public SuKienListModel getSuKienListModel() {
         return this.suKienListModel;
     }
-    
+
     public int getVerticalGap() {
         return this.verticalGap;
+    }
+
+    public void setSuKienListModel(SuKienListModel suKienListModel) {
+        this.suKienListModel = suKienListModel;
+    }
+
+    public void setVerticalGap(int verticalGap) {
+        this.verticalGap = verticalGap;
     }
 
     @Override
@@ -70,7 +82,7 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
             while (!(parent instanceof ScrollPaneWin11)) {
                 parent = parent.getParent();
             }
-            ((ScrollPaneWin11)parent).scrollToTop(); // Scroll to the top of the page
+            ((ScrollPaneWin11) parent).scrollToTop(); // Scroll to the top of the page
         }
     }
 
@@ -82,21 +94,36 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
         for (SuKienModel eventModel : suKienListModel.getSuKienList()) {
             SuKienView eventView = new SuKienView(eventModel);
             add(eventView);
-            add(javax.swing.Box.createRigidArea(new java.awt.Dimension(0, 10)));
+            add(javax.swing.Box.createRigidArea(new java.awt.Dimension(0, getVerticalGap())));
         }
     }
 
     private void _populatePaginationBar() {
         int radius = 7;
+        
         RoundedPanel paginationBar = RoundedPanel.getRoundedPanel(radius, new FlowLayout());
-        paginationBar.setBackground(new Color(0, 0, 128)); // Navy blue
+        paginationBar.setBackground(new Color(242, 243, 244)); // Navy blue
 
         int pageCount = suKienListModel.getPageCount();
         int currentPage = suKienListModel.getCurrentPage();
-        int windowSize = 7;
+        int windowSize = 9;
         int startPage = Math.max(1, currentPage - windowSize / 2);
         int endPage = Math.min(pageCount, currentPage + windowSize / 2);
 
+        // Add a button to let user quickly return to first page
+        if (startPage > 1) {
+            RoundedPanel box = RoundedPanel.getRoundedPanel(radius, new FlowLayout(FlowLayout.CENTER));
+            box.setPreferredSize(new Dimension(25, 25));
+            box.add(new JLabel("<<"));
+            box.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    suKienListModel.switchPage(1);
+                }
+            });
+            paginationBar.add(box);
+        };
+        
         if (currentPage > 1) {
             RoundedPanel box = RoundedPanel.getRoundedPanel(radius, new FlowLayout(FlowLayout.CENTER));
             box.setPreferredSize((new Dimension(25, 25)));
