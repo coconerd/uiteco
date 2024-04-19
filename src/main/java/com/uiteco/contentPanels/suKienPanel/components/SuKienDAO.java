@@ -86,14 +86,14 @@ public class SuKienDAO {
     }
 
     public static int getCount() {
-        return 100;  // mock
+        return 300;  // mock
     }
 
     public static ArrayList<SuKienModel> getPageData(int page, int pageSize) {
         ArrayList<SuKienModel> suKienList = new ArrayList<>();
 
         // mock
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < getCount(); i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
             String type = "Event";
             String tag = null;
