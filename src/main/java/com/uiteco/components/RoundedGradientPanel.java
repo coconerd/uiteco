@@ -167,6 +167,9 @@ public class RoundedGradientPanel extends JPanel {
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2d = (Graphics2D) grphcs.create();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+
         g2d.setColor(getBackground());
 
         // Add rounded border to panels
