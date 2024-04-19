@@ -96,6 +96,8 @@ public class App extends javax.swing.JFrame {
         suKienButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-home-17.png"))); // NOI18N
         suKienButton.setText("Sự kiện");
         suKienButton.setBorderPainted(false);
+        suKienButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        suKienButton.setIconTextGap(20);
         suKienButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 suKienButtonMouseClicked(evt);
@@ -119,6 +121,8 @@ public class App extends javax.swing.JFrame {
         cuocThiButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-ranking-17.png"))); // NOI18N
         cuocThiButton.setText("Cuộc thi");
         cuocThiButton.setBorderPainted(false);
+        cuocThiButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cuocThiButton.setIconTextGap(20);
         cuocThiButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cuocThiButtonMouseClicked(evt);
@@ -142,6 +146,8 @@ public class App extends javax.swing.JFrame {
         cauLacBoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-group-17.png"))); // NOI18N
         cauLacBoButton.setText("Câu lạc bộ");
         cauLacBoButton.setBorderPainted(false);
+        cauLacBoButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cauLacBoButton.setIconTextGap(20);
         cauLacBoButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cauLacBoButtonMouseClicked(evt);
@@ -165,6 +171,8 @@ public class App extends javax.swing.JFrame {
         forumButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-forum-17.png"))); // NOI18N
         forumButton.setText("Forum");
         forumButton.setBorderPainted(false);
+        forumButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        forumButton.setIconTextGap(20);
         forumButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 forumButtonMouseClicked(evt);
@@ -226,6 +234,8 @@ public class App extends javax.swing.JFrame {
         tinNhanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-chat-17.png"))); // NOI18N
         tinNhanButton.setText("Tin nhắn");
         tinNhanButton.setBorderPainted(false);
+        tinNhanButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        tinNhanButton.setIconTextGap(20);
         tinNhanButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tinNhanButtonMouseClicked(evt);
@@ -248,30 +258,24 @@ public class App extends javax.swing.JFrame {
         leftPanelLayout.setHorizontalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(leftPanelLayout.createSequentialGroup()
-                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dangXuatButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(suKienButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cuocThiButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(leftPanelLayout.createSequentialGroup()
-                                .addComponent(imageAvatar13, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ecoLabel)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(leftPanelLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tinNhanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(forumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cauLacBoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(12, Short.MAX_VALUE))))
-            .addGroup(leftPanelLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(leftPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dangXuatButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(suKienButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cuocThiButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(leftPanelLayout.createSequentialGroup()
+                        .addComponent(imageAvatar13, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ecoLabel)
+                        .addGap(0, 16, Short.MAX_VALUE))
+                    .addComponent(cauLacBoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(forumButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tinNhanButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,9 +287,9 @@ public class App extends javax.swing.JFrame {
                     .addGroup(leftPanelLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(ecoLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(suKienButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cuocThiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cauLacBoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
