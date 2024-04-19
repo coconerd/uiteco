@@ -6,6 +6,7 @@ package com.uiteco.main;
 
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
+import java.awt.Component;
 import javax.swing.JComponent;
 import com.uiteco.contentPanels.SuKienPanel;
 import com.uiteco.contentPanels.CuocThiPanel;
@@ -533,14 +534,33 @@ public class App extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.contentPanel.previousComponent();
         this.rightPanel.previousComponent();
+        _navButtonClicked();
     }//GEN-LAST:event_prevButtonMouseClicked
 
     private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked
         // TODO add your handling code here:
         this.contentPanel.nextComponent();
         this.rightPanel.nextComponent();
+        _navButtonClicked();
     }//GEN-LAST:event_nextButtonMouseClicked
 
+    private void _navButtonClicked() {
+        unHighlightComponent(currentButton);
+        Component currComp = contentPanel.getCurrentComponent();
+        if (currComp instanceof SuKienPanel) {
+            currentButton = suKienButton;
+        } else if (currComp instanceof CuocThiPanel) {
+            currentButton = cuocThiButton;
+        } else if (currComp instanceof ForumPanel) {
+            currentButton = forumButton;
+        } else if (currComp instanceof CauLacBoPanel) {
+            currentButton = cauLacBoButton;
+        } else if (currComp instanceof TinNhanPanel) {
+            currentButton = tinNhanButton;
+        }
+        highlightComponent(currentButton);
+    }
+    
     private void suKienButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseClicked
         // TODO add your handling code here:
         if (currentButton != suKienButton) {            
