@@ -48,7 +48,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
 
         initComponents();
 
-        this.setOpaque(true);
+//        this.setOpaque(true);
 //        this.components = new ArrayList<Component>();
         this.migLayout = new MigLayout("inset 0");
         this.imageContainer.setLayout(migLayout);
@@ -65,14 +65,14 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
             @Override
             public void timingEvent(float fraction) {
                 double width = imageContainer.getWidth();
-                double location = (int) (width * fraction);
+                int location = (int) (width * fraction);
                 int locationShow = (int) (width * (1f - fraction));
                 if (slideShowModel.isNext()) {
                     migLayout.setComponentConstraints(componentIn, "pos " + locationShow + " 0 100% 100%, w 100%!");
                     migLayout.setComponentConstraints(componentOut, "pos -" + location + " 0 " + (width - location) + " 100%");
                 } else {
                     migLayout.setComponentConstraints(componentIn, "pos -" + locationShow + " 0 " + (width - locationShow) + " 100%");
-                    migLayout.setComponentConstraints(componentIn, "pos " + location + " 0 100% 100%, w 100%!");
+                    migLayout.setComponentConstraints(componentOut, "pos " + location + " 0 100% 100%, w 100%!");
                 }
                 // pagination.setAnimation(fraction); ??
                 imageContainer.revalidate();
@@ -87,11 +87,11 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
 
 //        setLayer(pagination, JLayeredPane.POPUP_LAYER); ??
         this.animator = new Animator(1000, target);
-        this.animator.setResolution(1000);
-        this.animator.setAcceleration(0.5f);
-        this.animator.setDeceleration(0.5f);
+        this.animator.setResolution(0);
+        this.animator.setAcceleration(0f);
+        this.animator.setDeceleration(1f);
 
-        timer = new Timer(3000, new java.awt.event.ActionListener() {
+        timer = new Timer(6000, new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent ae) {
                 slideShowModel.switchNextPage();
@@ -128,7 +128,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
 
             if (imageContainer.getComponentCount() > 0) {
                 setComponentIn(imageContainer.getComponent(0));
-                componentIn.setVisible(false);
+                componentIn.setVisible(true);
                 migLayout.setComponentConstraints(componentIn, "pos 0 0 100% 100%");
 
             }
