@@ -16,6 +16,18 @@
             <artifactId>timingframework</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.cosinuscode.swing</groupId>
+            <artifactId>spring-swing-core</artifactId>
+            <version>1.0.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.github.hullbend</groupId>
+            <artifactId>pearson</artifactId>
+            <version>0.5</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

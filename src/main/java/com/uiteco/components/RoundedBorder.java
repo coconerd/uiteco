@@ -4,7 +4,6 @@
  */
 package com.uiteco.components;
 
-import com.uiteco.components.Icons;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;

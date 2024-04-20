@@ -1,4 +1,4 @@
-package com.CuocThiPanelComponents.comboBox;
+package com.uiteco.OfCuocThiPanel.Components.comboBox;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -51,7 +51,7 @@ public class Combobox<E> extends JComboBox<E> {
     }
 
     private String labeText = "Label";
-    private Color lineColor = new Color(3, 155, 216);
+    private Color lineColor = new Color(105, 96, 236);
     private boolean mouseOver;
 
     @Override
@@ -68,14 +68,14 @@ public class Combobox<E> extends JComboBox<E> {
                 Component com = super.getListCellRendererComponent(jlist, o, i, bln, bln1);
                 setBorder(new EmptyBorder(5, 5, 5, 5));
                 if (bln) {
-                    com.setBackground(new Color(242, 243, 244));
+                    com.setBackground(new Color(242, 243, 244)); //background of comboBox
                 }
                 return com;
             }
         });
     }
 
-    public Combobox() {
+    public Combobox() { // when type into component
         setBackground(Color.WHITE);
         setBorder(new EmptyBorder(15, 3, 5, 3));
         installUI();

@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.uiteco.contentPanels;
 
-/**
- *
- * @author Phan Thi Thuy Hien
- */
-public class CuocThiPanel extends javax.swing.JPanel {
+import com.uiteco.OfCuocThiPanel.Layouts.TagsAndSort;
+import java.awt.Color;
 
-    /**
-     * Creates new form NewJPanel
-     */
+public class CuocThiPanel extends javax.swing.JPanel {
     public CuocThiPanel() {
-        initComponents();
+        //initComponents();
+        _init();
+        _initLayoutsManagement();
     }
 
     /**
@@ -26,46 +19,44 @@ public class CuocThiPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        combobox1 =  new com.CuocThiPanelComponents.comboBox.Combobox();
-
         setBackground(new java.awt.Color(242, 243, 244));
-        setVerifyInputWhenFocusTarget(false);
-
-        combobox1.setBackground(new java.awt.Color(242, 243, 244));
-        combobox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combobox1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(503, Short.MAX_VALUE))
+            .addGap(0, 798, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(603, Short.MAX_VALUE))
+            .addGap(0, 665, Short.MAX_VALUE)
         );
-
-        combobox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CodingContest", "InnovationContest", "AIChallenge", "DataScienceCompetition", "CyberSecurityCompetition", "Game Hackathon", "Cuộc thi xe tự hành", "Thi thử Toiec", "Thi thử Ielts", "Wecode Challenge", "ICPC"}));
-        combobox1.setSelectedIndex(-1);
-        combobox1.setLabeText("Competition topics");
     }// </editor-fold>//GEN-END:initComponents
-
-    private void combobox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combobox1ActionPerformed
-
-
+    
+    private void _init() {
+        
+        setBackground(new Color(242, 243, 244));
+   
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 798, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 665, Short.MAX_VALUE)
+        );
+    }
+    
+    private void _initLayoutsManagement(){
+        this.add(new TagsAndSort());
+    }
+    /**
+     * @param args the command line arguments
+     */
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.CuocThiPanelComponents.comboBox.Combobox combobox1;
     // End of variables declaration//GEN-END:variables
+    
 }
