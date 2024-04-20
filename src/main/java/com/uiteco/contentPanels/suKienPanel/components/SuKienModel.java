@@ -5,6 +5,7 @@
 package com.uiteco.contentPanels.suKienPanel.components;
 
 import java.time.LocalDate;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -21,11 +22,13 @@ public class SuKienModel {
     private LocalDate postedAt;
     private String note;
     private String clubID;
+    private ImageIcon thumbnail;
+    private ImageIcon[] images;
 
     public SuKienModel() {
     }
 
-    public SuKienModel(String title, String tag, int postID, String type, String content, String postedBy, LocalDate postedAt, String note, String clubID) {
+    public SuKienModel(String title, String tag, int postID, String type, String content, String postedBy, LocalDate postedAt, String note, String clubID, ImageIcon thumbnail) {
         this.title = title;
         this.tag = tag;
         this.postID = postID;
@@ -35,6 +38,7 @@ public class SuKienModel {
         this.postedAt = postedAt;
         this.note = note;
         this.clubID = clubID;
+        this.thumbnail = thumbnail;
     }
 
     public void setTitle(String title) {
@@ -73,6 +77,18 @@ public class SuKienModel {
         this.clubID = clubID;
     }
 
+    public void setThumbnail(ImageIcon thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public void setImages(ImageIcon[] images) {
+        this.images = images;
+    }
+    
+    public void setImage(int index, ImageIcon image) {
+        this.images[index] = image; 
+    }
+    
     public String getTitle() {
         return title;
     }
@@ -109,4 +125,16 @@ public class SuKienModel {
         return clubID;
     }
 
+    public ImageIcon getThumbnail() {
+        return thumbnail;
+    }
+
+    public ImageIcon[] getImages() {
+        return images;
+    }
+    
+    
+    public ImageIcon getImage(int index) {
+        return images[index];
+    }
 }

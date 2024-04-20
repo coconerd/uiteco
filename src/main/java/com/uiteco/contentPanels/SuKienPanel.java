@@ -37,9 +37,7 @@ public class SuKienPanel extends javax.swing.JPanel {
         jTextPane1 = new javax.swing.JTextPane();
         scrollPaneWin11 = new com.raven.scroll.ScrollPaneWin11();
         containerPanel = new javax.swing.JPanel();
-        gradientPanel1 = new com.uiteco.components.GradientPanel();
-        jLabel1 = new javax.swing.JLabel();
-        roundedImagePanel2 = new com.uiteco.components.RoundedImagePanel();
+        slideShowView1 = new com.uiteco.contentPanels.suKienPanel.components.SlideShowView();
         suKienListView2 = new com.uiteco.contentPanels.suKienPanel.components.SuKienListView();
 
         jScrollPane1.setViewportView(jTextPane1);
@@ -50,53 +48,18 @@ public class SuKienPanel extends javax.swing.JPanel {
         setLayout(new java.awt.GridLayout(1, 1));
 
         scrollPaneWin11.setBorder(null);
+        scrollPaneWin11.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         containerPanel.setBackground(new java.awt.Color(242, 243, 244));
         containerPanel.setLayout(new java.awt.GridBagLayout());
-
-        gradientPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        gradientPanel1.setColor1(new java.awt.Color(133, 225, 248));
-        gradientPanel1.setColor2(new java.awt.Color(242, 243, 244));
-        gradientPanel1.setMinimumSize(new java.awt.Dimension(0, 600));
-        gradientPanel1.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(2, 62, 138));
-        jLabel1.setText("WELCOME TO EVENTS");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 30, 1));
-        jLabel1.setIconTextGap(30);
-        gradientPanel1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
-
-        roundedImagePanel2.setImage(new javax.swing.ImageIcon(getClass().getResource("/sukien.jpg"))); // NOI18N
-        roundedImagePanel2.setMinimumSize(new java.awt.Dimension(350, 550));
-        roundedImagePanel2.setPreferredSize(new java.awt.Dimension(700, 550));
-        roundedImagePanel2.setRoundBottomLeft(32);
-        roundedImagePanel2.setRoundBottomRight(32);
-        roundedImagePanel2.setRoundTopLeft(32);
-        roundedImagePanel2.setRoundTopRight(32);
-
-        javax.swing.GroupLayout roundedImagePanel2Layout = new javax.swing.GroupLayout(roundedImagePanel2);
-        roundedImagePanel2.setLayout(roundedImagePanel2Layout);
-        roundedImagePanel2Layout.setHorizontalGroup(
-            roundedImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 770, Short.MAX_VALUE)
-        );
-        roundedImagePanel2Layout.setVerticalGroup(
-            roundedImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-        );
-
-        gradientPanel1.add(roundedImagePanel2, java.awt.BorderLayout.CENTER);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 28, 0);
-        containerPanel.add(gradientPanel1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 50, 0);
+        containerPanel.add(slideShowView1, gridBagConstraints);
 
-        suKienListView2.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        suKienListView2.setVerticalGap(40);
+        suKienListView2.setBorder(javax.swing.BorderFactory.createEmptyBorder(40, 40, 40, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -113,12 +76,10 @@ public class SuKienPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
-    private com.uiteco.components.GradientPanel gradientPanel1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
-    private com.uiteco.components.RoundedImagePanel roundedImagePanel2;
     private com.raven.scroll.ScrollPaneWin11 scrollPaneWin11;
+    private com.uiteco.contentPanels.suKienPanel.components.SlideShowView slideShowView1;
     private com.uiteco.contentPanels.suKienPanel.components.SuKienListView suKienListView2;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,6 +16,8 @@ import java.beans.PropertyChangeSupport;
  * @author nddmi
  */
 public class SuKienListModel extends PaginationModel implements PropertyChangeListener {
+
+    public static final int DEFAULT_ENTRIES_PER_PAGE = 30;
     private ArrayList<SuKienModel> suKienList;
 
     public SuKienListModel() {
@@ -61,5 +63,15 @@ public class SuKienListModel extends PaginationModel implements PropertyChangeLi
                     getEntriesPerPage()
             ));
         }
+    }
+
+    @Override
+    protected int _getInitialEntries() {
+        return SuKienDAO.getCount();
+    }
+    
+    @Override
+    protected int  _getInitialEntriesPerPage() {
+        return DEFAULT_ENTRIES_PER_PAGE;
     }
 }

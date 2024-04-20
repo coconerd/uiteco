@@ -47,8 +47,9 @@ public class SuKienView extends RoundedGradientPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(242, 243, 244));
         setColor1(new java.awt.Color(255, 255, 255));
-        setColor2(new java.awt.Color(245, 245, 245));
-        setDirection(com.uiteco.components.RoundedGradientPanel.Direction.HORIZONTAL);
+        setColor2(new java.awt.Color(255, 255, 255));
+        setDirection(com.uiteco.components.RoundedGradientPanel.Direction.DIAGONAL);
+        setFull(false);
         setRoundBottomLeft(20);
         setRoundBottomRight(20);
         setRoundTopLeft(20);

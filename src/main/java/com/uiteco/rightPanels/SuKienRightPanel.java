@@ -25,20 +25,80 @@ public class SuKienRightPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
+        jLabel1 = new javax.swing.JLabel();
+        dateChooser2 = new com.raven.datechooser.DateChooser();
+        jLabel2 = new javax.swing.JLabel();
+
+        setLayout(new java.awt.GridBagLayout());
+
+        roundedGradientPanel1.setColor1(new java.awt.Color(255, 153, 153));
+        roundedGradientPanel1.setColor2(new java.awt.Color(242, 243, 244));
+        roundedGradientPanel1.setFull(false);
+        roundedGradientPanel1.setPreferredSize(new java.awt.Dimension(275, 470));
+        roundedGradientPanel1.setRoundBottomLeft(10);
+        roundedGradientPanel1.setRoundBottomRight(10);
+        roundedGradientPanel1.setRoundTopLeft(10);
+        roundedGradientPanel1.setRoundTopRight(10);
+
+        javax.swing.GroupLayout roundedGradientPanel1Layout = new javax.swing.GroupLayout(roundedGradientPanel1);
+        roundedGradientPanel1.setLayout(roundedGradientPanel1Layout);
+        roundedGradientPanel1Layout.setHorizontalGroup(
+            roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        roundedGradientPanel1Layout.setVerticalGroup(
+            roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weighty = 0.4;
+        add(roundedGradientPanel1, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-history-24.png"))); // NOI18N
+        jLabel1.setText("Lịch sử");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 200);
+        add(jLabel1, gridBagConstraints);
+
+        dateChooser2.setForeground(new java.awt.Color(51, 102, 255));
+        dateChooser2.setPreferredSize(new java.awt.Dimension(275, 206));
+        dateChooser2.setRoundBottomLeft(10);
+        dateChooser2.setRoundBottomRight(10);
+        dateChooser2.setRoundTopLeft(10);
+        dateChooser2.setRoundTopRight(10);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weighty = 0.5;
+        add(dateChooser2, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-search-17.png"))); // NOI18N
+        jLabel2.setText("Bộ lọc theo ngày");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 150);
+        add(jLabel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.raven.datechooser.DateChooser dateChooser2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
     // End of variables declaration//GEN-END:variables
 }
