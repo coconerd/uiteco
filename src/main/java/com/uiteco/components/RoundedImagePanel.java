@@ -67,34 +67,34 @@ public class RoundedImagePanel extends JPanel {
         repaint();
     }
 
-    public static RoundedPanel getRoundedPanel(int radius) {
-        RoundedPanel roundedPanel = new RoundedPanel();
-        roundedPanel.setRoundTopLeft(radius);
-        roundedPanel.setRoundTopRight(radius);
-        roundedPanel.setRoundBottomLeft(radius);
-        roundedPanel.setRoundBottomRight(radius);
-        return roundedPanel;
+    public static RoundedImagePanel getRoundedImagePanel(int radius) {
+        RoundedImagePanel roundedImagePanel = new RoundedImagePanel();
+        roundedImagePanel.setRoundTopLeft(radius);
+        roundedImagePanel.setRoundTopRight(radius);
+        roundedImagePanel.setRoundBottomLeft(radius);
+        roundedImagePanel.setRoundBottomRight(radius);
+        return roundedImagePanel;
     }
 
-    public static RoundedPanel getRoundedPanel(int topLeft, int topRight, int bottomLeft, int bottomRight) {
-        RoundedPanel roundedPanel = new RoundedPanel();
-        roundedPanel.setRoundTopLeft(topLeft);
-        roundedPanel.setRoundTopRight(topRight);
-        roundedPanel.setRoundBottomLeft(bottomLeft);
-        roundedPanel.setRoundBottomRight(bottomRight);
-        return roundedPanel;
+    public static RoundedImagePanel getRoundedImagePanel(int topLeft, int topRight, int bottomLeft, int bottomRight) {
+        RoundedImagePanel roundedImagePanel = new RoundedImagePanel();
+        roundedImagePanel.setRoundTopLeft(topLeft);
+        roundedImagePanel.setRoundTopRight(topRight);
+        roundedImagePanel.setRoundBottomLeft(bottomLeft);
+        roundedImagePanel.setRoundBottomRight(bottomRight);
+        return roundedImagePanel;
     }
 
-    public static RoundedPanel getRoundedPanel(int radius, java.awt.LayoutManager layout) {
-        RoundedPanel roundedPanel = getRoundedPanel(radius);
-        roundedPanel.setLayout(layout);
-        return roundedPanel;
+    public static RoundedImagePanel getRoundedImagePanel(int radius, java.awt.LayoutManager layout) {
+        RoundedImagePanel roundedImagePanel = RoundedImagePanel.getRoundedImagePanel(radius);
+        roundedImagePanel.setLayout(layout);
+        return roundedImagePanel;
     }
 
-    public static RoundedPanel getRoundedPanel(int topLeft, int topRight, int bottomLeft, int bottomRight, java.awt.LayoutManager layout) {
-        RoundedPanel roundedPanel = getRoundedPanel(topLeft, topRight, bottomLeft, bottomRight);
-        roundedPanel.setLayout(layout);
-        return roundedPanel;
+    public static RoundedImagePanel getRoundedImagePanel(int topLeft, int topRight, int bottomLeft, int bottomRight, java.awt.LayoutManager layout) {
+        RoundedImagePanel roundedImagePanel = RoundedImagePanel.getRoundedImagePanel(topLeft, topRight, bottomLeft, bottomRight);
+        roundedImagePanel.setLayout(layout);
+        return roundedImagePanel;
     }
 
     protected Shape createRoundTopLeft() {
