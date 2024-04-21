@@ -21,6 +21,7 @@ import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
 
+
 /**
  *
  * @author nddmi
@@ -33,8 +34,8 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
     private final Timer timer;
     private Component componentIn;
     private Component componentOut;
-//    private ArrayList<Component> components;
     private int imageRadius;
+    private SlideShowPaginationView slideShowPaginationView;
 
     public static final int DEFAULT_IMAGE_RADIUS = 20;
 
@@ -45,13 +46,17 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         this.imageRadius = DEFAULT_IMAGE_RADIUS;
         this.setSlideShowModel(new SlideShowModel());
         this.slideShowModel.addPropertyChangeListener(this);
+        this.slideShowPaginationView = new SlideShowPaginationView(getSlideShowModel());
 
         initComponents();
-
-        this.setOpaque(false);
-//        this.components = new ArrayList<Component>();
+        
+        this.setOpaque(true);
         this.migLayout = new MigLayout("inset 0");
         this.imageContainer.setLayout(migLayout);
+//        this.imageContainer.setVisible(false); 
+        this.slideShowPaginationView.setMinimumSize(new Dimension(40, 40));
+//        this.slideShowPaginationView.setVisible(true);
+//        this.add(slideShowPaginationView, java.awt.GridBagConstraints.RELATIVE);
         _populateSlideShow();
 
         TimingTarget target = new TimingTargetAdapter() {
@@ -231,6 +236,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         imagePanel1 = new com.uiteco.components.ImagePanel();
 
         setBackground(new java.awt.Color(242, 243, 244));
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         setForeground(new java.awt.Color(242, 243, 244));
         setAutoscrolls(true);
         setColor1(new java.awt.Color(1, 186, 239));
@@ -238,7 +244,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         setPreferredSize(new java.awt.Dimension(728, 800));
         setLayout(new java.awt.GridBagLayout());
 
-        title.setFont(new java.awt.Font("SVN-Adam Gorry", 1, 18)); // NOI18N
+        title.setFont(new java.awt.Font("SVN-Adam Gorry", 1, 20)); // NOI18N
         title.setForeground(new java.awt.Color(251, 251, 255));
         title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-flame-48.png"))); // NOI18N
@@ -251,24 +257,24 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(title, gridBagConstraints);
 
-        imageContainer.setPreferredSize(new java.awt.Dimension(700, 950));
+        imageContainer.setPreferredSize(new java.awt.Dimension(700, 1100));
 
         javax.swing.GroupLayout imageContainerLayout = new javax.swing.GroupLayout(imageContainer);
         imageContainer.setLayout(imageContainerLayout);
         imageContainerLayout.setHorizontalGroup(
             imageContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
+            .addGap(0, 746, Short.MAX_VALUE)
         );
         imageContainerLayout.setVerticalGroup(
             imageContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGap(0, 942, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         add(imageContainer, gridBagConstraints);
 
@@ -310,24 +316,25 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(backButton, gridBagConstraints);
 
-        imagePanel1.setImage(new javax.swing.ImageIcon(getClass().getResource("/logo_uit_with_text.png"))); // NOI18N
+        imagePanel1.setImage(new javax.swing.ImageIcon(getClass().getResource("/logo_uit_with_text_cropped.png"))); // NOI18N
+        imagePanel1.setMinimumSize(new java.awt.Dimension(110, 110));
+        imagePanel1.setPreferredSize(new java.awt.Dimension(100, 100));
 
         javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
         imagePanel1.setLayout(imagePanel1Layout);
         imagePanel1Layout.setHorizontalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 746, Short.MAX_VALUE)
+            .addGap(0, 110, Short.MAX_VALUE)
         );
         imagePanel1Layout.setVerticalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 110, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(imagePanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 

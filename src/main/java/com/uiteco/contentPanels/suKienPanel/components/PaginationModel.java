@@ -58,7 +58,9 @@ public abstract class PaginationModel {
     }
 
     public void setPageCount(int pageCount) {
+        int oldPageCount = getPageCount();
         this.pageCount = pageCount;
+        propertyChangeSupport.firePropertyChange("pageCount", oldPageCount, pageCount);
     }
 
     /**
