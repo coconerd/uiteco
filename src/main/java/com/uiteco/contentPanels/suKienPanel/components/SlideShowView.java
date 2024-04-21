@@ -48,7 +48,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
 
         initComponents();
 
-//        this.setOpaque(true);
+        this.setOpaque(false);
 //        this.components = new ArrayList<Component>();
         this.migLayout = new MigLayout("inset 0");
         this.imageContainer.setLayout(migLayout);
@@ -228,6 +228,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         imageContainer = com.uiteco.components.RoundedPanel.getRoundedPanel(getImageRadius());
         forwardButton = new com.uiteco.components.ImageAvatar();
         backButton = new com.uiteco.components.ImageAvatar();
+        imagePanel1 = new com.uiteco.components.ImagePanel();
 
         setBackground(new java.awt.Color(242, 243, 244));
         setForeground(new java.awt.Color(242, 243, 244));
@@ -245,7 +246,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         title.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(title, gridBagConstraints);
@@ -256,16 +257,16 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         imageContainer.setLayout(imageContainerLayout);
         imageContainerLayout.setHorizontalGroup(
             imageContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 682, Short.MAX_VALUE)
         );
         imageContainerLayout.setVerticalGroup(
             imageContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 388, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
@@ -273,7 +274,6 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
 
         forwardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-duotone-forward-36.png"))); // NOI18N
         forwardButton.setMinimumSize(new java.awt.Dimension(32, 32));
-        forwardButton.setPreferredSize(new java.awt.Dimension(32, 32));
         forwardButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 forwardButtonMouseClicked(evt);
@@ -287,13 +287,12 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(forwardButton, gridBagConstraints);
 
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-duotone-back-36.png"))); // NOI18N
         backButton.setMinimumSize(new java.awt.Dimension(32, 32));
-        backButton.setPreferredSize(new java.awt.Dimension(32, 32));
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backButtonMouseClicked(evt);
@@ -307,25 +306,43 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(backButton, gridBagConstraints);
+
+        imagePanel1.setImage(new javax.swing.ImageIcon(getClass().getResource("/logo_uit_with_text.png"))); // NOI18N
+
+        javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
+        imagePanel1.setLayout(imagePanel1Layout);
+        imagePanel1Layout.setHorizontalGroup(
+            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 746, Short.MAX_VALUE)
+        );
+        imagePanel1Layout.setVerticalGroup(
+            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        add(imagePanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
         // TODO add your handling code here:
-//        if (animator.isRunning()) {
-            animator.stop();
-//        }
-        slideShowModel.switchPreviousPage();
+        if (!animator.isRunning()) {
+            slideShowModel.switchPreviousPage();
+        }
     }//GEN-LAST:event_backButtonMouseClicked
 
     private void forwardButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forwardButtonMouseClicked
         // TODO add your handling code here:
-//        if (animator.isRunning()) {
-            animator.stop();
-//        }
-        slideShowModel.switchNextPage();
+        if (!animator.isRunning()) {
+            slideShowModel.switchNextPage();
+        }
     }//GEN-LAST:event_forwardButtonMouseClicked
 
     private void backButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseEntered
@@ -349,6 +366,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
     private com.uiteco.components.ImageAvatar backButton;
     private com.uiteco.components.ImageAvatar forwardButton;
     private com.uiteco.components.RoundedPanel imageContainer;
+    private com.uiteco.components.ImagePanel imagePanel1;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
