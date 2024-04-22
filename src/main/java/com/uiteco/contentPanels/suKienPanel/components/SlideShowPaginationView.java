@@ -4,8 +4,6 @@
  */
 package com.uiteco.contentPanels.suKienPanel.components;
 
-import java.awt.Component;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import java.awt.Graphics2D;
 import java.awt.Graphics;
@@ -38,8 +36,8 @@ public class SlideShowPaginationView extends JComponent implements PropertyChang
     private ImageIcon activeIcon;
     private ImageIcon inactiveIcon;
 
-    public static String DEFAULT_ACTIVE_ICON_NAME = "/icons8-light-dot-26.png";
-    public static String DEFAULT_INACTIVE_ICON_NAME = "/icons8-dark-dot-26.png";
+    public static String DEFAULT_ACTIVE_ICON_NAME = "/icons8-dark-dot-26.png";
+    public static String DEFAULT_INACTIVE_ICON_NAME = "/icons8-light-dot-26.png";
 
     public SlideShowPaginationView() {
         setSlideShowModel(new SlideShowModel());
@@ -79,9 +77,6 @@ public class SlideShowPaginationView extends JComponent implements PropertyChang
         this.layout = layout;
     }
 
-//    public void setAnimationFraction(int animationFraction) {
-//        this.animationFraction = animationFraction;
-//    }
     public void setActiveIcon(ImageIcon activeIcon) {
         this.activeIcon = activeIcon;
     }
@@ -93,9 +88,8 @@ public class SlideShowPaginationView extends JComponent implements PropertyChang
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("currentPage")) {
-            int oldIndex = (Integer) evt.getOldValue();
-            int newIndex = (Integer) evt.getNewValue();
-//            int alpha = getAnimationFraction();
+            int oldIndex = (Integer) evt.getOldValue() - 1;
+            int newIndex = (Integer) evt.getNewValue() - 1;
             JLabel buttonOut = (JLabel) getComponent(oldIndex);
             JLabel buttonIn = (JLabel) getComponent(newIndex);
             buttonOut.setIcon(getInactiveIcon());
@@ -116,7 +110,7 @@ public class SlideShowPaginationView extends JComponent implements PropertyChang
             final int page = i + 1;
             JLabel pageButton = new JLabel();
             pageButton.setIcon(getInactiveIcon());
-            pageButton.setHorizontalAlignment(SwingConstants.CENTER);
+            pageButton.setHorizontalAlignment(SwingConstants.LEFT);
 
             pageButton.addMouseListener(new MouseAdapter() {
                 @Override
@@ -127,8 +121,10 @@ public class SlideShowPaginationView extends JComponent implements PropertyChang
             add(pageButton);
             if (i == slideShowModel.getPageCount() - 1) {
                 setSize(pageButton.getWidth() * (i + 1), getHeight());
-            }
-        };
+            }   
+        }
+        JLabel currentButton = (JLabel)getComponent(slideShowModel.getCurrentPage() - 1);
+        currentButton.setIcon(getActiveIcon());
         repaint();
         revalidate();
 

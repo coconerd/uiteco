@@ -98,8 +98,7 @@ public class SlideShowModel extends PaginationModel {
     @Override
     public void switchPage(int page) {
         if (page != getCurrentPage()) {
-            setNext(true);
-            setNext(page < getCurrentPage() ? false : true);
+             setNext(page < getCurrentPage() ? false : true);
             setCurrentPage(page);
         }
     }
