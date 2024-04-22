@@ -16,15 +16,20 @@ import com.uiteco.components.RoundedImagePanel;
  * @author nddmi
  */
 public class SlideShowModel extends PaginationModel {
-
-    public static int DEFAULT_ENTRIES_PER_PAGE = 1;
+    
+    public final static int MAXIMUM_SLIDE_COUNT = 5;
+    public final static int ENTRIES_PER_PAGE = 1;
     private ArrayList<SuKienModel> suKienList;
     private boolean next;
 
     public SlideShowModel() {
         super();
-        setSuKienList(SuKienDAO.getSuKienSlideShow());
-        if (getSuKienCount() > 0) {
+        /**
+         * For SlideShowModel, getPageCount() will always equal to getEntries() because entry per page is 1
+         */
+        int pageCount = getPageCount();
+        setSuKienList(SuKienDAO.getSuKienSlideShow(pageCount));
+        if (pageCount > 0) {
             setSuKienIn(getSuKien(0));
         }
     }
@@ -39,16 +44,6 @@ public class SlideShowModel extends PaginationModel {
 
     public ArrayList<SuKienModel> getSuKienList() {
         return this.suKienList;
-    }
-
-//    public SuKienModel getSuKienIn() {
-//        return suKienIn;
-//    }
-//    public SuKienModel getSuKienOut() {
-//        return suKienOut;
-//    }
-    public int getSuKienCount() {
-        return this.suKienList.size();
     }
 
     public void setSuKien(int index, SuKienModel suKien) {
@@ -111,12 +106,13 @@ public class SlideShowModel extends PaginationModel {
 
     @Override
     protected int _getInitialEntries() {
-        return SuKienDAO.getSlideShowPageCount();
+        int entriesInDb = SuKienDAO.getSlideShowPageCount();
+        return entriesInDb <= MAXIMUM_SLIDE_COUNT ? entriesInDb : MAXIMUM_SLIDE_COUNT;
     }
 
     @Override
     protected int _getInitialEntriesPerPage() {
-        return DEFAULT_ENTRIES_PER_PAGE;
+        return ENTRIES_PER_PAGE;
     }
 
     private int _nextPage(int page) {

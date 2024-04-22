@@ -125,7 +125,7 @@ public class SuKienDAO {
         return new ArrayList<SuKienModel>(sublist);
     }
 
-    public static ArrayList<SuKienModel> getSuKienSlideShow() {
+    public static ArrayList<SuKienModel> getSuKienSlideShow(int slides) {
         /**
          * Mock function
          */
@@ -134,7 +134,7 @@ public class SuKienDAO {
         ArrayList<ImageIcon> images = loadImagesFromFolder();
 
         ArrayList<SuKienModel> suKienList = new ArrayList<SuKienModel>();
-        for (int i = 0; i < imageCount; i++) {
+        for (int i = 0; i < slides; i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
             String type = "Event";
             String tag = null;
@@ -145,7 +145,7 @@ public class SuKienDAO {
             String note = null;
             String clubID = null;
             ImageIcon thumbnail = images.get(imageIndex);
-            imageIndex = (imageIndex == imageCount - 1 ? 0 : imageIndex + 1);
+            imageIndex = (imageIndex == imageCount - 1 ? 0 : imageIndex + 1); // Update image index
             SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail);
             suKienList.add(event);
         }
