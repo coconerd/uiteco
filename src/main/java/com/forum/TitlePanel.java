@@ -15,7 +15,7 @@ public class TitlePanel extends javax.swing.JPanel{
     
     void initTitlePanel(){
         setSize(1060,40);
-        //setBackground(new java.awt.Color(231,231,231));
+        setBackground(new java.awt.Color(231,231,231));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.X_AXIS));
         
         add(javax.swing.Box.createHorizontalStrut(40));

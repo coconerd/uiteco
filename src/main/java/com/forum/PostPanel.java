@@ -76,7 +76,7 @@ public class PostPanel extends javax.swing.JPanel {
     
     private void InitComponents(String title, int viewNumber, String postedBy){
         setPreferredSize(new java.awt.Dimension(1060,70));
-        setBackground(new java.awt.Color(239,249,249));
+        setBackground(new java.awt.Color(243,244,213));
 //        jLabel2 = new javax.swing.JLabel();
 //        jLabel2.setSize(454,42);
 //        jLabel2.setText(title);
