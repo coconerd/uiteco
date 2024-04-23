@@ -107,7 +107,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals("currentPage")) {
+        if (evt.getPropertyName().equals("currentPage") && !animator.isRunning()) {
             timer.restart();
             int oldPage = (Integer) evt.getOldValue();
             int newPage = (Integer) evt.getNewValue();
@@ -233,7 +233,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         imageContainer = com.uiteco.components.RoundedPanel.getRoundedPanel(getImageRadius());
         forwardButton = new com.uiteco.components.ImageAvatar();
         backButton = new com.uiteco.components.ImageAvatar();
-        imagePanel1 = new com.uiteco.components.ImagePanel();
+        slideShowPaginationView1 = new com.uiteco.contentPanels.suKienPanel.components.SlideShowPaginationView(this.getSlideShowModel());
 
         setBackground(new java.awt.Color(242, 243, 244));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -252,7 +252,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         title.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(title, gridBagConstraints);
@@ -267,12 +267,12 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         );
         imageContainerLayout.setVerticalGroup(
             imageContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 942, Short.MAX_VALUE)
+            .addGap(0, 1016, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -291,9 +291,21 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
                 forwardButtonMouseExited(evt);
             }
         });
+
+        javax.swing.GroupLayout forwardButtonLayout = new javax.swing.GroupLayout(forwardButton);
+        forwardButton.setLayout(forwardButtonLayout);
+        forwardButtonLayout.setHorizontalGroup(
+            forwardButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 32, Short.MAX_VALUE)
+        );
+        forwardButtonLayout.setVerticalGroup(
+            forwardButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1016, Short.MAX_VALUE)
+        );
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(forwardButton, gridBagConstraints);
 
@@ -310,32 +322,27 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
                 backButtonMouseExited(evt);
             }
         });
+
+        javax.swing.GroupLayout backButtonLayout = new javax.swing.GroupLayout(backButton);
+        backButton.setLayout(backButtonLayout);
+        backButtonLayout.setHorizontalGroup(
+            backButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 32, Short.MAX_VALUE)
+        );
+        backButtonLayout.setVerticalGroup(
+            backButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1016, Short.MAX_VALUE)
+        );
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(backButton, gridBagConstraints);
-
-        imagePanel1.setImage(new javax.swing.ImageIcon(getClass().getResource("/logo_uit_with_text_cropped.png"))); // NOI18N
-        imagePanel1.setMinimumSize(new java.awt.Dimension(110, 110));
-        imagePanel1.setPreferredSize(new java.awt.Dimension(100, 100));
-
-        javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
-        imagePanel1.setLayout(imagePanel1Layout);
-        imagePanel1Layout.setHorizontalGroup(
-            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 110, Short.MAX_VALUE)
-        );
-        imagePanel1Layout.setVerticalGroup(
-            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 110, Short.MAX_VALUE)
-        );
-
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        add(imagePanel1, gridBagConstraints);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        add(slideShowPaginationView1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
@@ -373,7 +380,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
     private com.uiteco.components.ImageAvatar backButton;
     private com.uiteco.components.ImageAvatar forwardButton;
     private com.uiteco.components.RoundedPanel imageContainer;
-    private com.uiteco.components.ImagePanel imagePanel1;
+    private com.uiteco.contentPanels.suKienPanel.components.SlideShowPaginationView slideShowPaginationView1;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
