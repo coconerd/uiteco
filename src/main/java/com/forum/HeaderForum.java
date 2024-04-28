@@ -24,6 +24,7 @@ public class HeaderForum extends javax.swing.JPanel{
         topicButton.setFont(new java.awt.Font("Segoe UI",1,16));
         topicButton.setForeground(new java.awt.Color(51,51,51));
         topicButton.setText("POSTING"); 
+        topicButton.setFocusable(false);
         add(topicButton);
         
         add(javax.swing.Box.createHorizontalStrut(15));
@@ -33,6 +34,7 @@ public class HeaderForum extends javax.swing.JPanel{
         lastedPostButton.setFont(new java.awt.Font("Segoe UI",1,16));
         lastedPostButton.setForeground(new java.awt.Color(51,51,51));
         lastedPostButton.setText("LASTED POST");  
+        lastedPostButton.setFocusable(false);
         add(lastedPostButton);
         
         add(javax.swing.Box.createHorizontalStrut(610));

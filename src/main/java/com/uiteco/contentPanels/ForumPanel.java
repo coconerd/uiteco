@@ -41,10 +41,8 @@ public class ForumPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(810, 665));
         setRequestFocusEnabled(false);
 
-        headerForum1.setBackground(new java.awt.Color(0, 102, 102));
         headerForum1.setLayout(new java.awt.FlowLayout());
 
-        titlePanel1.setBackground(new java.awt.Color(231, 231, 231));
         titlePanel1.setLayout(new java.awt.FlowLayout());
 
         scrollPaneWin111.setBorder(null);
@@ -86,7 +84,7 @@ public class ForumPanel extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(titlePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(scrollPaneWin111, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+                .addComponent(scrollPaneWin111, javax.swing.GroupLayout.DEFAULT_SIZE, 1492, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
