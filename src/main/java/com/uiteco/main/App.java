@@ -4,6 +4,7 @@
  */
 package com.uiteco.main;
 
+import com.uiteco.auth.AuthFrame;
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
 import java.awt.Component;
@@ -20,12 +21,16 @@ import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.rightPanels.ForumRightPanel;
 import com.uiteco.rightPanels.TinNhanRightPanel;
 import com.uiteco.rightPanels.TaiKhoanRightPanel;
+import com.uiteco.auth.Session;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 /**
  *
  * @author nddmi
  */
 public class App extends javax.swing.JFrame {
+
     /**
      * Additional variables declaration
      */
@@ -460,13 +465,13 @@ public class App extends javax.swing.JFrame {
     private void _additionalInit() {
         this.currentButton = this.suKienButton;
     }
-    
+
     private void suKienButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseEntered
         highlightComponent(suKienButton);
     }//GEN-LAST:event_suKienButtonMouseEntered
 
     private void suKienButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseExited
-        if (currentButton != suKienButton) {    
+        if (currentButton != suKienButton) {
             unHighlightComponent(suKienButton);
         }
     }//GEN-LAST:event_suKienButtonMouseExited
@@ -560,10 +565,10 @@ public class App extends javax.swing.JFrame {
         }
         highlightComponent(currentButton);
     }
-    
+
     private void suKienButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseClicked
         // TODO add your handling code here:
-        if (currentButton != suKienButton) {            
+        if (currentButton != suKienButton) {
             this.contentPanel.showComponentAndTrimHistory("suKienPanel");
             this.rightPanel.showComponentAndTrimHistory("suKienRightPanel");
             highlightComponent(suKienButton);
@@ -585,7 +590,7 @@ public class App extends javax.swing.JFrame {
 
     private void cauLacBoButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cauLacBoButtonMouseClicked
         // TODO add your handling code here:
-        if (currentButton != cauLacBoButton) {    
+        if (currentButton != cauLacBoButton) {
             this.contentPanel.showComponentAndTrimHistory("cauLacBoPanel");
             this.rightPanel.showComponentAndTrimHistory("cauLacBoRightPanel");
             unHighlightComponent(currentButton);
@@ -715,10 +720,36 @@ public class App extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new App().setVisible(true);
+                AuthFrame authFrame = null;
+
+                Session session = new Session();
+                if (session.isPermitted()) {
+                    new App().setVisible(true);
+                } else {
+                    authFrame = new AuthFrame();
+                    authFrame.getAuthModel().addPropertyChangeListener(session);
+                    authFrame.setVisible(true);
+                }
+
+                final AuthFrame af = authFrame;
+                session.addPropertyChangeListener(new PropertyChangeListener() {
+                    @Override
+                    public void propertyChange(PropertyChangeEvent evt) {
+                        if (evt.getPropertyName().equals("permitted")) {
+                            if (session.isPermitted()) {
+                                if (af != null) {
+                                    af.setVisible(false);
+                                    af.dispose();
+                                }
+                                new App().setVisible(true);
+                            }
+                        }
+                    }
+                });
             }
         });
     }

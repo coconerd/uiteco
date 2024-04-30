@@ -1,22 +1,29 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.uiteco.auth;
+
+import com.uiteco.components.GradientPanel;
+import javax.swing.JComponent;
 
 /**
  *
  * @author nddmi
  */
-public class LoginFrame extends javax.swing.JFrame {
+public class LoginPanel extends GradientPanel {
 
     /**
-     * Creates new form Test
+     * Creates new form LoginPanel
      */
-    public LoginFrame() {
+    public LoginPanel() {
         initComponents();
     }
 
+    public JComponent getRegisterButton() {
+        return this.registerButton;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,53 +33,43 @@ public class LoginFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         imageAvatar1 = new com.uiteco.components.ImageAvatar();
         roundedPanel1 = new com.uiteco.components.RoundedPanel();
         imageAvatar2 = new com.uiteco.components.ImageAvatar();
-        jLabel3 = new javax.swing.JLabel();
-        emailForm = new javax.swing.JTextField();
-        emailLabel = new javax.swing.JLabel();
-        passwordLabel = new javax.swing.JLabel();
-        passwordForm = new javax.swing.JPasswordField();
-        loginButton = new javax.swing.JButton();
-        lbl_account = new javax.swing.JLabel();
-        registerButton = new javax.swing.JLabel();
-        showButton = new javax.swing.JLabel();
-        accountButton = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        imagePanel1 = new com.uiteco.components.ImagePanel();
+        jLabel7 = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        emailForm = new javax.swing.JTextField();
+        accountButton = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        passwordForm = new javax.swing.JPasswordField();
+        showButton = new javax.swing.JLabel();
+        loginButton = new javax.swing.JButton();
+        lbl_account = new javax.swing.JLabel();
+        registerButton = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setResizable(false);
-        setType(java.awt.Window.Type.POPUP);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        roundedGradientPanel1.setColor1(new java.awt.Color(245, 247, 246));
-        roundedGradientPanel1.setColor2(new java.awt.Color(245, 247, 246));
-        roundedGradientPanel1.setFade(false);
-        roundedGradientPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setBackground(new java.awt.Color(221, 221, 221));
+        setMaximumSize(new java.awt.Dimension(400, 720));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("ĐẠI HỌC QUỐC GIA TP.HCM");
-        roundedGradientPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 153, 255));
         jLabel2.setText("TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÔNG TIN");
-        roundedGradientPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, 30));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, 30));
 
         imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/university.png"))); // NOI18N
         imageAvatar1.setShape(com.uiteco.components.ImageAvatar.SHAPE.RECT);
-        roundedGradientPanel1.add(imageAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 44));
+        add(imageAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 44));
 
         roundedPanel1.setBackground(new java.awt.Color(51, 204, 255));
         roundedPanel1.setRoundBottomLeft(100);
@@ -98,12 +95,32 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        roundedGradientPanel1.add(roundedPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 110, 100));
+        add(roundedPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 110, 100));
 
-        jLabel3.setBackground(new java.awt.Color(102, 102, 102));
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
-        roundedGradientPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 420, -1));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel6.setText("Education");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 90, 20));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel8.setText("Connection");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 90, 20));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel9.setText("Opportunities");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 120, 20));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("UIT ECO");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 80, 20));
+
+        emailLabel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        emailLabel.setForeground(new java.awt.Color(53, 150, 255));
+        emailLabel.setText("Tài khoản");
+        add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 372, -1));
 
         emailForm.setBackground(new java.awt.Color(255, 255, 255));
         emailForm.setForeground(new java.awt.Color(221, 221, 221));
@@ -129,19 +146,15 @@ public class LoginFrame extends javax.swing.JFrame {
                 emailFormKeyTyped(evt);
             }
         });
-        roundedGradientPanel1.add(emailForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 350, 35));
+        add(emailForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 350, 35));
 
-        emailLabel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        emailLabel.setForeground(new java.awt.Color(53, 150, 255));
-        emailLabel.setLabelFor(emailForm);
-        emailLabel.setText("Tài khoản");
-        roundedGradientPanel1.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 372, -1));
+        accountButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/account-gradient.png"))); // NOI18N
+        add(accountButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, -1, 40));
 
         passwordLabel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         passwordLabel.setForeground(new java.awt.Color(53, 150, 255));
-        passwordLabel.setLabelFor(passwordForm);
         passwordLabel.setText("Mật khẩu");
-        roundedGradientPanel1.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 372, -1));
+        add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 372, -1));
 
         passwordForm.setBackground(new java.awt.Color(255, 255, 255));
         passwordForm.setForeground(new java.awt.Color(221, 221, 221));
@@ -161,7 +174,15 @@ public class LoginFrame extends javax.swing.JFrame {
                 passwordFormKeyTyped(evt);
             }
         });
-        roundedGradientPanel1.add(passwordForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 350, 35));
+        add(passwordForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 350, 35));
+
+        showButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eye.png"))); // NOI18N
+        showButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showButtonMouseClicked(evt);
+            }
+        });
+        add(showButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, -1, 40));
 
         loginButton.setBackground(new java.awt.Color(0, 153, 255));
         loginButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -172,79 +193,34 @@ public class LoginFrame extends javax.swing.JFrame {
                 loginButtonActionPerformed(evt);
             }
         });
-        roundedGradientPanel1.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 368, 40));
+        add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 368, 40));
 
         lbl_account.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_account.setForeground(new java.awt.Color(53, 150, 255));
         lbl_account.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbl_account.setText("Chưa có tài khoản?");
-        roundedGradientPanel1.add(lbl_account, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 219, -1));
+        add(lbl_account, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 219, -1));
 
         registerButton.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         registerButton.setForeground(new java.awt.Color(51, 51, 51));
         registerButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         registerButton.setText("Đăng ký");
         registerButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        roundedGradientPanel1.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 570, 143, -1));
-
-        showButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eye.png"))); // NOI18N
-        showButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        registerButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                showButtonMouseClicked(evt);
+                registerButtonMouseClicked(evt);
             }
         });
-        roundedGradientPanel1.add(showButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, -1, 40));
-
-        accountButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/account-gradient.png"))); // NOI18N
-        roundedGradientPanel1.add(accountButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, -1, 40));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("UIT ECO");
-        roundedGradientPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 80, 20));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel6.setText("Education");
-        roundedGradientPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 90, 20));
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel8.setText("Connection");
-        roundedGradientPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 90, 20));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel9.setText("Opportunities");
-        roundedGradientPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 120, 20));
-
-        getContentPane().add(roundedGradientPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 720));
-
-        imagePanel1.setImage(new javax.swing.ImageIcon(getClass().getResource("/uit-background.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
-        imagePanel1.setLayout(imagePanel1Layout);
-        imagePanel1Layout.setHorizontalGroup(
-            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 890, Short.MAX_VALUE)
-        );
-        imagePanel1Layout.setVerticalGroup(
-            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(imagePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 890, 720));
-
-        pack();
+        add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 570, 143, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void emailFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFormActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailFormActionPerformed
+    private void highlight(javax.swing.JComponent comp) {
+        comp.setForeground(new java.awt.Color(153, 153, 153));
+    }
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginButtonActionPerformed
+    private void unHighlight(javax.swing.JComponent comp) {
+        comp.setForeground(new java.awt.Color(221, 221, 221));
+    }
 
     private void emailFormMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFormMouseClicked
         if (!inEmailForm && emailForm.getText().equals("Email / Username")) {
@@ -259,6 +235,18 @@ public class LoginFrame extends javax.swing.JFrame {
         inEmailForm = true;
         inPasswordForm = false;
     }//GEN-LAST:event_emailFormMouseClicked
+
+    private void emailFormMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFormMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailFormMouseExited
+
+    private void emailFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFormActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailFormActionPerformed
+
+    private void emailFormKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emailFormKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailFormKeyTyped
 
     private void passwordFormMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordFormMouseClicked
         // TODO add your handling code here:
@@ -275,22 +263,9 @@ public class LoginFrame extends javax.swing.JFrame {
         inEmailForm = false;
     }//GEN-LAST:event_passwordFormMouseClicked
 
-    private void emailFormMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFormMouseExited
-        // TODO add your handling code here:
-//        unHighlight(emailForm);
-//        emailForm.setText("Email / Username");
-    }//GEN-LAST:event_emailFormMouseExited
-
     private void passwordFormMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordFormMouseExited
         // TODO add your handling code here:
-//        unHighlight(passwordForm);
-//        passwordForm.setText("Mật khẩu");
-//        passwordForm.setEchoChar((char) 0);
     }//GEN-LAST:event_passwordFormMouseExited
-
-    private void emailFormKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emailFormKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailFormKeyTyped
 
     private void passwordFormKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFormKeyTyped
         // TODO add your handling code here:
@@ -309,51 +284,13 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_showButtonMouseClicked
 
-    private void highlight(javax.swing.JComponent comp) {
-        comp.setForeground(new java.awt.Color(153, 153, 153));
-    }
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginButtonActionPerformed
 
-    private void unHighlight(javax.swing.JComponent comp) {
-        comp.setForeground(new java.awt.Color(221, 221, 221));
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginFrame().setVisible(true);
-            }
-        });
-    }
+    private void registerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_registerButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accountButton;
@@ -361,10 +298,8 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel emailLabel;
     private com.uiteco.components.ImageAvatar imageAvatar1;
     private com.uiteco.components.ImageAvatar imageAvatar2;
-    private com.uiteco.components.ImagePanel imagePanel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -374,7 +309,6 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordForm;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel registerButton;
-    private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
     private com.uiteco.components.RoundedPanel roundedPanel1;
     private javax.swing.JLabel showButton;
     // End of variables declaration//GEN-END:variables
