@@ -1,4 +1,4 @@
-package com.uiteco.OfCuocThiPanel.Components.comboBox;
+package com.uiteco.ofCuocThiPanel.components.comboBox;
 
 import java.awt.Color;
 import java.awt.Component;
