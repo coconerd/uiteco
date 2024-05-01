@@ -4,7 +4,7 @@
  */
 package com.uiteco.main;
 
-import com.uiteco.auth.AuthFrame;
+import com.uiteco.auth.AuthView;
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
 import java.awt.Component;
@@ -724,18 +724,18 @@ public class App extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AuthFrame authFrame = null;
+                AuthView authView = null;
 
                 Session session = new Session();
                 if (session.isPermitted()) {
                     new App().setVisible(true);
                 } else {
-                    authFrame = new AuthFrame();
-                    authFrame.getAuthModel().addPropertyChangeListener(session);
-                    authFrame.setVisible(true);
+                    authView = new AuthView();
+                    authView.getAuthModel().addPropertyChangeListener(session);
+                    authView.setVisible(true);
                 }
 
-                final AuthFrame af = authFrame;
+                final AuthView af = authView;
                 session.addPropertyChangeListener(new PropertyChangeListener() {
                     @Override
                     public void propertyChange(PropertyChangeEvent evt) {

@@ -13,22 +13,27 @@ import java.beans.PropertyChangeListener;
  */
 public class AuthModel {
 
-    private byte[] passwordHash;
-    private byte[] salt;
+    private String email;
+    private String username;
+    private String password;
     private boolean loggedIn;
     private PropertyChangeSupport propertyChangeSupport;
 
     public AuthModel() {
         setPropertyChangeSupport(new PropertyChangeSupport(this));
-        setLoggedIn(false);
+        this.loggedIn = false;
     }
 
-    public byte[] getPasswordHash() {
-        return passwordHash;
+    public String getEmail() {
+        return email;
     }
 
-    public byte[] getSalt() {
-        return salt;
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public PropertyChangeSupport getPropertyChangeSupport() {
@@ -47,22 +52,64 @@ public class AuthModel {
         return loggedIn;
     }
 
-    public void setPasswordHash(byte[] passwordHash) {
-        this.passwordHash = passwordHash;
+    public void loginWithEmail(String email, String password) throws Exception {
+        boolean hasEmail = (email != null && !email.equals(""));
+        boolean hasPassword = (password != null && !password.equals(""));
+
+        if (!(hasEmail && hasPassword)) {
+            throw new MissingCredentialsException();
+        }
+
+        try {
+            setEmailOrThrow(email);
+            setPasswordOrThrow(password);
+            AuthDAO.login(getUsername(), getEmail(), getPassword());
+            setLoggedIn(true);
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
-    public void setSalt(byte[] salt) {
-        this.salt = salt;
-    }
+    public void loginWithUsername(String username, String password) throws Exception {
+        boolean hasUsername = (username != null && !username.equals(""));
+        boolean hasPassword = (password != null && !password.equals(""));
 
-    public void setLoggedIn(boolean loggedIn) {
-        boolean oldValue = isLoggedIn();
-        this.loggedIn = loggedIn;
-        propertyChangeSupport.firePropertyChange("loggedIn", oldValue, loggedIn);
+        if (!(hasUsername && hasPassword)) {
+            throw new MissingCredentialsException();
+        }
+
+        // Verify and set credentials
+        try {
+            setUsernameOrThrow(username);
+            setPasswordOrThrow(password);
+            AuthDAO.login(getUsername(), getEmail(), getPassword());
+            setLoggedIn(true);
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     public void setPropertyChangeSupport(PropertyChangeSupport propertyChangeSupport) {
         this.propertyChangeSupport = propertyChangeSupport;
+    }
+
+    private void setEmailOrThrow(String email) throws BadCredentialsFormatException {
+        this.email = email;
+    }
+
+    private void setUsernameOrThrow(String username) throws BadCredentialsFormatException {
+        this.username = username;
+
+    }
+
+    private void setPasswordOrThrow(String password) throws BadCredentialsFormatException {
+        this.password = password;
+    }
+
+    private void setLoggedIn(boolean loggedIn) {
+        boolean oldValue = isLoggedIn();
+        this.loggedIn = loggedIn;
+        propertyChangeSupport.firePropertyChange("loggedIn", oldValue, loggedIn);
     }
 
 }
