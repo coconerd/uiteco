@@ -4,10 +4,6 @@
  */
 package com.forum;
 
-/**
- *
- * @author 21H1 HNQA
- */
 public class TitlePanel extends javax.swing.JPanel{
     public TitlePanel(){
         initTitlePanel();

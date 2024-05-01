@@ -4,10 +4,6 @@
  */
 package com.forum;
 
-/**
- *
- * @author 21H1 HNQA
- */
 public class HeaderForum extends javax.swing.JPanel{
     public HeaderForum(){
         initHeaderForum();
