@@ -55,8 +55,8 @@ public class ForumPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(postListPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
-            .addComponent(tailerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(postListPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(tailerPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,7 +84,7 @@ public class ForumPanel extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(titlePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(scrollPaneWin111, javax.swing.GroupLayout.DEFAULT_SIZE, 1492, Short.MAX_VALUE)
+                .addComponent(scrollPaneWin111, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents

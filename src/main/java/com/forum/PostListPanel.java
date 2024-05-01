@@ -13,31 +13,31 @@ public class PostListPanel extends javax.swing.JPanel{
         initPostList();
     }
     void initPostList(){
-        setSize(1060,650);
+        setSize(1063,650);
         //setBackground(new java.awt.Color(246, 243, 243));
         //setLayout(new javax.swing.BoxLayout(postListPanel_, javax.swing.BoxLayout.Y_AXIS));
         setLayout(new java.awt.GridLayout(0,1));
 //        setLayout(new java.awt.GridBagLayout(0,1));
-        add(new com.forum.PostPanel("bài đăng 1", 100, "congphan đẹp trai vạn người mê"));
-        add(new com.forum.PostPanel("bài đăng 2", 100, "congphan đẹp trai vạn người mê"));   
-        add(new com.forum.PostPanel("bài đăng 3", 100, "congphan đẹp trai vạn người mê"));   
-        add(new com.forum.PostPanel("bài đăng 4", 100, "congphan đẹp trai vạn người mê"));       
-        add(new com.forum.PostPanel("bài đăng 5", 100, "congphan đẹp trai vạn người mê"));  
-        add(new com.forum.PostPanel("bài đăng 6", 100, "congphan đẹp trai vạn người mê"));      
-        add(new com.forum.PostPanel("bài đăng 7", 100, "congphan đẹp trai vạn người mê"));  
-        add(new com.forum.PostPanel("bài đăng 8", 100, "congphan đẹp trai vạn người mê"));      
-        add(new com.forum.PostPanel("bài đăng 9", 100, "congphan"));       
-        add(new com.forum.PostPanel("bài đăng 10", 100, "congphan"));        
-        add(new com.forum.PostPanel("bài đăng 11", 100, "congphan"));        
-        add(new com.forum.PostPanel("bài đăng 12", 100, "congphan"));
-        add(new com.forum.PostPanel("bài đăng 13", 100, "congphan"));
-        add(new com.forum.PostPanel("bài đăng 14", 100, "congphan"));
-        add(new com.forum.PostPanel("bài đăng 15", 100, "congphan"));
-        add(new com.forum.PostPanel("bài đăng 16", 100, "congphan"));
-        add(new com.forum.PostPanel("bài đăng 17", 100, "congphan"));
-        add(new com.forum.PostPanel("bài đăng 18", 100, "congphan"));
-        add(new com.forum.PostPanel("bài đăng 19", 100, "congphan"));
-        add(new com.forum.PostPanel("bài đăng 20", 100, "congphan"));
+        add(new com.forum.PostPanel("bài đăng 1 haha hah aa aa aa aaa aa aa aaa aaa aaa a aaa aa aaaa a aa aa aa aaa aab bbb bbbb bbb bbb bbbb bbb bbbbb bbbb bb bbbb bbb bbbb bbb bbb bb bbb bbb bbb bb", 0,0, "Phan Thành Công"));
+        add(new com.forum.PostPanel("bài đăng 2", 0,0, "Phan Thành Công"));   
+        add(new com.forum.PostPanel("bài đăng 3", 0,0, "Phan Thành Công"));   
+        add(new com.forum.PostPanel("bài đăng 4", 0,0, "Phan Thành Công"));       
+        add(new com.forum.PostPanel("bài đăng 5", 0,0, "Phan Thành Công"));  
+        add(new com.forum.PostPanel("bài đăng 6", 0,0, "Phan Thị Thuỷ Hiền"));      
+        add(new com.forum.PostPanel("bài đăng 7", 0,0, "Phan Thị Thuỷ Hiền"));  
+        add(new com.forum.PostPanel("bài đăng 8", 0,0, "Phan Thị Thuỷ Hiền"));      
+        add(new com.forum.PostPanel("bài đăng 9", 0,0, "Phan Thị Thuỷ Hiền"));       
+        add(new com.forum.PostPanel("bài đăng 10", 0,0,"Phan Thị Thuỷ Hiền"));        
+        add(new com.forum.PostPanel("bài đăng 11", 0,0, "Trần Vũ Bão"));        
+        add(new com.forum.PostPanel("bài đăng 12", 0,0, "Trần Vũ Bão"));
+        add(new com.forum.PostPanel("bài đăng 13", 0,0, "Trần Vũ Bão"));
+        add(new com.forum.PostPanel("bài đăng 14", 0,0, "Trần Vũ Bão"));
+        add(new com.forum.PostPanel("bài đăng 15", 0,0, "Trần Vũ Bão"));
+        add(new com.forum.PostPanel("bài đăng 16", 0,0, "Nguyễn Đỗ Đức Minh"));
+        add(new com.forum.PostPanel("bài đăng 17", 0,0, "Nguyễn Đỗ Đức Minh"));
+        add(new com.forum.PostPanel("bài đăng 18", 0,0, "Nguyễn Đỗ Đức Minh"));
+        add(new com.forum.PostPanel("bài đăng 19", 0,0, "Nguyễn Đỗ Đức Minh"));
+        add(new com.forum.PostPanel("bài đăng 20", 0,0, "Nguyễn Đỗ Đức Minh"));
 
         /*this panel contains nextButton and backButton*/
 //        tailerPanel = new javax.swing.JPanel();

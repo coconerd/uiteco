@@ -24,7 +24,18 @@ public class TailerPanel extends javax.swing.JPanel{
         nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-right-26.png"))); // NOI18N
         nextButton.setText("Next");
         nextButton.setSize(87, 32);
+        nextButton.setBorderPainted(false);
         nextButton.setFocusable(false);
+        nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e){
+                nextButton.setBorderPainted(true);
+            }
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e){
+                nextButton.setBorderPainted(false);
+            }
+        });
         
         //nextButton.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
         //add(javax.swing.Box.createHorizontalStrut(10));
@@ -33,7 +44,18 @@ public class TailerPanel extends javax.swing.JPanel{
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-left-26.png"))); // NOI18N
         backButton.setText("Back");
         backButton.setSize(87,32);
+        backButton.setBorderPainted(false);
         backButton.setFocusable(false);
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e){
+                backButton.setBorderPainted(true);
+            }
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e){
+                backButton.setBorderPainted(false);
+            }
+        });
         add(backButton);
         add(nextButton); 
         //add(javax.swing.Box.createHorizontalStrut(30));

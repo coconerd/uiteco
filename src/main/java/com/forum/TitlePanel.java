@@ -18,27 +18,27 @@ public class TitlePanel extends javax.swing.JPanel{
         setBackground(new java.awt.Color(231,231,231));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.X_AXIS));
         
-        add(javax.swing.Box.createHorizontalStrut(40));
+        add(javax.swing.Box.createHorizontalStrut(140));
         topicLabel = new javax.swing.JLabel();
         topicLabel.setFont(new java.awt.Font("Segoe UI", 1, 16));
         topicLabel.setText("Topic");
         topicLabel.setSize(50, 34);
         add(topicLabel);
 
-        add(javax.swing.Box.createHorizontalStrut(450));
+        add(javax.swing.Box.createHorizontalStrut(400));
         statisticLabel = new javax.swing.JLabel();
         statisticLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         statisticLabel.setText("Statistic");
         statisticLabel.setSize(70,34);
         add(statisticLabel);
         
-        add(javax.swing.Box.createHorizontalStrut(250));
+        add(javax.swing.Box.createHorizontalStrut(200));
         postedByLabel = new javax.swing.JLabel();
         postedByLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         postedByLabel.setText("Posted by");
         postedByLabel.setSize(85,34);
         add(postedByLabel);
-        add(javax.swing.Box.createHorizontalStrut(105));
+        add(javax.swing.Box.createHorizontalStrut(90));
     }
     private javax.swing.JLabel topicLabel;
     private javax.swing.JLabel statisticLabel;

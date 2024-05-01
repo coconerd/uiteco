@@ -12,6 +12,7 @@ public class PostPanel extends javax.swing.JPanel {
     private String title;
     private int viewNumber;
     private String postedBy;
+    private int responseNumber;
     
     /**
      * Creates new form PostPanel
@@ -20,11 +21,12 @@ public class PostPanel extends javax.swing.JPanel {
         //initComponents();
     }
     
-    public PostPanel(String title, int viewNumber, String postedBy) {
+    public PostPanel(String title, int viewNumber, int responseNumber, String postedBy) {
         this.title = title;
         this.viewNumber = viewNumber;
-        this.postedBy = postedBy;
-        InitComponents(title, viewNumber, postedBy);
+        this.responseNumber = responseNumber;
+        this.postedBy = postedBy; 
+        InitComponents(title, viewNumber, responseNumber, postedBy);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,58 +36,49 @@ public class PostPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(247, 247, 226));
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText(this.postedBy);
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("jLabel1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 32);
-        add(jLabel1, gridBagConstraints);
-
-        jLabel2.setText(this.title);
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("jLabel2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 11);
-        add(jLabel2, gridBagConstraints);
-
-        jLabel3.setText(Integer.toString(this.viewNumber));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("jLabel3");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 7);
-        add(jLabel3, gridBagConstraints);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
     
-    private void InitComponents(String title, int viewNumber, String postedBy){
-        setPreferredSize(new java.awt.Dimension(1060,70));
-        setBackground(new java.awt.Color(243,244,213));
-//        jLabel2 = new javax.swing.JLabel();
-//        jLabel2.setSize(454,42);
-//        jLabel2.setText(title);
-//        jLabel3 = new javax.swing.JLabel();
-//        jLabel3.setSize(214,42);
-//        jLabel3.setText(String.valueOf(viewNumber)+" views");
-//        jLabel1 = new javax.swing.JLabel();
-//        jLabel1.setSize(235,42);
-//        jLabel1.setText(postedBy);
+    private void InitComponents(String title, int viewNumber, int responseNumber, String postedBy){
+//        titleLabel = new javax.swing.JLabel();
+//        titleLabel.setSize(454,42);
+//        titleLabel.setText(title);
+//        statisticLabel = new javax.swing.JLabel();
+//        statisticLabel.setSize(214,42);
+//        statisticLabel.setText(String.valueOf(viewNumber)+" views");
+//        postedByLabel = new javax.swing.JLabel();
+//        postedByLabel.setSize(235,42);
+//        postedByLabel.setText(postedBy);
 //        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 //        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
 //        this.setLayout(layout);
@@ -93,11 +86,11 @@ public class PostPanel extends javax.swing.JPanel {
 //            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 //            .addGroup(layout.createSequentialGroup()
 //                .addGap(17, 17, 17)
-//                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
 //                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-//                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                .addComponent(statisticLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
 //                .addGap(47, 47, 47)
-//                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                .addComponent(postedByLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
 //                .addGap(31, 31, 31))
 //        );
 //        layout.setVerticalGroup(
@@ -105,40 +98,98 @@ public class PostPanel extends javax.swing.JPanel {
 //            .addGroup(layout.createSequentialGroup()
 //                .addGap(15, 15, 15)
 //                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-//                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-//                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-//                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+//                    .addComponent(statisticLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                    .addComponent(postedByLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
 //                .addContainerGap(10, Short.MAX_VALUE))
 //        );
         //setBorder(javax.swing.BorderFactory.createEtchedBorder());
         //setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(255, 255, 255), new java.awt.Color(255, 255, 255), new java.awt.Color(153, 153, 153)));
+        setPreferredSize(new java.awt.Dimension(1063,70));
+        setMaximumSize(this.getPreferredSize());
+        setBackground(new java.awt.Color(247,247,226));
+        //setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.X_AXIS));
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        add(javax.swing.Box.createHorizontalStrut(18));
-        jLabel2 = new javax.swing.JLabel();
-        jLabel2.setSize(454,42);
-        jLabel2.setText(this.title);
-        add(jLabel2);
-//        jLabel2.setLineWrap(true); //xuống dòng nếu text dài và vượt quá size của Label, hiện tại chạy 2 câu lệnh này netbeans báo lỗi
-//        jLabel2.setWrapStyleWord(true); //xuống dòng theo từ
-   
-        add(javax.swing.Box.createHorizontalStrut(450));
-        jLabel3 = new javax.swing.JLabel();
-        jLabel3.setSize(214,42);
-        jLabel3.setText(String.valueOf(this.viewNumber)+" views");
-        add(jLabel3);
+        //add(javax.swing.Box.createHorizontalStrut(18));
+        add(javax.swing.Box.createRigidArea(new java.awt.Dimension(18,0)));
         
-        add(javax.swing.Box.createHorizontalStrut(230));
-        jLabel1 = new javax.swing.JLabel();
-        jLabel1.setSize(235,42);
-        jLabel1.setText(this.postedBy);
-        add(jLabel1);
-        //add(javax.swing.Box.createHorizontalStrut(31));
+        titleLabel = new javax.swing.JLabel();
+        titlePanel = new javax.swing.JPanel();
+        //titlePanel.setSize(510,42);
+        titlePanel.setPreferredSize(new java.awt.Dimension(510, 60));
+        titlePanel.setMaximumSize(titlePanel.getPreferredSize());
+        titleLabel.setForeground(new java.awt.Color(0, 102, 255));
+        titleLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        titleLabel.setMaximumSize(titlePanel.getPreferredSize());
+        titleLabel.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+        titleLabel.setText("<html> "+this.title+" </html>");
+        titleLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e){
+                titleLabel.setFont(new java.awt.Font("Segoe UI", 1, 12));
+            }
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e){
+                titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 12));
+            }
+        });
+        
+        
+        //titlePanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        titlePanel.setLayout(new javax.swing.BoxLayout(titlePanel,javax.swing.BoxLayout.X_AXIS));
+        titlePanel.add(titleLabel);
+        
+        add(titlePanel);
+//        titleLabel.setLineWrap(true); //xuống dòng nếu text dài và vượt quá size của Label, hiện tại chạy 2 câu lệnh này netbeans báo lỗi
+//        titleLabel.setWrapStyleWord(true); //xuống dòng theo từ
+  
+        add(javax.swing.Box.createRigidArea(new java.awt.Dimension(75,0)));
+        statisticPanel = new javax.swing.JPanel();
+        statisticLabel = new javax.swing.JLabel();
+        statisticPanel.setPreferredSize(new java.awt.Dimension(150,60));
+        statisticLabel.setMaximumSize(statisticPanel.getPreferredSize());
+        statisticPanel.setMaximumSize(statisticPanel.getPreferredSize());
+        statisticLabel.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+        //statisticLabel.setText(String.valueOf(this.viewNumber)+" views, "+ String.valueOf(this.responseNumber)+" responses");
+        statisticLabel.setText("<html>"+String.valueOf(this.viewNumber)+" views<br>"+ String.valueOf(this.responseNumber)+" responses</html>");
+        statisticLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        
+        
+        statisticPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        statisticPanel.add(statisticLabel);
+        
+        add(statisticPanel);
+        
+        add(javax.swing.Box.createRigidArea(new java.awt.Dimension(85,0)));
+        postedByPanel = new javax.swing.JPanel();
+        postedByLabel = new javax.swing.JLabel();
+        postedByPanel.setPreferredSize(new java.awt.Dimension(190,60));
+        postedByPanel.setMaximumSize(postedByPanel.getPreferredSize());
+        postedByLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-user-24.png")));
+        postedByLabel.setMaximumSize(postedByPanel.getPreferredSize());
+        postedByLabel.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+        postedByLabel.setText(this.postedBy);
+        postedByLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        
+        
+        postedByPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        postedByPanel.add(postedByLabel);
+        
+        add(postedByPanel);
+        add(javax.swing.Box.createRigidArea(new java.awt.Dimension(15,0)));
+        //add(javax.swing.Box.createHorizontalStrut(15));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
+    private javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel statisticLabel;
+    private javax.swing.JLabel postedByLabel;
+    private javax.swing.JPanel titlePanel;
+    private javax.swing.JPanel statisticPanel;
+    private javax.swing.JPanel postedByPanel;
 }

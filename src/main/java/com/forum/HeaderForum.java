@@ -24,7 +24,18 @@ public class HeaderForum extends javax.swing.JPanel{
         topicButton.setFont(new java.awt.Font("Segoe UI",1,16));
         topicButton.setForeground(new java.awt.Color(51,51,51));
         topicButton.setText("POSTING"); 
+        topicButton.setBorderPainted(false);
         topicButton.setFocusable(false);
+        topicButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e){
+                topicButton.setBorderPainted(true);
+            }
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e){
+                topicButton.setBorderPainted(false);
+            }
+        });
         add(topicButton);
         
         add(javax.swing.Box.createHorizontalStrut(15));
@@ -34,7 +45,18 @@ public class HeaderForum extends javax.swing.JPanel{
         lastedPostButton.setFont(new java.awt.Font("Segoe UI",1,16));
         lastedPostButton.setForeground(new java.awt.Color(51,51,51));
         lastedPostButton.setText("LASTED POST");  
+        lastedPostButton.setBorderPainted(false);
         lastedPostButton.setFocusable(false);
+        lastedPostButton.addMouseListener(new java.awt.event.MouseAdapter() {
+         @Override
+         public void mouseEntered(java.awt.event.MouseEvent e){
+             lastedPostButton.setBorderPainted(true);
+         }
+         @Override
+         public void mouseExited(java.awt.event.MouseEvent e){
+             lastedPostButton.setBorderPainted(false);
+         }
+     });
         add(lastedPostButton);
         
         add(javax.swing.Box.createHorizontalStrut(610));
