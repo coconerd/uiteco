@@ -4,19 +4,39 @@
  */
 package com.uiteco.ofSuKienPanel.detailed;
 
+import com.uiteco.components.GradientPanel;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+
 /**
  *
  * @author nddmi
  */
-public class GalleryView extends javax.swing.JPanel {
+public class GalleryView extends GradientPanel implements PropertyChangeListener {
 
+    private GalleryModel galleryModel;
+    
     /**
      * Creates new form GalleryView
      */
     public GalleryView() {
+        setGalleryModel(new GalleryModel());
         initComponents();
     }
 
+    public GalleryModel getGalleryModel() {
+        return galleryModel;
+    }
+
+    public void setGalleryModel(GalleryModel galleryModel) {
+        this.galleryModel = galleryModel;
+    }
+    
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

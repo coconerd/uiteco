@@ -5,18 +5,45 @@
 package com.uiteco.ofSuKienPanel.detailed;
 
 import com.uiteco.components.GradientPanel;
+import com.uiteco.components.ImageAvatar;
+import com.uiteco.ofSuKienPanel.SuKienModel;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+
 
 /**
  *
  * @author nddmi
  */
-public class SuKienDetailView extends GradientPanel {
-        
+public class SuKienDetailView extends GradientPanel implements PropertyChangeListener{
+    private SuKienModel suKienModel;
     /**
      * Creates new form SuKienDetailView
      */
     public SuKienDetailView() {
+        setSuKienModel(new SuKienModel());
         initComponents();
+    }
+    
+    public SuKienDetailView(SuKienModel suKienModel) {
+        setSuKienModel(suKienModel);
+        initComponents();
+    }
+
+    public SuKienModel getSuKienModel() {
+        return suKienModel;
+    }
+    
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        
+    }
+
+    public void setSuKienModel(SuKienModel suKienModel) {
+        this.suKienModel = suKienModel;
+    }
+    
+    private void _init() {
     }
 
     /**
@@ -27,35 +54,97 @@ public class SuKienDetailView extends GradientPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        imageAvatar1 = new com.uiteco.components.ImageAvatar();
-        gradientPanel1 = new com.uiteco.components.GradientPanel();
-        jLabel1 = new javax.swing.JLabel();
+        coverPhoto = new com.uiteco.components.ImageAvatar();
+        metricsArea = new com.uiteco.components.GradientPanel();
+        title = new javax.swing.JLabel();
+        galleryView = new com.uiteco.ofSuKienPanel.detailed.GalleryView();
+        contentArea = new com.uiteco.components.GradientPanel();
 
+        setColor1(new java.awt.Color(255, 51, 51));
         setLayout(new java.awt.GridBagLayout());
-        add(imageAvatar1, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        add(coverPhoto, gridBagConstraints);
 
-        javax.swing.GroupLayout gradientPanel1Layout = new javax.swing.GroupLayout(gradientPanel1);
-        gradientPanel1.setLayout(gradientPanel1Layout);
-        gradientPanel1Layout.setHorizontalGroup(
-            gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
+        javax.swing.GroupLayout metricsAreaLayout = new javax.swing.GroupLayout(metricsArea);
+        metricsArea.setLayout(metricsAreaLayout);
+        metricsAreaLayout.setHorizontalGroup(
+            metricsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        gradientPanel1Layout.setVerticalGroup(
-            gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
+        metricsAreaLayout.setVerticalGroup(
+            metricsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        add(gradientPanel1, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 1.0;
+        add(metricsArea, gridBagConstraints);
 
-        jLabel1.setText("jLabel1");
-        add(jLabel1, new java.awt.GridBagConstraints());
+        title.setText("jLabel1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        add(title, gridBagConstraints);
+
+        javax.swing.GroupLayout galleryViewLayout = new javax.swing.GroupLayout(galleryView);
+        galleryView.setLayout(galleryViewLayout);
+        galleryViewLayout.setHorizontalGroup(
+            galleryViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        galleryViewLayout.setVerticalGroup(
+            galleryViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        add(galleryView, gridBagConstraints);
+
+        javax.swing.GroupLayout contentAreaLayout = new javax.swing.GroupLayout(contentArea);
+        contentArea.setLayout(contentAreaLayout);
+        contentAreaLayout.setHorizontalGroup(
+            contentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        contentAreaLayout.setVerticalGroup(
+            contentAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        add(contentArea, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.components.GradientPanel gradientPanel1;
-    private com.uiteco.components.ImageAvatar imageAvatar1;
-    private javax.swing.JLabel jLabel1;
+    private com.uiteco.components.GradientPanel contentArea;
+    private com.uiteco.components.ImageAvatar coverPhoto;
+    private com.uiteco.ofSuKienPanel.detailed.GalleryView galleryView;
+    private com.uiteco.components.GradientPanel metricsArea;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

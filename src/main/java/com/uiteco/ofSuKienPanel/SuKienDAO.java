@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import com.uiteco.database.ConnectionManager;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  *
@@ -168,5 +171,15 @@ public class SuKienDAO {
             }
         }
         return imageIcons;
+    }
+
+    public static ArrayList<ImageIcon> getSuKienImages(int postID) {
+        Connection conn = ConnectionManager.getConnection();
+
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
