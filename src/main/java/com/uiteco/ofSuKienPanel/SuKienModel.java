@@ -15,7 +15,7 @@ public class SuKienModel {
 
     private String title;
     private String tag;
-    private Integer postID;
+    private int postID;
     private String type;
     private String content;
     private String postedBy;
@@ -28,7 +28,7 @@ public class SuKienModel {
     public SuKienModel() {
     }
 
-    public SuKienModel(String title, String tag, Integer postID, String type, String content, String postedBy, LocalDate postedAt, String note, String clubID, ImageIcon thumbnail) {
+    public SuKienModel(String title, String tag, int postID, String type, String content, String postedBy, LocalDate postedAt, String note, String clubID, ImageIcon thumbnail) {
         this.title = title;
         this.tag = tag;
         this.postID = postID;
@@ -49,7 +49,7 @@ public class SuKienModel {
         this.tag = tag;
     }
 
-    public void setPostID(Integer postID) {
+    public void setPostID(int postID) {
         this.postID = postID;
     }
 
