@@ -25,7 +25,7 @@ public class Session implements PropertyChangeListener {
     public static final long SESSION_DURATION = 14 * 24 * 60 * 60; // 14 days in seconds;
 
     private boolean permitted;
-    private boolean fileFound;
+//    private boolean fileFound;
 
     private String username;
     private String email;
@@ -36,81 +36,80 @@ public class Session implements PropertyChangeListener {
     public Session() {
         setPropertyChangeSupport(new PropertyChangeSupport(this));
         Properties properties = new Properties();
-        try (InputStream input = this.getClass().getResourceAsStream(SESSION_FILE_NAME)) {
-            if (input == null) {
-                setFileFound(false);
-                setPermitted(false);
-                System.err.println("Session file not found. Login is required");
-            } else {
-                properties.load(input);
-                setFileFound(true);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if (fileFound) {
-
-            username = properties.getProperty("session.username", null);
-            email = properties.getProperty("session.email", null);
-            issuedAt = Long.valueOf(properties.getProperty("session.issuedAt", null));
-
-            if (username == null || email == null || issuedAt == null) {
-                permitted = false;
-                System.err.println("Faulty session file. One of the fields is missing/incorrect");
-
-            } else {
-                System.out.println("Retrieved user's credentials successfully");
-
-                // Check if session hasn't expired
-                long timestamp = System.currentTimeMillis() / 1000;
-                permitted = timestamp <= (issuedAt + SESSION_DURATION) ? true : false;
-                if (permitted) {
-                    System.out.println("Session is still valid");
-                } else {
-                    System.out.println("Session has epxired. Please login again");
-                }
-            }
-        }
+//        try (InputStream input = this.getClass().getResourceAsStream(SESSION_FILE_NAME)) {
+//            if (input == null) {
+//                setFileFound(false);
+//                setPermitted(false);
+//                System.err.println("Session file not found. Login is required");
+//            } else {
+//                properties.load(input);
+//                setFileFound(true);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        if (fileFound) {
+//            username = properties.getProperty("session.username", null);
+//            email = properties.getProperty("session.email", null);
+//            issuedAt = Long.valueOf(properties.getProperty("session.issuedAt", null));
+//
+//            if (username == null || email == null || issuedAt == null) {
+//                permitted = false;
+//                System.err.println("Faulty session file. One of the fields is missing/incorrect");
+//
+//            } else {
+//                System.out.println("Retrieved user's credentials successfully");
+//
+//                // Check if session hasn't expired
+//                long timestamp = System.currentTimeMillis() / 1000;
+//                permitted = timestamp <= (issuedAt + SESSION_DURATION) ? true : false;
+//                if (permitted) {
+//                    System.out.println("Session is still valid");
+//                } else {
+//                    System.out.println("Session has epxired. Please login again");
+//                }
+//            }
+//        }
     }
 
     public void saveSession(String email, String username) {
-        this.email = email;
-        this.username = username;
-        this.issuedAt = System.currentTimeMillis() / 1000;
-        File sessionFile;
-
-        try {
-            sessionFile = new File(this.getClass().getResource(SESSION_FILE_NAME).toURI());
-            if (sessionFile == null) {
-                sessionFile.createNewFile();
-            }
-
-            try {
-                FileOutputStream output = new FileOutputStream(sessionFile);
-                Properties properties = new Properties();
-
-                // Set properties
-                properties.setProperty("session.username", getUsername());
-                properties.setProperty("session.email", getEmail());
-                properties.setProperty("session.issuedAt", String.valueOf(getIssuedAt()));
-
-                // Save properties to project root directory
-                properties.store(output, null);
-
-                // Set file to read-only on Windows
-                if (sessionFile.setReadOnly()) {
-                    System.out.println("Session file set to read-only.");
-                } else {
-                    System.err.println("Failed to set session file to read-only.");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        this.email = email;
+//        this.username = username;
+//        this.issuedAt = System.currentTimeMillis() / 1000;
+//        File sessionFile;
+//
+//        try {
+//            sessionFile = new File(this.getClass().getResource(SESSION_FILE_NAME).toURI());
+//            if (sessionFile == null) {
+//                sessionFile.createNewFile();
+//            }
+//
+//            try {
+//                FileOutputStream output = new FileOutputStream(sessionFile);
+//                Properties properties = new Properties();
+//
+//                // Set properties
+//                properties.setProperty("session.username", getUsername());
+//                properties.setProperty("session.email", getEmail());
+//                properties.setProperty("session.issuedAt", String.valueOf(getIssuedAt()));
+//
+//                // Save properties to project root directory
+//                properties.store(output, null);
+//
+//                // Set file to read-only on Windows
+//                if (sessionFile.setReadOnly()) {
+//                    System.out.println("Session file set to read-only.");
+//                } else {
+//                    System.err.println("Failed to set session file to read-only.");
+//                }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
     }
 
@@ -153,9 +152,9 @@ public class Session implements PropertyChangeListener {
         this.propertyChangeSupport.firePropertyChange("permitted", oldValue, permitted);
     }
 
-    private void setFileFound(boolean fileFound) {
-        this.fileFound = fileFound;
-    }
+//    private void setFileFound(boolean fileFound) {
+//        this.fileFound = fileFound;
+//    }
 
     private void setUsername(String username) {
         this.username = username;

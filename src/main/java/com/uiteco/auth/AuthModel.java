@@ -6,6 +6,7 @@ package com.uiteco.auth;
 
 import java.beans.PropertyChangeSupport;
 import java.beans.PropertyChangeListener;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -93,17 +94,37 @@ public class AuthModel {
         this.propertyChangeSupport = propertyChangeSupport;
     }
 
-    private void setEmailOrThrow(String email) throws BadCredentialsFormatException {
-        this.email = email;
+    private void setEmailOrThrow(String inputEmail) throws BadCredentialsFormatException {
+        int len = inputEmail.length();
+        String postfix = inputEmail.substring(len);
+        if (!postfix.equals("@gm.uit.edu.vn")) {
+            throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.EMAIL);
+        }
+        
+        this.email = inputEmail;
     }
 
-    private void setUsernameOrThrow(String username) throws BadCredentialsFormatException {
-        this.username = username;
-
+    private void setUsernameOrThrow(String inputUsername) throws BadCredentialsFormatException {
+        int len = inputUsername.length();
+        if (!(len >= 4 && len <= 15)) {
+            throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.USERNAME);
+        }
+        
+        String regex = "^[a-zA-Z0-9]*$"; 
+        if (!Pattern.matches(regex, inputUsername)) {
+            throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.USERNAME);
+        }
+        
+        this.username = inputUsername;
     }
 
-    private void setPasswordOrThrow(String password) throws BadCredentialsFormatException {
-        this.password = password;
+    private void setPasswordOrThrow(String inputPassword) throws BadCredentialsFormatException {
+        int len = inputPassword.length();
+        if (!(len >= 8 && len <= 32)) {
+            throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.PASSWORD);
+        }
+        
+        this.password = inputPassword;
     }
 
     private void setLoggedIn(boolean loggedIn) {
