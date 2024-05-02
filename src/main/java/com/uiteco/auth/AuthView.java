@@ -147,7 +147,7 @@ public class AuthView extends javax.swing.JFrame {
 
         emailLabel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         emailLabel.setForeground(new java.awt.Color(53, 150, 255));
-        emailLabel.setText("Tài khoản");
+        emailLabel.setText("Email");
         gradientPanel1.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 372, -1));
 
         emailForm.setBackground(new java.awt.Color(255, 255, 255));
@@ -271,8 +271,9 @@ public class AuthView extends javax.swing.JFrame {
 
 
     private void emailFormMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailFormMouseClicked
+        onPremiseNoti.setText("");
+        highlight(emailForm);
         if (!inEmailForm && emailForm.getText().equals(receiveEmail ? "Email" : "Username")) {
-            highlight(emailForm);
             emailForm.setText("");
         }
         if ("".equals(new String(passwordForm.getPassword()))) {
@@ -298,8 +299,9 @@ public class AuthView extends javax.swing.JFrame {
 
     private void passwordFormMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordFormMouseClicked
         // TODO add your handling code here:
+        onPremiseNoti.setText("");
+        highlight(passwordForm);
         if (!inPasswordForm && "***".equals(new String(passwordForm.getPassword()))) {
-            highlight(passwordForm);
             passwordForm.setText("");
 //            passwordForm.setEchoChar('*');
         }
@@ -339,6 +341,7 @@ public class AuthView extends javax.swing.JFrame {
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         // TODO add your handling code here:
+
         String password = new String(passwordForm.getPassword());
         if (password.equals("***")) {
             password = null;
@@ -348,9 +351,15 @@ public class AuthView extends javax.swing.JFrame {
 
             if (receiveEmail) {
                 String email = emailForm.getText();
+                if (email.equals("Email")) {
+                    email = null;
+                }
                 authModel.loginWithEmail(email, password);
             } else {
                 String username = emailForm.getText();
+                if (username.equals("Username")) {
+                    username = null;
+                }
                 authModel.loginWithUsername(username, password);
             }
 
@@ -358,6 +367,7 @@ public class AuthView extends javax.swing.JFrame {
             onPremiseNoti.setForeground(java.awt.Color.green);
         } catch (Exception e) {
             e.printStackTrace();
+
             if (e instanceof MissingCredentialsException || e instanceof InvalidCredentialsException) {
                 onPremiseNoti.setText(e.getMessage());
             } else if (e instanceof BadCredentialsFormatException) {
@@ -368,8 +378,9 @@ public class AuthView extends javax.swing.JFrame {
 
     private void emailFormFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFormFocusGained
         // TODO add your handling code here:
+        onPremiseNoti.setText("");
+        highlight(emailForm);
         if (!inEmailForm && emailForm.getText().equals(receiveEmail ? "Email" : "Username")) {
-            highlight(emailForm);
             emailForm.setText("");
         }
         if ("".equals(new String(passwordForm.getPassword()))) {
@@ -392,8 +403,9 @@ public class AuthView extends javax.swing.JFrame {
 
     private void passwordFormFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFormFocusGained
         // TODO add your handling code here:
+        onPremiseNoti.setText("");
+        highlight(passwordForm);
         if (!inPasswordForm && "***".equals(new String(passwordForm.getPassword()))) {
-            highlight(passwordForm);
             passwordForm.setText("");
 //            passwordForm.setEchoChar('*');
         }
@@ -423,10 +435,12 @@ public class AuthView extends javax.swing.JFrame {
             accountButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/account-gradient.png")));
             accountButton.setToolTipText("Chuyển qua nhập username");
             emailForm.setToolTipText("Nhập email");
+            emailLabel.setText("Email");
         } else {
             accountButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/email-gradient.png")));
             accountButton.setToolTipText("Chuyển qua nhập email");
             emailForm.setToolTipText("Nhập username");
+            emailLabel.setText("Username");
         }
     }//GEN-LAST:event_accountButtonMouseClicked
 

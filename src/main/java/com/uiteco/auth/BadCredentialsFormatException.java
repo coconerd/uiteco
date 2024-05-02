@@ -25,9 +25,9 @@ public class BadCredentialsFormatException extends Exception {
     public String getMessage() {
         String error;
         if (getCreds() == BAD.EMAIL) {
-            error = "Email phải co định dạng 22xxxxxx@gm.uit.edu.vn";
+            error = "Email phải có định dạng xxxxxxxx@gm.uit.edu.vn";
         } else if (getCreds() == BAD.USERNAME) {
-            error = "Username phải có độ dài 4 - 15 ký tự và không bao gồm các ký tự đặc biệt";
+            error = "Username phải có độ dài 4 - 15 ký tự và chỉ có chữ/số";
         } else {
             error = "Mật khẩu phải có độ dài từ 8 - 32 ký tự";
         }

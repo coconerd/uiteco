@@ -96,7 +96,7 @@ public class AuthModel {
 
     private void setEmailOrThrow(String inputEmail) throws BadCredentialsFormatException {
         int len = inputEmail.length();
-        String postfix = inputEmail.substring(len);
+        String postfix = inputEmail.substring(len - 14, len);
         if (!postfix.equals("@gm.uit.edu.vn")) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.EMAIL);
         }
