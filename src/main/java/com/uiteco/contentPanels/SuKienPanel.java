@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.uiteco.contentPanels;
-import com.uiteco.contentPanels.suKienPanel.components.SuKienListModel;
-import com.uiteco.contentPanels.suKienPanel.components.SuKienModel;
-import com.uiteco.contentPanels.suKienPanel.components.SuKienView;
+import com.uiteco.ofSuKienPanel.SuKienListModel;
+import com.uiteco.ofSuKienPanel.SuKienModel;
+import com.uiteco.ofSuKienPanel.SuKienView;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.BorderLayout;
@@ -37,8 +37,8 @@ public class SuKienPanel extends javax.swing.JPanel {
         jTextPane1 = new javax.swing.JTextPane();
         scrollPaneWin11 = new com.raven.scroll.ScrollPaneWin11();
         containerPanel = new javax.swing.JPanel();
-        slideShowView2 = new com.uiteco.contentPanels.suKienPanel.components.SlideShowView();
-        suKienListView2 = new com.uiteco.contentPanels.suKienPanel.components.SuKienListView();
+        slideShowView2 = new com.uiteco.ofSuKienPanel.SlideShowView();
+        suKienListView2 = new com.uiteco.ofSuKienPanel.SuKienListView();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -82,7 +82,7 @@ public class SuKienPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     private com.raven.scroll.ScrollPaneWin11 scrollPaneWin11;
-    private com.uiteco.contentPanels.suKienPanel.components.SlideShowView slideShowView2;
-    private com.uiteco.contentPanels.suKienPanel.components.SuKienListView suKienListView2;
+    private com.uiteco.ofSuKienPanel.SlideShowView slideShowView2;
+    private com.uiteco.ofSuKienPanel.SuKienListView suKienListView2;
     // End of variables declaration//GEN-END:variables
 }

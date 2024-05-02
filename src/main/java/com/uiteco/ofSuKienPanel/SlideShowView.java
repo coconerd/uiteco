@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.uiteco.contentPanels.suKienPanel.components;
+package com.uiteco.ofSuKienPanel;
 
 import java.awt.Component;
 import java.util.ArrayList;
@@ -233,7 +233,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         imageContainer = com.uiteco.components.RoundedPanel.getRoundedPanel(getImageRadius());
         forwardButton = new com.uiteco.components.ImageAvatar();
         backButton = new com.uiteco.components.ImageAvatar();
-        slideShowPaginationView1 = new com.uiteco.contentPanels.suKienPanel.components.SlideShowPaginationView(this.getSlideShowModel());
+        slideShowPaginationView1 = new com.uiteco.ofSuKienPanel.SlideShowPaginationView(this.getSlideShowModel());
 
         setBackground(new java.awt.Color(242, 243, 244));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -380,7 +380,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
     private com.uiteco.components.ImageAvatar backButton;
     private com.uiteco.components.ImageAvatar forwardButton;
     private com.uiteco.components.RoundedPanel imageContainer;
-    private com.uiteco.contentPanels.suKienPanel.components.SlideShowPaginationView slideShowPaginationView1;
+    private com.uiteco.ofSuKienPanel.SlideShowPaginationView slideShowPaginationView1;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

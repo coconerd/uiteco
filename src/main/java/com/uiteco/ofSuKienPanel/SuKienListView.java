@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.uiteco.contentPanels.suKienPanel.components;
+package com.uiteco.ofSuKienPanel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
