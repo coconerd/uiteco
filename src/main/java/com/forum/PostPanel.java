@@ -3,19 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.forum;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class PostPanel extends javax.swing.JPanel {
     private String title;
     private int viewNumber;
     private String postedBy;
     private int responseNumber;
-    private String postingDate;
+    private LocalDateTime postingDate;
     
     public PostPanel() {
         //initComponents();
     }
     
-    public PostPanel(String title, int viewNumber, int responseNumber, String postedBy, String postingDate) {
+    public PostPanel(String title, int viewNumber, int responseNumber, String postedBy, LocalDateTime postingDate) {
         this.title = title;
         this.viewNumber = viewNumber;
         this.responseNumber = responseNumber;
@@ -59,7 +61,7 @@ public class PostPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    private void InitComponents(String title, int viewNumber, int responseNumber, String postedBy, String postingDate){
+    private void InitComponents(String title, int viewNumber, int responseNumber, String postedBy, LocalDateTime postingDate){
         setPreferredSize(new java.awt.Dimension(1063,70));
         setMaximumSize(this.getPreferredSize());
         setBackground(new java.awt.Color(247,247,226));
@@ -118,7 +120,8 @@ public class PostPanel extends javax.swing.JPanel {
         postedByLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-user-24.png")));
         postedByLabel.setMaximumSize(postedByPanel.getPreferredSize());
         postedByLabel.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
-        postedByLabel.setText("<html>"+this.postedBy+"<br>"+this.postingDate+"</html>");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        postedByLabel.setText("<html>"+this.postedBy+"<br>"+this.postingDate.format(formatter)+"</html>");
         postedByLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
              
         postedByPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
