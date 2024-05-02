@@ -105,14 +105,11 @@ public class AuthDAO {
 
     // This function is only for testing purpose
     private static void register(String email, String username, String password, int accountType) {
-        Connection conn = ConnectionManager.getConnection();
-        byte[] salt;
-        byte[] passwordHash;
-
         /* Verify email, username, password, accountType */
         try {
-            salt = genSalt();
-            passwordHash = deriveKey(password, salt);
+            Connection conn = ConnectionManager.getConnection();
+            byte[] salt = genSalt();
+            byte[] passwordHash = deriveKey(password, salt);
 
             String sql = "INSERT INTO TAIKHOAN (EMAIL, USERNAME, MATKHAU, PBKDF2_SALT, LOAITK) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
