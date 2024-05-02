@@ -368,10 +368,10 @@ public class AuthView extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
 
-            if (e instanceof MissingCredentialsException || e instanceof InvalidCredentialsException) {
+            if (e instanceof MissingCredentialsException || e instanceof InvalidCredentialsException || e instanceof BadCredentialsFormatException) {
                 onPremiseNoti.setText(e.getMessage());
-            } else if (e instanceof BadCredentialsFormatException) {
-                onPremiseNoti.setText(e.getMessage());
+            } else {
+                onPremiseNoti.setText("Application errors occured. Please contact the admin!");
             }
         }
     }//GEN-LAST:event_loginButtonMouseClicked
