@@ -24,11 +24,12 @@ public class SuKienModel {
     private String clubID;
     private ImageIcon thumbnail;
     private ImageIcon[] images;
+    private int views;
 
     public SuKienModel() {
     }
 
-    public SuKienModel(String title, String tag, int postID, String type, String content, String postedBy, LocalDate postedAt, String note, String clubID, ImageIcon thumbnail) {
+    public SuKienModel(String title, String tag, int postID, String type, String content, String postedBy, LocalDate postedAt, String note, String clubID, ImageIcon thumbnail, int views) {
         this.title = title;
         this.tag = tag;
         this.postID = postID;
@@ -39,6 +40,7 @@ public class SuKienModel {
         this.note = note;
         this.clubID = clubID;
         this.thumbnail = thumbnail;
+        this.views = views;
     }
 
     public void setTitle(String title) {
@@ -84,11 +86,15 @@ public class SuKienModel {
     public void setImages(ImageIcon[] images) {
         this.images = images;
     }
-    
+
     public void setImage(int index, ImageIcon image) {
-        this.images[index] = image; 
+        this.images[index] = image;
     }
     
+    public void setViews(int views) {
+        this.views = views;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -132,9 +138,12 @@ public class SuKienModel {
     public ImageIcon[] getImages() {
         return images;
     }
-    
-    
+
     public ImageIcon getImage(int index) {
         return images[index];
+    }
+    
+    public int getViews() {
+        return this.views;
     }
 }

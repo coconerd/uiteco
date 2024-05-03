@@ -4,15 +4,20 @@
  */
 package com.uiteco.ofSuKienPanel;
 
-import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import com.uiteco.database.ConnectionManager;
+import java.io.IOException;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -33,13 +38,14 @@ public class SuKienDAO {
             String type = "Event";
             String tag = null;
             int postID = i;
-            String content = "Hello World Java Swing GUI. It's such a beautiful day isn't it? So how's life been treating you lately! Life is shit btw, but's that doesn't make it any less beautiful";
-            String postedBy = "Duc Minh Dev";
+            String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
+            String postedBy = "Minh Duc";
             java.time.LocalDate postedAt = java.time.LocalDate.now();
             String note = null;
             String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\LabJava\\FeaturedImages\\3.jpg"); // Mock image
-            SuKienModel event = new SuKienModel(title, tag, postID, type, content, postedBy, postedAt, note, clubID, thumbnail);
+            int views = 1200;
+            SuKienModel event = new SuKienModel(title, tag, postID, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
         }
 
@@ -60,13 +66,14 @@ public class SuKienDAO {
             String type = "Event";
             String tag = null;
             int postId = i;
-            String content = "Hello World Java Swing GUI. It's such a beautiful day isn't it? So how's life been treating you lately! Life is shit btw, but's that doesn't make it any less beautiful";
-            String postedBy = "Duc Minh Dev";
+            String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
+            String postedBy = "Duc Minh";
             java.time.LocalDate postedAt = java.time.LocalDate.now();
             String note = null;
             String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\LabJava\\FeaturedImages\\3.jpg"); // Mock image
-            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail);
+            int views = 1200;
+            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
         }
 
@@ -82,13 +89,14 @@ public class SuKienDAO {
             String type = "Event";
             String tag = null;
             int postId = i;
-            String content = "Hello World Java Swing GUI. It's such a beautiful day isn't it? So how's life been treating you lately! Life is shit btw, but's that doesn't make it any less beautiful";
-            String postedBy = "Duc Minh Dev";
+            String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
+            String postedBy = "Duc Minh";
             java.time.LocalDate postedAt = java.time.LocalDate.now();
             String note = null;
             String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\LabJava\\FeaturedImages\\3.jpg"); // Mock image
-            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail);
+            int views = 1200;
+            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
         }
 
@@ -109,13 +117,14 @@ public class SuKienDAO {
             String type = "Event";
             String tag = null;
             int postId = i;
-            String content = "Hello World Java Swing GUI. It's such a beautiful day isn't it? So how's life been treating you lately! Life is shit btw, but's that doesn't make it any less beautiful";
-            String postedBy = "Duc Minh Dev";
+            String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
+            String postedBy = "Duc Minh";
             java.time.LocalDate postedAt = java.time.LocalDate.now();
             String note = null;
             String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\LabJava\\FeaturedImages\\3.jpg"); // Mock image
-            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail);
+            int views = 1200;
+            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
         }
 
@@ -142,14 +151,15 @@ public class SuKienDAO {
             String type = "Event";
             String tag = null;
             int postId = i;
-            String content = "Hello World Java Swing GUI. It's such a beautiful day isn't it? So how's life been treating you lately! Life is shit btw, but's that doesn't make it any less beautiful";
-            String postedBy = "Duc Minh Dev";
+            String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
+            String postedBy = "Duc Minh";
             java.time.LocalDate postedAt = java.time.LocalDate.now();
             String note = null;
             String clubID = null;
             ImageIcon thumbnail = images.get(imageIndex);
             imageIndex = (imageIndex == imageCount - 1 ? 0 : imageIndex + 1); // Update image index
-            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail);
+            int views = 1200;
+            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail,  views);
             suKienList.add(event);
         }
         return suKienList;
@@ -173,13 +183,28 @@ public class SuKienDAO {
         return imageIcons;
     }
 
-    public static ArrayList<ImageIcon> getSuKienImages(int postID) {
-        Connection conn = ConnectionManager.getConnection();
+    public static ArrayList<ImageIcon> getSuKienImages(int postID) throws SQLException, IOException {
+        ArrayList images = new ArrayList<ImageIcon>();
 
         try {
+            Connection conn = ConnectionManager.getConnection();
+
+            String sql = "SELECT ANH FROM HINANH WHERE MABD = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                Blob blob = rs.getBlob("ANH");
+                Image image = javax.imageio.ImageIO.read(blob.getBinaryStream());
+                ImageIcon imageIcon = new ImageIcon(image);
+                images.add(imageIcon);
+            }
+
             conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return images;
+
+        } catch (SQLException | IOException e) {
+            throw e;
         }
     }
 }
