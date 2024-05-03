@@ -36,12 +36,12 @@ public class AuthDAO {
      * but is invalid or has bad format
      */
     public static void login(String username, String email, String password) throws Exception {
-        Connection conn = ConnectionManager.getConnection();
 
         String sql;
         PreparedStatement statement;
         ResultSet rs;
         try {
+            Connection conn = ConnectionManager.getConnection();
             if (email != null && !email.equals("")) {
                 sql = "SELECT * FROM TAIKHOAN WHERE EMAIL = ?";
                 statement = conn.prepareStatement(sql);
