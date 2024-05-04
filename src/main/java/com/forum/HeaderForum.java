@@ -16,12 +16,11 @@ public class HeaderForum extends javax.swing.JPanel{
        
         add(javax.swing.Box.createRigidArea(new java.awt.Dimension(10,0)));
         topicPanel = new javax.swing.JPanel();
-        topicButton = new javax.swing.JButton();
+        //topicButton = new javax.swing.JButton();
+        topicButton = new com.forum.RoundedBorderButton();
         topicPanel.setBackground(new java.awt.Color(0,102,102));
         topicPanel.setPreferredSize(new java.awt.Dimension(130,35));
         topicPanel.setMaximumSize(topicPanel.getPreferredSize());
-//        topicPanel.setAlignmentY(java.awt.Component.TOP_ALIGNMENT);
-//        topicButton.setMaximumSize(new java.awt.Dimension(topicPanel.getPreferredSize().width, topicPanel.getPreferredSize().height-8));
         topicButton.setMaximumSize(topicPanel.getPreferredSize());
         topicButton.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
         topicButton.setBackground(new java.awt.Color(246,246,238));
@@ -31,24 +30,25 @@ public class HeaderForum extends javax.swing.JPanel{
         topicButton.setText("New Post"); 
         topicButton.setBorderPainted(false);
         topicButton.setFocusable(false);
-        //topicButton.setBorder(javax.swing.BorderFactory.createRoundBorder(10));
-        topicButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseEntered(java.awt.event.MouseEvent e){
-                topicButton.setBorderPainted(true);
-            }
-            @Override
-            public void mouseExited(java.awt.event.MouseEvent e){
-                topicButton.setBorderPainted(false);
-            }
-        });
+       
+//        topicButton.addMouseListener(new java.awt.event.MouseAdapter() {
+//            @Override
+//            public void mouseEntered(java.awt.event.MouseEvent e){
+//                topicButton.setBorderPainted(true);
+//            }
+//            @Override
+//            public void mouseExited(java.awt.event.MouseEvent e){
+//                topicButton.setBorderPainted(false);
+//            }
+//        });
         topicPanel.setLayout(new javax.swing.BoxLayout(topicPanel, javax.swing.BoxLayout.X_AXIS));
         topicPanel.add(topicButton);
         add(topicPanel);
         
         add(javax.swing.Box.createRigidArea(new java.awt.Dimension(10,0)));
         lastedPostPanel = new javax.swing.JPanel();
-        lastedPostButton = new javax.swing.JButton();
+        //lastedPostButton = new javax.swing.JButton();
+        lastedPostButton = new com.forum.RoundedBorderButton();
         lastedPostPanel.setBackground(new java.awt.Color(0,102,102));
         lastedPostPanel.setPreferredSize(new java.awt.Dimension(150, 35));
         lastedPostPanel.setMaximumSize(lastedPostPanel.getPreferredSize());
@@ -62,16 +62,16 @@ public class HeaderForum extends javax.swing.JPanel{
         lastedPostButton.setText("Latest Post");  
         lastedPostButton.setBorderPainted(false);
         lastedPostButton.setFocusable(false);
-        lastedPostButton.addMouseListener(new java.awt.event.MouseAdapter() {
-         @Override
-         public void mouseEntered(java.awt.event.MouseEvent e){
-             lastedPostButton.setBorderPainted(true);
-         }
-         @Override
-         public void mouseExited(java.awt.event.MouseEvent e){
-             lastedPostButton.setBorderPainted(false);
-         }
-     });
+//        lastedPostButton.addMouseListener(new java.awt.event.MouseAdapter() {
+//         @Override
+//         public void mouseEntered(java.awt.event.MouseEvent e){
+//             lastedPostButton.setBorderPainted(true);
+//         }
+//         @Override
+//         public void mouseExited(java.awt.event.MouseEvent e){
+//             lastedPostButton.setBorderPainted(false);
+//         }
+//     });
         lastedPostPanel.setLayout(new javax.swing.BoxLayout(lastedPostPanel, javax.swing.BoxLayout.X_AXIS));
         lastedPostPanel.add(lastedPostButton);
         add(lastedPostPanel);
@@ -100,6 +100,4 @@ public class HeaderForum extends javax.swing.JPanel{
     private javax.swing.JPanel topicPanel;
     private javax.swing.JPanel lastedPostPanel;
     private javax.swing.JPanel ecoForumPanel;
-}
-    
-    
+}  
