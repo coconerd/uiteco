@@ -23,6 +23,7 @@ import com.uiteco.rightPanels.TinNhanRightPanel;
 import com.uiteco.rightPanels.TaiKhoanRightPanel;
 import com.uiteco.ofSuKienPanel.detailed.SuKienDetailPanel;
 import com.uiteco.swing.ContentPanel;
+import java.awt.Cursor;
 
 /**
  *
@@ -328,6 +329,12 @@ public class MainFrame extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nextButtonMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nextButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nextButtonMouseExited(evt);
+            }
         });
 
         prevButton.setForeground(new java.awt.Color(242, 243, 244));
@@ -335,6 +342,12 @@ public class MainFrame extends javax.swing.JFrame {
         prevButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 prevButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                prevButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                prevButtonMouseExited(evt);
             }
         });
 
@@ -649,6 +662,27 @@ public class MainFrame extends javax.swing.JFrame {
     private void tinNhanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tinNhanButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tinNhanButtonActionPerformed
+
+    private void prevButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevButtonMouseEntered
+        // TODO add your handling code here:
+        prevButton.setCursor(new Cursor(Cursor.HAND_CURSOR) {
+        });
+    }//GEN-LAST:event_prevButtonMouseEntered
+
+    private void prevButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevButtonMouseExited
+        // TODO add your handling code here:
+        prevButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_prevButtonMouseExited
+
+    private void nextButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseEntered
+        // TODO add your handling code here:
+        nextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_nextButtonMouseEntered
+
+    private void nextButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseExited
+        // TODO add your handling code here:
+        nextButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_nextButtonMouseExited
 
     /**
      *
