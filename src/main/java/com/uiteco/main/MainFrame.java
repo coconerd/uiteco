@@ -21,9 +21,8 @@ import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.rightPanels.ForumRightPanel;
 import com.uiteco.rightPanels.TinNhanRightPanel;
 import com.uiteco.rightPanels.TaiKhoanRightPanel;
-import com.uiteco.auth.Session;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
+import com.uiteco.ofSuKienPanel.detailed.SuKienDetailPanel;
+import com.uiteco.swing.ContentPanel;
 
 /**
  *
@@ -44,6 +43,13 @@ public class MainFrame extends javax.swing.JFrame {
         _initContentPanel();
         _initRightPanel();
         _additionalInit();
+    }
+    
+    /**
+     * Provide contentPanel for ease of access from children components
+     */
+    public ContentPanel getContentPanel() {
+        return this.contentPanel;
     }
 
     /**
@@ -651,6 +657,9 @@ public class MainFrame extends javax.swing.JFrame {
     private void _initContentPanel() {
         SuKienPanel sk = new SuKienPanel();
         contentPanel.registerComponent(sk, "suKienPanel");
+        
+        SuKienDetailPanel skd = new SuKienDetailPanel();
+        contentPanel.registerComponent(skd, SuKienDetailPanel.INSTANCE_NAME);
 
         CuocThiPanel ct = new CuocThiPanel();
         contentPanel.registerComponent(ct, "cuocThiPanel");
