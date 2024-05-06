@@ -40,7 +40,7 @@ public class SuKienDAO {
             int postID = i;
             String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String postedBy = "Minh Duc";
-            java.time.LocalDate postedAt = java.time.LocalDate.now();
+            java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
             String note = null;
             String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\LabJava\\FeaturedImages\\3.jpg"); // Mock image
@@ -68,7 +68,7 @@ public class SuKienDAO {
             int postId = i;
             String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String postedBy = "Duc Minh";
-            java.time.LocalDate postedAt = java.time.LocalDate.now();
+            java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
             String note = null;
             String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\LabJava\\FeaturedImages\\3.jpg"); // Mock image
@@ -91,7 +91,7 @@ public class SuKienDAO {
             int postId = i;
             String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String postedBy = "Duc Minh";
-            java.time.LocalDate postedAt = java.time.LocalDate.now();
+            java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
             String note = null;
             String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\LabJava\\FeaturedImages\\3.jpg"); // Mock image
@@ -119,10 +119,10 @@ public class SuKienDAO {
             int postId = i;
             String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String postedBy = "Duc Minh";
-            java.time.LocalDate postedAt = java.time.LocalDate.now();
+            java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
             String note = null;
             String clubID = null;
-            ImageIcon thumbnail = new ImageIcon("D:\\LabJava\\FeaturedImages\\3.jpg"); // Mock image
+            ImageIcon thumbnail = new ImageIcon("D:\\DoAn\\database\\mock\\FeaturedImages\\3.jpg"); // Mock image
             int views = 1200;
             SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
@@ -153,13 +153,13 @@ public class SuKienDAO {
             int postId = i;
             String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String postedBy = "Duc Minh";
-            java.time.LocalDate postedAt = java.time.LocalDate.now();
+            java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
             String note = null;
             String clubID = null;
             ImageIcon thumbnail = images.get(imageIndex);
             imageIndex = (imageIndex == imageCount - 1 ? 0 : imageIndex + 1); // Update image index
             int views = 1200;
-            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail,  views);
+            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
         }
         return suKienList;
@@ -169,9 +169,24 @@ public class SuKienDAO {
         return 5;
     }
 
+    // Mock only
     public static ArrayList<ImageIcon> loadImagesFromFolder() {
-        String folderPath = "D:\\LabJava\\FeaturedImages"; // Hardcoded folder path
+        String folderPath = "D:\\DoAn\\database\\mock\\FeaturedImages"; // Hardcoded folder path
         File folder = new File(folderPath);
+        File[] files = folder.listFiles();
+        ArrayList<ImageIcon> imageIcons = new ArrayList<>();
+        if (files != null) {
+            for (File file : files) {
+                ImageIcon icon = new ImageIcon(file.getPath());
+                imageIcons.add(icon);
+            }
+        }
+        return imageIcons;
+    }
+
+    // Mock only
+    public static ArrayList<ImageIcon> loadImagesFromFolder(String path) {
+        File folder = new File(path);
         File[] files = folder.listFiles();
         ArrayList<ImageIcon> imageIcons = new ArrayList<>();
         if (files != null) {
@@ -185,26 +200,31 @@ public class SuKienDAO {
 
     public static ArrayList<ImageIcon> getSuKienImages(int postID) throws SQLException, IOException {
         ArrayList images = new ArrayList<ImageIcon>();
+//
+//        try {
+//            Connection conn = ConnectionManager.getConnection();
+//
+//            String sql = "SELECT * FROM BAIDANG WHERE MABD = ?";
+//            PreparedStatement statement = conn.prepareStatement(sql);
+//            statement.setInt(1, postID);
+//            System.out.println("Fetching images for postID: " + postID);
+//            ResultSet rs = statement.executeQuery();
+//
+//            while (rs.next()) {
+//                Blob blob = rs.getBlob("ANH");
+//                Image image = javax.imageio.ImageIO.read(blob.getBinaryStream());
+//                ImageIcon imageIcon = new ImageIcon(image);
+//                images.add(imageIcon);
+//            }
+//
+//            conn.close();
+//            return images;
+//
+//        } catch (SQLException | IOException e) {
+//            throw e;
+//        }
+        // Mock
 
-        try {
-            Connection conn = ConnectionManager.getConnection();
-
-            String sql = "SELECT ANH FROM HINANH WHERE MABD = ?";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            ResultSet rs = statement.executeQuery();
-
-            while (rs.next()) {
-                Blob blob = rs.getBlob("ANH");
-                Image image = javax.imageio.ImageIO.read(blob.getBinaryStream());
-                ImageIcon imageIcon = new ImageIcon(image);
-                images.add(imageIcon);
-            }
-
-            conn.close();
-            return images;
-
-        } catch (SQLException | IOException e) {
-            throw e;
-        }
+        return loadImagesFromFolder("D:\\DoAn\\database\\mock\\ImagesOfSuKien");
     }
 }

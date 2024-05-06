@@ -5,6 +5,7 @@
 package com.uiteco.ofSuKienPanel;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,7 +20,7 @@ public class SuKienModel {
     private String type;
     private String content;
     private String postedBy;
-    private LocalDate postedAt;
+    private LocalDateTime postedAt;
     private String note;
     private String clubID;
     private ImageIcon thumbnail;
@@ -29,7 +30,7 @@ public class SuKienModel {
     public SuKienModel() {
     }
 
-    public SuKienModel(String title, String tag, int postID, String type, String content, String postedBy, LocalDate postedAt, String note, String clubID, ImageIcon thumbnail, int views) {
+    public SuKienModel(String title, String tag, int postID, String type, String content, String postedBy, LocalDateTime postedAt, String note, String clubID, ImageIcon thumbnail, int views) {
         this.title = title;
         this.tag = tag;
         this.postID = postID;
@@ -67,7 +68,7 @@ public class SuKienModel {
         this.postedBy = postedBy;
     }
 
-    public void setPostedAt(LocalDate postedAt) {
+    public void setPostedAt(LocalDateTime postedAt) {
         this.postedAt = postedAt;
     }
 
@@ -119,7 +120,7 @@ public class SuKienModel {
         return postedBy;
     }
 
-    public LocalDate getPostedAt() {
+    public LocalDateTime getPostedAt() {
         return postedAt;
     }
 
