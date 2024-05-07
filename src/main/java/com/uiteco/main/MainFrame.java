@@ -1,6 +1,10 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package com.uiteco.main;
 
-<<<<<<< HEAD
+import com.uiteco.auth.AuthView;
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
 import java.awt.Component;
@@ -17,19 +21,16 @@ import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.rightPanels.ForumRightPanel;
 import com.uiteco.rightPanels.TinNhanRightPanel;
 import com.uiteco.rightPanels.TaiKhoanRightPanel;
-=======
-import com.uiteco.auth.AuthView;
-import com.uiteco.auth.Session;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
->>>>>>> ducminh
+import com.uiteco.ofSuKienPanel.detailed.SuKienDetailPanel;
+import com.uiteco.swing.ContentPanel;
+import java.awt.Cursor;
 
 /**
  *
  * @author nddmi
  */
-<<<<<<< HEAD
-public class App extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame {
+
     /**
      * Additional variables declaration
      */
@@ -38,11 +39,18 @@ public class App extends javax.swing.JFrame {
     /**
      * Creates new form TestMain
      */
-    public App() {
+    public MainFrame() {
         initComponents();
         _initContentPanel();
         _initRightPanel();
         _additionalInit();
+    }
+    
+    /**
+     * Provide contentPanel for ease of access from children components
+     */
+    public ContentPanel getContentPanel() {
+        return this.contentPanel;
     }
 
     /**
@@ -89,6 +97,7 @@ public class App extends javax.swing.JFrame {
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
         setSize(new java.awt.Dimension(1280, 720));
 
         leftPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -119,6 +128,7 @@ public class App extends javax.swing.JFrame {
             }
         });
 
+        cuocThiButton.setBackground(new java.awt.Color(255, 255, 255));
         cuocThiButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cuocThiButton.setForeground(new java.awt.Color(153, 153, 153));
         cuocThiButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-ranking-17.png"))); // NOI18N
@@ -143,6 +153,7 @@ public class App extends javax.swing.JFrame {
             }
         });
 
+        cauLacBoButton.setBackground(new java.awt.Color(255, 255, 255));
         cauLacBoButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cauLacBoButton.setForeground(new java.awt.Color(153, 153, 153));
         cauLacBoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-group-17.png"))); // NOI18N
@@ -167,6 +178,7 @@ public class App extends javax.swing.JFrame {
             }
         });
 
+        forumButton.setBackground(new java.awt.Color(255, 255, 255));
         forumButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         forumButton.setForeground(new java.awt.Color(153, 153, 153));
         forumButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-forum-17.png"))); // NOI18N
@@ -191,6 +203,7 @@ public class App extends javax.swing.JFrame {
             }
         });
 
+        dangXuatButton.setBackground(new java.awt.Color(255, 255, 255));
         dangXuatButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         dangXuatButton.setForeground(new java.awt.Color(153, 153, 153));
         dangXuatButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-log-out-17.png"))); // NOI18N
@@ -228,6 +241,7 @@ public class App extends javax.swing.JFrame {
         imageAvatar13.add(imageAvatar15);
         imageAvatar15.setBounds(0, 0, 0, 0);
 
+        tinNhanButton.setBackground(new java.awt.Color(255, 255, 255));
         tinNhanButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tinNhanButton.setForeground(new java.awt.Color(153, 153, 153));
         tinNhanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-chat-17.png"))); // NOI18N
@@ -296,7 +310,7 @@ public class App extends javax.swing.JFrame {
                 .addComponent(forumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tinNhanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 654, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
                 .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dangXuatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,6 +329,12 @@ public class App extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nextButtonMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nextButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nextButtonMouseExited(evt);
+            }
         });
 
         prevButton.setForeground(new java.awt.Color(242, 243, 244));
@@ -322,6 +342,12 @@ public class App extends javax.swing.JFrame {
         prevButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 prevButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                prevButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                prevButtonMouseExited(evt);
             }
         });
 
@@ -352,14 +378,11 @@ public class App extends javax.swing.JFrame {
 
         avatar.setBorderSize(2);
         avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
-=======
-public class App {
->>>>>>> ducminh
 
-    private static MainFrame mainFrame;
-    private static boolean running = false;
+        imageAvatar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
+        avatar.add(imageAvatar6);
+        imageAvatar6.setBounds(0, 0, 0, 0);
 
-<<<<<<< HEAD
         notificationButton.setBackground(new java.awt.Color(204, 204, 204));
         notificationButton.setForeground(new java.awt.Color(102, 102, 102));
         notificationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-notification-17.png"))); // NOI18N
@@ -378,6 +401,7 @@ public class App {
         searchPaneWrapper.setHorizontalScrollBar(null);
         searchPaneWrapper.setWheelScrollingEnabled(false);
 
+        searchPane.setBackground(new java.awt.Color(255, 255, 255));
         searchPane.setBorder(null);
         searchPane.setForeground(new java.awt.Color(102, 102, 102));
         searchPane.setToolTipText("Tìm kiếm");
@@ -438,7 +462,7 @@ public class App {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(leftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE))
@@ -460,13 +484,13 @@ public class App {
     private void _additionalInit() {
         this.currentButton = this.suKienButton;
     }
-    
+
     private void suKienButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseEntered
         highlightComponent(suKienButton);
     }//GEN-LAST:event_suKienButtonMouseEntered
 
     private void suKienButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseExited
-        if (currentButton != suKienButton) {    
+        if (currentButton != suKienButton) {
             unHighlightComponent(suKienButton);
         }
     }//GEN-LAST:event_suKienButtonMouseExited
@@ -560,10 +584,10 @@ public class App {
         }
         highlightComponent(currentButton);
     }
-    
+
     private void suKienButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseClicked
         // TODO add your handling code here:
-        if (currentButton != suKienButton) {            
+        if (currentButton != suKienButton) {
             this.contentPanel.showComponentAndTrimHistory("suKienPanel");
             this.rightPanel.showComponentAndTrimHistory("suKienRightPanel");
             highlightComponent(suKienButton);
@@ -585,7 +609,7 @@ public class App {
 
     private void cauLacBoButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cauLacBoButtonMouseClicked
         // TODO add your handling code here:
-        if (currentButton != cauLacBoButton) {    
+        if (currentButton != cauLacBoButton) {
             this.contentPanel.showComponentAndTrimHistory("cauLacBoPanel");
             this.rightPanel.showComponentAndTrimHistory("cauLacBoRightPanel");
             unHighlightComponent(currentButton);
@@ -639,6 +663,27 @@ public class App {
         // TODO add your handling code here:
     }//GEN-LAST:event_tinNhanButtonActionPerformed
 
+    private void prevButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevButtonMouseEntered
+        // TODO add your handling code here:
+        prevButton.setCursor(new Cursor(Cursor.HAND_CURSOR) {
+        });
+    }//GEN-LAST:event_prevButtonMouseEntered
+
+    private void prevButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prevButtonMouseExited
+        // TODO add your handling code here:
+        prevButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_prevButtonMouseExited
+
+    private void nextButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseEntered
+        // TODO add your handling code here:
+        nextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_nextButtonMouseEntered
+
+    private void nextButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseExited
+        // TODO add your handling code here:
+        nextButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_nextButtonMouseExited
+
     /**
      *
      * This section is for user-defined methods
@@ -646,6 +691,9 @@ public class App {
     private void _initContentPanel() {
         SuKienPanel sk = new SuKienPanel();
         contentPanel.registerComponent(sk, "suKienPanel");
+        
+        SuKienDetailPanel skd = new SuKienDetailPanel();
+        contentPanel.registerComponent(skd, SuKienDetailPanel.INSTANCE_NAME);
 
         CuocThiPanel ct = new CuocThiPanel();
         contentPanel.registerComponent(ct, "cuocThiPanel");
@@ -709,56 +757,43 @@ public class App {
     private void unHighlightComponent(JComponent comp) {
         comp.setBackground(new Color(255, 255, 255));
         comp.setForeground(new Color(153, 153, 153));
-=======
-    public static MainFrame getMainFrame() {
-        return mainFrame;
-    }
-
-    public static boolean isRunning() {
-        return running;
->>>>>>> ducminh
     }
 
     /**
-     * @param args the command line arguments
+     * End of section user-defined methods
      */
-    public static void main(String args[]) {
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-//                AuthView authView = null;
-//
-//                Session session = new Session();
-//                if (session.isPermitted()) {
-//                    new MainFrame().setVisible(true);
-//                } else {
-//                    authView = new AuthView();
-//                    authView.getAuthModel().addPropertyChangeListener(session);
-//                    authView.setVisible(true);
-//                }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.uiteco.components.ImageAvatar avatar;
+    private javax.swing.JButton cauLacBoButton;
+    private com.uiteco.swing.ContentPanel contentPanel;
+    private javax.swing.JButton cuocThiButton;
+    private javax.swing.JButton dangXuatButton;
+    private javax.swing.JLabel ecoLabel;
+    private javax.swing.JButton forumButton;
+    private javax.swing.JPanel headerPanel;
+    private com.uiteco.components.ImageAvatar imageAvatar13;
+    private com.uiteco.components.ImageAvatar imageAvatar14;
+    private com.uiteco.components.ImageAvatar imageAvatar15;
+    private com.uiteco.components.ImageAvatar imageAvatar16;
+    private com.uiteco.components.ImageAvatar imageAvatar17;
+    private com.uiteco.components.ImageAvatar imageAvatar18;
+    private com.uiteco.components.ImageAvatar imageAvatar19;
+    private com.uiteco.components.ImageAvatar imageAvatar2;
+    private com.uiteco.components.ImageAvatar imageAvatar20;
+    private com.uiteco.components.ImageAvatar imageAvatar6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JPanel leftPanel;
+    private com.uiteco.components.ImageAvatar nextButton;
+    private javax.swing.JButton notificationButton;
+    private com.uiteco.components.ImageAvatar prevButton;
+    private com.uiteco.swing.ContentPanel rightPanel;
+    private javax.swing.JTextPane searchPane;
+    private javax.swing.JScrollPane searchPaneWrapper;
+    private javax.swing.JButton suKienButton;
+    private javax.swing.JButton tinNhanButton;
+    // End of variables declaration//GEN-END:variables
 
-//                final AuthView af = authView;
-//                session.addPropertyChangeListener(new PropertyChangeListener() {
-//                    @Override
-//                    public void propertyChange(PropertyChangeEvent evt) {
-//                        if (evt.getPropertyName().equals("permitted")) {
-//                            if (session.isPermitted()) {
-//                                if (af != null) {
-//                                    af.setVisible(false);
-//                                    af.dispose();
-//                                }
-//                                mainFrame = new MainFrame();
-//                                mainFrame.setVisible(true);
-//                            }
-//                        }
-//                    }
-//                });
-                mainFrame = new MainFrame();
-                mainFrame.setVisible(true);
-
-                running = true;
-            }
-        });
-    }
 }
