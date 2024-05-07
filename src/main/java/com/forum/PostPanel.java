@@ -12,18 +12,78 @@ public class PostPanel extends javax.swing.JPanel {
     private String postedBy;
     private int responseNumber;
     private LocalDateTime postingDate;
+    private int postID;
+    private String content;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getViewNumber() {
+        return viewNumber;
+    }
+
+    public void setViewNumber(int viewNumber) {
+        this.viewNumber = viewNumber;
+    }
+
+    public String getPostedBy() {
+        return postedBy;
+    }
+
+    public void setPostedBy(String postedBy) {
+        this.postedBy = postedBy;
+    }
+
+    public int getResponseNumber() {
+        return responseNumber;
+    }
+
+    public void setResponseNumber(int responseNumber) {
+        this.responseNumber = responseNumber;
+    }
+
+    public LocalDateTime getPostingDate() {
+        return postingDate;
+    }
+
+    public void setPostingDate(LocalDateTime postingDate) {
+        this.postingDate = postingDate;
+    }
+
+    public int getPostID() {
+        return postID;
+    }
+
+    public void setPostID(int postID) {
+        this.postID = postID;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
     
     public PostPanel() {
         //initComponents();
     }
     
-    public PostPanel(String title, int viewNumber, int responseNumber, String postedBy, LocalDateTime postingDate) {
+    public PostPanel(int postID, String title, int viewNumber, int responseNumber, String postedBy, LocalDateTime postingDate, String content) {
+        this.postID = postID;
         this.title = title;
         this.viewNumber = viewNumber;
         this.responseNumber = responseNumber;
         this.postedBy = postedBy; 
         this.postingDate = postingDate;
-        InitComponents(title, viewNumber, responseNumber, postedBy, postingDate);
+        this.content = content;
+        InitComponents(postID, title, viewNumber, responseNumber, postedBy, postingDate, content);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -61,7 +121,7 @@ public class PostPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    private void InitComponents(String title, int viewNumber, int responseNumber, String postedBy, LocalDateTime postingDate){
+    private void InitComponents(int postID, String title, int viewNumber, int responseNumber, String postedBy, LocalDateTime postingDate, String content){
         setPreferredSize(new java.awt.Dimension(1063,70));
         setMaximumSize(this.getPreferredSize());
         setBackground(new java.awt.Color(247,247,226));

@@ -4,12 +4,19 @@
  */
 package com.uiteco.contentPanels;
 
+import com.forum.PostListPanel;
+
 public class ForumPanel extends javax.swing.JPanel {
 
     public ForumPanel() {
         initComponents();   
     }
 
+    public PostListPanel getPostListPanel2() {
+        return postListPanel2;
+    }
+
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
