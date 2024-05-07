@@ -689,10 +689,11 @@ public class MainFrame extends javax.swing.JFrame {
      * This section is for user-defined methods
      */
     private void _initContentPanel() {
-        SuKienPanel sk = new SuKienPanel();
+//        SuKienPanel sk = new SuKienPanel();
+        javax.swing.JPanel sk = new javax.swing.JPanel();
         contentPanel.registerComponent(sk, "suKienPanel");
         
-        SuKienDetailPanel skd = new SuKienDetailPanel();
+        javax.swing.JPanel skd = new javax.swing.JPanel();
         contentPanel.registerComponent(skd, SuKienDetailPanel.INSTANCE_NAME);
 
         CuocThiPanel ct = new CuocThiPanel();
