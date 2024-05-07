@@ -30,7 +30,11 @@ public class ConnectionManager {
             connectionPool.setMaxPoolSize(20);
 
         } catch (SQLException e) {
+<<<<<<< HEAD
             System.out.println("Failed to connect to database");
+=======
+            System.out.println("ConnectionManager: Failed to connect db");
+>>>>>>> ducminh
             e.printStackTrace();
         }
     }
@@ -43,14 +47,22 @@ public class ConnectionManager {
         connectionPool = _dataSource;
     }
 
+<<<<<<< HEAD
     public static Connection getConnection() {
+=======
+    public static Connection getConnection() throws SQLException {
+>>>>>>> ducminh
         try {
             Connection conn = connectionPool.getConnection();
             return conn;
         } catch (SQLException e) {
             // When this error is thrown here, it's most likely that all connections in the connection pool's been occupied.
+<<<<<<< HEAD
             e.printStackTrace();
             return null;
+=======
+            throw e;
+>>>>>>> ducminh
         }
     }
 }

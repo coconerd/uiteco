@@ -3,6 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.uiteco.contentPanels;
+<<<<<<< HEAD
+=======
+import com.uiteco.ofSuKienPanel.SuKienListModel;
+import com.uiteco.ofSuKienPanel.SuKienModel;
+import com.uiteco.ofSuKienPanel.SuKienView;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.BorderLayout;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+>>>>>>> ducminh
 
 /**
  *
@@ -25,7 +37,9 @@ public class SuKienPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+<<<<<<< HEAD
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -58,11 +72,63 @@ public class SuKienPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
+=======
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        scrollPaneWin11 = new com.raven.scroll.ScrollPaneWin11();
+        containerPanel = new javax.swing.JPanel();
+        slideShowView2 = new com.uiteco.ofSuKienPanel.SlideShowView();
+        suKienListView2 = new com.uiteco.ofSuKienPanel.SuKienListView();
+
+        jScrollPane1.setViewportView(jTextPane1);
+
+        setBackground(new java.awt.Color(242, 243, 244));
+        setForeground(new java.awt.Color(242, 243, 244));
+        setPreferredSize(new java.awt.Dimension(810, 665));
+        setLayout(new java.awt.GridLayout(1, 1));
+
+        scrollPaneWin11.setBorder(null);
+        scrollPaneWin11.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        containerPanel.setBackground(new java.awt.Color(242, 243, 244));
+        containerPanel.setLayout(new java.awt.GridBagLayout());
+
+        slideShowView2.setBorder(javax.swing.BorderFactory.createEmptyBorder(25, 25, 25, 25));
+        slideShowView2.setMinimumSize(new java.awt.Dimension(518, 1100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        containerPanel.add(slideShowView2, gridBagConstraints);
+
+        suKienListView2.setBorder(javax.swing.BorderFactory.createEmptyBorder(60, 60, 60, 60));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        containerPanel.add(suKienListView2, gridBagConstraints);
+
+        scrollPaneWin11.setViewportView(containerPanel);
+
+        add(scrollPaneWin11);
+>>>>>>> ducminh
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+=======
+    private javax.swing.JPanel containerPanel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextPane jTextPane1;
+    private com.raven.scroll.ScrollPaneWin11 scrollPaneWin11;
+    private com.uiteco.ofSuKienPanel.SlideShowView slideShowView2;
+    private com.uiteco.ofSuKienPanel.SuKienListView suKienListView2;
+>>>>>>> ducminh
     // End of variables declaration//GEN-END:variables
 }
