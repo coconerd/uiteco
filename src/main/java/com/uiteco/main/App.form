@@ -70,38 +70,28 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="dangXuatButton" alignment="1" max="32767" attributes="0"/>
-                              <Component id="suKienButton" alignment="1" max="32767" attributes="0"/>
-                              <Component id="cuocThiButton" alignment="1" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="imageAvatar13" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="ecoLabel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tinNhanButton" min="-2" pref="143" max="-2" attributes="0"/>
-                              <Component id="forumButton" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
-                              <Component id="cauLacBoButton" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                   <Component id="imageAvatar2" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="dangXuatButton" alignment="1" max="32767" attributes="0"/>
+                      <Component id="suKienButton" alignment="1" max="32767" attributes="0"/>
+                      <Component id="cuocThiButton" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="imageAvatar13" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="ecoLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="cauLacBoButton" alignment="0" max="32767" attributes="0"/>
+                      <Component id="forumButton" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tinNhanButton" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -118,9 +108,9 @@
                           <Component id="ecoLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="suKienButton" min="-2" pref="36" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="cuocThiButton" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cauLacBoButton" min="-2" pref="36" max="-2" attributes="0"/>
@@ -154,6 +144,8 @@
             </Property>
             <Property name="text" type="java.lang.String" value="S&#x1ef1; ki&#x1ec7;n"/>
             <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="iconTextGap" type="int" value="20"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="suKienButtonMouseClicked"/>
@@ -178,6 +170,8 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Cu&#x1ed9;c thi"/>
             <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="iconTextGap" type="int" value="20"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cuocThiButtonMouseClicked"/>
@@ -202,6 +196,8 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C&#xe2;u l&#x1ea1;c b&#x1ed9;"/>
             <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="iconTextGap" type="int" value="20"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cauLacBoButtonMouseClicked"/>
@@ -226,6 +222,8 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Forum"/>
             <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="iconTextGap" type="int" value="20"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="forumButtonMouseClicked"/>
@@ -357,6 +355,8 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Tin nh&#x1eaf;n"/>
             <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="iconTextGap" type="int" value="20"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tinNhanButtonMouseClicked"/>
@@ -560,7 +560,7 @@
             <Container class="javax.swing.JScrollPane" name="searchPaneWrapper">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="getRoundedBorder(searchPaneWrapper, 7, 2)" type="code"/>
+                  <Connection code="RoundedBorder.getRoundedBorder(searchPaneWrapper, 7, 2)" type="code"/>
                 </Property>
                 <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                 <Property name="verticalScrollBarPolicy" type="int" value="21"/>

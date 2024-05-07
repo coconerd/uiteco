@@ -8,6 +8,10 @@ import java.awt.Rectangle;
 import java.util.Objects;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
+import javax.swing.JScrollBar;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -36,6 +40,37 @@ public class ScrollPaneWin11 extends JScrollPane {
             getVerticalScrollBar().setOpaque(false);
             getHorizontalScrollBar().setOpaque(false);
         });
+    }
+
+    public void scrollToTop() {
+        int topValue = 0;
+        _scrollTo(topValue);
+    }
+
+    public void scrollToBottom() {
+        int bottomValue = getVerticalScrollBar().getMaximum();
+        _scrollTo(bottomValue);
+    }
+
+    private void _scrollTo(int targetValue) {
+        int oldValue = getVerticalScrollBar().getValue();
+        int animationDuration = 500;
+        int steps = 50;
+        
+        Timer timer = new Timer(animationDuration / steps, new ActionListener() {
+            int step = 0;
+            public void actionPerformed(ActionEvent e) {
+                if (step >= steps) {
+                    ((Timer)e.getSource()).stop();
+                    return;
+                }
+                int value = (int) (oldValue + (targetValue - oldValue) * ((double)step / steps));
+                verticalScrollBar.setValue(value);
+                step++;
+            }
+        });
+        timer.start();
+
     }
 
     private class ScrollLayout extends ScrollPaneLayout {

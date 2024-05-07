@@ -24,6 +24,18 @@ import javax.swing.JComponent;
  */
 public class ImageAvatar extends JComponent {
 
+    public ImageAvatar() {
+        this.shape = ROUND_SHAPE;
+    }
+
+    public SHAPE getShape() {
+        return shape;
+    }
+
+    public void setShape(SHAPE shape) {
+        this.shape = shape;
+    }
+
     public Icon getIcon() {
         return icon;
     }
@@ -40,12 +52,19 @@ public class ImageAvatar extends JComponent {
         this.borderSize = borderSize;
     }
 
+    public static enum SHAPE {
+        ROUND, RECT
+    };
+    public static SHAPE ROUND_SHAPE = SHAPE.ROUND;
+    public static SHAPE RECT_SHAPE = SHAPE.RECT;
+
     private Icon icon;
     private int borderSize;
+    private SHAPE shape;
 
     @Override
     protected void paintComponent(Graphics grphcs) {
-        if (icon != null) {
+        if (getShape() == ROUND_SHAPE && icon != null) {
             int width = getWidth();
             int height = getHeight();
             int diameter = Math.min(width, height);
@@ -55,6 +74,7 @@ public class ImageAvatar extends JComponent {
             diameter -= border;
             Rectangle size = getAutoSize(icon, diameter);
             BufferedImage img = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
+
             Graphics2D g2_img = img.createGraphics();
             g2_img.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g2_img.fillOval(0, 0, diameter, diameter);
@@ -64,21 +84,56 @@ public class ImageAvatar extends JComponent {
             g2_img.drawImage(toImage(icon), size.x, size.y, size.width, size.height, null);
             g2_img.setComposite(composite);
             g2_img.dispose();
+
             Graphics2D g2 = (Graphics2D) grphcs;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
             if (borderSize > 0) {
+
                 diameter += border;
                 g2.setColor(getForeground());
                 g2.fillOval(x, y, diameter, diameter);
             }
+
             if (isOpaque()) {
                 g2.setColor(getBackground());
                 diameter -= border;
                 g2.fillOval(x + borderSize, y + borderSize, diameter, diameter);
             }
             g2.drawImage(img, x + borderSize, y + borderSize, null);
-            super.paintComponent(grphcs);
+
+        } else if (getShape() == RECT_SHAPE && icon != null) {
+            int width = getWidth();
+            int height = getHeight();
+            int size = Math.min(width, height); // Use the smaller dimension as the size of the square box
+            int x = (width - size) / 2;
+            int y = (height - size) / 2;
+
+            BufferedImage img = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2_img = img.createGraphics();
+            g2_img.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2_img.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+            g2_img.drawImage(toImage(icon), 0, 0, size, size, null);
+            g2_img.dispose();
+
+            Graphics2D g2 = (Graphics2D) grphcs;
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            if (borderSize > 0) {
+                g2.setColor(getForeground());
+                g2.fillRect(x, y, size, size);
+            }
+
+            if (isOpaque()) {
+                g2.setColor(getBackground());
+                g2.fillRect(x + borderSize, y + borderSize, size - 2 * borderSize, size - 2 * borderSize);
+            }
+
+            g2.drawImage(img, x + borderSize, y + borderSize, null);
+
         }
+        super.paintComponent(grphcs);
     }
 
     private Rectangle getAutoSize(Icon image, int size) {
@@ -98,7 +153,7 @@ public class ImageAvatar extends JComponent {
             height = 1;
         }
         int cw = size;
-        int ch =size;
+        int ch = size;
         int x = (cw - width) / 2;
         int y = (ch - height) / 2;
         return new Rectangle(new Point(x, y), new Dimension(width, height));

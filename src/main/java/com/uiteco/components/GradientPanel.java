@@ -5,65 +5,128 @@
 package com.uiteco.components;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class GradientPanel extends JPanel {
 
-    private static final int N = 32;
-    private boolean fade = true;
-    private boolean full = true;
+    public static final int N = 32;
+    public boolean fade = true;
+    public boolean full = true;
+    public Color color1;
+    public Color color2;
+    public Direction direction;
+
+    public static enum Direction {
+        VERTICAL, HORIZONTAL, DIAGONAL
+    };
+
+    public static Direction VERTICAL = Direction.VERTICAL;
+    public static Direction HORIZONTAL = Direction.DIAGONAL;
+    public static Direction DIAGONAL = Direction.DIAGONAL;
 
     public GradientPanel() {
-        initPanel();
+        setColor1(this.getBackground());
+        setFade(true);
+        setFull(true);
+        setColor2(getColor1().brighter());
+        setDirection(Direction.VERTICAL);
+        _init();
     }
-    
-    public GradientPanel(boolean _fade, boolean _full) {
-        this.fade = _fade;
-        this.full = _full;
-        initPanel();
+
+    public GradientPanel(boolean fade, boolean full, Color color1, Color color2, Direction direction) {
+        setFade(fade);
+        setFull(full);
+        setColor1(color1);
+        setColor2(color2);
+        setDirection(direction);
+        _init();
     }
-    
-    
-    private void initPanel() {
-        this.setBorder(BorderFactory.createEmptyBorder(N, N, N, N));
+
+    public static int getN() {
+        return N;
     }
-    
+
+    public boolean isFade() {
+        return fade;
+    }
+
+    public boolean isFull() {
+        return full;
+    }
+
+    public Color getColor1() {
+        return color1;
+    }
+
+    public Color getColor2() {
+        return color2;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setFade(boolean fade) {
+        this.fade = fade;
+    }
+
+    public void setFull(boolean full) {
+        this.full = full;
+    }
+
+    public void setColor1(Color color1) {
+        this.color1 = color1;
+    }
+
+    public void setColor2(Color color2) {
+        this.color2 = color2;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        Color color1 = getBackground();
-        Color color2 = this.fade ? Color.WHITE : color1.brighter();
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+
+        if (color2 == null) {
+            setColor2(isFade() ? color1.brighter() : Color.WHITE);
+        }
         int w = getWidth();
-        int h = this.full ? getHeight() : getHeight() / 2;
-        GradientPaint gp = new GradientPaint(
-            0, 0, color1, 0, h, color2);
-        g2d.setPaint(gp);
+        int h = isFull() ? getHeight() : getHeight() / 2;
+
+        switch (getDirection()) {
+            case VERTICAL:
+                GradientPaint gp = new GradientPaint(
+                        0, 0, color1, 0, h, color2);
+                g2d.setPaint(gp);
+                break;
+            case HORIZONTAL:
+                gp = new GradientPaint(0, 0, color1, w, 0, color2);
+                g2d.setPaint(gp);
+                break;
+            case DIAGONAL:
+                gp = new GradientPaint(0, 0, color1, w * 0.85f, h, color2);
+                g2d.setPaint(gp);
+                break;
+        }
         g2d.fillRect(0, 0, w, h);
     }
 
-    private void display() {
-        JFrame f = new JFrame("GradientPanel");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.add(this);
-        f.pack();
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                new GradientPanel().display();
-            }
-        });
+    private void _init() {
+        this.setBorder(BorderFactory.createEmptyBorder(N, N, N, N));
+        if (isFade()) {
+            setColor2(getColor1().brighter());
+        }
     }
 }

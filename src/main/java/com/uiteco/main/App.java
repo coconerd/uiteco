@@ -6,6 +6,7 @@ package com.uiteco.main;
 
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
+import java.awt.Component;
 import javax.swing.JComponent;
 import com.uiteco.contentPanels.SuKienPanel;
 import com.uiteco.contentPanels.CuocThiPanel;
@@ -95,6 +96,8 @@ public class App extends javax.swing.JFrame {
         suKienButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-home-17.png"))); // NOI18N
         suKienButton.setText("Sự kiện");
         suKienButton.setBorderPainted(false);
+        suKienButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        suKienButton.setIconTextGap(20);
         suKienButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 suKienButtonMouseClicked(evt);
@@ -118,6 +121,8 @@ public class App extends javax.swing.JFrame {
         cuocThiButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-ranking-17.png"))); // NOI18N
         cuocThiButton.setText("Cuộc thi");
         cuocThiButton.setBorderPainted(false);
+        cuocThiButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cuocThiButton.setIconTextGap(20);
         cuocThiButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cuocThiButtonMouseClicked(evt);
@@ -141,6 +146,8 @@ public class App extends javax.swing.JFrame {
         cauLacBoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-group-17.png"))); // NOI18N
         cauLacBoButton.setText("Câu lạc bộ");
         cauLacBoButton.setBorderPainted(false);
+        cauLacBoButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cauLacBoButton.setIconTextGap(20);
         cauLacBoButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cauLacBoButtonMouseClicked(evt);
@@ -164,6 +171,8 @@ public class App extends javax.swing.JFrame {
         forumButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-forum-17.png"))); // NOI18N
         forumButton.setText("Forum");
         forumButton.setBorderPainted(false);
+        forumButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        forumButton.setIconTextGap(20);
         forumButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 forumButtonMouseClicked(evt);
@@ -225,6 +234,8 @@ public class App extends javax.swing.JFrame {
         tinNhanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-chat-17.png"))); // NOI18N
         tinNhanButton.setText("Tin nhắn");
         tinNhanButton.setBorderPainted(false);
+        tinNhanButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        tinNhanButton.setIconTextGap(20);
         tinNhanButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tinNhanButtonMouseClicked(evt);
@@ -247,30 +258,24 @@ public class App extends javax.swing.JFrame {
         leftPanelLayout.setHorizontalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(leftPanelLayout.createSequentialGroup()
-                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dangXuatButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(suKienButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cuocThiButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(leftPanelLayout.createSequentialGroup()
-                                .addComponent(imageAvatar13, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ecoLabel)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(leftPanelLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tinNhanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(forumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cauLacBoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(12, Short.MAX_VALUE))))
-            .addGroup(leftPanelLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(leftPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dangXuatButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(suKienButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cuocThiButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(leftPanelLayout.createSequentialGroup()
+                        .addComponent(imageAvatar13, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ecoLabel)
+                        .addGap(0, 16, Short.MAX_VALUE))
+                    .addComponent(cauLacBoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(forumButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tinNhanButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,9 +287,9 @@ public class App extends javax.swing.JFrame {
                     .addGroup(leftPanelLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(ecoLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(suKienButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cuocThiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cauLacBoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,7 +369,7 @@ public class App extends javax.swing.JFrame {
             }
         });
 
-        searchPaneWrapper.setBorder(getRoundedBorder(searchPaneWrapper, 7, 2));
+        searchPaneWrapper.setBorder(RoundedBorder.getRoundedBorder(searchPaneWrapper, 7, 2));
         searchPaneWrapper.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         searchPaneWrapper.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         searchPaneWrapper.setAutoscrolls(true);
@@ -456,12 +461,12 @@ public class App extends javax.swing.JFrame {
     }
     
     private void suKienButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseEntered
-        highlightButton(suKienButton);
+        highlightComponent(suKienButton);
     }//GEN-LAST:event_suKienButtonMouseEntered
 
     private void suKienButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseExited
         if (currentButton != suKienButton) {    
-            unHighlightButton(suKienButton);
+            unHighlightComponent(suKienButton);
         }
     }//GEN-LAST:event_suKienButtonMouseExited
 
@@ -471,13 +476,13 @@ public class App extends javax.swing.JFrame {
 
     private void cuocThiButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuocThiButtonMouseEntered
         // TODO add your handling code here:
-        highlightButton(cuocThiButton);
+        highlightComponent(cuocThiButton);
     }//GEN-LAST:event_cuocThiButtonMouseEntered
 
     private void cuocThiButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuocThiButtonMouseExited
         // TODO add your handling code here:
         if (currentButton != cuocThiButton) {
-            unHighlightButton(cuocThiButton);
+            unHighlightComponent(cuocThiButton);
         }
     }//GEN-LAST:event_cuocThiButtonMouseExited
 
@@ -486,13 +491,13 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_cuocThiButtonActionPerformed
 
     private void cauLacBoButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cauLacBoButtonMouseEntered
-        highlightButton(cauLacBoButton);
+        highlightComponent(cauLacBoButton);
     }//GEN-LAST:event_cauLacBoButtonMouseEntered
 
     private void cauLacBoButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cauLacBoButtonMouseExited
         // TODO add your handling code here:
         if (currentButton != cauLacBoButton) {
-            unHighlightButton(cauLacBoButton);
+            unHighlightComponent(cauLacBoButton);
         }
     }//GEN-LAST:event_cauLacBoButtonMouseExited
 
@@ -502,13 +507,13 @@ public class App extends javax.swing.JFrame {
 
     private void forumButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forumButtonMouseEntered
         // TODO add your handling code here:
-        highlightButton(forumButton);
+        highlightComponent(forumButton);
     }//GEN-LAST:event_forumButtonMouseEntered
 
     private void forumButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forumButtonMouseExited
         // TODO add your handling code here:
         if (currentButton != forumButton) {
-            unHighlightButton(forumButton);
+            unHighlightComponent(forumButton);
         }
     }//GEN-LAST:event_forumButtonMouseExited
 
@@ -528,21 +533,40 @@ public class App extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.contentPanel.previousComponent();
         this.rightPanel.previousComponent();
+        _navButtonClicked();
     }//GEN-LAST:event_prevButtonMouseClicked
 
     private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextButtonMouseClicked
         // TODO add your handling code here:
         this.contentPanel.nextComponent();
         this.rightPanel.nextComponent();
+        _navButtonClicked();
     }//GEN-LAST:event_nextButtonMouseClicked
 
+    private void _navButtonClicked() {
+        unHighlightComponent(currentButton);
+        Component currComp = contentPanel.getCurrentComponent();
+        if (currComp instanceof SuKienPanel) {
+            currentButton = suKienButton;
+        } else if (currComp instanceof CuocThiPanel) {
+            currentButton = cuocThiButton;
+        } else if (currComp instanceof ForumPanel) {
+            currentButton = forumButton;
+        } else if (currComp instanceof CauLacBoPanel) {
+            currentButton = cauLacBoButton;
+        } else if (currComp instanceof TinNhanPanel) {
+            currentButton = tinNhanButton;
+        }
+        highlightComponent(currentButton);
+    }
+    
     private void suKienButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suKienButtonMouseClicked
         // TODO add your handling code here:
         if (currentButton != suKienButton) {            
             this.contentPanel.showComponentAndTrimHistory("suKienPanel");
             this.rightPanel.showComponentAndTrimHistory("suKienRightPanel");
-            highlightButton(suKienButton);
-            unHighlightButton(currentButton);
+            highlightComponent(suKienButton);
+            unHighlightComponent(currentButton);
             currentButton = suKienButton;
         }
     }//GEN-LAST:event_suKienButtonMouseClicked
@@ -552,8 +576,8 @@ public class App extends javax.swing.JFrame {
         if (currentButton != cuocThiButton) {
             this.contentPanel.showComponentAndTrimHistory("cuocThiPanel");
             this.rightPanel.showComponentAndTrimHistory("cuocThiRightPanel");
-            unHighlightButton(currentButton);
-            highlightButton(cuocThiButton);
+            unHighlightComponent(currentButton);
+            highlightComponent(cuocThiButton);
             currentButton = cuocThiButton;
         }
     }//GEN-LAST:event_cuocThiButtonMouseClicked
@@ -563,8 +587,8 @@ public class App extends javax.swing.JFrame {
         if (currentButton != cauLacBoButton) {    
             this.contentPanel.showComponentAndTrimHistory("cauLacBoPanel");
             this.rightPanel.showComponentAndTrimHistory("cauLacBoRightPanel");
-            unHighlightButton(currentButton);
-            highlightButton(cauLacBoButton);
+            unHighlightComponent(currentButton);
+            highlightComponent(cauLacBoButton);
             currentButton = cauLacBoButton;
         }
 
@@ -573,10 +597,10 @@ public class App extends javax.swing.JFrame {
     private void forumButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forumButtonMouseClicked
         // TODO add your handling code here:
         if (currentButton != forumButton) {
-            this.contentPanel.showComponentAndTrimHistory("taiKhoanPanel");
+            this.contentPanel.showComponentAndTrimHistory("forumPanel");
             this.rightPanel.showComponentAndTrimHistory("forumRightPanel");
-            unHighlightButton(currentButton);
-            highlightButton(forumButton);
+            unHighlightComponent(currentButton);
+            highlightComponent(forumButton);
             currentButton = forumButton;
         }
 
@@ -592,21 +616,21 @@ public class App extends javax.swing.JFrame {
         if (currentButton != tinNhanButton) {
             this.contentPanel.showComponentAndTrimHistory("tinNhanPanel");
             this.rightPanel.showComponentAndTrimHistory("tinNhanRightPanel");
-            unHighlightButton(currentButton);
-            highlightButton(tinNhanButton);
+            unHighlightComponent(currentButton);
+            highlightComponent(tinNhanButton);
             currentButton = tinNhanButton;
         }
     }//GEN-LAST:event_tinNhanButtonMouseClicked
 
     private void tinNhanButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tinNhanButtonMouseEntered
         // TODO add your handling code here:
-        highlightButton(tinNhanButton);
+        highlightComponent(tinNhanButton);
     }//GEN-LAST:event_tinNhanButtonMouseEntered
 
     private void tinNhanButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tinNhanButtonMouseExited
         // TODO add your handling code here:
         if (currentButton != tinNhanButton) {
-            unHighlightButton(tinNhanButton);
+            unHighlightComponent(tinNhanButton);
         }
     }//GEN-LAST:event_tinNhanButtonMouseExited
 
@@ -675,44 +699,15 @@ public class App extends javax.swing.JFrame {
         System.out.println("Logged out!");
     }
 
-    private void highlightButton(javax.swing.JButton button) {
-        button.setBackground(new Color(51, 102, 255));
-        button.setForeground(new Color(255, 255, 255));
+    private void highlightComponent(JComponent comp) {
+        comp.setBackground(new Color(51, 102, 255));
+        comp.setForeground(new Color(255, 255, 255));
 
     }
 
-    private void unHighlightButton(javax.swing.JButton button) {
-        button.setBackground(new Color(255, 255, 255));
-        button.setForeground(new Color(153, 153, 153));
-    }
-
-    private RoundedBorder getRoundedBorder(String foregroundColor, int radius, int stroke) {
-        Color background = new Color(255, 255, 255);
-        Color outline = background;
-        Color foreground;
-        if (foregroundColor.equalsIgnoreCase("white")) {
-            foreground = new Color(255, 255, 255);
-        } else if (foregroundColor.equalsIgnoreCase("black")) {
-            foreground = new Color(0, 0, 0);
-        } else if (foregroundColor.equalsIgnoreCase("grey") || foregroundColor.equalsIgnoreCase("light grey")) {
-            foreground = new Color(187, 187, 187);
-        } else {
-            foreground = new Color(255, 255, 255); // Dark grey
-        }
-        return new RoundedBorder(background, outline, foreground, radius, stroke);
-    }
-
-    private RoundedBorder getRoundedBorder(JComponent c, int radius, int stroke) {
-//        Color background = c.getBackground();
-//        Color foreground = c.getForeground();
-        if (stroke > radius) {
-            stroke = radius;
-        }
-//        final Color background = new Color(204, 204, 255);
-        final Color background = c.getBackground();
-        final Color border = Color.BLACK;
-        final Color foreground = Color.WHITE;
-        return new RoundedBorder(background, border, foreground, radius, stroke);
+    private void unHighlightComponent(JComponent comp) {
+        comp.setBackground(new Color(255, 255, 255));
+        comp.setForeground(new Color(153, 153, 153));
     }
 
     /**

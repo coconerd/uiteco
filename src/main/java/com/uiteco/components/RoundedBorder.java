@@ -97,6 +97,32 @@ public class RoundedBorder implements Border {
     public Insets getBorderInsets(Component c) {
         return new Insets(radius, radius, radius, radius);
     }
+    
+    public static RoundedBorder getRoundedBorder(String foregroundColor, int radius, int stroke) {
+        Color background = new Color(255, 255, 255);
+        Color outline = background;
+        Color foreground;
+        if (foregroundColor.equalsIgnoreCase("white")) {
+            foreground = new Color(255, 255, 255);
+        } else if (foregroundColor.equalsIgnoreCase("black")) {
+            foreground = new Color(0, 0, 0);
+        } else if (foregroundColor.equalsIgnoreCase("grey") || foregroundColor.equalsIgnoreCase("light grey")) {
+            foreground = new Color(187, 187, 187);
+        } else {
+            foreground = new Color(255, 255, 255); // Dark grey
+        }
+        return new RoundedBorder(background, outline, foreground, radius, stroke);
+    }
+
+    public static RoundedBorder getRoundedBorder(JComponent c, int radius, int stroke) {
+        if (stroke > radius) {
+            stroke = radius;
+        }
+        final Color background = c.getBackground();
+        final Color border = Color.BLACK;
+        final Color foreground = Color.WHITE;
+        return new RoundedBorder(background, border, foreground, radius, stroke);
+    }
 
     public boolean isBorderOpaque() {
         return false;
