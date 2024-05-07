@@ -3,8 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.uiteco.contentPanels;
-<<<<<<< HEAD
-=======
+
 import com.uiteco.ofSuKienPanel.SuKienListModel;
 import com.uiteco.ofSuKienPanel.SuKienModel;
 import com.uiteco.ofSuKienPanel.SuKienView;
@@ -14,7 +13,6 @@ import java.awt.BorderLayout;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
->>>>>>> ducminh
 
 /**
  *
@@ -39,40 +37,6 @@ public class SuKienPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-<<<<<<< HEAD
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-=======
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         scrollPaneWin11 = new com.raven.scroll.ScrollPaneWin11();
@@ -114,21 +78,15 @@ public class SuKienPanel extends javax.swing.JPanel {
         scrollPaneWin11.setViewportView(containerPanel);
 
         add(scrollPaneWin11);
->>>>>>> ducminh
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-=======
     private javax.swing.JPanel containerPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     private com.raven.scroll.ScrollPaneWin11 scrollPaneWin11;
     private com.uiteco.ofSuKienPanel.SlideShowView slideShowView2;
     private com.uiteco.ofSuKienPanel.SuKienListView suKienListView2;
->>>>>>> ducminh
     // End of variables declaration//GEN-END:variables
 }
