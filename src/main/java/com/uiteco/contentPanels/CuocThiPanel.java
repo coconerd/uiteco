@@ -1,7 +1,7 @@
 package com.uiteco.contentPanels;
 
 // Import the necessary package
-import com.uiteco.OfCuocThiPanel.layouts.TagsAndSort;
+import com.uiteco.OfCuocThiPanel.firstPage.TagsAndSort;
 import java.awt.Color;
 
 public class CuocThiPanel extends javax.swing.JPanel {
