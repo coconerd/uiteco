@@ -83,25 +83,29 @@ public class BaiDangForumDAO {
         }        
         return postList;
     }
-        public static void insertRecordIntoDatabaseWhenClickPosting(String postedBy, LocalDateTime postingTime, String content, String title, int viewNumber, int replyNumber){
+        public static void insertIntoDatabaseWhenClickPosting(String postedBy, String content, String title, int viewNumber, int replyNumber){
             try{
+        /*khi người dùng đăng bài thì lấy username từ Session.java, sau đó lưu vào csdl thì ta lưu NGUOIDANG là kiểu number trong csdl, 
+        vì vậy cần thực hiện câu select để lấy thông tin MATK tương ứng với username đang bấm xác nhận đăng bài để lưu vào bảng BAIDANGFORUM*/
                   Connection conn = ConnectionManager.getConnection();
-                  String strSQL = "INSERT INTO BAIDANGFORUM (NGUOIDANG, THOIDIEMDANG, NOIDUNG, TIEUDE, LUOTXEM, LUOTPHANHOI) VALUES (?,?,?,?,?,?)";
+                  String strSQL = "INSERT INTO BAIDANGFORUM (NGUOIDANG, NOIDUNG, TIEUDE, LUOTXEM, LUOTPHANHOI) VALUES ((SELECT MATK FROM TAIKHOAN WHERE USERNAME=?),?,?,?,?)";
                   PreparedStatement pr = conn.prepareStatement(strSQL);
                   pr.setString(1, postedBy);
-                  //chuyển kiểu localdatetime thành kiểu timestamp trong sql
+                  /*chuyển kiểu localdatetime thành kiểu timestamp trong sql
                   Timestamp postingTimeStamp = Timestamp.valueOf(postingTime);
                   pr.setTimestamp(2, postingTimeStamp);
+                  */
+                  
                   /* Cách 1: //tạo 1 đối tượng clob để sử dụng cho hàm setClob
                   Clob clob = conn.createNClob();
                   clob.setString(3, content);
                   pr.setClob(3, clob);
                   */
                   /*Cách 2: ngắn gọn hơn*/
-                  pr.setString(3,content);
-                  pr.setString(4, title);
-                  pr.setInt(5, viewNumber);
-                  pr.setInt(6, replyNumber);
+                  pr.setString(2,content);
+                  pr.setString(3, title);
+                  pr.setInt(4, viewNumber);
+                  pr.setInt(5, replyNumber);
                   
                   pr.executeUpdate();    
                   conn.close();

@@ -5,17 +5,15 @@
 package com.uiteco.contentPanels;
 
 import com.forum.PostListPanel;
-import javax.swing.JPanel;
+import java.awt.*;
 
 public class ForumPanel extends javax.swing.JPanel {
 
     public ForumPanel() {
-        initComponents();   
+        //initComponents();
+        _initComponents();
     }
 
-    public PostListPanel getPostListPanel2() {
-        return postListPanel2;
-    }
 
     
     @SuppressWarnings("unchecked")
@@ -80,10 +78,75 @@ public class ForumPanel extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
+     public void showPostingInterfacePanel(){
+         this.removeAll();
+         com.forum.features.PostingFeaturePanel postingPanel = new com.forum.features.PostingFeaturePanel();
+//         this.setLayout(new BorderLayout());
+//         this.add(postingPanel, BorderLayout.CENTER);
+         this.setLayout(new GridLayout());
+         this.add(postingPanel);
+         this.revalidate();
+         this.repaint();
+     }
+     public void _initComponents(){
+        headerForum1 = new com.forum.HeaderForum();
+        titlePanel1 = new com.forum.TitlePanel();
+        scrollPaneWin111 = new com.raven.scroll.ScrollPaneWin11();
+        jPanel1 = new javax.swing.JPanel();
+        postListPanel2 = new com.forum.PostListPanel();
+        tailerPanel1 = new com.forum.TailerPanel();
 
-    public JPanel getjPanel1() {
-        return jPanel1;
-    }
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(810, 665));
+        setRequestFocusEnabled(false);
+
+        headerForum1.setLayout(new java.awt.FlowLayout());
+
+        titlePanel1.setLayout(new java.awt.FlowLayout());
+
+        scrollPaneWin111.setBorder(null);
+        scrollPaneWin111.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanel1.setBackground(new java.awt.Color(231, 231, 231));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 13));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(postListPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(tailerPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(postListPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(tailerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        scrollPaneWin111.setViewportView(jPanel1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollPaneWin111, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(headerForum1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(titlePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(headerForum1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(titlePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(scrollPaneWin111, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.forum.HeaderForum headerForum1;
@@ -93,4 +156,11 @@ public class ForumPanel extends javax.swing.JPanel {
     private com.forum.TailerPanel tailerPanel1;
     private com.forum.TitlePanel titlePanel1;
     // End of variables declaration//GEN-END:variables
+
+    public void setPostListPanel2(PostListPanel postListPanel2) {
+        this.postListPanel2 = postListPanel2;
+    }
+    public com.forum.PostListPanel getPostListPanel2() {
+        return postListPanel2;
+    }
 }

@@ -33,6 +33,14 @@ public class HeaderForum extends javax.swing.JPanel{
         topicPanel.setLayout(new javax.swing.BoxLayout(topicPanel, javax.swing.BoxLayout.X_AXIS));
         topicPanel.add(topicButton);
         add(topicPanel);
+        topicButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e){
+                com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
+                panel1.showPostingInterfacePanel();
+               //System.out.println(getParent().getClass()); //kết quả là: com.uiteco.contentPanels.ForumPanel;
+            }
+        });
         
         add(javax.swing.Box.createRigidArea(new java.awt.Dimension(10,0)));
         lastedPostPanel = new javax.swing.JPanel();
