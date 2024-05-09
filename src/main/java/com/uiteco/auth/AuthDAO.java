@@ -129,25 +129,68 @@ public class AuthDAO {
 
     // This function is meant for testing purpose
     public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        while (true) {
-            System.out.print("Email: ");
-            String email = sc.nextLine();
-            System.out.print("Username: ");
-
-            String username = sc.nextLine();
-
-            System.out.print("Password: ");
-            String password = sc.nextLine();
-
-            try {
-                login(username, email, password);
-                System.out.println("Login successful");
-                break;
-            } catch (Exception e) {
-                e.printStackTrace();
-                continue;
-            }
-        }
+//        java.util.Scanner sc = new java.util.Scanner(System.in);
+//        while (true) {
+//            System.out.print("Email: ");
+//            String email = sc.nextLine();
+//            System.out.print("Username: ");
+//
+//            String username = sc.nextLine();
+//
+//            System.out.print("Password: ");
+//            String password = sc.nextLine();
+//
+//            try {
+//                login(username, email, password);
+//                System.out.println("Login successful");
+//                break;
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                continue;
+//            }
+//        }
+        register("22520124@gm.uit.edu.vn", "vubao", "11111111", 2);
+        register("22520872@gm.uit.edu.vn", "ducminh", "11111111", 2);
+        register("22520423@gm.uit.edu.vn", "thuyhien", "11111111", 2);
+        register("22520001@gm.uit.edu.vn", "apple", "11111111", 2);
+        register("22520002@gm.uit.edu.vn", "banana", "11111111", 2);
+        register("22520003@gm.uit.edu.vn", "mango", "11111111", 2);
+        register("22520004@gm.uit.edu.vn", "papaya", "11111111", 2);
+        register("22520005@gm.uit.edu.vn", "kiwi", "11111111", 2);
+        register("22520006@gm.uit.edu.vn", "chily", "11111111", 2);
+        register("22520007@gm.uit.edu.vn", "blueberry", "11111111", 2);
+        register("22520008@gm.uit.edu.vn", "table", "11111111", 2);
+        register("22520009@gm.uit.edu.vn", "house", "11111111", 2);
+        register("22520010@gm.uit.edu.vn", "grape", "11111111", 2);
+        register("22520011@gm.uit.edu.vn", "rambutan", "11111111", 2);
+        register("22520012@gm.uit.edu.vn", "longan", "11111111", 2);
+        register("22520013@gm.uit.edu.vn", "milk", "11111111", 2);
+        register("22520014@gm.uit.edu.vn", "rice", "11111111", 2);
+        register("22520015@gm.uit.edu.vn", "orange", "11111111", 2);
+        register("22520016@gm.uit.edu.vn", "lemon", "11111111", 2);
+        register("22520017@gm.uit.edu.vn", "store", "11111111", 2);
+        register("22520018@gm.uit.edu.vn", "book", "11111111", 2);
+        register("22520019@gm.uit.edu.vn", "plane", "11111111", 2);
+        register("22520020@gm.uit.edu.vn", "bike", "11111111", 2);
+        register("22520021@gm.uit.edu.vn", "motobike", "11111111", 2);
+        register("22520022@gm.uit.edu.vn", "bicycle", "11111111", 2);
+        register("22520023@gm.uit.edu.vn", "water", "11111111", 2);
+        register("22520024@gm.uit.edu.vn", "fire", "11111111", 2);
+        register("22520025@gm.uit.edu.vn", "snow", "11111111", 2);
+        register("22520026@gm.uit.edu.vn", "tree", "11111111", 2);
+        register("22520027@gm.uit.edu.vn", "sunlight", "11111111", 2);
+        register("22520028@gm.uit.edu.vn", "rain", "11111111", 2);
+        register("22520029@gm.uit.edu.vn", "rainbow", "11111111", 2);
+        register("22520030@gm.uit.edu.vn", "mushroom", "11111111", 2);
+        register("22520031@gm.uit.edu.vn", "daisy", "11111111", 2);
+        register("22520032@gm.uit.edu.vn", "flower", "11111111", 2);
+        register("22520033@gm.uit.edu.vn", "tiger", "11111111", 2);
+        register("22520034@gm.uit.edu.vn", "lion", "11111111", 2);
+        register("22520035@gm.uit.edu.vn", "monkey", "11111111", 2);
+        register("22520036@gm.uit.edu.vn", "elephant", "11111111", 2);
+        register("22520037@gm.uit.edu.vn", "lime", "11111111", 2);
+        register("22520038@gm.uit.edu.vn", "glass", "11111111", 2);
+        register("22520039@gm.uit.edu.vn", "coffee", "11111111", 2);
+        register("22520040@gm.uit.edu.vn", "phone", "11111111", 2);
     }
 }

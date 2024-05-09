@@ -30,17 +30,6 @@ public class HeaderForum extends javax.swing.JPanel{
         topicButton.setText("New Post"); 
         topicButton.setBorderPainted(false);
         topicButton.setFocusable(false);
-       
-//        topicButton.addMouseListener(new java.awt.event.MouseAdapter() {
-//            @Override
-//            public void mouseEntered(java.awt.event.MouseEvent e){
-//                topicButton.setBorderPainted(true);
-//            }
-//            @Override
-//            public void mouseExited(java.awt.event.MouseEvent e){
-//                topicButton.setBorderPainted(false);
-//            }
-//        });
         topicPanel.setLayout(new javax.swing.BoxLayout(topicPanel, javax.swing.BoxLayout.X_AXIS));
         topicPanel.add(topicButton);
         add(topicPanel);
@@ -52,7 +41,6 @@ public class HeaderForum extends javax.swing.JPanel{
         lastedPostPanel.setBackground(new java.awt.Color(0,102,102));
         lastedPostPanel.setPreferredSize(new java.awt.Dimension(150, 35));
         lastedPostPanel.setMaximumSize(lastedPostPanel.getPreferredSize());
-//        lastedPostPanel.setAlignmentY(java.awt.Component.LEFT_ALIGNMENT);
         lastedPostButton.setMaximumSize(lastedPostPanel.getPreferredSize());
         lastedPostButton.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
         lastedPostButton.setBackground(new java.awt.Color(246,246,238));
@@ -62,16 +50,19 @@ public class HeaderForum extends javax.swing.JPanel{
         lastedPostButton.setText("Latest Post");  
         lastedPostButton.setBorderPainted(false);
         lastedPostButton.setFocusable(false);
-//        lastedPostButton.addMouseListener(new java.awt.event.MouseAdapter() {
-//         @Override
-//         public void mouseEntered(java.awt.event.MouseEvent e){
-//             lastedPostButton.setBorderPainted(true);
-//         }
-//         @Override
-//         public void mouseExited(java.awt.event.MouseEvent e){
-//             lastedPostButton.setBorderPainted(false);
-//         }
-//     });
+        lastedPostButton.addMouseListener(new java.awt.event.MouseAdapter() {
+         @Override
+         public void mouseClicked(java.awt.event.MouseEvent e){
+
+               javax.swing.JPanel panel1 = (javax.swing.JPanel)getParent(); 
+               //System.out.println(getParent().getClass()); //kết quả là: com.uiteco.contentPanels.ForumPanel;
+               com.raven.scroll.ScrollPaneWin11 scrollPaneWin11 = (com.raven.scroll.ScrollPaneWin11)panel1.getComponent(0);
+               javax.swing.JPanel panel2 = (javax.swing.JPanel)scrollPaneWin11.getViewport().getView();
+               com.forum.PostListPanel p = (com.forum.PostListPanel)panel2.getComponent(0);
+               p.loadPostForumFromDatabaseIntoListPost();
+               //p.sortNewestPost(); sử dụng hàm này vẫn được 
+         }});
+
         lastedPostPanel.setLayout(new javax.swing.BoxLayout(lastedPostPanel, javax.swing.BoxLayout.X_AXIS));
         lastedPostPanel.add(lastedPostButton);
         add(lastedPostPanel);

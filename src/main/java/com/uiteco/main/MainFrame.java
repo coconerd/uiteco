@@ -97,7 +97,6 @@ public class MainFrame extends javax.swing.JFrame {
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
         setSize(new java.awt.Dimension(1280, 720));
 
         leftPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -128,7 +127,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        cuocThiButton.setBackground(new java.awt.Color(255, 255, 255));
         cuocThiButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cuocThiButton.setForeground(new java.awt.Color(153, 153, 153));
         cuocThiButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-ranking-17.png"))); // NOI18N
@@ -153,7 +151,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        cauLacBoButton.setBackground(new java.awt.Color(255, 255, 255));
         cauLacBoButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cauLacBoButton.setForeground(new java.awt.Color(153, 153, 153));
         cauLacBoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-group-17.png"))); // NOI18N
@@ -178,7 +175,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        forumButton.setBackground(new java.awt.Color(255, 255, 255));
         forumButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         forumButton.setForeground(new java.awt.Color(153, 153, 153));
         forumButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-forum-17.png"))); // NOI18N
@@ -203,7 +199,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        dangXuatButton.setBackground(new java.awt.Color(255, 255, 255));
         dangXuatButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         dangXuatButton.setForeground(new java.awt.Color(153, 153, 153));
         dangXuatButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-log-out-17.png"))); // NOI18N
@@ -241,7 +236,6 @@ public class MainFrame extends javax.swing.JFrame {
         imageAvatar13.add(imageAvatar15);
         imageAvatar15.setBounds(0, 0, 0, 0);
 
-        tinNhanButton.setBackground(new java.awt.Color(255, 255, 255));
         tinNhanButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tinNhanButton.setForeground(new java.awt.Color(153, 153, 153));
         tinNhanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-chat-17.png"))); // NOI18N
@@ -310,7 +304,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(forumButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tinNhanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 654, Short.MAX_VALUE)
                 .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dangXuatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -401,7 +395,6 @@ public class MainFrame extends javax.swing.JFrame {
         searchPaneWrapper.setHorizontalScrollBar(null);
         searchPaneWrapper.setWheelScrollingEnabled(false);
 
-        searchPane.setBackground(new java.awt.Color(255, 255, 255));
         searchPane.setBorder(null);
         searchPane.setForeground(new java.awt.Color(102, 102, 102));
         searchPane.setToolTipText("Tìm kiếm");
@@ -462,7 +455,7 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(leftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE))

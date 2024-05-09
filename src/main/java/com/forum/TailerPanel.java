@@ -25,29 +25,14 @@ public class TailerPanel extends javax.swing.JPanel{
         nextButton.setSize(87, 32);
         nextButton.setBorderPainted(false);
         nextButton.setFocusable(false);
-        // Code để xử lý sự kiện khi người dùng nhấn nút "Next"
         nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
         public void mouseClicked(java.awt.event.MouseEvent e){
-//               PostListPanel.setCurrentPageToNext();
                  JPanel panel = (JPanel)getParent();
-                 
                  PostListPanel pl = (PostListPanel)panel.getComponent(0);
                  pl.setCurrentPageToNext();
-                 pl.updateShowPagination();
-               //new com.forum.PostListPanel().updateShowPagination();
         }
     });
-//        nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
-//            @Override
-//            public void mouseEntered(java.awt.event.MouseEvent e){
-//                nextButton.setBorderPainted(true);
-//            }
-//            @Override
-//            public void mouseExited(java.awt.event.MouseEvent e){
-//                nextButton.setBorderPainted(false);
-//            }
-//        });
         
         //backButton = new javax.swing.JButton();
         backButton = new com.forum.RoundedBorderButton();
@@ -58,36 +43,15 @@ public class TailerPanel extends javax.swing.JPanel{
         backButton.setSize(87,32);
         backButton.setBorderPainted(false);
         backButton.setFocusable(false);
-        // Code để xử lý sự kiện khi người dùng nhấn nút "Back"
-//        backButton.addActionListener(new java.awt.event.ActionListener() {
-//        @Override
-//        public void actionPerformed(java.awt.event.ActionEvent e) {
-//               PostListPanel.setCurrentPageToBack();
-//               //new com.forum.PostListPanel().updateShowPagination();
-//        }
-//    });
-         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
         public void mouseClicked(java.awt.event.MouseEvent e){
-//               PostListPanel.setCurrentPageToNext();
-                 JPanel panel = (JPanel)getParent();
-                 
+                 JPanel panel = (JPanel)getParent();               
                  PostListPanel pl = (PostListPanel)panel.getComponent(0);
                  pl.setCurrentPageToBack();
-                 pl.updateShowPagination();
-               //new com.forum.PostListPanel().updateShowPagination();
         }
     });
-//        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
-//            @Override
-//            public void mouseEntered(java.awt.event.MouseEvent e){
-//                backButton.setBorderPainted(true);
-//            }
-//            @Override
-//            public void mouseExited(java.awt.event.MouseEvent e){
-//                backButton.setBorderPainted(false);
-//            }
-//        });
+
         add(backButton);
         add(nextButton);      
         

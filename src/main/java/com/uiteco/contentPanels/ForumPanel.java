@@ -5,6 +5,7 @@
 package com.uiteco.contentPanels;
 
 import com.forum.PostListPanel;
+import javax.swing.JPanel;
 
 public class ForumPanel extends javax.swing.JPanel {
 
@@ -79,6 +80,10 @@ public class ForumPanel extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.forum.HeaderForum headerForum1;
