@@ -38,13 +38,14 @@ public class SuKienPanel extends javax.swing.JPanel {
         scrollPaneWin11 = new com.raven.scroll.ScrollPaneWin11();
         containerPanel = new javax.swing.JPanel();
         slideShowView2 = new com.uiteco.ofSuKienPanel.SlideShowView();
-        suKienListView2 = new com.uiteco.ofSuKienPanel.SuKienListView();
+        searcnPane1 = new com.uiteco.ofSuKienPanel.SearcnPane();
+        suKienListView1 = new com.uiteco.ofSuKienPanel.SuKienListView();
 
         jScrollPane1.setViewportView(jTextPane1);
 
         setBackground(new java.awt.Color(242, 243, 244));
         setForeground(new java.awt.Color(242, 243, 244));
-        setPreferredSize(new java.awt.Dimension(810, 665));
+        setPreferredSize(null);
         setLayout(new java.awt.GridLayout(1, 1));
 
         scrollPaneWin11.setBorder(null);
@@ -55,21 +56,34 @@ public class SuKienPanel extends javax.swing.JPanel {
 
         slideShowView2.setBorder(javax.swing.BorderFactory.createEmptyBorder(25, 25, 25, 25));
         slideShowView2.setMinimumSize(new java.awt.Dimension(518, 1100));
+        slideShowView2.setPreferredSize(new java.awt.Dimension(728, 900));
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
         containerPanel.add(slideShowView2, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 10, 60);
+        containerPanel.add(searcnPane1, gridBagConstraints);
 
-        suKienListView2.setBorder(javax.swing.BorderFactory.createEmptyBorder(60, 60, 60, 60));
+        suKienListView1.setBackground(new java.awt.Color(242, 243, 244));
+        suKienListView1.setBorder(javax.swing.BorderFactory.createEmptyBorder(25, 60, 25, 60));
+        suKienListView1.setVerticalGap(50);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.5;
-        containerPanel.add(suKienListView2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(20, 60, 15, 60);
+        containerPanel.add(suKienListView1, gridBagConstraints);
 
         scrollPaneWin11.setViewportView(containerPanel);
 
@@ -82,7 +96,8 @@ public class SuKienPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     private com.raven.scroll.ScrollPaneWin11 scrollPaneWin11;
+    private com.uiteco.ofSuKienPanel.SearcnPane searcnPane1;
     private com.uiteco.ofSuKienPanel.SlideShowView slideShowView2;
-    private com.uiteco.ofSuKienPanel.SuKienListView suKienListView2;
+    private com.uiteco.ofSuKienPanel.SuKienListView suKienListView1;
     // End of variables declaration//GEN-END:variables
 }

@@ -274,7 +274,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
         add(imageContainer, gridBagConstraints);
 

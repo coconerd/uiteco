@@ -142,7 +142,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         roundedBorderButton2.setBorder(null);
         roundedBorderButton2.setForeground(new java.awt.Color(242, 243, 244));
         roundedBorderButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-eye-30.png"))); // NOI18N
-        roundedBorderButton2.setText(getSuKienModel().getViews());
+        roundedBorderButton2.setText(String.valueOf(getSuKienModel().getViews()));
         roundedBorderButton2.setToolTipText("Lượt xem");
         roundedBorderButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

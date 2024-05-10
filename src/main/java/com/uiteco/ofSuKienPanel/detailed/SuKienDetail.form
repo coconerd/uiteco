@@ -251,7 +251,7 @@
                   <Image iconType="3" name="/icons8-eye-30.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="getSuKienModel().getViews()" type="code"/>
+                  <Connection code="String.valueOf(getSuKienModel().getViews())" type="code"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="L&#x1b0;&#x1ee3;t xem"/>
               </Properties>
