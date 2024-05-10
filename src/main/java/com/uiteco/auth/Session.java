@@ -156,15 +156,15 @@ public class Session implements PropertyChangeListener {
 //        this.fileFound = fileFound;
 //    }
 
-    private void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    private void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    private void setIssuedAt(Long issuedAt) {
+    public void setIssuedAt(Long issuedAt) {
         this.issuedAt = issuedAt;
     }
 

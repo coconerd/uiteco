@@ -65,6 +65,7 @@ public class AuthModel {
             setEmailOrThrow(email);
             setPasswordOrThrow(password);
             AuthDAO.login(getUsername(), getEmail(), getPassword());
+            com.uiteco.main.App.getSession().setEmail(email);
             setLoggedIn(true);
         } catch (Exception e) {
             throw e;
@@ -84,6 +85,7 @@ public class AuthModel {
             setUsernameOrThrow(username);
             setPasswordOrThrow(password);
             AuthDAO.login(getUsername(), getEmail(), getPassword());
+            com.uiteco.main.App.getSession().setUsername(username);
             setLoggedIn(true);
         } catch (Exception e) {
             throw e;
