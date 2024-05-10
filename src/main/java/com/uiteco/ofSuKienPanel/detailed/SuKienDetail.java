@@ -56,7 +56,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         content = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        searcnPane1 = new com.uiteco.ofSuKienPanel.SearcnPane();
+        searcnPane1 = new com.uiteco.ofSuKienPanel.search.SearcnPane();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -313,7 +313,7 @@ public class SuKienDetail extends javax.swing.JPanel {
     private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
     private com.uiteco.components.RoundedImagePanel roundedImagePanel1;
     private com.uiteco.components.RoundedPanel roundedPanel1;
-    private com.uiteco.ofSuKienPanel.SearcnPane searcnPane1;
+    private com.uiteco.ofSuKienPanel.search.SearcnPane searcnPane1;
     private javax.swing.JTextArea title;
     private javax.swing.JPanel upperPanel;
     // End of variables declaration//GEN-END:variables

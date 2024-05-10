@@ -38,7 +38,7 @@ public class SuKienPanel extends javax.swing.JPanel {
         scrollPaneWin11 = new com.raven.scroll.ScrollPaneWin11();
         containerPanel = new javax.swing.JPanel();
         slideShowView2 = new com.uiteco.ofSuKienPanel.SlideShowView();
-        searcnPane1 = new com.uiteco.ofSuKienPanel.SearcnPane();
+        searcnPane1 = new com.uiteco.ofSuKienPanel.search.SearcnPane();
         suKienListView1 = new com.uiteco.ofSuKienPanel.SuKienListView();
 
         jScrollPane1.setViewportView(jTextPane1);
@@ -96,7 +96,7 @@ public class SuKienPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     private com.raven.scroll.ScrollPaneWin11 scrollPaneWin11;
-    private com.uiteco.ofSuKienPanel.SearcnPane searcnPane1;
+    private com.uiteco.ofSuKienPanel.search.SearcnPane searcnPane1;
     private com.uiteco.ofSuKienPanel.SlideShowView slideShowView2;
     private com.uiteco.ofSuKienPanel.SuKienListView suKienListView1;
     // End of variables declaration//GEN-END:variables
