@@ -65,7 +65,7 @@ public class SuKienView extends RoundedGradientPanel {
         jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText(suKienModel.getPostedAt().toString());
 
-        roundedImagePanel1.setImage(new javax.swing.ImageIcon(getClass().getResource("/uitgamapp.jpg"))); // NOI18N
+        roundedImagePanel1.setImage(suKienModel.getThumbnail());
         roundedImagePanel1.setRoundBottomLeft(10);
         roundedImagePanel1.setRoundBottomRight(10);
         roundedImagePanel1.setRoundTopLeft(60);
@@ -73,7 +73,8 @@ public class SuKienView extends RoundedGradientPanel {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText(suKienModel.getContent());
+        int maxChar = 100;
+        jLabel3.setText(suKienModel.getContent().substring(0, maxChar + 1) + "...");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
