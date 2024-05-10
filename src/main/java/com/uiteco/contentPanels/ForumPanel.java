@@ -78,11 +78,17 @@ public class ForumPanel extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
-     public void showPostingInterfacePanel(){
+    public void showPostDetailAndReplyView(int mabaidang){
+        this.removeAll();
+        com.forum.PostDetailAndReplyPanelView panelView = new com.forum.PostDetailAndReplyPanelView(mabaidang);
+        this.setLayout(new GridLayout());
+        this.add(panelView);
+        this.revalidate();
+        this.repaint();
+    } 
+    public void showPostingInterfacePanel(){
          this.removeAll();
          com.forum.features.PostingFeaturePanel postingPanel = new com.forum.features.PostingFeaturePanel();
-//         this.setLayout(new BorderLayout());
-//         this.add(postingPanel, BorderLayout.CENTER);
          this.setLayout(new GridLayout());
          this.add(postingPanel);
          this.revalidate();

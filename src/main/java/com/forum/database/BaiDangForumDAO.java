@@ -4,6 +4,7 @@
  */
 package com.forum.database;
 
+import com.forum.PostDetailView;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
@@ -47,9 +48,9 @@ public class BaiDangForumDAO {
             e.printStackTrace();
         }
         if(postList.isEmpty()){
-            System.out.println("Load data from database fail!");
+            System.out.println("Load data without sorting posting time from database fail!");
         }else{
-            System.out.println("Load data from database sucessfully!");  
+            System.out.println("Load data without sorting posting time from database sucessfully!");  
         }        
         return postList;
     }
@@ -77,9 +78,9 @@ public class BaiDangForumDAO {
             e.printStackTrace();
         }
         if(postList.isEmpty()){
-            System.out.println("Load data from database fail!");
+            System.out.println("Load data and sort by latest posting time from database fail!");
         }else{
-            System.out.println("Load data from database sucessfully!");  
+            System.out.println("Load data and sort by latest posting time from database sucessfully!");  
         }        
         return postList;
     }
@@ -108,8 +109,9 @@ public class BaiDangForumDAO {
                   pr.setInt(5, replyNumber);
                   
                   pr.executeUpdate();
-                  conn.commit();
+                  //conn.commit();
                   conn.close();
+                  System.out.println("Insert bai dang vao csdl thanh cong!");
             }catch(SQLException e){
                 e.printStackTrace();
             }
@@ -125,34 +127,67 @@ public class BaiDangForumDAO {
             }
         }
 
-    public static int getCount() {
-        return 300;  // mock
-    }
+   
 
-    public static ArrayList<PostPanel> getPageData(int page, int pageSize) {
-        ArrayList<PostPanel> postList = new ArrayList<>();
-
-        // mock
-        for (int i = 0; i < getCount(); i++) {
-            String title = String.format("Day la bai dang thu %d", i + 1);
-            int postID = i;
-            String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
-            String postedBy = "Cong Phan";
-            java.time.LocalDateTime postingDate = java.time.LocalDateTime.now();
-            int viewNumber = 1200;
-            int responseNumber = 1000;
-            PostPanel post = new PostPanel(postID, title, viewNumber, responseNumber, postedBy, postingDate, content);
-            postList.add(post);
+    public static ArrayList<PostDetailView> getPostFromDatabaseFollowingPostID(int mabaidang) {
+        ArrayList<PostDetailView> postList = new ArrayList<>();
+        try{
+            Connection conn = ConnectionManager.getConnection();
+            String strSQL = "SELECT NGUOIDANG, THOIDIEMDANG, TIEUDE, NOIDUNG FROM BAIDANGFORUM WHERE MABDFORUM = ?";
+            PreparedStatement stat = conn.prepareStatement(strSQL);
+            stat.setInt(1, mabaidang);
+            stat.executeQuery();
+            conn.close();
+            System.out.println("Lay thong tin bai dang forum dua vao ma bai dang thanh cong!");
+        }catch(SQLException e){
+            e.printStackTrace();
         }
-
-        int startIdx = (page - 1) * pageSize;
-        int endIdx = Math.min(startIdx + pageSize, postList.size());
-        System.out.println("Debug: start index = " + startIdx);
-        System.out.println("Debug: end index = " + endIdx);
-
-        java.util.List<PostPanel> sublist = postList.subList(startIdx, endIdx);
-        return new ArrayList<PostPanel>(sublist);
+        return postList;
+    }
+    
+    public static PostDetailView loadDataIntoPostDetailView(int mabaidang) {
+        PostDetailView postDetailView = new PostDetailView(mabaidang);
+        try{
+            Connection conn = ConnectionManager.getConnection();
+            String strSQL = "SELECT T.USERNAME, THOIDIEMDANG, TIEUDE, NOIDUNG FROM BAIDANGFORUM B JOIN TAIKHOAN T ON B.NGUOIDANG = T.MATK WHERE B.MABDFORUM = ?";
+            
+            PreparedStatement stat = conn.prepareStatement(strSQL);
+            stat.setInt(1, mabaidang);
+            ResultSet result = stat.executeQuery();
+            while(result.next()){
+                postDetailView.setPostingPerson(result.getString(1));
+                postDetailView.setPostingTimeStamp(result.getTimestamp(2).toLocalDateTime());
+                postDetailView.setTitle(result.getString(3));
+                postDetailView.setContent(result.getString(4));
+            }
+            conn.close();
+            System.out.println("Lay thong tin bai dang forum dua vao ma bai dang thanh cong!");
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return postDetailView;
     }
 
- 
+        public static ArrayList<Object> getDataIntoPostDetailView(int mabaidang) {
+            ArrayList<Object> postDetailView = new ArrayList<>();
+        try{
+            Connection conn = ConnectionManager.getConnection();
+            String strSQL = "SELECT T.USERNAME, THOIDIEMDANG, TIEUDE, NOIDUNG FROM BAIDANGFORUM B JOIN TAIKHOAN T ON B.NGUOIDANG = T.MATK WHERE B.MABDFORUM = ?";
+            
+            PreparedStatement stat = conn.prepareStatement(strSQL);
+            stat.setInt(1, mabaidang);
+            ResultSet result = stat.executeQuery();
+            while(result.next()){
+                postDetailView.add(result.getString(1));
+                postDetailView.add(result.getTimestamp(2).toLocalDateTime());
+                postDetailView.add(result.getString(3));
+                postDetailView.add(result.getString(4));
+            }
+            conn.close();
+            System.out.println("Lay thong tin vao PostDetailView.java thanh cong!");
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return postDetailView;
+    }
 }

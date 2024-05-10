@@ -44,7 +44,7 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(247, 245, 231));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(30, 30, 14));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ĐĂNG BÀI");
 
@@ -145,7 +145,7 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uit(3).png"))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(85, 127, 213));
+        jLabel5.setForeground(new java.awt.Color(80, 80, 181));
         jLabel5.setText("ECO-FORUM");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -268,25 +268,21 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        /*bước 1: lưu thông tin vào csdl*/
+        /*lưu thông tin vào csdl*/
         String content = jTextArea2.getText();
         String title = jTextArea1.getText();
         int viewNumber = 0;
         int replyNumber = 0;
-//        com.uiteco.auth.Session se = new com.uiteco.auth.Session(); //chưa biết làm như vầy có phải là lấy được username từ người dùng đã đăng nhập hệ thống và đang bấm xác nhận đăng bài
         String username = com.uiteco.main.App.getSession().getUsername();
-        System.out.println("DEBUG: " + username);
+        System.out.println("User is logging: " + username);
         BaiDangForumDAO.insertIntoDatabaseWhenClickPosting(username, content, title, viewNumber, replyNumber);
-        /*bước 2: thoát khỏi giao diện đăng bài*/
-//        this.setOpaque(false);
-        /*bước 3: load dữ liệu từ csdl để hiển thị lại giao diện chính của forum*/
+        /*load dữ liệu từ csdl để hiển thị lại giao diện chính của forum*/
         com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
         panel1.removeAll();
         panel1._initComponents();
         panel1.getPostListPanel2().loadPostForumFromDatabaseIntoListPost();
 //        this.revalidate();
 //        this.repaint();
-        //hiện tại còn cấn chỗ đăng nhập để từ đó mới biết được username của người đăng rồi ánh xạ sang MATK để lưu trong thuộc tính NGAYDANG của bảng BAIDANGFORUM
     }//GEN-LAST:event_jButton1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

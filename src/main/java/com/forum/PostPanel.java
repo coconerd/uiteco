@@ -148,6 +148,16 @@ public class PostPanel extends javax.swing.JPanel {
             public void mouseExited(java.awt.event.MouseEvent e){
                 titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 12));
             }
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e){
+                int mabaidang = getPostID();
+                com.forum.PostListPanel postlist = (com.forum.PostListPanel)getParent();
+                javax.swing.JPanel panel = (javax.swing.JPanel)postlist.getParent();
+                javax.swing.JViewport viewport = (javax.swing.JViewport)panel.getParent();
+                com.raven.scroll.ScrollPaneWin11 scrollpane = (com.raven.scroll.ScrollPaneWin11)viewport.getParent();
+                com.uiteco.contentPanels.ForumPanel forum = (com.uiteco.contentPanels.ForumPanel)scrollpane.getParent();
+                forum.showPostDetailAndReplyView(mabaidang);
+            }
         });
         
         titlePanel.setLayout(new javax.swing.BoxLayout(titlePanel,javax.swing.BoxLayout.X_AXIS));
