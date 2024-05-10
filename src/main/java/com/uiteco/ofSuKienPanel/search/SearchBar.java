@@ -11,11 +11,11 @@ import java.awt.Cursor;
  *
  * @author nddmi
  */
-public class SearcnPane extends RoundedPanel {
+public class SearchBar extends RoundedPanel {
 
     private String placeHolder;
 
-    public SearcnPane() {
+    public SearchBar() {
         initComponents();
     }
 

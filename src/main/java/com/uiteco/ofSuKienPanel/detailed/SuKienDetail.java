@@ -56,7 +56,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         content = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        searcnPane1 = new com.uiteco.ofSuKienPanel.search.SearcnPane();
+        searcnBar = new com.uiteco.ofSuKienPanel.search.SearchBar();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -289,7 +289,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.8;
         gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 15);
-        add(searcnPane1, gridBagConstraints);
+        add(searcnBar, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void roundedBorderButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedBorderButton2MouseEntered
@@ -313,7 +313,7 @@ public class SuKienDetail extends javax.swing.JPanel {
     private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
     private com.uiteco.components.RoundedImagePanel roundedImagePanel1;
     private com.uiteco.components.RoundedPanel roundedPanel1;
-    private com.uiteco.ofSuKienPanel.search.SearcnPane searcnPane1;
+    private com.uiteco.ofSuKienPanel.search.SearchBar searcnBar;
     private javax.swing.JTextArea title;
     private javax.swing.JPanel upperPanel;
     // End of variables declaration//GEN-END:variables
