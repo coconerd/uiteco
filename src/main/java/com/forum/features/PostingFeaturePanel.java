@@ -212,7 +212,7 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                 .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
                 .addGap(16, 16, 16))
@@ -260,12 +260,11 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextArea2FocusLost
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        this.removeAll();
-        this.setOpaque(false);     
         com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
+        panel1.removeAll();
         panel1._initComponents();
-        this.revalidate();
-        this.repaint();
+//        this.revalidate();
+//        this.repaint();
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -274,18 +273,20 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
         String title = jTextArea1.getText();
         int viewNumber = 0;
         int replyNumber = 0;
-        com.uiteco.auth.Session se = new com.uiteco.auth.Session();
-        String username = se.getUsername();
+//        com.uiteco.auth.Session se = new com.uiteco.auth.Session(); //chưa biết làm như vầy có phải là lấy được username từ người dùng đã đăng nhập hệ thống và đang bấm xác nhận đăng bài
+        String username = com.uiteco.main.App.getSession().getUsername();
+        System.out.println("DEBUG: " + username);
         BaiDangForumDAO.insertIntoDatabaseWhenClickPosting(username, content, title, viewNumber, replyNumber);
         /*bước 2: thoát khỏi giao diện đăng bài*/
-        this.removeAll();
-        this.setOpaque(false);
+//        this.setOpaque(false);
         /*bước 3: load dữ liệu từ csdl để hiển thị lại giao diện chính của forum*/
         com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
+        panel1.removeAll();
         panel1._initComponents();
         panel1.getPostListPanel2().loadPostForumFromDatabaseIntoListPost();
-        this.revalidate();
-        this.repaint();
+//        this.revalidate();
+//        this.repaint();
+        //hiện tại còn cấn chỗ đăng nhập để từ đó mới biết được username của người đăng rồi ánh xạ sang MATK để lưu trong thuộc tính NGAYDANG của bảng BAIDANGFORUM
     }//GEN-LAST:event_jButton1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -107,7 +107,8 @@ public class BaiDangForumDAO {
                   pr.setInt(4, viewNumber);
                   pr.setInt(5, replyNumber);
                   
-                  pr.executeUpdate();    
+                  pr.executeUpdate();
+                  conn.commit();
                   conn.close();
             }catch(SQLException e){
                 e.printStackTrace();
