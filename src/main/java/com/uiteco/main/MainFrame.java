@@ -4,7 +4,6 @@
  */
 package com.uiteco.main;
 
-import com.uiteco.auth.AuthView;
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
 import java.awt.Component;
@@ -21,7 +20,7 @@ import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.rightPanels.ForumRightPanel;
 import com.uiteco.rightPanels.TinNhanRightPanel;
 import com.uiteco.rightPanels.TaiKhoanRightPanel;
-import com.uiteco.ofSuKienPanel.detailed.SuKienDetailPanel;
+import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
 import com.uiteco.swing.ContentPanel;
 import java.awt.Cursor;
 
@@ -692,8 +691,8 @@ public class MainFrame extends javax.swing.JFrame {
         SuKienPanel sk = new SuKienPanel();
         contentPanel.registerComponent(sk, "suKienPanel");
         
-        SuKienDetailPanel skd = new SuKienDetailPanel();
-        contentPanel.registerComponent(skd, SuKienDetailPanel.INSTANCE_NAME);
+        SuKienDetailScrollPane sd = new SuKienDetailScrollPane();
+        contentPanel.registerComponent(sd, SuKienDetailScrollPane.INSTANCE_NAME);
 
         CuocThiPanel ct = new CuocThiPanel();
         contentPanel.registerComponent(ct, "cuocThiPanel");

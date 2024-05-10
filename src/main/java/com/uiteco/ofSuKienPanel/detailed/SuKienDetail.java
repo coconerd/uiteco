@@ -4,55 +4,29 @@
  */
 package com.uiteco.ofSuKienPanel.detailed;
 
-import com.uiteco.components.GradientPanel;
-import com.uiteco.components.ImageAvatar;
 import com.uiteco.ofSuKienPanel.SuKienModel;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 /**
  *
  * @author nddmi
  */
-public class SuKienDetailPanel extends GradientPanel implements PropertyChangeListener {
-    public static final String INSTANCE_NAME = "suKienDetailPanel";
+public class SuKienDetail extends javax.swing.JPanel {
     private SuKienModel suKienModel;
- 
-    /**
-     * Constructor 1
-     */
-    public SuKienDetailPanel() {
-        // Do not run initComponents() here because it won't work properly unless suKienModel is not null
-    }
-
-    public SuKienModel getSuKienModel() {
-        return suKienModel;
-    }
-
-//    public GalleryView getGalleryView() {
-//        return galleryView;
-//    }
     
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        
+    public SuKienDetail() {
     }
-
-    /**
-     * 
-     * @param suKienModel
-     * @throws NullSuKienModelException 
-     */
-    public void setSuKienModel(SuKienModel suKienModel) throws NullSuKienModelException {
-        if (suKienModel == null) {
-            throw new NullSuKienModelException();
-        }
-        
+    
+    public SuKienDetail(SuKienModel suKienModel) {
+        removeAll();
         this.suKienModel = suKienModel;
         initComponents();
+    }
+    
+    public SuKienModel getSuKienModel() {
+        return this.suKienModel;
     }
     
     /**
@@ -65,141 +39,282 @@ public class SuKienDetailPanel extends GradientPanel implements PropertyChangeLi
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        scrollPaneWin111 = new com.raven.scroll.ScrollPaneWin11();
-        viewport = new com.uiteco.components.GradientPanel();
-        coverPhotoPanel = new com.uiteco.components.RoundedImagePanel();
-        contentPanel = new com.uiteco.components.RoundedGradientPanel();
+        upperPanel = new javax.swing.JPanel();
+        roundedImagePanel1 = new com.uiteco.components.RoundedImagePanel();
+        roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        heartButton = new com.uiteco.components.RoundedPanel();
+        heartImage = new com.uiteco.components.RoundedImagePanel();
+        jLabel5 = new javax.swing.JLabel();
+        roundedBorderButton2 = new com.uiteco.components.RoundedBorderButton();
         jLabel2 = new javax.swing.JLabel();
-        textArea = new com.uiteco.components.RoundedGradientPanel();
+        gallery1 = new com.uiteco.ofSuKienPanel.detailed.Gallery(getSuKienModel());
+        roundedPanel1 = new com.uiteco.components.RoundedPanel();
+        title = new javax.swing.JTextArea();
+        content = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        galleryView1 = new com.uiteco.ofSuKienPanel.detailed.GalleryView();
-        metricsPanel = new com.uiteco.components.RoundedGradientPanel();
-        jButton1 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        searcnPane1 = new com.uiteco.ofSuKienPanel.SearcnPane();
 
-        setBorder(null);
-        setColor1(new java.awt.Color(204, 204, 204));
-        setFade(false);
-        setLayout(new java.awt.BorderLayout());
+        setLayout(new java.awt.GridBagLayout());
 
-        scrollPaneWin111.setBorder(null);
-        scrollPaneWin111.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPaneWin111.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        upperPanel.setPreferredSize(new java.awt.Dimension(810, 365));
+        upperPanel.setLayout(new java.awt.GridBagLayout());
 
-        viewport.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 20));
-        viewport.setLayout(new java.awt.GridBagLayout());
+        roundedImagePanel1.setImage(getSuKienModel().getThumbnail());
+        roundedImagePanel1.setPreferredSize(new java.awt.Dimension(610, 365));
+        roundedImagePanel1.setRoundTopRight(16);
 
-        coverPhotoPanel.setImage(getSuKienModel().getThumbnail());
-        coverPhotoPanel.setMinimumSize(new java.awt.Dimension(670, 665));
-        coverPhotoPanel.setPreferredSize(new java.awt.Dimension(510, 365));
-        coverPhotoPanel.setRoundBottomRight(20);
-
-        javax.swing.GroupLayout coverPhotoPanelLayout = new javax.swing.GroupLayout(coverPhotoPanel);
-        coverPhotoPanel.setLayout(coverPhotoPanelLayout);
-        coverPhotoPanelLayout.setHorizontalGroup(
-            coverPhotoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout roundedImagePanel1Layout = new javax.swing.GroupLayout(roundedImagePanel1);
+        roundedImagePanel1.setLayout(roundedImagePanel1Layout);
+        roundedImagePanel1Layout.setHorizontalGroup(
+            roundedImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 801, Short.MAX_VALUE)
         );
-        coverPhotoPanelLayout.setVerticalGroup(
-            coverPhotoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        roundedImagePanel1Layout.setVerticalGroup(
+            roundedImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 465, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.7;
-        gridBagConstraints.weighty = 0.6;
-        viewport.add(coverPhotoPanel, gridBagConstraints);
+        gridBagConstraints.weighty = 1.0;
+        upperPanel.add(roundedImagePanel1, gridBagConstraints);
 
-        contentPanel.setPreferredSize(new java.awt.Dimension(810, 300));
-        contentPanel.setLayout(new java.awt.BorderLayout());
+        roundedGradientPanel1.setColor1(new java.awt.Color(0, 255, 102));
+        roundedGradientPanel1.setColor2(new java.awt.Color(0, 102, 0));
+        roundedGradientPanel1.setFade(false);
+        roundedGradientPanel1.setPreferredSize(new java.awt.Dimension(410, 329));
 
-        jLabel2.setFont(new java.awt.Font("OCR A Std", 0, 16)); // NOI18N
-        jLabel2.setText(getSuKienModel().getTitle());
-        contentPanel.add(jLabel2, java.awt.BorderLayout.PAGE_START);
+        jLabel4.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 103, 107));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-flag-30.png"))); // NOI18N
+        jLabel4.setText("Blockchain");
+        jLabel4.setFocusable(false);
+        jLabel4.setIconTextGap(10);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText(getSuKienModel().getContent());
+        jLabel3.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(101, 103, 107));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-person-30.png"))); // NOI18N
+        jLabel3.setText(getSuKienModel().getPostedBy());
+        jLabel3.setIconTextGap(10);
 
-        javax.swing.GroupLayout textAreaLayout = new javax.swing.GroupLayout(textArea);
-        textArea.setLayout(textAreaLayout);
-        textAreaLayout.setHorizontalGroup(
-            textAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(textAreaLayout.createSequentialGroup()
+        jSeparator1.setBackground(new java.awt.Color(0, 102, 51));
+        jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
+
+        heartButton.setPreferredSize(new java.awt.Dimension(300, 365));
+        heartButton.setRoundBottomLeft(11);
+        heartButton.setRoundBottomRight(11);
+        heartButton.setRoundTopLeft(11);
+        heartButton.setRoundTopRight(11);
+        heartButton.setLayout(new java.awt.GridLayout(1, 0));
+
+        heartImage.setBackground(new java.awt.Color(255, 255, 255));
+        heartImage.setImage(new javax.swing.ImageIcon(getClass().getResource("/icons8-heart-plus-40.png"))); // NOI18N
+
+        javax.swing.GroupLayout heartImageLayout = new javax.swing.GroupLayout(heartImage);
+        heartImage.setLayout(heartImageLayout);
+        heartImageLayout.setHorizontalGroup(
+            heartImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        heartImageLayout.setVerticalGroup(
+            heartImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        heartButton.add(heartImage);
+
+        jLabel5.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(101, 103, 107));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-time-30.png"))); // NOI18N
+        DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("dd.MM.yy");
+        String dateStr = getSuKienModel().getPostedAt().format(dateFmt);
+        jLabel5.setText(dateStr);
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel5.setIconTextGap(10);
+
+        roundedBorderButton2.setBackground(new java.awt.Color(58, 59, 60));
+        roundedBorderButton2.setBorder(null);
+        roundedBorderButton2.setForeground(new java.awt.Color(242, 243, 244));
+        roundedBorderButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-eye-30.png"))); // NOI18N
+        roundedBorderButton2.setText(getSuKienModel().getViews());
+        roundedBorderButton2.setToolTipText("Lượt xem");
+        roundedBorderButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                roundedBorderButton2MouseEntered(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Circular Std Medium", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        DateTimeFormatter timeFmt = DateTimeFormatter.ofPattern("HH:mm");
+        String timeStr = getSuKienModel().getPostedAt().format(timeFmt);
+        jLabel2.setText(timeStr);
+
+        javax.swing.GroupLayout roundedGradientPanel1Layout = new javax.swing.GroupLayout(roundedGradientPanel1);
+        roundedGradientPanel1.setLayout(roundedGradientPanel1Layout);
+        roundedGradientPanel1Layout.setHorizontalGroup(
+            roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedGradientPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(415, 415, 415))
+                .addGroup(roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(roundedGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(roundedGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1)
+                    .addGroup(roundedGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(heartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(roundedBorderButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        textAreaLayout.setVerticalGroup(
-            textAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(textAreaLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 72, Short.MAX_VALUE))
-        );
-
-        contentPanel.add(textArea, java.awt.BorderLayout.CENTER);
-
-        galleryView1.setBorder(null);
-        contentPanel.add(galleryView1, java.awt.BorderLayout.LINE_START);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.4;
-        viewport.add(contentPanel, gridBagConstraints);
-
-        metricsPanel.setPreferredSize(new java.awt.Dimension(300, 365));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eye.png"))); // NOI18N
-        jButton1.setText(String.valueOf(getSuKienModel().getViews()));
-
-        javax.swing.GroupLayout metricsPanelLayout = new javax.swing.GroupLayout(metricsPanel);
-        metricsPanel.setLayout(metricsPanelLayout);
-        metricsPanelLayout.setHorizontalGroup(
-            metricsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, metricsPanelLayout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
-        metricsPanelLayout.setVerticalGroup(
-            metricsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, metricsPanelLayout.createSequentialGroup()
-                .addContainerGap(260, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+        roundedGradientPanel1Layout.setVerticalGroup(
+            roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedGradientPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(heartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roundedBorderButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.6;
-        viewport.add(metricsPanel, gridBagConstraints);
+        upperPanel.add(roundedGradientPanel1, gridBagConstraints);
 
-        scrollPaneWin111.setViewportView(viewport);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.7;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        add(upperPanel, gridBagConstraints);
 
-        add(scrollPaneWin111, java.awt.BorderLayout.CENTER);
+        gallery1.setBorder(null);
+        gallery1.setPreferredSize(new java.awt.Dimension(410, 300));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.6;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
+        add(gallery1, gridBagConstraints);
+
+        roundedPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        roundedPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 0, 0, 0));
+        roundedPanel1.setRoundBottomLeft(16);
+        roundedPanel1.setRoundBottomRight(16);
+        roundedPanel1.setRoundTopLeft(16);
+        roundedPanel1.setRoundTopRight(16);
+        roundedPanel1.setLayout(new java.awt.BorderLayout());
+
+        title.setEditable(false);
+        title.setColumns(20);
+        title.setFont(new java.awt.Font("OCR A Std", 1, 22)); // NOI18N
+        title.setForeground(new java.awt.Color(78, 230, 235));
+        title.setLineWrap(true);
+        title.setRows(2);
+        title.setText(" . " + getSuKienModel().getTitle());
+        title.setWrapStyleWord(true);
+        title.setOpaque(false);
+        roundedPanel1.add(title, java.awt.BorderLayout.PAGE_START);
+
+        content.setEditable(false);
+        content.setColumns(20);
+        content.setFont(new java.awt.Font("Circular Std Book", 0, 14)); // NOI18N
+        content.setLineWrap(true);
+        content.setRows(5);
+        content.setText(getSuKienModel().getContent());
+        content.setWrapStyleWord(true);
+        content.setOpaque(false);
+        roundedPanel1.add(content, java.awt.BorderLayout.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
+        add(roundedPanel1, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(5, 5, 5));
+        jLabel1.setText("Ảnh sự kiện");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 25, 10, 0);
+        add(jLabel1, gridBagConstraints);
+
+        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 25);
+        add(jSeparator2, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 0.8;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 15);
+        add(searcnPane1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void roundedBorderButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedBorderButton2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roundedBorderButton2MouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.components.RoundedGradientPanel contentPanel;
-    private com.uiteco.components.RoundedImagePanel coverPhotoPanel;
-    private com.uiteco.ofSuKienPanel.detailed.GalleryView galleryView1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextArea content;
+    private com.uiteco.ofSuKienPanel.detailed.Gallery gallery1;
+    private com.uiteco.components.RoundedPanel heartButton;
+    private com.uiteco.components.RoundedImagePanel heartImage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private com.uiteco.components.RoundedGradientPanel metricsPanel;
-    private com.raven.scroll.ScrollPaneWin11 scrollPaneWin111;
-    private com.uiteco.components.RoundedGradientPanel textArea;
-    private com.uiteco.components.GradientPanel viewport;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private com.uiteco.components.RoundedBorderButton roundedBorderButton2;
+    private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
+    private com.uiteco.components.RoundedImagePanel roundedImagePanel1;
+    private com.uiteco.components.RoundedPanel roundedPanel1;
+    private com.uiteco.ofSuKienPanel.SearcnPane searcnPane1;
+    private javax.swing.JTextArea title;
+    private javax.swing.JPanel upperPanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,6 +16,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Component;
 import com.raven.scroll.ScrollPaneWin11;
+import com.uiteco.main.App;
+import com.uiteco.ofSuKienPanel.detailed.NullSuKienModelException;
+import com.uiteco.swing.ContentPanel;
+import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
+import java.awt.Cursor;
 
 /**
  *
@@ -35,7 +40,7 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
         setVerticalGap(DEFAULT_VERTICAL_GAP);
         initComponents();
         _additionalInit();
-        
+
         javax.swing.SwingUtilities.invokeLater(() -> {
             _populateSuKienList();
             _populatePaginationBar();
@@ -91,16 +96,41 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
     }
 
     private void _populateSuKienList() {
-        for (SuKienModel eventModel : suKienListModel.getSuKienList()) {
-            SuKienView eventView = new SuKienView(eventModel);
-            add(eventView);
+        for (SuKienModel model : suKienListModel.getSuKienList()) {
+            SuKienView view = new SuKienView(model);
+            view.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent evt) {
+                    view.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                    ContentPanel appContentPanel = App.getMainFrame().getContentPanel();
+                    SuKienDetailScrollPane sd = (SuKienDetailScrollPane) (appContentPanel.getComponent(SuKienDetailScrollPane.INSTANCE_NAME));
+                    try {
+                        sd.loadDetailOfSuKien(model);
+                        appContentPanel.showComponentAndTrimHistory(SuKienDetailScrollPane.INSTANCE_NAME);
+                    } catch (NullSuKienModelException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent evt) {
+                    view.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent evt) {
+                    view.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }
+            });
+
+            add(view);
             add(javax.swing.Box.createRigidArea(new java.awt.Dimension(0, getVerticalGap())));
         }
     }
 
     private void _populatePaginationBar() {
         int radius = 7;
-        
+
         RoundedPanel paginationBar = RoundedPanel.getRoundedPanel(radius, new FlowLayout());
         paginationBar.setBackground(new Color(242, 243, 244)); // Navy blue
 
@@ -123,7 +153,7 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
             });
             paginationBar.add(box);
         };
-        
+
         if (currentPage > 1) {
             RoundedPanel box = RoundedPanel.getRoundedPanel(radius, new FlowLayout(FlowLayout.CENTER));
             box.setPreferredSize((new Dimension(25, 25)));
@@ -132,6 +162,16 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     suKienListModel.switchPreviousPage();
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    box.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    box.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 }
             });
             paginationBar.add(box);
@@ -156,6 +196,17 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
                 public void mouseClicked(MouseEvent e) {
                     suKienListModel.switchPage(pageNum);
                 }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    numberBox.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    numberBox.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }
+
             });
 
             paginationBar.add(numberBox);
@@ -170,6 +221,16 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
                 public void mouseClicked(MouseEvent e) {
                     // This method will be called when the panel is clicked
                     suKienListModel.switchNextPage();
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    box.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    box.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 }
             });
             paginationBar.add(box);
