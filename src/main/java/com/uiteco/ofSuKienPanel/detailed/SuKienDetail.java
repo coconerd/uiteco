@@ -44,7 +44,6 @@ public class SuKienDetail extends javax.swing.JPanel {
         upperPanel = new javax.swing.JPanel();
         roundedImagePanel1 = new com.uiteco.components.RoundedImagePanel();
         roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
-        tag = new javax.swing.JLabel();
         postedBy = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         heartButton = new com.uiteco.components.RoundedPanel();
@@ -52,6 +51,11 @@ public class SuKienDetail extends javax.swing.JPanel {
         postedAt = new javax.swing.JLabel();
         roundedBorderButton2 = new com.uiteco.components.RoundedBorderButton();
         postedAtTime = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        tag = new javax.swing.JLabel();
+        tag1 = new javax.swing.JLabel();
+        tag2 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         gallery1 = new com.uiteco.ofSuKienPanel.detailed.Gallery(getSuKienModel());
         roundedPanel1 = new com.uiteco.components.RoundedPanel();
         title = new javax.swing.JTextArea();
@@ -73,11 +77,11 @@ public class SuKienDetail extends javax.swing.JPanel {
         roundedImagePanel1.setLayout(roundedImagePanel1Layout);
         roundedImagePanel1Layout.setHorizontalGroup(
             roundedImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 435, Short.MAX_VALUE)
+            .addGap(0, 744, Short.MAX_VALUE)
         );
         roundedImagePanel1Layout.setVerticalGroup(
             roundedImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+            .addGap(0, 365, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -91,18 +95,12 @@ public class SuKienDetail extends javax.swing.JPanel {
         roundedGradientPanel1.setFade(false);
         roundedGradientPanel1.setPreferredSize(new java.awt.Dimension(310, 329));
 
-        tag.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
-        tag.setForeground(new java.awt.Color(102, 103, 107));
-        tag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-tag-24.png"))); // NOI18N
-        tag.setText("Blockchain");
-        tag.setFocusable(false);
-        tag.setIconTextGap(10);
-
         postedBy.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
         postedBy.setForeground(new java.awt.Color(101, 103, 107));
         postedBy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-person-24.png"))); // NOI18N
         postedBy.setText(getSuKienModel().getPostedBy());
         postedBy.setIconTextGap(10);
+        postedBy.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jSeparator1.setBackground(new java.awt.Color(0, 102, 51));
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
@@ -130,7 +128,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         heartImage.setLayout(heartImageLayout);
         heartImageLayout.setHorizontalGroup(
             heartImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         heartImageLayout.setVerticalGroup(
             heartImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,6 +153,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         roundedBorderButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-eye-28.png"))); // NOI18N
         roundedBorderButton2.setText(String.valueOf(getSuKienModel().getViews()));
         roundedBorderButton2.setToolTipText("Lượt xem");
+        roundedBorderButton2.setFont(new java.awt.Font("Circular Std Medium", 0, 14)); // NOI18N
         roundedBorderButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 roundedBorderButton2MouseEntered(evt);
@@ -168,6 +167,62 @@ public class SuKienDetail extends javax.swing.JPanel {
         String timeStr = getSuKienModel().getPostedAt().format(timeFmt);
         postedAtTime.setText(timeStr);
 
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        tag.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
+        tag.setForeground(new java.awt.Color(228, 230, 235));
+        tag.setText("Blockchain");
+        tag.setFocusable(false);
+        tag.setIconTextGap(10);
+        tag.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jPanel1.add(tag, gridBagConstraints);
+
+        tag1.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
+        tag1.setForeground(new java.awt.Color(228, 230, 235));
+        tag1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        tag1.setText("Blockchain");
+        tag1.setFocusTraversalPolicyProvider(true);
+        tag1.setFocusable(false);
+        tag1.setIconTextGap(40);
+        tag1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jPanel1.add(tag1, gridBagConstraints);
+
+        tag2.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
+        tag2.setForeground(new java.awt.Color(228, 230, 235));
+        tag2.setText("Blockchain");
+        tag2.setFocusable(false);
+        tag2.setIconTextGap(10);
+        tag2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        jPanel1.add(tag2, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-tag-24.png"))); // NOI18N
+        jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 10);
+        jPanel1.add(jLabel2, gridBagConstraints);
+
         javax.swing.GroupLayout roundedGradientPanel1Layout = new javax.swing.GroupLayout(roundedGradientPanel1);
         roundedGradientPanel1.setLayout(roundedGradientPanel1Layout);
         roundedGradientPanel1Layout.setHorizontalGroup(
@@ -175,38 +230,36 @@ public class SuKienDetail extends javax.swing.JPanel {
             .addGroup(roundedGradientPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(roundedGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(tag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(roundedGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(postedAt, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(postedAtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1)
                     .addGroup(roundedGradientPanel1Layout.createSequentialGroup()
                         .addComponent(heartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(roundedBorderButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(postedBy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(postedBy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(roundedGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(postedAt, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(postedAtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         roundedGradientPanel1Layout.setVerticalGroup(
             roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedGradientPanel1Layout.createSequentialGroup()
+            .addGroup(roundedGradientPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(heartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(roundedBorderButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(18, 18, 18)
                 .addComponent(postedBy)
                 .addGap(18, 18, 18)
                 .addGroup(roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(postedAt)
                     .addComponent(postedAtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(tag, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -326,6 +379,8 @@ public class SuKienDetail extends javax.swing.JPanel {
     private com.uiteco.components.RoundedPanel heartButton;
     private com.uiteco.components.RoundedImagePanel heartImage;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel postedAt;
@@ -337,6 +392,8 @@ public class SuKienDetail extends javax.swing.JPanel {
     private com.uiteco.components.RoundedPanel roundedPanel1;
     private com.uiteco.ofSuKienPanel.search.SearchBar searcnBar;
     private javax.swing.JLabel tag;
+    private javax.swing.JLabel tag1;
+    private javax.swing.JLabel tag2;
     private javax.swing.JTextArea title;
     private javax.swing.JPanel upperPanel;
     // End of variables declaration//GEN-END:variables
