@@ -151,6 +151,7 @@ public class PostPanel extends javax.swing.JPanel {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e){
                 int mabaidang = getPostID();
+                System.out.println("Ban vua moi click vao bai dang co MABDFORUM: "+mabaidang);
                 com.forum.PostListPanel postlist = (com.forum.PostListPanel)getParent();
                 javax.swing.JPanel panel = (javax.swing.JPanel)postlist.getParent();
                 javax.swing.JViewport viewport = (javax.swing.JViewport)panel.getParent();

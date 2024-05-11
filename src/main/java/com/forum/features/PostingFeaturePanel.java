@@ -28,128 +28,128 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        titleInCentralLabel = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
+        contentLabel = new javax.swing.JLabel();
+        jScrollPaneOfContent = new javax.swing.JScrollPane();
+        jTextAreaOfContent = new javax.swing.JTextArea();
+        postButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        jScrollPaneOfTitle = new javax.swing.JScrollPane();
+        jTextAreaOfTitle = new javax.swing.JTextArea();
+        uitlogoLabel = new javax.swing.JLabel();
+        ecoForumLabel = new javax.swing.JLabel();
+        forumIconLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(247, 245, 231));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(30, 30, 14));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ĐĂNG BÀI");
+        titleInCentralLabel.setFont(new java.awt.Font("Segoe UI Black", 0, 30)); // NOI18N
+        titleInCentralLabel.setForeground(new java.awt.Color(30, 30, 14));
+        titleInCentralLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleInCentralLabel.setText("ĐĂNG BÀI");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Title");
+        titleLabel.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(0, 0, 0));
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        titleLabel.setText("Title");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(5, 13, 13));
-        jLabel3.setText("Content");
+        contentLabel.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        contentLabel.setForeground(new java.awt.Color(5, 13, 13));
+        contentLabel.setText("Content");
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPaneOfContent.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jTextArea2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea2.setColumns(20);
-        jTextArea2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextArea2.setLineWrap(true);
-        jTextArea2.setRows(5);
-        jTextArea2.setText("Nhập nội dung của bài đăng tại đây");
-        jTextArea2.setToolTipText("Nhập nội dung bài đăng");
-        jTextArea2.setWrapStyleWord(true);
-        jTextArea2.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTextAreaOfContent.setBackground(new java.awt.Color(255, 255, 255));
+        jTextAreaOfContent.setColumns(20);
+        jTextAreaOfContent.setForeground(new java.awt.Color(0, 0, 0));
+        jTextAreaOfContent.setLineWrap(true);
+        jTextAreaOfContent.setRows(5);
+        jTextAreaOfContent.setText("Nhập nội dung của bài đăng tại đây");
+        jTextAreaOfContent.setToolTipText("Nhập nội dung bài đăng");
+        jTextAreaOfContent.setWrapStyleWord(true);
+        jTextAreaOfContent.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextArea2FocusGained(evt);
+                jTextAreaOfContentFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextArea2FocusLost(evt);
+                jTextAreaOfContentFocusLost(evt);
             }
         });
-        jTextArea2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTextAreaOfContent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextArea2MouseClicked(evt);
+                jTextAreaOfContentMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTextArea2);
+        jScrollPaneOfContent.setViewportView(jTextAreaOfContent);
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Post");
-        jButton1.setFocusable(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        postButton.setBackground(new java.awt.Color(204, 204, 204));
+        postButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        postButton.setForeground(new java.awt.Color(0, 0, 0));
+        postButton.setText("Post");
+        postButton.setFocusable(false);
+        postButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                postButtonMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        postButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                postButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Cancel");
-        jButton2.setFocusable(false);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancelButton.setBackground(new java.awt.Color(204, 204, 204));
+        cancelButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cancelButton.setForeground(new java.awt.Color(0, 0, 0));
+        cancelButton.setText("Cancel");
+        cancelButton.setFocusable(false);
+        cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                cancelButtonMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cancelButtonActionPerformed(evt);
             }
         });
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPaneOfTitle.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPaneOfTitle.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPaneOfTitle.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setColumns(20);
-        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Nhập tiêu đề của bài đăng tại đây");
-        jTextArea1.setToolTipText("Nhập tiêu đề bài đăng");
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTextAreaOfTitle.setBackground(new java.awt.Color(255, 255, 255));
+        jTextAreaOfTitle.setColumns(20);
+        jTextAreaOfTitle.setForeground(new java.awt.Color(0, 0, 0));
+        jTextAreaOfTitle.setLineWrap(true);
+        jTextAreaOfTitle.setRows(5);
+        jTextAreaOfTitle.setText("Nhập tiêu đề của bài đăng tại đây");
+        jTextAreaOfTitle.setToolTipText("Nhập tiêu đề bài đăng");
+        jTextAreaOfTitle.setWrapStyleWord(true);
+        jTextAreaOfTitle.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextArea1FocusGained(evt);
+                jTextAreaOfTitleFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextArea1FocusLost(evt);
+                jTextAreaOfTitleFocusLost(evt);
             }
         });
-        jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTextAreaOfTitle.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextArea1MouseClicked(evt);
+                jTextAreaOfTitleMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTextArea1);
+        jScrollPaneOfTitle.setViewportView(jTextAreaOfTitle);
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uit(3).png"))); // NOI18N
+        uitlogoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        uitlogoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uit(3).png"))); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(80, 80, 181));
-        jLabel5.setText("ECO-FORUM");
+        ecoForumLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ecoForumLabel.setForeground(new java.awt.Color(80, 80, 181));
+        ecoForumLabel.setText("ECO-FORUM");
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/postingforum (1).png"))); // NOI18N
+        forumIconLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        forumIconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/postingforum (1).png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -160,33 +160,33 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jScrollPane2))
+                            .addComponent(jScrollPaneOfTitle)
+                            .addComponent(jScrollPaneOfContent))
                         .addGap(51, 51, 51))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(cancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(postButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(uitlogoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(182, 182, 182)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                        .addComponent(titleInCentralLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                         .addGap(150, 150, 150)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(ecoForumLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(forumIconLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -195,82 +195,82 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel5)
+                        .addComponent(ecoForumLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(forumIconLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(uitlogoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(titleInCentralLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(32, 32, 32)))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addComponent(jScrollPaneOfTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                .addComponent(jScrollPaneOfContent, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(cancelButton)
+                    .addComponent(postButton))
                 .addGap(16, 16, 16))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void postButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_postButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void jTextArea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea1MouseClicked
-        if(jTextArea1.getText().equals("Nhập tiêu đề của bài đăng tại đây")){
-            jTextArea1.setText("");
+    private void jTextAreaOfTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextAreaOfTitleMouseClicked
+        if(jTextAreaOfTitle.getText().equals("Nhập tiêu đề của bài đăng tại đây")){
+            jTextAreaOfTitle.setText("");
         }
-    }//GEN-LAST:event_jTextArea1MouseClicked
+    }//GEN-LAST:event_jTextAreaOfTitleMouseClicked
 
-    private void jTextArea1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextArea1FocusLost
-        if(jTextArea1.getText().isEmpty()){
-            jTextArea1.setText("Nhập tiêu đề của bài đăng tại đây");
+    private void jTextAreaOfTitleFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextAreaOfTitleFocusLost
+        if(jTextAreaOfTitle.getText().isEmpty()){
+            jTextAreaOfTitle.setText("Nhập tiêu đề của bài đăng tại đây");
         }
-    }//GEN-LAST:event_jTextArea1FocusLost
+    }//GEN-LAST:event_jTextAreaOfTitleFocusLost
 
-    private void jTextArea1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextArea1FocusGained
-        jTextArea1.getCaret().setVisible(true);
-    }//GEN-LAST:event_jTextArea1FocusGained
+    private void jTextAreaOfTitleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextAreaOfTitleFocusGained
+        jTextAreaOfTitle.getCaret().setVisible(true);
+    }//GEN-LAST:event_jTextAreaOfTitleFocusGained
 
-    private void jTextArea2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea2MouseClicked
-        if(jTextArea2.getText().equals("Nhập nội dung của bài đăng tại đây")){
-            jTextArea2.setText("");
+    private void jTextAreaOfContentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextAreaOfContentMouseClicked
+        if(jTextAreaOfContent.getText().equals("Nhập nội dung của bài đăng tại đây")){
+            jTextAreaOfContent.setText("");
         }
-    }//GEN-LAST:event_jTextArea2MouseClicked
+    }//GEN-LAST:event_jTextAreaOfContentMouseClicked
 
-    private void jTextArea2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextArea2FocusGained
-        jTextArea2.getCaret().setVisible(true);
-    }//GEN-LAST:event_jTextArea2FocusGained
+    private void jTextAreaOfContentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextAreaOfContentFocusGained
+        jTextAreaOfContent.getCaret().setVisible(true);
+    }//GEN-LAST:event_jTextAreaOfContentFocusGained
 
-    private void jTextArea2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextArea2FocusLost
-        if(jTextArea2.getText().isEmpty()){
-            jTextArea2.setText("Nhập nội dung của bài đăng tại đây");
+    private void jTextAreaOfContentFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextAreaOfContentFocusLost
+        if(jTextAreaOfContent.getText().isEmpty()){
+            jTextAreaOfContent.setText("Nhập nội dung của bài đăng tại đây");
         }
-    }//GEN-LAST:event_jTextArea2FocusLost
+    }//GEN-LAST:event_jTextAreaOfContentFocusLost
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
         com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
         panel1.removeAll();
         panel1._initComponents();
 //        this.revalidate();
 //        this.repaint();
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_cancelButtonMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void postButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postButtonMouseClicked
         /*lưu thông tin vào csdl*/
-        String content = jTextArea2.getText();
-        String title = jTextArea1.getText();
+        String content = jTextAreaOfContent.getText();
+        String title = jTextAreaOfTitle.getText();
         int viewNumber = 0;
         int replyNumber = 0;
         String username = com.uiteco.main.App.getSession().getUsername();
@@ -283,20 +283,20 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
         panel1.getPostListPanel2().loadPostForumFromDatabaseIntoListPost();
 //        this.revalidate();
 //        this.repaint();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_postButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel contentLabel;
+    private javax.swing.JLabel ecoForumLabel;
+    private javax.swing.JLabel forumIconLabel;
+    private javax.swing.JScrollPane jScrollPaneOfContent;
+    private javax.swing.JScrollPane jScrollPaneOfTitle;
+    private javax.swing.JTextArea jTextAreaOfContent;
+    private javax.swing.JTextArea jTextAreaOfTitle;
+    private javax.swing.JButton postButton;
+    private javax.swing.JLabel titleInCentralLabel;
+    private javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel uitlogoLabel;
     // End of variables declaration//GEN-END:variables
 }

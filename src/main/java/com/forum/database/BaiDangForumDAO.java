@@ -129,44 +129,51 @@ public class BaiDangForumDAO {
 
    
 
-    public static ArrayList<PostDetailView> getPostFromDatabaseFollowingPostID(int mabaidang) {
-        ArrayList<PostDetailView> postList = new ArrayList<>();
+    public static ArrayList<PostDetailView> getCommentsFromDatabaseBaseOnPostID(int mabaidang) {
+        ArrayList<PostDetailView> postDetailViewList = new ArrayList<>();
         try{
             Connection conn = ConnectionManager.getConnection();
-            String strSQL = "SELECT NGUOIDANG, THOIDIEMDANG, TIEUDE, NOIDUNG FROM BAIDANGFORUM WHERE MABDFORUM = ?";
-            PreparedStatement stat = conn.prepareStatement(strSQL);
-            stat.setInt(1, mabaidang);
-            stat.executeQuery();
-            conn.close();
-            System.out.println("Lay thong tin bai dang forum dua vao ma bai dang thanh cong!");
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        return postList;
-    }
-    
-    public static PostDetailView loadDataIntoPostDetailView(int mabaidang) {
-        PostDetailView postDetailView = new PostDetailView(mabaidang);
-        try{
-            Connection conn = ConnectionManager.getConnection();
-            String strSQL = "SELECT T.USERNAME, THOIDIEMDANG, TIEUDE, NOIDUNG FROM BAIDANGFORUM B JOIN TAIKHOAN T ON B.NGUOIDANG = T.MATK WHERE B.MABDFORUM = ?";
-            
+            String strSQL = "SELECT T.USERNAME, B.THOIDIEMBL, B.NOIDUNG FROM BINHLUAN B JOIN TAIKHOAN T ON B.NGUOIBL = T.MATK WHERE MABDFORUM = ?";
             PreparedStatement stat = conn.prepareStatement(strSQL);
             stat.setInt(1, mabaidang);
             ResultSet result = stat.executeQuery();
             while(result.next()){
-                postDetailView.setPostingPerson(result.getString(1));
-                postDetailView.setPostingTimeStamp(result.getTimestamp(2).toLocalDateTime());
-                postDetailView.setTitle(result.getString(3));
-                postDetailView.setContent(result.getString(4));
+                String replyPerson = result.getString(1);
+                Timestamp replyTimeStamp = result.getTimestamp(2);
+                String content = result.getString(3);
+                PostDetailView postDetailView = new PostDetailView(replyPerson, replyTimeStamp.toLocalDateTime(), content);
+                postDetailViewList.add(postDetailView);
             }
             conn.close();
-            System.out.println("Lay thong tin bai dang forum dua vao ma bai dang thanh cong!");
+            System.out.println("Get comments of postID "+mabaidang+" from database successfully!");
         }catch(SQLException e){
             e.printStackTrace();
         }
-        return postDetailView;
+        return postDetailViewList;
     }
+    
+//    public static PostDetailView loadDataIntoPostDetailView(int mabaidang) {
+//        PostDetailView postDetailView = new PostDetailView(mabaidang);
+//        try{
+//            Connection conn = ConnectionManager.getConnection();
+//            String strSQL = "SELECT T.USERNAME, THOIDIEMDANG, TIEUDE, NOIDUNG FROM BAIDANGFORUM B JOIN TAIKHOAN T ON B.NGUOIDANG = T.MATK WHERE B.MABDFORUM = ?";
+//            
+//            PreparedStatement stat = conn.prepareStatement(strSQL);
+//            stat.setInt(1, mabaidang);
+//            ResultSet result = stat.executeQuery();
+//            while(result.next()){
+//                postDetailView.setPostingPerson(result.getString(1));
+//                postDetailView.setPostingTimeStamp(result.getTimestamp(2).toLocalDateTime());
+//                postDetailView.setTitle(result.getString(3));
+//                postDetailView.setContent(result.getString(4));
+//            }
+//            conn.close();
+//            System.out.println("Lay thong tin bai dang forum dua vao ma bai dang thanh cong!");
+//        }catch(SQLException e){
+//            e.printStackTrace();
+//        }
+//        return postDetailView;
+//    }
 
         public static ArrayList<Object> getDataIntoPostDetailView(int mabaidang) {
             ArrayList<Object> postDetailView = new ArrayList<>();
@@ -184,7 +191,7 @@ public class BaiDangForumDAO {
                 postDetailView.add(result.getString(4));
             }
             conn.close();
-            System.out.println("Lay thong tin vao PostDetailView.java thanh cong!");
+            System.out.println("Lay thong tin tu csdl vao PostDetailView.java thanh cong!");
         }catch(SQLException e){
             e.printStackTrace();
         }
