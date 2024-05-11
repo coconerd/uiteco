@@ -8,12 +8,12 @@ package com.uiteco.OfCuocThiPanel.firstPage;
  *
  * @author Phan Thi Thuy Hien
  */
-public class testing2 extends javax.swing.JPanel {
+public class testing extends javax.swing.JPanel {
 
     /**
-     * Creates new form testing2
+     * Creates new form testing
      */
-    public testing2() {
+    public testing() {
         initComponents();
     }
 
@@ -26,28 +26,19 @@ public class testing2 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        youtubePlay1 = new com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay();
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(youtubePlay1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(742, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(youtubePlay1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay youtubePlay1;
     // End of variables declaration//GEN-END:variables
 }

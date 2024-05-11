@@ -4,7 +4,6 @@
  */
 package com.uiteco.main;
 
-import com.uiteco.auth.AuthView;
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
 import java.awt.Component;
@@ -44,6 +43,7 @@ public class MainFrame extends javax.swing.JFrame {
         _initContentPanel();
         _initRightPanel();
         _additionalInit();
+       
     }
     
     /**

@@ -1,12 +1,26 @@
 package com.uiteco.OfCuocThiPanel.firstPage;
 
+import java.awt.Image;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import javax.swing.Icon;
 
 public class Model_OnePost extends javax.swing.JPanel {
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public LocalDate getStartDate() {
         return startDate;
@@ -36,11 +50,11 @@ public class Model_OnePost extends javax.swing.JPanel {
         this.title = title;
     }
 
-    public Icon getImage() {
+    public Image getImage() {
         return image;
     }
 
-    public void setImage(Icon image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 
@@ -72,7 +86,8 @@ public class Model_OnePost extends javax.swing.JPanel {
     }
     
     private String title;
-    private Icon image;
+    private String type;
+    private Image image;
     private LocalDate startDate;
     private LocalDate endDate;
     private String content;
@@ -83,14 +98,16 @@ public class Model_OnePost extends javax.swing.JPanel {
     
     public Model_OnePost
         (String title, 
+         String type,
          String organizer, 
-         Icon image, 
+         Image image, 
          LocalDate startDate, 
          LocalDate endDate, 
          String content, 
          List<String> tags){
             
             this.title = title;
+            this.type = type;
             this.content = content;
             this.image = image;
             this.startDate = startDate;
@@ -111,6 +128,20 @@ public class Model_OnePost extends javax.swing.JPanel {
     public int getNumberOfTags(){
         return tags.size();
     }
+    
+//    public String getStatus() {
+//        int daysRemaining = calculateToDueDays(endDate);
+//        
+//        if (daysRemaining > 0) {
+//            return StatusType.UPCOMING.getStatus() + daysRemaining + " ngày";
+//        } else if (daysRemaining == 0) {
+//            return StatusType.ONGOING.getStatus();
+//        } else if (startDate.isAfter(LocalDate.now())) {
+//            return StatusType.FINISHED.getStatus();
+//        }
+//        else return null;
+//    }
+//    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {

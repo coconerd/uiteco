@@ -3,12 +3,14 @@ package com.uiteco.contentPanels;
 // Import the necessary package
 import com.uiteco.OfCuocThiPanel.firstPage.TagsAndSort;
 import java.awt.Color;
+import com.uiteco.OfCuocThiPanel.firstPage.Posts;
 
 public class CuocThiPanel extends javax.swing.JPanel {
     public CuocThiPanel() {
         //initComponents();
         _init();
-        _initLayoutsManagement();
+        _initTagAndSorts();
+        _initPostsShow();
     }
 
     /**
@@ -50,9 +52,14 @@ public class CuocThiPanel extends javax.swing.JPanel {
         );
     }
     
-    private void _initLayoutsManagement(){
+    private void _initTagAndSorts(){
         this.add(new TagsAndSort());
     }
+    
+    private void _initPostsShow(){
+        this.add(new Posts());
+    }
+    
     /**
      * @param args the command line arguments
      */

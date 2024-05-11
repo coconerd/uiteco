@@ -3,7 +3,7 @@ package com.uiteco.OfCuocThiPanel.firstPage;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.uiteco.OfCuocThiPanel.Components.comboBoxMultiSelection.ComboBoxMultiSelection;
 import com.uiteco.components.RoundedBorder;
-import com.uiteco.OfCuocThiPanel.data.DatabaseConnection;
+import com.uiteco.OfCuocThiPanel.data.RetrieveData;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -23,7 +23,7 @@ public final class TagsAndSort extends JPanel{
     public void initTagAndSort(){
         
         setLayout(new BorderLayout());
-        setBounds(30, 30, 3000, 60);
+        setBounds(30, 30, 1170, 60);
         setBackground(Color.WHITE);
         
         RoundedBorder roundBor = new RoundedBorder(new Color(242, 243, 244), Color.WHITE, Color.WHITE, 15, 0); 
@@ -84,7 +84,7 @@ public final class TagsAndSort extends JPanel{
         //comboBox --> replace comboBox with multi selection JComboBox
         FlatMacLightLaf.setup();
         ComboBoxMultiSelection tagComboBox = new ComboBoxMultiSelection();
-        DatabaseConnection dbc = new DatabaseConnection();
+        RetrieveData dbc = new RetrieveData();
         String[] tags = dbc.getAllTags();
         tagComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(tags));
         
