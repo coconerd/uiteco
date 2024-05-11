@@ -171,7 +171,7 @@ public class SuKienDAO {
             java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
             String note = null;
             String clubID = null;
-            ImageIcon thumbnail = new ImageIcon("D:\\DoAn\\database\\mock\\3.jpg"); // Mock image
+            ImageIcon thumbnail = new ImageIcon("D:\\DoAn\\database\\mock\\FeaturedImages\\3.jpg");
             int views = 1200;
             SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
