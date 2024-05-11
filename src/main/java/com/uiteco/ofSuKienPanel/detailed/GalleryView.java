@@ -2,21 +2,41 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.uiteco.OfCuocThiPanel.firstPage;
+package com.uiteco.ofSuKienPanel.detailed;
+
+import com.uiteco.components.GradientPanel;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 /**
  *
- * @author Phan Thi Thuy Hien
+ * @author nddmi
  */
-public class testing2 extends javax.swing.JPanel {
+public class GalleryView extends GradientPanel implements PropertyChangeListener {
 
+    private GalleryModel galleryModel;
+    
     /**
-     * Creates new form testing2
+     * Creates new form GalleryView
      */
-    public testing2() {
+    public GalleryView() {
+        setGalleryModel(new GalleryModel());
         initComponents();
     }
 
+    public GalleryModel getGalleryModel() {
+        return galleryModel;
+    }
+
+    public void setGalleryModel(GalleryModel galleryModel) {
+        this.galleryModel = galleryModel;
+    }
+    
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,28 +46,19 @@ public class testing2 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        youtubePlay1 = new com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay();
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(youtubePlay1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(742, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(youtubePlay1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay youtubePlay1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,4 +1,4 @@
-package com.uiteco.OfCuocThiPanel.connectDataBase;
+package com.uiteco.OfCuocThiPanel.data;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -31,7 +31,29 @@ public class DatabaseConnection {
             return new String[0];
         }
     }
-
+    
+    public String[] getTagsOfPost(){
+        try{
+            
+            conn = getConnection(); //get connection to database
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+               ResultSet.CONCUR_READ_ONLY);
+            query = 
+                    "SELECT TAG, MABD FROM TAGS_BAIDANG GROUP BY MABD";
+            rset = stmt.executeQuery(query); 
+        
+            List<Object> tags = new ArrayList<>(); //contains string values obtained from a database
+            while (rset.next()) {
+                tags.add(rset.getString("TAG")); 
+            }
+            return tags.toArray(String[]::new); //String[]::new is a method reference to the constructor of the String[] array, 
+                                                //which takes no arguments and returns a new String array
+            
+        }catch(SQLException e){
+            return new String[0];
+        }
+    }
+    
     Connection conn;
     Statement stmt;
     ResultSet rset;
