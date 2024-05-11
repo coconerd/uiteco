@@ -5,8 +5,10 @@
 package com.uiteco.ofSuKienPanel.detailed;
 
 import com.uiteco.ofSuKienPanel.SuKienModel;
+import java.awt.Color;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.border.LineBorder;
 
 
 /**
@@ -71,11 +73,11 @@ public class SuKienDetail extends javax.swing.JPanel {
         roundedImagePanel1.setLayout(roundedImagePanel1Layout);
         roundedImagePanel1Layout.setHorizontalGroup(
             roundedImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 801, Short.MAX_VALUE)
+            .addGap(0, 743, Short.MAX_VALUE)
         );
         roundedImagePanel1Layout.setVerticalGroup(
             roundedImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
+            .addGap(0, 472, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -91,14 +93,12 @@ public class SuKienDetail extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 103, 107));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-flag-30.png"))); // NOI18N
         jLabel4.setText("Blockchain");
         jLabel4.setFocusable(false);
         jLabel4.setIconTextGap(10);
 
         jLabel3.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(101, 103, 107));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-person-30.png"))); // NOI18N
         jLabel3.setText(getSuKienModel().getPostedBy());
         jLabel3.setIconTextGap(10);
 
@@ -110,6 +110,14 @@ public class SuKienDetail extends javax.swing.JPanel {
         heartButton.setRoundBottomRight(11);
         heartButton.setRoundTopLeft(11);
         heartButton.setRoundTopRight(11);
+        heartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                heartButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                heartButtonMouseExited(evt);
+            }
+        });
         heartButton.setLayout(new java.awt.GridLayout(1, 0));
 
         heartImage.setBackground(new java.awt.Color(255, 255, 255));
@@ -131,7 +139,6 @@ public class SuKienDetail extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(101, 103, 107));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-time-30.png"))); // NOI18N
         DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("dd.MM.yy");
         String dateStr = getSuKienModel().getPostedAt().format(dateFmt);
         jLabel5.setText(dateStr);
@@ -141,7 +148,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         roundedBorderButton2.setBackground(new java.awt.Color(58, 59, 60));
         roundedBorderButton2.setBorder(null);
         roundedBorderButton2.setForeground(new java.awt.Color(242, 243, 244));
-        roundedBorderButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-eye-30.png"))); // NOI18N
+        roundedBorderButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-eye-28.png"))); // NOI18N
         roundedBorderButton2.setText(String.valueOf(getSuKienModel().getViews()));
         roundedBorderButton2.setToolTipText("Lượt xem");
         roundedBorderButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,7 +175,7 @@ public class SuKienDetail extends javax.swing.JPanel {
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(roundedGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1)
@@ -195,13 +202,15 @@ public class SuKienDetail extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 1.0;
         upperPanel.add(roundedGradientPanel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -210,7 +219,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.7;
+        gridBagConstraints.weighty = 0.8;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
         add(upperPanel, gridBagConstraints);
 
@@ -221,7 +230,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.6;
-        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
         add(gallery1, gridBagConstraints);
 
@@ -259,7 +268,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.4;
-        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
         add(roundedPanel1, gridBagConstraints);
 
@@ -295,6 +304,16 @@ public class SuKienDetail extends javax.swing.JPanel {
     private void roundedBorderButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedBorderButton2MouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_roundedBorderButton2MouseEntered
+
+    private void heartButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_heartButtonMouseEntered
+        // TODO add your handling code here:
+        heartButton.setBorder(new LineBorder(new Color(5, 5, 5)));
+    }//GEN-LAST:event_heartButtonMouseEntered
+
+    private void heartButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_heartButtonMouseExited
+        // TODO add your handling code here:
+        heartButton.setBorder(null);
+    }//GEN-LAST:event_heartButtonMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -21,6 +21,7 @@ import com.uiteco.rightPanels.ForumRightPanel;
 import com.uiteco.rightPanels.TinNhanRightPanel;
 import com.uiteco.rightPanels.TaiKhoanRightPanel;
 import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
+import com.uiteco.ofSuKienPanel.search.SuKienSearchTabPane;
 import com.uiteco.swing.ContentPanel;
 import java.awt.Cursor;
 
@@ -693,6 +694,9 @@ public class MainFrame extends javax.swing.JFrame {
         
         SuKienDetailScrollPane sd = new SuKienDetailScrollPane();
         contentPanel.registerComponent(sd, SuKienDetailScrollPane.INSTANCE_NAME);
+        
+        SuKienSearchTabPane ss = new SuKienSearchTabPane();
+        contentPanel.registerComponent(ss, SuKienSearchTabPane.INSTANCE_NAME);
 
         CuocThiPanel ct = new CuocThiPanel();
         contentPanel.registerComponent(ct, "cuocThiPanel");

@@ -41,23 +41,13 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
         setSuKienListModel(new SuKienListModel());
         setVerticalGap(DEFAULT_VERTICAL_GAP);
         _additionalInit();
-
-        javax.swing.SwingUtilities.invokeLater(() -> {
-            _populateSuKienList();
-            _populatePaginationBar();
-        });
     }
 
-    public SuKienListView(SuKienListModel suKienListModel, int verticalGap) {
+    public SuKienListView(SuKienListModel suKienListModel, Integer verticalGap) {
         _init();
         setSuKienListModel(suKienListModel);
-        setVerticalGap(verticalGap);
+        setVerticalGap(verticalGap != null ? verticalGap : DEFAULT_VERTICAL_GAP);
         _additionalInit();
-
-        javax.swing.SwingUtilities.invokeLater(() -> {
-            _populateSuKienList();
-            _populatePaginationBar();
-        });
     }
 
     public SuKienListModel getSuKienListModel() {
@@ -98,6 +88,11 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
 
     private void _additionalInit() {
         this.suKienListModel.addPropertyChangeListener(this);
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            _populateSuKienList();
+            _populatePaginationBar();
+        });
+
     }
 
     private void _populateSuKienList() {

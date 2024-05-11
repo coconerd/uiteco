@@ -5,6 +5,7 @@
 package com.uiteco.ofSuKienPanel.search;
 
 import com.uiteco.components.RoundedPanel;
+import com.uiteco.main.App;
 import java.awt.Cursor;
 
 /**
@@ -25,6 +26,9 @@ public class SearchBar extends RoundedPanel {
 
     public void setPlaceHolder(String placeHolder) {
         this.placeHolder = placeHolder;
+        if (!textFocused) {
+            text.setText("Tìm kiếm " + placeHolder);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -32,7 +36,7 @@ public class SearchBar extends RoundedPanel {
     private void initComponents() {
 
         text = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
+        searchIcon = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(36, 37, 38));
         setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -80,13 +84,16 @@ public class SearchBar extends RoundedPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(176, 179, 184));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-search-28.png"))); // NOI18N
-        jLabel1.setToolTipText("");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        searchIcon.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        searchIcon.setForeground(new java.awt.Color(176, 179, 184));
+        searchIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-search-28.png"))); // NOI18N
+        searchIcon.setToolTipText("Nhấn để tìm kiếm");
+        searchIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchIconMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel1MouseExited(evt);
+                searchIconMouseExited(evt);
             }
         });
 
@@ -96,7 +103,7 @@ public class SearchBar extends RoundedPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(searchIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(text, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                 .addGap(16, 16, 16))
@@ -109,7 +116,7 @@ public class SearchBar extends RoundedPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(text))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(searchIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -132,27 +139,44 @@ public class SearchBar extends RoundedPanel {
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
         // TODO add your handling code here:
-        jLabel1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        searchIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_formMouseEntered
 
-    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+    private void searchIconMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchIconMouseExited
         // TODO add your handling code here:
-        jLabel1.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_jLabel1MouseExited
+        searchIcon.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_searchIconMouseExited
 
     private void textFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFocusGained
         // TODO add your handling code here:
         text.setText("");
+        textFocused = true;
     }//GEN-LAST:event_textFocusGained
 
     private void textFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFocusLost
         // TODO add your handling code here:
         text.setText("Tìm kiếm " + (placeHolder != null && placeHolder != "" ? placeHolder : ""));
+        textFocused = false;
     }//GEN-LAST:event_textFocusLost
+
+    private void searchIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchIconMouseClicked
+        // TODO add your handling code here:
+        String searchText = text.getText();
+        if (searchText == null || searchText.equals("") || !textFocused) {
+            return;
+        }
+        
+        com.uiteco.swing.ContentPanel contentPanel = App.getMainFrame().getContentPanel();
+        SuKienSearchTabPane ss = (SuKienSearchTabPane) contentPanel.getComponent(SuKienSearchTabPane.INSTANCE_NAME);
+        ss.loadSuKienSearchTabPane(text.getText());
+        contentPanel.showComponentAndTrimHistory(SuKienSearchTabPane.INSTANCE_NAME);
+    }//GEN-LAST:event_searchIconMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel searchIcon;
     private javax.swing.JFormattedTextField text;
     // End of variables declaration//GEN-END:variables
+    private boolean textFocused;
 }
+

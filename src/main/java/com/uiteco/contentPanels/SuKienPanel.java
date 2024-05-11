@@ -66,6 +66,8 @@ public class SuKienPanel extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
         containerPanel.add(slideShowView2, gridBagConstraints);
+
+        searchBar.setPlaceHolder("sự kiện");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
