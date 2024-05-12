@@ -25,6 +25,7 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.plaf.basic.ComboPopup;
 import net.miginfocom.swing.MigLayout;
 
+
 public class ComboBoxMultiSelection<E> extends JComboBox<E> {
 
     public List<Object> getSelectedItems() {
@@ -57,11 +58,11 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         }
     }
 
-    private final List<Object> selectedItems = new ArrayList<>();
-    private final ComboBoxMultiCellEditor comboBoxMultiCellEditor;
-    private Component comboList;
+    protected final List<Object> selectedItems = new ArrayList<>();
+    protected final ComboBoxMultiCellEditor comboBoxMultiCellEditor;
+    protected Component comboList;
 
-    private void removeItemObject(Object obj) {
+    protected void removeItemObject(Object obj) {
         selectedItems.remove(obj);
         comboBoxMultiCellEditor.removeItem(obj);
         if (comboList != null) {
@@ -69,7 +70,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         }
     }
 
-    private void addItemObject(Object obj) {
+    protected void addItemObject(Object obj) {
         selectedItems.add(obj);
         comboBoxMultiCellEditor.addItem(obj);
         if (comboList != null) {
@@ -101,14 +102,14 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
 
     }
 
-    private class ComboBoxMultiUI extends FlatComboBoxUI {
+    protected class ComboBoxMultiUI extends FlatComboBoxUI {
 
         @Override
-        protected ComboPopup createPopup() {
+        public ComboPopup createPopup() {
             return new MultiComboPopup(comboBox);
         }
 
-        private class MultiComboPopup extends FlatComboPopup {
+        public class MultiComboPopup extends FlatComboPopup {
 
             public MultiComboPopup(JComboBox combo) {
                 super(combo);
@@ -116,13 +117,13 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         }
 
         @Override
-        protected Dimension getDisplaySize() {
+        public Dimension getDisplaySize() {
             Dimension size = super.getDefaultSize();
             return new Dimension(0, size.height);
         }
     }
 
-    private class ComboBoxMultiCellRenderer extends BasicComboBoxRenderer {
+    protected class ComboBoxMultiCellRenderer extends BasicComboBoxRenderer {
 
         @Override
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -135,19 +136,19 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         }
     }
 
-    private class ComboBoxMultiCellEditor extends BasicComboBoxEditor {
+    protected class ComboBoxMultiCellEditor extends BasicComboBoxEditor {
 
         protected final JScrollPane scroll;
         protected final JPanel panel;
 
-        protected void addItem(Object obj) {
+        public void addItem(Object obj) {
             Item item = new Item(obj);
             panel.add(item);
             panel.repaint();
             panel.revalidate();
         }
 
-        protected void removeItem(Object obj) {
+        public void removeItem(Object obj) {
             int count = panel.getComponentCount();
             for (int i = 0; i < count; i++) {
                 Item item = (Item) panel.getComponent(i);
@@ -184,27 +185,27 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
 
     }
 
-    private class CheckBoxIcon extends FlatCheckBoxIcon {
+    protected class CheckBoxIcon extends FlatCheckBoxIcon {
 
-        private final boolean selected;
+        protected final boolean selected;
 
         public CheckBoxIcon(boolean selected) {
             this.selected = selected;
         }
 
         @Override
-        protected boolean isSelected(Component c) {
+        public boolean isSelected(Component c) {
             return selected;
         }
     }
 
-    private class Item extends JLabel {
+    protected class Item extends JLabel {
 
         public Object getItem() {
             return item;
         }
 
-        private final Object item;
+        protected final Object item;
 
         public Item(Object item) {
             super(item.toString());
@@ -212,7 +213,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
             init();
         }
 
-        private void init() {
+        public void init() {
             putClientProperty(FlatClientProperties.STYLE, ""
                     + "border:0,5,0,20;"
                     + "background:darken($ComboBox.background,10%)");
