@@ -310,7 +310,7 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         public void mouseClicked(java.awt.event.MouseEvent e) {
             System.out.println("Reply button in PostDetailAndReplyPanelView.java is clicked!");
             com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
-            panel1.showReplyFeaturePanel(postID);
+            panel1.showReplyFeaturePanel(getPostID());
         }
     });
 
@@ -393,24 +393,13 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         scrollPaneWin111.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPaneWin111.setViewportView(listIncludePostDetailAndReply);
 
+        java.awt.Insets insets = new java.awt.Insets(0, 0, 0, 13); // top, left, bottom, right
+        listIncludePostDetailAndReply.setBorder(javax.swing.BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
         listIncludePostDetailAndReply.setBackground(new java.awt.Color(238,230,230));
         listIncludePostDetailAndReply.setLayout(new java.awt.GridLayout(0,1));
         
         updateTotalPages();
         updateShowPagination();
-
-//        javax.swing.GroupLayout listIncludePostDetailAndReplyLayout = new javax.swing.GroupLayout(listIncludePostDetailAndReply);
-//        listIncludePostDetailAndReply.setLayout(listIncludePostDetailAndReplyLayout);
-//        listIncludePostDetailAndReplyLayout.setHorizontalGroup(
-//            listIncludePostDetailAndReplyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//            .addGap(0, 953, Short.MAX_VALUE)
-//        );
-//        listIncludePostDetailAndReplyLayout.setVerticalGroup(
-//            listIncludePostDetailAndReplyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//            .addGap(0, 532, Short.MAX_VALUE)
-//        );
-//        updateTotalPages();
-//        updateShowPagination();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

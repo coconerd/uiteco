@@ -116,14 +116,20 @@ public class BaiDangForumDAO {
         }
     }
      
-    public static void insertIntoDatabaseWhenClickReply(String username, String contentReply, int mabaidangforum){
+    public static void insertIntoDatabaseWhenClickReply(String username, String contentReply, int mabaidangforum, String mabinhluanphanhoi){
         try{
                 Connection conn = ConnectionManager.getConnection();
-                String strSQL = "INSERT INTO BINHLUAN(MABDFORUM, NOIDUNG, NGUOIBL) VALUES (?,?,(SELECT MATK FROM TAIKHOAN WHERE USERNAME = ?))";
+                String strSQL = "INSERT INTO BINHLUAN(MABDFORUM, NOIDUNG, NGUOIBL, MABLPHANHOI) VALUES (?,?,(SELECT MATK FROM TAIKHOAN WHERE USERNAME = ?),?)";
                 PreparedStatement pre = conn.prepareStatement(strSQL);
                 pre.setInt(1,mabaidangforum);
                 pre.setString(2,contentReply);
                 pre.setString(3,username);
+                if(mabinhluanphanhoi.isEmpty()){
+                    pre.setString(4,null);
+                }
+                else{
+                    pre.setInt(4, Integer.valueOf(mabinhluanphanhoi));
+                }
                 pre.executeUpdate();
                 conn.close();
                 System.out.println("Insert binh luan phan hoi cho bai viet co ma "+mabaidangforum+" vao csdl thanh cong!");
@@ -164,16 +170,18 @@ public class BaiDangForumDAO {
         ArrayList<PostDetailView> postDetailViewList = new ArrayList<>();
         try{
             Connection conn = ConnectionManager.getConnection();
-            String strSQL = "SELECT B.MABDFORUM, T.USERNAME, B.THOIDIEMBL, B.NOIDUNG FROM BINHLUAN B JOIN TAIKHOAN T ON B.NGUOIBL = T.MATK WHERE MABDFORUM = ?";
+            String strSQL = "SELECT B.MABDFORUM, B.MABL, B.MABLPHANHOI, T.USERNAME, B.THOIDIEMBL, B.NOIDUNG FROM BINHLUAN B JOIN TAIKHOAN T ON B.NGUOIBL = T.MATK WHERE MABDFORUM = ?";
             PreparedStatement stat = conn.prepareStatement(strSQL);
             stat.setInt(1, mabaidang);
             ResultSet result = stat.executeQuery();
             while(result.next()){
                 int postID = result.getInt(1);
-                String replyPerson = result.getString(2);
-                Timestamp replyTimeStamp = result.getTimestamp(3);
-                String content = result.getString(4);
-                PostDetailView postDetailView = new PostDetailView(postID, replyPerson, replyTimeStamp.toLocalDateTime(), content);
+                int replyID = result.getInt(2);
+                int replyForMABLPHANHOI = result.getInt(3);
+                String replyPerson = result.getString(4);
+                Timestamp replyTimeStamp = result.getTimestamp(5);
+                String content = result.getString(6);
+                PostDetailView postDetailView = new PostDetailView(postID, replyID, replyForMABLPHANHOI, replyPerson, replyTimeStamp.toLocalDateTime(), content);
                 postDetailViewList.add(postDetailView);
             }
             conn.close();
