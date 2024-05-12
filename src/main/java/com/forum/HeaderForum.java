@@ -36,9 +36,9 @@ public class HeaderForum extends javax.swing.JPanel{
         topicButton.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e){
+                System.out.println("New post button in the main interface of forum is clicked!");
                 com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
                 panel1.showPostingInterfacePanel();
-               //System.out.println(getParent().getClass()); //kết quả là: com.uiteco.contentPanels.ForumPanel;
             }
         });
         
@@ -61,7 +61,7 @@ public class HeaderForum extends javax.swing.JPanel{
         lastedPostButton.addMouseListener(new java.awt.event.MouseAdapter() {
          @Override
          public void mouseClicked(java.awt.event.MouseEvent e){
-
+               System.out.println("Latest post button in the main interface of forum is clicked!");
                javax.swing.JPanel panel1 = (javax.swing.JPanel)getParent(); 
                //System.out.println(getParent().getClass()); //kết quả là: com.uiteco.contentPanels.ForumPanel;
                com.raven.scroll.ScrollPaneWin11 scrollPaneWin11 = (com.raven.scroll.ScrollPaneWin11)panel1.getComponent(0);

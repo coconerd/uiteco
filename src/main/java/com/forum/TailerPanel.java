@@ -28,6 +28,7 @@ public class TailerPanel extends javax.swing.JPanel{
         nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
         public void mouseClicked(java.awt.event.MouseEvent e){
+                 System.out.println("Next button in the main interface of forum is clicked!");
                  JPanel panel = (JPanel)getParent();
                  PostListPanel pl = (PostListPanel)panel.getComponent(0);
                  pl.setCurrentPageToNext();
@@ -46,6 +47,7 @@ public class TailerPanel extends javax.swing.JPanel{
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
         public void mouseClicked(java.awt.event.MouseEvent e){
+                 System.out.println("Back button in the main interface of forum is clicked!");
                  JPanel panel = (JPanel)getParent();               
                  PostListPanel pl = (PostListPanel)panel.getComponent(0);
                  pl.setCurrentPageToBack();
@@ -55,7 +57,7 @@ public class TailerPanel extends javax.swing.JPanel{
         add(backButton);
         add(nextButton);      
         
-        //<thiết kế label hoặc button để hiển thị trang hiện tại trên tổng số trang>
+        //thiết kế label hoặc button để hiển thị số trang hiện tại trên tổng số trang, cho phép người dùng di chuyển đến 1 trang bất kỳ
     }
 
     private javax.swing.JButton nextButton;

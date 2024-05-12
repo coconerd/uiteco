@@ -6,6 +6,7 @@ package com.forum;
 
 import com.forum.database.BaiDangForumDAO;
 import java.util.ArrayList;
+import javax.swing.JPanel;
 
 /**
  *
@@ -23,6 +24,7 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
 
     public PostDetailAndReplyPanelView(int mabaidang) {
         //initComponents();
+        this.postID = mabaidang;
         _initComponents(mabaidang);
     }
 
@@ -53,11 +55,6 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         exitButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         exitButton.setIconTextGap(2);
         exitButton.setOpaque(true);
-        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitButtonMouseClicked(evt);
-            }
-        });
 
         statisticButton.setBackground(new java.awt.Color(172, 172, 172));
         statisticButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -142,9 +139,10 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         scrollPaneWin111.setBorder(null);
         scrollPaneWin111.setForeground(new java.awt.Color(255, 255, 255));
         scrollPaneWin111.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneWin111.setOpaque(false);
         scrollPaneWin111.setViewportView(listIncludePostDetailAndReply);
 
-        listIncludePostDetailAndReply.setBackground(new java.awt.Color(255, 255, 255));
+        listIncludePostDetailAndReply.setBackground(new java.awt.Color(238, 230, 230));
 
         javax.swing.GroupLayout listIncludePostDetailAndReplyLayout = new javax.swing.GroupLayout(listIncludePostDetailAndReply);
         listIncludePostDetailAndReply.setLayout(listIncludePostDetailAndReplyLayout);
@@ -197,6 +195,7 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
     public ArrayList<PostDetailView> getListPost(){
         return listPost;
     }
+    //hàm switchPage để sử dụng cho các nút hiển thị số trang sắp được thiết kế ở tailerPanel của PostDetailAndReplyPanelView.java để người dùng di chuyển đến 1 trang bất kỳ 
     public void switchPage(int page){
     /*ví dụ: khi người dùng muốn di chuyển đến trang 1 thì dùng hàm switchPage này để thay đổi currentPage, do ta lưu currentPage bắt đầu từ 0
     nên tham số page truyền vào phải trừ đi 1 thì mới đúng bằng giá trị currentPage ta lưu cho trang đó*/
@@ -205,6 +204,9 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
             currentPage = mapping;
         }
     }
+    
+    //thiết kế label hoặc button để hiển thị số trang hiện tại trên tổng số trang, cho phép người dùng di chuyển đến 1 trang bất kỳ
+    
     public void setCurrentPageToNext(){
         if(currentPage < getTotalPages()-1){
             currentPage = currentPage+1;
@@ -217,11 +219,7 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
             updateShowPagination();
         }
     }
-    public void loadPostForumFromDatabaseIntoListPost(){
-//        setListPost(BaiDangForumDAO.loadAndSortListPostFromDatabase());
-//        updateTotalPages(); 
-//        updateShowPagination();
-    }
+
     public void updateShowPagination(){
          // Hiển thị chi tiết bài đăng và các bình luận phản hồi của bài đăng
         int startIndex = currentPage * 20;
@@ -233,25 +231,16 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
          // Cập nhật giao diện
         revalidate();
         repaint();
-    }
-    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
-        System.out.println("get parent when click exitbutton: "+getParent().getClass());
-        com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
-        panel1.removeAll();
-        panel1._initComponents();
-        panel1.getPostListPanel2().loadPostForumFromDatabaseIntoListPost();
-        panel1.revalidate();
-        panel1.repaint();
-    }//GEN-LAST:event_exitButtonMouseClicked
-
+    }    
 
     private void _initComponents(int mabaidang) {
         this.listPost = new ArrayList<PostDetailView>();
         this.listPost.add(new PostDetailView(mabaidang)); //khi người dùng nhấn vào tiêu đề của bài đăng nào đó của giao diện chính forum thì thao tác này sẽ load chi tiết bài đăng đó và hiển thị
         this.listPost.addAll(BaiDangForumDAO.getCommentsFromDatabaseBaseOnPostID(mabaidang)); 
-        /*đây là thêm các phản hồi của bài đăng nếu có hiện tại ở csdl, bài đăng gốc cùng với các bình luận của nó đều được hiển thị trong PostDetailAndReplyPanelView này
+        /*đây là thêm các bình luận phản hồi của bài đăng (nếu có) hiện tại ở csdl, bài đăng gốc cùng với các bình luận của nó đều được hiển thị trong PostDetailAndReplyPanelView này
            bài đăng gốc cùng các phản hồi của nó đều có kiểu dữ liệu là PostDetailView (là panel), các panel này được đặt trong thanh cuộn dọc ScrollPaneWin11 và mỗi trang hiển thị tối đa 20 item (tạm gọi panel bài đăng gốc và các panel phản hồi là các item)      
         */
+        
         tailerPanel = new javax.swing.JPanel();
         exitButton = new javax.swing.JButton();
         statisticButton = new javax.swing.JButton();
@@ -260,10 +249,6 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         nextButton = new javax.swing.JButton();
         scrollPaneWin111 = new com.raven.scroll.ScrollPaneWin11();
         listIncludePostDetailAndReply = new javax.swing.JPanel();
-        listIncludePostDetailAndReply.setLayout(new java.awt.GridLayout());
-        
-        updateTotalPages();
-        updateShowPagination();
 
         setBackground(new java.awt.Color(245, 238, 238));
 
@@ -278,7 +263,17 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         exitButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         exitButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         exitButton.setIconTextGap(2);
-        exitButton.setOpaque(true);
+        //exitButton.setOpaque(true);
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent e) {
+            System.out.println("Exit button in PostDetailAndReplyPanelView.java is clicked!");
+            com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
+            panel1.removeAll();
+            panel1._initComponents();
+            panel1.getPostListPanel2().loadPostForumFromDatabaseIntoListPost();
+        }
+    });
 
         statisticButton.setBackground(new java.awt.Color(172, 172, 172));
         statisticButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -289,7 +284,16 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         statisticButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         statisticButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         statisticButton.setIconTextGap(2);
-        statisticButton.setOpaque(true);
+        //statisticButton.setOpaque(true);
+        statisticButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent e) {
+            System.out.println("Statistic button in PostDetailAndReplyPanelView.java is clicked!");
+            /*hiển thị giao diện thống kê của bài đăng*/
+            com.forum.features.StatisticFeatureFrame frame = new com.forum.features.StatisticFeatureFrame(getPostID());
+            frame.setVisible(true);
+        }
+    });
 
         replyButton.setBackground(new java.awt.Color(172, 172, 172));
         replyButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -300,7 +304,15 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         replyButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         replyButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         replyButton.setIconTextGap(2);
-        replyButton.setOpaque(true);
+        //replyButton.setOpaque(true);
+        replyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent e) {
+            System.out.println("Reply button in PostDetailAndReplyPanelView.java is clicked!");
+            com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
+            panel1.showReplyFeaturePanel(postID);
+        }
+    });
 
         backButton.setBackground(new java.awt.Color(172, 172, 172));
         backButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -313,8 +325,16 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         backButton.setIconTextGap(2);
         backButton.setMaximumSize(new java.awt.Dimension(86, 33));
         backButton.setMinimumSize(new java.awt.Dimension(86, 33));
-        backButton.setOpaque(true);
+        //backButton.setOpaque(true);
         backButton.setPreferredSize(new java.awt.Dimension(86, 33));
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent e) {
+           System.out.println("Back button in PostDetailAndReplyPanelView.java is clicked!");
+           //setCurrentPageToBack();
+           System.out.println(getParent().getClass());
+        }
+    });    
 
         nextButton.setBackground(new java.awt.Color(172, 172, 172));
         nextButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -325,7 +345,15 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         nextButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         nextButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         nextButton.setIconTextGap(2);
-        nextButton.setOpaque(true);
+        //nextButton.setOpaque(true);
+        nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent e) {
+           System.out.println("Next button in PostDetailAndReplyPanelView.java is clicked!");
+           //setCurrentPageToNext();
+           System.out.println(getParent().getClass());
+        }
+    }); 
 
         javax.swing.GroupLayout tailerPanelLayout = new javax.swing.GroupLayout(tailerPanel);
         tailerPanel.setLayout(tailerPanelLayout);
@@ -365,20 +393,24 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         scrollPaneWin111.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPaneWin111.setViewportView(listIncludePostDetailAndReply);
 
-        listIncludePostDetailAndReply.setBackground(new java.awt.Color(255, 255, 255));
+        listIncludePostDetailAndReply.setBackground(new java.awt.Color(238,230,230));
+        listIncludePostDetailAndReply.setLayout(new java.awt.GridLayout(0,1));
+        
+        updateTotalPages();
+        updateShowPagination();
 
-        javax.swing.GroupLayout listIncludePostDetailAndReplyLayout = new javax.swing.GroupLayout(listIncludePostDetailAndReply);
-        listIncludePostDetailAndReply.setLayout(listIncludePostDetailAndReplyLayout);
-        listIncludePostDetailAndReplyLayout.setHorizontalGroup(
-            listIncludePostDetailAndReplyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 953, Short.MAX_VALUE)
-        );
-        listIncludePostDetailAndReplyLayout.setVerticalGroup(
-            listIncludePostDetailAndReplyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
-        );
-
-        scrollPaneWin111.setViewportView(listIncludePostDetailAndReply);
+//        javax.swing.GroupLayout listIncludePostDetailAndReplyLayout = new javax.swing.GroupLayout(listIncludePostDetailAndReply);
+//        listIncludePostDetailAndReply.setLayout(listIncludePostDetailAndReplyLayout);
+//        listIncludePostDetailAndReplyLayout.setHorizontalGroup(
+//            listIncludePostDetailAndReplyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGap(0, 953, Short.MAX_VALUE)
+//        );
+//        listIncludePostDetailAndReplyLayout.setVerticalGroup(
+//            listIncludePostDetailAndReplyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGap(0, 532, Short.MAX_VALUE)
+//        );
+//        updateTotalPages();
+//        updateShowPagination();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -397,7 +429,18 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         );
 
     }// </editor-fold>                        
-                                        
+    public void setlistIncludePostDetailAndReply(javax.swing.JPanel listIncludePostDetailAndReply){
+        this.listIncludePostDetailAndReply = listIncludePostDetailAndReply;
+    }  
+    public javax.swing.JPanel getlistIncludePostDetailAndReply(){
+        return this.listIncludePostDetailAndReply;
+    }
+    public void loadAndUpdateListIncludePostDetailAndReply(int mabaidang){
+        this.listPost.add(new PostDetailView(mabaidang)); //khi người dùng nhấn vào tiêu đề của bài đăng nào đó của giao diện chính forum thì thao tác này sẽ load chi tiết bài đăng đó và hiển thị
+        this.listPost.addAll(BaiDangForumDAO.getCommentsFromDatabaseBaseOnPostID(mabaidang)); 
+        this.updateTotalPages();
+        this.updateShowPagination();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton exitButton;

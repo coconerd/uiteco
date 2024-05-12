@@ -260,29 +260,34 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextAreaOfContentFocusLost
 
     private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
+        System.out.println("Cancel button in PostingFeaturePanel.java (the posting interface)is clicked!");
         com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
         panel1.removeAll();
         panel1._initComponents();
-//        this.revalidate();
-//        this.repaint();
     }//GEN-LAST:event_cancelButtonMouseClicked
 
     private void postButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postButtonMouseClicked
+        System.out.println("Post button in PostingFeaturePanel.java (the posting interface)is clicked!");
         /*lưu thông tin vào csdl*/
         String content = jTextAreaOfContent.getText();
         String title = jTextAreaOfTitle.getText();
-        int viewNumber = 0;
-        int replyNumber = 0;
-        String username = com.uiteco.main.App.getSession().getUsername();
-        System.out.println("User is logging: " + username);
-        BaiDangForumDAO.insertIntoDatabaseWhenClickPosting(username, content, title, viewNumber, replyNumber);
-        /*load dữ liệu từ csdl để hiển thị lại giao diện chính của forum*/
-        com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
-        panel1.removeAll();
-        panel1._initComponents();
-        panel1.getPostListPanel2().loadPostForumFromDatabaseIntoListPost();
-//        this.revalidate();
-//        this.repaint();
+
+        if(content.equals("Nhập nội dung của bài đăng tại đây")||title.equals("Nhập tiêu đề của bài đăng tại đây")||content.isEmpty()||title.isEmpty()){
+         javax.swing.JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin tiêu đề và nội dung bài đăng hoặc nhấn Cancel để thoát khỏi màn hình đăng bài", "Thông báo", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+         System.out.println("Co ve la ban nhap thieu thong tin cho vung soan thao title hoac content cua giao dien dang bai!");
+        }
+        else{
+            int viewNumber = 0;
+            int replyNumber = 0;
+            String username = com.uiteco.main.App.getSession().getUsername();
+            BaiDangForumDAO.insertIntoDatabaseWhenClickPosting(username, content, title, viewNumber, replyNumber);
+            /*load dữ liệu từ csdl để hiển thị lại giao diện chính của forum*/
+            com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
+            panel1.removeAll();
+            panel1._initComponents();
+            panel1.getPostListPanel2().loadPostForumFromDatabaseIntoListPost();
+        }
+
     }//GEN-LAST:event_postButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

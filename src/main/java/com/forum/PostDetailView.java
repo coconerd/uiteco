@@ -5,6 +5,7 @@
 package com.forum;
 import com.forum.database.BaiDangForumDAO;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 /**
  *
@@ -15,6 +16,15 @@ public class PostDetailView extends javax.swing.JPanel {
     private LocalDateTime postingTimeStamp;
     private String content;
     private String postingPerson;
+    private int postID;
+    
+    public int getpostID() {
+        return postID;
+    }
+
+    public void setpostID(int postID) {
+        this.postID = postID;
+    }
 
     public String getPostingPerson() {
         return postingPerson;
@@ -51,12 +61,13 @@ public class PostDetailView extends javax.swing.JPanel {
     
     public PostDetailView(int mabaidang) {
         //initComponents();
+        this.postID = mabaidang;
         _initComponents(mabaidang); // constructor này để khởi tạo PostDetailView để hiển thị chi tiết bài đăng khi người dùng click chuột vào title của bài đăng nào đó được hiển thị ở giao diện chính của forum
     }
-    public PostDetailView(String replyPerson, LocalDateTime replyTime, String content){
+    public PostDetailView(int postID, String replyPerson, LocalDateTime replyTime, String content){
         /*hàm này dùng để khởi tạo các bình luận của mã bài đăng được truyền vào và được load dữ liệu từ csdl, sau đó khởi tạo thành các PostDetailView, 
         tham số defaultParameter khi truyền vào hàm này thì truyền giá trị null, defaultParameter là tham số giả nhằm mục đích là để phân biệt 2 constructor*/
-        initComponent(replyPerson, replyTime, content);
+        initComponent(postID, replyPerson, replyTime, content);
     }
 
     /**
@@ -123,7 +134,7 @@ public class PostDetailView extends javax.swing.JPanel {
         titlePanel.setLayout(titlePanelLayout);
         titlePanelLayout.setHorizontalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+            .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +152,7 @@ public class PostDetailView extends javax.swing.JPanel {
         contentPanel.setLayout(contentPanelLayout);
         contentPanelLayout.setHorizontalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(contentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +191,8 @@ public class PostDetailView extends javax.swing.JPanel {
             .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-        private void initComponent(String replyPerson, LocalDateTime replyTimeStamp, String content){
+        private void initComponent(int postID, String replyPerson, LocalDateTime replyTimeStamp, String content){
+            this.postID = postID;
             this.content = content;
             this.postingTimeStamp = replyTimeStamp;
             this.postingPerson = replyPerson;
@@ -232,7 +244,8 @@ public class PostDetailView extends javax.swing.JPanel {
             titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
             titleLabel.setForeground(new java.awt.Color(0, 0, 0));
             titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-            titleLabel.setText(""+this.postingTimeStamp);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+            titleLabel.setText(""+this.postingTimeStamp.format(formatter));
             titleLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
             javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
@@ -250,7 +263,8 @@ public class PostDetailView extends javax.swing.JPanel {
 
             contentLabel.setBackground(new java.awt.Color(220, 233, 234));
             contentLabel.setForeground(new java.awt.Color(0, 0, 0));
-            contentLabel.setText(this.content);
+            contentLabel.setFont(new java.awt.Font("Segoe UI", 0, 12));
+            contentLabel.setText("<html> "+this.content+" </html>"); //cần fix lỗi không xuống dòng khi text quá dài
             contentLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
             javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
@@ -350,7 +364,8 @@ public class PostDetailView extends javax.swing.JPanel {
         titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(0, 0, 0));
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        titleLabel.setText("<html><b>"+this.title+"</b><br>"+this.postingTimeStamp+"</html>");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        titleLabel.setText("<html><b>"+this.title+"</b><br>"+this.postingTimeStamp.format(formatter)+"</html>");
         titleLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
@@ -368,7 +383,8 @@ public class PostDetailView extends javax.swing.JPanel {
 
         contentLabel.setBackground(new java.awt.Color(220, 233, 234));
         contentLabel.setForeground(new java.awt.Color(0, 0, 0));
-        contentLabel.setText(this.content);
+        contentLabel.setFont(new java.awt.Font("Segoe UI", 0, 12));
+        contentLabel.setText("<html> "+this.content+" </html>"); //cần fix lỗi hiển thị text không xuống dòng và bị mất chữ
         contentLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);

@@ -39,6 +39,7 @@ public class PostListPanel extends javax.swing.JPanel{
     public ArrayList<PostPanel> getListPost(){
         return listPost;
     }
+    //hàm switchPage để sử dụng cho các nút hiển thị số trang sắp được thiết kế ở TailerPanel.java để người dùng di chuyển đến 1 trang bất kỳ 
     public void switchPage(int page){
     /*ví dụ: khi người dùng muốn di chuyển đến trang 1 thì dùng hàm switchPage này để thay đổi currentPage, do ta lưu currentPage bắt đầu từ 0
     nên tham số page truyền vào phải trừ đi 1 thì mới đúng bằng giá trị currentPage ta lưu cho trang đó*/

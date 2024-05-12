@@ -84,48 +84,79 @@ public class BaiDangForumDAO {
         }        
         return postList;
     }
-        public static void insertIntoDatabaseWhenClickPosting(String postedBy, String content, String title, int viewNumber, int replyNumber){
+    public static void insertIntoDatabaseWhenClickPosting(String postedBy, String content, String title, int viewNumber, int replyNumber){
+        try{
+    /*khi người dùng đăng bài thì lấy username từ Session.java, sau đó lưu vào csdl thì ta lưu NGUOIDANG là kiểu number trong csdl, 
+    vì vậy cần thực hiện câu select để lấy thông tin MATK tương ứng với username đang bấm xác nhận đăng bài để lưu vào bảng BAIDANGFORUM*/
+              Connection conn = ConnectionManager.getConnection();
+              String strSQL = "INSERT INTO BAIDANGFORUM (NGUOIDANG, NOIDUNG, TIEUDE, LUOTXEM, LUOTPHANHOI) VALUES ((SELECT MATK FROM TAIKHOAN WHERE USERNAME=?),?,?,?,?)";
+              PreparedStatement pr = conn.prepareStatement(strSQL);
+              pr.setString(1, postedBy);
+              /*chuyển kiểu localdatetime thành kiểu timestamp trong sql
+              Timestamp postingTimeStamp = Timestamp.valueOf(postingTime);
+              pr.setTimestamp(2, postingTimeStamp);
+              */
+
+              /* Cách 1: //tạo 1 đối tượng clob để sử dụng cho hàm setClob
+              Clob clob = conn.createNClob();
+              clob.setString(3, content);
+              pr.setClob(3, clob);
+              */
+              /*Cách 2: ngắn gọn hơn*/
+              pr.setString(2,content);
+              pr.setString(3, title);
+              pr.setInt(4, viewNumber);
+              pr.setInt(5, replyNumber);
+
+              pr.executeUpdate();
+              conn.close();
+              System.out.println("Insert bai dang vao csdl thanh cong!");
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+     
+    public static void insertIntoDatabaseWhenClickReply(String username, String contentReply, int mabaidangforum){
+        try{
+                Connection conn = ConnectionManager.getConnection();
+                String strSQL = "INSERT INTO BINHLUAN(MABDFORUM, NOIDUNG, NGUOIBL) VALUES (?,?,(SELECT MATK FROM TAIKHOAN WHERE USERNAME = ?))";
+                PreparedStatement pre = conn.prepareStatement(strSQL);
+                pre.setInt(1,mabaidangforum);
+                pre.setString(2,contentReply);
+                pre.setString(3,username);
+                pre.executeUpdate();
+                conn.close();
+                System.out.println("Insert binh luan phan hoi cho bai viet co ma "+mabaidangforum+" vao csdl thanh cong!");
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public static void increaseViewNumber(int mabaidangforum){
             try{
-        /*khi người dùng đăng bài thì lấy username từ Session.java, sau đó lưu vào csdl thì ta lưu NGUOIDANG là kiểu number trong csdl, 
-        vì vậy cần thực hiện câu select để lấy thông tin MATK tương ứng với username đang bấm xác nhận đăng bài để lưu vào bảng BAIDANGFORUM*/
                   Connection conn = ConnectionManager.getConnection();
-                  String strSQL = "INSERT INTO BAIDANGFORUM (NGUOIDANG, NOIDUNG, TIEUDE, LUOTXEM, LUOTPHANHOI) VALUES ((SELECT MATK FROM TAIKHOAN WHERE USERNAME=?),?,?,?,?)";
+                  String strSQL = "UPDATE BAIDANGFORUM SET LUOTXEM = LUOTXEM+1 WHERE MABDFORUM = ?";
                   PreparedStatement pr = conn.prepareStatement(strSQL);
-                  pr.setString(1, postedBy);
-                  /*chuyển kiểu localdatetime thành kiểu timestamp trong sql
-                  Timestamp postingTimeStamp = Timestamp.valueOf(postingTime);
-                  pr.setTimestamp(2, postingTimeStamp);
-                  */
-                  
-                  /* Cách 1: //tạo 1 đối tượng clob để sử dụng cho hàm setClob
-                  Clob clob = conn.createNClob();
-                  clob.setString(3, content);
-                  pr.setClob(3, clob);
-                  */
-                  /*Cách 2: ngắn gọn hơn*/
-                  pr.setString(2,content);
-                  pr.setString(3, title);
-                  pr.setInt(4, viewNumber);
-                  pr.setInt(5, replyNumber);
-                  
+                  pr.setInt(1, mabaidangforum);
                   pr.executeUpdate();
-                  //conn.commit();
                   conn.close();
-                  System.out.println("Insert bai dang vao csdl thanh cong!");
+                  System.out.println("Cap nhat so luong LUOTXEM cho bai dang co ma "+mabaidangforum+" thanh cong!");
             }catch(SQLException e){
                 e.printStackTrace();
             }
         }
-    public static void increaseViewNumber(){
-            try{
-                  Connection conn = ConnectionManager.getConnection();
-                  String strSQL = "UPDATE BAIDANGFORUM SET LUOTXEM = LUOTXEM+1 WHERE MABD = ?";
-                  PreparedStatement pr = conn.prepareStatement(strSQL);
-                  pr.setInt(0, 0);
-            }catch(SQLException e){
-                e.printStackTrace();
-            }
+    public static void increaseReplyNumber(int mabaidangforum){
+        try{
+              Connection conn = ConnectionManager.getConnection();
+              String strSQL = "UPDATE BAIDANGFORUM SET LUOTPHANHOI = LUOTPHANHOI+1 WHERE MABDFORUM = ?";
+              PreparedStatement pr = conn.prepareStatement(strSQL);
+              pr.setInt(1, mabaidangforum);
+              pr.executeUpdate();
+              conn.close();
+              System.out.println("Cap nhat so luong LUOTPHANHOI cho bai dang co ma "+mabaidangforum+" thanh cong!");
+        }catch(SQLException e){
+            e.printStackTrace();
         }
+    }
 
    
 
@@ -133,15 +164,16 @@ public class BaiDangForumDAO {
         ArrayList<PostDetailView> postDetailViewList = new ArrayList<>();
         try{
             Connection conn = ConnectionManager.getConnection();
-            String strSQL = "SELECT T.USERNAME, B.THOIDIEMBL, B.NOIDUNG FROM BINHLUAN B JOIN TAIKHOAN T ON B.NGUOIBL = T.MATK WHERE MABDFORUM = ?";
+            String strSQL = "SELECT B.MABDFORUM, T.USERNAME, B.THOIDIEMBL, B.NOIDUNG FROM BINHLUAN B JOIN TAIKHOAN T ON B.NGUOIBL = T.MATK WHERE MABDFORUM = ?";
             PreparedStatement stat = conn.prepareStatement(strSQL);
             stat.setInt(1, mabaidang);
             ResultSet result = stat.executeQuery();
             while(result.next()){
-                String replyPerson = result.getString(1);
-                Timestamp replyTimeStamp = result.getTimestamp(2);
-                String content = result.getString(3);
-                PostDetailView postDetailView = new PostDetailView(replyPerson, replyTimeStamp.toLocalDateTime(), content);
+                int postID = result.getInt(1);
+                String replyPerson = result.getString(2);
+                Timestamp replyTimeStamp = result.getTimestamp(3);
+                String content = result.getString(4);
+                PostDetailView postDetailView = new PostDetailView(postID, replyPerson, replyTimeStamp.toLocalDateTime(), content);
                 postDetailViewList.add(postDetailView);
             }
             conn.close();
@@ -179,8 +211,7 @@ public class BaiDangForumDAO {
             ArrayList<Object> postDetailView = new ArrayList<>();
         try{
             Connection conn = ConnectionManager.getConnection();
-            String strSQL = "SELECT T.USERNAME, THOIDIEMDANG, TIEUDE, NOIDUNG FROM BAIDANGFORUM B JOIN TAIKHOAN T ON B.NGUOIDANG = T.MATK WHERE B.MABDFORUM = ?";
-            
+            String strSQL = "SELECT T.USERNAME, THOIDIEMDANG, TIEUDE, NOIDUNG FROM BAIDANGFORUM B JOIN TAIKHOAN T ON B.NGUOIDANG = T.MATK WHERE B.MABDFORUM = ?";         
             PreparedStatement stat = conn.prepareStatement(strSQL);
             stat.setInt(1, mabaidang);
             ResultSet result = stat.executeQuery();
@@ -191,10 +222,54 @@ public class BaiDangForumDAO {
                 postDetailView.add(result.getString(4));
             }
             conn.close();
-            System.out.println("Lay thong tin tu csdl vao PostDetailView.java thanh cong!");
+            System.out.println("Lay thong tin tu csdl vao PostDetailView.java (thong tin chi tiet bai dang khi nguoi dung click vao tieu de bai dang do o giao dien chinh cua forum) thanh cong!");
         }catch(SQLException e){
             e.printStackTrace();
         }
         return postDetailView;
+    }
+//    public static com.forum.features.StatisticFeatureFrame getInfomationToShowStatisticFrame(int mabaidang){
+//        com.forum.features.StatisticFeatureFrame frame = new com.forum.features.StatisticFeatureFrame();
+//        try{
+//            Connection conn = ConnectionManager.getConnection();
+//            String strSQL = "SELECT T.USERNAME, B.MABDFORUM, B.THOIDIEMDANG, B.LUOTXEM, B.LUOTPHANHOI FROM TAIKHOAN T JOIN BAIDANGFORUM B ON T.MATK = B.NGUOIDANG WHERE MABDFORUM = ?";
+//            PreparedStatement pre = conn.prepareStatement(strSQL);
+//            pre.setInt(1, mabaidang);
+//            ResultSet result = pre.executeQuery();
+//
+//            while(result.next()){
+//                frame.setPostedBy(result.getString(1));
+//                frame.setPostID(result.getInt(2));
+//                frame.setPostedAt(result.getTimestamp(3).toLocalDateTime());
+//                frame.setViewNumbers(result.getInt(4));
+//                frame.setReplyNumbers(result.getInt(5));
+//            }
+//            conn.close();
+//            System.out.println("Get information of post ID "+mabaidang+" to show statistic successfully!");
+//        }catch(SQLException e){
+//            e.printStackTrace();
+//        }
+//        return frame;
+//    }
+        public static ArrayList<Object> getInfomationToShowStatisticFrame(int mabaidang) {
+            ArrayList<Object> statisticInfoFrame = new ArrayList<>();
+        try{
+            Connection conn = ConnectionManager.getConnection();
+            String strSQL = "SELECT T.USERNAME, B.THOIDIEMDANG, B.LUOTXEM, B.LUOTPHANHOI FROM TAIKHOAN T JOIN BAIDANGFORUM B ON T.MATK = B.NGUOIDANG WHERE MABDFORUM = ?";
+            PreparedStatement stat = conn.prepareStatement(strSQL);
+            stat.setInt(1, mabaidang);
+            ResultSet result = stat.executeQuery();
+            while(result.next()){
+                statisticInfoFrame.add(result.getString(1));
+                statisticInfoFrame.add(result.getTimestamp(2).toLocalDateTime());
+                statisticInfoFrame.add(result.getInt(3));
+                statisticInfoFrame.add(result.getInt(4));
+            }
+            conn.close();
+            System.out.println("Get information of post ID "+mabaidang+" to show statistic successfully!");
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return statisticInfoFrame;
     }
 }

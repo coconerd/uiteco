@@ -4,17 +4,25 @@
  */
 package com.forum.features;
 
+import com.forum.database.BaiDangForumDAO;
+
 /**
  *
  * @author 21H1 HNQA
  */
 public class ReplyFeaturePanel extends javax.swing.JPanel {
-
-    /**
-     * Creates new form ReplyFeaturePanel
-     */
-    public ReplyFeaturePanel() {
-        initComponents();
+    private int postID;
+    
+    public int getPostID(){
+        return postID;
+    }
+    public void setPostID(int postID){
+        this.postID = postID;
+    }
+    public ReplyFeaturePanel(int mabaidang) {
+        //initComponents();
+        this.postID = mabaidang;
+        _initComponents(mabaidang);
     }
 
     /**
@@ -57,17 +65,118 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
         jTextArea1.setText("<Nhập phản hồi của bạn tại đây>");
         jTextArea1.setToolTipText("Nhập phản hồi tại đây");
         jTextArea1.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        replyButton.setBackground(new java.awt.Color(172, 172, 172));
+        replyButton.setForeground(new java.awt.Color(0, 0, 0));
+        replyButton.setText("Reply");
+        replyButton.setFocusable(false);
+
+        cancelButton.setBackground(new java.awt.Color(172, 172, 172));
+        cancelButton.setForeground(new java.awt.Color(0, 0, 0));
+        cancelButton.setText("Cancel");
+        cancelButton.setFocusable(false);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(666, Short.MAX_VALUE)
+                .addComponent(cancelButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(replyButton)
+                .addGap(41, 41, 41))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(uitImageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(116, 116, 116)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ecoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(90, 90, 90)
+                                .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jScrollPane1)
+                        .addGap(69, 69, 69))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ecoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(uitImageLabel)))
+                .addGap(7, 7, 7)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(replyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+        
+        private void _initComponents(int mabaidang) {
+
+        titleLabel = new javax.swing.JLabel();
+        uitImageLabel = new javax.swing.JLabel();
+        forumImageLabel = new javax.swing.JLabel();
+        ecoLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        replyButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(248, 242, 242));
+
+        titleLabel.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(30, 30, 14));
+        titleLabel.setText("REPLY BÀI ĐĂNG FORUM");
+
+        uitImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uit(3).png"))); // NOI18N
+
+        forumImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communication-85.png"))); // NOI18N
+
+        ecoLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ecoLabel.setForeground(new java.awt.Color(80, 80, 181));
+        ecoLabel.setText("ECO-FORUM");
+
+        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("<Nhập phản hồi của bạn tại đây>");
+        jTextArea1.setToolTipText("Nhập phản hồi tại đây");
+        jTextArea1.setWrapStyleWord(true);
         jTextArea1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextArea1FocusGained(evt);
+                 jTextArea1.getCaret().setVisible(true);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextArea1FocusLost(evt);
+                if(jTextArea1.getText().isEmpty()){
+                    jTextArea1.setText("<Nhập phản hồi của bạn tại đây>");
+                }
             }
         });
         jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextArea1MouseClicked(evt);
+                if(jTextArea1.getText().equals("<Nhập phản hồi của bạn tại đây>")){
+                    jTextArea1.setText("");
+                }
             }
         });
         jScrollPane1.setViewportView(jTextArea1);
@@ -78,7 +187,31 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
         replyButton.setFocusable(false);
         replyButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                replyButtonMouseClicked(evt);
+                System.out.println("Reply button in ReplyFeaturePanel.java (the replying interface)is clicked!");
+                /*lưu thông tin bình luận phản hồi vào csdl*/
+                String replyContent = jTextArea1.getText();
+                String replyPerson = com.uiteco.main.App.getSession().getUsername();
+                int postIDForum = getPostID();
+                /*Nếu trường hợp khi mới hiển thị giao diện reply và người dùng chưa click vào vùng soạn thảo của jtextarea
+                mà click button Reply ngay thì lúc này vùng soạn thảo đang có text là "<Nhập phản hồi của bạn tại đây>"
+                hoặc trường hợp mới hiển thị giao diện reply và người dùng đã có click vào vùng soạn thảo nhưng xà quằn một hồi 
+                thì rốt không có dữ liệu nào được nhập vào vùng soạn thảo đó cả, lúc này vùng soạn thảo có text là rỗng 
+                Đối với 2 trường hợp trên thì khi người dùng click button Reply thì sẽ không lưu dữ liệu vào database và vẫn đứng ở giao diên đó
+                kèm jDialog để thông báo(nếu congphan thiết kế kịp), và chỉ khi người dùng click vào button Cancel thì mới được hiển thị lại
+                giao diện chi tiết bài đăng và những bình luận phản hồi của bài đăng đó*/
+                if(replyContent.equals("<Nhập phản hồi của bạn tại đây>")  || replyContent.isEmpty()){
+                    /*hiển thị dialog thông báo cho người dùng*/ 
+                    javax.swing.JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ nội dung bình luận phản hồi hoặc nhấn Cancel để thoát khỏi màn hình bình luận", "Thông báo", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("ban chua nhap noi dung binh luan vao vung soan thao cua jtextarea");
+                }
+                else{
+                    BaiDangForumDAO.insertIntoDatabaseWhenClickReply(replyPerson, replyContent, postIDForum);
+                    /*cập nhật lượt phản hồi cho bài đăng này ở trường LUOTPHANHOI của table BAIDANGFORUM*/
+                    BaiDangForumDAO.increaseReplyNumber(postIDForum);
+                    /*hiển thị lại giao diện chi tiết bài đăng kèm với những phản hồi của bài đăng này*/
+                    com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
+                    panel1.showPostDetailAndReplyView(getPostID()); 
+                }
             }
         });
 
@@ -88,7 +221,10 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
         cancelButton.setFocusable(false);
         cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelButtonMouseClicked(evt);
+                //thoát khỏi giao diện đăng reply, về giao diện chi tiết bài đăng kèm với những phản hồi của bài đăng đó
+                System.out.println("Cancel button in ReplyFeaturePanel.java (the reply interface)is clicked!");
+                com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
+                panel1.showPostDetailAndReplyView(getPostID());
             }
         });
 
@@ -97,76 +233,52 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(uitImageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(titleLabel)
-                .addGap(96, 96, 96)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ecoLabel)
-                    .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(666, Short.MAX_VALUE)
+                .addComponent(cancelButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(replyButton)
+                .addGap(41, 41, 41))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cancelButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(replyButton)
-                        .addGap(41, 41, 41))))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(uitImageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(116, 116, 116)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ecoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(90, 90, 90)
+                                .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jScrollPane1)
+                        .addGap(69, 69, 69))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(uitImageLabel)
-                    .addComponent(titleLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ecoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(uitImageLabel)))
+                .addGap(7, 7, 7)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelButton)
-                    .addComponent(replyButton))
-                .addGap(20, 20, 20))
+                    .addComponent(replyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextArea1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea1MouseClicked
-        if(jTextArea1.getText().equals("<Nhập phản hồi của bạn tại đây>")){
-            jTextArea1.setText("");
-        }
-    }//GEN-LAST:event_jTextArea1MouseClicked
-
-    private void jTextArea1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextArea1FocusLost
-        if(jTextArea1.getText().isEmpty()){
-            jTextArea1.setText("<Nhập phản hồi của bạn tại đây>");
-        }
-    }//GEN-LAST:event_jTextArea1FocusLost
-
-    private void jTextArea1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextArea1FocusGained
-        jTextArea1.getCaret().setVisible(true);
-    }//GEN-LAST:event_jTextArea1FocusGained
-
-    private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
-        //thoát khỏi giao diện đăng reply, về giao diện chi tiết bài đăng kèm với những phản hồi của bài đăng đó
-    }//GEN-LAST:event_cancelButtonMouseClicked
-
-    private void replyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_replyButtonMouseClicked
-        // lưu phản hồi vào csdl
-        String replyContent = jTextArea1.getText();
-        String replyPerson = com.uiteco.main.App.getSession().getUsername();
-        // load từ csdl và thêm lời phản hồi vừa rồi đó vào list, sau đó hiển thị lại giao diện chi tiết bài đăng kèm với những phản hồi của bài đăng đó
-    }//GEN-LAST:event_replyButtonMouseClicked
-
-
+    }  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel ecoLabel;

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.forum;
+import com.forum.database.BaiDangForumDAO;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -151,7 +152,10 @@ public class PostPanel extends javax.swing.JPanel {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e){
                 int mabaidang = getPostID();
-                System.out.println("Ban vua moi click vao bai dang co MABDFORUM: "+mabaidang);
+                System.out.println("Ban vua moi click vao title cua bai dang co MABDFORUM la: "+mabaidang);
+                /*cập nhật LUOTXEM+1 cho trường LUOTXEM của table BAIDANGFORUM*/
+                BaiDangForumDAO.increaseViewNumber(mabaidang);
+                /*hiển thị giao diện chi tiết bài đăng cùng với các bình luận phản hồi của bài đăng*/
                 com.forum.PostListPanel postlist = (com.forum.PostListPanel)getParent();
                 javax.swing.JPanel panel = (javax.swing.JPanel)postlist.getParent();
                 javax.swing.JViewport viewport = (javax.swing.JViewport)panel.getParent();

@@ -94,6 +94,14 @@ public class ForumPanel extends javax.swing.JPanel {
          this.revalidate();
          this.repaint();
      }
+    public void showReplyFeaturePanel(int mabaidang){
+        this.removeAll();
+        com.forum.features.ReplyFeaturePanel replyPanel = new com.forum.features.ReplyFeaturePanel(mabaidang);
+        this.setLayout(new GridLayout());
+        this.add(replyPanel);
+        this.revalidate();
+        this.repaint();
+    }
      public void _initComponents(){
         headerForum1 = new com.forum.HeaderForum();
         titlePanel1 = new com.forum.TitlePanel();
