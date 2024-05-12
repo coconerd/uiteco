@@ -36,8 +36,13 @@ public class SuKienDAO {
         for (int i = 0; i < 100; i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
             String type = "Event";
-            String tag = null;
-            int postID = i;
+            ArrayList<String> tags = new ArrayList<String>() {
+                {
+                    add("Beginner Friendly");
+                    add("Social Good");
+                    add("Low/No Code");
+                }
+            };            int postID = i;
             String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String postedBy = "Minh Duc";
             java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
@@ -45,7 +50,7 @@ public class SuKienDAO {
             String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\LabJava\\FeaturedImages\\3.jpg"); // Mock image
             int views = 1200;
-            SuKienModel event = new SuKienModel(title, tag, postID, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
+            SuKienModel event = new SuKienModel(title, tags, postID, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
         }
 
@@ -64,8 +69,13 @@ public class SuKienDAO {
         for (int i = 0; i < N; i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
             String type = "Event";
-            String tag = null;
-            int postId = i + 1;
+            ArrayList<String> tags = new ArrayList<String>() {
+                {
+                    add("Beginner Friendly");
+                    add("Social Good");
+                    add("Low/No Code");
+                }
+            };            int postId = i + 1;
             String content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
                     + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
                     + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
@@ -173,7 +183,7 @@ public class SuKienDAO {
             String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\DoAn\\database\\mock\\FeaturedImages\\3.jpg");
             int views = 1200;
-            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
+            SuKienModel event = new SuKienModel(title, tags, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
         }
 
@@ -187,8 +197,13 @@ public class SuKienDAO {
         for (int i = 0; i < 100; i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
             String type = "Event";
-            String tag = null;
-            int postId = i + 1;
+            ArrayList<String> tags = new ArrayList<String>() {
+                {
+                    add("Beginner Friendly");
+                    add("Social Good");
+                    add("Low/No Code");
+                }
+            };            int postId = i + 1;
             String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String postedBy = "Duc Minh";
             java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
@@ -196,7 +211,7 @@ public class SuKienDAO {
             String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\LabJava\\FeaturedImages\\3.jpg"); // Mock image
             int views = 1200;
-            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
+            SuKienModel event = new SuKienModel(title, tags, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
         }
 
@@ -215,8 +230,13 @@ public class SuKienDAO {
         for (int i = 0; i < getCount(); i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
             String type = "Event";
-            String tag = null;
-            int postId = i + 1;
+            ArrayList<String> tags = new ArrayList<String>() {
+                {
+                    add("Beginner Friendly");
+                    add("Social Good");
+                    add("Low/No Code");
+                }
+            };            int postId = i + 1;
 //            String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
                     + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
@@ -325,7 +345,7 @@ public class SuKienDAO {
             String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\DoAn\\database\\mock\\FeaturedImages\\3.jpg"); // Mock image
             int views = 1200;
-            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
+            SuKienModel event = new SuKienModel(title, tags, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
         }
 
@@ -350,7 +370,13 @@ public class SuKienDAO {
         for (int i = 0; i < slides; i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
             String type = "Event";
-            String tag = null;
+            ArrayList<String> tags = new ArrayList<String>() {
+                {
+                    add("Beginner Friendly");
+                    add("Social Good");
+                    add("Low/No Code");
+                }
+            };
             int postId = i + 1;
             String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String postedBy = "Duc Minh";
@@ -360,7 +386,7 @@ public class SuKienDAO {
             ImageIcon thumbnail = images.get(imageIndex);
             imageIndex = (imageIndex == imageCount - 1 ? 0 : imageIndex + 1); // Update image index
             int views = 1200;
-            SuKienModel event = new SuKienModel(title, tag, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
+            SuKienModel event = new SuKienModel(title, tags, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
         }
         return suKienList;
@@ -444,20 +470,19 @@ public class SuKienDAO {
 //        } catch (SQLException e) {
 //            throw e;
 //        }
-
         /**
          * Mock data
          */
         for (SuKienModel sk : getNewest(50)) {
-           if (sk.getTitle().contains(title)) {
-               suKienList.add(sk);
-           }
+            if (sk.getTitle().contains(title)) {
+                suKienList.add(sk);
+            }
         }
-        
+
         return suKienList;
     }
-    
-        public static ArrayList<SuKienModel> searchSuKienByContent(String content) throws SQLException {
+
+    public static ArrayList<SuKienModel> searchSuKienByContent(String content) throws SQLException {
         ArrayList<SuKienModel> suKienList = new ArrayList<>();
         if (content == null) {
             return suKienList;
@@ -472,20 +497,19 @@ public class SuKienDAO {
 //        } catch (SQLException e) {
 //            throw e;
 //        }
-
         /**
          * Mock data
          */
         for (SuKienModel sk : getNewest(50)) {
-           if (sk.getContent().contains(content)) {
-               suKienList.add(sk);
-           }
+            if (sk.getContent().contains(content)) {
+                suKienList.add(sk);
+            }
         }
-        
+
         return suKienList;
     }
 
-            public static ArrayList<SuKienModel> searchSuKienByOwner(String owner) throws SQLException {
+    public static ArrayList<SuKienModel> searchSuKienByOwner(String owner) throws SQLException {
         ArrayList<SuKienModel> suKienList = new ArrayList<>();
         if (owner == null) {
             return suKienList;
@@ -500,17 +524,44 @@ public class SuKienDAO {
 //        } catch (SQLException e) {
 //            throw e;
 //        }
-
         /**
          * Mock data
          */
         for (SuKienModel sk : getNewest(50)) {
-           if (sk.getPostedBy().contains(owner)) {
-               suKienList.add(sk);
-           }
+            if (sk.getPostedBy().contains(owner)) {
+                suKienList.add(sk);
+            }
         }
-        
+
         return suKienList;
     }
 
+    public ArrayList<String> getTags(int postID) throws SQLException {
+        ArrayList<String> tags = new ArrayList<String>();
+
+//        try {
+//            Connection conn = ConnectionManager.getConnection();
+//            String sql = "SELECT TAG FROM TAGS_BAIDANG WHERE MABD = ?";
+//            PreparedStatement pstm = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+//            ResultSet rs = pstm.executeQuery();
+//            
+//            while (rs.next()) {
+//                String tag = rs.getString("TAGS");
+//                tags.add(tag);
+//            }
+//            
+//            rs.close();
+//            conn.close();
+//        } catch (SQLException e) {
+//            throw e;
+//        }
+//        
+        /**
+         * Mock
+         */
+        tags.add("Beginner Friendly");
+        tags.add("Low/No Code");
+        tags.add("Social good");
+        return tags;
+    }
 }
