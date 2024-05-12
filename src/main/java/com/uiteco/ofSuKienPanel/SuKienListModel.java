@@ -21,12 +21,16 @@ public class SuKienListModel extends PaginationModel implements PropertyChangeLi
     private ArrayList<SuKienModel> suKienList;
 
     public SuKienListModel() {
-        super();
-        this.addPropertyChangeListener(this);
+        _init();
         this.setSuKienList(SuKienDAO.getPageData(
                 getCurrentPage(),
                 getEntriesPerPage()
         ));
+    }
+
+    public SuKienListModel(ArrayList<SuKienModel> suKienList) {
+        _init();
+        this.setSuKienList(suKienList);
     }
 
     public void addSuKien(SuKienModel suKien) {
@@ -69,9 +73,13 @@ public class SuKienListModel extends PaginationModel implements PropertyChangeLi
     protected int _getInitialEntries() {
         return SuKienDAO.getCount();
     }
-    
+
     @Override
-    protected int  _getInitialEntriesPerPage() {
+    protected int _getInitialEntriesPerPage() {
         return DEFAULT_ENTRIES_PER_PAGE;
+    }
+
+    private void _init() {
+        addPropertyChangeListener(this);
     }
 }
