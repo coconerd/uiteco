@@ -105,11 +105,11 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
     protected class ComboBoxMultiUI extends FlatComboBoxUI {
 
         @Override
-        protected ComboPopup createPopup() {
+        public ComboPopup createPopup() {
             return new MultiComboPopup(comboBox);
         }
 
-        protected class MultiComboPopup extends FlatComboPopup {
+        public class MultiComboPopup extends FlatComboPopup {
 
             public MultiComboPopup(JComboBox combo) {
                 super(combo);
@@ -117,7 +117,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         }
 
         @Override
-        protected Dimension getDisplaySize() {
+        public Dimension getDisplaySize() {
             Dimension size = super.getDefaultSize();
             return new Dimension(0, size.height);
         }
@@ -141,14 +141,14 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         protected final JScrollPane scroll;
         protected final JPanel panel;
 
-        protected void addItem(Object obj) {
+        public void addItem(Object obj) {
             Item item = new Item(obj);
             panel.add(item);
             panel.repaint();
             panel.revalidate();
         }
 
-        protected void removeItem(Object obj) {
+        public void removeItem(Object obj) {
             int count = panel.getComponentCount();
             for (int i = 0; i < count; i++) {
                 Item item = (Item) panel.getComponent(i);
@@ -194,7 +194,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         }
 
         @Override
-        protected boolean isSelected(Component c) {
+        public boolean isSelected(Component c) {
             return selected;
         }
     }
@@ -213,7 +213,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
             init();
         }
 
-        protected void init() {
+        public void init() {
             putClientProperty(FlatClientProperties.STYLE, ""
                     + "border:0,5,0,20;"
                     + "background:darken($ComboBox.background,10%)");
