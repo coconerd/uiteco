@@ -66,6 +66,7 @@ public class AuthDAO {
                 throw new InvalidCredentialsException();
             }
 
+            rs.close();
             conn.close();
         } catch (Exception e) {
             throw e;
