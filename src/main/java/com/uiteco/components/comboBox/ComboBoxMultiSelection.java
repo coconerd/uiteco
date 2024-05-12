@@ -25,6 +25,7 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.plaf.basic.ComboPopup;
 import net.miginfocom.swing.MigLayout;
 
+
 public class ComboBoxMultiSelection<E> extends JComboBox<E> {
 
     public List<Object> getSelectedItems() {
@@ -61,7 +62,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
     private final ComboBoxMultiCellEditor comboBoxMultiCellEditor;
     private Component comboList;
 
-    private void removeItemObject(Object obj) {
+    protected void removeItemObject(Object obj) {
         selectedItems.remove(obj);
         comboBoxMultiCellEditor.removeItem(obj);
         if (comboList != null) {
@@ -69,7 +70,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         }
     }
 
-    private void addItemObject(Object obj) {
+    protected void addItemObject(Object obj) {
         selectedItems.add(obj);
         comboBoxMultiCellEditor.addItem(obj);
         if (comboList != null) {
