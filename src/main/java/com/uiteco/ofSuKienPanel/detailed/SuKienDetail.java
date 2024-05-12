@@ -51,7 +51,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         postedAt = new javax.swing.JLabel();
         roundedBorderButton2 = new com.uiteco.components.RoundedBorderButton();
         postedAtTime = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        tagsPanel = new javax.swing.JPanel();
         tag = new javax.swing.JLabel();
         tag1 = new javax.swing.JLabel();
         tag2 = new javax.swing.JLabel();
@@ -167,12 +167,16 @@ public class SuKienDetail extends javax.swing.JPanel {
         String timeStr = getSuKienModel().getPostedAt().format(timeFmt);
         postedAtTime.setText(timeStr);
 
-        jPanel1.setOpaque(false);
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        tagsPanel.setOpaque(false);
+        tagsPanel.setLayout(new java.awt.GridBagLayout());
+        boolean hasTags = !(getSuKienModel().getTags().isEmpty());
+        tagsPanel.setVisible(hasTags);
 
         tag.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
         tag.setForeground(new java.awt.Color(228, 230, 235));
-        tag.setText("Blockchain");
+        if (getSuKienModel().getTags().size() >= 1) {
+            tag.setText(getSuKienModel().getTag(0));
+        }
         tag.setFocusable(false);
         tag.setIconTextGap(10);
         tag.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -182,12 +186,14 @@ public class SuKienDetail extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel1.add(tag, gridBagConstraints);
+        tagsPanel.add(tag, gridBagConstraints);
 
         tag1.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
         tag1.setForeground(new java.awt.Color(228, 230, 235));
         tag1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        tag1.setText("Blockchain");
+        if (getSuKienModel().getTags().size() >= 2) {
+            tag1.setText(getSuKienModel().getTag(1));
+        }
         tag1.setFocusTraversalPolicyProvider(true);
         tag1.setFocusable(false);
         tag1.setIconTextGap(40);
@@ -198,11 +204,13 @@ public class SuKienDetail extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
-        jPanel1.add(tag1, gridBagConstraints);
+        tagsPanel.add(tag1, gridBagConstraints);
 
         tag2.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
         tag2.setForeground(new java.awt.Color(228, 230, 235));
-        tag2.setText("Blockchain");
+        if (getSuKienModel().getTags().size() >= 3) {
+            tag2.setText(getSuKienModel().getTag(2));
+        }
         tag2.setFocusable(false);
         tag2.setIconTextGap(10);
         tag2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -211,7 +219,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        jPanel1.add(tag2, gridBagConstraints);
+        tagsPanel.add(tag2, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Circular Std Medium", 0, 15)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-tag-24.png"))); // NOI18N
@@ -221,7 +229,7 @@ public class SuKienDetail extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 10);
-        jPanel1.add(jLabel2, gridBagConstraints);
+        tagsPanel.add(jLabel2, gridBagConstraints);
 
         javax.swing.GroupLayout roundedGradientPanel1Layout = new javax.swing.GroupLayout(roundedGradientPanel1);
         roundedGradientPanel1.setLayout(roundedGradientPanel1Layout);
@@ -240,7 +248,7 @@ public class SuKienDetail extends javax.swing.JPanel {
                         .addComponent(postedAt, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(postedAtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(tagsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         roundedGradientPanel1Layout.setVerticalGroup(
             roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,9 +266,23 @@ public class SuKienDetail extends javax.swing.JPanel {
                     .addComponent(postedAt)
                     .addComponent(postedAtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tagsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        for (java.awt.Component comp : tagsPanel.getComponents()) {
+            comp.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    comp.setForeground(new Color(101, 103, 107));
+                }
+
+                @Override
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    comp.setForeground(new Color(228, 230, 235));
+                }
+            });
+        }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -380,7 +402,6 @@ public class SuKienDetail extends javax.swing.JPanel {
     private com.uiteco.components.RoundedImagePanel heartImage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel postedAt;
@@ -394,6 +415,7 @@ public class SuKienDetail extends javax.swing.JPanel {
     private javax.swing.JLabel tag;
     private javax.swing.JLabel tag1;
     private javax.swing.JLabel tag2;
+    private javax.swing.JPanel tagsPanel;
     private javax.swing.JTextArea title;
     private javax.swing.JPanel upperPanel;
     // End of variables declaration//GEN-END:variables
