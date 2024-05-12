@@ -58,9 +58,9 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         }
     }
 
-    private final List<Object> selectedItems = new ArrayList<>();
-    private final ComboBoxMultiCellEditor comboBoxMultiCellEditor;
-    private Component comboList;
+    protected final List<Object> selectedItems = new ArrayList<>();
+    protected final ComboBoxMultiCellEditor comboBoxMultiCellEditor;
+    protected Component comboList;
 
     protected void removeItemObject(Object obj) {
         selectedItems.remove(obj);
@@ -102,14 +102,14 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
 
     }
 
-    private class ComboBoxMultiUI extends FlatComboBoxUI {
+    protected class ComboBoxMultiUI extends FlatComboBoxUI {
 
         @Override
         protected ComboPopup createPopup() {
             return new MultiComboPopup(comboBox);
         }
 
-        private class MultiComboPopup extends FlatComboPopup {
+        protected class MultiComboPopup extends FlatComboPopup {
 
             public MultiComboPopup(JComboBox combo) {
                 super(combo);
@@ -123,7 +123,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         }
     }
 
-    private class ComboBoxMultiCellRenderer extends BasicComboBoxRenderer {
+    protected class ComboBoxMultiCellRenderer extends BasicComboBoxRenderer {
 
         @Override
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -136,7 +136,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         }
     }
 
-    private class ComboBoxMultiCellEditor extends BasicComboBoxEditor {
+    protected class ComboBoxMultiCellEditor extends BasicComboBoxEditor {
 
         protected final JScrollPane scroll;
         protected final JPanel panel;
@@ -185,9 +185,9 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
 
     }
 
-    private class CheckBoxIcon extends FlatCheckBoxIcon {
+    protected class CheckBoxIcon extends FlatCheckBoxIcon {
 
-        private final boolean selected;
+        protected final boolean selected;
 
         public CheckBoxIcon(boolean selected) {
             this.selected = selected;
@@ -199,13 +199,13 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         }
     }
 
-    private class Item extends JLabel {
+    protected class Item extends JLabel {
 
         public Object getItem() {
             return item;
         }
 
-        private final Object item;
+        protected final Object item;
 
         public Item(Object item) {
             super(item.toString());
@@ -213,7 +213,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
             init();
         }
 
-        private void init() {
+        protected void init() {
             putClientProperty(FlatClientProperties.STYLE, ""
                     + "border:0,5,0,20;"
                     + "background:darken($ComboBox.background,10%)");
