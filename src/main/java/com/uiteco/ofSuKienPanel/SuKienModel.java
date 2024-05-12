@@ -4,9 +4,9 @@
  */
 package com.uiteco.ofSuKienPanel;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.swing.ImageIcon;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 public class SuKienModel {
 
     private String title;
-    private String tag;
+    private ArrayList<String> tags;
     private int postID;
     private String type;
     private String content;
@@ -30,9 +30,21 @@ public class SuKienModel {
     public SuKienModel() {
     }
 
-    public SuKienModel(String title, String tag, int postID, String type, String content, String postedBy, LocalDateTime postedAt, String note, String clubID, ImageIcon thumbnail, int views) {
+    public SuKienModel(
+            String title,
+            ArrayList<String> tags,
+            int postID,
+            String type,
+            String content,
+            String postedBy,
+            LocalDateTime postedAt,
+            String note,
+            String clubID,
+            ImageIcon thumbnail,
+            int views
+    ) {
         this.title = title;
-        this.tag = tag;
+        this.tags = tags;
         this.postID = postID;
         this.type = type;
         this.content = content;
@@ -48,8 +60,8 @@ public class SuKienModel {
         this.title = title;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
     }
 
     public void setPostID(int postID) {
@@ -91,7 +103,7 @@ public class SuKienModel {
     public void setImage(int index, ImageIcon image) {
         this.images[index] = image;
     }
-    
+
     public void setViews(int views) {
         this.views = views;
     }
@@ -100,8 +112,12 @@ public class SuKienModel {
         return title;
     }
 
-    public String getTag() {
-        return tag;
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+    
+    public String getTag(int index) {
+        return tags.get(index);
     }
 
     public int getPostID() {
@@ -143,7 +159,7 @@ public class SuKienModel {
     public ImageIcon getImage(int index) {
         return images[index];
     }
-    
+
     public int getViews() {
         return this.views;
     }
