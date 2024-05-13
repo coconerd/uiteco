@@ -7,6 +7,7 @@ package com.uiteco.ofSuKienPanel;
 import java.time.LocalDateTime;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  *
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class SuKienModel {
 
     private String title;
-    private ArrayList<String> tags;
+    private Set<String> tags;
     private int postID;
     private String type;
     private String content;
@@ -32,7 +33,7 @@ public class SuKienModel {
 
     public SuKienModel(
             String title,
-            ArrayList<String> tags,
+            Set<String> tags,
             int postID,
             String type,
             String content,
@@ -60,7 +61,7 @@ public class SuKienModel {
         this.title = title;
     }
 
-    public void setTags(ArrayList<String> tags) {
+    public void setTags(Set<String> tags) {
         this.tags = tags;
     }
 
@@ -112,12 +113,12 @@ public class SuKienModel {
         return title;
     }
 
-    public ArrayList<String> getTags() {
+    public Set<String> getTags() {
         return tags;
     }
     
     public String getTag(int index) {
-        return tags.get(index);
+        return (String) tags.toArray()[index];
     }
 
     public int getPostID() {

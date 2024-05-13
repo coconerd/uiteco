@@ -4,7 +4,6 @@
  */
 package com.uiteco.ofSuKienPanel;
 
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -18,6 +17,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.HashSet;
 
 /**
  *
@@ -36,13 +37,10 @@ public class SuKienDAO {
         for (int i = 0; i < 100; i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
             String type = "Event";
-            ArrayList<String> tags = new ArrayList<String>() {
-                {
-                    add("Beginner Friendly");
-                    add("Social Good");
-                    add("Low/No Code");
-                }
-            };            int postID = i;
+
+            HashSet<String> tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
+
+            int postID = i;
             String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String postedBy = "Minh Duc";
             java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
@@ -69,13 +67,8 @@ public class SuKienDAO {
         for (int i = 0; i < N; i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
             String type = "Event";
-            ArrayList<String> tags = new ArrayList<String>() {
-                {
-                    add("Beginner Friendly");
-                    add("Social Good");
-                    add("Low/No Code");
-                }
-            };            int postId = i + 1;
+            HashSet<String> tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
+            int postId = i + 1;
             String content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
                     + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
                     + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
@@ -197,13 +190,8 @@ public class SuKienDAO {
         for (int i = 0; i < 100; i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
             String type = "Event";
-            ArrayList<String> tags = new ArrayList<String>() {
-                {
-                    add("Beginner Friendly");
-                    add("Social Good");
-                    add("Low/No Code");
-                }
-            };            int postId = i + 1;
+            HashSet<String> tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
+            int postId = i + 1;
             String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String postedBy = "Duc Minh";
             java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
@@ -230,13 +218,8 @@ public class SuKienDAO {
         for (int i = 0; i < getCount(); i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
             String type = "Event";
-            ArrayList<String> tags = new ArrayList<String>() {
-                {
-                    add("Beginner Friendly");
-                    add("Social Good");
-                    add("Low/No Code");
-                }
-            };            int postId = i + 1;
+            HashSet<String> tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
+            int postId = i + 1;
 //            String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
                     + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
@@ -370,13 +353,7 @@ public class SuKienDAO {
         for (int i = 0; i < slides; i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
             String type = "Event";
-            ArrayList<String> tags = new ArrayList<String>() {
-                {
-                    add("Beginner Friendly");
-                    add("Social Good");
-                    add("Low/No Code");
-                }
-            };
+            HashSet<String> tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
             int postId = i + 1;
             String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
             String postedBy = "Duc Minh";
@@ -536,8 +513,8 @@ public class SuKienDAO {
         return suKienList;
     }
 
-    public ArrayList<String> getTags(int postID) throws SQLException {
-        ArrayList<String> tags = new ArrayList<String>();
+    public HashSet<String> getTagsOfSuKien(int postID) throws SQLException {
+            HashSet<String> tags;
 
 //        try {
 //            Connection conn = ConnectionManager.getConnection();
@@ -559,9 +536,43 @@ public class SuKienDAO {
         /**
          * Mock
          */
-        tags.add("Beginner Friendly");
-        tags.add("Low/No Code");
-        tags.add("Social good");
+//        tags.add("Beginner Friendly");
+//        tags.add("Low/No Code");
+//        tags.add("Social good");
+        tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
         return tags;
+    }
+
+    public static HashSet<String> getAllTags() throws SQLException {
+        HashSet<String> tags = new HashSet<String>();
+
+        String sql = "SELECT TAG FROM TAG_NAMES";
+
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            Statement stm = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stm.executeQuery(sql);
+
+            while (rs.next()) {
+                tags.add(rs.getString("TAG"));
+            }
+
+            rs.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw e;
+        }
+
+        return tags;
+    }
+
+    /**
+     * Function meant for test-only purpose
+     */
+    public static void main(String[] args) {
+        try {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
