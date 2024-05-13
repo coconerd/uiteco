@@ -690,7 +690,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     private void _initContentPanel() {
         SuKienPanel sk = new SuKienPanel();
-        contentPanel.registerComponent(sk, "suKienPanel");
+        contentPanel.registerComponent(sk, SuKienPanel.INSTANCE_NAME);
         
         SuKienDetailScrollPane sd = new SuKienDetailScrollPane();
         contentPanel.registerComponent(sd, SuKienDetailScrollPane.INSTANCE_NAME);

@@ -23,6 +23,8 @@ import javax.swing.JTextPane;
  * @author nddmi
  */
 public class SuKienPanel extends javax.swing.JPanel {
+    public static final String INSTANCE_NAME = "suKienPanel";
+    
 
     public SuKienPanel() {
         initComponents();
