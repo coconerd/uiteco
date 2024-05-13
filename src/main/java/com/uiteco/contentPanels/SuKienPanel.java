@@ -3,15 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.uiteco.contentPanels;
+import com.uiteco.ofSuKienPanel.SlideShowView;
 import com.uiteco.ofSuKienPanel.SuKienListModel;
+import com.uiteco.ofSuKienPanel.SuKienListView;
 import com.uiteco.ofSuKienPanel.SuKienModel;
 import com.uiteco.ofSuKienPanel.SuKienView;
+import com.uiteco.ofSuKienPanel.search.SearchBar;
+import com.uiteco.ofSuKienPanel.tagsAndSort.TagsAndSort;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.BorderLayout;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import javax.swing.JTextPane;
 
 /**
  *
@@ -21,6 +26,30 @@ public class SuKienPanel extends javax.swing.JPanel {
 
     public SuKienPanel() {
         initComponents();
+    }
+
+    public JPanel getContainerPanel() {
+        return containerPanel;
+    }
+
+    public JTextPane getjTextPane1() {
+        return jTextPane1;
+    }
+
+    public SearchBar getSearchBar() {
+        return searchBar;
+    }
+
+    public SlideShowView getSlideShowView() {
+        return slideShowView2;
+    }
+
+    public SuKienListView getSuKienListView() {
+        return suKienListView1;
+    }
+
+    public TagsAndSort getTagsAndSort() {
+        return tagsAndSort1;
     }
     
     /**
@@ -40,6 +69,7 @@ public class SuKienPanel extends javax.swing.JPanel {
         slideShowView2 = new com.uiteco.ofSuKienPanel.SlideShowView();
         searchBar = new com.uiteco.ofSuKienPanel.search.SearchBar();
         suKienListView1 = new com.uiteco.ofSuKienPanel.SuKienListView();
+        tagsAndSort1 = new com.uiteco.ofSuKienPanel.tagsAndSort.TagsAndSort();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -86,6 +116,20 @@ public class SuKienPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 60, 15, 60);
         containerPanel.add(suKienListView1, gridBagConstraints);
 
+        tagsAndSort1.setPreferredSize(new java.awt.Dimension(252, 70));
+        tagsAndSort1.setRoundBottomLeft(50);
+        tagsAndSort1.setRoundBottomRight(50);
+        tagsAndSort1.setRoundTopLeft(50);
+        tagsAndSort1.setRoundTopRight(50);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.insets = new java.awt.Insets(20, 60, 10, 60);
+        containerPanel.add(tagsAndSort1, gridBagConstraints);
+
         scrollPaneWin11.setViewportView(containerPanel);
 
         add(scrollPaneWin11);
@@ -100,5 +144,6 @@ public class SuKienPanel extends javax.swing.JPanel {
     private com.uiteco.ofSuKienPanel.search.SearchBar searchBar;
     private com.uiteco.ofSuKienPanel.SlideShowView slideShowView2;
     private com.uiteco.ofSuKienPanel.SuKienListView suKienListView1;
+    private com.uiteco.ofSuKienPanel.tagsAndSort.TagsAndSort tagsAndSort1;
     // End of variables declaration//GEN-END:variables
 }
