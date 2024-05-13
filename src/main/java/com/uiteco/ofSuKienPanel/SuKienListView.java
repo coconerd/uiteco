@@ -88,10 +88,15 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
 
     private void _additionalInit() {
         this.suKienListModel.addPropertyChangeListener(this);
-        javax.swing.SwingUtilities.invokeLater(() -> {
-            _populateSuKienList();
-            _populatePaginationBar();
-        });
+        
+        if (getSuKienListModel() != null
+                && getSuKienListModel().getSuKienList() != null
+                && getSuKienListModel().getSuKienList().size() > 0) {
+            javax.swing.SwingUtilities.invokeLater(() -> {
+                _populateSuKienList();
+                _populatePaginationBar();
+            });
+        }
 
     }
 
