@@ -22,6 +22,7 @@ import com.uiteco.swing.ContentPanel;
 import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
 import java.awt.Cursor;
 import javax.swing.BoxLayout;
+import java.beans.PropertyChangeSupport;
 
 /**
  *
@@ -32,9 +33,12 @@ import javax.swing.BoxLayout;
  */
 public class SuKienListView extends JPanel implements PropertyChangeListener {
 
+    public static final String LIST_POPULATED_EVENT = "LIST_POPULATED";
+
     private SuKienListModel suKienListModel;
     public int verticalGap;
     public static int DEFAULT_VERTICAL_GAP = 50;
+    private PropertyChangeSupport propertyChangeSupport;
 
     public SuKienListView() {
         _init();
@@ -70,25 +74,42 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("suKienList")) {
             removeAll();
+
             _populateSuKienList();
             _populatePaginationBar();
+
             repaint();
             revalidate();
+
             Component parent = getParent();
             while (!(parent instanceof ScrollPaneWin11)) {
                 parent = parent.getParent();
+                if (parent instanceof ScrollPaneWin11) {
+                    ((ScrollPaneWin11) parent).scrollToTop(); // Scroll to the top of the page            
+                    break;
+                }
             }
-            ((ScrollPaneWin11) parent).scrollToTop(); // Scroll to the top of the page
+            
+            propertyChangeSupport.firePropertyChange(LIST_POPULATED_EVENT, null, null);
         }
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        propertyChangeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        propertyChangeSupport.removePropertyChangeListener(listener);
     }
 
     private void _init() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
     private void _additionalInit() {
         this.suKienListModel.addPropertyChangeListener(this);
-        
+
         if (getSuKienListModel() != null
                 && getSuKienListModel().getSuKienList() != null
                 && getSuKienListModel().getSuKienList().size() > 0) {
@@ -97,7 +118,6 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
                 _populatePaginationBar();
             });
         }
-
     }
 
     private void _populateSuKienList() {

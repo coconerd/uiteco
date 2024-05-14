@@ -17,6 +17,7 @@ import java.awt.BorderLayout;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.JTextPane;
+import com.uiteco.ofSuKienPanel.tagsAndSort.NullSuKienViewException;
 
 /**
  *
@@ -71,7 +72,7 @@ public class SuKienPanel extends javax.swing.JPanel {
         slideShowView2 = new com.uiteco.ofSuKienPanel.SlideShowView();
         searchBar = new com.uiteco.ofSuKienPanel.search.SearchBar();
         suKienListView1 = new com.uiteco.ofSuKienPanel.SuKienListView();
-        tagsAndSort1 = new com.uiteco.ofSuKienPanel.tagsAndSort.TagsAndSort();
+        tagsAndSort1 = new com.uiteco.ofSuKienPanel.tagsAndSort.TagsAndSort(getSuKienListView());
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -119,10 +120,6 @@ public class SuKienPanel extends javax.swing.JPanel {
         containerPanel.add(suKienListView1, gridBagConstraints);
 
         tagsAndSort1.setPreferredSize(new java.awt.Dimension(252, 70));
-        tagsAndSort1.setRoundBottomLeft(50);
-        tagsAndSort1.setRoundBottomRight(50);
-        tagsAndSort1.setRoundTopLeft(50);
-        tagsAndSort1.setRoundTopRight(50);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
