@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.LinkedList;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import com.uiteco.database.ConnectionManager;
@@ -211,7 +212,7 @@ public class SuKienDAO {
         return 300;  // mock
     }
 
-    public static ArrayList<SuKienModel> getPageData(int page, int pageSize) {
+    public static LinkedList<SuKienModel> getPageData(int page, int pageSize) {
         ArrayList<SuKienModel> suKienList = new ArrayList<>();
 
         // mock
@@ -337,8 +338,8 @@ public class SuKienDAO {
         System.out.println("Debug: start index = " + startIdx);
         System.out.println("Debug: end index = " + endIdx);
 
-        java.util.List<SuKienModel> sublist = suKienList.subList(startIdx, endIdx);
-        return new ArrayList<SuKienModel>(sublist);
+        List<SuKienModel> sublist = suKienList.subList(startIdx, endIdx);
+        return new LinkedList<SuKienModel>(sublist);
     }
 
     public static ArrayList<SuKienModel> getSuKienSlideShow(int slides) {
