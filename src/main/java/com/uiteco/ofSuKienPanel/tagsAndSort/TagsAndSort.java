@@ -23,7 +23,6 @@ import java.util.TimerTask;
 import java.util.Timer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 
 /**
  *
@@ -31,7 +30,7 @@ import javax.swing.JComponent;
  */
 public class TagsAndSort extends RoundedPanel implements PropertyChangeListener {
 
-    protected DefaultComboBoxModel<String> model;
+    protected DefaultComboBoxModel<String> comboBoxModel;
     protected SuKienListView suKienListView;
 
     public TagsAndSort() {
@@ -131,8 +130,8 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
                 i++;
             }
 
-            model = new DefaultComboBoxModel<String>(tags);
-            comboBoxMulti.setModel(model);
+            comboBoxModel = new DefaultComboBoxModel<String>(tags);
+            comboBoxMulti.setModel(comboBoxModel);
         } catch (SQLException e) {
             System.err.println("TagsAndSort error:");
             e.printStackTrace();
@@ -140,7 +139,7 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
     }
 
     public DefaultComboBoxModel getModel() {
-        return this.model;
+        return this.comboBoxModel;
     }
 
     private void _init() {
