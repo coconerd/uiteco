@@ -8,6 +8,7 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import javax.swing.DefaultComboBoxModel;
 import com.uiteco.components.RoundedPanel;
 import com.uiteco.ofSuKienPanel.SuKienDAO;
+import com.uiteco.ofSuKienPanel.SuKienListModel;
 import java.awt.Color;
 import java.sql.SQLException;
 import com.uiteco.ofSuKienPanel.SuKienListView;
@@ -23,22 +24,16 @@ import java.util.TimerTask;
 import java.util.Timer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import java.util.List;
+import java.util.Iterator;
 
 /**
  *
  * @author nddmi
  */
-public class TagsAndSort extends RoundedPanel implements PropertyChangeListener {
+public class TagsAndSort extends RoundedPanel {
 
-    /**
-     * All sorting options (Eg. Sort by posted time, sort by views, ...)
-     */
-    public static enum SORT_OPTION {
-        NEWEST, HOTTEST
-    };
-    
-    public static SORT_OPTION DEFAULT_SORT_OPTION = SORT_OPTION.NEWEST;
-    protected SORT_OPTION sortOption;
+    protected boolean sortOptionChanged;
     protected DefaultComboBoxModel<String> comboBoxModel;
     protected SuKienListView suKienListView;
 
@@ -61,74 +56,50 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
 
     public void setSuKienListView(SuKienListView suKienListView) {
         this.suKienListView = suKienListView;
-        this.suKienListView.addPropertyChangeListener(this);
+//        this.suKienListView.addPropertyChangeListener(this);
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals(SuKienListView.LIST_POPULATED_EVENT)) {
-            System.out.println("CATCHED A LIST_POPULATED_EVENT");
-            try {
-                applyFilter();
-            } catch (NullSuKienViewException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
+//    @Override
+//    public void propertyChange(PropertyChangeEvent evt) {
+//        if (evt.getPropertyName().equals(SuKienListView.LIST_POPULATED_EVENT)) {
+//            try {
+//                applyFilter();
+//            } catch (NullSuKienViewException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
     public void applyFilter() throws NullSuKienViewException {
         System.out.println("Filter will be applied");
         if (suKienListView == null) {
             throw new NullSuKienViewException();
         }
-
+//
         Set<String> selectedTags = new HashSet<>(comboBoxMulti.getSelectedItems());
+        SuKienListModelWithTagSort.SORT_OPTION sortOption = (chosenBtn == newBtn)
+                ? SuKienListModelWithTagSort.SORT_OPTION.NEWEST
+                : SuKienListModelWithTagSort.SORT_OPTION.HOTTEST;
 
-        boolean fillerHidden = false;
+        SuKienListModelWithTagSort newSuKienListModel = new SuKienListModelWithTagSort(selectedTags, sortOption);
+        newSuKienListModel.addPropertyChangeListener(suKienListView);
+        newSuKienListModel.loadData();
 
-        // Filter out SuKien based on tags
-//        for (Component comp : suKienListView.getComponents()) {
-//
-//            if (!(comp instanceof SuKienView || comp instanceof Filler)) {
-//                continue;
-//            }
-//
-//            if (comp instanceof Filler && fillerHidden) {
-//                fillerHidden = false;
-//                comp.setVisible(false);
-//
-//            } else if (comp instanceof SuKienView) {
-//                SuKienView suKienView = (SuKienView) comp;
-//                SuKienModel suKienModel = suKienView.getSuKienModel();
-//
-//                // Hide SuKienView object if its tags doesn't match with selected tags
-//                boolean tagMatched = false;
-//
-//                if (selectedTags.size() <= 0) {
-//                    tagMatched = true;
-//                    System.out.println("Tag matched");
-//                } else {
-//
-//                    for (String tag : selectedTags) {
-//                        if (suKienModel.getTags().contains(tag)) {
-//                            tagMatched = true;
-//                            System.out.println("Tag matched");
-//                            break;
-//                        }
-//                    }
-//                }
-//
-//                suKienView.setVisible(tagMatched);
-//                fillerHidden = !tagMatched;
-//            }
+//        System.out.println("Sort result: ");
+//        for (int i = 0; i < suKienList.size(); i++) {
+//            System.out.println("Post ID " + suKienList.get(i).getPostID() + ", views: " + suKienList.get(i).getViews());
 //        }
-
-//        suKienListView.revalidate();
-//        suKienListView.repaint();
+//
+//        // Substitute old SuKienListModel with a new SuKienListModel object for SuKienListView (to update pagination)
+//        System.out.println("DEBUG: number of pages of newSuKienListModel: " + newSuKienListModel.getPageCount());
+        suKienListView.setSuKienListModel(newSuKienListModel);
+//
 //        System.out.println("Filter applied");
     }
 
     private void _additionalInit() {
+        chosenBtn = newBtn;
+        chosenBtn.setBackground(new Color(204, 204, 204));
+
         try {
             HashSet<String> tagSet = SuKienDAO.getAllTags();
             int n = tagSet.size();
@@ -154,7 +125,7 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
 
     private void _init() {
         FlatMacLightLaf.setup(); // This line must be run before initialization of ComboBoxMultiSelection
-        sortOption = DEFAULT_SORT_OPTION;
+        sortOptionChanged = false;
     }
 
     /**
@@ -427,8 +398,9 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
 
             newLabel.setForeground(newLabel.getForeground().brighter());
             newBtn.setBackground(new Color(240, 242, 245));
-            
-            sortOption = SORT_OPTION.HOTTEST;
+
+//            sortOption = SORT_OPTION.HOTTEST;
+            sortOptionChanged = true;
         }
     }//GEN-LAST:event_hotLabelMouseClicked
 
@@ -457,8 +429,9 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
 
             hotLabel.setForeground(hotLabel.getForeground().brighter());
             hotBtn.setBackground(new Color(240, 242, 245));
-            
-            sortOption = SORT_OPTION.NEWEST;
+
+//            sortOption = SORT_OPTION.NEWEST;
+            sortOptionChanged = true;
         }
     }//GEN-LAST:event_newLabelMouseClicked
 

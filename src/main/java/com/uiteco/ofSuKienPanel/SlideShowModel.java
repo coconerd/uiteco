@@ -82,7 +82,7 @@ public class SlideShowModel extends PaginationModel {
 //        setSuKienIn(getSuKien(pageToIndex(nextPage)));
 //        setSuKienOut(getSuKien(pageToIndex(currPage)));
         setNext(true);
-        setCurrentPage(nextPage);
+        setCurrentPageAndFire(nextPage);
     }
 
     @Override
@@ -92,14 +92,14 @@ public class SlideShowModel extends PaginationModel {
 //        setSuKienIn(getSuKien(pageToIndex(previousPage)));
 //        setSuKienOut(getSuKien(pageToIndex(currPage)));
         setNext(false);
-        setCurrentPage(previousPage);
+        setCurrentPageAndFire(previousPage);
     }
 
     @Override
     public void switchPage(int page) {
         if (page != getCurrentPage()) {
              setNext(page < getCurrentPage() ? false : true);
-            setCurrentPage(page);
+            setCurrentPageAndFire(page);
         }
     }
 

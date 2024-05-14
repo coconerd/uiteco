@@ -33,12 +33,11 @@ import java.beans.PropertyChangeSupport;
  */
 public class SuKienListView extends JPanel implements PropertyChangeListener {
 
-    public static final String LIST_POPULATED_EVENT = "LIST_POPULATED";
-
+//    public static final String LIST_POPULATED_EVENT = "LIST_POPULATED";
     private SuKienListModel suKienListModel;
     public int verticalGap;
     public static int DEFAULT_VERTICAL_GAP = 50;
-    private PropertyChangeSupport propertyChangeSupport;
+//    private PropertyChangeSupport propertyChangeSupport;
 
     public SuKienListView() {
         _init();
@@ -64,6 +63,7 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
 
     public void setSuKienListModel(SuKienListModel suKienListModel) {
         this.suKienListModel = suKienListModel;
+        loadSuKienListView(); // Reload list view if model is changed
     }
 
     public void setVerticalGap(int verticalGap) {
@@ -73,14 +73,8 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("suKienList")) {
-            removeAll();
-
-            _populateSuKienList();
-            _populatePaginationBar();
-
-            repaint();
-            revalidate();
-
+            loadSuKienListView();
+            
             Component parent = getParent();
             while (!(parent instanceof ScrollPaneWin11)) {
                 parent = parent.getParent();
@@ -89,22 +83,32 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
                     break;
                 }
             }
-            
-            propertyChangeSupport.firePropertyChange(LIST_POPULATED_EVENT, null, null);
+
+//            propertyChangeSupport.firePropertyChange(LIST_POPULATED_EVENT, null, null);
         }
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(listener);
-    }
+//    public void addPropertyChangeListener(PropertyChangeListener listener) {
+//        propertyChangeSupport.addPropertyChangeListener(listener);
+//    }
+//
+//    public void removePropertyChangeListener(PropertyChangeListener listener) {
+//        propertyChangeSupport.removePropertyChangeListener(listener);
+//    }
 
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(listener);
+    private void loadSuKienListView() {
+        removeAll();
+
+        _populateSuKienList();
+        _populatePaginationBar();
+
+        revalidate();
+        repaint();
     }
 
     private void _init() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.propertyChangeSupport = new PropertyChangeSupport(this);
+//        this.propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
     private void _additionalInit() {

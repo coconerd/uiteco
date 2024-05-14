@@ -7,6 +7,7 @@ package com.uiteco.ofSuKienPanel;
 import java.util.ArrayList;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.LinkedList;
 
@@ -23,56 +24,56 @@ public class SuKienListModel extends PaginationModel implements PropertyChangeLi
 
     public SuKienListModel() {
         _init();
-        this.setSuKienList(SuKienDAO.getPageData(
-                getCurrentPage(),
-                getEntriesPerPage()
-        ));
+        _additionalInit();
     }
 
     public SuKienListModel(List<SuKienModel> suKienList) {
         _init();
-        this.setSuKienList(suKienList);
-    }
+        setSuKienList(suKienList);
+        _additionalInit();
 
-    public void addSuKien(SuKienModel suKien) {
-        this.suKienList.add(suKien);
-        // Fires a property-change event to notify SuKienListView that the list has changed. Therefore, view should be reloaded
-        this.propertyChangeSupport.firePropertyChange("SuKienList", null, suKien);
-    }
-
-    public void removeSuKien(SuKienModel suKien) {
-        this.suKienList.remove(suKien);
-        // Fires a property-change event to notify SuKienListView that the list has changed. Therefore, view should be reloaded
-        this.propertyChangeSupport.firePropertyChange("suKienListRemoved", suKien, null);
     }
 
     public List<SuKienModel> getSuKienList() {
         return this.suKienList;
     }
 
-    public SuKienModel getLastSuKien() {
-        return this.suKienList.getLast();
+    public void fireSuKienList() {
+        // Fires a property-change event to notify SuKienListView that the list has changed. Therefore, view should be reloaded
+        propertyChangeSupport.firePropertyChange("suKienList", null, null);
     }
 
     public void setSuKienList(List<SuKienModel> suKienList) {
         this.suKienList = suKienList;
-        // Fires a property-change event to notify SuKienListView that the list has changed. Therefore, view should be reloaded
-        propertyChangeSupport.firePropertyChange("suKienList", null, null);
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("currentPage")) {
-            setSuKienList(SuKienDAO.getPageData(
-                    getCurrentPage(),
-                    getEntriesPerPage()
-            ));
+            try {
+                setSuKienList(SuKienDAO.getPageData(
+                        getCurrentPage(),
+                        getEntriesPerPage()
+                ));
+                fireSuKienList();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
     protected int _getInitialEntries() {
-        return SuKienDAO.getCount();
+        int count = 0;
+        try {
+            count = SuKienDAO.getCount();
+            
+            return count;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        };
+        
+        return count;
     }
 
     @Override
@@ -80,7 +81,20 @@ public class SuKienListModel extends PaginationModel implements PropertyChangeLi
         return DEFAULT_ENTRIES_PER_PAGE;
     }
 
-    private void _init() {
+    protected void _additionalInit() {
+        if (suKienList != null) {
+            fireSuKienList();
+        } else {
+            try {
+                setSuKienList(SuKienDAO.getPageData(getCurrentPage(), getEntriesPerPage()));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    protected void _init() {
         addPropertyChangeListener(this);
     }
+
 }

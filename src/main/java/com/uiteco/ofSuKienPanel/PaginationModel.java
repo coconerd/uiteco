@@ -69,14 +69,14 @@ public abstract class PaginationModel {
      *
      * @param newPage
      */
-    public void setCurrentPage(int newPage) {
+    public void setCurrentPageAndFire(int newPage) {
         int oldPage = getCurrentPage();
-        this.currentPage = newPage;
+        setCurrentPage(newPage);
         propertyChangeSupport.firePropertyChange("currentPage", oldPage, newPage);
-        System.out.println("Debug: current page = " + newPage);
-        System.out.println("Debug: page count = " + pageCount);
-        System.out.println("Debug: entries per page = " + entriesPerPage);
-        System.out.println("Debug: total entries count = " + entries);
+    }
+    
+    public void setCurrentPage(int newPage) {
+        this.currentPage = newPage;
     }
 
 //    public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -88,19 +88,19 @@ public abstract class PaginationModel {
 //    }
     public void switchPreviousPage() {
         if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
+            setCurrentPageAndFire(currentPage - 1);
         }
     }
 
     public void switchNextPage() {
         if (currentPage < pageCount) {
-            setCurrentPage(currentPage + 1);
+            setCurrentPageAndFire(currentPage + 1);
         }
     }
 
     public void switchPage(int page) {
         if (page != currentPage && page >= 1 && page <= pageCount) {
-            setCurrentPage(page);
+            setCurrentPageAndFire(page);
         }
     }
 

@@ -114,7 +114,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
             setComponentOut(imageContainer.getComponent(_pageToIndex(oldPage)));
             setComponentIn(imageContainer.getComponent(_pageToIndex(newPage)));
             animator.start();
-            System.out.println(((RoundedImagePanel) componentOut).getImage());
+//            System.out.println(((RoundedImagePanel) componentOut).getImage());
         }
     }
 
