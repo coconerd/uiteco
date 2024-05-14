@@ -7,7 +7,8 @@ package com.uiteco.ofSuKienPanel;
 import java.util.ArrayList;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
+import java.util.List;
+import java.util.LinkedList;
 
 /**
  * import java.beans.PropertyChangeListener;
@@ -18,7 +19,7 @@ import java.beans.PropertyChangeSupport;
 public class SuKienListModel extends PaginationModel implements PropertyChangeListener {
 
     public static final int DEFAULT_ENTRIES_PER_PAGE = 30;
-    private ArrayList<SuKienModel> suKienList;
+    private List<SuKienModel> suKienList;
 
     public SuKienListModel() {
         _init();
@@ -28,7 +29,7 @@ public class SuKienListModel extends PaginationModel implements PropertyChangeLi
         ));
     }
 
-    public SuKienListModel(ArrayList<SuKienModel> suKienList) {
+    public SuKienListModel(List<SuKienModel> suKienList) {
         _init();
         this.setSuKienList(suKienList);
     }
@@ -45,7 +46,7 @@ public class SuKienListModel extends PaginationModel implements PropertyChangeLi
         this.propertyChangeSupport.firePropertyChange("suKienListRemoved", suKien, null);
     }
 
-    public ArrayList<SuKienModel> getSuKienList() {
+    public List<SuKienModel> getSuKienList() {
         return this.suKienList;
     }
 
@@ -53,7 +54,7 @@ public class SuKienListModel extends PaginationModel implements PropertyChangeLi
         return this.suKienList.getLast();
     }
 
-    public void setSuKienList(ArrayList<SuKienModel> suKienList) {
+    public void setSuKienList(List<SuKienModel> suKienList) {
         this.suKienList = suKienList;
         // Fires a property-change event to notify SuKienListView that the list has changed. Therefore, view should be reloaded
         propertyChangeSupport.firePropertyChange("suKienList", null, null);
