@@ -25,6 +25,10 @@ public class SuKienView extends RoundedGradientPanel {
         _additionalInit();
     }
     
+    public SuKienModel getSuKienModel() {
+        return this.suKienModel;
+    }
+    
     private void _additionalInit() {
     }
 
