@@ -19,6 +19,10 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.swing.Box.Filler;
 import java.beans.PropertyChangeListener;
+import java.util.TimerTask;
+import java.util.Timer;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -34,23 +38,23 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
         initComponents();
         _additionalInit();
     }
-    
-    public TagsAndSort(SuKienListView suKienListView)  {
+
+    public TagsAndSort(SuKienListView suKienListView) {
         _init();
         initComponents();
         _additionalInit();
         setSuKienListView(suKienListView);
     }
-    
+
     public SuKienListView getSuKienListView() {
         return this.suKienListView;
     }
-    
+
     public void setSuKienListView(SuKienListView suKienListView) {
         this.suKienListView = suKienListView;
         this.suKienListView.addPropertyChangeListener(this);
     }
-    
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals(SuKienListView.LIST_POPULATED_EVENT)) {
@@ -70,7 +74,7 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
         }
 
         Set<String> selectedTags = new HashSet<>(comboBoxMulti.getSelectedItems());
-        
+
         boolean fillerHidden = false;
 
         for (Component comp : suKienListView.getComponents()) {
@@ -167,7 +171,7 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
 
         sortLabel.setFont(new java.awt.Font("Circular Std Black", 0, 14)); // NOI18N
         sortLabel.setForeground(new java.awt.Color(51, 51, 51));
-        sortLabel.setText("Sap xep");
+        sortLabel.setText("Sap xep:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -177,27 +181,30 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         add(sortLabel, gridBagConstraints);
 
-        comboBoxMulti.setPreferredSize(new java.awt.Dimension(72, 30));
+        comboBoxMulti.setPreferredSize(new java.awt.Dimension(80, 35));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.3;
         add(comboBoxMulti, gridBagConstraints);
 
         tagLabel.setFont(new java.awt.Font("Circular Std Black", 0, 14)); // NOI18N
         tagLabel.setForeground(new java.awt.Color(51, 51, 51));
-        tagLabel.setText("Tag");
+        tagLabel.setText("Tag:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 10);
         add(tagLabel, gridBagConstraints);
 
         applyBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 5));
         applyBtn.setColor1(new java.awt.Color(53, 101, 242));
         applyBtn.setColor2(new java.awt.Color(0, 0, 0));
-        applyBtn.setPreferredSize(new java.awt.Dimension(100, 34));
+        applyBtn.setPreferredSize(new java.awt.Dimension(100, 35));
         applyBtn.setRoundBottomLeft(25);
         applyBtn.setRoundBottomRight(25);
         applyBtn.setRoundTopLeft(25);
@@ -235,6 +242,7 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         add(applyBtn, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -248,9 +256,31 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
 
     private void applyLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyLabelMouseClicked
         // TODO add your handling code here:
-        
         try {
             applyFilter();
+
+            Color prevColor = applyBtn.getColor1();
+            Icon prevIcon = applyLabel.getIcon();
+//            String prevText = applyLabel.getText();
+
+            displayingAnimation = true;
+//            applyLabel.setText("Apply");
+            applyBtn.setColor1(new Color(14, 231, 15));
+            applyLabel.setIcon(new ImageIcon(getClass().getResource("/icons8-tick-24.png")));
+
+            TimerTask undo = new TimerTask() {
+                @Override
+                public void run() {
+//                    applyLabel.setText(prevText);
+                    applyBtn.setColor1(prevColor);
+                    applyLabel.setIcon(prevIcon);
+                    displayingAnimation = false;
+                }
+            };
+
+            long delay = (long)(1.5 * 1000); // milliseconds
+            new Timer().schedule(undo, delay);
+
         } catch (NullSuKienViewException e) {
             e.printStackTrace();
         }
@@ -259,14 +289,16 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
     private void applyLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyLabelMouseEntered
         // TODO add your handling code here:
         applyLabel.setForeground(new Color(204, 203, 204));
-        applyBtn.setBackground(new Color(7, 56, 119));
+        applyBtn.setColor1(new Color(7, 56, 119));
 
     }//GEN-LAST:event_applyLabelMouseEntered
 
     private void applyLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyLabelMouseExited
         // TODO add your handling code here:
-        applyLabel.setForeground(new Color(255, 255, 255));
-        applyBtn.setBackground(new Color(53, 101, 242));
+        if (!displayingAnimation) {
+            applyLabel.setForeground(new Color(255, 255, 255));
+            applyBtn.setColor1(new Color(53, 101, 242));
+        }
     }//GEN-LAST:event_applyLabelMouseExited
 
 
@@ -277,4 +309,5 @@ public class TagsAndSort extends RoundedPanel implements PropertyChangeListener 
     private javax.swing.JLabel sortLabel;
     private javax.swing.JLabel tagLabel;
     // End of variables declaration//GEN-END:variables
+    private boolean displayingAnimation;
 }
