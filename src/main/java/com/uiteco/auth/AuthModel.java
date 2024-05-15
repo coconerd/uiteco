@@ -14,6 +14,11 @@ import java.util.regex.Pattern;
  */
 public class AuthModel {
 
+    public static final int MIN_USERNAME_LEN = 4;
+    public static final int MAX_USERNAME_LEN = 40;
+    public static final int MIN_PASSWORD_LEN = 8;
+    public static final int MAX_PASSWORD_LEN = 32;
+    
     private String email;
     private String username;
     private String password;
@@ -113,7 +118,7 @@ public class AuthModel {
 
     private void setUsernameOrThrow(String inputUsername) throws BadCredentialsFormatException {
         int len = inputUsername.length();
-        if (!(len >= 4 && len <= 15)) {
+        if (!(len >= MIN_USERNAME_LEN && len <= MAX_USERNAME_LEN)) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.USERNAME);
         }
         
@@ -127,7 +132,7 @@ public class AuthModel {
 
     private void setPasswordOrThrow(String inputPassword) throws BadCredentialsFormatException {
         int len = inputPassword.length();
-        if (!(len >= 8 && len <= 32)) {
+        if (!(len >= MIN_PASSWORD_LEN && len <= MAX_PASSWORD_LEN)) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.PASSWORD);
         }
         
