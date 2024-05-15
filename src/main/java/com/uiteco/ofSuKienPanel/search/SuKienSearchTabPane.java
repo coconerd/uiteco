@@ -16,11 +16,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import com.uiteco.components.ModernTabPane;
+import com.uiteco.components.RoundedPanel;
 import com.uiteco.ofSuKienPanel.SuKienModel;
 import java.util.List;
 import javax.swing.border.EmptyBorder;
 import com.uiteco.ofSuKienPanel.search.SuKienListModelSearch.SEARCH_OPTION;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.Box;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -68,13 +73,27 @@ public class SuKienSearchTabPane extends ModernTabPane {
 
         SuKienListModelSearch newModel = new SuKienListModelSearch(searchText, searchOption);
         SuKienListView suKienListView = new SuKienListView(newModel, null);
-        newModel.addPropertyChangeListener(newModel);
+        newModel.addPropertyChangeListener(suKienListView);
         newModel.loadData();
-        
-        if (suKienListView.getSuKienListModel().getEntries() > 0) {
+
+        int entries = newModel.getEntries();
+        if (entries > 0) {
+            RoundedPanel statsPanel = RoundedPanel.getRoundedPanel(40, 40, 40, 40, new GridLayout(1, 1));
+            statsPanel.setBackground(suKienListView.getBackground());
+//            statsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            
+            JLabel statsLabel = new JLabel();
+            statsLabel.setFont(new Font("Arial", Font.BOLD, 16));
+            statsLabel.setText("Đã tìm thấy " + entries + " bài viết tương ứng");
+            statsLabel.setIcon(new ImageIcon(getClass().getResource("/icons8-search-28.png")));
+            statsPanel.add(statsLabel);
+            
+            suKienListView.setBorder(new EmptyBorder(10, 30, 0, 30));
+            suKienListView.add(statsPanel, Component.LEFT_ALIGNMENT, 0);
+            suKienListView.add(Box.createRigidArea(new Dimension(0, 30)), 1);
+
             ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
             scrollPane.setBorder(null);
-            suKienListView.setBorder(new EmptyBorder(10, 30, 0, 30));
             scrollPane.setViewportView(suKienListView);
             return scrollPane;
         }
