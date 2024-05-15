@@ -7,7 +7,6 @@ package com.uiteco.ofSuKienPanel.search;
 import com.raven.scroll.ScrollPaneWin11;
 import com.uiteco.components.ImagePanel;
 import com.uiteco.ofSuKienPanel.SuKienDAO;
-import com.uiteco.ofSuKienPanel.SuKienListModel;
 import com.uiteco.ofSuKienPanel.SuKienListView;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,8 +17,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import com.uiteco.components.ModernTabPane;
 import com.uiteco.ofSuKienPanel.SuKienModel;
-import java.util.ArrayList;
+import java.util.List;
 import javax.swing.border.EmptyBorder;
+import com.uiteco.ofSuKienPanel.search.SuKienListModelSearch.SEARCH_OPTION;
+import java.awt.Component;
 
 /**
  *
@@ -37,31 +38,13 @@ public class SuKienSearchTabPane extends ModernTabPane {
 
     public void loadSuKienSearchTabPane(String searchText) {
         removeAll();
-        addTab("Tìm theo tiêu đề", _createEmptyPanel());
-        addTab("Tìm theo nội dung bài đăng", _createEmptyPanel());
-        addTab("Tìm theo người đăng", _createEmptyPanel());
-        try {
-            ArrayList<SuKienModel> suKienList = SuKienDAO.searchSuKienByTitle(searchText);
-            if (suKienList != null && suKienList.size() > 0) {
-                setComponentAt(0, _createResultScrollPane(suKienList));
-            }
+        addTab("Tìm theo tiêu đề", _createResultPane(searchText, SEARCH_OPTION.title));
+        addTab("Tìm theo nội dung", _createResultPane(searchText, SEARCH_OPTION.content));
+        addTab("Tìm theo người đăng", _createResultPane(searchText, SEARCH_OPTION.postedBy));
 
-            suKienList = SuKienDAO.searchSuKienByContent(searchText);
-            if (suKienList != null && suKienList.size() > 0) {
-                setComponentAt(1, _createResultScrollPane(suKienList));
-            }
-
-            suKienList = SuKienDAO.searchSuKienByOwner(searchText);
-            if (suKienList != null && suKienList.size() > 0) {
-                setComponentAt(2, _createResultScrollPane(suKienList));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
-    private JPanel _createEmptyPanel() {
+    private Component _createEmptyPanel() {
         JPanel emptyPanel = new JPanel();
 //        emptyPanel.setBackground(new Color(242, 243, 244));
         emptyPanel.setBackground(new Color(164, 217, 235));
@@ -81,14 +64,21 @@ public class SuKienSearchTabPane extends ModernTabPane {
         return emptyPanel;
     }
 
-    private ScrollPaneWin11 _createResultScrollPane(ArrayList<SuKienModel> suKienList) {
-        ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
-        scrollPane.setBorder(null);
+    private Component _createResultPane(String searchText, SEARCH_OPTION searchOption) {
+
+        SuKienListModelSearch newModel = new SuKienListModelSearch(searchText, searchOption);
+        SuKienListView suKienListView = new SuKienListView(newModel, null);
+        newModel.addPropertyChangeListener(newModel);
+        newModel.loadData();
         
-        SuKienListView suKienListView = new SuKienListView(new SuKienListModel(suKienList), null);
-        suKienListView.setBorder(new EmptyBorder(10, 30, 0, 30));
-        scrollPane.setViewportView(suKienListView);
-        
-        return scrollPane;
+        if (suKienListView.getSuKienListModel().getEntries() > 0) {
+            ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
+            scrollPane.setBorder(null);
+            suKienListView.setBorder(new EmptyBorder(10, 30, 0, 30));
+            scrollPane.setViewportView(suKienListView);
+            return scrollPane;
+        }
+
+        return _createEmptyPanel();
     }
 }

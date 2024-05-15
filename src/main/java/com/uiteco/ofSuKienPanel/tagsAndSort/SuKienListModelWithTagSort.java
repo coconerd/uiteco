@@ -76,7 +76,6 @@ public class SuKienListModelWithTagSort extends SuKienListModel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

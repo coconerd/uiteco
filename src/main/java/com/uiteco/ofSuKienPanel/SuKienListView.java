@@ -76,12 +76,12 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
             loadSuKienListView();
             
             Component parent = getParent();
-            while (!(parent instanceof ScrollPaneWin11)) {
-                parent = parent.getParent();
+            while (parent != null) {
                 if (parent instanceof ScrollPaneWin11) {
                     ((ScrollPaneWin11) parent).scrollToTop(); // Scroll to the top of the page            
                     break;
                 }
+                parent = parent.getParent();
             }
 
 //            propertyChangeSupport.firePropertyChange(LIST_POPULATED_EVENT, null, null);

@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import com.uiteco.database.ConnectionManager;
+import com.uiteco.ofSuKienPanel.search.SuKienListModelSearch;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -23,6 +24,7 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 import static com.uiteco.ofSuKienPanel.tagsAndSort.SuKienListModelWithTagSort.SORT_OPTION;
+import static com.uiteco.ofSuKienPanel.search.SuKienListModelSearch.SEARCH_OPTION;
 import static com.uiteco.ofSuKienPanel.tagsAndSort.SuKienListModelWithTagSort.DEFAULT_SORT_OPTION;
 import java.util.Collections;
 import java.util.Iterator;
@@ -392,6 +394,36 @@ public class SuKienDAO {
         return genMockData().size();
     }
 
+    public static ArrayList<SuKienModel> searchSuKien(String searchText, SEARCH_OPTION searchOption) throws SQLException {
+        // Mock
+        ArrayList<SuKienModel> result = new ArrayList<SuKienModel>();
+        switch (searchOption) {
+            case title:
+                for (SuKienModel suKienModel : genMockData()) {
+                    if (suKienModel.getTitle().contains(searchText)) {
+                        result.add(suKienModel);
+                    }
+                }
+                break;
+            case content:
+                for (SuKienModel suKienModel : genMockData()) {
+                    if (suKienModel.getContent().contains(searchText)) {
+                        result.add(suKienModel);
+                    }
+                }
+                break;
+            case postedBy:
+                for (SuKienModel suKienModel : genMockData()) {
+                    if (suKienModel.getTitle().contains(searchText)) {
+                        result.add(suKienModel);
+                    }
+                }
+                break;
+        }
+
+        return result;
+    }
+
     public static LinkedList<SuKienModel> getPageData(int page, int pageSize) throws SQLException {
         ArrayList<SuKienModel> suKienList = genMockData();
 
@@ -568,7 +600,7 @@ public class SuKienDAO {
         /**
          * Mock data
          */
-        for (SuKienModel sk : getNewest(50)) {
+        for (SuKienModel sk : genMockData()) {
             if (sk.getTitle().contains(title)) {
                 suKienList.add(sk);
             }
@@ -595,7 +627,7 @@ public class SuKienDAO {
         /**
          * Mock data
          */
-        for (SuKienModel sk : getNewest(50)) {
+        for (SuKienModel sk : genMockData()) {
             if (sk.getContent().contains(content)) {
                 suKienList.add(sk);
             }
@@ -622,7 +654,7 @@ public class SuKienDAO {
         /**
          * Mock data
          */
-        for (SuKienModel sk : getNewest(50)) {
+        for (SuKienModel sk : genMockData()) {
             if (sk.getPostedBy().contains(owner)) {
                 suKienList.add(sk);
             }
