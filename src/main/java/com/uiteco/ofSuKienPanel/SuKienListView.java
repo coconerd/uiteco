@@ -161,7 +161,8 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
         int radius = 7;
 
         RoundedPanel paginationBar = RoundedPanel.getRoundedPanel(radius, new FlowLayout());
-        paginationBar.setBackground(new Color(242, 243, 244)); // Navy blue
+//        paginationBar.setBackground(new Color(242, 243, 244)); // Navy blue
+        paginationBar.setBackground(getBackground()); // Same as outer panel
 
         int pageCount = suKienListModel.getPageCount();
         int currentPage = suKienListModel.getCurrentPage();
