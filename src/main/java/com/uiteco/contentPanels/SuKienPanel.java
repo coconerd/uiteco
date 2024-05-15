@@ -35,10 +35,6 @@ public class SuKienPanel extends javax.swing.JPanel {
         return containerPanel;
     }
 
-    public JTextPane getjTextPane1() {
-        return jTextPane1;
-    }
-
     public SearchBar getSearchBar() {
         return searchBar;
     }
@@ -65,16 +61,12 @@ public class SuKienPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         scrollPaneWin11 = new com.raven.scroll.ScrollPaneWin11();
         containerPanel = new javax.swing.JPanel();
         slideShowView2 = new com.uiteco.ofSuKienPanel.SlideShowView();
         searchBar = new com.uiteco.ofSuKienPanel.search.SearchBar();
         suKienListView1 = new com.uiteco.ofSuKienPanel.SuKienListView();
         tagsAndSort1 = new com.uiteco.ofSuKienPanel.tagsAndSort.TagsAndSort(getSuKienListView());
-
-        jScrollPane1.setViewportView(jTextPane1);
 
         setBackground(new java.awt.Color(242, 243, 244));
         setForeground(new java.awt.Color(242, 243, 244));
@@ -137,8 +129,6 @@ public class SuKienPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
     private com.raven.scroll.ScrollPaneWin11 scrollPaneWin11;
     private com.uiteco.ofSuKienPanel.search.SearchBar searchBar;
     private com.uiteco.ofSuKienPanel.SlideShowView slideShowView2;

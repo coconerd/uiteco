@@ -4,6 +4,8 @@
  */
 package com.uiteco.rightPanels;
 
+import com.uiteco.ofSuKienRightPanel.HistoryPanel;
+
 /**
  *
  * @author nddmi
@@ -16,6 +18,10 @@ public class SuKienRightPanel extends javax.swing.JPanel {
     public SuKienRightPanel() {
         initComponents();
     }
+    
+    public HistoryPanel getHistoryPanel() {
+        return this.historyPanel1;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,51 +33,11 @@ public class SuKienRightPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         dateChooser1 = new com.raven.datechooser.DateChooser();
+        historyPanel1 = new com.uiteco.ofSuKienRightPanel.HistoryPanel();
 
         setLayout(new java.awt.GridBagLayout());
-
-        roundedGradientPanel1.setColor1(new java.awt.Color(235, 88, 111));
-        roundedGradientPanel1.setColor2(new java.awt.Color(242, 243, 244));
-        roundedGradientPanel1.setFull(false);
-        roundedGradientPanel1.setPreferredSize(new java.awt.Dimension(275, 470));
-        roundedGradientPanel1.setRoundBottomLeft(10);
-        roundedGradientPanel1.setRoundBottomRight(10);
-        roundedGradientPanel1.setRoundTopLeft(10);
-        roundedGradientPanel1.setRoundTopRight(10);
-
-        javax.swing.GroupLayout roundedGradientPanel1Layout = new javax.swing.GroupLayout(roundedGradientPanel1);
-        roundedGradientPanel1.setLayout(roundedGradientPanel1Layout);
-        roundedGradientPanel1Layout.setHorizontalGroup(
-            roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        roundedGradientPanel1Layout.setVerticalGroup(
-            roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        add(roundedGradientPanel1, gridBagConstraints);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-history-24.png"))); // NOI18N
-        jLabel1.setLabelFor(roundedGradientPanel1);
-        jLabel1.setText("Lịch sử");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(25, 0, 0, 200);
-        add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -89,14 +55,23 @@ public class SuKienRightPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.3;
         add(dateChooser1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.7;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        add(historyPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.datechooser.DateChooser dateChooser1;
-    private javax.swing.JLabel jLabel1;
+    private com.uiteco.ofSuKienRightPanel.HistoryPanel historyPanel1;
     private javax.swing.JLabel jLabel2;
-    private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
     // End of variables declaration//GEN-END:variables
 }

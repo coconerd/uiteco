@@ -81,6 +81,7 @@ public class TagsAndSort extends RoundedPanel {
                 : SuKienListModelWithTagSort.SORT_OPTION.HOTTEST;
 
         SuKienListModelWithTagSort newSuKienListModel = new SuKienListModelWithTagSort(selectedTags, sortOption);
+        suKienListView.setSuKienListModel(newSuKienListModel);
         newSuKienListModel.addPropertyChangeListener(suKienListView);
         newSuKienListModel.loadData();
 
@@ -91,7 +92,6 @@ public class TagsAndSort extends RoundedPanel {
 //
 //        // Substitute old SuKienListModel with a new SuKienListModel object for SuKienListView (to update pagination)
 //        System.out.println("DEBUG: number of pages of newSuKienListModel: " + newSuKienListModel.getPageCount());
-        suKienListView.setSuKienListModel(newSuKienListModel);
 //
 //        System.out.println("Filter applied");
     }

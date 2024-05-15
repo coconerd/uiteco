@@ -5,8 +5,12 @@
 package com.uiteco.ofSuKienPanel.detailed;
 
 import com.raven.scroll.ScrollPaneWin11;
+import com.uiteco.main.App;
 import com.uiteco.main.MainFrame;
 import com.uiteco.ofSuKienPanel.SuKienModel;
+import com.uiteco.rightPanels.SuKienRightPanel;
+import com.uiteco.swing.ContentPanel;
+import java.awt.Component;
 import javax.swing.SwingUtilities;
 
 /**
@@ -47,6 +51,15 @@ public class SuKienDetailScrollPane extends ScrollPaneWin11 {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                ContentPanel appRightPanel = App.getMainFrame().getRightPanel();
+
+                Component comp = appRightPanel.getCurrentComponent();
+                if (comp instanceof SuKienRightPanel) {
+                    SuKienRightPanel suKienRightPanel = (SuKienRightPanel) appRightPanel.getCurrentComponent();
+                    suKienRightPanel.getHistoryPanel().addHistory(suKienModel);
+                    System.out.println("DEBUG: a new line has been added to history panel");
+                }
+
                 getVerticalScrollBar().setValue(0);
             }
         });

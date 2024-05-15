@@ -87,6 +87,7 @@ public class SuKienListModel extends PaginationModel implements PropertyChangeLi
         } else {
             try {
                 setSuKienList(SuKienDAO.getPageData(getCurrentPage(), getEntriesPerPage()));
+                
             } catch (SQLException e) {
                 e.printStackTrace();
             }

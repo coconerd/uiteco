@@ -41,15 +41,15 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
 
     public SuKienListView() {
         _init();
-        setSuKienListModel(new SuKienListModel());
         setVerticalGap(DEFAULT_VERTICAL_GAP);
+        setSuKienListModel(new SuKienListModel());
         _additionalInit();
     }
 
     public SuKienListView(SuKienListModel suKienListModel, Integer verticalGap) {
         _init();
-        setSuKienListModel(suKienListModel);
         setVerticalGap(verticalGap != null ? verticalGap : DEFAULT_VERTICAL_GAP);
+        setSuKienListModel(suKienListModel);
         _additionalInit();
     }
 
@@ -63,7 +63,7 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
 
     public void setSuKienListModel(SuKienListModel suKienListModel) {
         this.suKienListModel = suKienListModel;
-        loadSuKienListView(); // Reload list view if model is changed
+//        loadSuKienListView(); // Reload list view if model is changed
     }
 
     public void setVerticalGap(int verticalGap) {
