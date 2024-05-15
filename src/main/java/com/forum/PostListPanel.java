@@ -15,8 +15,6 @@ public class PostListPanel extends javax.swing.JPanel{
     
     public PostListPanel(){
         initPostList();
-        updateTotalPages(); 
-        updateShowPagination();
     }
     public  void setCurrentPage(int newPage){
         currentPage = newPage;
@@ -97,6 +95,7 @@ public class PostListPanel extends javax.swing.JPanel{
         setLayout(new java.awt.GridLayout(0,1));
         listPost = new ArrayList<PostPanel>();
         listPost = BaiDangForumDAO.loadAndSortListPostFromDatabase();
-
+        updateTotalPages(); 
+        updateShowPagination();
    }
 }

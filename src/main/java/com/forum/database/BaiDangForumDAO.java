@@ -59,7 +59,7 @@ public class BaiDangForumDAO {
         ArrayList<PostPanel> postList = new ArrayList<>();
         try{
             Connection conn = ConnectionManager.getConnection();
-            String strSQL = "SELECT B.MABDFORUM, B.TIEUDE, B.LUOTXEM, B.LUOTPHANHOI, T.EMAIL, B.THOIDIEMDANG, B.NOIDUNG FROM BAIDANGFORUM B JOIN TAIKHOAN T ON T.MATK = B.NGUOIDANG ORDER BY THOIDIEMDANG DESC";
+            String strSQL = "SELECT B.MABDFORUM, B.TIEUDE, B.LUOTXEM, B.LUOTPHANHOI, T.USERNAME, B.THOIDIEMDANG, B.NOIDUNG FROM BAIDANGFORUM B JOIN TAIKHOAN T ON T.MATK = B.NGUOIDANG ORDER BY THOIDIEMDANG DESC";
             Statement stat = conn.createStatement();
             ResultSet result = stat.executeQuery(strSQL);
             while(result.next()){
@@ -67,7 +67,7 @@ public class BaiDangForumDAO {
                 String TIEUDE = result.getString(2);         
                 int LUOTXEM = result.getInt(3);            
                 int LUOTPHANHOI = result.getInt(4);              
-                String NGUOIDANG = result.getString(5); //muốn hiển thị gì thì tuỳ chỉnh lại trong câu select. Hiện tại đang lấy EMAIL để hiển thị cho trường NGUOIDANG             
+                String NGUOIDANG = result.getString(5); //muốn hiển thị gì thì tuỳ chỉnh lại trong câu select. Hiện tại đang lấy USERNAME để hiển thị cho trường NGUOIDANG             
                 Timestamp THOIDIEMDANG = result.getTimestamp(6);
                 String NOIDUNG = result.getString(7);
                 PostPanel post = new PostPanel(MABDFORUM, TIEUDE, LUOTXEM, LUOTPHANHOI, NGUOIDANG, THOIDIEMDANG.toLocalDateTime(), NOIDUNG);
@@ -177,7 +177,7 @@ public class BaiDangForumDAO {
             while(result.next()){
                 int postID = result.getInt(1);
                 int replyID = result.getInt(2);
-                int replyForMABLPHANHOI = result.getInt(3);
+                int replyForMABLPHANHOI = result.getInt(3); //nếu MABLPHANHOI trong kết quả trả về của câu select là NULL thì hàm getInt lúc này sẽ trả về số 0
                 String replyPerson = result.getString(4);
                 Timestamp replyTimeStamp = result.getTimestamp(5);
                 String content = result.getString(6);
@@ -191,29 +191,6 @@ public class BaiDangForumDAO {
         }
         return postDetailViewList;
     }
-    
-//    public static PostDetailView loadDataIntoPostDetailView(int mabaidang) {
-//        PostDetailView postDetailView = new PostDetailView(mabaidang);
-//        try{
-//            Connection conn = ConnectionManager.getConnection();
-//            String strSQL = "SELECT T.USERNAME, THOIDIEMDANG, TIEUDE, NOIDUNG FROM BAIDANGFORUM B JOIN TAIKHOAN T ON B.NGUOIDANG = T.MATK WHERE B.MABDFORUM = ?";
-//            
-//            PreparedStatement stat = conn.prepareStatement(strSQL);
-//            stat.setInt(1, mabaidang);
-//            ResultSet result = stat.executeQuery();
-//            while(result.next()){
-//                postDetailView.setPostingPerson(result.getString(1));
-//                postDetailView.setPostingTimeStamp(result.getTimestamp(2).toLocalDateTime());
-//                postDetailView.setTitle(result.getString(3));
-//                postDetailView.setContent(result.getString(4));
-//            }
-//            conn.close();
-//            System.out.println("Lay thong tin bai dang forum dua vao ma bai dang thanh cong!");
-//        }catch(SQLException e){
-//            e.printStackTrace();
-//        }
-//        return postDetailView;
-//    }
 
         public static ArrayList<Object> getDataIntoPostDetailView(int mabaidang) {
             ArrayList<Object> postDetailView = new ArrayList<>();
@@ -236,29 +213,7 @@ public class BaiDangForumDAO {
         }
         return postDetailView;
     }
-//    public static com.forum.features.StatisticFeatureFrame getInfomationToShowStatisticFrame(int mabaidang){
-//        com.forum.features.StatisticFeatureFrame frame = new com.forum.features.StatisticFeatureFrame();
-//        try{
-//            Connection conn = ConnectionManager.getConnection();
-//            String strSQL = "SELECT T.USERNAME, B.MABDFORUM, B.THOIDIEMDANG, B.LUOTXEM, B.LUOTPHANHOI FROM TAIKHOAN T JOIN BAIDANGFORUM B ON T.MATK = B.NGUOIDANG WHERE MABDFORUM = ?";
-//            PreparedStatement pre = conn.prepareStatement(strSQL);
-//            pre.setInt(1, mabaidang);
-//            ResultSet result = pre.executeQuery();
-//
-//            while(result.next()){
-//                frame.setPostedBy(result.getString(1));
-//                frame.setPostID(result.getInt(2));
-//                frame.setPostedAt(result.getTimestamp(3).toLocalDateTime());
-//                frame.setViewNumbers(result.getInt(4));
-//                frame.setReplyNumbers(result.getInt(5));
-//            }
-//            conn.close();
-//            System.out.println("Get information of post ID "+mabaidang+" to show statistic successfully!");
-//        }catch(SQLException e){
-//            e.printStackTrace();
-//        }
-//        return frame;
-//    }
+        
         public static ArrayList<Object> getInfomationToShowStatisticFrame(int mabaidang) {
             ArrayList<Object> statisticInfoFrame = new ArrayList<>();
         try{
@@ -279,5 +234,25 @@ public class BaiDangForumDAO {
             e.printStackTrace();
         }
         return statisticInfoFrame;
+    }
+        
+    public static int getLoaiTaiKhoan(String username){
+        int loaitaikhoan = 2; 
+        try{
+            Connection conn = ConnectionManager.getConnection();
+            String strSQL = "SELECT LOAITK FROM TAIKHOAN WHERE USERNAME = ?";
+            PreparedStatement pre = conn.prepareStatement(strSQL);
+            pre.setString(1, username);
+            ResultSet result = pre.executeQuery();
+            while(result.next()){
+                loaitaikhoan = result.getInt(1);
+            }
+            conn.close();
+            System.out.println("Get account type(LOAITK)of username: "+username+" successfully!");
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return loaitaikhoan;
     }
 }

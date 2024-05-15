@@ -6,10 +6,6 @@ package com.forum.features;
 
 import com.forum.database.BaiDangForumDAO;
 
-/**
- *
- * @author 21H1 HNQA
- */
 public class ReplyFeaturePanel extends javax.swing.JPanel {
     private int postID;
     
@@ -20,9 +16,7 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
         this.postID = postID;
     }
     public ReplyFeaturePanel(int mabaidang) {
-        //initComponents();
-        this.postID = mabaidang;
-        _initComponents();
+        _initComponents(mabaidang);
     }
 
     @SuppressWarnings("unchecked")
@@ -42,7 +36,7 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(248, 242, 242));
 
         titleLabel.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        titleLabel.setForeground(new java.awt.Color(30, 30, 14));
+        titleLabel.setForeground(new java.awt.Color(0, 51, 51));
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("REPLY BÀI ĐĂNG FORUM");
 
@@ -78,8 +72,8 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
 
         jTextFieldOfMABLPHANHOI.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldOfMABLPHANHOI.setForeground(new java.awt.Color(0, 0, 0));
-        jTextFieldOfMABLPHANHOI.setText("Nhập mã bình luận mà bạn muốn phản hồi");
-        jTextFieldOfMABLPHANHOI.setToolTipText("Nhập mã bình luận mà bạn muốn phản hồi");
+        jTextFieldOfMABLPHANHOI.setText("Nhập Reply ID mà bạn muốn phản hồi");
+        jTextFieldOfMABLPHANHOI.setToolTipText("Nhập Reply ID mà bạn muốn phản hồi");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -97,14 +91,14 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(uitImageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                .addGap(106, 106, 106)
+                                .addComponent(uitImageLabel)
+                                .addGap(131, 131, 131)
                                 .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
-                                .addGap(68, 68, 68))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(278, 278, 278)
-                                .addComponent(jTextFieldOfMABLPHANHOI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(43, 43, 43))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(264, 264, 264)
+                                .addComponent(jTextFieldOfMABLPHANHOI)
+                                .addGap(90, 90, 90)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ecoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -124,16 +118,15 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(uitImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(uitImageLabel))
-                        .addGap(22, 22, 22)
-                        .addComponent(jTextFieldOfMABLPHANHOI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(51, 51, 51)
-                .addComponent(jScrollPaneOfContentReply, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(titleLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(jTextFieldOfMABLPHANHOI, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(49, 49, 49)
+                .addComponent(jScrollPaneOfContentReply, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(replyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,7 +135,8 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
         
-        private void _initComponents() {
+        private void _initComponents(int mabaidang) {
+            this.postID = mabaidang;
             titleLabel = new javax.swing.JLabel();
             uitImageLabel = new javax.swing.JLabel();
             forumImageLabel = new javax.swing.JLabel();
@@ -156,7 +150,7 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
             setBackground(new java.awt.Color(248, 242, 242));
 
             titleLabel.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-            titleLabel.setForeground(new java.awt.Color(30, 30, 14));
+            titleLabel.setForeground(new java.awt.Color(0, 51, 51));
             titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             titleLabel.setText("REPLY BÀI ĐĂNG FORUM");
 
@@ -194,7 +188,7 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
                         jTextAreaOfContentReply.setText("");
                     }
                 }
-            });
+            });            
             jScrollPaneOfContentReply.setViewportView(jTextAreaOfContentReply);
 
             replyButton.setBackground(new java.awt.Color(172, 172, 172));
@@ -223,7 +217,7 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
                 }
                 else{
                     /*người dùng không nhập gì vào, tức là không reply cho bình luận nào cả, chỉ nhập nội dung bình luận rồi click button Reply*/
-                    if(MABLPHANHOI.equals("Nhập mã bình luận mà bạn muốn phản hồi") || MABLPHANHOI.isEmpty()){
+                    if(MABLPHANHOI.equals("Nhập Reply ID mà bạn muốn phản hồi") || MABLPHANHOI.isEmpty()){
                         BaiDangForumDAO.insertIntoDatabaseWhenClickReply(replyPerson, replyContent, postIDForum,"");
                         /*cập nhật lượt phản hồi cho bài đăng này ở trường LUOTPHANHOI của table BAIDANGFORUM*/
                         BaiDangForumDAO.increaseReplyNumber(postIDForum);
@@ -243,6 +237,8 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
                 }
             }
         });
+            
+
             cancelButton.setBackground(new java.awt.Color(172, 172, 172));
             cancelButton.setForeground(new java.awt.Color(0, 0, 0));
             cancelButton.setText("Cancel");
@@ -255,9 +251,11 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
                 panel1.showPostDetailAndReplyView(getPostID());
             }
         });
+            
+
             jTextFieldOfMABLPHANHOI.setBackground(new java.awt.Color(255, 255, 255));
             jTextFieldOfMABLPHANHOI.setForeground(new java.awt.Color(0, 0, 0));
-            jTextFieldOfMABLPHANHOI.setText("Nhập mã bình luận mà bạn muốn phản hồi");
+            jTextFieldOfMABLPHANHOI.setText("Nhập Reply ID mà bạn muốn phản hồi");
             jTextFieldOfMABLPHANHOI.setToolTipText("Đây là trường thông tin KHÔNG BẮT BUỘC phải nhập nếu bạn không muốn phản hồi cho bất kỳ bình luận nào");
             jTextFieldOfMABLPHANHOI.addFocusListener(new java.awt.event.FocusAdapter() {
                 public void focusGained(java.awt.event.FocusEvent evt) {
@@ -265,18 +263,18 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
                 }
                 public void focusLost(java.awt.event.FocusEvent evt) {
                     if(jTextFieldOfMABLPHANHOI.getText().isEmpty()){
-                        jTextFieldOfMABLPHANHOI.setText("Nhập mã bình luận mà bạn muốn phản hồi");
+                        jTextFieldOfMABLPHANHOI.setText("Nhập Reply ID mà bạn muốn phản hồi");
                     }
                 }
             });
             jTextFieldOfMABLPHANHOI.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    if(jTextFieldOfMABLPHANHOI.getText().equals("Nhập mã bình luận mà bạn muốn phản hồi")){
+                    if(jTextFieldOfMABLPHANHOI.getText().equals("Nhập Reply ID mà bạn muốn phản hồi")){
                         jTextFieldOfMABLPHANHOI.setText("");
                     }
                 }
             });
-            
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
             this.setLayout(layout);
             layout.setHorizontalGroup(
@@ -293,14 +291,14 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(uitImageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                    .addGap(106, 106, 106)
+                                    .addComponent(uitImageLabel)
+                                    .addGap(131, 131, 131)
                                     .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
-                                    .addGap(68, 68, 68))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(278, 278, 278)
-                                    .addComponent(jTextFieldOfMABLPHANHOI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGap(43, 43, 43))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(264, 264, 264)
+                                    .addComponent(jTextFieldOfMABLPHANHOI)
+                                    .addGap(90, 90, 90)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(ecoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -320,22 +318,21 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(uitImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(3, 3, 3)
-                                    .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(uitImageLabel))
-                            .addGap(22, 22, 22)
-                            .addComponent(jTextFieldOfMABLPHANHOI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(51, 51, 51)
-                    .addComponent(jScrollPaneOfContentReply, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(25, 25, 25)
+                                    .addComponent(titleLabel)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                            .addComponent(jTextFieldOfMABLPHANHOI, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(49, 49, 49)
+                    .addComponent(jScrollPaneOfContentReply, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                     .addGap(24, 24, 24)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(replyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(17, 17, 17))
-            );           
+            );                    
     }  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;

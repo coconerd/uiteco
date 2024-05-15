@@ -77,13 +77,6 @@ public class PostPanel extends javax.swing.JPanel {
     }
     
     public PostPanel(int postID, String title, int viewNumber, int responseNumber, String postedBy, LocalDateTime postingDate, String content) {
-        this.postID = postID;
-        this.title = title;
-        this.viewNumber = viewNumber;
-        this.responseNumber = responseNumber;
-        this.postedBy = postedBy; 
-        this.postingDate = postingDate;
-        this.content = content;
         InitComponents(postID, title, viewNumber, responseNumber, postedBy, postingDate, content);
     }
     @SuppressWarnings("unchecked")
@@ -123,6 +116,14 @@ public class PostPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     
     private void InitComponents(int postID, String title, int viewNumber, int responseNumber, String postedBy, LocalDateTime postingDate, String content){
+        this.postID = postID;
+        this.title = title;
+        this.viewNumber = viewNumber;
+        this.responseNumber = responseNumber;
+        this.postedBy = postedBy; 
+        this.postingDate = postingDate;
+        this.content = content;
+        
         setPreferredSize(new java.awt.Dimension(1063,70));
         setMaximumSize(this.getPreferredSize());
         setBackground(new java.awt.Color(247,247,226));
@@ -192,7 +193,20 @@ public class PostPanel extends javax.swing.JPanel {
         postedByPanel.setPreferredSize(new java.awt.Dimension(190,60));
         postedByPanel.setBackground(new java.awt.Color(247,247,226));
         postedByPanel.setMaximumSize(postedByPanel.getPreferredSize());
-        postedByLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-user-24.png")));
+        int loaitaikhoan = BaiDangForumDAO.getLoaiTaiKhoan(this.postedBy);
+        if(loaitaikhoan == 2){ //là tài khoản sinh viên
+            postedByLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-user-24.png"))); 
+        }
+        else if(loaitaikhoan == 1){ //là tài khoản admin
+            postedByLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-admin-24.png")));
+        } 
+        else if(loaitaikhoan == 3){ //là tài khoản cựu sinh viên
+            postedByLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-user-24_1.png")));
+        }
+        else if(loaitaikhoan == 4){ //là tài khoản giảng viên
+            postedByLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-test-account-24.png")));
+        }
+        
         postedByLabel.setMaximumSize(postedByPanel.getPreferredSize());
         postedByLabel.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");

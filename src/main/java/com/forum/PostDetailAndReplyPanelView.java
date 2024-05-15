@@ -8,12 +8,11 @@ import com.forum.database.BaiDangForumDAO;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
-/**
- *
- * @author 21H1 HNQA
- */
 public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
-    private int postID; //khi hiển thị thì biết đây là bài đăng nào và nhờ có mã bài đăng này thì khi lưu những phản hồi bài đăng này vào csdl mới được, do có trường MABDFORUM khi thêm vào tabel BINHLUAN
+    private int postID; //khi hiển thị thì biết đây là bài đăng nào và nhờ có mã bài đăng này thì khi lưu những phản hồi bài đăng này vào csdl mới được, do có trường MABDFORUM khi thêm vào table BINHLUAN
+    private ArrayList<PostDetailView> listPost;
+    private int currentPage;
+    private int totalPages; 
     
     public int getPostID(){
         return this.postID;
@@ -23,7 +22,6 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
     }
 
     public PostDetailAndReplyPanelView(int mabaidang) {
-        //initComponents();
         this.postID = mabaidang;
         _initComponents(mabaidang);
     }
@@ -331,8 +329,7 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         @Override
         public void mouseClicked(java.awt.event.MouseEvent e) {
            System.out.println("Back button in PostDetailAndReplyPanelView.java is clicked!");
-           //setCurrentPageToBack();
-           System.out.println(getParent().getClass());
+           setCurrentPageToBack();
         }
     });    
 
@@ -350,8 +347,7 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
         @Override
         public void mouseClicked(java.awt.event.MouseEvent e) {
            System.out.println("Next button in PostDetailAndReplyPanelView.java is clicked!");
-           //setCurrentPageToNext();
-           System.out.println(getParent().getClass());
+           setCurrentPageToNext();
         }
     }); 
 
@@ -395,8 +391,8 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
 
         java.awt.Insets insets = new java.awt.Insets(0, 0, 0, 13); // top, left, bottom, right
         listIncludePostDetailAndReply.setBorder(javax.swing.BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
-        listIncludePostDetailAndReply.setBackground(new java.awt.Color(238,230,230));
-        listIncludePostDetailAndReply.setLayout(new java.awt.GridLayout(0,1));
+        listIncludePostDetailAndReply.setBackground(new java.awt.Color(242,247,232));
+        listIncludePostDetailAndReply.setLayout(new java.awt.GridLayout(0,1,0,13));
         
         updateTotalPages();
         updateShowPagination();
@@ -440,7 +436,4 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
     private javax.swing.JButton statisticButton;
     private javax.swing.JPanel tailerPanel;
     // End of variables declaration//GEN-END:variables
-    private ArrayList<PostDetailView> listPost;
-    private int currentPage;
-    private int totalPages; 
 }
