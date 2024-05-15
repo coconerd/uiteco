@@ -27,9 +27,9 @@ public class BadCredentialsFormatException extends Exception {
         if (getCreds() == BAD.EMAIL) {
             error = "Email phải có định dạng xxxxxxxx@gm.uit.edu.vn";
         } else if (getCreds() == BAD.USERNAME) {
-            error = "Username phải có độ dài 4 - 15 ký tự và chỉ có chữ/số";
+            error = "Username phải có độ dài " + String.valueOf(AuthModel.MIN_USERNAME_LEN) + " - " + String.valueOf(AuthModel.MAX_USERNAME_LEN) + " ký tự và chỉ có chữ/số";
         } else {
-            error = "Mật khẩu phải có độ dài từ 8 - 32 ký tự";
+            error = "Mật khẩu phải có độ dài từ " + String.valueOf(AuthModel.MIN_PASSWORD_LEN) + " - " + String.valueOf(AuthModel.MAX_PASSWORD_LEN) + " ký tự";
         }
         
         return error;
