@@ -115,11 +115,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="16" style="0"/>
         </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor" postCode="DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern(&quot;dd.MM.yy&quot;);&#xa;String dateStr = getSuKienModel().getPostedAt().format(dateFmt);&#xa;&#xa;DateTimeFormatter timeFmt = DateTimeFormatter.ofPattern(&quot;HH:mm&quot;);&#xa;String timeStr = getSuKienModel().getPostedAt().format(timeFmt);">
           <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="suKienModel.getPostedAt().toString()" type="code"/>
+          <Connection code="dateStr + &quot;  &quot; + timeStr" type="code"/>
         </Property>
       </Properties>
     </Component>

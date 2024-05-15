@@ -5,6 +5,9 @@
 package com.uiteco.ofSuKienPanel;
 
 import com.uiteco.components.RoundedGradientPanel;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+
 
 /**
  *
@@ -67,7 +70,12 @@ public class SuKienView extends RoundedGradientPanel {
 
         postedAt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         postedAt.setForeground(new java.awt.Color(153, 153, 153));
-        postedAt.setText(suKienModel.getPostedAt().toString());
+        DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("dd.MM.yy");
+        String dateStr = getSuKienModel().getPostedAt().format(dateFmt);
+
+        DateTimeFormatter timeFmt = DateTimeFormatter.ofPattern("HH:mm");
+        String timeStr = getSuKienModel().getPostedAt().format(timeFmt);
+        postedAt.setText(dateStr + "  " + timeStr);
 
         roundedImagePanel1.setImage(suKienModel.getThumbnail());
         roundedImagePanel1.setMinimumSize(new java.awt.Dimension(100, 100));
