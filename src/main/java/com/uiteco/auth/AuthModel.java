@@ -19,6 +19,7 @@ public class AuthModel {
     public static final int MAX_USERNAME_LEN = 40;
     public static final int MIN_PASSWORD_LEN = 8;
     public static final int MAX_PASSWORD_LEN = 32;
+    public static final String EMAIL_POSTFIX = "uit.edu.vn";
 
     private String email;
     private String username;
@@ -104,12 +105,13 @@ public class AuthModel {
     private void setEmailOrThrow(String inputEmail) throws BadCredentialsFormatException {
         int len = inputEmail.length();
 
-        if (len <= 14) {
+        // Email must ends with 'uit.edu.vn'
+        if (len <= EMAIL_POSTFIX.length()) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.EMAIL);
         }
 
-        String postfix = inputEmail.substring(len - 14, len);
-        if (!postfix.equals("@gm.uit.edu.vn")) {
+        String postfix = inputEmail.substring(len - EMAIL_POSTFIX.length(), len);
+        if (!postfix.equals("uit.edu.vn")) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.EMAIL);
         }
 
