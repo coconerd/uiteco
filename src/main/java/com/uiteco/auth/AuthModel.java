@@ -7,6 +7,7 @@ package com.uiteco.auth;
 import java.beans.PropertyChangeSupport;
 import java.beans.PropertyChangeListener;
 import java.util.regex.Pattern;
+import com.uiteco.auth.Session.ACCOUNT_TYPE;
 
 /**
  *
@@ -18,7 +19,7 @@ public class AuthModel {
     public static final int MAX_USERNAME_LEN = 40;
     public static final int MIN_PASSWORD_LEN = 8;
     public static final int MAX_PASSWORD_LEN = 32;
-    
+
     private String email;
     private String username;
     private String password;
@@ -70,7 +71,7 @@ public class AuthModel {
             setEmailOrThrow(email);
             setPasswordOrThrow(password);
             AuthDAO.login(getUsername(), getEmail(), getPassword());
-            com.uiteco.main.App.getSession().setEmail(email);
+            
             setLoggedIn(true);
         } catch (Exception e) {
             throw e;
@@ -90,7 +91,6 @@ public class AuthModel {
             setUsernameOrThrow(username);
             setPasswordOrThrow(password);
             AuthDAO.login(getUsername(), getEmail(), getPassword());
-            com.uiteco.main.App.getSession().setUsername(username);
             setLoggedIn(true);
         } catch (Exception e) {
             throw e;
@@ -103,16 +103,16 @@ public class AuthModel {
 
     private void setEmailOrThrow(String inputEmail) throws BadCredentialsFormatException {
         int len = inputEmail.length();
-        
+
         if (len <= 14) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.EMAIL);
         }
-        
+
         String postfix = inputEmail.substring(len - 14, len);
         if (!postfix.equals("@gm.uit.edu.vn")) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.EMAIL);
         }
-        
+
         this.email = inputEmail;
     }
 
@@ -121,12 +121,12 @@ public class AuthModel {
         if (!(len >= MIN_USERNAME_LEN && len <= MAX_USERNAME_LEN)) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.USERNAME);
         }
-        
-        String regex = "^[a-zA-Z0-9]*$"; 
+
+        String regex = "^[a-zA-Z0-9]*$";
         if (!Pattern.matches(regex, inputUsername)) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.USERNAME);
         }
-        
+
         this.username = inputUsername;
     }
 
@@ -135,7 +135,7 @@ public class AuthModel {
         if (!(len >= MIN_PASSWORD_LEN && len <= MAX_PASSWORD_LEN)) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.PASSWORD);
         }
-        
+
         this.password = inputPassword;
     }
 

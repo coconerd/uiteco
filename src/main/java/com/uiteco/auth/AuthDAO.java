@@ -14,6 +14,7 @@ import com.uiteco.database.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import com.uiteco.auth.Session.ACCOUNT_TYPE;
 
 /**
  *
@@ -24,6 +25,10 @@ public class AuthDAO {
     public static final String PBE_DERIVATION_ALGORITHM = "PBKDF2WithHmacSHA256";
     public static final int PBE_DERIVATION_SALT_LENGTH = 16; // bytes;
     public static final int PBE_DERIVATIONKEY_KEY_LENGTH = 16; // bytes
+
+    public static class LoginResult {
+
+    }
 
     /**
      *
@@ -36,38 +41,72 @@ public class AuthDAO {
      * but is invalid or has bad format
      */
     public static void login(String username, String email, String password) throws Exception {
+        boolean hasEmail = (email != null && !email.equals(""));
 
-        String sql;
-        PreparedStatement statement;
-        ResultSet rs;
         try {
+            // Query from db
             Connection conn = ConnectionManager.getConnection();
-            if (email != null && !email.equals("")) {
+            PreparedStatement statement;
+            String sql;
+            if (hasEmail) {
                 sql = "SELECT * FROM TAIKHOAN WHERE EMAIL = ?";
-                statement = conn.prepareStatement(sql);
+                statement = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 statement.setString(1, email);
             } else {
                 sql = "SELECT * FROM TAIKHOAN WHERE USERNAME = ?";
-                statement = conn.prepareStatement(sql);
+                statement = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 statement.setString(1, username);
             }
+            ResultSet rs = statement.executeQuery();
+            if (!rs.next()) {
+                throw new InvalidCredentialsException();
 
-            rs = statement.executeQuery();
-            if (rs.next()) {
-                byte[] passwordHash = rs.getBytes("MATKHAU");
-                byte[] salt = rs.getBytes("PBKDF2_SALT");
-                byte[] toBeVerified = deriveKey(password, salt);
+            }
 
-                if (compareKeys(toBeVerified, passwordHash) == false) {
-                    throw new InvalidCredentialsException();
-                }
-
-            } else {
+            // Password verification
+            byte[] passwordHash = rs.getBytes("MATKHAU");
+            byte[] salt = rs.getBytes("PBKDF2_SALT");
+            byte[] toBeVerified = deriveKey(password, salt);
+            if (compareKeys(toBeVerified, passwordHash) == false) {
                 throw new InvalidCredentialsException();
             }
 
+            // Save user info to Session
+            ACCOUNT_TYPE accountType = null;
+            int accountID;
+            int a = rs.getInt("LOAITK");
+            switch (a) {
+                case 1:
+                    accountType = ACCOUNT_TYPE.admin;
+                    break;
+                case 2:
+                    accountType = ACCOUNT_TYPE.sinhvien;
+                    break;
+                case 3:
+                    accountType = ACCOUNT_TYPE.cuusinhvien;
+                    break;
+                case 4:
+                    accountType = ACCOUNT_TYPE.giangvien;
+                    break;
+            }
+
+            if (hasEmail) {
+                username = rs.getString("USERNAME");
+            } else {
+                email = rs.getString("EMAIL");
+            }
+
+            accountID = rs.getInt("MATK");
+            com.uiteco.main.App.getSession().setUsername(username);
+            com.uiteco.main.App.getSession().setEmail(email);
+            com.uiteco.main.App.getSession().setAccountType(accountType);
+            com.uiteco.main.App.getSession().setAccountID(accountID);
+            
+            // Cleanup
+            statement.close();
             rs.close();
             conn.close();
+
         } catch (Exception e) {
             throw e;
         }

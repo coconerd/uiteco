@@ -23,6 +23,7 @@ public class Session implements PropertyChangeListener {
 
     public static final String SESSION_FILE_NAME = "session.properties";
     public static final long SESSION_DURATION = 14 * 24 * 60 * 60; // 14 days in seconds;
+    public static enum ACCOUNT_TYPE {admin, sinhvien, cuusinhvien, giangvien};
 
     private boolean permitted;
 //    private boolean fileFound;
@@ -30,6 +31,8 @@ public class Session implements PropertyChangeListener {
     private String username;
     private String email;
     private Long issuedAt; // Unix timestamp
+    private ACCOUNT_TYPE accountType;
+    private int accountID;
 
     private PropertyChangeSupport propertyChangeSupport;
 
@@ -118,6 +121,7 @@ public class Session implements PropertyChangeListener {
         if (evt.getPropertyName().equals("loggedIn")) {
             if ((boolean) evt.getNewValue() == true) {
                 setPermitted(true);
+                
             }
         }
     }
@@ -136,6 +140,14 @@ public class Session implements PropertyChangeListener {
 
     public long getIssuedAt() {
         return issuedAt;
+    }
+
+    public int getAccountID() {
+        return accountID;
+    }
+    
+    public ACCOUNT_TYPE getAccountType() {
+        return accountType;
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -168,6 +180,14 @@ public class Session implements PropertyChangeListener {
         this.issuedAt = issuedAt;
     }
 
+    public void setAccountType(ACCOUNT_TYPE accountType) {
+        this.accountType = accountType;
+    }
+
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
+    }
+    
     private void setPropertyChangeSupport(PropertyChangeSupport propertyChangeSupport) {
         this.propertyChangeSupport = propertyChangeSupport;
     }
