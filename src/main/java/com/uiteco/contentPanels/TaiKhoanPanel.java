@@ -26,30 +26,31 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        scrollPane = new com.raven.scroll.ScrollPaneWin11();
+        containerPanel = new com.uiteco.components.RoundedGradientPanel();
+        personalInformation1 = new com.uiteco.ofTaiKhoanPanel.PersonalInformation();
+        adminSection1 = new com.uiteco.ofTaiKhoanPanel.AdminSection();
 
-        jLabel1.setText("Coming soon...");
+        setLayout(new java.awt.GridLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(223, 223, 223)
-                .addComponent(jLabel1)
-                .addContainerGap(287, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(153, 153, 153)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(205, Short.MAX_VALUE))
-        );
+        scrollPane.setBorder(null);
+
+        containerPanel.setColor1(new java.awt.Color(255, 255, 255));
+        containerPanel.setColor2(new java.awt.Color(255, 255, 255));
+        containerPanel.setLayout(new javax.swing.BoxLayout(containerPanel, javax.swing.BoxLayout.Y_AXIS));
+        containerPanel.add(personalInformation1);
+        containerPanel.add(adminSection1);
+
+        scrollPane.setViewportView(containerPanel);
+
+        add(scrollPane);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private com.uiteco.ofTaiKhoanPanel.AdminSection adminSection1;
+    private com.uiteco.components.RoundedGradientPanel containerPanel;
+    private com.uiteco.ofTaiKhoanPanel.PersonalInformation personalInformation1;
+    private com.raven.scroll.ScrollPaneWin11 scrollPane;
     // End of variables declaration//GEN-END:variables
 }

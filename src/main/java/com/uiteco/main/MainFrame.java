@@ -24,6 +24,7 @@ import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
 import com.uiteco.ofSuKienPanel.search.SuKienSearchTabPane;
 import com.uiteco.swing.ContentPanel;
 import java.awt.Cursor;
+import com.uiteco.ofTaiKhoanPanel.createPost.CreatePostUI;
 
 /**
  *
@@ -382,6 +383,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         avatar.setBorderSize(2);
         avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
+        avatar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                avatarMouseClicked(evt);
+            }
+        });
 
         imageAvatar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
         avatar.add(imageAvatar6);
@@ -688,6 +694,13 @@ public class MainFrame extends javax.swing.JFrame {
         nextButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_nextButtonMouseExited
 
+    private void avatarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avatarMouseClicked
+        // TODO add your handling code here:
+        unHighlightComponent(currentButton);
+        contentPanel.showComponentAndTrimHistory("taiKhoanPanel");
+        rightPanel.showComponentAndTrimHistory("taiKhoanRightPanel");
+    }//GEN-LAST:event_avatarMouseClicked
+
     /**
      *
      * This section is for user-defined methods
@@ -716,6 +729,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         TaiKhoanPanel tk = new TaiKhoanPanel();
         contentPanel.registerComponent(tk, "taiKhoanPanel");
+        
+        CreatePostUI cp = new CreatePostUI();
+        contentPanel.registerComponent(cp, CreatePostUI.INSTANCE_NAME);
 
 //        contentPanel.registerComponent(rootPane, name);
 //        contentPanel.registerComponent(rootPane, name);

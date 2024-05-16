@@ -9,7 +9,7 @@ package com.uiteco.rightPanels;
  * @author nddmi
  */
 public class TaiKhoanRightPanel extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form TaiKhoanRightPanel
      */
@@ -25,20 +25,21 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        dateChooser1 = new com.raven.datechooser.DateChooser();
+
+        setBackground(new java.awt.Color(242, 243, 244));
+        setLayout(new java.awt.GridBagLayout());
+
+        dateChooser1.setForeground(new java.awt.Color(0, 204, 51));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        add(dateChooser1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.raven.datechooser.DateChooser dateChooser1;
     // End of variables declaration//GEN-END:variables
 }
