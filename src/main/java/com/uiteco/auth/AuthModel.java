@@ -70,9 +70,8 @@ public class AuthModel {
         try {
             setEmailOrThrow(email);
             setPasswordOrThrow(password);
-            ACCOUNT_TYPE accountType = AuthDAO.login(getUsername(), getEmail(), getPassword());
-            com.uiteco.main.App.getSession().setEmail(email);
-            com.uiteco.main.App.getSession().setAccountType(accountType);
+            AuthDAO.login(getUsername(), getEmail(), getPassword());
+            
             setLoggedIn(true);
         } catch (Exception e) {
             throw e;
@@ -91,9 +90,7 @@ public class AuthModel {
         try {
             setUsernameOrThrow(username);
             setPasswordOrThrow(password);
-            ACCOUNT_TYPE accountType = AuthDAO.login(getUsername(), getEmail(), getPassword());
-            com.uiteco.main.App.getSession().setUsername(username);
-            com.uiteco.main.App.getSession().setAccountType(accountType);
+            AuthDAO.login(getUsername(), getEmail(), getPassword());
             setLoggedIn(true);
         } catch (Exception e) {
             throw e;

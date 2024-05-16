@@ -32,6 +32,7 @@ public class Session implements PropertyChangeListener {
     private String email;
     private Long issuedAt; // Unix timestamp
     private ACCOUNT_TYPE accountType;
+    private int accountID;
 
     private PropertyChangeSupport propertyChangeSupport;
 
@@ -141,11 +142,13 @@ public class Session implements PropertyChangeListener {
         return issuedAt;
     }
 
+    public int getAccountID() {
+        return accountID;
+    }
+    
     public ACCOUNT_TYPE getAccountType() {
         return accountType;
     }
-    
-    
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
@@ -179,6 +182,10 @@ public class Session implements PropertyChangeListener {
 
     public void setAccountType(ACCOUNT_TYPE accountType) {
         this.accountType = accountType;
+    }
+
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
     }
     
     private void setPropertyChangeSupport(PropertyChangeSupport propertyChangeSupport) {
