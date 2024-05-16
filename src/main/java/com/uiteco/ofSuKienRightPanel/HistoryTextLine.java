@@ -9,6 +9,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import com.uiteco.components.RoundedImagePanel;
+import com.uiteco.components.RoundedPanel;
 import com.uiteco.ofSuKienPanel.SuKienModel;
 import java.awt.Color;
 import java.awt.Font;
@@ -20,12 +21,14 @@ import com.uiteco.ofSuKienPanel.detailed.SuKienDetail;
 import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
 import com.uiteco.swing.ContentPanel;
 import java.awt.Component;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 /**
  *
  * @author nddmi
  */
-public class HistoryTextLine extends javax.swing.JPanel {
+public class HistoryTextLine extends RoundedPanel {
 
     SuKienModel suKienModel;
 
@@ -57,8 +60,13 @@ public class HistoryTextLine extends javax.swing.JPanel {
 
         thumbnailImg = RoundedImagePanel.getRoundedImagePanel(3);
         title = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setOpaque(false);
+        setBackground(new java.awt.Color(242, 243, 244));
+        setRoundBottomLeft(10);
+        setRoundBottomRight(10);
+        setRoundTopLeft(10);
+        setRoundTopRight(10);
         setLayout(new java.awt.GridBagLayout());
 
         thumbnailImg.setImage(suKienModel.getThumbnail());
@@ -74,14 +82,17 @@ public class HistoryTextLine extends javax.swing.JPanel {
         thumbnailImg.setLayout(thumbnailImgLayout);
         thumbnailImgLayout.setHorizontalGroup(
             thumbnailImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 289, Short.MAX_VALUE)
+            .addGap(0, 286, Short.MAX_VALUE)
         );
         thumbnailImgLayout.setVerticalGroup(
             thumbnailImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 99, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
@@ -106,8 +117,22 @@ public class HistoryTextLine extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.weighty = 0.8;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         add(title, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Circular Std Medium", 0, 12)); // NOI18N
+        jLabel1.setForeground(java.awt.Color.gray);
+        LocalDateTime t = LocalDateTime.now();
+        DateTimeFormatter timeFmt = DateTimeFormatter.ofPattern("HH:mm");
+        jLabel1.setText(t.format(timeFmt));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        add(jLabel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void _showSuKienDetail() {
@@ -146,6 +171,7 @@ public class HistoryTextLine extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private com.uiteco.components.RoundedImagePanel thumbnailImg;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables

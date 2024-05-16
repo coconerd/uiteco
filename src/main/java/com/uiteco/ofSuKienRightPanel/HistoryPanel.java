@@ -47,7 +47,7 @@ public class HistoryPanel extends javax.swing.JPanel {
             repaint();
         }
 
-        textContainer.add(new HistoryTextLine(suKienModel), 0);
+        textContainer.add(new HistoryTextLine(suKienModel), "growx", 0);
         historySize++;
     }
 
@@ -91,7 +91,7 @@ public class HistoryPanel extends javax.swing.JPanel {
         textContainer.setLayout(textContainerLayout);
         textContainerLayout.setHorizontalGroup(
             textContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGap(0, 295, Short.MAX_VALUE)
         );
         textContainerLayout.setVerticalGroup(
             textContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +105,7 @@ public class HistoryPanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 15, 20, 15);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 20);
         add(textContainer, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
