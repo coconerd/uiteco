@@ -10,6 +10,11 @@ import com.uiteco.components.GradientPanel;
 import com.uiteco.components.ImageAvatar;
 import javax.swing.JLayeredPane;
 import com.uiteco.components.RoundedImagePanel;
+import com.uiteco.main.App;
+import com.uiteco.ofSuKienPanel.detailed.NullSuKienModelException;
+import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
+import com.uiteco.swing.ContentPanel;
+import java.awt.Cursor;
 import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
@@ -20,7 +25,8 @@ import java.beans.PropertyChangeEvent;
 import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -49,7 +55,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         this.slideShowPaginationView = new SlideShowPaginationView(getSlideShowModel());
 
         initComponents();
-        
+
         this.setOpaque(true);
         this.migLayout = new MigLayout("inset 0");
         this.imageContainer.setLayout(migLayout);
@@ -120,15 +126,41 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
 
     private void _populateSlideShow() {
         ArrayList<SuKienModel> suKienList = slideShowModel.getSuKienList();
-        if (suKienList.size() >= 2) {
-            for (SuKienModel suKien : suKienList) {
-                ImageIcon image = suKien.getThumbnail();
+
+        if (suKienList.size() >= 1) {
+            for (SuKienModel suKienModel : suKienList) {
+                ImageIcon image = suKienModel.getThumbnail();
                 RoundedImagePanel imgPanel = RoundedImagePanel.getRoundedImagePanel(getImageRadius());
                 imgPanel.setMaximumSize(new Dimension(image.getIconWidth(), image.getIconHeight()));
 
-                imgPanel.setImage(suKien.getThumbnail());
+                imgPanel.setImage(suKienModel.getThumbnail());
                 imgPanel.setVisible(false);
                 imageContainer.add(imgPanel, "pos 0 0 0 0");
+
+                imgPanel.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent evt) {
+                        imgPanel.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                        ContentPanel appContentPanel = App.getMainFrame().getContentPanel();
+                        SuKienDetailScrollPane sds = (SuKienDetailScrollPane) (appContentPanel.getComponent(SuKienDetailScrollPane.INSTANCE_NAME));
+                        try {
+                            sds.loadAndDisplay(suKienModel);
+                        } catch (NullSuKienModelException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent evt) {
+                        imgPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent evt) {
+                        imgPanel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    }
+                });
+
             }
 
             if (imageContainer.getComponentCount() > 0) {
