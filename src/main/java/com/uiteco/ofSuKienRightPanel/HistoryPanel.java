@@ -18,43 +18,37 @@ import net.miginfocom.swing.MigLayout;
  * @author nddmi
  */
 public class HistoryPanel extends javax.swing.JPanel {
+
     public static final int MAX_HISTORY_ENTRIES = 20;
-    protected LinkedList<SuKienModel> history;
-    
+    protected int historySize;
+
     /**
      * Creates new form HistoryPanel
      */
     public HistoryPanel() {
         initComponents();
-        history = new LinkedList<SuKienModel>();
         textContainer.setLayout(new MigLayout("fillx, wrap"));
-        
+        historySize = 0;
     }
-    
-    public LinkedList<SuKienModel> getHistory() {
-        return this.history;
-    }
-    
-    
-    public void setHistory(LinkedList<SuKienModel> history) {
-        this.history = history;
-    }
-    
+
     public void addHistory(SuKienModel suKienModel) {
-        if (history.size() >= MAX_HISTORY_ENTRIES) {
-            history.removeFirst(); // Trim head bcuz head is oldest and tail is most-recent
+        // Skip duplicate
+
+        if (textContainer.getComponentCount() > 0
+                && ((HistoryTextLine) textContainer.getComponent(0)).getSuKienModel().equals(suKienModel)) {
+            return;
         }
-        history.add(suKienModel);
-        _populateHistoryLines();
-    }
-    
-    protected void _populateHistoryLines() {
-        textContainer.removeAll();
-        for (SuKienModel suKienModel : history) {
-            textContainer.add(new HistoryTextLine(suKienModel.getThumbnail(), suKienModel.getTitle()), "span");
+
+        if (historySize >= MAX_HISTORY_ENTRIES) {
+//            history.removeFirst(); // Trim head bcuz head is oldest and tail is most-recent
+            textContainer.remove(historySize - 1);
+            historySize = 0;
+            revalidate();
+            repaint();
         }
-        textContainer.revalidate();
-        textContainer.repaint();
+
+        textContainer.add(new HistoryTextLine(suKienModel), 0);
+        historySize++;
     }
 
     /**
@@ -69,6 +63,7 @@ public class HistoryPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         textContainer = new com.uiteco.components.RoundedGradientPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -82,8 +77,8 @@ public class HistoryPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 15, 10, 15);
+        gridBagConstraints.weightx = 0.8;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 10, 15);
         add(jLabel1, gridBagConstraints);
 
         textContainer.setColor1(new java.awt.Color(235, 88, 111));
@@ -96,7 +91,7 @@ public class HistoryPanel extends javax.swing.JPanel {
         textContainer.setLayout(textContainerLayout);
         textContainerLayout.setHorizontalGroup(
             textContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
+            .addGap(0, 306, Short.MAX_VALUE)
         );
         textContainerLayout.setVerticalGroup(
             textContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,16 +101,63 @@ public class HistoryPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.7;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 20, 30);
+        gridBagConstraints.insets = new java.awt.Insets(0, 15, 20, 15);
         add(textContainer, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-cross-24.png"))); // NOI18N
+        jLabel2.setText("Xóa");
+        jLabel2.setToolTipText("Xóa lịch sử");
+        jLabel2.setDoubleBuffered(true);
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel2MouseExited(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 20);
+        add(jLabel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+        // TODO add your handling code here:
+        jLabel2.setForeground(jLabel2.getForeground().darker());
+    }//GEN-LAST:event_jLabel2MouseEntered
+
+    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
+        // TODO add your handling code here:
+        jLabel2.setForeground(jLabel2.getForeground().brighter());
+    }//GEN-LAST:event_jLabel2MouseExited
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        textContainer.removeAll();
+        historySize = 0;
+        textContainer.revalidate();
+        textContainer.repaint();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private com.uiteco.components.RoundedGradientPanel textContainer;
     // End of variables declaration//GEN-END:variables
 }

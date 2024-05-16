@@ -4,44 +4,45 @@
  */
 package com.uiteco.ofSuKienRightPanel;
 
+import com.uiteco.components.RoundedBorder;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import com.uiteco.components.RoundedPanel;
+import java.awt.Image;
+import com.uiteco.components.RoundedImagePanel;
+import com.uiteco.ofSuKienPanel.SuKienModel;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import com.uiteco.main.App;
+import com.uiteco.ofSuKienPanel.detailed.NullSuKienModelException;
+import com.uiteco.ofSuKienPanel.detailed.SuKienDetail;
+import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
+import com.uiteco.swing.ContentPanel;
+import java.awt.Component;
 
 /**
  *
  * @author nddmi
  */
-public class HistoryTextLine extends RoundedPanel {
+public class HistoryTextLine extends javax.swing.JPanel {
+
+    SuKienModel suKienModel;
 
     /**
-     * Creates new form HistoryText
+     * Creates new form HistoryTextLine
      */
-    public HistoryTextLine() {
+    public HistoryTextLine(SuKienModel suKienModel) {
+        this.suKienModel = suKienModel;
         initComponents();
     }
 
-    public HistoryTextLine(Icon thumbnailImg, String titleText) {
-        initComponents();
-        displayThumbnail(thumbnailImg);
-        displayTitle(titleText);
+    public SuKienModel getSuKienModel() {
+        return suKienModel;
     }
 
-    public void displayThumbnail(Icon thumbnailImg) {
-        this.suKienThumbnail.setIcon(thumbnailImg);
-    }
-
-    public void displayTitle(String titleText) {
-        this.suKienTitle.setText(titleText);
-
-    }
-    
-    public Icon getThumbnailImg() {
-        return suKienThumbnail.getIcon();
-    }
-    
-    public String getTitleText() {
-        return suKienTitle.getText();
+    public void setSuKienModel(SuKienModel suKienModel) {
+        this.suKienModel = suKienModel;
     }
 
     /**
@@ -54,51 +55,98 @@ public class HistoryTextLine extends RoundedPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        suKienThumbnail = new com.uiteco.components.ImageAvatar();
-        suKienTitle = new javax.swing.JLabel();
+        thumbnailImg = RoundedImagePanel.getRoundedImagePanel(3);
+        title = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(254, 254, 255));
-        setRoundBottomLeft(50);
-        setRoundBottomRight(50);
-        setRoundTopLeft(50);
-        setRoundTopRight(50);
+        setOpaque(false);
         setLayout(new java.awt.GridBagLayout());
 
-        suKienThumbnail.setPreferredSize(new java.awt.Dimension(60, 30));
+        thumbnailImg.setImage(suKienModel.getThumbnail());
+        thumbnailImg.setMinimumSize(new java.awt.Dimension(20, 10));
+        thumbnailImg.setPreferredSize(new java.awt.Dimension(45, 20));
+        thumbnailImg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                thumbnailImgMouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout suKienThumbnailLayout = new javax.swing.GroupLayout(suKienThumbnail);
-        suKienThumbnail.setLayout(suKienThumbnailLayout);
-        suKienThumbnailLayout.setHorizontalGroup(
-            suKienThumbnailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 291, Short.MAX_VALUE)
+        javax.swing.GroupLayout thumbnailImgLayout = new javax.swing.GroupLayout(thumbnailImg);
+        thumbnailImg.setLayout(thumbnailImgLayout);
+        thumbnailImgLayout.setHorizontalGroup(
+            thumbnailImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 289, Short.MAX_VALUE)
         );
-        suKienThumbnailLayout.setVerticalGroup(
-            suKienThumbnailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 116, Short.MAX_VALUE)
+        thumbnailImgLayout.setVerticalGroup(
+            thumbnailImgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
-        add(suKienThumbnail, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        add(thumbnailImg, gridBagConstraints);
 
-        suKienTitle.setBackground(new java.awt.Color(254, 254, 255));
-        suKienTitle.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        suKienTitle.setForeground(new java.awt.Color(51, 51, 51));
-        suKienTitle.setText("jLabel1");
+        title.setBackground(java.awt.Color.darkGray);
+        title.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        title.setForeground(java.awt.Color.darkGray);
+        title.setText(suKienModel.getTitle());
+        title.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                titleMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                titleMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                titleMouseExited(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
-        add(suKienTitle, gridBagConstraints);
+        add(title, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void _showSuKienDetail() {
+        if (suKienModel != null) {
+            ContentPanel appContentPanel = App.getMainFrame().getContentPanel();
+            SuKienDetailScrollPane sds = (SuKienDetailScrollPane) appContentPanel.getComponent(SuKienDetailScrollPane.INSTANCE_NAME);
+            try {
+                sds.loadAndDisplay(suKienModel);
+            } catch (NullSuKienModelException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void titleMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleMouseEntered
+        // TODO add your handling code here:
+        title.setForeground(new Color(51, 51, 51));
+        title.setFont(new Font("Segoe UI Black", Font.BOLD, 13));
+    }//GEN-LAST:event_titleMouseEntered
+
+    private void titleMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleMouseExited
+        // TODO add your handling code here:
+        title.setForeground(new Color(64, 64, 64));
+        title.setFont(new Font("Segoe UI", Font.BOLD, 13));
+    }//GEN-LAST:event_titleMouseExited
+
+    private void titleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleMouseClicked
+        // TODO add your handling code here:
+        _showSuKienDetail();
+    }//GEN-LAST:event_titleMouseClicked
+
+    private void thumbnailImgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thumbnailImgMouseClicked
+        // TODO add your handling code here:
+        _showSuKienDetail();
+    }//GEN-LAST:event_thumbnailImgMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.components.ImageAvatar suKienThumbnail;
-    private javax.swing.JLabel suKienTitle;
+    private com.uiteco.components.RoundedImagePanel thumbnailImg;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }
