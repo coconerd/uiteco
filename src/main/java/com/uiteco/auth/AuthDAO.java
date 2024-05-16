@@ -14,6 +14,7 @@ import com.uiteco.database.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import com.uiteco.auth.Session.ACCOUNT_TYPE;
 
 /**
  *
@@ -35,11 +36,12 @@ public class AuthDAO {
      * @throws InvalidCredentialsException if required credentials are provided
      * but is invalid or has bad format
      */
-    public static void login(String username, String email, String password) throws Exception {
+    public static ACCOUNT_TYPE login(String username, String email, String password) throws Exception {
 
         String sql;
         PreparedStatement statement;
         ResultSet rs;
+        ACCOUNT_TYPE accountType = null;
         try {
             Connection conn = ConnectionManager.getConnection();
             if (email != null && !email.equals("")) {
@@ -57,9 +59,25 @@ public class AuthDAO {
                 byte[] passwordHash = rs.getBytes("MATKHAU");
                 byte[] salt = rs.getBytes("PBKDF2_SALT");
                 byte[] toBeVerified = deriveKey(password, salt);
+                
 
                 if (compareKeys(toBeVerified, passwordHash) == false) {
                     throw new InvalidCredentialsException();
+                }
+                int a = rs.getInt("LOAITK");
+                switch (a) {
+                    case 1:
+                        accountType = ACCOUNT_TYPE.admin;
+                        break;
+                    case 2:
+                        accountType = ACCOUNT_TYPE.sinhvien;
+                        break;
+                    case 3:
+                        accountType = ACCOUNT_TYPE.cuusinhvien;
+                        break;
+                    case 4:
+                        accountType = ACCOUNT_TYPE.giangvien;
+                        break;
                 }
 
             } else {
@@ -68,6 +86,8 @@ public class AuthDAO {
 
             rs.close();
             conn.close();
+            
+            return accountType;
         } catch (Exception e) {
             throw e;
         }
