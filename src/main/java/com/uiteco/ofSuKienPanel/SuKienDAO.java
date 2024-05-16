@@ -213,6 +213,134 @@ public class SuKienDAO {
         return suKienList;
     }
 
+    public static ArrayList<SuKienModel> genMockData(int N) throws SQLException {
+        ArrayList<SuKienModel> suKienList = new ArrayList<>();
+        // mock
+        for (int i = 0; i < N; i++) {
+            String title = String.format("Day la su kien thu %d", i + 1);
+            String type = "Event";
+//            HashSet<String> tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
+//            try {
+            Set<String> tags = getRandomTags(getAllTags());
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+
+            int postId = i + 1;
+            String content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum.";
+            String postedBy = "Duc Minh";
+            java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
+            String note = null;
+            String clubID = null;
+            ImageIcon thumbnail = new ImageIcon("D:\\DoAn\\database\\mock\\FeaturedImages\\3.jpg");
+            int views = i + 1;
+            SuKienModel event = new SuKienModel(title, tags, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
+            suKienList.add(event);
+        }
+
+        return suKienList;
+    }
+
     /**
      *
      * @param N
@@ -491,7 +619,7 @@ public class SuKienDAO {
 
     }
 
-    public static ArrayList<SuKienModel> getSuKienSlideShow(int slides) {
+    public static ArrayList<SuKienModel> getSuKienSlideShow(int slides) throws SQLException {
         /**
          * Mock function
          */
@@ -499,23 +627,16 @@ public class SuKienDAO {
         int imageIndex = 0;
         ArrayList<ImageIcon> images = loadImagesFromFolder();
 
-        ArrayList<SuKienModel> suKienList = new ArrayList<SuKienModel>();
+//        ArrayList<SuKienModel> suKienList = new ArrayList<SuKienModel>();
+        ArrayList<SuKienModel> suKienList = genMockData(slides);
+
         for (int i = 0; i < slides; i++) {
-            String title = String.format("Day la su kien thu %d", i + 1);
-            String type = "Event";
-            HashSet<String> tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
-            int postId = i + 1;
-            String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
-            String postedBy = "Duc Minh";
-            java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
-            String note = null;
-            String clubID = null;
             ImageIcon thumbnail = images.get(imageIndex);
+            suKienList.get(i).setThumbnail(thumbnail);
+            
             imageIndex = (imageIndex == imageCount - 1 ? 0 : imageIndex + 1); // Update image index
-            int views = 1200;
-            SuKienModel event = new SuKienModel(title, tags, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
-            suKienList.add(event);
         }
+
         return suKienList;
     }
 
@@ -663,7 +784,7 @@ public class SuKienDAO {
         return suKienList;
     }
 
-    public HashSet<String> getTagsOfSuKien(int postID) throws SQLException {
+    public static HashSet<String> getTagsOfSuKien(int postID) throws SQLException {
         HashSet<String> tags;
 
 //        try {

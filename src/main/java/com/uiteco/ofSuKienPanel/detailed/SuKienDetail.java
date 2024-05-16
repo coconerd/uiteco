@@ -4,6 +4,7 @@
  */
 package com.uiteco.ofSuKienPanel.detailed;
 
+import com.uiteco.ofSuKienPanel.SuKienDAO;
 import com.uiteco.ofSuKienPanel.SuKienModel;
 import java.awt.Color;
 import java.time.LocalDateTime;
@@ -24,7 +25,7 @@ public class SuKienDetail extends javax.swing.JPanel {
     
     public SuKienDetail(SuKienModel suKienModel) {
         removeAll();
-        this.suKienModel = suKienModel;
+        this.suKienModel = suKienModel;        
         initComponents();
     }
     

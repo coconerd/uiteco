@@ -10,13 +10,14 @@ import java.beans.PropertyChangeListener;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import com.uiteco.components.RoundedImagePanel;
+import java.sql.SQLException;
 
 /**
  *
  * @author nddmi
  */
 public class SlideShowModel extends PaginationModel {
-    
+
     public final static int MAXIMUM_SLIDE_COUNT = 5;
     public final static int ENTRIES_PER_PAGE = 1;
     private ArrayList<SuKienModel> suKienList;
@@ -25,10 +26,15 @@ public class SlideShowModel extends PaginationModel {
     public SlideShowModel() {
         super();
         /**
-         * For SlideShowModel, getPageCount() will always equal to getEntries() because entry per page is 1
+         * For SlideShowModel, getPageCount() will always equal to getEntries()
+         * because entry per page is 1
          */
         int pageCount = getPageCount();
-        setSuKienList(SuKienDAO.getSuKienSlideShow(pageCount));
+        try {
+            setSuKienList(SuKienDAO.getSuKienSlideShow(pageCount));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         if (pageCount > 0) {
             setSuKienIn(getSuKien(0));
         }
@@ -74,7 +80,6 @@ public class SlideShowModel extends PaginationModel {
         this.suKienList.remove(suKien);
     }
 
-
     @Override
     public void switchNextPage() {
         int currPage = getCurrentPage();
@@ -98,7 +103,7 @@ public class SlideShowModel extends PaginationModel {
     @Override
     public void switchPage(int page) {
         if (page != getCurrentPage()) {
-             setNext(page < getCurrentPage() ? false : true);
+            setNext(page < getCurrentPage() ? false : true);
             setCurrentPageAndFire(page);
         }
     }
