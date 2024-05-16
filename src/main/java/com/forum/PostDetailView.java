@@ -77,7 +77,6 @@ public class PostDetailView extends javax.swing.JPanel {
         this.content = content;
     }
     
-    
     public PostDetailView(int mabaidang) {
         _initComponents(mabaidang); // constructor này để khởi tạo PostDetailView để hiển thị chi tiết bài đăng khi người dùng click chuột vào title của bài đăng nào đó được hiển thị ở giao diện chính của forum
     }
@@ -96,9 +95,8 @@ public class PostDetailView extends javax.swing.JPanel {
         mainPanel = new javax.swing.JPanel();
         titlePanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
-        scrollPaneContent = new com.raven.scroll.ScrollPaneWin11();
-        contentPanel = new javax.swing.JPanel();
-        contentLabel = new javax.swing.JLabel();
+        jScrollPaneOfContent = new javax.swing.JScrollPane();
+        showContentArea = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
@@ -128,7 +126,7 @@ public class PostDetailView extends javax.swing.JPanel {
                 .addComponent(userimageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(393, Short.MAX_VALUE))
+                .addContainerGap(402, Short.MAX_VALUE))
         );
 
         mainPanel.setBackground(new java.awt.Color(204, 255, 204));
@@ -153,54 +151,36 @@ public class PostDetailView extends javax.swing.JPanel {
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
         );
 
-        scrollPaneContent.setBackground(new java.awt.Color(242, 247, 232));
-        scrollPaneContent.setBorder(null);
-        scrollPaneContent.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPaneContent.setViewportView(contentPanel);
+        jScrollPaneOfContent.setBackground(new java.awt.Color(242, 247, 232));
+        jScrollPaneOfContent.setBorder(null);
+        jScrollPaneOfContent.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        contentPanel.setBackground(new java.awt.Color(242, 247, 232));
-        contentPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 13));
-        contentPanel.setPreferredSize(null);
-
-        contentLabel.setForeground(new java.awt.Color(0, 0, 0));
-        contentLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        contentLabel.setText("kk");
-        contentLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        contentLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        contentLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-
-        javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
-        contentPanel.setLayout(contentPanelLayout);
-        contentPanelLayout.setHorizontalGroup(
-            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPanelLayout.createSequentialGroup()
-                .addComponent(contentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 47, Short.MAX_VALUE))
-        );
-        contentPanelLayout.setVerticalGroup(
-            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
-        );
-
-        scrollPaneContent.setViewportView(contentPanel);
+        showContentArea.setEditable(false);
+        showContentArea.setBackground(new java.awt.Color(242, 247, 232));
+        showContentArea.setColumns(20);
+        showContentArea.setLineWrap(true);
+        showContentArea.setRows(5);
+        showContentArea.setWrapStyleWord(true);
+        showContentArea.setBorder(null);
+        jScrollPaneOfContent.setViewportView(showContentArea);
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(titlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
-            .addComponent(scrollPaneContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+            .addComponent(jScrollPaneOfContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(scrollPaneContent, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE))
+                .addComponent(jScrollPaneOfContent))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -227,16 +207,15 @@ public class PostDetailView extends javax.swing.JPanel {
             this.postingPerson = replyPerson;
             this.postingTimeStamp = replyTimeStamp;
             this.content = content;
-            
+
             leftPanel = new javax.swing.JPanel();
             userimageLabel = new javax.swing.JLabel();
             usernameLabel = new javax.swing.JLabel();
             mainPanel = new javax.swing.JPanel();
             titlePanel = new javax.swing.JPanel();
             titleLabel = new javax.swing.JLabel();
-            scrollPaneContent = new com.raven.scroll.ScrollPaneWin11();
-            contentPanel = new javax.swing.JPanel();
-            contentLabel = new javax.swing.JLabel();
+            jScrollPaneOfContent = new javax.swing.JScrollPane();
+            showContentArea = new javax.swing.JTextArea();
 
             setBackground(new java.awt.Color(255, 255, 255));
             setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
@@ -244,10 +223,10 @@ public class PostDetailView extends javax.swing.JPanel {
             leftPanel.setBackground(new java.awt.Color(235, 235, 235));
 
             userimageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            usernameLabel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+            usernameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
             usernameLabel.setForeground(new java.awt.Color(0, 0, 0));
-            usernameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);       
-            usernameLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);            
+            usernameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            usernameLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
             int loaitaikhoan = BaiDangForumDAO.getLoaiTaiKhoan(this.postingPerson);
             if(loaitaikhoan == 2){ //là tài khoản sinh viên
                 userimageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-student-70.png"))); // NOI18N
@@ -264,7 +243,7 @@ public class PostDetailView extends javax.swing.JPanel {
             else if(loaitaikhoan == 4){ //là tài khoản giảng viên
                 userimageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-teacher-70.png"))); // NOI18N
                 usernameLabel.setText("<html>"+this.postingPerson+"<br>[Lecturer]"+"<br>Reply ID: "+this.replyID+"</html>");
-            }
+            }        
 
             javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
             leftPanel.setLayout(leftPanelLayout);
@@ -280,7 +259,7 @@ public class PostDetailView extends javax.swing.JPanel {
                     .addComponent(userimageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(393, Short.MAX_VALUE))
+                    .addContainerGap(402, Short.MAX_VALUE))
             );
 
             mainPanel.setBackground(new java.awt.Color(204, 255, 204));
@@ -294,11 +273,11 @@ public class PostDetailView extends javax.swing.JPanel {
             titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
             if(this.replyForMABLPHANHOI == 0){
-                titleLabel.setText("<html>"+this.postingTimeStamp.format(formatter)+"<br><i>&lt;Phản hồi cho mã bình luận: Null&gt;</i></html>"); //&lt &gt lần lượt đại diện cho kí tự < và >
+                titleLabel.setText("<html>"+this.postingTimeStamp.format(formatter)+"<br><i>&lt;Phản hồi cho mã bình luận: None&gt;</i></html>"); //&lt &gt lần lượt đại diện cho kí tự < và >
             }
             else{
                 titleLabel.setText("<html>"+this.postingTimeStamp.format(formatter)+"<br><i>&lt;Phản hồi cho mã bình luận: "+this.replyForMABLPHANHOI+"&gt;</i></html>"); //&lt &gt lần lượt đại diện cho kí tự < và >
-            }    
+            }   
             titleLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
             titleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
             titleLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -311,53 +290,47 @@ public class PostDetailView extends javax.swing.JPanel {
             );
             titlePanelLayout.setVerticalGroup(
                 titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
             );
 
-            scrollPaneContent.setBackground(new java.awt.Color(242, 247, 232));
-            scrollPaneContent.setBorder(null);
-            scrollPaneContent.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-            scrollPaneContent.setViewportView(contentPanel);
+            jScrollPaneOfContent.setBackground(new java.awt.Color(242, 247, 232));
+            jScrollPaneOfContent.setBorder(null);
+            jScrollPaneOfContent.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-            contentPanel.setBackground(new java.awt.Color(242, 247, 232));
-            contentPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 13));
-            contentPanel.setPreferredSize(null);
-
-            contentLabel.setForeground(new java.awt.Color(0, 0, 0));
-            contentLabel.setFont(new java.awt.Font("Segoe UI", 0, 12));
-            contentLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-            contentLabel.setText("<html>"+this.content+"</html>");
-            contentLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-            contentLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-            contentLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-
-            javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
-            contentPanel.setLayout(contentPanelLayout);
-            contentPanelLayout.setHorizontalGroup(
-                contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(contentPanelLayout.createSequentialGroup()
-                    .addComponent(contentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 47, Short.MAX_VALUE))
-            );
-            contentPanelLayout.setVerticalGroup(
-                contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(contentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
-            );
+            showContentArea.setEditable(false);
+            showContentArea.setBackground(new java.awt.Color(242, 247, 232));
+            showContentArea.setColumns(20);
+            showContentArea.setLineWrap(true);
+            showContentArea.setRows(5);
+            showContentArea.setWrapStyleWord(true);
+            showContentArea.setBorder(null);
+            showContentArea.setText(this.content);
+            jScrollPaneOfContent.setViewportView(showContentArea);
+            showContentArea.setCaret(new javax.swing.text.DefaultCaret(){
+                @Override
+                protected synchronized void damage(java.awt.Rectangle r) {
+                    // không làm gì cả
+                }
+                @Override
+                public void paint(java.awt.Graphics g) {
+                    // không vẽ caret
+                }
+            });
 
             javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
             mainPanel.setLayout(mainPanelLayout);
             mainPanelLayout.setHorizontalGroup(
                 mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(titlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
-                .addComponent(scrollPaneContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+                .addComponent(jScrollPaneOfContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
             );
             mainPanelLayout.setVerticalGroup(
                 mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(0, 0, 0)
-                    .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
-                    .addComponent(scrollPaneContent, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE))
+                    .addComponent(jScrollPaneOfContent))
             );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -374,166 +347,157 @@ public class PostDetailView extends javax.swing.JPanel {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(leftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            );        
+            );                          
         }
     private void _initComponents(int mabaidang) {
-        this.postID = mabaidang;
-        ArrayList <Object> list = BaiDangForumDAO.getDataIntoPostDetailView(mabaidang);
-        this.postingPerson = (String)list.get(0);
-        this.postingTimeStamp = (LocalDateTime)list.get(1);
-        this.title = (String)list.get(2);
-        this.content = (String)list.get(3);
-        
-        leftPanel = new javax.swing.JPanel();
-        userimageLabel = new javax.swing.JLabel();
-        usernameLabel = new javax.swing.JLabel();
-        mainPanel = new javax.swing.JPanel();
-        titlePanel = new javax.swing.JPanel();
-        titleLabel = new javax.swing.JLabel();
-        scrollPaneContent = new com.raven.scroll.ScrollPaneWin11();
-        contentPanel = new javax.swing.JPanel();
-        contentLabel = new javax.swing.JLabel();
+            this.postID = mabaidang;
+            ArrayList <Object> list = BaiDangForumDAO.getDataIntoPostDetailView(mabaidang);
+            this.postingPerson = (String)list.get(0);
+            this.postingTimeStamp = (LocalDateTime)list.get(1);
+            this.title = (String)list.get(2);
+            this.content = (String)list.get(3);
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+            leftPanel = new javax.swing.JPanel();
+            userimageLabel = new javax.swing.JLabel();
+            usernameLabel = new javax.swing.JLabel();
+            mainPanel = new javax.swing.JPanel();
+            titlePanel = new javax.swing.JPanel();
+            titleLabel = new javax.swing.JLabel();
+            jScrollPaneOfContent = new javax.swing.JScrollPane();
+            showContentArea = new javax.swing.JTextArea();
 
-        leftPanel.setBackground(new java.awt.Color(235, 235, 235));
+            setBackground(new java.awt.Color(255, 255, 255));
+            setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
-        userimageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        usernameLabel.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        usernameLabel.setForeground(new java.awt.Color(0, 0, 0));
-        usernameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        usernameLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        int loaitaikhoan = BaiDangForumDAO.getLoaiTaiKhoan(this.postingPerson);
-        if(loaitaikhoan == 2){ //là tài khoản sinh viên
-            userimageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-student-70.png"))); // NOI18N
-            usernameLabel.setText("<html>"+this.postingPerson+"<br>[Student]"+"<br>Reply ID: Null</html>");
-        }
-        else if(loaitaikhoan == 1){ //là tài khoản admin
-            userimageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-admin-70.png"))); // NOI18N
-            usernameLabel.setText("<html>"+this.postingPerson+"<br>[Admin]"+"<br>Reply ID: Null</html>");                
-        }
-        else if(loaitaikhoan == 3){ //là tài khoản cựu sinh viên
-            userimageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-alumni-70.png"))); // NOI18N
-            usernameLabel.setText("<html>"+this.postingPerson+"<br>[Alumni]"+"<br>Reply ID: Null</html>");
-        }
-        else if(loaitaikhoan == 4){ //là tài khoản giảng viên
-            userimageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-teacher-70.png"))); // NOI18N
-            usernameLabel.setText("<html>"+this.postingPerson+"<br>[Lecturer]"+"<br>Reply ID: Null</html>");
-        }        
+            leftPanel.setBackground(new java.awt.Color(235, 235, 235));
 
-        javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
-        leftPanel.setLayout(leftPanelLayout);
-        leftPanelLayout.setHorizontalGroup(
-            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(usernameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(userimageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-        );
-        leftPanelLayout.setVerticalGroup(
-            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftPanelLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(userimageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(393, Short.MAX_VALUE))
-        );
+            userimageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            usernameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+            usernameLabel.setForeground(new java.awt.Color(0, 0, 0));
+            usernameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            usernameLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+            int loaitaikhoan = BaiDangForumDAO.getLoaiTaiKhoan(this.postingPerson);
+            if(loaitaikhoan == 2){ //là tài khoản sinh viên
+                userimageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-student-70.png"))); // NOI18N
+                usernameLabel.setText("<html>"+this.postingPerson+"<br>[Student]"+"<br>Reply ID: None</html>");
+            }
+            else if(loaitaikhoan == 1){ //là tài khoản admin
+                userimageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-admin-70.png"))); // NOI18N
+                usernameLabel.setText("<html>"+this.postingPerson+"<br>[Admin]"+"<br>Reply ID: None</html>");                
+            }
+            else if(loaitaikhoan == 3){ //là tài khoản cựu sinh viên
+                userimageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-alumni-70.png"))); // NOI18N
+                usernameLabel.setText("<html>"+this.postingPerson+"<br>[Alumni]"+"<br>Reply ID: None</html>");
+            }
+            else if(loaitaikhoan == 4){ //là tài khoản giảng viên
+                userimageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-teacher-70.png"))); // NOI18N
+                usernameLabel.setText("<html>"+this.postingPerson+"<br>[Lecturer]"+"<br>Reply ID: None</html>");
+            }         
 
-        mainPanel.setBackground(new java.awt.Color(204, 255, 204));
+            javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
+            leftPanel.setLayout(leftPanelLayout);
+            leftPanelLayout.setHorizontalGroup(
+                leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(usernameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(userimageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+            );
+            leftPanelLayout.setVerticalGroup(
+                leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(leftPanelLayout.createSequentialGroup()
+                    .addGap(41, 41, 41)
+                    .addComponent(userimageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(402, Short.MAX_VALUE))
+            );
 
-        titlePanel.setBackground(new java.awt.Color(242, 247, 232));
-        titlePanel.setPreferredSize(null);
+            mainPanel.setBackground(new java.awt.Color(204, 255, 204));
 
-        titleLabel.setBackground(new java.awt.Color(242, 247, 232));
-        titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        titleLabel.setForeground(new java.awt.Color(0, 0, 0));
-        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        titleLabel.setText("<html><b>"+this.title+"</b><br><i>"+this.postingTimeStamp.format(formatter)+"</i></html>");            
-        titleLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        titleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        titleLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+            titlePanel.setBackground(new java.awt.Color(242, 247, 232));
+            titlePanel.setPreferredSize(null);
 
-        javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
-        titlePanel.setLayout(titlePanelLayout);
-        titlePanelLayout.setHorizontalGroup(
-            titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        titlePanelLayout.setVerticalGroup(
-            titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-        );
+            titleLabel.setBackground(new java.awt.Color(242, 247, 232));
+            titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            titleLabel.setForeground(new java.awt.Color(0, 0, 0));
+            titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+            titleLabel.setText("<html><b>"+this.title+"</b><br><i>"+this.postingTimeStamp.format(formatter)+"</i></html>");  
+            titleLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+            titleLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+            titleLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        scrollPaneContent.setBackground(new java.awt.Color(242, 247, 232));
-        scrollPaneContent.setBorder(null);
-        scrollPaneContent.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPaneContent.setViewportView(contentPanel);
+            javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
+            titlePanel.setLayout(titlePanelLayout);
+            titlePanelLayout.setHorizontalGroup(
+                titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            );
+            titlePanelLayout.setVerticalGroup(
+                titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+            );
 
-        contentPanel.setBackground(new java.awt.Color(242, 247, 232));
-        contentPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 13));
-        contentPanel.setPreferredSize(null);
+            jScrollPaneOfContent.setBackground(new java.awt.Color(242, 247, 232));
+            jScrollPaneOfContent.setBorder(null);
+            jScrollPaneOfContent.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        contentLabel.setForeground(new java.awt.Color(0, 0, 0));
-        contentLabel.setFont(new java.awt.Font("Segoe UI", 0, 12));
-        contentLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        contentLabel.setText("<html>"+this.content+"</html>");
-        contentLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        contentLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        contentLabel.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+            showContentArea.setEditable(false);
+            showContentArea.setBackground(new java.awt.Color(242, 247, 232));
+            showContentArea.setColumns(20);
+            showContentArea.setLineWrap(true);
+            showContentArea.setRows(5);
+            showContentArea.setWrapStyleWord(true);
+            showContentArea.setBorder(null);
+            showContentArea.setText(this.content);
+            jScrollPaneOfContent.setViewportView(showContentArea);
+            showContentArea.setCaret(new javax.swing.text.DefaultCaret(){
+                @Override
+                protected synchronized void damage(java.awt.Rectangle r) {
+                    // không làm gì cả
+                }
+                @Override
+                public void paint(java.awt.Graphics g) {
+                    // không vẽ caret
+                }
+            });            
 
-        javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
-        contentPanel.setLayout(contentPanelLayout);
-        contentPanelLayout.setHorizontalGroup(
-            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentPanelLayout.createSequentialGroup()
-                .addComponent(contentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 47, Short.MAX_VALUE))
-        );
-        contentPanelLayout.setVerticalGroup(
-            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
-        );
+            javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+            mainPanel.setLayout(mainPanelLayout);
+            mainPanelLayout.setHorizontalGroup(
+                mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(titlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+                .addComponent(jScrollPaneOfContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+            );
+            mainPanelLayout.setVerticalGroup(
+                mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, 0)
+                    .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(jScrollPaneOfContent))
+            );
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
-            .addComponent(scrollPaneContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
-        );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(scrollPaneContent, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+            this.setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(leftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, 0)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, 0))
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(leftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
                 .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(leftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );        
-                
-    }// </editor-fold>   
+            );               
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel contentLabel;
-    private javax.swing.JPanel contentPanel;
+    private javax.swing.JScrollPane jScrollPaneOfContent;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JPanel mainPanel;
-    private com.raven.scroll.ScrollPaneWin11 scrollPaneContent;
+    private javax.swing.JTextArea showContentArea;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     private javax.swing.JLabel userimageLabel;

@@ -193,22 +193,22 @@ public class AuthDAO {
         register("22520038@gm.uit.edu.vn", "glass", "11111111", 2);
         register("22520039@gm.uit.edu.vn", "coffee", "11111111", 2);
         register("22520040@gm.uit.edu.vn", "phone", "11111111", 2);
-
-    register("anpnt@uit.edu.vn", "Phan Nguyễn Thuỵ An", "11111111", 4);
-    register("trantb@uit.edu.vn", "Thái Bảo Trân", "11111111", 4);
-    register("chuongph@uit.edu.vn", "Phan Hoàng Chương", "11111111", 4);
-    register("locth@uit.edu.vn", "Trần Hoàng Lộc", "11111111", 4);
-    register("havds@uit.edu.vn", "Văn Đức Sơn Hà", "11111111", 4);
-    register("phuongtv@uit.edu.vn", "Tạ Việt Phương", "11111111", 4);
-    register("dungtq@uit.edu.vn", "Trương Quốc Dũng", "11111111", 1);
-    register("hiepnt@uit.edu.vn", "Nguyễn Thành Hiệp", "11111111", 1);
-    register("toannv@uit.edu.vn", "Nguyễn Văn Toàn", "11111111", 1);
-    register("16520040@gm.uit.edu.vn", "Nguyễn Bích Như", "11111111", 3);
-    register("12520040@gm.uit.edu.vn", "Đoàn Hải Minh", "11111111", 3);
-    register("13520040@gm.uit.edu.vn", "nguyenkhanhvinh", "11111111", 3);
-    register("hangdv@uit.edu.vn", "duongviethang", "11111111", 4);
-    register("huynk@uit.edu.vn", "nguyenkhoahuy", "11111111", 1);
+        register("13520040@gm.uit.edu.vn", "nguyenkhanhvinh", "11111111", 3);
+        register("hangdv@uit.edu.vn", "duongviethang", "11111111", 4);
+        register("huynk@uit.edu.vn", "nguyenkhoahuy", "11111111", 1);
+        register("anpnt@uit.edu.vn", "phannguyenthuyan", "11111111", 4);
 */
-
+/*chưa đăng ký 
+    register("trantb@uit.edu.vn", "thaibaotran", "11111111", 4);
+    register("chuongph@uit.edu.vn", "phanhoangchuong", "11111111", 4);
+    register("locth@uit.edu.vn", "tranhoangloc", "11111111", 4);
+    register("havds@uit.edu.vn", "vanducsonha", "11111111", 4);
+    register("phuongtv@uit.edu.vn", "tavietphuong", "11111111", 4);
+    register("dungtq@uit.edu.vn", "truongquocdung", "11111111", 1);
+    register("hiepnt@uit.edu.vn", "nguyenthanghiep", "11111111", 1);
+    register("toannv@uit.edu.vn", "nguyenvantoan", "11111111", 1);
+    register("16520040@gm.uit.edu.vn", "nguyenbichnhu", "11111111", 3);
+    register("12520040@gm.uit.edu.vn", "dohaiminh", "11111111", 3);
+*/
     }
 }

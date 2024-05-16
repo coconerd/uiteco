@@ -10,7 +10,6 @@ import java.awt.*;
 public class ForumPanel extends javax.swing.JPanel {
 
     public ForumPanel() {
-        //initComponents();
         _initComponents();
     }
 

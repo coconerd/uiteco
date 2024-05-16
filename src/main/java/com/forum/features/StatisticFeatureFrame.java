@@ -280,6 +280,16 @@ public class StatisticFeatureFrame extends javax.swing.JFrame {
                 //Nothing to do
             }
         });
+        jTextFieldOfPostID.setCaret(new javax.swing.text.DefaultCaret(){
+            @Override
+            protected synchronized void damage(java.awt.Rectangle r) {
+                // không làm gì cả
+            }
+            @Override
+            public void paint(java.awt.Graphics g) {
+                // không vẽ caret
+            }
+        });         
 
         postedByLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         postedByLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -313,6 +323,16 @@ public class StatisticFeatureFrame extends javax.swing.JFrame {
                 //Nothing to do
             }
         });
+        jTextFieldOfPostedBy.setCaret(new javax.swing.text.DefaultCaret(){
+            @Override
+            protected synchronized void damage(java.awt.Rectangle r) {
+                // không làm gì cả
+            }
+            @Override
+            public void paint(java.awt.Graphics g) {
+                // không vẽ caret
+            }
+        });         
 
         jTextFieldOfPostedAt.setEditable(false);
         jTextFieldOfPostedAt.setBackground(new java.awt.Color(255, 255, 255));
@@ -325,6 +345,16 @@ public class StatisticFeatureFrame extends javax.swing.JFrame {
                 //Nothing to do
             }
         });
+        jTextFieldOfPostedAt.setCaret(new javax.swing.text.DefaultCaret(){
+            @Override
+            protected synchronized void damage(java.awt.Rectangle r) {
+                // không làm gì cả
+            }
+            @Override
+            public void paint(java.awt.Graphics g) {
+                // không vẽ caret
+            }
+        }); 
 
         jTextFieldOfViewNumbers.setEditable(false);
         jTextFieldOfViewNumbers.setBackground(new java.awt.Color(255, 255, 255));
@@ -336,6 +366,16 @@ public class StatisticFeatureFrame extends javax.swing.JFrame {
                 //Nothing to do
             }
         });
+        jTextFieldOfViewNumbers.setCaret(new javax.swing.text.DefaultCaret(){
+            @Override
+            protected synchronized void damage(java.awt.Rectangle r) {
+                // không làm gì cả
+            }
+            @Override
+            public void paint(java.awt.Graphics g) {
+                // không vẽ caret
+            }
+        }); 
 
         jTextFieldOfReplyNumbers.setEditable(false);
         jTextFieldOfReplyNumbers.setBackground(new java.awt.Color(255, 255, 255));
@@ -347,6 +387,16 @@ public class StatisticFeatureFrame extends javax.swing.JFrame {
                 //Nothing to do
             }
         });
+        jTextFieldOfReplyNumbers.setCaret(new javax.swing.text.DefaultCaret(){
+            @Override
+            protected synchronized void damage(java.awt.Rectangle r) {
+                // không làm gì cả
+            }
+            @Override
+            public void paint(java.awt.Graphics g) {
+                // không vẽ caret
+            }
+        });         
 
         statisticLabel.setFont(new java.awt.Font("Sitka Heading", 1, 28)); // NOI18N
         statisticLabel.setForeground(new java.awt.Color(0, 102, 102));
