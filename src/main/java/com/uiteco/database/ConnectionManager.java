@@ -46,6 +46,7 @@ public class ConnectionManager {
     public static Connection getConnection() throws SQLException {
         try {
             Connection conn = connectionPool.getConnection();
+            conn.setAutoCommit(false);
             return conn;
         } catch (SQLException e) {
             // When this error is thrown here, it's most likely that all connections in the connection pool's been occupied.
