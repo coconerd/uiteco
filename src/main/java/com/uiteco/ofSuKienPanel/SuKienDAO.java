@@ -26,8 +26,13 @@ import java.util.Set;
 import static com.uiteco.ofSuKienPanel.tagsAndSort.SuKienListModelWithTagSort.SORT_OPTION;
 import static com.uiteco.ofSuKienPanel.search.SuKienListModelSearch.SEARCH_OPTION;
 import static com.uiteco.ofSuKienPanel.tagsAndSort.SuKienListModelWithTagSort.DEFAULT_SORT_OPTION;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.Iterator;
+import javax.imageio.ImageIO;
+import java.sql.NClob;
 
 /**
  *
@@ -633,7 +638,7 @@ public class SuKienDAO {
         for (int i = 0; i < slides; i++) {
             ImageIcon thumbnail = images.get(imageIndex);
             suKienList.get(i).setThumbnail(thumbnail);
-            
+
             imageIndex = (imageIndex == imageCount - 1 ? 0 : imageIndex + 1); // Update image index
         }
 
@@ -837,11 +842,116 @@ public class SuKienDAO {
         return tags;
     }
 
+    public static void createSuKien(
+            String title,
+            String content,
+            int accountID,
+            Set<String> tags,
+            List<ImageIcon> images,
+            ImageIcon thumbnail,
+            Integer clubID
+    ) throws IOException, SQLException {
+        Connection conn = ConnectionManager.getConnection();
+
+        // Insert BAIDANG
+        String sql = "INSERT INTO BAIDANG (TIEUDE, NOIDUNG, NGUOIDANG, THUMBNAIL, MACLBDANGBAI, LOAIBD) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstm = conn.prepareStatement(sql, new String[]{"MABD"});
+
+        NClob nclob = conn.createNClob();
+        nclob.setString(1, content);
+
+        pstm.setString(1, title);
+        pstm.setNClob(2, nclob);
+        pstm.setInt(3, accountID);
+        pstm.setBlob(4, new ByteArrayInputStream(convertImageIconToBytes(thumbnail)));
+        if (clubID == null) {
+            pstm.setNull(5, java.sql.Types.INTEGER);
+        } else {
+            pstm.setInt(5, clubID);
+        }
+        pstm.setInt(6, 1); // 1 value is for SuKien
+        pstm.executeUpdate();
+
+        ResultSet genKeys = pstm.getGeneratedKeys();
+
+        if (genKeys.next()) {
+            int postID = genKeys.getInt(1);
+            if (tags != null && tags.size() > 0) {
+                // Insert TAGS_BAIDANG
+                sql = "INSERT INTO TAGS_BAIDANG (MABD, TAG) VALUES (?, ?)";
+                pstm = conn.prepareStatement(sql);
+                for (String tag : tags) {
+                    pstm.setInt(1, postID);
+                    pstm.setString(2, tag);
+                    pstm.addBatch();
+                }
+                pstm.executeBatch();
+            }
+            if (images != null && images.size() > 0) {
+                sql = "INSERT INTO HINHANH (MABD, ANH) VALUES (?, ?)";
+                pstm = conn.prepareStatement(sql);
+                for (ImageIcon image : images) {
+                    pstm.setInt(1, postID);
+                    pstm.setBlob(2, new ByteArrayInputStream(convertImageIconToBytes(image)));
+                    pstm.addBatch();
+                }
+                pstm.executeBatch();
+            }
+        }
+
+        conn.commit();
+        pstm.close();
+        conn.close();
+    }
+
+    public static void getSuKien(
+            String title,
+            String content,
+            int accountID,
+            Set<String> tags,
+            List<ImageIcon> images,
+            ImageIcon thumbnail,
+            Integer clubID
+    ) throws IOException, SQLException {
+        Connection conn = ConnectionManager.getConnection();
+
+        String sql = "SELECT * FROM BAIDANG";
+        Statement pstm = conn.createStatement();
+        ResultSet rs = pstm.executeQuery(sql);
+
+        while (rs.next()) {
+            int mabd = rs.getInt("MABD");
+            System.out.println("Found bai dang with ma " + mabd);
+        }
+
+        pstm.close();
+        conn.close();
+    }
+
+    private static byte[] convertImageIconToBytes(ImageIcon imageIcon) throws IOException {
+        // Get the image from the ImageIcon
+        Image image = imageIcon.getImage();
+
+        // Convert the Image to BufferedImage
+        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        bufferedImage.getGraphics().drawImage(image, 0, 0, null);
+
+        // Write the BufferedImage to ByteArrayOutputStream
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, "jpg", baos);
+
+        // Convert the ByteArrayOutputStream to byte[]
+        return baos.toByteArray();
+    }
+
     /**
      * Function meant for test-only purpose
      */
     public static void main(String[] args) {
+        ImageIcon thumbnail = loadImagesFromFolder().get(0);
         try {
+            createSuKien("Nóng hổi vừa thổi vừa chill!!!", "Content bẩn nhưng lại nhiều view thì làm sao heheheheh", 2, getRandomTags(getAllTags()), loadImagesFromFolder(), thumbnail, null);
+//            getSuKien();
         } catch (Exception e) {
             e.printStackTrace();
         }
