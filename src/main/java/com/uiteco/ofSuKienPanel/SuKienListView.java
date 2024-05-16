@@ -132,10 +132,9 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
                 public void mouseClicked(MouseEvent evt) {
                     view.setCursor(new Cursor(Cursor.WAIT_CURSOR));
                     ContentPanel appContentPanel = App.getMainFrame().getContentPanel();
-                    SuKienDetailScrollPane sd = (SuKienDetailScrollPane) (appContentPanel.getComponent(SuKienDetailScrollPane.INSTANCE_NAME));
+                    SuKienDetailScrollPane sds = (SuKienDetailScrollPane) (appContentPanel.getComponent(SuKienDetailScrollPane.INSTANCE_NAME));
                     try {
-                        sd.loadDetailOfSuKien(model);
-                        appContentPanel.showComponentAndTrimHistory(SuKienDetailScrollPane.INSTANCE_NAME);
+                        sds.loadAndDisplay(model);
                     } catch (NullSuKienModelException e) {
                         e.printStackTrace();
                     }

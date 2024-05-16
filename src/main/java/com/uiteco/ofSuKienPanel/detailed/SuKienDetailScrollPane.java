@@ -41,17 +41,26 @@ public class SuKienDetailScrollPane extends ScrollPaneWin11 {
      * @param suKienModel
      * @throws NullSuKienModelException
      */
-    public void loadDetailOfSuKien(SuKienModel suKienModel) throws NullSuKienModelException {
+    public void loadAndDisplay(SuKienModel suKienModel) throws NullSuKienModelException {
         if (suKienModel == null) {
             throw new NullSuKienModelException();
         }
 
+        // Cleanup
+        getViewport().removeAll();
+
+        // Load and display
+        MainFrame mainFrame = App.getMainFrame();
+        ContentPanel appContentPanel = (ContentPanel) mainFrame.getContentPanel();
+        
         suKienDetail = new SuKienDetail(suKienModel);
         setViewportView(suKienDetail);
+        appContentPanel.showComponentAndTrimHistory(INSTANCE_NAME);
 
+        // Add to HistoryPanel
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ContentPanel appRightPanel = App.getMainFrame().getRightPanel();
+                ContentPanel appRightPanel = mainFrame.getRightPanel();
 
                 Component comp = appRightPanel.getCurrentComponent();
                 if (comp instanceof SuKienRightPanel) {
