@@ -34,35 +34,35 @@ public class App {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                AuthView authView = null;
-//
-//                session = new Session();
-//                if (session.isPermitted()) {
-//                    new MainFrame().setVisible(true);
-//                } else {
-//                    authView = new AuthView();
-//                    authView.getAuthModel().addPropertyChangeListener(session);
-//                    authView.setVisible(true);
-//                }
-//
-//                final AuthView af = authView;
-//                session.addPropertyChangeListener(new PropertyChangeListener() {
-//                    @Override
-//                    public void propertyChange(PropertyChangeEvent evt) {
-//                        if (evt.getPropertyName().equals("permitted")) {
-//                            if (session.isPermitted()) {
-//                                if (af != null) {
-//                                    af.setVisible(false);
-//                                    af.dispose();
-//                                }
+                AuthView authView = null;
+
+                session = new Session();
+                if (session.isPermitted()) {
+                    new MainFrame().setVisible(true);
+                } else {
+                    authView = new AuthView();
+                    authView.getAuthModel().addPropertyChangeListener(session);
+                    authView.setVisible(true);
+                }
+
+                final AuthView af = authView;
+                session.addPropertyChangeListener(new PropertyChangeListener() {
+                    @Override
+                    public void propertyChange(PropertyChangeEvent evt) {
+                        if (evt.getPropertyName().equals("permitted")) {
+                            if (session.isPermitted()) {
+                                if (af != null) {
+                                    af.setVisible(false);
+                                    af.dispose();
+                                }
                                 mainFrame = new MainFrame();
                                 mainFrame.setVisible(true);
-//                            }
-//                        }
-//                    }
-//                });
-//
-//                running = true;
+                            }
+                        }
+                    }
+                });
+
+                running = true;
             }
         });
     }

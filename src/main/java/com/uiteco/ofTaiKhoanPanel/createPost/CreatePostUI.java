@@ -4,6 +4,29 @@
  */
 package com.uiteco.ofTaiKhoanPanel.createPost;
 
+import com.uiteco.contentPanels.TaiKhoanPanel;
+import static com.uiteco.ofSuKienPanel.SuKienDAO.createSuKien;
+import java.sql.SQLException;
+import com.uiteco.main.App;
+import com.uiteco.ofSuKienPanel.SuKienDAO;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.io.IOException;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
+import javax.swing.border.LineBorder;
+
 /**
  *
  * @author nddmi
@@ -11,12 +34,26 @@ package com.uiteco.ofTaiKhoanPanel.createPost;
 public class CreatePostUI extends javax.swing.JPanel {
 
     public static final String INSTANCE_NAME = "createPostUI";
-    
+
+    private Popup pup;
+    private PopupFactory pupFactory;
+    private TagSelector tagSelector;
+    private ImageSelector imageSelector;
+
     /**
      * Creates new form CreatePost
      */
     public CreatePostUI() {
         initComponents();
+        pupFactory = PopupFactory.getSharedInstance();
+        try {
+            tagSelector = new TagSelector();
+            imageSelector = new ImageSelector();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra khi hiển thị tag", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -31,204 +68,514 @@ public class CreatePostUI extends javax.swing.JPanel {
 
         scrollPaneWin111 = new com.raven.scroll.ScrollPaneWin11();
         containerPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        masterTextPanel = new com.uiteco.components.RoundedPanel();
         roundedPanel1 = new com.uiteco.components.RoundedPanel();
+        roundedPanel4 = new com.uiteco.components.RoundedPanel();
         jTextPane1 = new javax.swing.JTextPane();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        roundedPanel2 = new com.uiteco.components.RoundedPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        roundedPanel5 = new com.uiteco.components.RoundedPanel();
         jTextPane2 = new javax.swing.JTextPane();
+        jLabel3 = new javax.swing.JLabel();
+        roundedImagePanel3 = new com.uiteco.components.RoundedImagePanel();
+        posterInfo = new com.uiteco.components.RoundedPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         utilPanel = new com.uiteco.components.RoundedGradientPanel();
-        imgBtn = new com.uiteco.components.RoundedPanel();
-        tagBtn = new com.uiteco.components.RoundedPanel();
-        submitBtn = new com.uiteco.components.RoundedPanel();
+        imgBtn = new com.uiteco.components.RoundedImagePanel();
+        tagBtn = new com.uiteco.components.RoundedImagePanel();
+        previewBtn = new com.uiteco.components.RoundedImagePanel();
+        submitBtn = new com.uiteco.components.RoundedImagePanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new java.awt.GridLayout(1, 0));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
         scrollPaneWin111.setBorder(null);
 
+        containerPanel.setBackground(new java.awt.Color(255, 255, 255));
+        containerPanel.setPreferredSize(new java.awt.Dimension(810, 1188));
         containerPanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
-        jLabel1.setText("Tiêu đề");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 10, 0);
-        containerPanel.add(jLabel1, gridBagConstraints);
+        masterTextPanel.setBackground(new java.awt.Color(242, 243, 244));
+        //roundedPanel2.setPreferredSize(new java.awt.Dimension(810, 767));
+        masterTextPanel.setPreferredSize(null);
+        masterTextPanel.setRoundBottomLeft(12);
+        masterTextPanel.setRoundBottomRight(12);
+        masterTextPanel.setRoundTopLeft(12);
+        masterTextPanel.setRoundTopRight(12);
 
-        roundedPanel1.setPreferredSize(new java.awt.Dimension(810, 100));
-        roundedPanel1.setRoundBottomLeft(12);
-        roundedPanel1.setRoundBottomRight(12);
-        roundedPanel1.setRoundTopLeft(12);
-        roundedPanel1.setRoundTopRight(12);
+        roundedPanel1.setBackground(new java.awt.Color(240, 242, 245));
+        roundedPanel1.setRoundBottomLeft(20);
+        roundedPanel1.setRoundBottomRight(20);
+        roundedPanel1.setRoundTopLeft(20);
+        roundedPanel1.setRoundTopRight(20);
 
+        roundedPanel4.setBackground(new java.awt.Color(204, 204, 204));
+        roundedPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        roundedPanel4.setRoundBottomLeft(30);
+        roundedPanel4.setRoundBottomRight(30);
+        roundedPanel4.setRoundTopLeft(30);
+        roundedPanel4.setRoundTopRight(30);
+        roundedPanel4.setLayout(new java.awt.GridLayout());
+
+        jTextPane1.setBorder(null);
+        jTextPane1.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
+        jTextPane1.setForeground(new java.awt.Color(5, 5, 5));
+        jTextPane1.setCaretColor(new java.awt.Color(5, 5, 5));
         jTextPane1.setOpaque(false);
+        roundedPanel4.add(jTextPane1);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(5, 5, 5));
+        jLabel4.setText("Tiêu đề bài viết:");
+        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
         roundedPanel1.setLayout(roundedPanel1Layout);
         roundedPanel1Layout.setHorizontalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(roundedPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
                 .addContainerGap())
         );
         roundedPanel1Layout.setVerticalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(roundedPanel1Layout.createSequentialGroup()
+                        .addComponent(roundedPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(5, 5, 5));
+        jLabel2.setText("Nhập Nội dung:");
+
+        jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
+
+        roundedPanel5.setBackground(new java.awt.Color(51, 51, 51));
+        roundedPanel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        roundedPanel5.setRoundTopLeft(70);
+        roundedPanel5.setRoundTopRight(70);
+
+        jTextPane2.setBorder(null);
+        jTextPane2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextPane2.setForeground(new java.awt.Color(228, 230, 235));
+        jTextPane2.setCaretColor(new java.awt.Color(228, 230, 235));
+        jTextPane2.setOpaque(false);
+
+        javax.swing.GroupLayout roundedPanel5Layout = new javax.swing.GroupLayout(roundedPanel5);
+        roundedPanel5.setLayout(roundedPanel5Layout);
+        roundedPanel5Layout.setHorizontalGroup(
+            roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextPane2)
                 .addContainerGap())
+        );
+        roundedPanel5Layout.setVerticalGroup(
+            roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout masterTextPanelLayout = new javax.swing.GroupLayout(masterTextPanel);
+        masterTextPanel.setLayout(masterTextPanelLayout);
+        masterTextPanelLayout.setHorizontalGroup(
+            masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, masterTextPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(roundedPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(masterTextPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jSeparator1))
+                .addContainerGap())
+            .addComponent(roundedPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        masterTextPanelLayout.setVerticalGroup(
+            masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, masterTextPanelLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(roundedPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.8;
+        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
+        containerPanel.add(masterTextPanel, gridBagConstraints);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(5, 5, 5));
+        jLabel3.setText("Người đăng: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 30, 10, 20);
+        containerPanel.add(jLabel3, gridBagConstraints);
+
+        roundedImagePanel3.setToolTipText("Quyền kiểm soát bài viết thuộc về Trường Đại học Công nghệ Thông tin");
+        roundedImagePanel3.setImage(new javax.swing.ImageIcon(getClass().getResource("/uit-cropped.jpg"))); // NOI18N
+        roundedImagePanel3.setMinimumSize(new java.awt.Dimension(0, 0));
+        roundedImagePanel3.setPreferredSize(new java.awt.Dimension(100, 100));
+        roundedImagePanel3.setRoundBottomLeft(10);
+        roundedImagePanel3.setRoundBottomRight(10);
+        roundedImagePanel3.setRoundTopLeft(10);
+        roundedImagePanel3.setRoundTopRight(10);
+
+        javax.swing.GroupLayout roundedImagePanel3Layout = new javax.swing.GroupLayout(roundedImagePanel3);
+        roundedImagePanel3.setLayout(roundedImagePanel3Layout);
+        roundedImagePanel3Layout.setHorizontalGroup(
+            roundedImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        roundedImagePanel3Layout.setVerticalGroup(
+            roundedImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
-        containerPanel.add(roundedPanel1, gridBagConstraints);
+        containerPanel.add(roundedImagePanel3, gridBagConstraints);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
-        jLabel2.setText("Nội dung");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 10, 0);
-        containerPanel.add(jLabel2, gridBagConstraints);
+        posterInfo.setBackground(new java.awt.Color(255, 255, 255));
+        posterInfo.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        posterInfo.setLayout(new java.awt.GridLayout(4, 0));
 
-        roundedPanel2.setRoundBottomLeft(12);
-        roundedPanel2.setRoundBottomRight(12);
-        roundedPanel2.setRoundTopLeft(12);
-        roundedPanel2.setRoundTopRight(12);
+        jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 1, 15)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel5.setText("- Admin -");
+        posterInfo.add(jLabel5);
 
-        jTextPane2.setOpaque(false);
+        jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-email-24.png"))); // NOI18N
+        jLabel1.setText(App.getSession().getUsername());
+        posterInfo.add(jLabel1);
 
-        javax.swing.GroupLayout roundedPanel2Layout = new javax.swing.GroupLayout(roundedPanel2);
-        roundedPanel2.setLayout(roundedPanel2Layout);
-        roundedPanel2Layout.setHorizontalGroup(
-            roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        roundedPanel2Layout.setVerticalGroup(
-            roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel2Layout.createSequentialGroup()
-                .addComponent(jTextPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jLabel6.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-username-24.png"))); // NOI18N
+        jLabel6.setText(App.getSession().getEmail());
+        posterInfo.add(jLabel6);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.8;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
-        containerPanel.add(roundedPanel2, gridBagConstraints);
+        containerPanel.add(posterInfo, gridBagConstraints);
 
-        utilPanel.setColor1(new java.awt.Color(255, 255, 255));
-        utilPanel.setColor2(new java.awt.Color(153, 153, 153));
+        scrollPaneWin111.setViewportView(containerPanel);
+        containerPanel.setPreferredSize(null);
+
+        add(scrollPaneWin111);
+
+        utilPanel.setBackground(new java.awt.Color(255, 255, 204));
+        utilPanel.setBorder(null);
+        utilPanel.setColor1(new java.awt.Color(33, 33, 33));
+        utilPanel.setColor2(new java.awt.Color(33, 33, 33));
         utilPanel.setDirection(com.uiteco.components.RoundedGradientPanel.Direction.HORIZONTAL);
-        utilPanel.setPreferredSize(new java.awt.Dimension(750, 75));
-        utilPanel.setRoundBottomLeft(15);
-        utilPanel.setRoundBottomRight(15);
-        utilPanel.setRoundTopLeft(15);
-        utilPanel.setRoundTopRight(15);
+        utilPanel.setPreferredSize(new java.awt.Dimension(750, 40));
         utilPanel.setLayout(new java.awt.GridBagLayout());
+        //utilPanel.setVisible(false);
 
-        imgBtn.setBackground(new java.awt.Color(255, 255, 255));
-        imgBtn.setPreferredSize(new java.awt.Dimension(20, 20));
+        imgBtn.setToolTipText("Đính kèm ảnh");
+        imgBtn.setImage(new javax.swing.ImageIcon(getClass().getResource("/icons8-image-48.png"))); // NOI18N
+        imgBtn.setMinimumSize(new java.awt.Dimension(40, 40));
+        imgBtn.setPreferredSize(new java.awt.Dimension(40, 40));
+        imgBtn.setRoundBottomLeft(5);
+        imgBtn.setRoundBottomRight(5);
+        imgBtn.setRoundTopLeft(5);
+        imgBtn.setRoundTopRight(5);
+        imgBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imgBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                imgBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                imgBtnMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout imgBtnLayout = new javax.swing.GroupLayout(imgBtn);
         imgBtn.setLayout(imgBtnLayout);
         imgBtnLayout.setHorizontalGroup(
             imgBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
         );
         imgBtnLayout.setVerticalGroup(
             imgBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         utilPanel.add(imgBtn, gridBagConstraints);
 
-        tagBtn.setBackground(new java.awt.Color(255, 102, 102));
-        tagBtn.setPreferredSize(new java.awt.Dimension(20, 20));
+        tagBtn.setToolTipText("Gắn thẻ sự kiện");
+        tagBtn.setImage(new javax.swing.ImageIcon(getClass().getResource("/icons8-tags-48.png"))); // NOI18N
+        tagBtn.setMinimumSize(new java.awt.Dimension(40, 40));
+        tagBtn.setPreferredSize(new java.awt.Dimension(40, 40));
+        tagBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tagBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tagBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tagBtnMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout tagBtnLayout = new javax.swing.GroupLayout(tagBtn);
         tagBtn.setLayout(tagBtnLayout);
         tagBtnLayout.setHorizontalGroup(
             tagBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
         );
         tagBtnLayout.setVerticalGroup(
             tagBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         utilPanel.add(tagBtn, gridBagConstraints);
 
-        submitBtn.setBackground(new java.awt.Color(255, 51, 51));
-        submitBtn.setPreferredSize(new java.awt.Dimension(20, 20));
+        previewBtn.setToolTipText("Gắn thẻ sự kiện");
+        previewBtn.setImage(new javax.swing.ImageIcon(getClass().getResource("/icons8-file-preview-48.png"))); // NOI18N
+        previewBtn.setMinimumSize(new java.awt.Dimension(40, 40));
+        previewBtn.setPreferredSize(new java.awt.Dimension(40, 40));
+        previewBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                previewBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                previewBtnMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout previewBtnLayout = new javax.swing.GroupLayout(previewBtn);
+        previewBtn.setLayout(previewBtnLayout);
+        previewBtnLayout.setHorizontalGroup(
+            previewBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+        previewBtnLayout.setVerticalGroup(
+            previewBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        utilPanel.add(previewBtn, new java.awt.GridBagConstraints());
+
+        submitBtn.setToolTipText("Đăng tải bài viết");
+        submitBtn.setImage(new javax.swing.ImageIcon(getClass().getResource("/icons8-paper-plane-48.png"))); // NOI18N
+        submitBtn.setMinimumSize(new java.awt.Dimension(40, 40));
+        submitBtn.setPreferredSize(new java.awt.Dimension(40, 40));
+        submitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                submitBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                submitBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                submitBtnMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout submitBtnLayout = new javax.swing.GroupLayout(submitBtn);
         submitBtn.setLayout(submitBtnLayout);
         submitBtnLayout.setHorizontalGroup(
             submitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
         );
         submitBtnLayout.setVerticalGroup(
             submitBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 15);
+        gridBagConstraints.insets = new java.awt.Insets(0, 720, 0, 0);
         utilPanel.add(submitBtn, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(30, 20, 15, 20);
-        containerPanel.add(utilPanel, gridBagConstraints);
-
-        scrollPaneWin111.setViewportView(containerPanel);
-
-        add(scrollPaneWin111);
+        add(utilPanel);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void submitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitBtnMouseClicked
+        // TODO add your handling code here:
+        _createPost();
+    }//GEN-LAST:event_submitBtnMouseClicked
+
+    private void imgBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgBtnMouseEntered
+        // TODO add your handling code here:
+        imgBtn.setBorder(new LineBorder(Color.BLACK, 2, true));
+    }//GEN-LAST:event_imgBtnMouseEntered
+
+    private void imgBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgBtnMouseExited
+        // TODO add your handling code here:
+        imgBtn.setBorder(null);
+    }//GEN-LAST:event_imgBtnMouseExited
+
+    private void tagBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tagBtnMouseEntered
+        // TODO add your handling code here:
+        tagBtn.setBorder(new LineBorder(Color.BLACK, 2, true));
+    }//GEN-LAST:event_tagBtnMouseEntered
+
+    private void tagBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tagBtnMouseExited
+        // TODO add your handling code here:
+        tagBtn.setBorder(null);
+    }//GEN-LAST:event_tagBtnMouseExited
+
+    private void submitBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitBtnMouseEntered
+        // TODO add your handling code here:
+        submitBtn.setBorder(new LineBorder(Color.BLACK, 2, true));
+    }//GEN-LAST:event_submitBtnMouseEntered
+
+    private void submitBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitBtnMouseExited
+        // TODO add your handling code here:
+        submitBtn.setBorder(null);
+    }//GEN-LAST:event_submitBtnMouseExited
+
+    private void previewBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewBtnMouseEntered
+        // TODO add your handling code here:
+        previewBtn.setBorder(new LineBorder(Color.BLACK, 2, true));
+    }//GEN-LAST:event_previewBtnMouseEntered
+
+    private void previewBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewBtnMouseExited
+        // TODO add your handling code here:
+        previewBtn.setBorder(null);
+    }//GEN-LAST:event_previewBtnMouseExited
+
+    private void tagBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tagBtnMouseClicked
+        // TODO add your handling code here:
+        _showTagSelector();
+    }//GEN-LAST:event_tagBtnMouseClicked
+
+    private void imgBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgBtnMouseClicked
+        // TODO add your handling code here:
+        _showImageSelector();
+    }//GEN-LAST:event_imgBtnMouseClicked
+
+    private void _clear() {
+        jTextPane1.setText("");
+        jTextPane2.setText("");
+        scrollPaneWin111.getViewport().revalidate();
+        scrollPaneWin111.getViewport().repaint();
+        scrollPaneWin111.revalidate();
+        scrollPaneWin111.repaint();
+    }
+
+    private void _exit() {
+        App.getMainFrame().getContentPanel().showComponentAndTrimHistory("taiKhoanPanel");
+        App.getMainFrame().getRightPanel().showComponentAndTrimHistory("taiKhoanRightPanel");
+    }
+
+    private void _createPost() {
+        try {
+            String title = jTextPane1.getText();
+            String content = jTextPane2.getText();
+            if (title.length() == 0) {
+                JOptionPane.showMessageDialog(this, "Nhập tiêu đề", "Vui lòng điền đầy đủ thông tin", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else if (content.length() == 0) {
+                JOptionPane.showMessageDialog(this, "Nhập nội dung", "Vui lòng điền đầy đủ thông tin", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int option = JOptionPane.showConfirmDialog(this, "Xác nhận", "bạn có muốn đăng tải bài viết", JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.NO_OPTION) {
+                return;
+            }
+
+            int accountID = App.getSession().getAccountID();
+            Set<String> tags = new HashSet<String>();
+            List<ImageIcon> images = new ArrayList<ImageIcon>();
+            ImageIcon thumbnail = SuKienDAO.loadImagesFromFolder().get(0);
+
+            createSuKien(title, content, accountID, tags, images, thumbnail, null);
+            JOptionPane.showMessageDialog(this, "Đăng bài viết thành công", "Thành công", JOptionPane.PLAIN_MESSAGE);
+            _clear();
+            _exit();
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+            String errMsg = e.getMessage();
+            JOptionPane.showMessageDialog(this, errMsg, "Đã có lỗi xảy ra khi đăng bài", JOptionPane.ERROR_MESSAGE);
+            _exit();
+        }
+    }
+
+    private void _showTagSelector() {
+        _createDialog("Tag", tagSelector);
+    }
+
+    private void _showImageSelector() {
+        _createDialog("Hình ảnh", imageSelector);
+    }
+
+    private void _createDialog(String dialogName, Component child) {
+        Point location = this.getLocationOnScreen();
+        JDialog dialog = new JDialog(App.getMainFrame(), dialogName, false);
+        dialog.setLayout(new GridLayout(1, 1, 0, 0));
+        dialog.setSize(child.getPreferredSize());
+        dialog.add(child);
+        dialog.setVisible(true);
+        dialog.setLocation(location.x + this.getWidth() / 2, location.y + this.getHeight() / 2);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
-    private com.uiteco.components.RoundedPanel imgBtn;
+    private com.uiteco.components.RoundedImagePanel imgBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
+    private com.uiteco.components.RoundedPanel masterTextPanel;
+    private com.uiteco.components.RoundedPanel posterInfo;
+    private com.uiteco.components.RoundedImagePanel previewBtn;
+    private com.uiteco.components.RoundedImagePanel roundedImagePanel3;
     private com.uiteco.components.RoundedPanel roundedPanel1;
-    private com.uiteco.components.RoundedPanel roundedPanel2;
+    private com.uiteco.components.RoundedPanel roundedPanel4;
+    private com.uiteco.components.RoundedPanel roundedPanel5;
     private com.raven.scroll.ScrollPaneWin11 scrollPaneWin111;
-    private com.uiteco.components.RoundedPanel submitBtn;
-    private com.uiteco.components.RoundedPanel tagBtn;
+    private com.uiteco.components.RoundedImagePanel submitBtn;
+    private com.uiteco.components.RoundedImagePanel tagBtn;
     private com.uiteco.components.RoundedGradientPanel utilPanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -28,7 +28,6 @@ public class AdminSection extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
@@ -58,6 +57,7 @@ public class AdminSection extends javax.swing.JPanel {
         jSeparator4.setAlignmentY(1.0F);
 
         roundedPanel1.setBackground(new java.awt.Color(242, 243, 244));
+        roundedPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         roundedPanel1.setPreferredSize(new java.awt.Dimension(250, 40));
         roundedPanel1.setRoundBottomLeft(20);
         roundedPanel1.setRoundBottomRight(20);

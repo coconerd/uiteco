@@ -29,7 +29,7 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
 
         dateChooser1 = new com.raven.datechooser.DateChooser();
 
-        setBackground(new java.awt.Color(242, 243, 244));
+        setBackground(new java.awt.Color(36, 37, 38));
         setLayout(new java.awt.GridBagLayout());
 
         dateChooser1.setForeground(new java.awt.Color(0, 204, 51));
