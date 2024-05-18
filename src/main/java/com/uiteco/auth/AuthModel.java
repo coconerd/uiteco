@@ -7,12 +7,19 @@ package com.uiteco.auth;
 import java.beans.PropertyChangeSupport;
 import java.beans.PropertyChangeListener;
 import java.util.regex.Pattern;
+import com.uiteco.auth.Session.ACCOUNT_TYPE;
 
 /**
  *
  * @author nddmi
  */
 public class AuthModel {
+
+    public static final int MIN_USERNAME_LEN = 4;
+    public static final int MAX_USERNAME_LEN = 40;
+    public static final int MIN_PASSWORD_LEN = 8;
+    public static final int MAX_PASSWORD_LEN = 32;
+    public static final String EMAIL_POSTFIX = "uit.edu.vn";
 
     private String email;
     private String username;
@@ -65,7 +72,7 @@ public class AuthModel {
             setEmailOrThrow(email);
             setPasswordOrThrow(password);
             AuthDAO.login(getUsername(), getEmail(), getPassword());
-            com.uiteco.main.App.getSession().setEmail(email);
+            
             setLoggedIn(true);
         } catch (Exception e) {
             throw e;
@@ -85,7 +92,6 @@ public class AuthModel {
             setUsernameOrThrow(username);
             setPasswordOrThrow(password);
             AuthDAO.login(getUsername(), getEmail(), getPassword());
-            com.uiteco.main.App.getSession().setUsername(username);
             setLoggedIn(true);
         } catch (Exception e) {
             throw e;
@@ -98,39 +104,40 @@ public class AuthModel {
 
     private void setEmailOrThrow(String inputEmail) throws BadCredentialsFormatException {
         int len = inputEmail.length();
-        
-        if (len <= 14) {
+
+        // Email must ends with 'uit.edu.vn'
+        if (len <= EMAIL_POSTFIX.length()) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.EMAIL);
         }
-        
-        String postfix = inputEmail.substring(len - 14, len);
-        if (!postfix.equals("@gm.uit.edu.vn")) {
+
+        String postfix = inputEmail.substring(len - EMAIL_POSTFIX.length(), len);
+        if (!postfix.equals("uit.edu.vn")) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.EMAIL);
         }
-        
+
         this.email = inputEmail;
     }
 
     private void setUsernameOrThrow(String inputUsername) throws BadCredentialsFormatException {
         int len = inputUsername.length();
-        if (!(len >= 4 && len <= 15)) {
+        if (!(len >= MIN_USERNAME_LEN && len <= MAX_USERNAME_LEN)) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.USERNAME);
         }
-        
-        String regex = "^[a-zA-Z0-9]*$"; 
+
+        String regex = "^[a-zA-Z0-9]*$";
         if (!Pattern.matches(regex, inputUsername)) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.USERNAME);
         }
-        
+
         this.username = inputUsername;
     }
 
     private void setPasswordOrThrow(String inputPassword) throws BadCredentialsFormatException {
         int len = inputPassword.length();
-        if (!(len >= 8 && len <= 32)) {
+        if (!(len >= MIN_PASSWORD_LEN && len <= MAX_PASSWORD_LEN)) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.PASSWORD);
         }
-        
+
         this.password = inputPassword;
     }
 
