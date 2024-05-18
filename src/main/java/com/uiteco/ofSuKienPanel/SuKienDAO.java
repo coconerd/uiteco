@@ -859,19 +859,27 @@ public class SuKienDAO {
 
         NClob nclob = conn.createNClob();
         nclob.setString(1, content);
-
         pstm.setString(1, title);
+        
         pstm.setNClob(2, nclob);
+        
         pstm.setInt(3, accountID);
-        pstm.setBlob(4, new ByteArrayInputStream(convertImageIconToBytes(thumbnail)));
+        
+        if (thumbnail == null) {
+            pstm.setNull(4, java.sql.Types.BLOB);
+        } else {
+            pstm.setBlob(4, new ByteArrayInputStream(convertImageIconToBytes(thumbnail)));
+        }
+        
         if (clubID == null) {
             pstm.setNull(5, java.sql.Types.INTEGER);
         } else {
             pstm.setInt(5, clubID);
         }
+        
         pstm.setInt(6, 1); // 1 value is for SuKien
+        
         pstm.executeUpdate();
-
         ResultSet genKeys = pstm.getGeneratedKeys();
 
         if (genKeys.next()) {
