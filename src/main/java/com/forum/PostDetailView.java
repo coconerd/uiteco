@@ -221,6 +221,13 @@ public class PostDetailView extends javax.swing.JPanel {
             setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
             leftPanel.setBackground(new java.awt.Color(235, 235, 235));
+            leftPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent e){
+                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
+                    postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
+                }
+            });
 
             userimageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             usernameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -263,9 +270,23 @@ public class PostDetailView extends javax.swing.JPanel {
             );
 
             mainPanel.setBackground(new java.awt.Color(204, 255, 204));
+            mainPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent e){
+                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
+                    postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
+                }
+            });
 
             titlePanel.setBackground(new java.awt.Color(242, 247, 232));
             titlePanel.setPreferredSize(null);
+            titlePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent e){
+                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
+                    postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
+                }
+            });
 
             titleLabel.setBackground(new java.awt.Color(242, 247, 232));
             titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -314,6 +335,15 @@ public class PostDetailView extends javax.swing.JPanel {
                 @Override
                 public void paint(java.awt.Graphics g) {
                     // không vẽ caret
+                }
+            });
+            showContentArea.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent e){
+                javax.swing.JViewport viewport = (javax.swing.JViewport)showContentArea.getParent();
+                javax.swing.JScrollPane scrollpane = (javax.swing.JScrollPane)viewport.getParent();
+                com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
+                postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
                 }
             });
 
@@ -370,6 +400,13 @@ public class PostDetailView extends javax.swing.JPanel {
             setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
             leftPanel.setBackground(new java.awt.Color(235, 235, 235));
+            leftPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent e){
+                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
+                    postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
+                }
+            });            
 
             userimageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             usernameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -412,9 +449,23 @@ public class PostDetailView extends javax.swing.JPanel {
             );
 
             mainPanel.setBackground(new java.awt.Color(204, 255, 204));
+            mainPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent e){
+                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
+                    postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
+                }
+            });            
 
             titlePanel.setBackground(new java.awt.Color(242, 247, 232));
             titlePanel.setPreferredSize(null);
+            titlePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent e){
+                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
+                    postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
+                }
+            });            
 
             titleLabel.setBackground(new java.awt.Color(242, 247, 232));
             titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -458,6 +509,15 @@ public class PostDetailView extends javax.swing.JPanel {
                 @Override
                 public void paint(java.awt.Graphics g) {
                     // không vẽ caret
+                }
+            });  
+            showContentArea.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent e){
+                javax.swing.JViewport viewport = (javax.swing.JViewport)showContentArea.getParent();
+                javax.swing.JScrollPane scrollpane = (javax.swing.JScrollPane)viewport.getParent();
+                com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
+                postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
                 }
             });            
 

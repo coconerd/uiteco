@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.forum.database.BaiDangForumDAO;
 import java.util.Collections;
 import java.util.Comparator;
+import javax.swing.JPanel;
 
 public class PostListPanel extends javax.swing.JPanel{
     private  ArrayList<PostPanel> listPost;
@@ -44,6 +45,7 @@ public class PostListPanel extends javax.swing.JPanel{
         int mapping = page-1;
         if(mapping != currentPage && mapping >= 0 && mapping < totalPages){
             currentPage = mapping;
+            updateShowPagination();
         }
     }
     public void setCurrentPageToNext(){
@@ -90,6 +92,7 @@ public class PostListPanel extends javax.swing.JPanel{
         updateShowPagination();
     }
     
+    
     void initPostList(){
         setSize(1063,650);
         setLayout(new java.awt.GridLayout(0,1));
@@ -97,5 +100,13 @@ public class PostListPanel extends javax.swing.JPanel{
         listPost = BaiDangForumDAO.loadAndSortListPostFromDatabase();
         updateTotalPages(); 
         updateShowPagination();
+        
+        addMouseListener(new java.awt.event.MouseAdapter() {
+        // khi click chuột vào panel này thì con trỏ nhấp nháy của jtextfield hiển thị số trang ở TailerPanel sẽ không còn nhấp nháy nữa, đồng thời số trang mà hiện tại người dùng đang đứng cũng được hiển thị            
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e){
+            ((TailerPanel)((JPanel)getParent()).getComponent(1)).updateJTextFieldOfPageNumberCurrent(getCurrentPage());
+            }
+        });
    }
 }

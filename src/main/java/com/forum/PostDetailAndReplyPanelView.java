@@ -118,21 +118,21 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
 
         totalPageNumberLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         totalPageNumberLabel.setForeground(new java.awt.Color(0, 0, 0));
-        totalPageNumberLabel.setText("1234");
+        totalPageNumberLabel.setText("123");
 
         javax.swing.GroupLayout hienthisotrangPanelLayout = new javax.swing.GroupLayout(hienthisotrangPanel);
         hienthisotrangPanel.setLayout(hienthisotrangPanelLayout);
         hienthisotrangPanelLayout.setHorizontalGroup(
             hienthisotrangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hienthisotrangPanelLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addGap(0, 0, 0)
                 .addComponent(pageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jTextFieldOfPageNumberCurrent, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jTextFieldOfPageNumberCurrent, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(ofLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(totalPageNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(totalPageNumberLabel)
                 .addContainerGap())
         );
         hienthisotrangPanelLayout.setVerticalGroup(
@@ -164,9 +164,9 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
                 .addComponent(statisticButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(exitButton)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(hienthisotrangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(hienthisotrangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -376,6 +376,7 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
             panel1.removeAll();
             panel1._initComponents();
             panel1.getPostListPanel2().loadPostForumFromDatabaseIntoListPost();
+            panel1.updateCurentPageAndTotalPageToShowOnJTextFieldOfTailerPanel();
         }
     });        
 
@@ -476,6 +477,7 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
 
         jTextFieldOfPageNumberCurrent.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldOfPageNumberCurrent.setForeground(new java.awt.Color(0, 0, 0));
+        jTextFieldOfPageNumberCurrent.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldOfPageNumberCurrent.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(51, 0, 51), new java.awt.Color(204, 204, 204)));
         updateJTextFieldOfPageNumberCurrent();
         jTextFieldOfPageNumberCurrent.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -533,21 +535,21 @@ public class PostDetailAndReplyPanelView extends javax.swing.JPanel {
 
         totalPageNumberLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         totalPageNumberLabel.setForeground(new java.awt.Color(0, 0, 0));
-        totalPageNumberLabel.setText(String .valueOf(this.totalPages));
+        totalPageNumberLabel.setText(String.valueOf(this.totalPages));
 
         javax.swing.GroupLayout hienthisotrangPanelLayout = new javax.swing.GroupLayout(hienthisotrangPanel);
         hienthisotrangPanel.setLayout(hienthisotrangPanelLayout);
         hienthisotrangPanelLayout.setHorizontalGroup(
             hienthisotrangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hienthisotrangPanelLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addGap(0, 0, 0)
                 .addComponent(pageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jTextFieldOfPageNumberCurrent, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jTextFieldOfPageNumberCurrent, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(ofLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(totalPageNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(totalPageNumberLabel)
                 .addContainerGap())
         );
         hienthisotrangPanelLayout.setVerticalGroup(

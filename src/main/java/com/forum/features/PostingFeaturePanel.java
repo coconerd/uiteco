@@ -266,6 +266,8 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
         com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
         panel1.removeAll();
         panel1._initComponents();
+        panel1.getPostListPanel2().loadPostForumFromDatabaseIntoListPost();
+        panel1.updateCurentPageAndTotalPageToShowOnJTextFieldOfTailerPanel();        
     }//GEN-LAST:event_cancelButtonMouseClicked
 
     private void postButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postButtonMouseClicked
@@ -288,8 +290,8 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
             panel1.removeAll();
             panel1._initComponents();
             panel1.getPostListPanel2().loadPostForumFromDatabaseIntoListPost();
+            panel1.updateCurentPageAndTotalPageToShowOnJTextFieldOfTailerPanel();
         }
-
     }//GEN-LAST:event_postButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

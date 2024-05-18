@@ -11,10 +11,8 @@ public class ForumPanel extends javax.swing.JPanel {
 
     public ForumPanel() {
         _initComponents();
-    }
-
-
-    
+        updateCurentPageAndTotalPageToShowOnJTextFieldOfTailerPanel();
+    }  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,6 +98,10 @@ public class ForumPanel extends javax.swing.JPanel {
         this.add(replyPanel);
         this.revalidate();
         this.repaint();
+    }
+    public void updateCurentPageAndTotalPageToShowOnJTextFieldOfTailerPanel(){
+        tailerPanel1.updateJTextFieldOfPageNumberCurrent(postListPanel2.getCurrentPage());
+        tailerPanel1.getTotalPageNumberLabel().setText(String.valueOf(postListPanel2.getTotalPages()));
     }
      public void _initComponents(){
         headerForum1 = new com.forum.HeaderForum();

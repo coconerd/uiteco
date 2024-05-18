@@ -201,13 +201,7 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
                 String replyPerson = com.uiteco.main.App.getSession().getUsername();
                 String MABLPHANHOI = jTextFieldOfMABLPHANHOI.getText();
                 int postIDForum = getPostID();
-                /*Nếu trường hợp khi mới hiển thị giao diện reply và người dùng chưa click vào vùng soạn thảo của jtextarea
-                mà click button Reply ngay thì lúc này vùng soạn thảo đang có text là "<Nhập phản hồi của bạn tại đây>"
-                hoặc trường hợp mới hiển thị giao diện reply và người dùng đã có click vào vùng soạn thảo nhưng xà quằn một hồi 
-                thì rốt không có dữ liệu nào được nhập vào vùng soạn thảo đó cả, lúc này vùng soạn thảo có text là rỗng 
-                Đối với 2 trường hợp trên thì khi người dùng click button Reply thì sẽ không lưu dữ liệu vào database và vẫn đứng ở giao diên đó
-                kèm jDialog để thông báo(nếu congphan thiết kế kịp), và chỉ khi người dùng click vào button Cancel thì mới được hiển thị lại
-                giao diện chi tiết bài đăng và những bình luận phản hồi của bài đăng đó*/
+
                 if(replyContent.equals("<Nhập nội dung phản hồi của bạn tại đây>")  || replyContent.isEmpty()){
                     /*hiển thị dialog thông báo cho người dùng*/ 
                     javax.swing.JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ nội dung bình luận phản hồi hoặc nhấn Cancel để thoát khỏi màn hình bình luận", "Thông báo", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -225,18 +219,34 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
                     }
                     /*người dùng nhập đầy đủ thông tin mã bình luận mà họ muốn phản hồi kèm với nội dung phản hồi*/
                     else{
-                        BaiDangForumDAO.insertIntoDatabaseWhenClickReply(replyPerson, replyContent, postIDForum, MABLPHANHOI);
-                        /*cập nhật lượt phản hồi cho bài đăng này ở trường LUOTPHANHOI của table BAIDANGFORUM*/
-                        BaiDangForumDAO.increaseReplyNumber(postIDForum);
-                        /*hiển thị lại giao diện chi tiết bài đăng kèm với những phản hồi của bài đăng này*/
-                        com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
-                        panel1.showPostDetailAndReplyView(getPostID());                        
+                        try{
+                            int mabinhluanphanhoi = Integer.parseInt(MABLPHANHOI);
+                            if(mabinhluanphanhoi <= 0){
+                                javax.swing.JOptionPane.showMessageDialog(null, "Reply ID phải là số nguyên dương lớn hơn 0", "Thông báo", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                            }
+                            else{
+                                if(BaiDangForumDAO.checkReplyIDIsExitsInPostID(mabinhluanphanhoi, getPostID()) == 0){
+                                    javax.swing.JOptionPane.showMessageDialog(null, "Reply ID bạn nhập không thuộc bài đăng này", "Thông báo", javax.swing.JOptionPane.WARNING_MESSAGE);
+                                }
+                                else{
+                                    BaiDangForumDAO.insertIntoDatabaseWhenClickReply(replyPerson, replyContent, postIDForum, MABLPHANHOI);
+                                    /*cập nhật lượt phản hồi cho bài đăng này ở trường LUOTPHANHOI của table BAIDANGFORUM*/
+                                    BaiDangForumDAO.increaseReplyNumber(postIDForum);
+                                    /*hiển thị lại giao diện chi tiết bài đăng kèm với những phản hồi của bài đăng này*/
+                                    com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
+                                    panel1.showPostDetailAndReplyView(getPostID());  
+                                }
+                            }
+          
+                        }
+                        catch(NumberFormatException e){
+                            javax.swing.JOptionPane.showMessageDialog(null, "Reply ID phải là số nguyên, reply ID bạn vừa nhập có chứa ký tự", "Thông báo", javax.swing.JOptionPane.WARNING_MESSAGE);
+                        }
                     }
                 }
             }
         });
             
-
             cancelButton.setBackground(new java.awt.Color(172, 172, 172));
             cancelButton.setForeground(new java.awt.Color(0, 0, 0));
             cancelButton.setText("Cancel");
@@ -330,6 +340,7 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
                     .addGap(17, 17, 17))
             );                    
     }  
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel ecoLabel;

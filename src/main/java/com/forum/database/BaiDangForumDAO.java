@@ -255,4 +255,29 @@ public class BaiDangForumDAO {
         }
         return loaitaikhoan;
     }
+    
+    public static int checkReplyIDIsExitsInPostID(int mabinhluanphanhoi, int mabaidang){
+        int isExists = 0;
+        try{
+            Connection conn = ConnectionManager.getConnection();
+            String strSQL = "SELECT B.MABL FROM BINHLUAN B WHERE B.MABL = ? AND B.MABDFORUM = ?";
+            PreparedStatement pre = conn.prepareStatement(strSQL);
+            pre.setInt(1, mabinhluanphanhoi);
+            pre.setInt(2, mabaidang);
+            ResultSet result = pre.executeQuery();
+            if(!result.isBeforeFirst()){ //kết quả trả về của câu select là tập rỗng do điều kiện trong where không thoả mãn, isBeforeFirst() kiểm tra có con trỏ được đặt trước hàng đầu tiên không, nếu tập rỗng không có hàng nào được trả về thì không có con trỏ nào
+                isExists = 0;
+                System.out.println("Reply ID "+mabinhluanphanhoi+" is invalid because Post ID "+mabaidang+" don't have that reply ID!");
+            }
+            else{
+                isExists = 1;
+                System.out.println("Reply ID "+mabinhluanphanhoi+" is valid because it's belong to Post ID "+mabaidang);
+            }
+            conn.close();       
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return isExists;
+    }
 }

@@ -94,6 +94,18 @@ public class HeaderForum extends javax.swing.JPanel{
         add(ecoForumPanel);
         add(javax.swing.Box.createRigidArea(new java.awt.Dimension(8,0)));
         
+        addMouseListener(new java.awt.event.MouseAdapter() {
+        // khi click chuột vào panel này thì con trỏ nhấp nháy của jtextfield hiển thị số trang ở TailerPanel sẽ không còn nhấp nháy nữa, đồng thời số trang mà hiện tại người dùng đang đứng cũng được hiển thị            
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e){
+                javax.swing.JPanel panel1 = (javax.swing.JPanel)getParent(); 
+                //System.out.println(getParent().getClass()); //kết quả là: com.uiteco.contentPanels.ForumPanel;
+                com.raven.scroll.ScrollPaneWin11 scrollPaneWin11 = (com.raven.scroll.ScrollPaneWin11)panel1.getComponent(0);
+                javax.swing.JPanel panel2 = (javax.swing.JPanel)scrollPaneWin11.getViewport().getView();
+                com.forum.TailerPanel tp = (com.forum.TailerPanel)panel2.getComponent(1);
+                tp.updateJTextFieldOfPageNumberCurrent(((com.forum.PostListPanel)panel2.getComponent(0)).getCurrentPage());
+            }
+        });
     } 
     private javax.swing.JButton topicButton;
     private javax.swing.JButton lastedPostButton;
