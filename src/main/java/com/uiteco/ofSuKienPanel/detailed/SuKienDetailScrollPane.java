@@ -11,7 +11,6 @@ import com.uiteco.ofSuKienPanel.SuKienModel;
 import com.uiteco.rightPanels.SuKienRightPanel;
 import com.uiteco.swing.ContentPanel;
 import java.awt.Component;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -36,24 +35,22 @@ public class SuKienDetailScrollPane extends ScrollPaneWin11 {
         return this.suKienDetail;
     }
 
-    /**
-     *
-     * @param suKienModel
-     * @throws NullSuKienModelException
-     */
-    public void loadAndDisplay(SuKienModel suKienModel) throws NullSuKienModelException {
+    public void load(SuKienModel suKienModel) throws NullSuKienModelException {
         if (suKienModel == null) {
             throw new NullSuKienModelException();
         }
 
+        suKienDetail = new SuKienDetail(suKienModel);
+    }
+
+    public void display() {
         // Cleanup
         getViewport().removeAll();
 
-        // Load and display
+        // Display
         MainFrame mainFrame = App.getMainFrame();
         ContentPanel appContentPanel = (ContentPanel) mainFrame.getContentPanel();
 
-        suKienDetail = new SuKienDetail(suKienModel);
         setViewportView(suKienDetail);
         appContentPanel.showComponentAndTrimHistory(INSTANCE_NAME);
 
@@ -69,12 +66,22 @@ public class SuKienDetailScrollPane extends ScrollPaneWin11 {
                 Component comp = appRightPanel.getCurrentComponent();
                 if (comp instanceof SuKienRightPanel) {
                     SuKienRightPanel suKienRightPanel = (SuKienRightPanel) appRightPanel.getCurrentComponent();
-                    suKienRightPanel.getHistoryPanel().addHistory(suKienModel);
-                    System.out.println("DEBUG: a new line has been added to history panel");
+                    suKienRightPanel.getHistoryPanel().addHistory(suKienDetail.getSuKienModel());
+//                    System.out.println("DEBUG: a new line has been added to history panel");
                 }
 
                 getVerticalScrollBar().setValue(0);
             }
         });
+    }
+
+    /**
+     *
+     * @param suKienModel
+     * @throws NullSuKienModelException
+     */
+    public void loadAndDisplay(SuKienModel suKienModel) throws NullSuKienModelException {
+        load(suKienModel);
+        display();
     }
 }
