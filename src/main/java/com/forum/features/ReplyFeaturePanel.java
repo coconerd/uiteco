@@ -192,6 +192,7 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
             replyButton.setForeground(new java.awt.Color(0, 0, 0));
             replyButton.setText("Reply");
             replyButton.setFocusable(false);
+            replyButton.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
             replyButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 System.out.println("Reply button in ReplyFeaturePanel.java (the replying interface)is clicked!");
@@ -240,6 +241,7 @@ public class ReplyFeaturePanel extends javax.swing.JPanel {
             cancelButton.setForeground(new java.awt.Color(0, 0, 0));
             cancelButton.setText("Cancel");
             cancelButton.setFocusable(false);
+            cancelButton.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
             cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 //thoát khỏi giao diện reply bài đăng, về giao diện chi tiết bài đăng kèm với những phản hồi của bài đăng đó

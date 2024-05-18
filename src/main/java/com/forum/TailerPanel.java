@@ -25,6 +25,7 @@ public class TailerPanel extends javax.swing.JPanel{
         nextButton.setSize(87, 32);
         nextButton.setBorderPainted(false);
         nextButton.setFocusable(false);
+        nextButton.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
         nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
         public void mouseClicked(java.awt.event.MouseEvent e){
@@ -44,6 +45,7 @@ public class TailerPanel extends javax.swing.JPanel{
         backButton.setSize(87,32);
         backButton.setBorderPainted(false);
         backButton.setFocusable(false);
+        backButton.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
         public void mouseClicked(java.awt.event.MouseEvent e){

@@ -30,6 +30,7 @@ public class HeaderForum extends javax.swing.JPanel{
         topicButton.setText("New Post"); 
         topicButton.setBorderPainted(false);
         topicButton.setFocusable(false);
+        topicButton.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
         topicPanel.setLayout(new javax.swing.BoxLayout(topicPanel, javax.swing.BoxLayout.X_AXIS));
         topicPanel.add(topicButton);
         add(topicPanel);
@@ -58,6 +59,7 @@ public class HeaderForum extends javax.swing.JPanel{
         lastedPostButton.setText("Latest Post");  
         lastedPostButton.setBorderPainted(false);
         lastedPostButton.setFocusable(false);
+        lastedPostButton.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
         lastedPostButton.addMouseListener(new java.awt.event.MouseAdapter() {
          @Override
          public void mouseClicked(java.awt.event.MouseEvent e){

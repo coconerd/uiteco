@@ -90,6 +90,8 @@ public class PostPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(247, 247, 226));
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,7 +138,7 @@ public class PostPanel extends javax.swing.JPanel {
         titlePanel.setBackground(new java.awt.Color(247,247,226));
         titlePanel.setPreferredSize(new java.awt.Dimension(510, 60));
         titlePanel.setMaximumSize(titlePanel.getPreferredSize());
-        titleLabel.setForeground(new java.awt.Color(0, 102, 255));
+        titleLabel.setForeground(new java.awt.Color(19,117,214));
         titleLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
         titleLabel.setMaximumSize(titlePanel.getPreferredSize());
         titleLabel.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
@@ -144,11 +146,11 @@ public class PostPanel extends javax.swing.JPanel {
         titleLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e){
-                titleLabel.setFont(new java.awt.Font("Segoe UI", 1, 12));
+                titleLabel.setForeground(new java.awt.Color(39,109,179));
             }
             @Override
             public void mouseExited(java.awt.event.MouseEvent e){
-                titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 12));
+                titleLabel.setForeground(new java.awt.Color(19,117,214));
             }
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e){
@@ -165,7 +167,7 @@ public class PostPanel extends javax.swing.JPanel {
                 forum.showPostDetailAndReplyView(mabaidang);
             }
         });
-        
+        titleLabel.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
         titlePanel.setLayout(new javax.swing.BoxLayout(titlePanel,javax.swing.BoxLayout.X_AXIS));
         titlePanel.add(titleLabel);
         add(titlePanel);

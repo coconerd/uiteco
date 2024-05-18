@@ -86,6 +86,7 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
         postButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         postButton.setForeground(new java.awt.Color(0, 0, 0));
         postButton.setText("Post");
+        postButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         postButton.setFocusable(false);
         postButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -102,6 +103,7 @@ public class PostingFeaturePanel extends javax.swing.JPanel {
         cancelButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancelButton.setForeground(new java.awt.Color(0, 0, 0));
         cancelButton.setText("Cancel");
+        cancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelButton.setFocusable(false);
         cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
