@@ -38,17 +38,17 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
      * Implementation for Permissible interface
      */
     private byte[] accessKey;
-    
+
     @Override
     public byte[] getAccessKey() {
         return this.accessKey;
     }
-    
+
     @Override
     public void setAccessKey(byte[] accessKey) {
         this.accessKey = accessKey;
     }
-    
+
     /**
      * Additional variables declaration
      */
@@ -63,14 +63,14 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
         _initRightPanel();
         _additionalInit();
     }
-    
+
     /**
      * Provide contentPanel for ease of access from children components
      */
     public ContentPanel getContentPanel() {
         return this.contentPanel;
     }
-    
+
     public ContentPanel getRightPanel() {
         return this.rightPanel;
     }
@@ -727,11 +727,13 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
     private void dangXuatButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dangXuatButtonMouseEntered
         // TODO add your handling code here:
         dangXuatButton.setBackground(new Color(51, 102, 225));
+        dangXuatButton.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_dangXuatButtonMouseEntered
 
     private void dangXuatButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dangXuatButtonMouseExited
         // TODO add your handling code here:
-        dangXuatButton.setBackground(new Color(153, 153, 153));
+        dangXuatButton.setBackground(new Color(255, 255, 255));
+        dangXuatButton.setForeground(new Color(153, 153, 153));
     }//GEN-LAST:event_dangXuatButtonMouseExited
 
     /**
@@ -741,10 +743,10 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
     private void _initContentPanel() {
         SuKienPanel sk = new SuKienPanel();
         contentPanel.registerComponent(sk, SuKienPanel.INSTANCE_NAME);
-        
+
         SuKienDetailScrollPane sd = new SuKienDetailScrollPane();
         contentPanel.registerComponent(sd, SuKienDetailScrollPane.INSTANCE_NAME);
-        
+
         SuKienSearchTabPane ss = new SuKienSearchTabPane();
         contentPanel.registerComponent(ss, SuKienSearchTabPane.INSTANCE_NAME);
 
@@ -762,7 +764,7 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
 
         TaiKhoanPanel tk = new TaiKhoanPanel();
         contentPanel.registerComponent(tk, "taiKhoanPanel");
-        
+
         CreatePostUI cp = new CreatePostUI();
         contentPanel.registerComponent(cp, CreatePostUI.INSTANCE_NAME);
 
@@ -801,13 +803,16 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
     }
 
     private void logOut() {
-        System.out.println("Logged out!");
         try {
-            
-        App.getSession().setUsername("", this);
+            App.getSession().setEmail(null, this);
+            App.getSession().setUsername(null, this);
+            App.getSession().setAccountType(null, this);
+            App.getSession().setAccountID(-1, this);
+            App.getSession().setPermitted(false, this);
         } catch (PermissibleNotPermittedException e) {
             e.printStackTrace();
         }
+        System.out.println("Logged out!");
     }
 
     private void highlightComponent(JComponent comp) {

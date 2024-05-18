@@ -146,14 +146,25 @@ public class Session {
         _permitComponent(permittee);
     }
 
+    public void revokeComponent(Permissible permitter, Permissible permittee) throws PermissibleNotPermittedException {
+        if (!isComponentPermitted(permitter)) {
+            throw new PermissibleNotPermittedException();
+        }
+
+        _revokeComponent(permittee);
+    }
+
     public boolean isComponentPermitted(Permissible permissible) {
-        return (permittedKeys.get(permissible.getAccessKey()) == true) ? true : false;
+        Boolean val = permittedKeys.get(permissible.getAccessKey());
+        if (val == null) {
+            return false;
+        }
+        return val;
     }
 
     /**
      * Private functions
      */
-    
     /**
      * Register private access rights for an instance of interface Permissible
      * as

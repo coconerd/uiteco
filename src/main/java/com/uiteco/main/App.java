@@ -16,6 +16,7 @@ public class App {
     private static Session session;
     private static MainFrame mainFrame;
     private static boolean running = false;
+    private static AuthView authView;
 
     /**
      * Implementation for Permissible interface
@@ -54,7 +55,6 @@ public class App {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AuthView authView = null;
 
                 session = new Session(sessionManager);
 
@@ -70,26 +70,34 @@ public class App {
                     authView.setVisible(true);
                 }
 
-                final AuthView af = authView;
+//                final AuthView af = authView;
                 session.addPropertyChangeListener(new PropertyChangeListener() {
                     @Override
                     public void propertyChange(PropertyChangeEvent evt) {
                         if (evt.getPropertyName().equals("permitted")) {
-                            if (session.isPermitted()) {
-                                if (af != null) {
-                                    af.setVisible(false);
-                                    af.dispose();
-                                }
-                                mainFrame = new MainFrame();
-                                mainFrame.setVisible(true);
-                                try {
+                            try {
+                                if (session.isPermitted()) {
+                                    if (authView != null) {
+                                        authView.setVisible(false);
+                                        session.revokeComponent(sessionManager, authView.getAuthModel());
+                                        authView.dispose();
+                                    }
+                                    mainFrame = new MainFrame();
                                     session.permitComponent(sessionManager, mainFrame);
-                                } catch (PermissibleNotPermittedException e) {
-                                    e.printStackTrace();
-                                    System.exit(1);
-                                }
-                            } else {
+                                    mainFrame.setVisible(true);
 
+                                } else {
+                                    if (mainFrame != null) {
+                                        mainFrame.setVisible(false);
+                                        session.revokeComponent(sessionManager, mainFrame);
+                                        mainFrame.dispose();
+                                    }
+                                    authView = new AuthView();
+                                    session.permitComponent(sessionManager, authView.getAuthModel());
+                                    authView.setVisible(true);
+                                }
+                            } catch (PermissibleNotPermittedException e) {
+                                e.printStackTrace();
                             }
                         }
 
