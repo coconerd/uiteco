@@ -41,17 +41,17 @@ public class SuKienDetailScrollPane extends ScrollPaneWin11 {
         }
 
         suKienDetail = new SuKienDetail(suKienModel);
+        
+        getViewport().removeAll();
+        setViewportView(suKienDetail);
     }
 
     public void display() {
-        // Cleanup
-        getViewport().removeAll();
 
         // Display
         MainFrame mainFrame = App.getMainFrame();
         ContentPanel appContentPanel = (ContentPanel) mainFrame.getContentPanel();
 
-        setViewportView(suKienDetail);
         appContentPanel.showComponentAndTrimHistory(INSTANCE_NAME);
 
         // Show rightPanel to fix blank right panel bug
