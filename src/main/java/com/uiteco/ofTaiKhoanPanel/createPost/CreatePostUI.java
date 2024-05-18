@@ -4,28 +4,30 @@
  */
 package com.uiteco.ofTaiKhoanPanel.createPost;
 
-import com.uiteco.contentPanels.TaiKhoanPanel;
 import static com.uiteco.ofSuKienPanel.SuKienDAO.createSuKien;
 import java.sql.SQLException;
 import com.uiteco.main.App;
-import com.uiteco.ofSuKienPanel.SuKienDAO;
+import com.uiteco.ofSuKienPanel.SuKienModel;
+import com.uiteco.ofSuKienPanel.detailed.NullSuKienModelException;
+import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Point;
+import java.awt.Toolkit;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Set;
-import java.util.HashSet;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 import javax.swing.Popup;
-import javax.swing.PopupFactory;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.text.BadLocationException;
 
 /**
  *
@@ -33,10 +35,55 @@ import javax.swing.border.LineBorder;
  */
 public class CreatePostUI extends javax.swing.JPanel {
 
+    /**
+     *
+     */
+    private class TitleDocListener implements DocumentListener {
+
+        public static int charCountLimit = 250;
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            limitCharacters();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            updateCharacterCount(false);
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            // Not needed for character count, can be left empty
+        }
+
+        private void updateCharacterCount(boolean isInsert) {
+            int charCount = title.getDocument().getLength();
+            titleCharCountLabel.setText(String.valueOf(charCount));
+        }
+
+        private void limitCharacters() {
+            int currentLength = title.getDocument().getLength();
+            if (currentLength > charCountLimit) {
+                SwingUtilities.invokeLater(() -> {
+                    try {
+                        title.getDocument().remove(charCountLimit, currentLength - charCountLimit);
+                    } catch (BadLocationException e) {
+                        e.printStackTrace();
+                    }
+                });
+            } else {
+                updateCharacterCount(true);
+            }
+        }
+    }
+
+    /**
+     * Variables of CreatePostUI
+     */
     public static final String INSTANCE_NAME = "createPostUI";
 
     private Popup pup;
-    private PopupFactory pupFactory;
     private TagSelector tagSelector;
     private ImageSelector imageSelector;
 
@@ -45,7 +92,7 @@ public class CreatePostUI extends javax.swing.JPanel {
      */
     public CreatePostUI() {
         initComponents();
-        pupFactory = PopupFactory.getSharedInstance();
+
         try {
             tagSelector = new TagSelector();
             imageSelector = new ImageSelector();
@@ -66,17 +113,21 @@ public class CreatePostUI extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        scrollPaneWin111 = new com.raven.scroll.ScrollPaneWin11();
+        masterScrollPane = new com.raven.scroll.ScrollPaneWin11();
         containerPanel = new javax.swing.JPanel();
         masterTextPanel = new com.uiteco.components.RoundedPanel();
         roundedPanel1 = new com.uiteco.components.RoundedPanel();
         roundedPanel4 = new com.uiteco.components.RoundedPanel();
-        jTextPane1 = new javax.swing.JTextPane();
+        title = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        titleCharCountLabel = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         roundedPanel5 = new com.uiteco.components.RoundedPanel();
-        jTextPane2 = new javax.swing.JTextPane();
+        contentScrollPane = new com.raven.scroll.ScrollPaneWin11();
+        content = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         roundedImagePanel3 = new com.uiteco.components.RoundedImagePanel();
         posterInfo = new com.uiteco.components.RoundedPanel();
@@ -92,9 +143,10 @@ public class CreatePostUI extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        scrollPaneWin111.setBorder(null);
+        masterScrollPane.setBorder(null);
 
         containerPanel.setBackground(new java.awt.Color(255, 255, 255));
+        containerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         containerPanel.setPreferredSize(new java.awt.Dimension(810, 1188));
         containerPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -114,23 +166,52 @@ public class CreatePostUI extends javax.swing.JPanel {
 
         roundedPanel4.setBackground(new java.awt.Color(204, 204, 204));
         roundedPanel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        roundedPanel4.setPreferredSize(new java.awt.Dimension(703, 150));
         roundedPanel4.setRoundBottomLeft(30);
         roundedPanel4.setRoundBottomRight(30);
         roundedPanel4.setRoundTopLeft(30);
         roundedPanel4.setRoundTopRight(30);
-        roundedPanel4.setLayout(new java.awt.GridLayout());
 
-        jTextPane1.setBorder(null);
-        jTextPane1.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
-        jTextPane1.setForeground(new java.awt.Color(5, 5, 5));
-        jTextPane1.setCaretColor(new java.awt.Color(5, 5, 5));
-        jTextPane1.setOpaque(false);
-        roundedPanel4.add(jTextPane1);
+        title.setColumns(20);
+        title.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        title.setLineWrap(true);
+        title.setRows(5);
+        title.setWrapStyleWord(true);
+        title.setBorder(null);
+        title.setOpaque(false);
+        title.getDocument().addDocumentListener(new TitleDocListener());
+
+        javax.swing.GroupLayout roundedPanel4Layout = new javax.swing.GroupLayout(roundedPanel4);
+        roundedPanel4.setLayout(roundedPanel4Layout);
+        roundedPanel4Layout.setHorizontalGroup(
+            roundedPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(title)
+        );
+        roundedPanel4Layout.setVerticalGroup(
+            roundedPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundedPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(5, 5, 5));
         jLabel4.setText("Tiêu đề bài viết:");
         jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Variable", 1, 13)); // NOI18N
+        jLabel7.setForeground(java.awt.SystemColor.textInactiveText);
+        jLabel7.setText("Số ký tự: ");
+
+        titleCharCountLabel.setFont(new java.awt.Font("Segoe UI Variable", 0, 13)); // NOI18N
+        titleCharCountLabel.setForeground(java.awt.SystemColor.textInactiveText);
+        titleCharCountLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        titleCharCountLabel.setText("0");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI Variable", 0, 13)); // NOI18N
+        jLabel9.setForeground(java.awt.SystemColor.textInactiveText);
+        jLabel9.setText(String.valueOf("/ " + TitleDocListener.charCountLimit));
 
         javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
         roundedPanel1.setLayout(roundedPanel1Layout);
@@ -138,9 +219,18 @@ public class CreatePostUI extends javax.swing.JPanel {
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(roundedPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
+                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(roundedPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))
+                    .addGroup(roundedPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(titleCharCountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(roundedPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
                 .addContainerGap())
         );
         roundedPanel1Layout.setVerticalGroup(
@@ -149,9 +239,14 @@ public class CreatePostUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundedPanel1Layout.createSequentialGroup()
-                        .addComponent(roundedPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(titleCharCountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(roundedPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
@@ -165,24 +260,25 @@ public class CreatePostUI extends javax.swing.JPanel {
         roundedPanel5.setRoundTopLeft(70);
         roundedPanel5.setRoundTopRight(70);
 
-        jTextPane2.setBorder(null);
-        jTextPane2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextPane2.setForeground(new java.awt.Color(228, 230, 235));
-        jTextPane2.setCaretColor(new java.awt.Color(228, 230, 235));
-        jTextPane2.setOpaque(false);
+        content.setColumns(20);
+        content.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        content.setLineWrap(true);
+        content.setRows(5);
+        content.setWrapStyleWord(true);
+        contentScrollPane.setViewportView(content);
 
         javax.swing.GroupLayout roundedPanel5Layout = new javax.swing.GroupLayout(roundedPanel5);
         roundedPanel5.setLayout(roundedPanel5Layout);
         roundedPanel5Layout.setHorizontalGroup(
             roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextPane2)
-                .addContainerGap())
+            .addComponent(contentScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         roundedPanel5Layout.setVerticalGroup(
             roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+            .addGroup(roundedPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(contentScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout masterTextPanelLayout = new javax.swing.GroupLayout(masterTextPanel);
@@ -233,6 +329,7 @@ public class CreatePostUI extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(15, 30, 10, 20);
         containerPanel.add(jLabel3, gridBagConstraints);
 
+        roundedImagePanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 2, true));
         roundedImagePanel3.setToolTipText("Quyền kiểm soát bài viết thuộc về Trường Đại học Công nghệ Thông tin");
         roundedImagePanel3.setImage(new javax.swing.ImageIcon(getClass().getResource("/uit-cropped.jpg"))); // NOI18N
         roundedImagePanel3.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -272,13 +369,13 @@ public class CreatePostUI extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-email-24.png"))); // NOI18N
-        jLabel1.setText(App.getSession().getUsername());
+        jLabel1.setText(App.getSession().getEmail());
         posterInfo.add(jLabel1);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-username-24.png"))); // NOI18N
-        jLabel6.setText(App.getSession().getEmail());
+        jLabel6.setText(App.getSession().getUsername());
         posterInfo.add(jLabel6);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -287,17 +384,17 @@ public class CreatePostUI extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         containerPanel.add(posterInfo, gridBagConstraints);
 
-        scrollPaneWin111.setViewportView(containerPanel);
+        masterScrollPane.setViewportView(containerPanel);
         containerPanel.setPreferredSize(null);
 
-        add(scrollPaneWin111);
+        add(masterScrollPane);
 
         utilPanel.setBackground(new java.awt.Color(255, 255, 204));
         utilPanel.setBorder(null);
         utilPanel.setColor1(new java.awt.Color(33, 33, 33));
         utilPanel.setColor2(new java.awt.Color(33, 33, 33));
         utilPanel.setDirection(com.uiteco.components.RoundedGradientPanel.Direction.HORIZONTAL);
-        utilPanel.setPreferredSize(new java.awt.Dimension(750, 40));
+        utilPanel.setPreferredSize(new java.awt.Dimension(750, 50));
         utilPanel.setLayout(new java.awt.GridBagLayout());
         //utilPanel.setVisible(false);
 
@@ -376,6 +473,9 @@ public class CreatePostUI extends javax.swing.JPanel {
         previewBtn.setMinimumSize(new java.awt.Dimension(40, 40));
         previewBtn.setPreferredSize(new java.awt.Dimension(40, 40));
         previewBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                previewBtnMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 previewBtnMouseEntered(evt);
             }
@@ -400,7 +500,7 @@ public class CreatePostUI extends javax.swing.JPanel {
         submitBtn.setToolTipText("Đăng tải bài viết");
         submitBtn.setImage(new javax.swing.ImageIcon(getClass().getResource("/icons8-paper-plane-48.png"))); // NOI18N
         submitBtn.setMinimumSize(new java.awt.Dimension(40, 40));
-        submitBtn.setPreferredSize(new java.awt.Dimension(40, 40));
+        submitBtn.setPreferredSize(new java.awt.Dimension(35, 35));
         submitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 submitBtnMouseClicked(evt);
@@ -440,7 +540,7 @@ public class CreatePostUI extends javax.swing.JPanel {
 
     private void imgBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgBtnMouseEntered
         // TODO add your handling code here:
-        imgBtn.setBorder(new LineBorder(Color.BLACK, 2, true));
+        imgBtn.setBorder(new LineBorder(Color.WHITE, 2, true));
     }//GEN-LAST:event_imgBtnMouseEntered
 
     private void imgBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgBtnMouseExited
@@ -450,7 +550,7 @@ public class CreatePostUI extends javax.swing.JPanel {
 
     private void tagBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tagBtnMouseEntered
         // TODO add your handling code here:
-        tagBtn.setBorder(new LineBorder(Color.BLACK, 2, true));
+        tagBtn.setBorder(new LineBorder(Color.WHITE, 2, true));
     }//GEN-LAST:event_tagBtnMouseEntered
 
     private void tagBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tagBtnMouseExited
@@ -460,7 +560,7 @@ public class CreatePostUI extends javax.swing.JPanel {
 
     private void submitBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitBtnMouseEntered
         // TODO add your handling code here:
-        submitBtn.setBorder(new LineBorder(Color.BLACK, 2, true));
+        submitBtn.setBorder(new LineBorder(Color.WHITE, 2, true));
     }//GEN-LAST:event_submitBtnMouseEntered
 
     private void submitBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitBtnMouseExited
@@ -470,7 +570,7 @@ public class CreatePostUI extends javax.swing.JPanel {
 
     private void previewBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewBtnMouseEntered
         // TODO add your handling code here:
-        previewBtn.setBorder(new LineBorder(Color.BLACK, 2, true));
+        previewBtn.setBorder(new LineBorder(Color.WHITE, 2, true));
     }//GEN-LAST:event_previewBtnMouseEntered
 
     private void previewBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewBtnMouseExited
@@ -488,24 +588,31 @@ public class CreatePostUI extends javax.swing.JPanel {
         _showImageSelector();
     }//GEN-LAST:event_imgBtnMouseClicked
 
+    private void previewBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_previewBtnMouseClicked
+        // TODO add your handling code here:
+        _showPreview();
+    }//GEN-LAST:event_previewBtnMouseClicked
+
     private void _clear() {
-        jTextPane1.setText("");
-        jTextPane2.setText("");
-        scrollPaneWin111.getViewport().revalidate();
-        scrollPaneWin111.getViewport().repaint();
-        scrollPaneWin111.revalidate();
-        scrollPaneWin111.repaint();
+        title.setText("");
+        content.setText("");
+        masterScrollPane.getViewport().revalidate();
+        masterScrollPane.getViewport().repaint();
+        masterScrollPane.revalidate();
+        masterScrollPane.repaint();
     }
 
     private void _exit() {
         App.getMainFrame().getContentPanel().showComponentAndTrimHistory("taiKhoanPanel");
         App.getMainFrame().getRightPanel().showComponentAndTrimHistory("taiKhoanRightPanel");
+        masterScrollPane.scrollToTop();
+        contentScrollPane.scrollToTop();
     }
 
     private void _createPost() {
         try {
-            String title = jTextPane1.getText();
-            String content = jTextPane2.getText();
+            String title = this.title.getText();
+            String content = this.content.getText();
             if (title.length() == 0) {
                 JOptionPane.showMessageDialog(this, "Nhập tiêu đề", "Vui lòng điền đầy đủ thông tin", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -514,17 +621,31 @@ public class CreatePostUI extends javax.swing.JPanel {
                 return;
             }
 
-            int option = JOptionPane.showConfirmDialog(this, "Xác nhận", "bạn có muốn đăng tải bài viết", JOptionPane.YES_NO_OPTION);
-            if (option == JOptionPane.NO_OPTION) {
+            int accountID = App.getSession().getAccountID();
+            Set<String> tags = tagSelector.getSelectedTags();
+            ImageIcon thumbnail = imageSelector.getThumbnail();
+
+            if (thumbnail == null) {
+                if (JOptionPane.showConfirmDialog(
+                        App.getMainFrame(),
+                        "Bạn có muốn tiếp tục đăng bài?",
+                        "Bài đăng chưa có thumbnail",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE
+                ) == JOptionPane.NO_OPTION) {
+                    return;
+                }
+            }
+
+            List<ImageIcon> images = imageSelector.getSelectedImages();
+
+            createSuKien(title, content, accountID, tags, images, thumbnail, null);
+            
+            if (!(JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn đăng tải bài viết", "Xác nhận", JOptionPane.OK_CANCEL_OPTION)
+                    == JOptionPane.OK_OPTION)) {
                 return;
             }
 
-            int accountID = App.getSession().getAccountID();
-            Set<String> tags = new HashSet<String>();
-            List<ImageIcon> images = new ArrayList<ImageIcon>();
-            ImageIcon thumbnail = SuKienDAO.loadImagesFromFolder().get(0);
-
-            createSuKien(title, content, accountID, tags, images, thumbnail, null);
             JOptionPane.showMessageDialog(this, "Đăng bài viết thành công", "Thành công", JOptionPane.PLAIN_MESSAGE);
             _clear();
             _exit();
@@ -544,18 +665,42 @@ public class CreatePostUI extends javax.swing.JPanel {
         _createDialog("Hình ảnh", imageSelector);
     }
 
+    private void _showPreview() {
+        SuKienModel model = new SuKienModel();
+        model.setTitle(title.getText());
+        model.setTags(tagSelector.getSelectedTags());
+        model.setContent(content.getText());
+        model.setImages((ImageIcon[]) imageSelector.getSelectedImages().toArray(new ImageIcon[0]));
+        model.setPostedBy(App.getSession().getUsername());
+        model.setPostedAt(LocalDateTime.now());
+        model.setThumbnail(imageSelector.getThumbnail());
+        model.setViews(1);
+
+        SuKienDetailScrollPane preview = new SuKienDetailScrollPane();
+        try {
+            preview.load(model);
+        } catch (NullSuKienModelException e) {
+            e.printStackTrace();
+        }
+        _createDialog("Xem trước bài viết", preview);
+    }
+
     private void _createDialog(String dialogName, Component child) {
-        Point location = this.getLocationOnScreen();
         JDialog dialog = new JDialog(App.getMainFrame(), dialogName, false);
         dialog.setLayout(new GridLayout(1, 1, 0, 0));
         dialog.setSize(child.getPreferredSize());
         dialog.add(child);
         dialog.setVisible(true);
-        dialog.setLocation(location.x + this.getWidth() / 2, location.y + this.getHeight() / 2);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension dialogSize = dialog.getSize();
+        dialog.setLocation((screenSize.width - dialogSize.width) / 2, (screenSize.height - dialogSize.height) / 2);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
+    private javax.swing.JTextArea content;
+    private com.raven.scroll.ScrollPaneWin11 contentScrollPane;
     private com.uiteco.components.RoundedImagePanel imgBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -563,9 +708,10 @@ public class CreatePostUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
+    private com.raven.scroll.ScrollPaneWin11 masterScrollPane;
     private com.uiteco.components.RoundedPanel masterTextPanel;
     private com.uiteco.components.RoundedPanel posterInfo;
     private com.uiteco.components.RoundedImagePanel previewBtn;
@@ -573,9 +719,10 @@ public class CreatePostUI extends javax.swing.JPanel {
     private com.uiteco.components.RoundedPanel roundedPanel1;
     private com.uiteco.components.RoundedPanel roundedPanel4;
     private com.uiteco.components.RoundedPanel roundedPanel5;
-    private com.raven.scroll.ScrollPaneWin11 scrollPaneWin111;
     private com.uiteco.components.RoundedImagePanel submitBtn;
     private com.uiteco.components.RoundedImagePanel tagBtn;
+    private javax.swing.JTextArea title;
+    private javax.swing.JLabel titleCharCountLabel;
     private com.uiteco.components.RoundedGradientPanel utilPanel;
     // End of variables declaration//GEN-END:variables
 }

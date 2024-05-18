@@ -4,12 +4,18 @@
  */
 package com.uiteco.ofTaiKhoanPanel.createPost;
 
+import com.uiteco.components.RoundedImagePanel;
 import com.uiteco.components.RoundedPanel;
 import com.uiteco.components.jnafilechooser.api.JnaFileChooser;
 import com.uiteco.main.App;
+import java.awt.Component;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import net.miginfocom.swing.MigLayout;
 
 /**
  *
@@ -17,15 +23,33 @@ import javax.swing.ImageIcon;
  */
 public class ImageSelector extends RoundedPanel {
 
+    private HashMap<Component, Integer> compToIndex;
+    private int imageCount;
+
     /**
      * Creates new form ImageSelector
      */
     public ImageSelector() {
+        compToIndex = new HashMap<Component, Integer>();
+        imageCount = 0;
+        thumbnailPlaceHolderChanged = false;
         initComponents();
     }
 
-    public Icon getThumbnail() {
-        return roundedImagePanel1.getImage();
+    public ImageIcon getThumbnail() {
+        return thumbnailPlaceHolderChanged ? (ImageIcon) thumbnail.getImage() : null;
+    }
+
+    public List<ImageIcon> getSelectedImages() {
+        List<ImageIcon> images = new ArrayList<ImageIcon>();
+        for (Component comp : imgContainer.getComponents()) {
+            if (comp instanceof ImageContainerComp) {
+                Icon icon = ((ImageContainerComp) comp).getImage();
+                images.add((ImageIcon) icon);
+            }
+        }
+
+        return images;
     }
 
     /**
@@ -36,146 +60,267 @@ public class ImageSelector extends RoundedPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        plutBtn1 = new com.uiteco.components.RoundedPanel();
-        jLabel3 = new javax.swing.JLabel();
-        roundedPanel1 = new com.uiteco.components.RoundedPanel();
-        jLabel4 = new javax.swing.JLabel();
-        roundedImagePanel1 = new com.uiteco.components.RoundedImagePanel();
+        addThumbnailBtn = new com.uiteco.components.RoundedPanel();
+        addThumbnail = new javax.swing.JLabel();
+        thumbnail = new com.uiteco.components.RoundedImagePanel();
+        roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
+        addBtn = new com.uiteco.components.RoundedPanel();
+        addLabel = new javax.swing.JLabel();
         scrollPaneWin111 = new com.raven.scroll.ScrollPaneWin11();
-        jPanel1 = new javax.swing.JPanel();
+        imgContainer = new javax.swing.JPanel();
+        imageCountLabel = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(1150, 850));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jLabel1.setText("Thumbnail");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jLabel2.setText("Thêm ảnh cho sự kiện");
 
-        plutBtn1.setBackground(new java.awt.Color(255, 255, 255));
-        plutBtn1.setPreferredSize(new java.awt.Dimension(30, 30));
-        plutBtn1.setRoundBottomLeft(10);
-        plutBtn1.setRoundBottomRight(10);
-        plutBtn1.setRoundTopLeft(10);
-        plutBtn1.setRoundTopRight(10);
-        plutBtn1.setLayout(new java.awt.GridLayout(1, 0));
+        addThumbnailBtn.setBackground(new java.awt.Color(255, 255, 255));
+        addThumbnailBtn.setPreferredSize(new java.awt.Dimension(30, 30));
+        addThumbnailBtn.setRoundBottomLeft(10);
+        addThumbnailBtn.setRoundBottomRight(10);
+        addThumbnailBtn.setRoundTopLeft(10);
+        addThumbnailBtn.setRoundTopRight(10);
+        addThumbnailBtn.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-plus-30.png"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        addThumbnail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-plus-30.png"))); // NOI18N
+        addThumbnail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                addThumbnailMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addThumbnailMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addThumbnailMouseExited(evt);
             }
         });
-        plutBtn1.add(jLabel3);
+        addThumbnailBtn.add(addThumbnail);
 
-        roundedPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        roundedPanel1.setPreferredSize(new java.awt.Dimension(30, 30));
-        roundedPanel1.setRoundBottomLeft(10);
-        roundedPanel1.setRoundBottomRight(10);
-        roundedPanel1.setRoundTopLeft(10);
-        roundedPanel1.setRoundTopRight(10);
-        roundedPanel1.setLayout(new java.awt.GridLayout(1, 0));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-plus-30.png"))); // NOI18N
-        roundedPanel1.add(jLabel4);
-
-        roundedImagePanel1.setToolTipText("Nhấn để tạo thumbnail");
-        roundedImagePanel1.setImage(new javax.swing.ImageIcon(getClass().getResource("/image-placeholder.png"))); // NOI18N
-        roundedImagePanel1.setRoundBottomLeft(20);
-        roundedImagePanel1.setRoundBottomRight(20);
-        roundedImagePanel1.setRoundTopLeft(20);
-        roundedImagePanel1.setRoundTopRight(20);
-        roundedImagePanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        thumbnail.setToolTipText("Nhấn để tạo thumbnail");
+        thumbnail.setImage(new javax.swing.ImageIcon(getClass().getResource("/image-placeholder.png"))); // NOI18N
+        thumbnail.setRoundBottomLeft(20);
+        thumbnail.setRoundBottomRight(20);
+        thumbnail.setRoundTopLeft(20);
+        thumbnail.setRoundTopRight(20);
+        thumbnail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                roundedImagePanel1MouseClicked(evt);
+                thumbnailMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout roundedImagePanel1Layout = new javax.swing.GroupLayout(roundedImagePanel1);
-        roundedImagePanel1.setLayout(roundedImagePanel1Layout);
-        roundedImagePanel1Layout.setHorizontalGroup(
-            roundedImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout thumbnailLayout = new javax.swing.GroupLayout(thumbnail);
+        thumbnail.setLayout(thumbnailLayout);
+        thumbnailLayout.setHorizontalGroup(
+            thumbnailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
-        roundedImagePanel1Layout.setVerticalGroup(
-            roundedImagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 804, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
+        thumbnailLayout.setVerticalGroup(
+            thumbnailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 232, Short.MAX_VALUE)
         );
 
-        scrollPaneWin111.setViewportView(jPanel1);
+        roundedGradientPanel1.setBorder(null);
+        roundedGradientPanel1.setOpaque(true);
+        roundedGradientPanel1.setLayout(new java.awt.GridBagLayout());
+
+        addBtn.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.default.background"));
+        addBtn.setMinimumSize(new java.awt.Dimension(69, 35));
+        addBtn.setPreferredSize(new java.awt.Dimension(734, 45));
+        addBtn.setRoundBottomLeft(11);
+        addBtn.setRoundBottomRight(11);
+        addBtn.setRoundTopLeft(11);
+        addBtn.setRoundTopRight(11);
+        addBtn.setLayout(new java.awt.GridLayout());
+
+        addLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addLabel.setText("Thêm ảnh ");
+        addLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addLabelMouseExited(evt);
+            }
+        });
+        addBtn.add(addLabel);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
+        roundedGradientPanel1.add(addBtn, gridBagConstraints);
+
+        scrollPaneWin111.setOpaque(true);
+
+        //imgContainer.setLayout(new MigLayout("wrap 3", "[]10[]10[]"));
+        imgContainer.setVisible(true);
+        imgContainer.setPreferredSize(new java.awt.Dimension(792, 500));
+
+        javax.swing.GroupLayout imgContainerLayout = new javax.swing.GroupLayout(imgContainer);
+        imgContainer.setLayout(imgContainerLayout);
+        imgContainerLayout.setHorizontalGroup(
+            imgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1132, Short.MAX_VALUE)
+        );
+        imgContainerLayout.setVerticalGroup(
+            imgContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+
+        imgContainer.setLayout(new MigLayout("wrap 3", "[]10[]10[]"));
+
+        scrollPaneWin111.setViewportView(imgContainer);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        roundedGradientPanel1.add(scrollPaneWin111, gridBagConstraints);
+
+        imageCountLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        imageCountLabel.setForeground(java.awt.SystemColor.textInactiveText);
+        imageCountLabel.setText("( " + String.valueOf(imageCount) + " ảnh )");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(thumbnail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(plutBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(addThumbnailBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(roundedImagePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(18, 18, 18))
-            .addComponent(scrollPaneWin111, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(imageCountLabel)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(roundedGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(plutBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addThumbnailBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(roundedImagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(thumbnail, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imageCountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPaneWin111, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(roundedGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void roundedImagePanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedImagePanel1MouseClicked
+    private void thumbnailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thumbnailMouseClicked
         // TODO add your handling code here:
         if (!thumbnailPlaceHolderChanged) {
             ImageIcon image = _chooseImage();
             if (image != null) {
-                roundedImagePanel1.setImage(image);
+                thumbnail.setImage(image);
+                thumbnail.revalidate();
+                thumbnail.repaint();
                 thumbnailPlaceHolderChanged = true;
+                addThumbnail.setIcon(new ImageIcon(getClass().getResource("/icons8-minus-30.png")));
+                addThumbnail.setToolTipText("Nhấn để gỡ bỏ thumbnail");
             }
         }
-    }//GEN-LAST:event_roundedImagePanel1MouseClicked
+    }//GEN-LAST:event_thumbnailMouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void addThumbnailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addThumbnailMouseClicked
+        // TODO add your handling code here:
+        if (!thumbnailPlaceHolderChanged) {
+            ImageIcon image = _chooseImage();
+            if (image != null) {
+                thumbnail.setImage(image);
+                thumbnail.revalidate();
+                thumbnail.repaint();
+                addThumbnail.setIcon(new ImageIcon(getClass().getResource("/icons8-minus-30.png")));
+                addThumbnail.setToolTipText("Nhấn để gỡ bỏ thumbnail");
+            }
+        } else {
+            thumbnail.setImage(new ImageIcon(getClass().getResource("/image-placeholder.png")));
+            thumbnail.revalidate();
+            thumbnail.repaint();
+            addThumbnail.setIcon(new ImageIcon(getClass().getResource("/icons8-plus-30.png")));
+            addThumbnail.setToolTipText("Nhấn để thêm thumbnail");
+        }
+
+        thumbnailPlaceHolderChanged = !thumbnailPlaceHolderChanged;
+    }//GEN-LAST:event_addThumbnailMouseClicked
+
+    private void addLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addLabelMouseEntered
+        // TODO add your handling code here:
+        addBtn.setBackground(addBtn.getBackground().darker());
+        addLabel.setForeground(addLabel.getForeground().darker());
+    }//GEN-LAST:event_addLabelMouseEntered
+
+    private void addLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addLabelMouseExited
+        // TODO add your handling code here:
+        addBtn.setBackground(addBtn.getBackground().brighter());
+        addLabel.setForeground(addLabel.getForeground().brighter());
+    }//GEN-LAST:event_addLabelMouseExited
+
+    private void addLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addLabelMouseClicked
         // TODO add your handling code here:
         ImageIcon image = _chooseImage();
-        if (image != null) {
-            roundedImagePanel1.setImage(image);
-            thumbnailPlaceHolderChanged = true;
+
+        if (image == null) {
+            return;
         }
-    }//GEN-LAST:event_jLabel3MouseClicked
+
+        ImageContainerComp comp = new ImageContainerComp(image);
+        comp.getCross().addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imgContainer.remove(compToIndex.get(comp));
+                imgContainer.revalidate();
+                imgContainer.repaint();
+                _updateImageCount(imageCount - 1);
+            }
+        });
+        comp.setVisible(true);
+
+        imgContainer.add(comp);
+        imgContainer.revalidate();
+        imgContainer.repaint();
+        compToIndex.put(comp, imgContainer.getComponentCount() - 1);
+        _updateImageCount(imageCount + 1);
+    }//GEN-LAST:event_addLabelMouseClicked
+
+    private void addThumbnailMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addThumbnailMouseEntered
+        // TODO add your handling code here:
+        addThumbnailBtn.setBackground(addThumbnailBtn.getBackground().darker());
+    }//GEN-LAST:event_addThumbnailMouseEntered
+
+    private void addThumbnailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addThumbnailMouseExited
+        // TODO add your handling code here:
+        addThumbnailBtn.setBackground(addThumbnailBtn.getBackground().brighter());
+    }//GEN-LAST:event_addThumbnailMouseExited
 
     private ImageIcon _chooseImage() {
         JnaFileChooser jnaCh = new JnaFileChooser();
@@ -194,17 +339,24 @@ public class ImageSelector extends RoundedPanel {
         return image;
     }
 
+    private void _updateImageCount(int newImageCount) {
+        imageCount = newImageCount;
+        imageCountLabel.setText("( " + String.valueOf(imageCount) + " ảnh )");
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.uiteco.components.RoundedPanel addBtn;
+    private javax.swing.JLabel addLabel;
+    private javax.swing.JLabel addThumbnail;
+    private com.uiteco.components.RoundedPanel addThumbnailBtn;
+    private javax.swing.JLabel imageCountLabel;
+    private javax.swing.JPanel imgContainer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private com.uiteco.components.RoundedPanel plutBtn1;
-    private com.uiteco.components.RoundedImagePanel roundedImagePanel1;
-    private com.uiteco.components.RoundedPanel roundedPanel1;
+    private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
     private com.raven.scroll.ScrollPaneWin11 scrollPaneWin111;
+    private com.uiteco.components.RoundedImagePanel thumbnail;
     // End of variables declaration//GEN-END:variables
-    boolean thumbnailPlaceHolderChanged = false;
+    boolean thumbnailPlaceHolderChanged;
 }
