@@ -4,16 +4,29 @@
  */
 package com.uiteco.auth;
 
-import java.beans.PropertyChangeSupport;
-import java.beans.PropertyChangeListener;
 import java.util.regex.Pattern;
-import com.uiteco.auth.Session.ACCOUNT_TYPE;
+import com.uiteco.main.App;
 
 /**
  *
  * @author nddmi
  */
-public class AuthModel {
+public class AuthModel implements Permissible {
+
+    /**
+     * Implementation for Permissible interface
+     */
+    private byte[] accessKey;
+
+    @Override
+    public byte[] getAccessKey() {
+        return this.accessKey;
+    }
+
+    @Override
+    public void setAccessKey(byte[] accessKey) {
+        this.accessKey = accessKey;
+    }
 
     public static final int MIN_USERNAME_LEN = 4;
     public static final int MAX_USERNAME_LEN = 40;
@@ -25,11 +38,8 @@ public class AuthModel {
     private String username;
     private String password;
     private boolean loggedIn;
-    private PropertyChangeSupport propertyChangeSupport;
 
     public AuthModel() {
-        setPropertyChangeSupport(new PropertyChangeSupport(this));
-        this.loggedIn = false;
     }
 
     public String getEmail() {
@@ -42,18 +52,6 @@ public class AuthModel {
 
     public String getPassword() {
         return password;
-    }
-
-    public PropertyChangeSupport getPropertyChangeSupport() {
-        return propertyChangeSupport;
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(listener);
     }
 
     public boolean isLoggedIn() {
@@ -71,9 +69,8 @@ public class AuthModel {
         try {
             setEmailOrThrow(email);
             setPasswordOrThrow(password);
-            AuthDAO.login(getUsername(), getEmail(), getPassword());
-            
-            setLoggedIn(true);
+            Session retSession = AuthDAO.login(getUsername(), getEmail(), getPassword());
+            _postLogin(retSession);
         } catch (Exception e) {
             throw e;
         }
@@ -91,17 +88,24 @@ public class AuthModel {
         try {
             setUsernameOrThrow(username);
             setPasswordOrThrow(password);
-            AuthDAO.login(getUsername(), getEmail(), getPassword());
-            setLoggedIn(true);
+            Session retSession = AuthDAO.login(getUsername(), getEmail(), getPassword());
+            _postLogin(retSession);
         } catch (Exception e) {
             throw e;
         }
     }
 
-    public void setPropertyChangeSupport(PropertyChangeSupport propertyChangeSupport) {
-        this.propertyChangeSupport = propertyChangeSupport;
+    private void _postLogin(Session retSession) throws PermissibleNotPermittedException {
+        App.getSession().setEmail(retSession.getEmail(), this);
+        App.getSession().setUsername(retSession.getUsername(), this);
+        App.getSession().setAccountID(retSession.getAccountID(), this);
+        App.getSession().setAccountType(retSession.getAccountType(), this);
+        App.getSession().setPermitted(true, this);
     }
 
+//    public void setPropertyChangeSupport(PropertyChangeSupport propertyChangeSupport) {
+//        this.propertyChangeSupport = propertyChangeSupport;
+//    }
     private void setEmailOrThrow(String inputEmail) throws BadCredentialsFormatException {
         int len = inputEmail.length();
 
@@ -140,11 +144,4 @@ public class AuthModel {
 
         this.password = inputPassword;
     }
-
-    private void setLoggedIn(boolean loggedIn) {
-        boolean oldValue = isLoggedIn();
-        this.loggedIn = loggedIn;
-        propertyChangeSupport.firePropertyChange("loggedIn", oldValue, loggedIn);
-    }
-
 }

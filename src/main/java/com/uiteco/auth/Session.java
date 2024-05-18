@@ -4,126 +4,49 @@
  */
 package com.uiteco.auth;
 
-import java.util.Properties;
-import java.io.FileInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.beans.PropertyChangeSupport;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.io.FileNotFoundException;
+import java.security.SecureRandom;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  *
  * @author nddmi
  */
-public class Session implements PropertyChangeListener {
+public class Session {
 
     public static final String SESSION_FILE_NAME = "session.properties";
     public static final long SESSION_DURATION = 14 * 24 * 60 * 60; // 14 days in seconds;
-    public static enum ACCOUNT_TYPE {admin, sinhvien, cuusinhvien, giangvien};
+
+    public static enum ACCOUNT_TYPE {
+        admin, sinhvien, cuusinhvien, giangvien
+    };
 
     private boolean permitted;
-//    private boolean fileFound;
+    private Map<byte[], Boolean> permittedKeys;
+    private byte[] accesskey;
 
     private String username;
     private String email;
     private Long issuedAt; // Unix timestamp
     private ACCOUNT_TYPE accountType;
     private int accountID;
-
     private PropertyChangeSupport propertyChangeSupport;
 
     public Session() {
-        setPropertyChangeSupport(new PropertyChangeSupport(this));
-        Properties properties = new Properties();
-//        try (InputStream input = this.getClass().getResourceAsStream(SESSION_FILE_NAME)) {
-//            if (input == null) {
-//                setFileFound(false);
-//                setPermitted(false);
-//                System.err.println("Session file not found. Login is required");
-//            } else {
-//                properties.load(input);
-//                setFileFound(true);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        if (fileFound) {
-//            username = properties.getProperty("session.username", null);
-//            email = properties.getProperty("session.email", null);
-//            issuedAt = Long.valueOf(properties.getProperty("session.issuedAt", null));
-//
-//            if (username == null || email == null || issuedAt == null) {
-//                permitted = false;
-//                System.err.println("Faulty session file. One of the fields is missing/incorrect");
-//
-//            } else {
-//                System.out.println("Retrieved user's credentials successfully");
-//
-//                // Check if session hasn't expired
-//                long timestamp = System.currentTimeMillis() / 1000;
-//                permitted = timestamp <= (issuedAt + SESSION_DURATION) ? true : false;
-//                if (permitted) {
-//                    System.out.println("Session is still valid");
-//                } else {
-//                    System.out.println("Session has epxired. Please login again");
-//                }
-//            }
-//        }
+        _init();
     }
 
-    public void saveSession(String email, String username) {
-//        this.email = email;
-//        this.username = username;
-//        this.issuedAt = System.currentTimeMillis() / 1000;
-//        File sessionFile;
-//
-//        try {
-//            sessionFile = new File(this.getClass().getResource(SESSION_FILE_NAME).toURI());
-//            if (sessionFile == null) {
-//                sessionFile.createNewFile();
-//            }
-//
-//            try {
-//                FileOutputStream output = new FileOutputStream(sessionFile);
-//                Properties properties = new Properties();
-//
-//                // Set properties
-//                properties.setProperty("session.username", getUsername());
-//                properties.setProperty("session.email", getEmail());
-//                properties.setProperty("session.issuedAt", String.valueOf(getIssuedAt()));
-//
-//                // Save properties to project root directory
-//                properties.store(output, null);
-//
-//                // Set file to read-only on Windows
-//                if (sessionFile.setReadOnly()) {
-//                    System.out.println("Session file set to read-only.");
-//                } else {
-//                    System.err.println("Failed to set session file to read-only.");
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+    /**
+     *
+     * @param sessionManager The first Permissible instance that would be
+     * granted private access to the current session instance.
+     */
+    public Session(Permissible sessionManager) {
+        _init();
+        _permitComponent(sessionManager);
 
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals("loggedIn")) {
-            if ((boolean) evt.getNewValue() == true) {
-                setPermitted(true);
-                
-            }
-        }
     }
 
     public boolean isPermitted() {
@@ -145,7 +68,7 @@ public class Session implements PropertyChangeListener {
     public int getAccountID() {
         return accountID;
     }
-    
+
     public ACCOUNT_TYPE getAccountType() {
         return accountType;
     }
@@ -158,37 +81,102 @@ public class Session implements PropertyChangeListener {
         propertyChangeSupport.removePropertyChangeListener(listener);
     }
 
-    private void setPermitted(boolean permitted) {
+    /**
+     * The following section consists of pseudo-public setter functions and
+     * other function (public visibility but safe-guarded by requiring the
+     * Permissible parameter to be permitted to continue execution)
+     *
+     * @param permitted
+     */
+    public void setPermitted(boolean permitted, Permissible permissible) throws PermissibleNotPermittedException {
+        if (!isComponentPermitted(permissible)) {
+            throw new PermissibleNotPermittedException();
+        }
+
         boolean oldValue = isPermitted();
         this.permitted = permitted;
         this.propertyChangeSupport.firePropertyChange("permitted", oldValue, permitted);
     }
 
-//    private void setFileFound(boolean fileFound) {
-//        this.fileFound = fileFound;
-//    }
+    public void setUsername(String username, Permissible permissible) throws PermissibleNotPermittedException {
+        if (!isComponentPermitted(permissible)) {
+            throw new PermissibleNotPermittedException();
+        }
 
-    public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email, Permissible permissible) throws PermissibleNotPermittedException {
+        if (!isComponentPermitted(permissible)) {
+            throw new PermissibleNotPermittedException();
+        }
+
         this.email = email;
     }
 
-    public void setIssuedAt(Long issuedAt) {
+    public void setIssuedAt(Long issuedAt, Permissible permissible) throws PermissibleNotPermittedException {
+        if (!isComponentPermitted(permissible)) {
+            throw new PermissibleNotPermittedException();
+        }
+
         this.issuedAt = issuedAt;
     }
 
-    public void setAccountType(ACCOUNT_TYPE accountType) {
+    public void setAccountType(ACCOUNT_TYPE accountType, Permissible permissible) throws PermissibleNotPermittedException {
+        if (!isComponentPermitted(permissible)) {
+            throw new PermissibleNotPermittedException();
+        }
+
         this.accountType = accountType;
     }
 
-    public void setAccountID(int accountID) {
+    public void setAccountID(int accountID, Permissible permissible) throws PermissibleNotPermittedException {
+        if (!isComponentPermitted(permissible)) {
+            throw new PermissibleNotPermittedException();
+        }
+
         this.accountID = accountID;
     }
+
+    public void permitComponent(Permissible permitter, Permissible permittee) throws PermissibleNotPermittedException {
+        if (!isComponentPermitted(permitter)) {
+            throw new PermissibleNotPermittedException();
+        }
+
+        _permitComponent(permittee);
+    }
+
+    public boolean isComponentPermitted(Permissible permissible) {
+        return (permittedKeys.get(permissible.getAccessKey()) == true) ? true : false;
+    }
+
+    /**
+     * Private functions
+     */
     
-    private void setPropertyChangeSupport(PropertyChangeSupport propertyChangeSupport) {
-        this.propertyChangeSupport = propertyChangeSupport;
+    /**
+     * Register private access rights for an instance of interface Permissible
+     * as
+     */
+    private void _permitComponent(Permissible permissible) {
+        byte[] permittedKey = _genPrivateKey(32);
+        permittedKeys.put(permittedKey, true);
+        permissible.setAccessKey(permittedKey);
+    }
+
+    private void _revokeComponent(Permissible permissible) {
+        permittedKeys.put(permissible.getAccessKey(), true);
+    }
+
+    private byte[] _genPrivateKey(int bytes) {
+        SecureRandom secureRandom = new SecureRandom();
+        byte[] key = new byte[bytes]; // bytes * 8 bits
+        secureRandom.nextBytes(key);
+        return key;
+    }
+
+    private void _init() {
+        this.propertyChangeSupport = new PropertyChangeSupport(this);
+        this.permittedKeys = new HashMap<byte[], Boolean>();
     }
 }

@@ -4,6 +4,8 @@
  */
 package com.uiteco.main;
 
+import com.uiteco.auth.Permissible;
+import com.uiteco.auth.PermissibleNotPermittedException;
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
 import java.awt.Component;
@@ -30,8 +32,23 @@ import com.uiteco.ofTaiKhoanPanel.createPost.CreatePostUI;
  *
  * @author nddmi
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame implements Permissible {
 
+    /**
+     * Implementation for Permissible interface
+     */
+    private byte[] accessKey;
+    
+    @Override
+    public byte[] getAccessKey() {
+        return this.accessKey;
+    }
+    
+    @Override
+    public void setAccessKey(byte[] accessKey) {
+        this.accessKey = accessKey;
+    }
+    
     /**
      * Additional variables declaration
      */
@@ -217,6 +234,12 @@ public class MainFrame extends javax.swing.JFrame {
         dangXuatButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dangXuatButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dangXuatButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                dangXuatButtonMouseExited(evt);
             }
         });
         dangXuatButton.addActionListener(new java.awt.event.ActionListener() {
@@ -701,6 +724,16 @@ public class MainFrame extends javax.swing.JFrame {
         rightPanel.showComponentAndTrimHistory("taiKhoanRightPanel");
     }//GEN-LAST:event_avatarMouseClicked
 
+    private void dangXuatButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dangXuatButtonMouseEntered
+        // TODO add your handling code here:
+        dangXuatButton.setBackground(new Color(51, 102, 225));
+    }//GEN-LAST:event_dangXuatButtonMouseEntered
+
+    private void dangXuatButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dangXuatButtonMouseExited
+        // TODO add your handling code here:
+        dangXuatButton.setBackground(new Color(153, 153, 153));
+    }//GEN-LAST:event_dangXuatButtonMouseExited
+
     /**
      *
      * This section is for user-defined methods
@@ -769,6 +802,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void logOut() {
         System.out.println("Logged out!");
+        try {
+            
+        App.getSession().setUsername("", this);
+        } catch (PermissibleNotPermittedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void highlightComponent(JComponent comp) {

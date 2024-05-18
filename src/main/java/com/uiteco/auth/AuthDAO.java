@@ -40,7 +40,7 @@ public class AuthDAO {
      * @throws InvalidCredentialsException if required credentials are provided
      * but is invalid or has bad format
      */
-    public static void login(String username, String email, String password) throws Exception {
+    public static Session login(String username, String email, String password) throws Exception {
         boolean hasEmail = (email != null && !email.equals(""));
 
         try {
@@ -97,18 +97,35 @@ public class AuthDAO {
             }
 
             accountID = rs.getInt("MATK");
-            com.uiteco.main.App.getSession().setUsername(username);
-            com.uiteco.main.App.getSession().setEmail(email);
-            com.uiteco.main.App.getSession().setAccountType(accountType);
-            com.uiteco.main.App.getSession().setAccountID(accountID);
+
+            Permissible perm = new Permissible() {
+                private byte[] accessKey;
+                
+                @Override
+                public byte[] getAccessKey() {
+                    return accessKey;
+                }
+
+                @Override
+                public void setAccessKey(byte[] _accessKey) {
+                    accessKey = _accessKey;
+                }
+            };
             
+            Session retSession = new Session(perm);
+            retSession.setUsername(username, perm);
+            retSession.setEmail(email, perm);
+            retSession.setAccountType(accountType, perm);
+            retSession.setAccountID(accountID, perm);
+
             // Cleanup
             statement.close();
             rs.close();
             conn.close();
+            return retSession;
 
         } catch (Exception e) {
-            throw e;
+            return null;
         }
     }
 
