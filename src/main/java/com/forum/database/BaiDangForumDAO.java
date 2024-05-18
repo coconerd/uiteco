@@ -170,7 +170,7 @@ public class BaiDangForumDAO {
         ArrayList<PostDetailView> postDetailViewList = new ArrayList<>();
         try{
             Connection conn = ConnectionManager.getConnection();
-            String strSQL = "SELECT B.MABDFORUM, B.MABL, B.MABLPHANHOI, T.USERNAME, B.THOIDIEMBL, B.NOIDUNG FROM BINHLUAN B JOIN TAIKHOAN T ON B.NGUOIBL = T.MATK WHERE MABDFORUM = ?";
+            String strSQL = "SELECT B.MABDFORUM, B.MABL, B.MABLPHANHOI, T.USERNAME, B.THOIDIEMBL, B.NOIDUNG FROM BINHLUAN B JOIN TAIKHOAN T ON B.NGUOIBL = T.MATK WHERE MABDFORUM = ? ORDER BY B.THOIDIEMBL ASC";
             PreparedStatement stat = conn.prepareStatement(strSQL);
             stat.setInt(1, mabaidang);
             ResultSet result = stat.executeQuery();
