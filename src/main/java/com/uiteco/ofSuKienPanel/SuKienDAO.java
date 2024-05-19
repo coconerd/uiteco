@@ -33,6 +33,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import javax.imageio.ImageIO;
 import java.sql.NClob;
+import com.uiteco.database.DataUtils;
 
 /**
  *
@@ -868,7 +869,7 @@ public class SuKienDAO {
         if (thumbnail == null) {
             pstm.setNull(4, java.sql.Types.BLOB);
         } else {
-            pstm.setBlob(4, new ByteArrayInputStream(convertImageIconToBytes(thumbnail)));
+            pstm.setBlob(4, new ByteArrayInputStream(DataUtils.convertImageIconToBytes(thumbnail)));
         }
         
         if (clubID == null) {
@@ -900,7 +901,7 @@ public class SuKienDAO {
                 pstm = conn.prepareStatement(sql);
                 for (ImageIcon image : images) {
                     pstm.setInt(1, postID);
-                    pstm.setBlob(2, new ByteArrayInputStream(convertImageIconToBytes(image)));
+                    pstm.setBlob(2, new ByteArrayInputStream(DataUtils.convertImageIconToBytes(image)));
                     pstm.addBatch();
                 }
                 pstm.executeBatch();
@@ -936,21 +937,7 @@ public class SuKienDAO {
         conn.close();
     }
 
-    private static byte[] convertImageIconToBytes(ImageIcon imageIcon) throws IOException {
-        // Get the image from the ImageIcon
-        Image image = imageIcon.getImage();
 
-        // Convert the Image to BufferedImage
-        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
-        bufferedImage.getGraphics().drawImage(image, 0, 0, null);
-
-        // Write the BufferedImage to ByteArrayOutputStream
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(bufferedImage, "jpg", baos);
-
-        // Convert the ByteArrayOutputStream to byte[]
-        return baos.toByteArray();
-    }
 
     /**
      * Function meant for test-only purpose
