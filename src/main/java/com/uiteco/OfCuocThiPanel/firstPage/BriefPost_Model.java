@@ -6,16 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.ImageIcon;
 
-public class OnePost_Model extends javax.swing.JPanel {
+public class BriefPost_Model extends javax.swing.JPanel {
 
     public void setPostTime(LocalDateTime postTime) {
         this.postTime = postTime;
-    }
-    
-    public String getPostTime_String(){
-        final DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        String formattedDateTime = postTime.format(CUSTOM_FORMATTER);
-        return formattedDateTime;
     }
 
     public String getContent() {
@@ -24,18 +18,6 @@ public class OnePost_Model extends javax.swing.JPanel {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public void setCountLike(int countLike) {
-        this.countLike = countLike;
-    }
-
-    public int getCountLike() {
-        return countLike;
-    }
-
-    public String getCountLike_String() {
-        return "" + countLike + "";
     }
 
     public LocalDate getThoiDiemDang() {
@@ -50,14 +32,6 @@ public class OnePost_Model extends javax.swing.JPanel {
         this.status = status;
     }
 
-    public String convertType() {
-        if (type == 2) {
-            return "Đội nhóm";
-        } else {
-            return "Cá nhân";
-        }
-    }
-   
     public void setType(int type) {
         this.type = type;
     }
@@ -98,6 +72,23 @@ public class OnePost_Model extends javax.swing.JPanel {
         this.startDate = startDate;
     }
 
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+  
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+     public String getPostTime_String() {
+        final DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDateTime = postTime.format(CUSTOM_FORMATTER);
+        return formattedDateTime;
+    }
+
     public String getEndDate_String() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = endDate.format(formatter);
@@ -110,34 +101,17 @@ public class OnePost_Model extends javax.swing.JPanel {
         return formattedDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-    
-
-    public int getId() {
-        return id;
+    public String getCountLike_String() {
+        String s = String.valueOf(countLike);
+        return s;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-    private int id;
-    private String title;
-    private LocalDate thoiDiemDang;
-    protected String status;
-    private int type;
-    private ImageIcon image;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private String organizer;
-    private List<String> tags;
-    private int countLike = 0;
-    private String content;
-    private LocalDateTime postTime;
-    
-    public OnePost_Model() {
+    public String convertType() {
+        if (type == 2) {
+            return "Đội nhóm";
+        } else {
+            return "Cá nhân";
+        }
     }
 
     public String getDateRange() {
@@ -151,7 +125,7 @@ public class OnePost_Model extends javax.swing.JPanel {
         return endDate.compareTo(curDate); //endDate - curDate
 
     }
-    
+
     public String getCustomStatus() {
         long daysRemaining = calculateToDueDays(endDate);
 
@@ -160,9 +134,23 @@ public class OnePost_Model extends javax.swing.JPanel {
         } else if (daysRemaining == 0) {
             status = "Dang dien ra";
         } else if (daysRemaining < 0) {
-            status = "Ket thuc";
+           status = "Ket thuc";
         }
         return status;
     }
 
+    protected int id;
+    protected String title;
+    protected LocalDate thoiDiemDang;
+    protected String status;
+    protected int type;
+    protected ImageIcon image;
+    protected LocalDate startDate;
+    protected LocalDate endDate;
+    protected String organizer;
+    protected List<String> tags;
+    protected String content;
+    protected LocalDateTime postTime;
+    public static int countLike = 0;
+    
 }

@@ -2,7 +2,7 @@ package com.uiteco.contentPanels;
 
 // Import the necessary package
 import java.awt.Color;
-import com.uiteco.OfCuocThiPanel.firstPage.ScrollPosts;
+import com.uiteco.OfCuocThiPanel.firstPage.firstPage;
 import com.uiteco.OfCuocThiPanel.firstPage.TagsAndSort;
 
 public class CuocThiPanel extends javax.swing.JPanel {
@@ -57,7 +57,7 @@ public class CuocThiPanel extends javax.swing.JPanel {
     }
     
     private void bodyContent(){
-        this.add(new ScrollPosts());
+        this.add(new firstPage());
     }
     
     /**

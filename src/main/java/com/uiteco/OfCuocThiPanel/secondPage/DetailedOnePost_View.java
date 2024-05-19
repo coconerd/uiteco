@@ -1,13 +1,16 @@
 package com.uiteco.OfCuocThiPanel.secondPage;
 
-import com.uiteco.OfCuocThiPanel.firstPage.OnePost_Model;
+import static com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model.countLike;
+import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_View;
+import java.beans.PropertyChangeSupport;
 
-public class DetailedPost_View extends javax.swing.JPanel {
+public class DetailedOnePost_View extends BriefPost_View {
 
-    public DetailedPost_View() {
+    public DetailedOnePost_View() {
         initComponents();
         setBounds(0, 0, 1195, 860);
         setOpaque(true);
+        this.propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +32,7 @@ public class DetailedPost_View extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jRegister = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
         jBookmark = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
-        jLike = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
+        jLike = new javax.swing.JToggleButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jOrganizer = new javax.swing.JLabel();
@@ -147,15 +150,15 @@ public class DetailedPost_View extends javax.swing.JPanel {
         jRegister.setText("THAM GIA");
 
         jBookmark.setText("BOOKMARK");
-        jBookmark.addActionListener(new java.awt.event.ActionListener() {
+
+        jLike.setBackground(new java.awt.Color(242, 243, 245));
+        jLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-heart-24_1.png"))); // NOI18N
+        jLike.setBorderPainted(false);
+        jLike.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBookmarkActionPerformed(evt);
+                jLikeActionPerformed(evt);
             }
         });
-
-        jLike.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 1));
-        jLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-heart-24.png"))); // NOI18N
-        jLike.setText("3");
 
         javax.swing.GroupLayout jButtonsLayout = new javax.swing.GroupLayout(jButtons);
         jButtons.setLayout(jButtonsLayout);
@@ -171,7 +174,7 @@ public class DetailedPost_View extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLike, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLike, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jButtonsLayout.setVerticalGroup(
@@ -180,20 +183,20 @@ public class DetailedPost_View extends javax.swing.JPanel {
                 .addGroup(jButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBookmark, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
             .addGroup(jButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(jLike, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(jButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLike)
+                    .addGroup(jButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setOpaque(false);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-contact-card-organizer-24.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
 
         jOrganizer.setText("jLabel3");
 
@@ -205,20 +208,20 @@ public class DetailedPost_View extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jOrganizer, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
-                    .addComponent(jPostTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jOrganizer, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPostTime, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jOrganizer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPostTime))
         );
 
@@ -260,8 +263,10 @@ public class DetailedPost_View extends javax.swing.JPanel {
         jBodyPanel.setLayout(jBodyPanelLayout);
         jBodyPanelLayout.setHorizontalGroup(
             jBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jBodyPanelLayout.createSequentialGroup()
+                .addComponent(jTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(155, 155, 155))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jBodyPanelLayout.setVerticalGroup(
             jBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,46 +293,49 @@ public class DetailedPost_View extends javax.swing.JPanel {
             .addComponent(scrollPaneWin111, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
-    
-    public void setData(OnePost_Model model){
-        jTitle.setText(model.getTitle());
-        jRegisterTime.setText(model.getDateRange());
-        jOrganizer.setText(model.getOrganizer());
-        jPostTime.setText(model.getPostTime_String());
-        jContent.setText(model.getContent());
-        jLike.setText(model.getCountLike_String());
-        
-    }
+// </editor-fold>                        
+
     private void jTymActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTymActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTymActionPerformed
 
-    private void jBookmarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBookmarkActionPerformed
+    private void jLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLikeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBookmarkActionPerformed
+        boolean isSelected = jLike.isSelected(); //when press button, isSelected() is true
+        countLike = isSelected ? countLike + 1 : Math.max(countLike - 1, 0);
 
+        updateCountLike();
+    }//GEN-LAST:event_jLikeActionPerformed
+    public void updateCountLike() {
+        int oldCount = countLike;
+        String s = String.valueOf(countLike);
+        jLike.setText(s);
+        this.propertyChangeSupport.firePropertyChange("likeCount", oldCount, countLike);
+        //return s;
+    }
+    protected PropertyChangeSupport propertyChangeSupport;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.components.RoundedPanel RegisterTimePanel;
-    private javax.swing.JPanel jBodyPanel;
+    protected com.uiteco.components.RoundedPanel RegisterTimePanel;
+    protected javax.swing.JPanel jBodyPanel;
     private com.uiteco.OfCuocThiPanel.secondPage.CustomButton jBookmark;
-    private javax.swing.JPanel jButtons;
-    private javax.swing.JTextArea jContent;
+    protected javax.swing.JPanel jButtons;
+    protected javax.swing.JTextArea jContent;
     private javax.swing.JLabel jLabel2;
-    private com.uiteco.OfCuocThiPanel.secondPage.CustomButton jLike;
-    private javax.swing.JLabel jOrganizer;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jParentPanel;
-    private javax.swing.JLabel jPostTime;
+    protected javax.swing.JToggleButton jLike;
+    protected javax.swing.JLabel jOrganizer;
+    protected javax.swing.JPanel jPanel1;
+    protected javax.swing.JPanel jPanel2;
+    protected javax.swing.JPanel jPanel3;
+    protected javax.swing.JPanel jPanel4;
+    protected javax.swing.JPanel jParentPanel;
+    protected javax.swing.JLabel jPostTime;
     private com.uiteco.OfCuocThiPanel.secondPage.CustomButton jRegister;
-    private javax.swing.JLabel jRegisterTime;
+    protected javax.swing.JLabel jRegisterTime;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel jTitle;
-    private com.raven.scroll.ScrollPaneWin11 scrollPaneWin111;
-    private com.uiteco.components.GradientPanel topGradientPanel;
+    protected javax.swing.JLabel jTitle;
+    protected com.raven.scroll.ScrollPaneWin11 scrollPaneWin111;
+    protected com.uiteco.components.GradientPanel topGradientPanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,6 @@
 package com.uiteco.OfCuocThiPanel.getDataFromDB;
 
-import com.uiteco.OfCuocThiPanel.firstPage.OnePost_Model;
+import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -44,7 +44,7 @@ public class CuocThiData {
         }
     }
 
-    public static List<OnePost_Model> getPostsInfo() {
+    public static List<BriefPost_Model> getPostsInfo() {
         try {
             conn = getConnection();
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
@@ -58,10 +58,10 @@ public class CuocThiData {
 
             rset = stmt.executeQuery(query);
 
-            List<OnePost_Model> postList = new ArrayList<>();
+            List<BriefPost_Model> postList = new ArrayList<>();
 
             while (rset.next()) {
-                OnePost_Model post = new OnePost_Model();
+                BriefPost_Model post = new BriefPost_Model();
 
                 int postID = rset.getInt("MABD");
                 post.setId(postID);
