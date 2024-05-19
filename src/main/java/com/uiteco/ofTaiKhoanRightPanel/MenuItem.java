@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import com.uiteco.main.App;
+import java.awt.Component;
 
 /**
  *
@@ -25,7 +27,8 @@ public class MenuItem extends RoundedPanel {
 
     private JLabel label;
     private int index;
-    private boolean subMenuAble;
+    private boolean isSubMenu;
+    private boolean isSubMenuAble;
     private int length;
     private int subMenuIndex;
     private JLabel arrowIcon;
@@ -34,12 +37,13 @@ public class MenuItem extends RoundedPanel {
 
     public void setLabelForeground(Color color) {
         label.setForeground(color);
+
     }
 
     /**
      * Creates new form MenuItem
      */
-    public MenuItem(String text, Icon icon, int index, boolean subMenuAble) {
+    public MenuItem(String text, Icon icon, int index, boolean isSubMenu, boolean isSubMenuAble) {
         this.label = new JLabel(text);
         label.setIcon(icon);
         label.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -49,22 +53,22 @@ public class MenuItem extends RoundedPanel {
         label.setIconTextGap(10);
         add(label);
 
-        this.subMenuAble = subMenuAble;
+        this.isSubMenu = isSubMenu;
+        this.isSubMenuAble = isSubMenuAble;
         this.index = index;
         this.selected = false;
         setForeground(Color.BLACK);
         setBackground(Color.WHITE);
 
-        addMouseListener(new MouseAdapter() {
-        });
-
-        if (subMenuAble) {
+        if (!isSubMenu) {
             setBorder(new EmptyBorder(9, 25, 9, 10));
-            arrowIcon = new JLabel();
-            arrowIcon.setText("");
-            arrowIcon.setIcon(new ImageIcon(getClass().getResource("/icons8-down-arrow-23.png")));
-            add(arrowIcon);
             label.setForeground(new Color(5, 5, 5));
+            if (isSubMenuAble) {
+                arrowIcon = new JLabel();
+                arrowIcon.setText("");
+                arrowIcon.setIcon(new ImageIcon(getClass().getResource("/icons8-down-arrow-23.png")));
+                add(arrowIcon);
+            }
         } else {
             setBorder(new EmptyBorder(9, 40, 9, 10));
             label.setForeground(new Color(51, 51, 51));
@@ -84,8 +88,12 @@ public class MenuItem extends RoundedPanel {
         return index;
     }
 
+    public boolean isSubMenu() {
+        return isSubMenu;
+    }
+
     public boolean isSubMenuAble() {
-        return subMenuAble;
+        return this.isSubMenuAble;
     }
 
     public int getLength() {
@@ -104,8 +112,8 @@ public class MenuItem extends RoundedPanel {
         this.index = index;
     }
 
-    public void setSubMenuAble(boolean subMenuAble) {
-        this.subMenuAble = subMenuAble;
+    public void setIsSubMenu(boolean isSubMenu) {
+        this.isSubMenu = isSubMenu;
     }
 
     public void setLength(int length) {

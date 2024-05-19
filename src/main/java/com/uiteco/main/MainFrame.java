@@ -24,9 +24,12 @@ import com.uiteco.rightPanels.TinNhanRightPanel;
 import com.uiteco.rightPanels.TaiKhoanRightPanel;
 import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
 import com.uiteco.ofSuKienPanel.search.SuKienSearchTabPane;
+import com.uiteco.ofTaiKhoanPanel.clubManagement.ClubManagementUI;
 import com.uiteco.swing.ContentPanel;
 import java.awt.Cursor;
 import com.uiteco.ofTaiKhoanPanel.createPost.CreatePostUI;
+import com.uiteco.ofTaiKhoanPanel.introduction.IntroductionUI;
+import com.uiteco.ofTaiKhoanPanel.security.SecurityUI;
 
 /**
  *
@@ -767,6 +770,15 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
 
         CreatePostUI cp = new CreatePostUI();
         contentPanel.registerComponent(cp, CreatePostUI.INSTANCE_NAME);
+        
+        IntroductionUI id = new IntroductionUI();
+        contentPanel.registerComponent(id, IntroductionUI.INSTANCE_NAME);
+        
+        SecurityUI sc = new SecurityUI();
+        contentPanel.registerComponent(sc, SecurityUI.INSTANCE_NAME);
+        
+        ClubManagementUI cm = new ClubManagementUI();
+        contentPanel.registerComponent(cm, ClubManagementUI.INSTANCE_NAME);
 
 //        contentPanel.registerComponent(rootPane, name);
 //        contentPanel.registerComponent(rootPane, name);

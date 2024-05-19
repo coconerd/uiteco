@@ -146,12 +146,13 @@ public class CreatePostUI extends javax.swing.JPanel {
         masterScrollPane.setBorder(null);
 
         containerPanel.setBackground(new java.awt.Color(255, 255, 255));
-        containerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        containerPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 0, 5));
         containerPanel.setPreferredSize(new java.awt.Dimension(810, 1188));
         containerPanel.setLayout(new java.awt.GridBagLayout());
 
         masterTextPanel.setBackground(new java.awt.Color(242, 243, 244));
         //roundedPanel2.setPreferredSize(new java.awt.Dimension(810, 767));
+        masterTextPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         masterTextPanel.setPreferredSize(null);
         masterTextPanel.setRoundBottomLeft(12);
         masterTextPanel.setRoundBottomRight(12);
@@ -230,7 +231,7 @@ public class CreatePostUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(roundedPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
+                .addComponent(roundedPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
                 .addContainerGap())
         );
         roundedPanel1Layout.setVerticalGroup(
@@ -468,7 +469,7 @@ public class CreatePostUI extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         utilPanel.add(tagBtn, gridBagConstraints);
 
-        previewBtn.setToolTipText("Gắn thẻ sự kiện");
+        previewBtn.setToolTipText("Xem trước bài viết");
         previewBtn.setImage(new javax.swing.ImageIcon(getClass().getResource("/icons8-file-preview-48.png"))); // NOI18N
         previewBtn.setMinimumSize(new java.awt.Dimension(40, 40));
         previewBtn.setPreferredSize(new java.awt.Dimension(40, 40));
