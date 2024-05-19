@@ -223,8 +223,18 @@ public class PostDetailView extends javax.swing.JPanel {
             leftPanel.setBackground(new java.awt.Color(235, 235, 235));
             leftPanel.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
-                public void mouseClicked(java.awt.event.MouseEvent e){
-                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
+                public void mouseClicked(java.awt.event.MouseEvent e){                   
+//                    System.out.println("leftPanel: "+leftPanel.getParent().getClass()); //com.forum.PostDetailView
+//                    System.out.println("leftPanel: "+leftPanel.getParent().getParent().getClass()); //javax.swing.JPanel
+//                    System.out.println("leftPanel: "+leftPanel.getParent().getParent().getParent().getClass()); //javax.swing.JViewport
+//                    System.out.println("leftPanel: "+leftPanel.getParent().getParent().getParent().getParent().getClass()); //com.raven.scroll.ScrollPaneWin11
+//                    System.out.println("leftPanel: "+leftPanel.getParent().getParent().getParent().getParent().getParent().getClass()); //com.forum.PostDetailAndReplyPanelView
+//                    System.out.println("leftPanel: "+leftPanel.getParent().getParent().getParent().getParent().getParent().getParent().getClass()); //com.uiteco.contentPanels.ForumPanel
+                    com.forum.PostDetailView postDetailView = (com.forum.PostDetailView)leftPanel.getParent();
+                    javax.swing.JPanel panel1 = (javax.swing.JPanel)postDetailView.getParent();
+                    javax.swing.JViewport viewPort = (javax.swing.JViewport) panel1.getParent();
+                    com.raven.scroll.ScrollPaneWin11 scrollPaneWin11 = (com.raven.scroll.ScrollPaneWin11) viewPort.getParent();
+                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)scrollPaneWin11.getParent();
                     postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
                 }
             });
@@ -270,20 +280,26 @@ public class PostDetailView extends javax.swing.JPanel {
             );
 
             mainPanel.setBackground(new java.awt.Color(204, 255, 204));
-            mainPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e){
-                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
-                    postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
-                }
-            });
 
             titlePanel.setBackground(new java.awt.Color(242, 247, 232));
             titlePanel.setPreferredSize(null);
             titlePanel.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
-                public void mouseClicked(java.awt.event.MouseEvent e){
-                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
+                public void mouseClicked(java.awt.event.MouseEvent e){                  
+//                    System.out.println("titlePanel: "+titlePanel.getParent().getClass()); //javax.swing.JPanel
+//                    System.out.println("titlePanel: "+titlePanel.getParent().getParent().getClass());//com.forum.PostDetailView
+//                    System.out.println("titlePanel: "+titlePanel.getParent().getParent().getParent().getClass());//javax.swing.JPanel
+//                    System.out.println("titlePanel: "+titlePanel.getParent().getParent().getParent().getParent().getClass());//javax.swing.JViewport
+//                    System.out.println("titlePanel: "+titlePanel.getParent().getParent().getParent().getParent().getParent().getClass());//com.raven.scroll.ScrollPaneWin11
+//                    System.out.println("titlePanel: "+titlePanel.getParent().getParent().getParent().getParent().getParent().getParent().getClass());//com.forum.PostDetailAndReplyPanelView
+//                    System.out.println("titlePanel: "+titlePanel.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getClass());//com.uiteco.contentPanels.ForumPanel
+//                    System.out.println("titlePanel: "+titlePanel.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getClass());//javax.swing.JPanel
+                    javax.swing.JPanel panel1 = (javax.swing.JPanel)titlePanel.getParent();
+                    com.forum.PostDetailView postDetailView = (com.forum.PostDetailView)panel1.getParent();
+                    javax.swing.JPanel panel2 = (javax.swing.JPanel)postDetailView.getParent();
+                    javax.swing.JViewport viewPort = (javax.swing.JViewport)panel2.getParent();
+                    com.raven.scroll.ScrollPaneWin11 scrollPaneWin11 = (com.raven.scroll.ScrollPaneWin11)viewPort.getParent();
+                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)scrollPaneWin11.getParent();
                     postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
                 }
             });
@@ -339,11 +355,25 @@ public class PostDetailView extends javax.swing.JPanel {
             });
             showContentArea.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
-                public void mouseClicked(java.awt.event.MouseEvent e){
-                javax.swing.JViewport viewport = (javax.swing.JViewport)showContentArea.getParent();
-                javax.swing.JScrollPane scrollpane = (javax.swing.JScrollPane)viewport.getParent();
-                com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
-                postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
+                public void mouseClicked(java.awt.event.MouseEvent e){              
+//                System.out.println("showContentArea: "+showContentArea.getParent().getClass());//javax.swing.JViewport
+//                System.out.println("showContentArea: "+showContentArea.getParent().getParent().getClass());//javax.swing.JScrollPane
+//                System.out.println("showContentArea: "+showContentArea.getParent().getParent().getParent().getClass());//javax.swing.JPanel
+//                System.out.println("showContentArea: "+showContentArea.getParent().getParent().getParent().getParent().getClass());//com.forum.PostDetailView
+//                System.out.println("showContentArea: "+showContentArea.getParent().getParent().getParent().getParent().getParent().getClass());//javax.swing.JPanel
+//                System.out.println("showContentArea: "+showContentArea.getParent().getParent().getParent().getParent().getParent().getParent().getClass());//javax.swing.JViewport
+//                System.out.println("showContentArea: "+showContentArea.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getClass());//com.raven.scroll.ScrollPaneWin11
+//                System.out.println("showContentArea: "+showContentArea.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getClass());//com.forum.PostDetailAndReplyPanelView
+//                System.out.println("showContentArea: "+showContentArea.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent().getClass());//com.uiteco.contentPanels.ForumPanel
+                    javax.swing.JViewport viewport = (javax.swing.JViewport)showContentArea.getParent();
+                    javax.swing.JScrollPane scrollpane = (javax.swing.JScrollPane)viewport.getParent();
+                    javax.swing.JPanel panel1 = (javax.swing.JPanel)scrollpane.getParent();
+                    com.forum.PostDetailView postDetailView = (com.forum.PostDetailView)panel1.getParent();
+                    javax.swing.JPanel panel2 = (javax.swing.JPanel)postDetailView.getParent();
+                    javax.swing.JViewport viewPort = (javax.swing.JViewport)panel2.getParent();
+                    com.raven.scroll.ScrollPaneWin11 scrollPaneWin11 = (com.raven.scroll.ScrollPaneWin11)viewPort.getParent();
+                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)scrollPaneWin11.getParent();
+                    postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
                 }
             });
 
@@ -403,7 +433,11 @@ public class PostDetailView extends javax.swing.JPanel {
             leftPanel.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e){
-                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
+                    com.forum.PostDetailView postDetailView = (com.forum.PostDetailView)leftPanel.getParent();
+                    javax.swing.JPanel panel1 = (javax.swing.JPanel)postDetailView.getParent();
+                    javax.swing.JViewport viewPort = (javax.swing.JViewport) panel1.getParent();
+                    com.raven.scroll.ScrollPaneWin11 scrollPaneWin11 = (com.raven.scroll.ScrollPaneWin11) viewPort.getParent();
+                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)scrollPaneWin11.getParent();
                     postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
                 }
             });            
@@ -448,21 +482,19 @@ public class PostDetailView extends javax.swing.JPanel {
                     .addContainerGap(402, Short.MAX_VALUE))
             );
 
-            mainPanel.setBackground(new java.awt.Color(204, 255, 204));
-            mainPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent e){
-                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
-                    postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
-                }
-            });            
+            mainPanel.setBackground(new java.awt.Color(204, 255, 204));        
 
             titlePanel.setBackground(new java.awt.Color(242, 247, 232));
             titlePanel.setPreferredSize(null);
             titlePanel.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e){
-                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
+                    javax.swing.JPanel panel1 = (javax.swing.JPanel)titlePanel.getParent();
+                    com.forum.PostDetailView postDetailView = (com.forum.PostDetailView)panel1.getParent();
+                    javax.swing.JPanel panel2 = (javax.swing.JPanel)postDetailView.getParent();
+                    javax.swing.JViewport viewPort = (javax.swing.JViewport)panel2.getParent();
+                    com.raven.scroll.ScrollPaneWin11 scrollPaneWin11 = (com.raven.scroll.ScrollPaneWin11)viewPort.getParent();
+                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)scrollPaneWin11.getParent();
                     postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
                 }
             });            
@@ -514,10 +546,15 @@ public class PostDetailView extends javax.swing.JPanel {
             showContentArea.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e){
-                javax.swing.JViewport viewport = (javax.swing.JViewport)showContentArea.getParent();
-                javax.swing.JScrollPane scrollpane = (javax.swing.JScrollPane)viewport.getParent();
-                com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)getParent();
-                postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
+                    javax.swing.JViewport viewport = (javax.swing.JViewport)showContentArea.getParent();
+                    javax.swing.JScrollPane scrollpane = (javax.swing.JScrollPane)viewport.getParent();
+                    javax.swing.JPanel panel1 = (javax.swing.JPanel)scrollpane.getParent();
+                    com.forum.PostDetailView postDetailView = (com.forum.PostDetailView)panel1.getParent();
+                    javax.swing.JPanel panel2 = (javax.swing.JPanel)postDetailView.getParent();
+                    javax.swing.JViewport viewPort = (javax.swing.JViewport)panel2.getParent();
+                    com.raven.scroll.ScrollPaneWin11 scrollPaneWin11 = (com.raven.scroll.ScrollPaneWin11)viewPort.getParent();
+                    com.forum.PostDetailAndReplyPanelView postDetailAndReplyPanelView = (com.forum.PostDetailAndReplyPanelView)scrollPaneWin11.getParent();
+                    postDetailAndReplyPanelView.updateJTextFieldOfPageNumberCurrent();
                 }
             });            
 
