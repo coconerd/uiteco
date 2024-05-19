@@ -1,15 +1,17 @@
 package com.uiteco.OfCuocThiPanel.firstPage;
 
+import com.uiteco.OfCuocThiPanel.secondPage.CustomButton;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
-import com.uiteco.OfCuocThiPanel.Components.comboBoxMultiSelection.ComboBoxMultiSelection;
+import com.uiteco.OfCuocThiPanel.Components.comboBox.ComboBoxMultiSelection;
 import com.uiteco.components.RoundedBorder;
-import com.uiteco.OfCuocThiPanel.data.RetrieveData;
+import com.uiteco.OfCuocThiPanel.getDataFromDB.CuocThiData;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import static java.awt.Font.BOLD;
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
@@ -51,7 +53,7 @@ public final class TagsAndSort extends JPanel{
         date.setText("<html>Đến<br>hạn</html>");
         team.setText("<html>Đội<br>nhóm</html>");
         solo.setText("<html>Cá<br>nhân</html>");
-        latest.setText("<html>Mới<br>nhất</html>");
+        latest.setText("<html>Hot<br>nhất</html>");
         
         // Set icons for buttons
         solo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/person-20.png")));
@@ -84,20 +86,20 @@ public final class TagsAndSort extends JPanel{
         //comboBox --> replace comboBox with multi selection JComboBox
         FlatMacLightLaf.setup();
         ComboBoxMultiSelection tagComboBox = new ComboBoxMultiSelection();
-        RetrieveData dbc = new RetrieveData();
-        String[] tags = dbc.getAllTags();
-        tagComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(tags));
         
+        List<String> tags = CuocThiData.getAllTags();
+        String[] tagsList = tags.toArray(String[]::new);
+        tagComboBox.setModel(new javax.swing.DefaultComboBoxModel(tagsList));
+        
+        tagComboBox.setPreferredSize(new Dimension(300, 27));
         leftPanel.add(searchIcon);
         leftPanel.add(tagComboBox);
         
         //Add constraints to StringLayout panel
         layout.putConstraint(SpringLayout.WEST, searchIcon, 5, SpringLayout.WEST, leftPanel);
         layout.putConstraint(SpringLayout.NORTH, searchIcon, 5, SpringLayout.NORTH, leftPanel);
-        layout.putConstraint(SpringLayout.WEST, tagComboBox, 18, SpringLayout.EAST, searchIcon);
-        layout.putConstraint(SpringLayout.NORTH, tagComboBox, 5, SpringLayout.NORTH, leftPanel);
-        layout.putConstraint(SpringLayout.EAST, tagComboBox, -5, SpringLayout.EAST, leftPanel); // Constraint for width
-        layout.putConstraint(SpringLayout.SOUTH, tagComboBox, -5, SpringLayout.SOUTH, leftPanel); // Constraint for height
+        layout.putConstraint(SpringLayout.WEST, tagComboBox, 10, SpringLayout.EAST, searchIcon);
+        layout.putConstraint(SpringLayout.NORTH, tagComboBox, 3, SpringLayout.NORTH, leftPanel);
 
         return leftPanel;
     } 

@@ -1,4 +1,4 @@
-package com.uiteco.ofCuocThiPanel.components.comboBox;
+package com.uiteco.OfCuocThiPanel.Components.comboBox;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +10,6 @@ public class ScrollBarCustom extends JScrollBar {
         setUI(new ModernScrollBarUI());
         setPreferredSize(new Dimension(8, 8));
         setForeground(new Color(48, 144, 216));
-        setBackground(Color.WHITE);
+        setBackground(new Color(242, 243, 244));
     }
 }

@@ -1,4 +1,4 @@
-package com.uiteco.ofCuocThiPanel.components.comboBox;
+package com.uiteco.OfCuocThiPanel.Components.comboBox;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -31,28 +31,43 @@ import javax.swing.plaf.basic.ComboPopup;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
+import com.uiteco.OfCuocThiPanel.Components.comboBox.ScrollBarCustom;
+import java.awt.Font;
+import static java.awt.Font.BOLD;
+import java.awt.event.ActionEvent;
 
 public class Combobox<E> extends JComboBox<E> {
+
+    public Font getFont() {
+        return font;
+    }
+    
+    public void setFont(Font font) {
+        this.font = font;
+    }
 
     public String getLabeText() {
         return labeText;
     }
 
-    public void setLabeText(String labeText) {
+    public void setLabeText(String labeText, Font font) {
         this.labeText = labeText;
+        setFont(font);
     }
 
     public Color getLineColor() {
         return lineColor;
     }
-
+    
     public void setLineColor(Color lineColor) {
         this.lineColor = lineColor;
     }
-
+    
+    
     private String labeText = "Label";
-    private Color lineColor = new Color(105, 96, 236);
+    private Color lineColor = new Color(138, 154, 91);
     private boolean mouseOver;
+    private Font font = new Font("Arial", BOLD, 12);
 
     @Override
     public void updateUI() {
@@ -68,14 +83,16 @@ public class Combobox<E> extends JComboBox<E> {
                 Component com = super.getListCellRendererComponent(jlist, o, i, bln, bln1);
                 setBorder(new EmptyBorder(5, 5, 5, 5));
                 if (bln) {
-                    com.setBackground(new Color(242, 243, 244)); //background of comboBox
+                    com.setBackground(new Color(237,237,237));
+                    com.setForeground(Color.DARK_GRAY); //màu chữ thay đổi khi trỏ chuột vào list item của comboBox
+                    com.setFont(font);
                 }
                 return com;
             }
         });
     }
 
-    public Combobox() { // when type into component
+    public Combobox() {
         setBackground(Color.WHITE);
         setBorder(new EmptyBorder(15, 3, 5, 3));
         installUI();
@@ -126,6 +143,11 @@ public class Combobox<E> extends JComboBox<E> {
                         }
                     }
                 }
+                
+                public void actionPerformed(ActionEvent e) {
+                    String selected = (String) comboBox.getSelectedItem();
+                    
+                }
             });
             addPopupMenuListener(new PopupMenuListener() {
                 @Override
@@ -170,7 +192,7 @@ public class Combobox<E> extends JComboBox<E> {
 
         @Override
         public void paintCurrentValueBackground(Graphics grphcs, Rectangle rctngl, boolean bln) {
-               
+
         }
 
         @Override
@@ -193,7 +215,7 @@ public class Combobox<E> extends JComboBox<E> {
                     return scroll;
                 }
             };
-            pop.setBorder(new LineBorder(new Color(200, 200, 200), 1));
+            pop.setBorder(new LineBorder(new Color(200, 200, 200), 1)); //màu của viền bao quanh Popuplist
             return pop;
         }
 
@@ -210,6 +232,7 @@ public class Combobox<E> extends JComboBox<E> {
             } else {
                 g2.setColor(new Color(150, 150, 150));
             }
+            
             g2.fillRect(2, height - 1, width - 4, 1);
             createHintText(g2);
             createLineStyle(g2);
@@ -279,7 +302,7 @@ public class Combobox<E> extends JComboBox<E> {
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 int width = getWidth();
                 int height = getHeight();
-                int size = 12;
+                int size = 10;
                 int x = (width - size) / 2;
                 int y = (height - size) / 2 + 5;
                 int px[] = {x, x + size, x + size / 2};

@@ -1,4 +1,4 @@
-package com.uiteco.ofCuocThiPanel.components.comboBox;
+package com.uiteco.OfCuocThiPanel.Components.comboBox;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -67,7 +67,7 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
             width = rctngl.width;
             height = size;
         }
-        g2.setColor(new Color(240, 240, 240));
+        g2.setColor(new Color(247,245,244)); //màu của phần thanh nhỏ chứa cục cuộn 
         g2.fillRect(x, y, width, height);
     }
 

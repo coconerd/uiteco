@@ -1,6 +1,6 @@
 package com.uiteco.OfCuocThiPanel.getDataFromDB;
 
-import com.uiteco.OfCuocThiPanel.firstPage.Model.OnePost_Model;
+import com.uiteco.OfCuocThiPanel.firstPage.OnePost_Model;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;

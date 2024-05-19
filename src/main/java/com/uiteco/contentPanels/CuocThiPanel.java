@@ -1,16 +1,16 @@
 package com.uiteco.contentPanels;
 
 // Import the necessary package
-import com.uiteco.OfCuocThiPanel.firstPage.TagsAndSort;
 import java.awt.Color;
-import com.uiteco.OfCuocThiPanel.firstPage.Posts;
+import com.uiteco.OfCuocThiPanel.firstPage.ScrollPosts;
+import com.uiteco.OfCuocThiPanel.firstPage.TagsAndSort;
 
 public class CuocThiPanel extends javax.swing.JPanel {
     public CuocThiPanel() {
         //initComponents();
         _init();
-        _initTagAndSorts();
-        _initPostsShow();
+        headerContent();
+        bodyContent();
     }
 
     /**
@@ -52,12 +52,12 @@ public class CuocThiPanel extends javax.swing.JPanel {
         );
     }
     
-    private void _initTagAndSorts(){
+    private void headerContent(){
         this.add(new TagsAndSort());
     }
     
-    private void _initPostsShow(){
-        this.add(new Posts());
+    private void bodyContent(){
+        this.add(new ScrollPosts());
     }
     
     /**
