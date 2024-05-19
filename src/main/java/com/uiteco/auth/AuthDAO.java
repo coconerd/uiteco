@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import com.uiteco.auth.Session.ACCOUNT_TYPE;
+import java.sql.SQLException;
 
 /**
  *
@@ -43,90 +44,85 @@ public class AuthDAO {
     public static Session login(String username, String email, String password) throws Exception {
         boolean hasEmail = (email != null && !email.equals(""));
 
-        try {
-            // Query from db
-            Connection conn = ConnectionManager.getConnection();
-            PreparedStatement statement;
-            String sql;
-            if (hasEmail) {
-                sql = "SELECT * FROM TAIKHOAN WHERE EMAIL = ?";
-                statement = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                statement.setString(1, email);
-            } else {
-                sql = "SELECT * FROM TAIKHOAN WHERE USERNAME = ?";
-                statement = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                statement.setString(1, username);
-            }
-            ResultSet rs = statement.executeQuery();
-            if (!rs.next()) {
-                throw new InvalidCredentialsException();
-
-            }
-
-            // Password verification
-            byte[] passwordHash = rs.getBytes("MATKHAU");
-            byte[] salt = rs.getBytes("PBKDF2_SALT");
-            byte[] toBeVerified = deriveKey(password, salt);
-            if (compareKeys(toBeVerified, passwordHash) == false) {
-                throw new InvalidCredentialsException();
-            }
-
-            // Save user info to Session
-            ACCOUNT_TYPE accountType = null;
-            int accountID;
-            int a = rs.getInt("LOAITK");
-            switch (a) {
-                case 1:
-                    accountType = ACCOUNT_TYPE.admin;
-                    break;
-                case 2:
-                    accountType = ACCOUNT_TYPE.sinhvien;
-                    break;
-                case 3:
-                    accountType = ACCOUNT_TYPE.cuusinhvien;
-                    break;
-                case 4:
-                    accountType = ACCOUNT_TYPE.giangvien;
-                    break;
-            }
-
-            if (hasEmail) {
-                username = rs.getString("USERNAME");
-            } else {
-                email = rs.getString("EMAIL");
-            }
-
-            accountID = rs.getInt("MATK");
-
-            Permissible perm = new Permissible() {
-                private byte[] accessKey;
-                
-                @Override
-                public byte[] getAccessKey() {
-                    return accessKey;
-                }
-
-                @Override
-                public void setAccessKey(byte[] _accessKey) {
-                    accessKey = _accessKey;
-                }
-            };
-            
-            Session retSession = new Session(perm);
-            retSession.setUsername(username, perm);
-            retSession.setEmail(email, perm);
-            retSession.setAccountType(accountType, perm);
-            retSession.setAccountID(accountID, perm);
-
-            // Cleanup
-            statement.close();
-            rs.close();
-            conn.close();
-            return retSession;
-
-        } catch (Exception e) {
-            return null;
+        // Query from db
+        Connection conn = ConnectionManager.getConnection();
+        PreparedStatement statement;
+        String sql;
+        if (hasEmail) {
+            sql = "SELECT * FROM TAIKHOAN WHERE EMAIL = ?";
+            statement = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.setString(1, email);
+        } else {
+            sql = "SELECT * FROM TAIKHOAN WHERE USERNAME = ?";
+            statement = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            statement.setString(1, username);
         }
+        ResultSet rs = statement.executeQuery();
+        if (!rs.next()) {
+            throw new InvalidCredentialsException();
+
+        }
+
+        // Password verification
+        byte[] passwordHash = rs.getBytes("MATKHAU");
+        byte[] salt = rs.getBytes("PBKDF2_SALT");
+        byte[] toBeVerified = deriveKey(password, salt);
+        if (compareKeys(toBeVerified, passwordHash) == false) {
+            throw new InvalidCredentialsException();
+        }
+
+        // Save user info to Session
+        ACCOUNT_TYPE accountType = null;
+        int accountID;
+        int a = rs.getInt("LOAITK");
+        switch (a) {
+            case 1:
+                accountType = ACCOUNT_TYPE.admin;
+                break;
+            case 2:
+                accountType = ACCOUNT_TYPE.sinhvien;
+                break;
+            case 3:
+                accountType = ACCOUNT_TYPE.cuusinhvien;
+                break;
+            case 4:
+                accountType = ACCOUNT_TYPE.giangvien;
+                break;
+        }
+
+        if (hasEmail) {
+            username = rs.getString("USERNAME");
+        } else {
+            email = rs.getString("EMAIL");
+        }
+
+        accountID = rs.getInt("MATK");
+
+        Permissible perm = new Permissible() {
+            private byte[] accessKey;
+
+            @Override
+            public byte[] getAccessKey() {
+                return accessKey;
+            }
+
+            @Override
+            public void setAccessKey(byte[] _accessKey) {
+                accessKey = _accessKey;
+            }
+        };
+
+        Session retSession = new Session(perm);
+        retSession.setUsername(username, perm);
+        retSession.setEmail(email, perm);
+        retSession.setAccountType(accountType, perm);
+        retSession.setAccountID(accountID, perm);
+
+        // Cleanup
+        statement.close();
+        rs.close();
+        conn.close();
+        return retSession;
     }
 
     private static byte[] deriveKey(String password, byte[] salt) throws InvalidKeySpecException, NoSuchAlgorithmException {
@@ -198,7 +194,8 @@ public class AuthDAO {
             String password = sc.nextLine();
 
             try {
-                login(username, email, password);
+//                login(username, email, password);
+                register(email, username, password, 2);
                 System.out.println("Login successful");
                 break;
             } catch (Exception e) {
