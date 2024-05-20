@@ -16,7 +16,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -24,6 +26,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.Popup;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
@@ -101,6 +104,12 @@ public class CreatePostUI extends javax.swing.JPanel {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra khi hiển thị tag", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
+
+        Timer timer = new Timer(1000, e -> {
+            String currentTime = new SimpleDateFormat("HH:mm").format(new Date());
+            jLabel8.setText(currentTime);
+        });
+        timer.start();
     }
 
     /**
@@ -130,10 +139,11 @@ public class CreatePostUI extends javax.swing.JPanel {
         content = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         roundedImagePanel3 = new com.uiteco.components.RoundedImagePanel();
-        posterInfo = new com.uiteco.components.RoundedPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        posterInfo = new com.uiteco.components.RoundedPanel();
         utilPanel = new com.uiteco.components.RoundedGradientPanel();
         imgBtn = new com.uiteco.components.RoundedImagePanel();
         tagBtn = new com.uiteco.components.RoundedImagePanel();
@@ -190,10 +200,10 @@ public class CreatePostUI extends javax.swing.JPanel {
         );
         roundedPanel4Layout.setVerticalGroup(
             roundedPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
@@ -219,45 +229,46 @@ public class CreatePostUI extends javax.swing.JPanel {
         roundedPanel1Layout.setHorizontalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(roundedPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14))
+                .addGap(199, 199, 199)
+                .addComponent(roundedPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 673, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(roundedPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(titleCharCountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(roundedPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addComponent(jLabel9)))
+                .addGap(11, 11, 11))
         );
         roundedPanel1Layout.setVerticalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(roundedPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(titleCharCountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(roundedPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(titleCharCountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(roundedPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(5, 5, 5));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-edit-24.png"))); // NOI18N
         jLabel2.setText("Nhập Nội dung:");
 
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
         roundedPanel5.setBackground(new java.awt.Color(51, 51, 51));
-        roundedPanel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        roundedPanel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 20, 20, 20));
+        roundedPanel5.setRoundBottomLeft(70);
+        roundedPanel5.setRoundBottomRight(70);
         roundedPanel5.setRoundTopLeft(70);
         roundedPanel5.setRoundTopRight(70);
 
@@ -278,57 +289,13 @@ public class CreatePostUI extends javax.swing.JPanel {
             roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(contentScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contentScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        javax.swing.GroupLayout masterTextPanelLayout = new javax.swing.GroupLayout(masterTextPanel);
-        masterTextPanel.setLayout(masterTextPanelLayout);
-        masterTextPanelLayout.setHorizontalGroup(
-            masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, masterTextPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(roundedPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(masterTextPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator1))
-                .addContainerGap())
-            .addComponent(roundedPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        masterTextPanelLayout.setVerticalGroup(
-            masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, masterTextPanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(roundedPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.8;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
-        containerPanel.add(masterTextPanel, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(5, 5, 5));
         jLabel3.setText("Người đăng: ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 30, 10, 20);
-        containerPanel.add(jLabel3, gridBagConstraints);
 
         roundedImagePanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 2, true));
         roundedImagePanel3.setToolTipText("Quyền kiểm soát bài viết thuộc về Trường Đại học Công nghệ Thông tin");
@@ -344,44 +311,102 @@ public class CreatePostUI extends javax.swing.JPanel {
         roundedImagePanel3.setLayout(roundedImagePanel3Layout);
         roundedImagePanel3Layout.setHorizontalGroup(
             roundedImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 118, Short.MAX_VALUE)
         );
         roundedImagePanel3Layout.setVerticalGroup(
             roundedImagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 90, Short.MAX_VALUE)
         );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        containerPanel.add(roundedImagePanel3, gridBagConstraints);
-
-        posterInfo.setBackground(new java.awt.Color(255, 255, 255));
-        posterInfo.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 0));
-        posterInfo.setLayout(new java.awt.GridLayout(4, 0));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 1, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("- Admin -");
-        posterInfo.add(jLabel5);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-email-24.png"))); // NOI18N
         jLabel1.setText(App.getSession().getEmail());
-        posterInfo.add(jLabel1);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-username-24.png"))); // NOI18N
         jLabel6.setText(App.getSession().getUsername());
-        posterInfo.add(jLabel6);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel8.setText("jLabel8");
+
+        javax.swing.GroupLayout masterTextPanelLayout = new javax.swing.GroupLayout(masterTextPanel);
+        masterTextPanel.setLayout(masterTextPanelLayout);
+        masterTextPanelLayout.setHorizontalGroup(
+            masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(masterTextPanelLayout.createSequentialGroup()
+                .addGroup(masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(masterTextPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(masterTextPanelLayout.createSequentialGroup()
+                                .addGroup(masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(masterTextPanelLayout.createSequentialGroup()
+                                        .addComponent(roundedImagePanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel8))
+                            .addComponent(roundedPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator1)
+                            .addGroup(masterTextPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(roundedPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        masterTextPanelLayout.setVerticalGroup(
+            masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, masterTextPanelLayout.createSequentialGroup()
+                .addGroup(masterTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(masterTextPanelLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel6))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roundedImagePanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(roundedPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.8;
+        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 0);
+        containerPanel.add(masterTextPanel, gridBagConstraints);
+
+        posterInfo.setBackground(new java.awt.Color(255, 255, 255));
+        posterInfo.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        posterInfo.setLayout(new java.awt.GridLayout(4, 0));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         containerPanel.add(posterInfo, gridBagConstraints);
 
@@ -641,7 +666,7 @@ public class CreatePostUI extends javax.swing.JPanel {
             List<ImageIcon> images = imageSelector.getSelectedImages();
 
             createSuKien(title, content, accountID, tags, images, thumbnail, null);
-            
+
             if (!(JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn đăng tải bài viết", "Xác nhận", JOptionPane.OK_CANCEL_OPTION)
                     == JOptionPane.OK_OPTION)) {
                 return;
@@ -710,6 +735,7 @@ public class CreatePostUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private com.raven.scroll.ScrollPaneWin11 masterScrollPane;
