@@ -1,5 +1,6 @@
 package com.uiteco.main;
 
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.uiteco.auth.AuthView;
 import com.uiteco.auth.Permissible;
 import com.uiteco.auth.PermissibleNotPermittedException;
@@ -51,6 +52,7 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        FlatMacLightLaf.setup(); 
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
