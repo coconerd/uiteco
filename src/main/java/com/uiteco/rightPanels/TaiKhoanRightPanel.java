@@ -5,18 +5,45 @@
 package com.uiteco.rightPanels;
 
 import com.uiteco.main.App;
+import static com.uiteco.auth.Session.ACCOUNT_TYPE;
+import java.awt.Color;
+import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author nddmi
  */
 public class TaiKhoanRightPanel extends javax.swing.JPanel {
-    
+
+    DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("dd.MM.yy");
+
     /**
      * Creates new form TaiKhoanRightPanel
      */
     public TaiKhoanRightPanel() {
         initComponents();
+        Color bg = Color.WHITE;
+        ACCOUNT_TYPE at = App.getSession().getAccountType();
+        if (at == ACCOUNT_TYPE.admin) {
+            bg = Color.WHITE;
+            jLabel4.setText("Tài khoản Admin");
+        } else if (at == ACCOUNT_TYPE.sinhvien) {
+            bg = new Color(0, 202, 196);
+            jLabel4.setText("Tài khoản sinh viên - UIT K" + String.valueOf(App.getSession().getAccountCreationDate().getYear() - 2006 + 1));
+
+        } else if (at == ACCOUNT_TYPE.cuusinhvien) {
+            bg = new Color(51, 255, 255);
+            jLabel4.setText("Tài khoản cựu sinh viên - UIT K" + String.valueOf(App.getSession().getAccountCreationDate().getYear() - 2006 + 1));
+
+        } else if (at == ACCOUNT_TYPE.giangvien) {
+            bg = Color.BLACK;
+            jLabel4.setText("Tài khoản giảng viên");
+
+        }
+        roundedPanel2.setBackground(bg);
+//        roundedPanel3.setBorder(new LineBorder(bg, 2, true));
     }
 
     /**
@@ -30,12 +57,15 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         gradientPanel1 = new com.uiteco.components.GradientPanel();
+        roundedPanel2 = new com.uiteco.components.RoundedPanel();
         imageAvatar1 = new com.uiteco.components.ImageAvatar();
         menu1 = new com.uiteco.ofTaiKhoanRightPanel.Menu();
         roundedPanel1 = new com.uiteco.components.RoundedPanel();
-        jLabel5 = new javax.swing.JLabel();
+        roundedPanel3 = new com.uiteco.components.RoundedPanel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
@@ -48,8 +78,19 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
         gradientPanel1.setFade(false);
         gradientPanel1.setLayout(new java.awt.GridLayout());
 
-        imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/account-gradient.png"))); // NOI18N
-        gradientPanel1.add(imageAvatar1);
+        roundedPanel2.setRoundBottomLeft(222);
+        roundedPanel2.setRoundBottomRight(222);
+        roundedPanel2.setRoundTopLeft(222);
+        roundedPanel2.setRoundTopRight(222);
+        roundedPanel2.setLayout(new java.awt.GridLayout());
+
+        imageAvatar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        imageAvatar1.setIcon(App.getSession().getAvatar());
+        imageAvatar1.setMinimumSize(new java.awt.Dimension(30, 30));
+        imageAvatar1.setPreferredSize(new java.awt.Dimension(40, 40));
+        roundedPanel2.add(imageAvatar1);
+
+        gradientPanel1.add(roundedPanel2);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -58,7 +99,7 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.4;
+        gridBagConstraints.weighty = 0.3;
         add(gradientPanel1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -66,28 +107,41 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.weighty = 0.6;
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 0, 0);
         add(menu1, gridBagConstraints);
 
         roundedPanel1.setBackground(new java.awt.Color(222, 222, 222));
-        roundedPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
-        roundedPanel1.setRoundBottomLeft(30);
+        roundedPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 14, 1, 14));
+        roundedPanel1.setRoundBottomLeft(20);
         roundedPanel1.setRoundBottomRight(30);
         roundedPanel1.setRoundTopLeft(30);
         roundedPanel1.setRoundTopRight(30);
-        roundedPanel1.setLayout(new java.awt.GridLayout(3, 0));
+        roundedPanel1.setLayout(new java.awt.GridLayout(4, 2, 0, 7));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 15)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Tài khoản");
-        roundedPanel1.add(jLabel5);
+        roundedPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        roundedPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
+        roundedPanel3.setRoundBottomLeft(40);
+        roundedPanel3.setRoundBottomRight(40);
+        roundedPanel3.setRoundTopLeft(40);
+        roundedPanel3.setRoundTopRight(40);
+        roundedPanel3.setLayout(new java.awt.GridLayout());
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(5, 5, 5));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-dot-24.png"))); // NOI18N
+        jLabel4.setText("Tài khoản");
+        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        jLabel4.setIconTextGap(10);
+        roundedPanel3.add(jLabel4);
+
+        roundedPanel1.add(roundedPanel3);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-email-24.png"))); // NOI18N
         jLabel1.setText(App.getSession().getEmail());
+        jLabel1.setToolTipText("Email");
         jLabel1.setIconTextGap(15);
         roundedPanel1.add(jLabel1);
 
@@ -95,8 +149,19 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-username-24.png"))); // NOI18N
         jLabel6.setText(App.getSession().getUsername());
+        jLabel6.setToolTipText("Username");
         jLabel6.setIconTextGap(15);
         roundedPanel1.add(jLabel6);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-calendar-24.png"))); // NOI18N
+        LocalDate accCreation = App.getSession().getAccountCreationDate();
+        long dateDiff = ChronoUnit.DAYS.between(accCreation, LocalDate.now());
+        jLabel3.setText(accCreation.format(dateFmt) + " (" + dateDiff + " ngày)");
+        jLabel3.setToolTipText("Ngày tạo tài khoản");
+        jLabel3.setIconTextGap(15);
+        roundedPanel1.add(jLabel3);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -138,10 +203,13 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
     private com.uiteco.components.ImageAvatar imageAvatar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
     private com.uiteco.ofTaiKhoanRightPanel.Menu menu1;
     private com.uiteco.components.RoundedPanel roundedPanel1;
+    private com.uiteco.components.RoundedPanel roundedPanel2;
+    private com.uiteco.components.RoundedPanel roundedPanel3;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,8 +7,10 @@ package com.uiteco.auth;
 import java.beans.PropertyChangeSupport;
 import java.beans.PropertyChangeListener;
 import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.HashMap;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -27,11 +29,19 @@ public class Session {
     private Map<byte[], Boolean> permittedKeys;
     private byte[] accesskey;
 
+    // User info
     private String username;
     private String email;
     private Long issuedAt; // Unix timestamp
     private ACCOUNT_TYPE accountType;
     private int accountID;
+    private ImageIcon avatar;
+    private LocalDate accountCreationDate;
+    private String fullname;
+    private String phone;
+
+    private String mssv;
+
     private PropertyChangeSupport propertyChangeSupport;
 
     public Session() {
@@ -69,8 +79,28 @@ public class Session {
         return accountID;
     }
 
+    public String getMssv() {
+        return mssv;
+    }
+
     public ACCOUNT_TYPE getAccountType() {
         return accountType;
+    }
+
+    public LocalDate getAccountCreationDate() {
+        return accountCreationDate;
+    }
+
+    public ImageIcon getAvatar() {
+        return this.avatar;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public String getPhone() {
+        return this.phone;
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -136,6 +166,51 @@ public class Session {
         }
 
         this.accountID = accountID;
+    }
+
+    public void setAccountCreationDate(LocalDate accountCreationDate, Permissible permissible) throws PermissibleNotPermittedException {
+        if (!isComponentPermitted(permissible)) {
+            throw new PermissibleNotPermittedException();
+        }
+
+        this.accountCreationDate = accountCreationDate;
+    }
+
+    public void setAvatar(ImageIcon avatar, Permissible permissible) throws PermissibleNotPermittedException {
+        if (!isComponentPermitted(permissible)) {
+            throw new PermissibleNotPermittedException();
+        }
+
+        this.avatar = avatar;
+    }
+
+    public void setMssv(String mssv, Permissible permissible) throws PermissibleNotPermittedException {
+        if (getAccountType() != ACCOUNT_TYPE.sinhvien && getAccountType() != ACCOUNT_TYPE.cuusinhvien) {
+            System.err.println("NOT sinh vien");
+            return;
+        }
+
+        if (!isComponentPermitted(permissible)) {
+            throw new PermissibleNotPermittedException();
+        }
+
+        this.mssv = mssv;
+    }
+
+    public void setFullname(String fullname, Permissible permissible) throws PermissibleNotPermittedException {
+        if (!isComponentPermitted(permissible)) {
+            throw new PermissibleNotPermittedException();
+        }
+
+        this.fullname = fullname;
+    }
+
+    public void setPhone(String phone, Permissible permissible) throws PermissibleNotPermittedException {
+        if (!isComponentPermitted(permissible)) {
+            throw new PermissibleNotPermittedException();
+        }
+
+        this.phone = phone;
     }
 
     public void permitComponent(Permissible permitter, Permissible permittee) throws PermissibleNotPermittedException {

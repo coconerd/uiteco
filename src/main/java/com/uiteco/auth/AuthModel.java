@@ -6,6 +6,7 @@ package com.uiteco.auth;
 
 import java.util.regex.Pattern;
 import com.uiteco.main.App;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -100,6 +101,22 @@ public class AuthModel implements Permissible {
         App.getSession().setUsername(retSession.getUsername(), this);
         App.getSession().setAccountID(retSession.getAccountID(), this);
         App.getSession().setAccountType(retSession.getAccountType(), this);
+        App.getSession().setAccountCreationDate(retSession.getAccountCreationDate(), this);
+        App.getSession().setFullname(retSession.getFullname(), this);
+        App.getSession().setPhone(retSession.getPhone(), this);
+        
+        ImageIcon avatar = retSession.getAvatar();
+        if (avatar == null) {
+            avatar = new ImageIcon(getClass().getResource("/placeholder-avatar.png"));
+        }
+        App.getSession().setAvatar(avatar, this);
+        
+        String mssv = retSession.getMssv();
+        if (mssv != null) {
+            App.getSession().setMssv(mssv, this);
+            System.out.println("MSSV = " + mssv);
+        }
+        
         App.getSession().setPermitted(true, this);
     }
 

@@ -15,7 +15,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import com.uiteco.auth.Session.ACCOUNT_TYPE;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import javax.swing.ImageIcon;
+import com.uiteco.database.DataUtils;
+import java.sql.Blob;
+import static com.uiteco.main.App.getSession;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 /**
  *
@@ -90,6 +98,8 @@ public class AuthDAO {
                 break;
         }
 
+        System.out.println("Account type: " + accountType);
+
         if (hasEmail) {
             username = rs.getString("USERNAME");
         } else {
@@ -112,17 +122,90 @@ public class AuthDAO {
             }
         };
 
+        LocalDate accountCreationDate = rs.getDate("NGAYTAO").toLocalDate();
+
+        // Retrieve avatar image
+        ImageIcon avatar;
+        Blob blob = rs.getBlob("ANHDAIDIEN");
+        if (blob != null) {
+            byte[] bytes = blob.getBytes(1, (int) blob.length());
+            blob.free();
+            avatar = DataUtils.convertBytesToImageIcon(bytes);
+        } else {
+            avatar = null;
+        }
+
+        // Retrieve fullname
+        String fullname = rs.getString("HOTEN");
+
+        // Retrieve phone number
+        String phone = rs.getString("SDT");
+
         Session retSession = new Session(perm);
         retSession.setUsername(username, perm);
         retSession.setEmail(email, perm);
         retSession.setAccountType(accountType, perm);
         retSession.setAccountID(accountID, perm);
+        retSession.setAccountCreationDate(accountCreationDate, perm);
+        retSession.setAvatar(avatar, perm);
+        retSession.setFullname(fullname, perm);
+        retSession.setPhone(phone, perm);
+
+        // Get mssv if account type is student / ex-student
+        if (accountType == ACCOUNT_TYPE.sinhvien || accountType == ACCOUNT_TYPE.cuusinhvien) {
+            sql = "SELECT MSSV FROM SINHVIEN WHERE MATK = ?";
+            statement = conn.prepareStatement(sql);
+            statement.setInt(1, accountID);
+
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                String mssv = rs.getString("MSSV");
+                retSession.setMssv(mssv, perm);
+            }
+        }
 
         // Cleanup
         statement.close();
         rs.close();
         conn.close();
         return retSession;
+    }
+
+    public static void updateGeneralInfo(String email, String username, String phone, String fullname, ImageIcon avatar) throws SQLException, IOException {
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "UPDATE TAIKHOAN SET EMAIL = ?, USERNAME = ?, SDT = ?, HOTEN = ?, ANHDAIDIEN = ? WHERE MATK = ?";
+
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, email);
+        pstm.setString(2, username);
+        pstm.setString(3, phone);
+        pstm.setString(4, fullname);
+        pstm.setBlob(5, new ByteArrayInputStream(DataUtils.convertImageIconToBytes(avatar)));
+        pstm.setInt(6, getSession().getAccountID());
+
+        pstm.executeUpdate();
+
+        pstm.close();
+        conn.close();
+    }
+
+    public static boolean verifyPassword(String password) throws Exception {
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "SELECT MATKHAU, PBKDF2_SALT FROM TAIKHOAN WHERE MATK = ?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, getSession().getAccountID());
+        ResultSet rs = pstm.executeQuery();
+
+        if (!rs.next()) {
+            throw new InvalidCredentialsException();
+
+        }
+
+        // Password verification
+        byte[] passwordHash = rs.getBytes("MATKHAU");
+        byte[] salt = rs.getBytes("PBKDF2_SALT");
+        byte[] toBeVerified = deriveKey(password, salt);
+        return compareKeys(toBeVerified, passwordHash);
     }
 
     private static byte[] deriveKey(String password, byte[] salt) throws InvalidKeySpecException, NoSuchAlgorithmException {
@@ -157,22 +240,26 @@ public class AuthDAO {
     }
 
     // This function is only for testing purpose
-    private static void register(String email, String username, String password, int accountType) {
+    public static void register(String email, String username, String password, int accountType, String fullname, String phone) {
         /* Verify email, username, password, accountType */
         try {
             Connection conn = ConnectionManager.getConnection();
             byte[] salt = genSalt();
             byte[] passwordHash = deriveKey(password, salt);
 
-            String sql = "INSERT INTO TAIKHOAN (EMAIL, USERNAME, MATKHAU, PBKDF2_SALT, LOAITK) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO TAIKHOAN (EMAIL, USERNAME, MATKHAU, PBKDF2_SALT, LOAITK, HOTEN, SDT) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, email);
             statement.setString(2, username);
             statement.setBytes(3, passwordHash);
             statement.setBytes(4, salt);
             statement.setInt(5, accountType);
+            statement.setString(6, fullname);
+            statement.setString(7, phone);
             statement.executeUpdate();
 
+            conn.commit();
+            statement.close();
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -195,7 +282,7 @@ public class AuthDAO {
 
             try {
 //                login(username, email, password);
-                register(email, username, password, 2);
+                register(email, username, password, 2, "", "");
                 System.out.println("Login successful");
                 break;
             } catch (Exception e) {

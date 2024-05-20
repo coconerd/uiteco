@@ -9,7 +9,7 @@ package com.uiteco.auth;
  * @author nddmi
  */
 public class BadCredentialsFormatException extends Exception {
-    public static enum BAD {EMAIL, USERNAME, PASSWORD};
+    public static enum BAD {EMAIL, USERNAME, PASSWORD, PHONE, NAME};
     private BAD creds;
     
     public BadCredentialsFormatException(BAD creds) {
@@ -28,8 +28,12 @@ public class BadCredentialsFormatException extends Exception {
             error = "Email phải có định dạng *@*uit.edu.vn";
         } else if (getCreds() == BAD.USERNAME) {
             error = "Username phải có độ dài " + String.valueOf(AuthModel.MIN_USERNAME_LEN) + " - " + String.valueOf(AuthModel.MAX_USERNAME_LEN) + " ký tự và chỉ có chữ/số";
-        } else {
+        } else if (getCreds() == BAD.PASSWORD) {
             error = "Mật khẩu phải có độ dài từ " + String.valueOf(AuthModel.MIN_PASSWORD_LEN) + " - " + String.valueOf(AuthModel.MAX_PASSWORD_LEN) + " ký tự";
+        } else if (getCreds() == BAD.PHONE) {
+            error = "Số điện thoại không hợp lệ";
+        } else {
+            error = "Họ tên phải có độ dài từ 1 - 40 ký tự";
         }
         
         return error;
