@@ -3,7 +3,6 @@ package com.uiteco.OfCuocThiPanel.firstPage;
 import com.uiteco.OfCuocThiPanel.firstPage.slideShow.NewstCompetitions;
 import com.raven.scroll.ScrollPaneWin11;
 import com.uiteco.OfCuocThiPanel.getDataFromDB.CuocThiData;
-import com.uiteco.OfCuocThiPanel.firstPage.slideShow.Pagination;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Controller;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
 import com.uiteco.main.App;
@@ -16,10 +15,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.Box;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 /**
@@ -28,17 +28,47 @@ import javax.swing.JPanel;
  */
 public class firstPage extends javax.swing.JPanel {
 
+    private Pagination pagination = new Pagination();
+    private Map<Integer, BriefPost_View> postMap = new HashMap<>();
+    private List<BriefPost_Model> posts = new ArrayList<>();
+    private BriefPost_View postUI;
+
     /**
      * Creates new form testing2
      */
     public firstPage() {
         _initComponents();
-        setBounds(30, 120, 1185, 800);
+        setBounds(30, 120, 1185, 820);
         setBorder(null);
         setOpaque(false);
 
     }
 
+//    public void updateContent() {
+//        posts = CuocThiData.getPostsInfo();
+//        GridBagConstraints gbc = new GridBagConstraints();
+//        gbc.insets = new Insets(10, 10, 10, 10);
+//        gbc.gridx = 0; //first row
+//        gbc.gridy = 0; //first col
+//        gbc.anchor = GridBagConstraints.CENTER;
+//
+//        for (BriefPost_Model post : posts) {
+//            postUI = new BriefPost_View();
+//
+//            BriefPost_Controller postController = new BriefPost_Controller(post, postUI);
+//
+//            postUI = postController.setData();
+//
+//            postMap.put(post.getId(), postUI);
+//
+//            jPanel2.add(postUI, gbc);
+//            gbc.gridy++;
+//
+//        }
+//        jPanel2.revalidate();
+//        jPanel2.repaint();
+//
+//    }
     private void _initComponents() {
 
         scrollPaneWin111 = new com.raven.scroll.ScrollPaneWin11();
@@ -49,7 +79,6 @@ public class firstPage extends javax.swing.JPanel {
 
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(newestCompetitions2, BorderLayout.NORTH);
-        jPanel1.add(Box.createVerticalStrut(25));
 
         jPanel2 = new javax.swing.JPanel();
         jPanel2.setLayout(new GridBagLayout());
@@ -60,59 +89,69 @@ public class firstPage extends javax.swing.JPanel {
         gbc.gridy = 0; //first col
         gbc.anchor = GridBagConstraints.CENTER;
 
-        List<BriefPost_Model> fetchedPosts = CuocThiData.getPostsInfo();
-        Map<Integer, BriefPost_View> postMap = new HashMap<>();
-        //show all posts 
-        for (int i = 0; i < fetchedPosts.size(); i++) {
+        // Set up the pagination event
+        pagination.setPaginationItemRender(new PaginationItemRenderStyle1());
+
+//        pagination.addEventPagination(new EventPagination() {
+//            @Override
+//            public void pageChanged(int page) {
+//                pagination.setPagegination(page, posts.size());
+        posts = CuocThiData.getPostsInfo();
+        
+        for (BriefPost_Model post : posts) {
             postUI = new BriefPost_View();
 
-            BriefPost_Controller postController = new BriefPost_Controller(fetchedPosts.get(i), postUI);
+            BriefPost_Controller postController = new BriefPost_Controller(post, postUI);
+
             postUI = postController.setData();
-            
-            postMap.put(fetchedPosts.get(i).getId(), postUI);
+
+            postMap.put(post.getId(), postUI);
 
             jPanel2.add(postUI, gbc);
             gbc.gridy++;
 
-        }
+            postUI.getjTitle().addMouseListener(new MouseAdapter() {
+                public void mousePressed(MouseEvent e) {
 
-        //when click on a post's title
-        postUI.getjTitle().addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
+                    //find the OnePost_View instance that was clicked 
+                    for (Map.Entry<Integer, BriefPost_View> entry : postMap.entrySet()) {
 
-                //find the OnePost_View instance that was clicked 
-                for (Map.Entry<Integer, BriefPost_View> entry : postMap.entrySet()) {
+                        if (entry.getValue().getjTitle().equals(e.getSource())) {
+                            int clickedPostID = entry.getKey();
+                            for (BriefPost_Model post : posts) {
+                                if (post.getId() == clickedPostID) {
 
-                    if (entry.getValue().getjTitle().equals(e.getSource())) {
-                        int clickedPostID = entry.getKey();
-                        for (BriefPost_Model post : fetchedPosts) {
-                            if (post.getId() == clickedPostID) {
-                                
-                                ContentPanel panel = getMainFrame().getContentPanel();
-                                Component comp = App.getMainFrame().getContentPanel().getComponent("cuocThiDetailedPanel");
-                                if (comp instanceof DetailedOnePost_View) {
-                                    DetailedOnePost_View detailedPanel = (DetailedOnePost_View) comp;
-                                    
-                                    DetailedOnePost_Controller detailedController = new DetailedOnePost_Controller(detailedPanel, post);
-                                    
-                                    detailedPanel = detailedController.setData(post);
-                                    //postUI.jCountLike.setText(detailedPanel.getCountLike_Update());
+                                    ContentPanel panel = getMainFrame().getContentPanel();
+                                    Component comp = App.getMainFrame().getContentPanel().getComponent("cuocThiDetailedPanel");
+                                    if (comp instanceof DetailedOnePost_View) {
+                                        DetailedOnePost_View detailedPanel = (DetailedOnePost_View) comp;
+                                        DetailedOnePost_Controller detailedController = detailedPanel.createController(post);
 
-                                    getMainFrame().getContentPanel().showComponentAndTrimHistory("cuocThiDetailedPanel");
+                                        detailedPanel = detailedController.setData(post);
+
+                                        getMainFrame().getContentPanel().showComponentAndTrimHistory("cuocThiDetailedPanel");
+                                    }
+
                                 }
-
                             }
+
                         }
 
                     }
-
                 }
-            }
-        });
+            });
+            jPanel2.revalidate();
+            jPanel2.repaint();
+        }
+
+        //});
+        System.out.println(posts.size());
 
         jPanel1.add(jPanel2, BorderLayout.CENTER);
 
-        pagination = new Pagination();
+        //});
+        //when click on a post's title
+        pagination.setBorder(BorderFactory.createEmptyBorder(0, 500, 0, 0));
         jPanel1.add(pagination, BorderLayout.SOUTH);
 
         scrollPaneWin111.setViewportView(jPanel1);
@@ -136,7 +175,7 @@ public class firstPage extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     //private final DetailedPost_View detailedPanel = new DetailedPost_View();
-    private Pagination pagination;
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -151,7 +190,7 @@ public class firstPage extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-    private BriefPost_View postUI;
+
     private ScrollPaneWin11 scrollPaneWin111;
     private JPanel jPanel1;
     private JPanel jPanel2;

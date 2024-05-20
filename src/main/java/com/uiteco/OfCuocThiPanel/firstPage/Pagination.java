@@ -1,12 +1,12 @@
 package com.uiteco.OfCuocThiPanel.firstPage;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import com.uiteco.OfCuocThiPanel.firstPage.Page;
 
 public class Pagination extends JPanel {
 
@@ -31,6 +31,8 @@ public class Pagination extends JPanel {
         paginationItemRender = new DefaultPaginationItemRender();
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
         setPagegination(1, 1);
+        
+        setPreferredSize(new Dimension(300, 200));
     }
 
     private void runEvent() {

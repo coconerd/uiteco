@@ -6,14 +6,6 @@ import javax.swing.ImageIcon;
 
 public class DetailedOnePost_Model extends BriefPost_Model{
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public String getUrlYT() {
         return urlYT;
     }
@@ -39,11 +31,11 @@ public class DetailedOnePost_Model extends BriefPost_Model{
     }
     
     public String getCountLike_Update(){
-        return Integer.toString(countLike);
+        return Integer.toString(getCountLike());
     }
-    
+
     protected List<ImageIcon> images;
     protected ImageIcon thumbnailYT;
     protected String urlYT;
-    protected String content;
+    
 }

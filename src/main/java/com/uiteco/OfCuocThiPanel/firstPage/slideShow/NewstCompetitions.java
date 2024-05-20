@@ -13,7 +13,7 @@ public class NewstCompetitions extends javax.swing.JPanel {
     public NewstCompetitions() {
         setPreferredSize(new Dimension(1165, 520));
         initComponents();
-        List<ImageIcon> imageList = CuocThiData.getAllImagesAndURL();
+        List<ImageIcon> imageList = CuocThiData.getAllImages();
         List<Component> list = new ArrayList<>();
         for(ImageIcon image : imageList){
             RoundedImagePanel r = new RoundedImagePanel();

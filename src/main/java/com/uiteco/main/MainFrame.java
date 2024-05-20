@@ -5,6 +5,7 @@
 package com.uiteco.main;
 
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
+import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
 import java.awt.Component;
@@ -44,6 +45,7 @@ public class MainFrame extends javax.swing.JFrame {
         _initContentPanel();
         _initRightPanel();
         _additionalInit();
+        GlassPanePopup.install(this);
        
     }
     

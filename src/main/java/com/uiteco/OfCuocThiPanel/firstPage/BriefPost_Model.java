@@ -1,5 +1,7 @@
 package com.uiteco.OfCuocThiPanel.firstPage;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,6 +10,24 @@ import javax.swing.ImageIcon;
 
 public class BriefPost_Model extends javax.swing.JPanel {
 
+    /**
+     * @return the type
+     */
+    public int getType() {
+        return type;
+    }
+
+    public int getCountLike() {
+        return countLike;
+    }
+
+    public void setCountLike(int newCountLike) {
+        int oldCountLike = countLike;
+        countLike = newCountLike;
+        propertyChangeSupport.firePropertyChange("countLike", oldCountLike, countLike);
+    }
+    
+    
     public void setPostTime(LocalDateTime postTime) {
         this.postTime = postTime;
     }
@@ -75,7 +95,7 @@ public class BriefPost_Model extends javax.swing.JPanel {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-  
+
     public int getId() {
         return id;
     }
@@ -83,8 +103,9 @@ public class BriefPost_Model extends javax.swing.JPanel {
     public void setId(int id) {
         this.id = id;
     }
-     public String getPostTime_String() {
-        final DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+    public String getPostTime_String() {
+        final DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH : mm : ss");
         String formattedDateTime = postTime.format(CUSTOM_FORMATTER);
         return formattedDateTime;
     }
@@ -102,12 +123,12 @@ public class BriefPost_Model extends javax.swing.JPanel {
     }
 
     public String getCountLike_String() {
-        String s = String.valueOf(countLike);
+        String s = String.valueOf(getCountLike());
         return s;
     }
 
     public String convertType() {
-        if (type == 2) {
+        if (getType() == 2) {
             return "Đội nhóm";
         } else {
             return "Cá nhân";
@@ -132,25 +153,43 @@ public class BriefPost_Model extends javax.swing.JPanel {
         if (daysRemaining > 0) {
             status = "Còn " + daysRemaining + " ngày";
         } else if (daysRemaining == 0) {
-            status = "Dang dien ra";
+            status = "Đang diên ra";
         } else if (daysRemaining < 0) {
-           status = "Ket thuc";
+            status = "Kết thúc";
         }
         return status;
     }
 
+    public String getDateRange_ForDetailedPage() {
+        return "Thời gian đăng kí: " + getDateRange();
+    }
+
+    public void _addPropertyChangeListener(PropertyChangeListener listener) {
+        this.propertyChangeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void _removePropertyChangeListener(PropertyChangeListener listener) {
+        this.propertyChangeSupport.removePropertyChangeListener(listener);
+    }
+    
+
+    public BriefPost_Model() {
+       propertyChangeSupport = new PropertyChangeSupport(this);
+    }
+    
+    private PropertyChangeSupport propertyChangeSupport;
+    
     protected int id;
     protected String title;
     protected LocalDate thoiDiemDang;
     protected String status;
     protected int type;
     protected ImageIcon image;
-    protected LocalDate startDate;
+    private LocalDate startDate;
     protected LocalDate endDate;
     protected String organizer;
     protected List<String> tags;
     protected String content;
     protected LocalDateTime postTime;
-    public static int countLike = 0;
-    
+    public int countLike;
 }

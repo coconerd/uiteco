@@ -1,9 +1,10 @@
 package com.uiteco.contentPanels;
 
 // Import the necessary package
+import com.uiteco.OfCuocThiPanel.firstPage.TagsAndSort;
 import java.awt.Color;
 import com.uiteco.OfCuocThiPanel.firstPage.firstPage;
-import com.uiteco.OfCuocThiPanel.firstPage.TagsAndSort;
+
 
 public class CuocThiPanel extends javax.swing.JPanel {
     public CuocThiPanel() {
@@ -59,6 +60,7 @@ public class CuocThiPanel extends javax.swing.JPanel {
     private void bodyContent(){
         this.add(new firstPage());
     }
+    
     
     /**
      * @param args the command line arguments
