@@ -23,7 +23,7 @@ public class SuKienModel {
     private String postedBy;
     private LocalDateTime postedAt;
     private String note;
-    private int clubID;
+    private Integer clubID;
     private ImageIcon thumbnail;
     private ImageIcon[] images;
     private int views;
@@ -41,7 +41,7 @@ public class SuKienModel {
             String postedBy,
             LocalDateTime postedAt,
             String note,
-            int clubID,
+            Integer clubID,
             ImageIcon thumbnail,
             int views,
             int likes
@@ -92,7 +92,7 @@ public class SuKienModel {
         this.note = note;
     }
 
-    public void setClubID(int clubID) {
+    public void setClubID(Integer clubID) {
         this.clubID = clubID;
     }
 
@@ -152,7 +152,7 @@ public class SuKienModel {
         return note;
     }
 
-    public int getClubID() {
+    public Integer getClubID() {
         return clubID;
     }
 
