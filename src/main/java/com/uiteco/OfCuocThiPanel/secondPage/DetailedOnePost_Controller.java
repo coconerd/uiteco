@@ -4,7 +4,6 @@ import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.getDataFromDB.CuocThiData;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import java.time.LocalDateTime;
-import javax.swing.JOptionPane;
 
 public class DetailedOnePost_Controller {
 
@@ -59,7 +58,7 @@ public class DetailedOnePost_Controller {
     private static void showConfirmationDialog() {
 
     }
-
+    
     private void jRegisterActionPerformed() {
         // Add your logic for the "Register" button here
         // For example, you could call a method in the BriefPost_Model to handle the registration
@@ -69,6 +68,8 @@ public class DetailedOnePost_Controller {
         popUp.jOk.addActionListener((e) -> {
             CuocThiData.insertUserRegisterCompetition(baseModel.getId(), LocalDateTime.now());
             GlassPanePopup.closePopupAll();
+            //when press Register, display unregister button 
+            view.jRegister.setVisible(false);
         });
         
         popUp.jNo.addActionListener((e) -> {

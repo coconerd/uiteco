@@ -1,6 +1,5 @@
 package com.uiteco.OfCuocThiPanel.secondPage;
 
-import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_View;
 
@@ -38,7 +37,7 @@ public class DetailedOnePost_View extends BriefPost_View {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jRegister = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
-        jBookmark = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
+        jListRegister = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
         jLike = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,7 +51,6 @@ public class DetailedOnePost_View extends BriefPost_View {
         jRegisterTime = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(242, 243, 244));
-        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1185, 1014));
 
         scrollPaneWin111.setBackground(new java.awt.Color(255, 255, 51));
@@ -100,16 +98,25 @@ public class DetailedOnePost_View extends BriefPost_View {
         jSeparator2.setOpaque(true);
         jSeparator2.setPreferredSize(new java.awt.Dimension(10, 10));
 
-        jRegister.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 2, 1, 1));
+        jRegister.setBackground(new java.awt.Color(242, 243, 244));
+        jRegister.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 2, 1, 1));
         jRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/register.png"))); // NOI18N
         jRegister.setText("THAM GIA");
         jRegister.setIconTextGap(4);
 
-        jBookmark.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 3, 1, 1));
-        jBookmark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookmark.png"))); // NOI18N
-        jBookmark.setText("BOOKMARK");
-        jBookmark.setIconTextGap(6);
+        jListRegister.setBackground(new java.awt.Color(242, 243, 244));
+        jListRegister.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 1, 1));
+        jListRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bookmark.png"))); // NOI18N
+        jListRegister.setText("DANH SÁCH");
+        jListRegister.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jListRegister.setIconTextGap(6);
+        jListRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jListRegisterActionPerformed(evt);
+            }
+        });
 
+        jLike.setBackground(new java.awt.Color(242, 243, 244));
         jLike.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
         jLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/heart.png"))); // NOI18N
         jLike.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
@@ -124,13 +131,13 @@ public class DetailedOnePost_View extends BriefPost_View {
         jButtonsLayout.setHorizontalGroup(
             jButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jButtonsLayout.createSequentialGroup()
-                .addContainerGap(135, Short.MAX_VALUE)
+                .addContainerGap(113, Short.MAX_VALUE)
                 .addComponent(jRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBookmark, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jListRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLike, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,14 +147,12 @@ public class DetailedOnePost_View extends BriefPost_View {
             jButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jButtonsLayout.createSequentialGroup()
                 .addGroup(jButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBookmark, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLike, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jButtonsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLike, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jListRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -208,8 +213,6 @@ public class DetailedOnePost_View extends BriefPost_View {
             .addGap(0, 1259, Short.MAX_VALUE)
         );
 
-        ytPanel.setPreferredSize(new java.awt.Dimension(800, 500));
-
         javax.swing.GroupLayout ytPanelLayout = new javax.swing.GroupLayout(ytPanel);
         ytPanel.setLayout(ytPanelLayout);
         ytPanelLayout.setHorizontalGroup(
@@ -242,13 +245,13 @@ public class DetailedOnePost_View extends BriefPost_View {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addGap(20, 20, 20))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,17 +369,21 @@ public class DetailedOnePost_View extends BriefPost_View {
                                            
     
     }//GEN-LAST:event_jLikeActionPerformed
+
+    private void jListRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListRegisterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jListRegisterActionPerformed
    
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected com.uiteco.components.RoundedPanel RegisterTimePanel;
     protected javax.swing.JPanel jBodyPanel;
-    private com.uiteco.OfCuocThiPanel.secondPage.CustomButton jBookmark;
     protected javax.swing.JPanel jButtons;
     protected javax.swing.JTextArea jContent;
     private javax.swing.JLabel jLabel2;
     protected com.uiteco.OfCuocThiPanel.secondPage.CustomButton jLike;
+    private com.uiteco.OfCuocThiPanel.secondPage.CustomButton jListRegister;
     protected javax.swing.JLabel jOrganizer;
     protected javax.swing.JPanel jPanel1;
     protected javax.swing.JPanel jPanel2;

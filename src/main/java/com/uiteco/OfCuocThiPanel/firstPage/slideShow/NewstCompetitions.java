@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 public class NewstCompetitions extends javax.swing.JPanel {
 
     public NewstCompetitions() {
-        setPreferredSize(new Dimension(1165, 520));
+        setPreferredSize(new Dimension(1160, 520));
         initComponents();
         List<ImageIcon> imageList = CuocThiData.getAllImages();
         List<Component> list = new ArrayList<>();

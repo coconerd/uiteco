@@ -12,7 +12,7 @@ public class ConfirmPopUp extends javax.swing.JPanel {
         setOpaque(false);
         jNo.setContentAreaFilled(false);
         jOk.setContentAreaFilled(false);
-
+        setBorder(null);
     }
 
     @Override

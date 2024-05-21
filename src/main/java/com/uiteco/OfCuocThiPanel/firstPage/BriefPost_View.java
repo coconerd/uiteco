@@ -1,5 +1,7 @@
 package com.uiteco.OfCuocThiPanel.firstPage;
 
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import com.formdev.flatlaf.ui.FlatBorder;
 import java.awt.Color;
 
 public class BriefPost_View extends javax.swing.JPanel {
@@ -100,6 +102,7 @@ public class BriefPost_View extends javax.swing.JPanel {
     }
 
     public BriefPost_View() {
+        FlatMacLightLaf.setup();
         initComponents();
         setOpaque(false);
        
@@ -120,7 +123,9 @@ public class BriefPost_View extends javax.swing.JPanel {
         jPanelContainTags = new javax.swing.JPanel();
         jCountLike = new javax.swing.JLabel();
         jTitle = new javax.swing.JLabel();
+        jDueDate = new javax.swing.JLabel();
 
+        setFocusable(false);
         setMinimumSize(new java.awt.Dimension(1150, 240));
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1160, 240));
@@ -202,6 +207,11 @@ public class BriefPost_View extends javax.swing.JPanel {
             }
         });
 
+        jDueDate.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        jDueDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-time-24.png"))); // NOI18N
+        jDueDate.setText("jLabel1");
+        jDueDate.setIconTextGap(14);
+
         javax.swing.GroupLayout roundPanel_ParentLayout = new javax.swing.GroupLayout(roundPanel_Parent);
         roundPanel_Parent.setLayout(roundPanel_ParentLayout);
         roundPanel_ParentLayout.setHorizontalGroup(
@@ -226,21 +236,25 @@ public class BriefPost_View extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel_ParentLayout.createSequentialGroup()
                         .addComponent(jTagsIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelContainTags, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateRange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(35, 35, 35))
+                        .addComponent(jPanelContainTags, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jDateRange, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDueDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         roundPanel_ParentLayout.setVerticalGroup(
             roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(roundPanel_ParentLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(27, 27, 27)
                 .addComponent(jDateRange, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
+                .addComponent(jDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelContainTags, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(roundPanel_ParentLayout.createSequentialGroup()
@@ -262,7 +276,7 @@ public class BriefPost_View extends javax.swing.JPanel {
                     .addComponent(jImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        add(roundPanel_Parent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 240));
+        add(roundPanel_Parent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1110, 240));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTitleMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTitleMouseEntered
@@ -287,6 +301,7 @@ public class BriefPost_View extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JLabel jCountLike;
     protected javax.swing.JLabel jDateRange;
+    protected javax.swing.JLabel jDueDate;
     protected com.uiteco.components.RoundedImagePanel jImage;
     protected javax.swing.JLabel jOrganizer;
     protected javax.swing.JPanel jPanelContainTags;
@@ -294,7 +309,7 @@ public class BriefPost_View extends javax.swing.JPanel {
     protected javax.swing.JLabel jTagsIcon;
     protected javax.swing.JLabel jTitle;
     protected javax.swing.JLabel jType;
-    private com.uiteco.OfCuocThiPanel.firstPage.LabelDaysLeft labelDaysLeft1;
+    protected com.uiteco.OfCuocThiPanel.firstPage.LabelDaysLeft labelDaysLeft1;
     protected com.uiteco.components.RoundedPanel roundPanel_Parent;
     // End of variables declaration//GEN-END:variables
 }

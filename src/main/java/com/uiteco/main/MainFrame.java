@@ -55,6 +55,10 @@ public class MainFrame extends javax.swing.JFrame {
     public ContentPanel getContentPanel() {
         return this.contentPanel;
     }
+    
+    public ContentPanel getRightPanel() {
+        return this.rightPanel;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

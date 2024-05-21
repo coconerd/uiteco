@@ -11,8 +11,19 @@ import javax.swing.ImageIcon;
 public class BriefPost_Model extends javax.swing.JPanel {
 
     /**
-     * @return the type
+     * @return the dueDate
      */
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    /**
+     * @param dueDate the dueDate to set
+     */
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
     public int getType() {
         return type;
     }
@@ -26,8 +37,7 @@ public class BriefPost_Model extends javax.swing.JPanel {
         countLike = newCountLike;
         propertyChangeSupport.firePropertyChange("countLike", oldCountLike, countLike);
     }
-    
-    
+
     public void setPostTime(LocalDateTime postTime) {
         this.postTime = postTime;
     }
@@ -110,18 +120,12 @@ public class BriefPost_Model extends javax.swing.JPanel {
         return formattedDateTime;
     }
 
-    public String getEndDate_String() {
+    public String getDate_String(LocalDate lcd){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String formattedDate = endDate.format(formatter);
+        String formattedDate = lcd.format(formatter);
         return formattedDate;
     }
-
-    public String getStartDate_String() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String formattedDate = startDate.format(formatter);
-        return formattedDate;
-    }
-
+    
     public String getCountLike_String() {
         String s = String.valueOf(getCountLike());
         return s;
@@ -137,7 +141,7 @@ public class BriefPost_Model extends javax.swing.JPanel {
 
     public String getDateRange() {
         String arrow = "\u2192";
-        String dateRange = getStartDate_String() + " " + arrow + " " + getEndDate_String();
+        String dateRange = getDate_String(startDate) + " " + arrow + " " + getDate_String(endDate);
         return dateRange;
     }
 
@@ -172,13 +176,7 @@ public class BriefPost_Model extends javax.swing.JPanel {
         this.propertyChangeSupport.removePropertyChangeListener(listener);
     }
     
-
-    public BriefPost_Model() {
-       propertyChangeSupport = new PropertyChangeSupport(this);
-    }
-    
-    private PropertyChangeSupport propertyChangeSupport;
-    
+    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     protected int id;
     protected String title;
     protected LocalDate thoiDiemDang;
@@ -192,4 +190,5 @@ public class BriefPost_Model extends javax.swing.JPanel {
     protected String content;
     protected LocalDateTime postTime;
     public int countLike;
+    protected LocalDate dueDate;
 }

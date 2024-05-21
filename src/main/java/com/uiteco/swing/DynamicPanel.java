@@ -142,6 +142,12 @@ public abstract class DynamicPanel extends JPanel {
     }
 
     public void showComponentAndTrimHistory(String name) {
+        // Abort if page hasn't been registered/doesn't exist
+        if (nameToComp.get(name) == null) {
+            System.err.printf("Error: component with name %s doesn't exist", name);
+            return;
+        }
+
         trimPageHistory(getHistoryIndex());
         _showComponent(name);
         addPageHistory(name);
@@ -158,7 +164,7 @@ public abstract class DynamicPanel extends JPanel {
         if (getComponent(name) == null) {
             setComponent(name, comp);
         } else {
-            System.err.printf("Error: component with name %s already exists");
+            System.err.printf("Error: component with name %s already exist", name);
         }
     }
 
@@ -168,7 +174,10 @@ public abstract class DynamicPanel extends JPanel {
         this.cardLayout = new CardLayout();
         this.pageHolder = new JPanel(cardLayout);
         this.pageHistory = new Vector<String>();
-        /**historyIndex will be initialized when the first page is added to card layout */
+        /**
+         * historyIndex will be initialized when the first page is added to card
+         * layout
+         */
 //        this.historyIndex = 0; 
         this.setBorder(null);
         this.nameToComp = new HashMap<String, Component>();
