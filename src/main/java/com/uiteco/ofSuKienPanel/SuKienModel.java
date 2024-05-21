@@ -27,6 +27,7 @@ public class SuKienModel {
     private ImageIcon thumbnail;
     private ImageIcon[] images;
     private int views;
+    private int likes;
 
     public SuKienModel() {
     }
@@ -42,7 +43,8 @@ public class SuKienModel {
             String note,
             String clubID,
             ImageIcon thumbnail,
-            int views
+            int views,
+            int likes
     ) {
         this.title = title;
         this.tags = tags;
@@ -55,6 +57,7 @@ public class SuKienModel {
         this.clubID = clubID;
         this.thumbnail = thumbnail;
         this.views = views;
+        this.likes = likes;
     }
 
     public void setTitle(String title) {
@@ -107,6 +110,10 @@ public class SuKienModel {
 
     public void setViews(int views) {
         this.views = views;
+    }
+    
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
     public String getTitle() {
@@ -163,5 +170,9 @@ public class SuKienModel {
 
     public int getViews() {
         return this.views;
+    }
+    
+    public int getLikes() {
+        return this.likes;
     }
 }
