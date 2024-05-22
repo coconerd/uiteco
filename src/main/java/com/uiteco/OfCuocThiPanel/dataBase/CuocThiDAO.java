@@ -1,7 +1,8 @@
-package com.uiteco.OfCuocThiPanel.getDataFromDB;
+package com.uiteco.OfCuocThiPanel.dataBase;
 
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.Pagination;
+import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Model;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class CuocThiData {
+public class CuocThiDAO {
 
     public static List<String> getAllTags() { //for comboBoxMultiSelection
         try {
@@ -53,7 +54,7 @@ public class CuocThiData {
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             query = "SELECT "
-                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, SOLUOTTHICH, THOIDIEMDIENRA "
+                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, SOLUOTTHICH, THOIDIEMDIENRA, THUMBNAIL_YOUTUBEPLAY "
                     + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
                     + "WHERE BD.MABD = BD_CT.MABD "
                     + "AND LOAIBD = 2 "
@@ -108,6 +109,25 @@ public class CuocThiData {
                     }
                 }
 
+                byte[] imageData1 = rset.getBytes("THUMBNAIL_YOUTUBEPLAY");
+                if (imageData1 != null) {
+                    try {
+                        //convert the byte array to an Image object
+                        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData1);
+                        BufferedImage bufferedImage = ImageIO.read(inputStream);
+
+                        //create a scaled version of the BufferedImage
+                        Image scaledImage = bufferedImage.getScaledInstance(480, 360, Image.SCALE_SMOOTH);
+
+                        //set the Image object as the thumnail
+                        ImageIcon thumbnail = new ImageIcon(scaledImage);
+                        post.setImage(thumbnail);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 post.setOrganizer(rset.getString("DONVITOCHUC"));
 
                 Timestamp timeStampPost = rset.getTimestamp("THOIDIEMDANG");
@@ -144,20 +164,86 @@ public class CuocThiData {
         }
     }
 
-    public static List<ImageIcon> getAllImages() {
+    public static List<ImageIcon> getImagesForSlideshow() {
         List<ImageIcon> imagesList = new ArrayList<>();
-        query = "SELECT ANH, URL FROM HINHANH H "
-                + "INNER JOIN "
-                + "(SELECT MABD FROM BAIDANG WHERE LOAIBD = 2 ORDER BY THOIDIEMDANG DESC FETCH FIRST 10 ROWS ONLY) B "
-                + "ON H.MABD = B.MABD";
-
         try {
             conn = getConnection();
+            query = "SELECT B.MABD "
+                    + "FROM HINHANH H, BAIDANG B "
+                    + "WHERE H.MABD = B.MABD AND LOAIBD = 2 "
+                    + "ORDER BY THOIDIEMDANG DESC";
+
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             rset = stmt.executeQuery(query);
 
             while (rset.next()) {
+                String query1 = "SELECT ANH "
+                        + "FROM HINHANH "
+                        + "WHERE MABD = ? "
+                        + "ORDER BY MAHINHANH "
+                        + "FETCH FIRST 1 ROW ONLY";
+
+                PreparedStatement p = conn.prepareStatement(query1);
+
+                int postID1 = rset.getInt("MABD");
+                p.setInt(1, postID1);
+                ResultSet rset1 = p.executeQuery();
+                while(rset1.next()){
+                    byte[] imageData = rset1.getBytes("ANH");
+                    if (imageData != null) {
+                        try {
+                            //convert the byte array to an Image object
+                            ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
+                            BufferedImage bufferedImage = ImageIO.read(inputStream);
+
+                            //create a scaled version of the BufferedImage
+                            Image scaledImage = bufferedImage.getScaledInstance(943, 436, Image.SCALE_SMOOTH);
+
+                            //set the Image object as the thumnail
+                            ImageIcon thumbnail = new ImageIcon(scaledImage);
+                            imagesList.add(thumbnail);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                p.close();
+            }
+
+            rset.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return imagesList;
+    }
+
+    public static DetailedOnePost_Model getAllImagesAndUrls(int postID) {
+        DetailedOnePost_Model model = new DetailedOnePost_Model();
+        List<ImageIcon> imagesList = new ArrayList<>();
+        List<String> urlList = new ArrayList<>();
+
+        query = "SELECT ANH, URL "
+                + "FROM HINHANH H, BAIDANG B "
+                + "WHERE H.MABD = B.MABD AND LOAIBD = 2 AND MABD = ? "
+                + "ORDER BY THOIDIEMDANG DESC";
+
+        try {
+            conn = getConnection();
+
+            PreparedStatement p = conn.prepareStatement(query);
+            p.setInt(1, postID);
+            rset = p.executeQuery();
+
+            while (rset.next()) {
+
+                if (rset.getString("URL") != null) {
+                    String url = rset.getString("URL");
+                    urlList.add(url);
+                }
 
                 byte[] imageData = rset.getBytes("ANH");
 
@@ -173,19 +259,19 @@ public class CuocThiData {
 
                         //set the Image object as the thumnail
                         imagesList.add(thumbnail);
-
                     } catch (IOException e) {
                     }
                 }
             }
-
-            conn.close();
+            model = new DetailedOnePost_Model(imagesList, urlList);
             rset.close();
+            p.close();
+            conn.close();
 
         } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        return imagesList;
+        return model;
     }
 
     public static boolean updateCountLikeDB(int postId, int newCountLike) {
@@ -208,13 +294,6 @@ public class CuocThiData {
         }
     }
 
-//    public static List<String> getURLForYTVideo(int postID){
-//        try {
-//            conn = getConnection();
-//            String query = "SELECT URL "
-//        } catch (SQLException e) {
-//        }
-//    }
     public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page) {
 
         List<BriefPost_Model> postList = new ArrayList<>();
@@ -384,10 +463,10 @@ public class CuocThiData {
     public static List<BriefPost_Model> getPostsInfo_Sort(int type, boolean dueDate, boolean hotest) {
         try {
             conn = getConnection();
-            
+
             dueDate = false;
             hotest = false;
-            
+
             //type = 0: not in a specific type
             //meet 1 requirment once time
             if (type == 0) {
@@ -407,16 +486,16 @@ public class CuocThiData {
                             + "ORDER BY SOLUOTTHICH DESC";
                 }
 
-            } else if (type == 1 || type == 2){
+            } else if (type == 1 || type == 2) {
                 query = "SELECT "
                         + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, SOLUOTTHICH, THOIDIEMDIENRA "
                         + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
                         + "WHERE BD.MABD = BD_CT.MABD "
-                        + "AND LOAIBD = 2 AND HINHTHUCTG = ? " 
+                        + "AND LOAIBD = 2 AND HINHTHUCTG = ? "
                         + " ORDER BY THOIDIEMDANG DESC ";
             }
             PreparedStatement p = conn.prepareStatement(query);
-            
+
             p.setInt(1, type);
             rset = p.executeQuery();
 
