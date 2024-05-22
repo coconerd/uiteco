@@ -62,4 +62,4 @@
 - Hệ điều hành: Window, Linux, macOS
 # Tham khảo  
 - Source code: [Link github source code UITeco app maked by CocoNerd](https://github.com/coconerd/uiteco-swing)
-- Website CocoNerd: [Website nhóm CocoNerd (Nước Code Dừa)](https://sites.google.com/view/cococode/ti%E1%BA%BFn-%C4%91%E1%BB%99)  
+- Website CocoNerd: [Website nhóm CocoNerd (Nước Code Dừa)](https://sites.google.com/view/cococode/trang-ch%E1%BB%A7)  
