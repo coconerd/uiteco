@@ -5,9 +5,7 @@ import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.TagsAndSort;
 import java.awt.Color;
 import com.uiteco.OfCuocThiPanel.firstPage.firstPage;
-import com.uiteco.OfCuocThiPanel.getDataFromDB.CuocThiData;
-import com.uiteco.main.App;
-import java.awt.Component;
+import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -33,28 +31,28 @@ public class CuocThiPanel extends JPanel { //action handler
             header.getTeam()._addPropertyChangeListener((evt) -> {
                 if (evt.getPropertyName().equals("selected")) {
 
-                    list = CuocThiData.getPostsInfo_Sort(2, false, false);
+                    list = CuocThiDAO.getPostsInfo_Sort(2, false, false);
                     body.updateContent(list);
                 }
             });
             header.getSolo()._addPropertyChangeListener((evt) -> {
                 if (evt.getPropertyName().equals("selected")) {
 
-                    list = CuocThiData.getPostsInfo_Sort(1, false, false);
+                    list = CuocThiDAO.getPostsInfo_Sort(1, false, false);
                     body.updateContent(list);
                 }
             });
             header.getHotest()._addPropertyChangeListener((evt) -> {
                 if (evt.getPropertyName().equals("selected")) {
 
-                    list = CuocThiData.getPostsInfo_Sort(0, false, true);
+                    list = CuocThiDAO.getPostsInfo_Sort(0, false, true);
                     body.updateContent(list);
                 }
             });
             header.getDate()._addPropertyChangeListener((evt) -> {
                 if (evt.getPropertyName().equals("selected")) {
 
-                    list = CuocThiData.getPostsInfo_Sort(0, true, false);
+                    list = CuocThiDAO.getPostsInfo_Sort(0, true, false);
                     body.updateContent(list);
                 }
             });

@@ -1,26 +1,26 @@
 package com.uiteco.OfCuocThiPanel.firstPage;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
-import com.formdev.flatlaf.ui.FlatMarginBorder;
 import com.uiteco.OfCuocThiPanel.firstPage.slideShow.NewstCompetitions;
 import com.raven.scroll.ScrollPaneWin11;
-import com.uiteco.OfCuocThiPanel.getDataFromDB.CuocThiData;
+import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Controller;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
 import com.uiteco.main.App;
 import static com.uiteco.main.App.getMainFrame;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JPanel;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 
@@ -60,12 +60,13 @@ public class firstPage extends javax.swing.JPanel {
 
     private Pagination pagination = new Pagination();
     private Map<Integer, BriefPost_View> postMap = new HashMap<>();
-    private List<BriefPost_Model> posts = CuocThiData.getPostsInfo_Default();
+    private List<BriefPost_Model> posts = CuocThiDAO.getPostsInfo_Default();
     private BriefPost_View postUI;
 
     public firstPage() {
+        FlatMacLightLaf.setup();
         _initComponents(posts);
-        setBounds(30, 120, 1185, 840);
+        setBounds(30, 105, 1185, 840);
         setBorder(null);
         setOpaque(false);
 
@@ -73,11 +74,10 @@ public class firstPage extends javax.swing.JPanel {
 
     public void updateContent(List<BriefPost_Model> posts) {
 
-        //jPanel2.setVisible(false);
         jPanel2.removeAll();
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.insets = new Insets(20, 29, 20, 10);
         gbc.gridx = 0; //first row
         gbc.gridy = 0; //first col
         gbc.anchor = GridBagConstraints.CENTER;
@@ -90,7 +90,7 @@ public class firstPage extends javax.swing.JPanel {
             postUI = postController.setData();
 
             postMap.put(post.getId(), postUI);
-
+            
             jPanel2.add(postUI, gbc);
             gbc.gridy++;
 
@@ -136,7 +136,7 @@ public class firstPage extends javax.swing.JPanel {
 
     public void _initComponents(List<BriefPost_Model> posts) {
 
-        FlatMacLightLaf.setup();
+        //FlatMacLightLaf.setup();
 
         scrollPaneWin111 = new com.raven.scroll.ScrollPaneWin11();
         scrollPaneWin111.setBorder(null);
@@ -154,7 +154,7 @@ public class firstPage extends javax.swing.JPanel {
         getjPanel2().setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 29, 10, 10);
+        gbc.insets = new Insets(25, 34, 5, 0);
         gbc.gridx = 0; //first row
         gbc.gridy = 0; //first col
         gbc.anchor = GridBagConstraints.CENTER;
@@ -175,7 +175,8 @@ public class firstPage extends javax.swing.JPanel {
             setPostUI(postController.setData());
 
             postMap.put(post.getId(), postUI);
-
+            
+            
             getjPanel2().add(postUI, gbc);
             gbc.gridy++;
 
@@ -213,6 +214,10 @@ public class firstPage extends javax.swing.JPanel {
         }
 
         //});
+        
+        Box space = Box.createVerticalBox();
+        space.add(Box.createRigidArea(new Dimension(1185, 40)));
+        space.add(jPanel1, Component.CENTER_ALIGNMENT);
         jPanel1.add(getjPanel2(), BorderLayout.CENTER);
 
         //});

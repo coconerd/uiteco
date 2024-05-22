@@ -3,7 +3,6 @@ package com.uiteco.OfCuocThiPanel.firstPage.slideShow;
 import com.uiteco.components.RoundedPanel;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JLayeredPane;
 import javax.swing.Timer;

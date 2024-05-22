@@ -1,54 +1,51 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.uiteco.OfCuocThiPanel.secondPage;
 
-import java.awt.Dimension;
+import javax.swing.JTextPane;
 
-/**
- *
- * @author Phan Thi Thuy Hien
- */
 public class YTPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form YTPanel
-     */
     public YTPanel() {
-        _initComponents();
-        
+        jString = new JTextPane();
+        jIcon = new HighResolutionResize();
+        jYT = new com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay();
+        initComponents();
+
     }
-    
-    private void _initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        //youtube.setPreferredSize(new Dimension(800, 500));
-        
-        setBackground(new java.awt.Color(242, 243, 244));
+//    private void _initComponents() {
+//
+//        SimpleAttributeSet attributeSet = new SimpleAttributeSet();
+//        StyleConstants.setUnderline(attributeSet, true);
+//        jString.setCharacterAttributes(attributeSet, true);
+//        
+//        jIcon = new javax.swing.JLabel();
+//        //youtube.setPreferredSize(new Dimension(800, 500));
+//
+//        setBackground(new java.awt.Color(242, 243, 244));
+//
+//        jIcon.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+//        jIcon.setForeground(new java.awt.Color(51, 51, 51));
+//        jIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-youtube-100.png"))); // NOI18N
+//        jIcon.setText("Tìm hiểu thêm về cuộc thi tại đây: ");
+//
+//        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+//        this.setLayout(layout);
+//        layout.setHorizontalGroup(
+//                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//                        .addGroup(layout.createSequentialGroup()
+//                                .addContainerGap()
+//                                .addComponent(jIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                                .addContainerGap(250, Short.MAX_VALUE))
+//        );
+//        layout.setVerticalGroup(
+//                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//                        .addGroup(layout.createSequentialGroup()
+//                                .addContainerGap()
+//                                .addComponent(jIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                                .addContainerGap(404, Short.MAX_VALUE))
+//        );
+//    }
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-youtube-100.png"))); // NOI18N
-        jLabel1.setText("Tìm hiểu thêm về cuộc thi tại đây: ");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(250, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(404, Short.MAX_VALUE))
-        );
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,35 +55,70 @@ public class YTPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jString = new javax.swing.JTextPane();
+        jYT = new com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay();
+        jIcon = new com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize();
 
         setBackground(new java.awt.Color(242, 243, 244));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-youtube-100.png"))); // NOI18N
-        jLabel1.setText("Tìm hiểu thêm về cuộc thi tại đây: ");
+        jString.setEditable(false);
+        jString.setBackground(new java.awt.Color(242, 243, 244));
+        jString.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jString.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        jString.setForeground(new java.awt.Color(51, 51, 51));
+        jString.setText("Tìm hiểu thêm về cuộc thi tại đây: ");
+        jString.setAutoscrolls(false);
+
+        jYT.setOpaque(false);
+
+        jIcon.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 0, 1, 1));
+        jIcon.setAlignmentX(0.0F);
+        jIcon.setImage(new javax.swing.ImageIcon(getClass().getResource("/cursor.png"))); // NOI18N
+
+        javax.swing.GroupLayout jIconLayout = new javax.swing.GroupLayout(jIcon);
+        jIcon.setLayout(jIconLayout);
+        jIconLayout.setHorizontalGroup(
+            jIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 67, Short.MAX_VALUE)
+        );
+        jIconLayout.setVerticalGroup(
+            jIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jString, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(jYT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(279, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(404, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jString, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jYT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 416, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private YoutubePlay youtube;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize jIcon;
+    private javax.swing.JTextPane jString;
+    private com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay jYT;
     // End of variables declaration//GEN-END:variables
 }

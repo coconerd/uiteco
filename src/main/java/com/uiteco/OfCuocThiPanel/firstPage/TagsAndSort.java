@@ -1,10 +1,11 @@
 package com.uiteco.OfCuocThiPanel.firstPage;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.uiteco.OfCuocThiPanel.secondPage.CustomButton;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.uiteco.OfCuocThiPanel.Components.comboBox.ComboBoxMultiSelection;
 import com.uiteco.components.RoundedBorder;
-import com.uiteco.OfCuocThiPanel.getDataFromDB.CuocThiData;
+import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,13 +17,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
-public class TagsAndSort extends JPanel { 
+public class TagsAndSort extends JPanel {
 
     /**
      * @return the tagComboBox
      */
-    
-    
     public ComboBoxMultiSelection getTagComboBox() {
         return tagComboBox;
     }
@@ -66,17 +65,14 @@ public class TagsAndSort extends JPanel {
         initTagAndSort();
 
     }
-    
-    
+
     private CustomButton date, team, solo, hotest;
     private ComboBoxMultiSelection tagComboBox;
 
-    
-            
     public void initTagAndSort() {
 
         setLayout(new BorderLayout());
-        setBounds(30, 30, 1170, 60);
+        setBounds(30, 20, 1170, 60);
         setBackground(Color.WHITE);
 
         RoundedBorder roundBor = new RoundedBorder(new Color(242, 243, 244), Color.WHITE, Color.WHITE, 15, 0);
@@ -99,7 +95,7 @@ public class TagsAndSort extends JPanel {
         team = new CustomButton();
         solo = new CustomButton();
         hotest = new CustomButton();
-        
+
         date.addActionListener((e) -> {
             date.setSelected(true);
         });
@@ -110,11 +106,11 @@ public class TagsAndSort extends JPanel {
         solo.addActionListener((e) -> {
             solo.setSelected(true);
         });
-        
+
         hotest.addActionListener((e) -> {
             hotest.setSelected(true);
         });
-        
+
         getDate().setText("<html>Đến<br>hạn</html>");
         getTeam().setText("<html>Đội<br>nhóm</html>");
         getSolo().setText("<html>Cá<br>nhân</html>");
@@ -152,7 +148,7 @@ public class TagsAndSort extends JPanel {
         FlatMacLightLaf.setup();
         setTagComboBox(new ComboBoxMultiSelection());
 
-        List<String> tags = CuocThiData.getAllTags();
+        List<String> tags = CuocThiDAO.getAllTags();
         String[] tagsList = tags.toArray(String[]::new);
         getTagComboBox().setModel(new javax.swing.DefaultComboBoxModel(tagsList));
 

@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,10 +38,14 @@ public class YoutubePlay extends JPanel {
         }
     }
 
-    public YoutubePlay(ImageIcon thumbnail, URI uri) {
+    public YoutubePlay() {
         
-        // URI for the YouTube video
-        //final URI uri = new URI("https://www.youtube.com/watch?v=pMR_48AF-A0&list=PL_6klLfS1WqE1-_MJgZiJqAaccjLGHh0H&index=1");
+        try {
+            // URI for the YouTube video
+            uri = new URI("https://www.youtube.com/watch?v=pMR_48AF-A0&list=PL_6klLfS1WqE1-_MJgZiJqAaccjLGHh0H&index=1");
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(YoutubePlay.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         //ImageIcon thumbnail = new ImageIcon(new URL("http://i3.ytimg.com/vi/-mO43N7EBCE/hqdefault.jpg"));
         
@@ -49,7 +54,7 @@ public class YoutubePlay extends JPanel {
         int thumbnailHeight = 360;
         
         // Create the thumbnail label
-        //thumbnail = new ImageIcon(getClass().getResource("/hqdefault.jpg"));
+        thumbnail = new ImageIcon(getClass().getResource("/hqdefault.jpg"));
         JLabel thumbnailLabel = new JLabel(thumbnail);
         thumbnailLabel.setPreferredSize(new Dimension(thumbnailWidth, thumbnailHeight));
         

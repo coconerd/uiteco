@@ -21,10 +21,10 @@ public class Image_Model extends JPanel{
             
             // Create a new RoundedImagePanel for each image
                     
-            roundedPanel.setRoundBottomLeft(25);
-            roundedPanel.setRoundBottomRight(25);
-            roundedPanel.setRoundTopLeft(25);
-            roundedPanel.setRoundTopRight(25);
+            roundedPanel.setRoundBottomLeft(30);
+            roundedPanel.setRoundBottomRight(30);
+            roundedPanel.setRoundTopLeft(30);
+            roundedPanel.setRoundTopRight(30);
             roundedPanel.setOpaque(false);
 
         return roundedPanel;

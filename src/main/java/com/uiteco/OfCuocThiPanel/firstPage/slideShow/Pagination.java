@@ -1,6 +1,5 @@
 package com.uiteco.OfCuocThiPanel.firstPage.slideShow;
 
-import com.uiteco.OfCuocThiPanel.firstPage.slideShow.EventPagination;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -86,7 +85,7 @@ public class Pagination extends JComponent {
             int height = getHeight();
             Graphics2D g2 = (Graphics2D) grphcs.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.2f));
             g2.setColor(getBackground());
             g2.fillOval(0, 0, width, height);
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));

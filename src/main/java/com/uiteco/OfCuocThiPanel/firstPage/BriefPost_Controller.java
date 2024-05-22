@@ -1,6 +1,6 @@
 package com.uiteco.OfCuocThiPanel.firstPage;
 
-import com.uiteco.OfCuocThiPanel.getDataFromDB.CuocThiData;
+import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import java.awt.Color;
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class BriefPost_Controller {
 
         model._addPropertyChangeListener(evt -> {
             if (evt.getPropertyName().equals("countLike")) {
-                CuocThiData.getPostsInfo_Default();
+                CuocThiDAO.getPostsInfo_Default();
                 view.jCountLike.setText(model.getCountLike_String()); // Update UI
                 view.repaint();
             }
