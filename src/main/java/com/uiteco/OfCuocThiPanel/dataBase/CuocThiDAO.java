@@ -189,7 +189,7 @@ public class CuocThiDAO {
                 int postID1 = rset.getInt("MABD");
                 p.setInt(1, postID1);
                 ResultSet rset1 = p.executeQuery();
-                while(rset1.next()){
+                while (rset1.next()) {
                     byte[] imageData = rset1.getBytes("ANH");
                     if (imageData != null) {
                         try {
@@ -227,9 +227,8 @@ public class CuocThiDAO {
         List<String> urlList = new ArrayList<>();
 
         query = "SELECT ANH, URL "
-                + "FROM HINHANH H, BAIDANG B "
-                + "WHERE H.MABD = B.MABD AND LOAIBD = 2 AND MABD = ? "
-                + "ORDER BY THOIDIEMDANG DESC";
+                + "FROM HINHANH "
+                + "WHERE MABD = ?";
 
         try {
             conn = getConnection();
@@ -263,7 +262,9 @@ public class CuocThiDAO {
                     }
                 }
             }
-            model = new DetailedOnePost_Model(imagesList, urlList);
+            model.setImages(imagesList);
+            model.setUrlYT(urlList);
+            
             rset.close();
             p.close();
             conn.close();
