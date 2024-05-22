@@ -72,7 +72,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
     private void addItemObject(Object obj) {
         selectedItems.add(obj);
         comboBoxMultiCellEditor.addItem(obj);
-        if (comboList != null) {
+        if (comboList != null && selectedItems.size() <= 3) {
             comboList.repaint();
         }
     }
@@ -130,7 +130,9 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
             if (comboList != list) {
                 comboList = list;
             }
+
             setIcon(new CheckBoxIcon(selectedItems.contains(value)));
+
             return this;
         }
     }
@@ -140,11 +142,16 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         protected final JScrollPane scroll;
         protected final JPanel panel;
 
+        protected int countTimes = 0;
+
         protected void addItem(Object obj) {
-            Item item = new Item(obj);
-            panel.add(item);
-            panel.repaint();
-            panel.revalidate();
+            if (countTimes < 3) {
+                countTimes++;
+                Item item = new Item(obj);
+                panel.add(item);
+                panel.repaint();
+                panel.revalidate();
+            }
         }
 
         protected void removeItem(Object obj) {
@@ -187,15 +194,29 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
     private class CheckBoxIcon extends FlatCheckBoxIcon {
 
         private final boolean selected;
-
+        private int countTimes = 0;
+        private boolean isEnabled;
         public CheckBoxIcon(boolean selected) {
-            this.selected = selected;
+            if (countTimes <= 3) {
+                countTimes++;
+                this.selected = selected;
+            } else {
+                this.selected = !selected;
+            }
+
         }
 
         @Override
         protected boolean isSelected(Component c) {
-            return selected;
+            if (countTimes <= 3) {
+                return selected;
+            } else {
+             
+                return !selected;
+            }
+
         }
+
     }
 
     private class Item extends JLabel {
