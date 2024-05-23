@@ -33,9 +33,10 @@ import java.util.Set;
 public class InsertBAIDANG {
 
     public static void insertBAIDANG() throws Exception {
-        String folderPath = "D:\\DoAn\\database\\mock\\ImagesOfSuKien"; // Replace with your folder path
-        List<String> fileContents = readAllContents(folderPath);
-        List<ImageIcon> images = loadImagesFromFolder(folderPath);
+        String imagePath = "D:\\DoAn\\database\\mock\\ImagesOfSuKien"; // Replace with your folder path
+        String contentPath = "D:\\DoAn\\database\\mock\\content"; // Replace with your folder path
+        List<String> fileContents = readAllContents(contentPath);
+        List<ImageIcon> images = loadImagesFromFolder(imagePath);
         Set<String> tags = getAllTags();
         List<Integer> accountIDs = getAllAccountIDs();
         List<Integer> clubIDs = getAllClubIDs();
@@ -132,5 +133,13 @@ public class InsertBAIDANG {
         Random random = new Random();
         int randIndex = random.nextInt(accountIDs.size());
         return accountIDs.get(randIndex);
+    }
+
+    public static void main(String[] args) {
+        String folderPath = "D:\\DoAn\\database\\mock\\content"; // Replace with your folder path
+        List<String> fileContents = readAllContents(folderPath);
+        String random = getRandomContent(fileContents);
+        System.out.print(random);
+
     }
 }

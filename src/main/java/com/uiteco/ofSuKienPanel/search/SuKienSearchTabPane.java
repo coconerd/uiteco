@@ -72,26 +72,14 @@ public class SuKienSearchTabPane extends ModernTabPane {
     private Component _createResultPane(String searchText, SEARCH_OPTION searchOption) {
 
         SuKienListModelSearch newModel = new SuKienListModelSearch(searchText, searchOption);
-        SuKienListView suKienListView = new SuKienListView(newModel, null);
+        SuKienListViewSearch suKienListView = new SuKienListViewSearch(newModel, null);
         newModel.addPropertyChangeListener(suKienListView);
         newModel.loadData();
 
         int entries = newModel.getEntries();
         if (entries > 0) {
-            RoundedPanel statsPanel = RoundedPanel.getRoundedPanel(40, 40, 40, 40, new GridLayout(1, 1));
-            statsPanel.setBackground(suKienListView.getBackground());
-//            statsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-            
-            JLabel statsLabel = new JLabel();
-            statsLabel.setFont(new Font("Arial", Font.BOLD, 16));
-            statsLabel.setText("Đã tìm thấy " + entries + " bài viết tương ứng");
-            statsLabel.setIcon(new ImageIcon(getClass().getResource("/icons8-search-28.png")));
-            statsPanel.add(statsLabel);
             
             suKienListView.setBorder(new EmptyBorder(10, 30, 0, 30));
-            suKienListView.add(statsPanel, Component.LEFT_ALIGNMENT, 0);
-            suKienListView.add(Box.createRigidArea(new Dimension(0, 30)), 1);
-
             ScrollPaneWin11 scrollPane = new ScrollPaneWin11();
             scrollPane.setBorder(null);
             scrollPane.setViewportView(suKienListView);

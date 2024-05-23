@@ -5,7 +5,7 @@
 package com.uiteco.rightPanels;
 
 import com.uiteco.main.App;
-import static com.uiteco.auth.Session.ACCOUNT_TYPE;
+import static com.uiteco.ofTaiKhoanPanel.TaiKhoanModel.ACCOUNT_TYPE;
 import java.awt.Color;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
@@ -25,24 +25,38 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
     public TaiKhoanRightPanel() {
         initComponents();
         Color bg = Color.WHITE;
-        ACCOUNT_TYPE at = App.getSession().getAccountType();
+        ACCOUNT_TYPE at = App.getSession().getUser().getAccountType();
         if (at == ACCOUNT_TYPE.admin) {
             bg = Color.WHITE;
+            jLabel7.setText("Admin");
             jLabel4.setText("Tài khoản Admin");
+            roundedPanel2.setVisible(false);
+            jLabel5.setVisible(false);
+            roundedPanel1.revalidate();
         } else if (at == ACCOUNT_TYPE.sinhvien) {
             bg = new Color(0, 202, 196);
-            jLabel4.setText("Tài khoản sinh viên - UIT K" + String.valueOf(App.getSession().getAccountCreationDate().getYear() - 2006 + 1));
+//            jLabel4.setText("Tài khoản sinh viên - UIT K";
+            jLabel5.setVisible(true);
+            jLabel5.setText(App.getSession().getUser().getFaculty());
+            jLabel7.setText("Sinh viên");
+            jLabel8.setText("K" + String.valueOf(App.getSession().getUser().getAccountCreationDate().getYear() - 2006 + 1));
 
         } else if (at == ACCOUNT_TYPE.cuusinhvien) {
             bg = new Color(51, 255, 255);
-            jLabel4.setText("Tài khoản cựu sinh viên - UIT K" + String.valueOf(App.getSession().getAccountCreationDate().getYear() - 2006 + 1));
+//            jLabel4.setText("Tài khoản cựu sinh viên - UIT K" + String.valueOf(App.getSession().getAccountCreationDate().getYear() - 2006 + 1));
+            jLabel5.setVisible(true);
+            jLabel5.setText(App.getSession().getUser().getFaculty());
+            jLabel7.setText("Cựu sinh viên");
+            jLabel8.setText("K" + String.valueOf(App.getSession().getUser().getAccountCreationDate().getYear() - 2006 + 1));
 
         } else if (at == ACCOUNT_TYPE.giangvien) {
             bg = Color.BLACK;
             jLabel4.setText("Tài khoản giảng viên");
-
+            jLabel7.setText("Giảng viên");
+            jLabel5.setVisible(false);
+            roundedPanel1.revalidate();
         }
-        roundedPanel2.setBackground(bg);
+//        roundedPanel2.setBackground(Color.WHITE);
 //        roundedPanel3.setBorder(new LineBorder(bg, 2, true));
     }
 
@@ -57,8 +71,12 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         gradientPanel1 = new com.uiteco.components.GradientPanel();
-        roundedPanel2 = new com.uiteco.components.RoundedPanel();
         imageAvatar1 = new com.uiteco.components.ImageAvatar();
+        jPanel1 = new javax.swing.JPanel();
+        roundedPanel4 = new com.uiteco.components.RoundedPanel();
+        jLabel7 = new javax.swing.JLabel();
+        roundedPanel2 = new com.uiteco.components.RoundedPanel();
+        jLabel8 = new javax.swing.JLabel();
         menu1 = new com.uiteco.ofTaiKhoanRightPanel.Menu();
         roundedPanel1 = new com.uiteco.components.RoundedPanel();
         roundedPanel3 = new com.uiteco.components.RoundedPanel();
@@ -66,31 +84,73 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.GridBagLayout());
 
-        gradientPanel1.setColor1(new java.awt.Color(255, 0, 153));
+        gradientPanel1.setColor1(new java.awt.Color(0, 0, 102));
         gradientPanel1.setColor2(new java.awt.Color(102, 0, 255));
         gradientPanel1.setDirection(com.uiteco.components.GradientPanel.Direction.DIAGONAL);
         gradientPanel1.setFade(false);
-        gradientPanel1.setLayout(new java.awt.GridLayout());
-
-        roundedPanel2.setRoundBottomLeft(222);
-        roundedPanel2.setRoundBottomRight(222);
-        roundedPanel2.setRoundTopLeft(222);
-        roundedPanel2.setRoundTopRight(222);
-        roundedPanel2.setLayout(new java.awt.GridLayout());
+        gradientPanel1.setLayout(new java.awt.GridBagLayout());
 
         imageAvatar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        imageAvatar1.setIcon(App.getSession().getAvatar());
+        imageAvatar1.setBorderSize(3);
+        imageAvatar1.setIcon(App.getSession().getUser().getAvatar());
         imageAvatar1.setMinimumSize(new java.awt.Dimension(30, 30));
         imageAvatar1.setPreferredSize(new java.awt.Dimension(40, 40));
-        roundedPanel2.add(imageAvatar1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.9;
+        gradientPanel1.add(imageAvatar1, gridBagConstraints);
 
-        gradientPanel1.add(roundedPanel2);
+        jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(190, 30));
+        jPanel1.setRequestFocusEnabled(false);
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+
+        roundedPanel4.setBackground(new java.awt.Color(90, 223, 158));
+        roundedPanel4.setMinimumSize(new java.awt.Dimension(40, 10));
+        roundedPanel4.setPreferredSize(new java.awt.Dimension(100, 25));
+        roundedPanel4.setRoundBottomLeft(5);
+        roundedPanel4.setRoundTopLeft(5);
+        roundedPanel4.setLayout(new java.awt.GridLayout());
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Loại tài khoản");
+        roundedPanel4.add(jLabel7);
+
+        jPanel1.add(roundedPanel4);
+
+        roundedPanel2.setBackground(new java.awt.Color(222, 222, 222));
+        roundedPanel2.setPreferredSize(new java.awt.Dimension(50, 25));
+        roundedPanel2.setLayout(new java.awt.GridLayout());
+
+        jLabel8.setFont(new java.awt.Font("Circular Std Medium", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("K18");
+        roundedPanel2.add(jLabel8);
+
+        jPanel1.add(roundedPanel2);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
+        gradientPanel1.add(jPanel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -117,7 +177,7 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
         roundedPanel1.setRoundBottomRight(30);
         roundedPanel1.setRoundTopLeft(30);
         roundedPanel1.setRoundTopRight(30);
-        roundedPanel1.setLayout(new java.awt.GridLayout(4, 2, 0, 7));
+        roundedPanel1.setLayout(new java.awt.GridLayout(5, 2, 0, 7));
 
         roundedPanel3.setBackground(new java.awt.Color(255, 255, 255));
         roundedPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
@@ -125,43 +185,52 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
         roundedPanel3.setRoundBottomRight(40);
         roundedPanel3.setRoundTopLeft(40);
         roundedPanel3.setRoundTopRight(40);
-        roundedPanel3.setLayout(new java.awt.GridLayout());
+        roundedPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Variable", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(5, 5, 5));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-dot-24.png"))); // NOI18N
-        jLabel4.setText("Tài khoản");
+        jLabel4.setText("Tài khoản của tôi");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jLabel4.setIconTextGap(10);
         roundedPanel3.add(jLabel4);
 
         roundedPanel1.add(roundedPanel3);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Variable", 1, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-email-24.png"))); // NOI18N
-        jLabel1.setText(App.getSession().getEmail());
+        jLabel1.setText(App.getSession().getUser().getEmail());
         jLabel1.setToolTipText("Email");
         jLabel1.setIconTextGap(15);
         roundedPanel1.add(jLabel1);
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Variable", 1, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-username-24.png"))); // NOI18N
-        jLabel6.setText(App.getSession().getUsername());
+        jLabel6.setText(App.getSession().getUser().getUsername());
         jLabel6.setToolTipText("Username");
         jLabel6.setIconTextGap(15);
         roundedPanel1.add(jLabel6);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Variable", 1, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-calendar-24.png"))); // NOI18N
-        LocalDate accCreation = App.getSession().getAccountCreationDate();
+        LocalDate accCreation = App.getSession().getUser().getAccountCreationDate();
         long dateDiff = ChronoUnit.DAYS.between(accCreation, LocalDate.now());
         jLabel3.setText(accCreation.format(dateFmt) + " (" + dateDiff + " ngày)");
         jLabel3.setToolTipText("Ngày tạo tài khoản");
         jLabel3.setIconTextGap(15);
         roundedPanel1.add(jLabel3);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Variable", 1, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-graduation-scroll-24.png"))); // NOI18N
+        jLabel5.setText(null);
+        jLabel5.setToolTipText("Ngày tạo tài khoản");
+        jLabel5.setIconTextGap(15);
+        jLabel5.setVisible(false);
+        roundedPanel1.add(jLabel5);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -205,11 +274,16 @@ public class TaiKhoanRightPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private com.uiteco.ofTaiKhoanRightPanel.Menu menu1;
     private com.uiteco.components.RoundedPanel roundedPanel1;
     private com.uiteco.components.RoundedPanel roundedPanel2;
     private com.uiteco.components.RoundedPanel roundedPanel3;
+    private com.uiteco.components.RoundedPanel roundedPanel4;
     // End of variables declaration//GEN-END:variables
 }

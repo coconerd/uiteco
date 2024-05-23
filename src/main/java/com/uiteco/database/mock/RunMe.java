@@ -4,11 +4,14 @@
  */
 package com.uiteco.database.mock;
 
+import static com.uiteco.auth.AuthDAO.register;
+
 /**
  *
  * @author nddmi
  */
 public class RunMe {
+
     public static void main(String[] args) throws Exception {
         InsertTAIKHOAN.insertTaiKhoan();
         InsertCAULACBO.insertCAULACBO();

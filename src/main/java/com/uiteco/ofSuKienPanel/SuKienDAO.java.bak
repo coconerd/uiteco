@@ -34,19 +34,41 @@ import java.util.Iterator;
 import javax.imageio.ImageIO;
 import java.sql.NClob;
 import com.uiteco.database.DataUtils;
-import java.io.InputStream;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import static com.uiteco.main.App.getSession;
-import com.uiteco.ofSuKienPanel.detailed.rightPanel.ProfileLineModel;
-import java.sql.CallableStatement;
 
 /**
  *
  * @author nddmi
  */
 public class SuKienDAO {
+
+    /**
+     * Should not use this
+     *
+     * @return
+     */
+    public static ArrayList<SuKienModel> getAll() {
+        ArrayList<SuKienModel> suKienList = new ArrayList<>();
+        // mock
+        for (int i = 0; i < 100; i++) {
+            String title = String.format("Day la su kien thu %d", i + 1);
+            String type = "Event";
+
+            HashSet<String> tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
+
+            int postID = i;
+            String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
+            String postedBy = "Minh Duc";
+            java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
+            String note = null;
+            String clubID = null;
+            ImageIcon thumbnail = new ImageIcon("D:\\LabJava\\FeaturedImages\\3.jpg"); // Mock image
+            int views = 1200;
+            SuKienModel event = new SuKienModel(title, tags, postID, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
+            suKienList.add(event);
+        }
+
+        return suKienList;
+    }
 
     public static Set<String> getRandomTags(Set<String> originalTags) {
         // Convert the original set to a list
@@ -187,11 +209,10 @@ public class SuKienDAO {
             String postedBy = "Duc Minh";
             java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
             String note = null;
-            Integer clubID = null;
+            String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\DoAn\\database\\mock\\FeaturedImages\\3.jpg");
             int views = i + 1;
-            int likes = views - 1;
-            SuKienModel event = new SuKienModel(title, tags, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views, likes);
+            SuKienModel event = new SuKienModel(title, tags, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
         }
 
@@ -316,293 +337,292 @@ public class SuKienDAO {
             String postedBy = "Duc Minh";
             java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
             String note = null;
-            Integer clubID = null;
+            String clubID = null;
             ImageIcon thumbnail = new ImageIcon("D:\\DoAn\\database\\mock\\FeaturedImages\\3.jpg");
             int views = i + 1;
-            int likes = views - 1;
-            SuKienModel event = new SuKienModel(title, tags, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views, likes);
+            SuKienModel event = new SuKienModel(title, tags, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
             suKienList.add(event);
         }
 
         return suKienList;
     }
 
-    public static Integer getCount(Set<String> tags) throws SQLException {
-        int tagCount = tags.size();
+    /**
+     *
+     * @param N
+     * @return
+     */
+    public static ArrayList<SuKienModel> getNewest(int N) {
 
-        if (tagCount < 1) {
-            return getCount();
+        ArrayList<SuKienModel> suKienList = new ArrayList<>();
+        // mock
+        for (int i = 0; i < N; i++) {
+            String title = String.format("Day la su kien thu %d", i + 1);
+            String type = "Event";
+            HashSet<String> tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
+            int postId = i + 1;
+            String content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum."
+                    + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \"\n"
+                    + "                + \"Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \"\n"
+                    + "                + \"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \"\n"
+                    + "                + \"ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit \"\n"
+                    + "                + \"in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \"\n"
+                    + "                + \"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia \"\n"
+                    + "                + \"deserunt mollit anim id est laborum.";
+            String postedBy = "Duc Minh";
+            java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
+            String note = null;
+            String clubID = null;
+            ImageIcon thumbnail = new ImageIcon("D:\\DoAn\\database\\mock\\FeaturedImages\\3.jpg");
+            int views = 1200;
+            SuKienModel event = new SuKienModel(title, tags, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
+            suKienList.add(event);
         }
 
-        String tagParams = "";
-        for (int i = 0; i < tagCount; i++) {
-            tagParams += "?";
-            if (i < tagCount - 1) {
-                tagParams += ", ";
+        return suKienList;
+    }
+
+    public static ArrayList<SuKienModel> getNewest() {
+        ArrayList<SuKienModel> suKienList = new ArrayList<>();
+
+        // mock
+        for (int i = 0; i < 100; i++) {
+            String title = String.format("Day la su kien thu %d", i + 1);
+            String type = "Event";
+            HashSet<String> tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
+            int postId = i + 1;
+            String content = "Hello World Java Swing GUI. Hello World Coconerd. Hello world, good bye world. Bye bye world. I love Java. I hate Java. I hate IT.";
+            String postedBy = "Duc Minh";
+            java.time.LocalDateTime postedAt = java.time.LocalDateTime.now();
+            String note = null;
+            String clubID = null;
+            ImageIcon thumbnail = new ImageIcon("D:\\LabJava\\FeaturedImages\\3.jpg"); // Mock image
+            int views = 1200;
+            SuKienModel event = new SuKienModel(title, tags, postId, type, content, postedBy, postedAt, note, clubID, thumbnail, views);
+            suKienList.add(event);
+        }
+
+        return suKienList;
+
+    }
+
+    public static int getCount(Set<String> tags) throws SQLException {
+        // Mock
+        int count = 0;
+        ArrayList<SuKienModel> suKienList = genMockData();
+        for (SuKienModel suKienModel : suKienList) {
+            boolean tagsMatched = false;
+
+            if (tags.size() <= 0) {
+                tagsMatched = true;
+            } else {
+                for (String tag : tags) {
+                    if (suKienModel.getTags().contains(tag)) {
+                        tagsMatched = true;
+                        break;
+                    }
+                }
+            }
+
+            if (tagsMatched) {
+                count++;
             }
         }
-        String sql = "SELECT COUNT(DISTINCT BD.MABD) FROM "
-                + "     (SELECT MABD FROM BAIDANG WHERE LOAIBD = 1) BD "
-                + "JOIN "
-                + "     (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagParams + ")) TA ON TA.MABD = BD.MABD";
-        Connection conn = ConnectionManager.getConnection();
-        PreparedStatement pstm = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
-        int i = 1;
-        for (String tag : tags) {
-            pstm.setString(i, tag);
-            i++;
-        }
-
-        ResultSet rs = pstm.executeQuery();
-        if (!rs.next()) {
-            return null;
-        }
-        int count = rs.getInt(1);
-        pstm.close();
-        rs.close();
-        conn.close();
         return count;
     }
 
-    public static Integer getCount() throws SQLException {
-        Connection conn = ConnectionManager.getConnection();
-        String sql = "SELECT COUNT(MABD) FROM BAIDANG WHERE LOAIBD = 1";
-        PreparedStatement pstm = conn.prepareStatement(sql);
-
-        ResultSet rs = pstm.executeQuery();
-        if (!rs.next()) {
-            return null;
-        }
-
-        int count = rs.getInt(1);
-        conn.close();
-        pstm.close();
-        return count;
+    public static int getCount() throws SQLException {
+        return genMockData().size();
     }
 
-    public static ArrayList<SuKienModel> searchSuKien(String searchText, SEARCH_OPTION searchOption, int page, int pageSize) throws SQLException, IOException {
+    public static ArrayList<SuKienModel> searchSuKien(String searchText, SEARCH_OPTION searchOption) throws SQLException {
+        // Mock
         ArrayList<SuKienModel> result = new ArrayList<SuKienModel>();
-        Connection conn = ConnectionManager.getConnection();
-        PreparedStatement pstm = null;
-        String sql = "";
-
         switch (searchOption) {
             case title:
-                sql = "SELECT BD.MABD, BD.TIEUDE, BD.THUMBNAIL, T.HOTEN, BD.THOIDIEMDANG "
-                        + "FROM "
-                        + "    (SELECT MABD, TIEUDE, THUMBNAIL, NGUOIDANG, THOIDIEMDANG FROM BAIDANG WHERE LOAIBD = 1 AND TIEUDE LIKE ?) BD "
-                        + "JOIN "
-                        + "    (SELECT HOTEN, MATK FROM TAIKHOAN) T "
-                        + "ON T.MATK = BD.NGUOIDANG "
-                        + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-                pstm = conn.prepareStatement(sql);
-                pstm.setString(1, "%" + searchText + "%");
-                pstm.setInt(2, (page - 1) * pageSize);
-                pstm.setInt(3, pageSize + 1); // Fetch an extra row to see if there is more page
+                for (SuKienModel suKienModel : genMockData()) {
+                    if (suKienModel.getTitle().contains(searchText)) {
+                        result.add(suKienModel);
+                    }
+                }
                 break;
             case content:
-                sql = "SELECT BD.MABD, BD.TIEUDE, BD.THUMBNAIL, T.HOTEN, BD.THOIDIEMDANG "
-                        + "FROM "
-                        + "    (SELECT MABD, TIEUDE, THUMBNAIL, NGUOIDANG, THOIDIEMDANG FROM BAIDANG WHERE LOAIBD = 1 AND DBMS_LOB.INSTR(NOIDUNG, ?) > 0)  BD "
-                        + "JOIN "
-                        + "    (SELECT HOTEN, MATK FROM TAIKHOAN) T "
-                        + "ON T.MATK = BD.NGUOIDANG "
-                        + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-                pstm = conn.prepareStatement(sql);
-                pstm.setString(1, searchText);
-                pstm.setInt(2, (page - 1) * pageSize);
-                pstm.setInt(3, pageSize + 1); // Fetch an extra row to see if there is more page
+                for (SuKienModel suKienModel : genMockData()) {
+                    if (suKienModel.getContent().contains(searchText)) {
+                        result.add(suKienModel);
+                    }
+                }
                 break;
             case postedBy:
-                sql = "SELECT BD.MABD, BD.TIEUDE, BD.THUMBNAIL, T.HOTEN, BD.THOIDIEMDANG "
-                        + "FROM "
-                        + "    (SELECT MABD, TIEUDE, THUMBNAIL, NGUOIDANG, THOIDIEMDANG FROM BAIDANG WHERE LOAIBD = 1)  BD "
-                        + "JOIN "
-                        + "    (SELECT HOTEN, MATK FROM TAIKHOAN WHERE HOTEN LIKE ? OR USERNAME LIKE ?) T "
-                        + "ON T.MATK = BD.NGUOIDANG "
-                        + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-                ;
-                pstm = conn.prepareStatement(sql);
-                pstm.setString(1, "%" + searchText + "%");
-                pstm.setString(2, "%" + searchText + "%");
-                pstm.setInt(3, (page - 1) * pageSize);
-                pstm.setInt(4, pageSize + 1); // Fetch an extra row to see if there is more page
+                for (SuKienModel suKienModel : genMockData()) {
+                    if (suKienModel.getTitle().contains(searchText)) {
+                        result.add(suKienModel);
+                    }
+                }
                 break;
         }
 
-        ResultSet rs = pstm.executeQuery();
-        while (rs.next()) {
-            int postID = rs.getInt("MABD");
-            String title = rs.getString("TIEUDE");
-//            ImageIcon thumbnail = DataUtils.blobToImageIcon(rs.getBlob("THUMBNAIL"));
-            Blob blob = rs.getBlob("THUMBNAIL");
-            String postedBy = rs.getString("HOTEN");
-            LocalDateTime postedAt = rs.getTimestamp("THOIDIEMDANG").toLocalDateTime();
-
-            SuKienModel newModel = new SuKienModel();
-            try {
-                InputStream is = blob.getBinaryStream(1, blob.length());
-                Image buffImage = ImageIO.read(is);
-                ImageIcon thumbnail = new ImageIcon(buffImage);
-
-                // Cleanup
-                is.close();
-                blob.free();
-                is = null;
-                buffImage = null;
-                blob = null;
-                newModel.setThumbnail(thumbnail);
-            } catch (Exception e) {
-                System.out.println("Encountered exception, skipping");
-            } finally {
-                newModel.setPostID(postID);
-                newModel.setTitle(title);
-                newModel.setTitle(title);
-                newModel.setPostedAt(postedAt);
-                newModel.setPostedBy(postedBy);
-                result.add(newModel);
-            }
-        }
-
-        pstm.close();
-        rs.close();
-        conn.close();
         return result;
     }
 
-//    public static SuKienModel getSuKien() {
-//        
-//    }
-    public static LinkedList<SuKienModel> getPageData(int page, int pageSize, SORT_OPTION sortOption) throws SQLException {
-        String sql = "SELECT BD.MABD, BD.TIEUDE, BD.THUMBNAIL, BD.THOIDIEMDANG, TK.HOTEN "
-                + "FROM "
-                + "     (SELECT MABD, NGUOIDANG, TIEUDE, THUMBNAIL, THOIDIEMDANG FROM BAIDANG WHERE LOAIBD = 1 ORDER BY " + (sortOption == SORT_OPTION.HOTTEST ? "LUOTXEM" : "THOIDIEMDANG") + " DESC) BD "
-                + "JOIN "
-                + "     (SELECT HOTEN, MATK FROM TAIKHOAN) TK ON BD.NGUOIDANG = TK.MATK "
-                + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+    public static LinkedList<SuKienModel> getPageData(int page, int pageSize) throws SQLException {
+        ArrayList<SuKienModel> suKienList = genMockData();
 
-        Connection conn = ConnectionManager.getConnection();
-        PreparedStatement pstm = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        pstm.setInt(1, (page - 1) * pageSize);
-        pstm.setInt(2, pageSize);
+        // Sorting
+        suKienList.sort((SuKienModel s1, SuKienModel s2) -> s2.getPostedAt().compareTo(s1.getPostedAt()));
 
-        LinkedList<SuKienModel> suKienList = new LinkedList<SuKienModel>();
+        // Pagination
+        int startIdx = (page - 1) * pageSize;
+        int endIdx = Math.min(startIdx + pageSize, suKienList.size());
+        System.out.println("Debug: start index = " + startIdx);
+        System.out.println("Debug: end index = " + endIdx);
 
-        ResultSet rs = pstm.executeQuery();
-        while (rs.next()) {
-            SuKienModel newModel = new SuKienModel();
-            int postID = rs.getInt("MABD");
-            String title = rs.getString("TIEUDE");
-            String postedBy = rs.getString("HOTEN");
-            LocalDateTime postedAt = rs.getTimestamp("THOIDIEMDANG").toLocalDateTime();
-            Blob blob = rs.getBlob("THUMBNAIL");
-
-            try {
-                InputStream is = blob.getBinaryStream(1, blob.length());
-                Image buffImage = ImageIO.read(is);
-                ImageIcon thumbnail = new ImageIcon(buffImage);
-
-                // Cleanup
-                is.close();
-                blob.free();
-                is = null;
-                buffImage = null;
-                blob = null;
-                newModel.setThumbnail(thumbnail);
-            } catch (Exception e) {
-                System.err.println("Encountered exception when parsing thumbnail of su kien" + String.valueOf(postID));
-
-            } finally {
-                newModel.setPostID(postID);
-                newModel.setTitle(title);
-                newModel.setPostedAt(postedAt);
-                newModel.setPostedBy(postedBy);
-                suKienList.add(newModel);
-            }
-        }
-
-        pstm.close();
-        rs.close();
-        conn.close();
-        return suKienList;
+        // Sublist for the current page
+        return new LinkedList<>(suKienList.subList(startIdx, endIdx));
     }
 
     public static LinkedList<SuKienModel> getPageData(int page, int pageSize, Set<String> selectedTags, SORT_OPTION sortOption) throws SQLException {
-        int tagCount = selectedTags.size();
+        ArrayList<SuKienModel> suKienList = genMockData();
 
-        System.err.println("DEBUG: selected tags: " + selectedTags.toString());
-        if (tagCount < 1) {
-            return getPageData(page, pageSize, sortOption);
-        }
-        
-
-        String tagParams = "";
-        for (int i = 0; i < tagCount; i++) {
-            tagParams += "?";
-            if (i < tagCount - 1) {
-                tagParams += ", ";
+        // Filter the list based on the selected tags
+        Iterator<SuKienModel> iterator = suKienList.iterator();
+        while (iterator.hasNext()) {
+            SuKienModel suKienModel = iterator.next();
+            boolean tagsMatched = selectedTags.isEmpty(); // If no tags are selected, consider it matched
+            if (!tagsMatched) {
+                for (String tag : selectedTags) {
+                    if (suKienModel.getTags().contains(tag)) {
+                        tagsMatched = true;
+                        break;
+                    }
+                }
             }
-        }
-        String sql = "SELECT BD.MABD, BD.TIEUDE, BD.THUMBNAIL, BD.THOIDIEMDANG, TK.HOTEN "
-                + "FROM "
-                + "  (SELECT B.MABD, B.NGUOIDANG, B.TIEUDE, B.THUMBNAIL, B.THOIDIEMDANG FROM BAIDANG B WHERE "
-                + "    B.LOAIBD = 1 AND "
-                + "    EXISTS (SELECT 1 FROM TAGS_BAIDANG TBD WHERE TBD.MABD = B.MABD AND TBD.TAG IN (" + tagParams + "))"
-                + "    ORDER BY " + (sortOption == SORT_OPTION.HOTTEST ? "B.LUOTXEM" : "B.THOIDIEMDANG") + " DESC) BD "
-                + "JOIN "
-                + "  (SELECT HOTEN, MATK FROM TAIKHOAN) TK ON BD.NGUOIDANG = TK.MATK "
-                + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-
-        Connection conn = ConnectionManager.getConnection();
-        PreparedStatement pstm = conn.prepareStatement(sql);
-
-        int i = 1;
-        for (String tag : selectedTags) {
-            pstm.setNString(i, tag);
-            i++;
-        }
-        pstm.setInt(i, (page - 1) * pageSize);
-        pstm.setInt(i + 1, pageSize);
-
-        LinkedList<SuKienModel> suKienList = new LinkedList<SuKienModel>();
-        
-        ResultSet rs = pstm.executeQuery();
-        while (rs.next()) {
-            SuKienModel newModel = new SuKienModel();
-            int postID = rs.getInt("MABD");
-            String title = rs.getString("TIEUDE");
-            String postedBy = rs.getString("HOTEN");
-            LocalDateTime postedAt = rs.getTimestamp("THOIDIEMDANG").toLocalDateTime();
-            Blob blob = rs.getBlob("THUMBNAIL");
-
-            try {
-                InputStream is = blob.getBinaryStream(1, blob.length());
-                Image buffImage = ImageIO.read(is);
-                ImageIcon thumbnail = new ImageIcon(buffImage);
-
-                // Cleanup
-                is.close();
-                blob.free();
-                is = null;
-                buffImage = null;
-                blob = null;
-                newModel.setThumbnail(thumbnail);
-            } catch (Exception e) {
-                System.err.println("Encountered exception when parsing thumbnail of su kien" + String.valueOf(postID));
-            } finally {
-                newModel.setPostID(postID);
-                newModel.setTitle(title);
-                newModel.setPostedAt(postedAt);
-                newModel.setPostedBy(postedBy);
-                suKienList.add(newModel);
+            if (!tagsMatched) {
+                iterator.remove();
             }
         }
 
-        pstm.close();
-        rs.close();
-        conn.close();
-        return suKienList;
+        // Sorting
+        if (sortOption == SORT_OPTION.NEWEST) {
+            suKienList.sort((SuKienModel s1, SuKienModel s2) -> s2.getPostedAt().compareTo(s1.getPostedAt()));
+        } else {
+            suKienList.sort((SuKienModel s1, SuKienModel s2) -> compareDatetimeThenViews(s1, s2));
+        }
+
+        // Pagination
+        int startIdx = (page - 1) * pageSize;
+        int endIdx = Math.min(startIdx + pageSize, suKienList.size());
+        System.out.println("Debug: start index = " + startIdx);
+        System.out.println("Debug: end index = " + endIdx);
+
+        // Sublist for the current page
+        return new LinkedList<>(suKienList.subList(startIdx, endIdx));
+    }
+
+    public static int compareDatetimeThenViews(SuKienModel s1, SuKienModel s2) {
+        // Compare datetime in descending order
+        int res = s2.getPostedAt().compareTo(s1.getPostedAt());
+
+        if (res != 0) {
+            return res;
+        }
+
+        // Compare views in descending order too
+        return Integer.compare(s2.getViews(), s1.getViews());
+
     }
 
     public static ArrayList<SuKienModel> getSuKienSlideShow(int slides) throws SQLException {
@@ -689,6 +709,87 @@ public class SuKienDAO {
         return loadImagesFromFolder("D:\\DoAn\\database\\mock\\ImagesOfSuKien");
     }
 
+    public static ArrayList<SuKienModel> searchSuKienByTitle(String title) throws SQLException {
+        ArrayList<SuKienModel> suKienList = new ArrayList<>();
+        if (title == null) {
+            return suKienList;
+        }
+
+//        try {
+//            Connection conn = ConnectionManager.getConnection();
+//            
+//            
+//            
+//            conn.close();
+//        } catch (SQLException e) {
+//            throw e;
+//        }
+        /**
+         * Mock data
+         */
+        for (SuKienModel sk : genMockData()) {
+            if (sk.getTitle().contains(title)) {
+                suKienList.add(sk);
+            }
+        }
+
+        return suKienList;
+    }
+
+    public static ArrayList<SuKienModel> searchSuKienByContent(String content) throws SQLException {
+        ArrayList<SuKienModel> suKienList = new ArrayList<>();
+        if (content == null) {
+            return suKienList;
+        }
+
+//        try {
+//            Connection conn = ConnectionManager.getConnection();
+//            
+//            
+//            
+//            conn.close();
+//        } catch (SQLException e) {
+//            throw e;
+//        }
+        /**
+         * Mock data
+         */
+        for (SuKienModel sk : genMockData()) {
+            if (sk.getContent().contains(content)) {
+                suKienList.add(sk);
+            }
+        }
+
+        return suKienList;
+    }
+
+    public static ArrayList<SuKienModel> searchSuKienByOwner(String owner) throws SQLException {
+        ArrayList<SuKienModel> suKienList = new ArrayList<>();
+        if (owner == null) {
+            return suKienList;
+        }
+
+//        try {
+//            Connection conn = ConnectionManager.getConnection();
+//            
+//            
+//            
+//            conn.close();
+//        } catch (SQLException e) {
+//            throw e;
+//        }
+        /**
+         * Mock data
+         */
+        for (SuKienModel sk : genMockData()) {
+            if (sk.getPostedBy().contains(owner)) {
+                suKienList.add(sk);
+            }
+        }
+
+        return suKienList;
+    }
+
     public static HashSet<String> getTagsOfSuKien(int postID) throws SQLException {
         HashSet<String> tags;
 
@@ -760,25 +861,25 @@ public class SuKienDAO {
         NClob nclob = conn.createNClob();
         nclob.setString(1, content);
         pstm.setString(1, title);
-
+        
         pstm.setNClob(2, nclob);
-
+        
         pstm.setInt(3, accountID);
-
+        
         if (thumbnail == null) {
             pstm.setNull(4, java.sql.Types.BLOB);
         } else {
             pstm.setBlob(4, new ByteArrayInputStream(DataUtils.convertImageIconToBytes(thumbnail)));
         }
-
+        
         if (clubID == null) {
             pstm.setNull(5, java.sql.Types.INTEGER);
         } else {
             pstm.setInt(5, clubID);
         }
-
+        
         pstm.setInt(6, 1); // 1 value is for SuKien
-
+        
         pstm.executeUpdate();
         ResultSet genKeys = pstm.getGeneratedKeys();
 
@@ -812,165 +913,31 @@ public class SuKienDAO {
         conn.close();
     }
 
-    public static ArrayList<ProfileLineModel> getLikers(SuKienModel suKienModel) throws SQLException {
+    public static void getSuKien(
+            String title,
+            String content,
+            int accountID,
+            Set<String> tags,
+            List<ImageIcon> images,
+            ImageIcon thumbnail,
+            Integer clubID
+    ) throws IOException, SQLException {
         Connection conn = ConnectionManager.getConnection();
-        String sql = "SELECT HOTEN, ANHDAIDIEN FROM "
-                + "     (SELECT MATK FROM LIKE_BAIDANG WHERE MABD = ?) LBD "
-                + "JOIN "
-                + "     (SELECT HOTEN, ANHDAIDIEN, MATK FROM TAIKHOAN) TK ON LBD.MATK = TK.MATK "
-                + "FETCH FIRST 20 ROWS ONLY";
-        PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setInt(1, suKienModel.getPostID());
-        ResultSet rs = pstm.executeQuery();
 
-        ArrayList<ProfileLineModel> likers = new ArrayList<ProfileLineModel>();
+        String sql = "SELECT * FROM BAIDANG";
+        Statement pstm = conn.createStatement();
+        ResultSet rs = pstm.executeQuery(sql);
 
         while (rs.next()) {
-            ProfileLineModel liker = new ProfileLineModel();
-            String fullname = rs.getString("HOTEN");
-
-            Blob blob = rs.getBlob("ANHDAIDIEN");
-            try {
-                InputStream is = blob.getBinaryStream(1, blob.length());
-                Image buffImage = ImageIO.read(is);
-                ImageIcon thumbnail = new ImageIcon(buffImage);
-
-                // Cleanup
-                is.close();
-                blob.free();
-                is = null;
-                buffImage = null;
-                blob = null;
-
-                liker.setFullname(fullname);
-                liker.setAvatar(thumbnail);
-                likers.add(liker);
-            } catch (Exception e) {
-                System.out.println("Encountered exception, skipping");
-            }
+            int mabd = rs.getInt("MABD");
+            System.out.println("Found bai dang with ma " + mabd);
         }
 
         pstm.close();
-        rs.close();
-        conn.close();
-        return likers;
-    }
-
-    public static void increaseViews(SuKienModel suKienModel) throws SQLException {
-        Connection conn = ConnectionManager.getConnection();
-        String sql = "{CALL PROC_TANG_LUOT_VIEW_BAIDANG(?)}";
-        CallableStatement cstm = conn.prepareCall(sql);
-        cstm.setInt(1, suKienModel.getPostID());
-        cstm.execute();
-
-        suKienModel.setViews(suKienModel.getViews() + 1);
-
-        cstm.close();
         conn.close();
     }
 
-    public static void getMissingDetail(SuKienModel suKienModel) throws IOException, SQLException {
-        String content;
-        Set<String> tags;
-        List<ImageIcon> images;
-        Integer clubID;
-        Integer views;
-        Integer likes;
 
-        Connection conn = ConnectionManager.getConnection();
-        // Get MACLB and NOIDUNG
-        String sql = "SELECT LBD.MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTLIKE, TENCLB\n"
-                + "FROM \n"
-                + "	(SELECT MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTLIKE FROM BAIDANG BD WHERE MABD = ?) BD \n"
-                + "LEFT JOIN\n"
-                + "     (SELECT MACLB, TENCLB FROM CAULACBO) CLB ON BD.MACLBDANGBAI = CLB.MACLB "
-                + "LEFT JOIN\n"
-                + "	(SELECT MABD FROM LIKE_BAIDANG WHERE MATK = ? AND MABD = ?) LBD ON LBD.MABD = BD.MABD";
-        PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setInt(1, suKienModel.getPostID());
-        pstm.setInt(2, getSession().getUser().getAccountID());
-        pstm.setInt(3, suKienModel.getPostID());
-
-        ResultSet rs = pstm.executeQuery();
-        if (rs.next()) {
-            suKienModel.setClubID(rs.getInt("MACLBDANGBAI"));
-            suKienModel.setViews(rs.getInt("LUOTXEM"));
-            suKienModel.setLikes(rs.getInt("LUOTLIKE"));
-            suKienModel.setContent(rs.getString("NOIDUNG"));
-
-            // Check if user has liked the post
-            rs.getInt("MABD");
-            suKienModel.setLiked(!rs.wasNull());
-
-            String clubName = rs.getString("TENCLB");
-            if (!rs.wasNull()) {
-                suKienModel.setClubName(clubName);
-            }
-        }
-
-        // Get tags
-        pstm.close();
-        rs.close();
-        sql = "SELECT TAG FROM TAGS_BAIDANG WHERE MABD = ?";
-        pstm = conn.prepareStatement(sql);
-        pstm.setInt(1, suKienModel.getPostID());
-        rs = pstm.executeQuery();
-        tags = new HashSet<String>();
-        while (rs.next()) {
-            tags.add(rs.getString("TAG"));
-        }
-        if (!tags.isEmpty()) {
-            suKienModel.setTags(tags);
-        }
-
-        // Get images
-        pstm.close();
-        rs.close();
-        sql = "SELECT ANH FROM HINHANH WHERE MABD = ?";
-        pstm = conn.prepareStatement(sql);
-        pstm.setInt(1, suKienModel.getPostID());
-        rs = pstm.executeQuery();
-        images = new ArrayList<ImageIcon>();
-        while (rs.next()) {
-            try {
-                Blob blob = rs.getBlob("ANH");
-                InputStream is = blob.getBinaryStream(1, blob.length());
-                Image buffImage = ImageIO.read(is);
-                ImageIcon image = new ImageIcon(buffImage);
-
-                // Cleanup
-                is.close();
-                blob.free();
-                is = null;
-                buffImage = null;
-                blob = null;
-
-                images.add(image);
-            } catch (Exception e) {
-                System.err.println("Encountered exception when parsing ANH of su kien" + String.valueOf(suKienModel.getPostID()));
-            }
-        }
-        if (!images.isEmpty()) {
-            suKienModel.setImages(images.toArray(ImageIcon[]::new));
-        }
-
-        pstm.close();
-        rs.close();
-        conn.close();
-    }
-
-    public static void likePost(SuKienModel suKienModel) throws SQLException {
-        Connection conn = ConnectionManager.getConnection();
-        String sql = "{CALL PROC_LIKE_BAIDANG(?, ?, ?)}";
-        CallableStatement cstm = conn.prepareCall(sql);
-        cstm.setInt(1, suKienModel.getPostID());
-        cstm.setInt(2, getSession().getUser().getAccountID());
-        cstm.registerOutParameter(3, java.sql.Types.INTEGER);
-        cstm.execute();
-
-        int likes = cstm.getInt(3);
-        suKienModel.setLikes(likes);
-    }
 
     /**
      * Function meant for test-only purpose
@@ -978,9 +945,8 @@ public class SuKienDAO {
     public static void main(String[] args) {
         ImageIcon thumbnail = loadImagesFromFolder().get(0);
         try {
-//            createSuKien("Nóng hổi vừa thổi vừa chill!!!", "Content bẩn nhưng lại nhiều view thì làm sao heheheheh", 2, getRandomTags(getAllTags()), loadImagesFromFolder(), thumbnail, null);
+            createSuKien("Nóng hổi vừa thổi vừa chill!!!", "Content bẩn nhưng lại nhiều view thì làm sao heheheheh", 2, getRandomTags(getAllTags()), loadImagesFromFolder(), thumbnail, null);
 //            getSuKien();
-//            System.out.println
         } catch (Exception e) {
             e.printStackTrace();
         }

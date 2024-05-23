@@ -4,6 +4,12 @@
  */
 package com.uiteco.contentPanels;
 
+import com.uiteco.main.App;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Font;
+
 /**
  *
  * @author nddmi
@@ -16,7 +22,6 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
     public TaiKhoanPanel() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -25,32 +30,399 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        scrollPane = new com.raven.scroll.ScrollPaneWin11();
-        containerPanel = new com.uiteco.components.RoundedGradientPanel();
-        personalInformation1 = new com.uiteco.ofTaiKhoanPanel.PersonalInformation();
-        adminSection1 = new com.uiteco.ofTaiKhoanPanel.AdminSection();
+        leftP = new com.uiteco.components.RoundedGradientPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        tagP = new com.uiteco.components.RoundedPanel();
+        jLabel4 = new javax.swing.JLabel();
+        tagP1 = new com.uiteco.components.RoundedPanel();
+        jLabel5 = new javax.swing.JLabel();
+        tagP2 = new com.uiteco.components.RoundedPanel();
+        jLabel6 = new javax.swing.JLabel();
+        tagP3 = new com.uiteco.components.RoundedPanel();
+        jLabel7 = new javax.swing.JLabel();
+        tagP4 = new com.uiteco.components.RoundedPanel();
+        jLabel8 = new javax.swing.JLabel();
+        tagP5 = new com.uiteco.components.RoundedPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        imageAvatar1 = new com.uiteco.components.ImageAvatar();
+        rightP = new com.uiteco.components.RoundedGradientPanel();
+        scrollPaneWin111 = new com.raven.scroll.ScrollPaneWin11();
+        viewport = new com.uiteco.components.RoundedPanel();
+        generalInformationPanel1 = new com.uiteco.ofTaiKhoanPanel.GeneralInformationPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        subPanel = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
-        setLayout(new java.awt.GridLayout());
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 51)));
+        setLayout(new java.awt.GridBagLayout());
 
-        scrollPane.setBorder(null);
+        leftP.setPreferredSize(new java.awt.Dimension(300, 655));
+        leftP.setRoundBottomLeft(5);
+        leftP.setRoundBottomRight(5);
+        leftP.setRoundTopLeft(5);
+        leftP.setRoundTopRight(5);
 
-        containerPanel.setColor1(new java.awt.Color(255, 255, 255));
-        containerPanel.setColor2(new java.awt.Color(255, 255, 255));
-        containerPanel.setLayout(new javax.swing.BoxLayout(containerPanel, javax.swing.BoxLayout.Y_AXIS));
-        containerPanel.add(personalInformation1);
-        containerPanel.add(adminSection1);
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText(App.getSession().getUser().getFullname());
 
-        scrollPane.setViewportView(containerPanel);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText(App.getSession().getUser().getIntro());
 
-        add(scrollPane);
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel2.setText("Các chủ đề quan tâm");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel3.setText("Giới thiệu");
+
+        jPanel2.setOpaque(false);
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEADING, 10, 5);
+        flowLayout1.setAlignOnBaseline(true);
+        jPanel2.setLayout(flowLayout1);
+
+        tagP.setPreferredSize(new java.awt.Dimension(100, 28));
+        tagP.setRoundBottomLeft(33);
+        tagP.setRoundBottomRight(33);
+        tagP.setRoundTopLeft(33);
+        tagP.setRoundTopRight(33);
+        tagP.setLayout(new java.awt.GridLayout());
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("AI/ML");
+        tagP.add(jLabel4);
+
+        jPanel2.add(tagP);
+
+        tagP1.setPreferredSize(new java.awt.Dimension(110, 28));
+        tagP1.setRoundBottomLeft(33);
+        tagP1.setRoundBottomRight(33);
+        tagP1.setRoundTopLeft(33);
+        tagP1.setRoundTopRight(33);
+        tagP1.setLayout(new java.awt.GridLayout());
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Máy tính lượng tử");
+        tagP1.add(jLabel5);
+
+        jPanel2.add(tagP1);
+
+        tagP2.setPreferredSize(new java.awt.Dimension(100, 28));
+        tagP2.setRoundBottomLeft(33);
+        tagP2.setRoundBottomRight(33);
+        tagP2.setRoundTopLeft(33);
+        tagP2.setRoundTopRight(33);
+        tagP2.setLayout(new java.awt.GridLayout());
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Âm nhạc");
+        tagP2.add(jLabel6);
+
+        jPanel2.add(tagP2);
+
+        tagP3.setPreferredSize(new java.awt.Dimension(100, 28));
+        tagP3.setRoundBottomLeft(33);
+        tagP3.setRoundBottomRight(33);
+        tagP3.setRoundTopLeft(33);
+        tagP3.setRoundTopRight(33);
+        tagP3.setLayout(new java.awt.GridLayout());
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Blockchain");
+        tagP3.add(jLabel7);
+
+        jPanel2.add(tagP3);
+
+        tagP4.setPreferredSize(new java.awt.Dimension(110, 28));
+        tagP4.setRoundBottomLeft(33);
+        tagP4.setRoundBottomRight(33);
+        tagP4.setRoundTopLeft(33);
+        tagP4.setRoundTopRight(33);
+        tagP4.setLayout(new java.awt.GridLayout());
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Thiết kế UI/UX");
+        tagP4.add(jLabel8);
+
+        jPanel2.add(tagP4);
+
+        tagP5.setPreferredSize(new java.awt.Dimension(100, 28));
+        tagP5.setRoundBottomLeft(33);
+        tagP5.setRoundBottomRight(33);
+        tagP5.setRoundTopLeft(33);
+        tagP5.setRoundTopRight(33);
+        tagP5.setLayout(new java.awt.GridLayout());
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Nhiếp ảnh");
+        tagP5.add(jLabel9);
+
+        jPanel2.add(tagP5);
+
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        imageAvatar1.setIcon(App.getSession().getUser().getAvatar());
+        imageAvatar1.setPreferredSize(new java.awt.Dimension(90, 90));
+        jPanel1.add(imageAvatar1, new java.awt.GridBagConstraints());
+
+        javax.swing.GroupLayout leftPLayout = new javax.swing.GroupLayout(leftP);
+        leftP.setLayout(leftPLayout);
+        leftPLayout.setHorizontalGroup(
+            leftPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftPLayout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(leftPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(leftPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(leftPLayout.createSequentialGroup()
+                        .addGroup(leftPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(leftPLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jTextArea1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
+        );
+        leftPLayout.setVerticalGroup(
+            leftPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        add(leftP, gridBagConstraints);
+
+        rightP.setBorder(null);
+        rightP.setRoundBottomLeft(5);
+        rightP.setRoundBottomRight(5);
+        rightP.setRoundTopLeft(5);
+        rightP.setRoundTopRight(5);
+        rightP.setLayout(new java.awt.GridLayout());
+
+        javax.swing.GroupLayout generalInformationPanel1Layout = new javax.swing.GroupLayout(generalInformationPanel1);
+        generalInformationPanel1.setLayout(generalInformationPanel1Layout);
+        generalInformationPanel1Layout.setHorizontalGroup(
+            generalInformationPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 528, Short.MAX_VALUE)
+        );
+        generalInformationPanel1Layout.setVerticalGroup(
+            generalInformationPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 264, Short.MAX_VALUE)
+        );
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel10.setText("THÀNH TÍCH");
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel10MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel10MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout subPanelLayout = new javax.swing.GroupLayout(subPanel);
+        subPanel.setLayout(subPanelLayout);
+        subPanelLayout.setHorizontalGroup(
+            subPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        subPanelLayout.setVerticalGroup(
+            subPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 484, Short.MAX_VALUE)
+        );
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel13.setText("HOẠT ĐỘNG");
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel13MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel13MouseExited(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel14.setText("CÂU LẠC BỘ");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(subPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(subPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout viewportLayout = new javax.swing.GroupLayout(viewport);
+        viewport.setLayout(viewportLayout);
+        viewportLayout.setHorizontalGroup(
+            viewportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewportLayout.createSequentialGroup()
+                .addComponent(generalInformationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 273, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        viewportLayout.setVerticalGroup(
+            viewportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewportLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(generalInformationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        scrollPaneWin111.setViewportView(viewport);
+
+        rightP.add(scrollPaneWin111);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.6;
+        gridBagConstraints.weighty = 1.0;
+        add(rightP, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void _hili(Component comp) {
+        if (comp != currTab) {
+            comp.setForeground(new Color(5, 5, 5));
+            comp.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        }
+    }
+
+    private void _unhili(Component comp) {
+        if (comp != currTab) {
+            comp.setForeground(new Color(153, 153, 153));
+            comp.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        }
+    }
+
+    private void _clicked(Component comp) {
+        if (comp != currTab) {
+            currTab.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+            comp.setFont(new Font("Segoe UI Black", Font.BOLD, 16));
+            currTab = comp;
+        }
+    }
+
+    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
+        // TODO add your handling code here:
+        _hili(jLabel10);
+    }//GEN-LAST:event_jLabel10MouseEntered
+
+    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
+        // TODO add your handling code here:
+        _unhili(jLabel10);
+    }//GEN-LAST:event_jLabel10MouseExited
+
+    private void jLabel13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseEntered
+        // TODO add your handling code here:
+        _hili(jLabel13);
+    }//GEN-LAST:event_jLabel13MouseEntered
+
+    private void jLabel13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseExited
+        // TODO add your handling code here:
+        _unhili(jLabel13);
+    }//GEN-LAST:event_jLabel13MouseExited
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        // TODO add your handling code here:
+        _clicked(jLabel13);
+    }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        _clicked(jLabel10);
+    }//GEN-LAST:event_jLabel10MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.ofTaiKhoanPanel.AdminSection adminSection1;
-    private com.uiteco.components.RoundedGradientPanel containerPanel;
-    private com.uiteco.ofTaiKhoanPanel.PersonalInformation personalInformation1;
-    private com.raven.scroll.ScrollPaneWin11 scrollPane;
+    private com.uiteco.ofTaiKhoanPanel.GeneralInformationPanel generalInformationPanel1;
+    private com.uiteco.components.ImageAvatar imageAvatar1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextArea jTextArea1;
+    private com.uiteco.components.RoundedGradientPanel leftP;
+    private com.uiteco.components.RoundedGradientPanel rightP;
+    private com.raven.scroll.ScrollPaneWin11 scrollPaneWin111;
+    private javax.swing.JPanel subPanel;
+    private com.uiteco.components.RoundedPanel tagP;
+    private com.uiteco.components.RoundedPanel tagP1;
+    private com.uiteco.components.RoundedPanel tagP2;
+    private com.uiteco.components.RoundedPanel tagP3;
+    private com.uiteco.components.RoundedPanel tagP4;
+    private com.uiteco.components.RoundedPanel tagP5;
+    private com.uiteco.components.RoundedPanel viewport;
     // End of variables declaration//GEN-END:variables
+    private Component currTab = jLabel10;
 }

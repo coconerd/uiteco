@@ -52,11 +52,11 @@ public class IntroductionUI extends javax.swing.JPanel {
         String newUsername = usernamePane.getText();
         Icon newAvatar = imageAvatar1.getIcon();
 
-        boolean nameChanged = !(newName.equals(App.getSession().getFullname()));
-        boolean emailChanged = !(newEmail.equals(App.getSession().getEmail()));
-        boolean phoneChanged = !(newPhone.equals(App.getSession().getPhone()));
-        boolean usernameChanged = !(newUsername.equals(App.getSession().getUsername()));
-        boolean avatarChanged = !(((ImageIcon) newAvatar).equals(App.getSession().getAvatar()));
+        boolean nameChanged = !(newName.equals(App.getSession().getUser().getFullname()));
+        boolean emailChanged = !(newEmail.equals(App.getSession().getUser().getEmail()));
+        boolean phoneChanged = !(newPhone.equals(App.getSession().getUser().getPhone()));
+        boolean usernameChanged = !(newUsername.equals(App.getSession().getUser().getUsername()));
+        boolean avatarChanged = !(((ImageIcon) newAvatar).equals(App.getSession().getUser().getAvatar()));
 
         if (!(nameChanged || emailChanged || phoneChanged || usernameChanged || avatarChanged)) {
             JOptionPane.showMessageDialog(this, "Chưa có thông tin nào được thay đổi");
@@ -254,15 +254,15 @@ public class IntroductionUI extends javax.swing.JPanel {
         jLabel5.setText("Số điện thoại");
 
         phonePane.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        phonePane.setText(App.getSession().getPhone());
+        phonePane.setText(App.getSession().getUser().getPhone());
         jScrollPane1.setViewportView(phonePane);
 
         namePane.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        namePane.setText(App.getSession().getFullname());
+        namePane.setText(App.getSession().getUser().getFullname());
         jScrollPane3.setViewportView(namePane);
 
         usernamePane.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        usernamePane.setText(App.getSession().getUsername());
+        usernamePane.setText(App.getSession().getUser().getUsername());
         usernamePane.setToolTipText("");
         jScrollPane4.setViewportView(usernamePane);
 
@@ -292,11 +292,11 @@ public class IntroductionUI extends javax.swing.JPanel {
         mssvPane.setBackground(new java.awt.Color(204, 204, 204));
         mssvPane.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         mssvPane.setForeground(new java.awt.Color(102, 102, 102));
-        mssvPane.setText(App.getSession().getMssv());
+        mssvPane.setText(App.getSession().getUser().getMssv());
         jScrollPane5.setViewportView(mssvPane);
 
         emailPane.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        emailPane.setText(App.getSession().getEmail());
+        emailPane.setText(App.getSession().getUser().getEmail());
         emailPane.setToolTipText("");
         jScrollPane6.setViewportView(emailPane);
 
@@ -304,7 +304,7 @@ public class IntroductionUI extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(174, 176, 179));
         jLabel9.setText("Username");
 
-        ImageIcon avatar = App.getSession().getAvatar();
+        ImageIcon avatar = App.getSession().getUser().getAvatar();
         if (avatar == null) {
             imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/placeholder-avatar.png"))); // NOI18N
         } else {

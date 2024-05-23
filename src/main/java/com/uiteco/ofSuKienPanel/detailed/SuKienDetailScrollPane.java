@@ -7,10 +7,14 @@ package com.uiteco.ofSuKienPanel.detailed;
 import com.raven.scroll.ScrollPaneWin11;
 import com.uiteco.main.App;
 import com.uiteco.main.MainFrame;
+import com.uiteco.ofSuKienPanel.SuKienDAO;
 import com.uiteco.ofSuKienPanel.SuKienModel;
 import com.uiteco.rightPanels.SuKienRightPanel;
 import com.uiteco.swing.ContentPanel;
 import java.awt.Component;
+import static com.uiteco.ofSuKienPanel.SuKienDAO.getMissingDetail;
+import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  *
@@ -35,10 +39,16 @@ public class SuKienDetailScrollPane extends ScrollPaneWin11 {
         return this.suKienDetail;
     }
 
-    public void load(SuKienModel suKienModel) throws NullSuKienModelException {
+    public void load(SuKienModel suKienModel) throws NullSuKienModelException, IOException, SQLException {
         if (suKienModel == null) {
             throw new NullSuKienModelException();
         }
+        
+        if (suKienModel.getImages() == null) {
+            getMissingDetail(suKienModel);
+        }
+        
+        SuKienDAO.increaseViews(suKienModel);
 
         suKienDetail = new SuKienDetail(suKienModel);
         
@@ -80,7 +90,7 @@ public class SuKienDetailScrollPane extends ScrollPaneWin11 {
      * @param suKienModel
      * @throws NullSuKienModelException
      */
-    public void loadAndDisplay(SuKienModel suKienModel) throws NullSuKienModelException {
+    public void loadAndDisplay(SuKienModel suKienModel) throws NullSuKienModelException, IOException, SQLException {
         load(suKienModel);
         display();
     }

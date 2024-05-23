@@ -230,7 +230,7 @@ public class CreatePostUI extends javax.swing.JPanel {
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
                 .addGap(199, 199, 199)
-                .addComponent(roundedPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 673, Short.MAX_VALUE)
+                .addComponent(roundedPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -326,12 +326,12 @@ public class CreatePostUI extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-email-24.png"))); // NOI18N
-        jLabel1.setText(App.getSession().getEmail());
+        jLabel1.setText(App.getSession().getUser().getEmail());
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Historic", 1, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-username-24.png"))); // NOI18N
-        jLabel6.setText(App.getSession().getUsername());
+        jLabel6.setText(App.getSession().getUser().getUsername());
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 153, 255));
@@ -647,7 +647,7 @@ public class CreatePostUI extends javax.swing.JPanel {
                 return;
             }
 
-            int accountID = App.getSession().getAccountID();
+            int accountID = App.getSession().getUser().getAccountID();
             Set<String> tags = tagSelector.getSelectedTags();
             ImageIcon thumbnail = imageSelector.getThumbnail();
 
@@ -697,7 +697,7 @@ public class CreatePostUI extends javax.swing.JPanel {
         model.setTags(tagSelector.getSelectedTags());
         model.setContent(content.getText());
         model.setImages((ImageIcon[]) imageSelector.getSelectedImages().toArray(new ImageIcon[0]));
-        model.setPostedBy(App.getSession().getUsername());
+        model.setPostedBy(App.getSession().getUser().getUsername());
         model.setPostedAt(LocalDateTime.now());
         model.setThumbnail(imageSelector.getThumbnail());
         model.setViews(1);
@@ -705,7 +705,7 @@ public class CreatePostUI extends javax.swing.JPanel {
         SuKienDetailScrollPane preview = new SuKienDetailScrollPane();
         try {
             preview.load(model);
-        } catch (NullSuKienModelException e) {
+        } catch (NullSuKienModelException | IOException | SQLException e) {
             e.printStackTrace();
         }
         _createDialog("Xem trước bài viết", preview);

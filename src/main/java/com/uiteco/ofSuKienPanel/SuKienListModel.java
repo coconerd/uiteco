@@ -4,6 +4,7 @@
  */
 package com.uiteco.ofSuKienPanel;
 
+import com.uiteco.ofSuKienPanel.tagsAndSort.SuKienListModelWithTagSort;
 import java.util.ArrayList;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -19,7 +20,7 @@ import java.util.LinkedList;
  */
 public class SuKienListModel extends PaginationModel implements PropertyChangeListener {
 
-    public static final int DEFAULT_ENTRIES_PER_PAGE = 30;
+    public static final int DEFAULT_ENTRIES_PER_PAGE = 15;
     private List<SuKienModel> suKienList;
 
     public SuKienListModel() {
@@ -53,7 +54,8 @@ public class SuKienListModel extends PaginationModel implements PropertyChangeLi
             try {
                 setSuKienList(SuKienDAO.getPageData(
                         getCurrentPage(),
-                        getEntriesPerPage()
+                        getEntriesPerPage(),
+                        SuKienListModelWithTagSort.SORT_OPTION.NEWEST
                 ));
                 fireSuKienList();
             } catch (SQLException e) {
@@ -67,12 +69,12 @@ public class SuKienListModel extends PaginationModel implements PropertyChangeLi
         int count = 0;
         try {
             count = SuKienDAO.getCount();
-            
+
             return count;
         } catch (SQLException e) {
             e.printStackTrace();
         };
-        
+
         return count;
     }
 
@@ -86,8 +88,12 @@ public class SuKienListModel extends PaginationModel implements PropertyChangeLi
             fireSuKienList();
         } else {
             try {
-                setSuKienList(SuKienDAO.getPageData(getCurrentPage(), getEntriesPerPage()));
-                
+                setSuKienList(SuKienDAO.getPageData(
+                        getCurrentPage(),
+                        getEntriesPerPage(),
+                        SuKienListModelWithTagSort.SORT_OPTION.NEWEST
+                ));
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }

@@ -27,6 +27,8 @@ import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  *
@@ -145,7 +147,7 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
                         SuKienDetailScrollPane sds = (SuKienDetailScrollPane) (appContentPanel.getComponent(SuKienDetailScrollPane.INSTANCE_NAME));
                         try {
                             sds.loadAndDisplay(suKienModel);
-                        } catch (NullSuKienModelException e) {
+                        } catch (NullSuKienModelException | IOException | SQLException e) {
                             e.printStackTrace();
                         }
                     }

@@ -167,9 +167,11 @@ public class SearchBar extends RoundedPanel {
         }
         
         com.uiteco.swing.ContentPanel contentPanel = App.getMainFrame().getContentPanel();
+        com.uiteco.swing.ContentPanel rightPanel = App.getMainFrame().getRightPanel();
         SuKienSearchTabPane ss = (SuKienSearchTabPane) contentPanel.getComponent(SuKienSearchTabPane.INSTANCE_NAME);
         ss.loadSuKienSearchTabPane(text.getText());
         contentPanel.showComponentAndTrimHistory(SuKienSearchTabPane.INSTANCE_NAME);
+        rightPanel.showComponentAndTrimHistory("suKienRightPanel");
     }//GEN-LAST:event_searchIconMouseClicked
 
 

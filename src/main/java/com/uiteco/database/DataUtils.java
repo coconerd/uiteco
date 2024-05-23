@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -37,6 +40,13 @@ public class DataUtils {
     public static ImageIcon convertBytesToImageIcon(byte[] bytes) throws IOException {
         ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
         Image image = ImageIO.read(bais);
+        return new ImageIcon(image);
+    }
+
+    public static ImageIcon blobToImageIcon(Blob Blob) throws SQLException, IOException {
+        InputStream is = Blob.getBinaryStream(1, Blob.length());
+        Image image = ImageIO.read(is);
+        is.close();
         return new ImageIcon(image);
     }
 }

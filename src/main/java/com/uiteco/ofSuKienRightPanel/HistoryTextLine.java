@@ -21,6 +21,8 @@ import com.uiteco.ofSuKienPanel.detailed.SuKienDetail;
 import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
 import com.uiteco.swing.ContentPanel;
 import java.awt.Component;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
@@ -141,7 +143,7 @@ public class HistoryTextLine extends RoundedPanel {
             SuKienDetailScrollPane sds = (SuKienDetailScrollPane) appContentPanel.getComponent(SuKienDetailScrollPane.INSTANCE_NAME);
             try {
                 sds.loadAndDisplay(suKienModel);
-            } catch (NullSuKienModelException e) {
+            } catch (NullSuKienModelException | IOException | SQLException e) {
                 e.printStackTrace();
             }
         }

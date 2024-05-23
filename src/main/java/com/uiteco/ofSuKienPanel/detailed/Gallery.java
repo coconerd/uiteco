@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.util.Arrays;
 
 /**
  *
@@ -69,11 +70,33 @@ public class Gallery extends ScrollPaneWin11 {
         setViewportView(imgContainer);
         getViewport().setBackground(new Color(240, 242, 245));
 
-        try {
-            this.images = SuKienDAO.getSuKienImages(suKienModel.getPostID());
+        if (suKienModel.getImages() == null || suKienModel.getImages().length == 0) {
+            System.out.println("Images is null, fetching from db!");
+            try {
+                this.images = SuKienDAO.getSuKienImages(suKienModel.getPostID());
+                imgContainer.removeAll();
+
+                for (ImageIcon img : images) {
+                    RoundedImagePanel imgPanel = new RoundedImagePanel(img);
+                    imgPanel.setRoundTopLeft(10);
+                    imgPanel.setRoundBottomLeft(10);
+                    imgPanel.setRoundTopRight(10);
+                    imgPanel.setRoundBottomRight(10);
+                    imgContainer.add(imgPanel);
+                    imgContainer.add(Box.createVerticalStrut(30));
+                }
+                _addDotLabel();
+                imgContainer.revalidate();
+
+            } catch (Exception e) {
+                // SQLException | IOException
+                e.printStackTrace();
+            }
+        } else {
             imgContainer.removeAll();
 
-            for (ImageIcon img : images) {
+            for (int i = 0; i < suKienModel.getImages().length; i++) {
+                ImageIcon img = suKienModel.getImages()[i];
                 RoundedImagePanel imgPanel = new RoundedImagePanel(img);
                 imgPanel.setRoundTopLeft(10);
                 imgPanel.setRoundBottomLeft(10);
@@ -84,10 +107,6 @@ public class Gallery extends ScrollPaneWin11 {
             }
             _addDotLabel();
             imgContainer.revalidate();
-
-        } catch (Exception e) {
-            // SQLException | IOException
-            e.printStackTrace();
         }
 
     }

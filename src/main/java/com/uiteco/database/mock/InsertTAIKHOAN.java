@@ -19,34 +19,34 @@ import java.util.Random;
  * @author nddmi
  */
 public class InsertTAIKHOAN {
-    
+
     public static List<Integer> getAllAccountIDs() throws SQLException {
         List<Integer> accountIDS = new ArrayList<Integer>();
-        
+
         Connection conn = ConnectionManager.getConnection();
         String sql = "SELECT MATK FROM TAIKHOAN";
         PreparedStatement pstm = conn.prepareStatement(sql);
-        
+
         ResultSet rs = pstm.executeQuery();
-        
+
         while (rs.next()) {
             int id = rs.getInt("MATK");
             accountIDS.add(id);
         }
-        
+
         return accountIDS;
     }
-    
+
     public static Integer getRandomAccountID(List<Integer> accountsIDs) {
         if (accountsIDs == null || accountsIDs.isEmpty()) {
             return null;
         }
-        
+
         Random random = new Random();
         int randIndex = random.nextInt(accountsIDs.size());
         return accountsIDs.get(randIndex);
     }
-    
+
     public static void insertTaiKhoan() throws Exception {
         register("22520172@gm.uit.edu.vn", "congphan", "11111111", 2, "Phan Thành Công", "0999999999");
         register("22520124@gm.uit.edu.vn", "vubao", "11111111", 2, "Trần Vũ Bão", "0999999999");
@@ -60,7 +60,7 @@ public class InsertTAIKHOAN {
         register("22520006@gm.uit.edu.vn", "chily", "11111111", 2, "Nguyễn Văn A", "0999999999");
         register("22520007@gm.uit.edu.vn", "blueberry", "11111111", 2, "Nguyễn Văn A", "0999999999");
         register("22520008@gm.uit.edu.vn", "table", "11111111", 2, "Nguyễn Văn A", "0999999999");
-        register("22520009@gm.uit.edu.vn", "house", "11111111", 2,"Nguyễn Văn A", "0999999999");
+        register("22520009@gm.uit.edu.vn", "house", "11111111", 2, "Nguyễn Văn A", "0999999999");
         register("22520010@gm.uit.edu.vn", "grape", "11111111", 2, "Nguy ễn Văn A", "0999999999");
         register("22520011@gm.uit.edu.vn", "rambutan", "11111111", 2, "Nguyễn Văn A", "0999999999");
         register("22520012@gm.uit.edu.vn", "longan", "11111111", 2, "Nguyễn Văn A", "0999999999");
@@ -92,5 +92,6 @@ public class InsertTAIKHOAN {
         register("22520038@gm.uit.edu.vn", "glass", "11111111", 2, "Nguyễn Văn A", "0999999999");
         register("22520039@gm.uit.edu.vn", "coffee", "11111111", 2, "Nguyễn Văn A", "0999999999");
         register("22520040@gm.uit.edu.vn", "phone", "11111111", 2, "Nguyễn Văn A", "0999999999");
+        register("ctsv@gm.uit.edu.vn", "ctsvuit", "11111111", 1, "Văn phòng Công tác Sinh viên UIT", "0999999999");
     }
 }

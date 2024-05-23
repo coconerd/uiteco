@@ -28,6 +28,10 @@ public class SuKienModel {
     private ImageIcon[] images;
     private int views;
     private int likes;
+    
+    private boolean liked;
+    private String clubName;
+    private LocalDateTime lastLoaded;
 
     public SuKienModel() {
     }
@@ -58,6 +62,8 @@ public class SuKienModel {
         this.thumbnail = thumbnail;
         this.views = views;
         this.likes = likes;
+        
+        this.liked = false;
     }
 
     public void setTitle(String title) {
@@ -87,6 +93,10 @@ public class SuKienModel {
     public void setPostedAt(LocalDateTime postedAt) {
         this.postedAt = postedAt;
     }
+    
+    public void setClubName(String clubName) {
+        this.clubName = clubName;
+    }
 
     public void setNote(String note) {
         this.note = note;
@@ -103,6 +113,10 @@ public class SuKienModel {
     public void setImages(ImageIcon[] images) {
         this.images = images;
     }
+    
+    public void setLastLoaded(LocalDateTime lastLoaded) {
+        this.lastLoaded = lastLoaded;
+    }
 
     public void setImage(int index, ImageIcon image) {
         this.images[index] = image;
@@ -114,6 +128,10 @@ public class SuKienModel {
     
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+    
+    public void setLiked(boolean liked) {
+        this.liked= liked;
     }
 
     public String getTitle() {
@@ -174,5 +192,17 @@ public class SuKienModel {
     
     public int getLikes() {
         return this.likes;
+    }
+    
+    public String getClubName() {
+        return this.clubName;
+    }
+    
+    public boolean isLiked() {
+        return this.liked;
+    }
+    
+    public LocalDateTime getLastLoaded() {
+        return this.lastLoaded;
     }
 }

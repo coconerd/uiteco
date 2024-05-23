@@ -48,7 +48,6 @@ public class SuKienView extends RoundedGradientPanel {
         postedBy = new javax.swing.JLabel();
         postedAt = new javax.swing.JLabel();
         roundedImagePanel1 = new com.uiteco.components.RoundedImagePanel();
-        content = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -85,12 +84,6 @@ public class SuKienView extends RoundedGradientPanel {
         roundedImagePanel1.setRoundTopLeft(60);
         roundedImagePanel1.setRoundTopRight(60);
 
-        content.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        content.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        int maxChar = 100;
-        content.setText(suKienModel.getContent().substring(0, maxChar + 1) + "...");
-        content.setPreferredSize(new java.awt.Dimension(100, 30));
-
         title.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         title.setForeground(new java.awt.Color(51, 51, 51));
         title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -102,9 +95,6 @@ public class SuKienView extends RoundedGradientPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(roundedImagePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,16 +122,14 @@ public class SuKienView extends RoundedGradientPanel {
                         .addComponent(postedAt)))
                 .addGap(31, 31, 31)
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(roundedImagePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(roundedImagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel content;
     private com.uiteco.components.ImageAvatar imageAvatar1;
     private javax.swing.JLabel postedAt;
     private javax.swing.JLabel postedBy;

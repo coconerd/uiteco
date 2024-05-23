@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
-import com.uiteco.auth.Session.ACCOUNT_TYPE;
+import com.uiteco.ofTaiKhoanPanel.TaiKhoanModel.ACCOUNT_TYPE;
 import com.uiteco.main.App;
 import com.uiteco.ofTaiKhoanPanel.clubManagement.ClubManagementUI;
 import com.uiteco.ofTaiKhoanPanel.introduction.IntroductionUI;
@@ -56,9 +56,9 @@ public class Menu extends JComponent {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                if (App.getSession().getAccountType() == ACCOUNT_TYPE.admin) {
+                if (App.getSession().getUser().getAccountType() == ACCOUNT_TYPE.admin) {
                     menuNames = new String[][]{
-                        {"Thông tin cá nhân", "Giới thiệu", "Bảo mật"},
+                        {"Thông tin cá nhân", "Chỉnh sửa", "Bảo mật"},
                         {"Admin", "Đăng bài"},
                         {"Quản lý câu lạc bộ"}
                     };
@@ -76,7 +76,7 @@ public class Menu extends JComponent {
 
                 } else {
                     menuNames = new String[][]{
-                        {"Thông tin cá nhân", "Giới thiệu", "Bảo mật"},
+                        {"Thông tin cá nhân", "Chỉnh sửa", "Bảo mật"},
                         {"Quản lý câu lạc bộ"}
                     };
 

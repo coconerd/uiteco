@@ -23,6 +23,8 @@ import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
 import java.awt.Cursor;
 import javax.swing.BoxLayout;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  *
@@ -74,8 +76,9 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals("suKienList")) {
             loadSuKienListView();
-            
+            System.out.println("Im here");
             Component parent = getParent();
+ 
             while (parent != null) {
                 if (parent instanceof ScrollPaneWin11) {
                     ((ScrollPaneWin11) parent).scrollToTop(); // Scroll to the top of the page            
@@ -124,7 +127,7 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
         }
     }
 
-    private void _populateSuKienList() {
+    protected void _populateSuKienList() {
         for (SuKienModel model : suKienListModel.getSuKienList()) {
             SuKienView view = new SuKienView(model);
             view.addMouseListener(new MouseAdapter() {
@@ -135,7 +138,7 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
                     SuKienDetailScrollPane sds = (SuKienDetailScrollPane) (appContentPanel.getComponent(SuKienDetailScrollPane.INSTANCE_NAME));
                     try {
                         sds.loadAndDisplay(model);
-                    } catch (NullSuKienModelException e) {
+                    } catch (NullSuKienModelException | IOException | SQLException e) {
                         e.printStackTrace();
                     }
                 }
@@ -156,7 +159,7 @@ public class SuKienListView extends JPanel implements PropertyChangeListener {
         }
     }
 
-    private void _populatePaginationBar() {
+    protected void _populatePaginationBar() {
         int radius = 7;
 
         RoundedPanel paginationBar = RoundedPanel.getRoundedPanel(radius, new FlowLayout());
