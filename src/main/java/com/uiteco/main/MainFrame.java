@@ -816,10 +816,7 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
 
     private void logOut() {
         try {
-            App.getSession().setEmail(null, this);
-            App.getSession().setUsername(null, this);
-            App.getSession().setAccountType(null, this);
-            App.getSession().setAccountID(-1, this);
+            App.getSession().setUser(null, this);
             App.getSession().setPermitted(false, this);
         } catch (PermissibleNotPermittedException e) {
             e.printStackTrace();

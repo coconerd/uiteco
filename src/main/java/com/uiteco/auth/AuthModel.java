@@ -6,6 +6,7 @@ package com.uiteco.auth;
 
 import java.util.regex.Pattern;
 import com.uiteco.main.App;
+import com.uiteco.ofTaiKhoanPanel.TaiKhoanModel;
 import javax.swing.ImageIcon;
 
 /**
@@ -70,8 +71,8 @@ public class AuthModel implements Permissible {
         try {
             setEmailOrThrow(email);
             setPasswordOrThrow(password);
-            Session retSession = AuthDAO.login(getUsername(), getEmail(), getPassword());
-            _postLogin(retSession);
+            TaiKhoanModel newUser = AuthDAO.login(getUsername(), getEmail(), getPassword());
+            _postLogin(newUser);
         } catch (Exception e) {
             throw e;
         }
@@ -89,34 +90,31 @@ public class AuthModel implements Permissible {
         try {
             setUsernameOrThrow(username);
             setPasswordOrThrow(password);
-            Session retSession = AuthDAO.login(getUsername(), getEmail(), getPassword());
-            _postLogin(retSession);
+            TaiKhoanModel newUser = AuthDAO.login(getUsername(), getEmail(), getPassword());
+            _postLogin(newUser);
         } catch (Exception e) {
             throw e;
         }
     }
 
-    private void _postLogin(Session retSession) throws PermissibleNotPermittedException {
-        App.getSession().setEmail(retSession.getEmail(), this);
-        App.getSession().setUsername(retSession.getUsername(), this);
-        App.getSession().setAccountID(retSession.getAccountID(), this);
-        App.getSession().setAccountType(retSession.getAccountType(), this);
-        App.getSession().setAccountCreationDate(retSession.getAccountCreationDate(), this);
-        App.getSession().setFullname(retSession.getFullname(), this);
-        App.getSession().setPhone(retSession.getPhone(), this);
-        
-        ImageIcon avatar = retSession.getAvatar();
+    private void _postLogin(TaiKhoanModel newUser) throws PermissibleNotPermittedException {
+        ImageIcon avatar = newUser.getAvatar();
         if (avatar == null) {
             avatar = new ImageIcon(getClass().getResource("/placeholder-avatar.png"));
         }
-        App.getSession().setAvatar(avatar, this);
-        
-        String mssv = retSession.getMssv();
+        newUser.setAvatar(avatar);
+
+        String mssv = newUser.getMssv();
         if (mssv != null) {
-            App.getSession().setMssv(mssv, this);
+            newUser.setMssv(mssv);
             System.out.println("MSSV = " + mssv);
         }
-        
+        String faculty = newUser.getFaculty();
+        if (faculty != null) {
+            newUser.setFaculty(faculty);
+            System.out.println("Faculty  = " + faculty);
+        }
+        App.getSession().setUser(newUser, this);
         App.getSession().setPermitted(true, this);
     }
 

@@ -14,7 +14,7 @@ import com.uiteco.database.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import com.uiteco.auth.Session.ACCOUNT_TYPE;
+import com.uiteco.ofTaiKhoanPanel.TaiKhoanModel.ACCOUNT_TYPE;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import com.uiteco.database.DataUtils;
 import java.sql.Blob;
 import static com.uiteco.main.App.getSession;
+import com.uiteco.ofTaiKhoanPanel.TaiKhoanModel;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
@@ -49,7 +50,7 @@ public class AuthDAO {
      * @throws InvalidCredentialsException if required credentials are provided
      * but is invalid or has bad format
      */
-    public static Session login(String username, String email, String password) throws Exception {
+    public static TaiKhoanModel login(String username, String email, String password) throws Exception {
         boolean hasEmail = (email != null && !email.equals(""));
 
         // Query from db
@@ -129,7 +130,7 @@ public class AuthDAO {
         Blob blob = rs.getBlob("ANHDAIDIEN");
         if (blob != null) {
             byte[] bytes = blob.getBytes(1, (int) blob.length());
-            blob.free();
+            blob.free();    
             avatar = DataUtils.convertBytesToImageIcon(bytes);
         } else {
             avatar = null;
@@ -140,27 +141,48 @@ public class AuthDAO {
 
         // Retrieve phone number
         String phone = rs.getString("SDT");
+        
+        // Retrieve country
+        String country = rs.getString("QUOCGIA");
+        
+        // Retrieve province
+        String province = rs.getString("TINHTHANHPHO");
+        
+        // Retrieve timezone
+        String timezone = rs.getString("MUIGIO");
+        
+        // Retrieve user brief introduction
+        String intro = rs.getString("GIOITHIEU");
 
-        Session retSession = new Session(perm);
-        retSession.setUsername(username, perm);
-        retSession.setEmail(email, perm);
-        retSession.setAccountType(accountType, perm);
-        retSession.setAccountID(accountID, perm);
-        retSession.setAccountCreationDate(accountCreationDate, perm);
-        retSession.setAvatar(avatar, perm);
-        retSession.setFullname(fullname, perm);
-        retSession.setPhone(phone, perm);
+        TaiKhoanModel newUser = new TaiKhoanModel();
+        newUser.setUsername(username);
+        newUser.setEmail(email);
+        newUser.setAccountType(accountType);
+        newUser.setAccountID(accountID);
+        newUser.setAccountCreationDate(accountCreationDate);
+        newUser.setAvatar(avatar);
+        newUser.setFullname(fullname);
+        newUser.setPhone(phone);
+        newUser.setCountry(country);
+        newUser.setProvince(province);
+        newUser.setTimezone(timezone);
+        newUser.setIntro(intro);
 
         // Get mssv if account type is student / ex-student
         if (accountType == ACCOUNT_TYPE.sinhvien || accountType == ACCOUNT_TYPE.cuusinhvien) {
-            sql = "SELECT MSSV FROM SINHVIEN WHERE MATK = ?";
+            sql = "SELECT MSSV, TENKHOA FROM SINHVIEN WHERE MATK = ?";
             statement = conn.prepareStatement(sql);
             statement.setInt(1, accountID);
 
             rs = statement.executeQuery();
             if (rs.next()) {
                 String mssv = rs.getString("MSSV");
-                retSession.setMssv(mssv, perm);
+                String faculty = rs.getString("TENKHOA");
+                newUser.setMssv(mssv);
+                
+                if (!rs.wasNull()) {
+                    newUser.setFaculty(faculty);
+                }
             }
         }
 
@@ -168,7 +190,7 @@ public class AuthDAO {
         statement.close();
         rs.close();
         conn.close();
-        return retSession;
+        return newUser;
     }
 
     public static void updateGeneralInfo(String email, String username, String phone, String fullname, ImageIcon avatar) throws SQLException, IOException {
@@ -181,7 +203,7 @@ public class AuthDAO {
         pstm.setString(3, phone);
         pstm.setString(4, fullname);
         pstm.setBlob(5, new ByteArrayInputStream(DataUtils.convertImageIconToBytes(avatar)));
-        pstm.setInt(6, getSession().getAccountID());
+        pstm.setInt(6, getSession().getUser().getAccountID());
 
         pstm.executeUpdate();
 
@@ -193,7 +215,7 @@ public class AuthDAO {
         Connection conn = ConnectionManager.getConnection();
         String sql = "SELECT MATKHAU, PBKDF2_SALT FROM TAIKHOAN WHERE MATK = ?";
         PreparedStatement pstm = conn.prepareStatement(sql);
-        pstm.setInt(1, getSession().getAccountID());
+        pstm.setInt(1, getSession().getUser().getAccountID());
         ResultSet rs = pstm.executeQuery();
 
         if (!rs.next()) {
