@@ -3,7 +3,9 @@ package com.uiteco.swing;
 import java.awt.BorderLayout;
 import javax.swing.ScrollPaneConstants;
 import com.raven.scroll.ScrollPaneWin11;
+import java.awt.Point;
 import java.beans.PropertyChangeEvent;
+import javax.swing.JViewport;
 
 /**
  *
@@ -29,6 +31,11 @@ public class ScrollableContentPanel extends DynamicPanel {
   
     }
 
+    public void ScrollToTop()
+    {
+        scrollPane.scrollToTop();
+    }
+    
     private void _init() {
         this.setLayout(new java.awt.BorderLayout());
         this.scrollPane = new ScrollPaneWin11();

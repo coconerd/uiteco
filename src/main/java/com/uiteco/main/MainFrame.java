@@ -30,7 +30,8 @@ import java.awt.Cursor;
  * @author nddmi
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    CauLacBoRightPanel clbr = new CauLacBoRightPanel();
+    
     /**
      * Additional variables declaration
      */
@@ -41,8 +42,8 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        _initContentPanel();
         _initRightPanel();
+        _initContentPanel();
         _additionalInit();
     }
     
@@ -699,7 +700,7 @@ public class MainFrame extends javax.swing.JFrame {
         CuocThiPanel ct = new CuocThiPanel();
         contentPanel.registerComponent(ct, "cuocThiPanel");
 
-        CauLacBoPanel clb = new CauLacBoPanel();
+        CauLacBoPanel clb = new CauLacBoPanel(clbr);
         contentPanel.registerComponent(clb, "cauLacBoPanel");
 
         ForumPanel fr = new ForumPanel();
@@ -732,7 +733,6 @@ public class MainFrame extends javax.swing.JFrame {
         CuocThiRightPanel ctr = new CuocThiRightPanel();
         rightPanel.registerComponent(ctr, "cuocThiRightPanel");
 
-        CauLacBoRightPanel clbr = new CauLacBoRightPanel();
         rightPanel.registerComponent(clbr, "cauLacBoRightPanel");
 
         ForumRightPanel frr = new ForumRightPanel();
