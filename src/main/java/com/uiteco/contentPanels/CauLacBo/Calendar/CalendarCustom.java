@@ -311,19 +311,26 @@ public class CalendarCustom extends javax.swing.JPanel {
         {
             parentPanel.remove(CurrentNoEvent);    
             parentPanel.repaint();
+            CurrentNoEvent.removeAll();
             CurrentNoEvent = null;
            
             if(BreakFunc)
                 return;
         }
         
-        CurrentNoEvent = new NotificationsEvent(CellButton.getPoxX());
-
         int x = bl.x - pl.x ;
         int y = bl.y - pl.y ;
-       
-        parentPanel.add(CurrentNoEvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(x - (int) CurrentNoEvent.getXfooter() + CellButton.getWidth() / 2, y - CurrentNoEvent.getheight(), -1, -1), 0);
-        parentPanel.repaint();
+        
+        CurrentNoEvent = new NotificationsEvent(CellButton.getPoxX());
+            CurrentNoEvent.setXfooter(CellButton.getPoxX());
+            
+            CurrentNoEvent.setHeadText("Thứ Hai, 27 tháng 11 năm 2004");
+            CurrentNoEvent.setBodyText("15621\n 16512165\n 516196416516\n 5165151\nbao");
+            
+            parentPanel.add(CurrentNoEvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(-223, 0, -1, -1), 0);
+            CurrentNoEvent.setparentPanel(parentPanel, x + CellButton.getWidth() / 2, y);
+            
+//        parentPanel.add(CurrentNoEvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(x - (int) CurrentNoEvent.getXfooter() + CellButton.getWidth() / 2, y - CurrentNoEvent.getHeight(), -1, -1), 0);
     }
     
     public void CloseNotificationsEvent()
@@ -332,6 +339,8 @@ public class CalendarCustom extends javax.swing.JPanel {
         {
             parentPanel.remove(CurrentNoEvent);    
             parentPanel.repaint();
+            CurrentNoEvent.removeAll();
+            CurrentNoEvent = null;
         }
     }
     

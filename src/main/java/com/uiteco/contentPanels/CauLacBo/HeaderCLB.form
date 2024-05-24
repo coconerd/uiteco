@@ -23,7 +23,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -32,15 +32,15 @@
                               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                               <Component id="TitleNumberCLB" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="InfoHeader" min="-2" pref="410" max="-2" attributes="0"/>
+                          <Component id="InfoHeader" min="-2" pref="378" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="29" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="OffPanel" min="-2" max="-2" attributes="0"/>
-                          <Component id="OnlPanel" min="-2" max="-2" attributes="0"/>
-                          <Component id="EvePanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="190" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="EvePanel" max="32767" attributes="0"/>
+                          <Component id="OnlPanel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="OffPanel" alignment="0" pref="118" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="TitleHeaderCLB" min="-2" max="-2" attributes="0"/>

@@ -4,6 +4,8 @@
  */
 package com.uiteco.rightPanels.CauLacBo;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Acer
@@ -19,6 +21,23 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
         calendarCustom2.setparentPanel(jPanel1);
     }
 
+    public DetailPageRightPanel(String NameCLB, String CreateBy, String HostBy, LocalDate DateCreate) {
+        initComponents();
+     
+        calendarCustom2.setparentPanel(jPanel1);
+        
+        this.NameCLB.setText(NameCLB);
+        
+        if(DateCreate != null)
+            this.DateCreate.setText("Ngày Thành Lập: " + DateCreate.getDayOfMonth() + "/" + DateCreate.getMonthValue() + "/" + DateCreate.getYear());
+        else
+            this.DateCreate.setText("Ngày Thành Lập: --/--/----");
+            
+        this.CreateBy.setText("Thành Lập Bởi: " + CreateBy);
+        
+        this.HostBy.setText("Người Chủ trì: " + HostBy);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,11 +49,11 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         calendarCustom2 = new com.uiteco.contentPanels.CauLacBo.Calendar.CalendarCustom();
-        jLabel1 = new javax.swing.JLabel();
+        NameCLB = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         DateCreate = new javax.swing.JLabel();
         CreateBy = new javax.swing.JLabel();
-        CreateBy1 = new javax.swing.JLabel();
+        HostBy = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -44,9 +63,9 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(calendarCustom2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 490));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 149, 255));
-        jLabel1.setText("NameCLB");
+        NameCLB.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        NameCLB.setForeground(new java.awt.Color(0, 149, 255));
+        NameCLB.setText("NameCLB");
 
         jPanel2.setBackground(new java.awt.Color(168, 168, 168));
 
@@ -67,8 +86,8 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
         CreateBy.setForeground(new java.awt.Color(112, 112, 112));
         CreateBy.setText("Thành Lập Bởi: Sinh Viên Khoa CNPM");
 
-        CreateBy1.setForeground(new java.awt.Color(112, 112, 112));
-        CreateBy1.setText("Người Chủ trì: VStorm");
+        HostBy.setForeground(new java.awt.Color(112, 112, 112));
+        HostBy.setText("Người Chủ trì: VStorm");
 
         jLabel2.setBackground(new java.awt.Color(23, 23, 23));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -98,7 +117,7 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
                                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel1))
+                                .addComponent(NameCLB))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(DateCreate))
@@ -107,7 +126,7 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
                                 .addComponent(CreateBy))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(CreateBy1)))
+                                .addComponent(HostBy)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -128,13 +147,13 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(jLabel1)
+                .addComponent(NameCLB)
                 .addGap(15, 15, 15)
                 .addComponent(DateCreate)
                 .addGap(15, 15, 15)
                 .addComponent(CreateBy)
                 .addGap(15, 15, 15)
-                .addComponent(CreateBy1)
+                .addComponent(HostBy)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -148,10 +167,10 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CreateBy;
-    private javax.swing.JLabel CreateBy1;
     private javax.swing.JLabel DateCreate;
+    private javax.swing.JLabel HostBy;
+    private javax.swing.JLabel NameCLB;
     private com.uiteco.contentPanels.CauLacBo.Calendar.CalendarCustom calendarCustom2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

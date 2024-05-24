@@ -13,40 +13,26 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JPanel;
 
 public class NotificationsEvent extends javax.swing.JPanel {
 
+    private JPanel parentPanel;
+    private int x = 0, y = 0;
+    
     private int footer = 6;
-    private int TextHeight = 16;
-    private int width = 219, height = 64 + TextHeight * 1;
     
-    private float MinX = (float) (footer * Math.sqrt(2) + footer / 2) + 5;
-    private float MaxX = (float) (width - footer * Math.sqrt(2) - footer / 2) - 5;
-    
-    private float Xfooter = (MaxX + MinX) / 2;
+    private float MinX;
+    private float MaxX;
+    private float pos = -1;
+    private float Xfooter;
     
     public NotificationsEvent() {
         Start();
     }
     
     public NotificationsEvent(float pos) {        
-        Xfooter = MinX + pos * (MaxX - MinX) / 6;
-
-        Start();
-    }
-    
-    public NotificationsEvent(int width, int height){
-        this.width = width;
-        this.height = height;
-        
-        Start();
-    }
-    
-    public NotificationsEvent(int width, int height, float pos){
-        Xfooter = MinX + pos * (MaxX - MinX) / 6;
-        this.width = width;
-        this.height = height;
-        
+        this.pos = pos;
         Start();
     }
 
@@ -54,7 +40,6 @@ public class NotificationsEvent extends javax.swing.JPanel {
     {
         initComponents();
         setOpaque(false);
-        this.setPreferredSize(new Dimension(width, height));
     }
     
     @SuppressWarnings("unchecked")
@@ -62,8 +47,8 @@ public class NotificationsEvent extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextArea2 = new javax.swing.JTextArea();
+        HeadText = new javax.swing.JLabel();
+        BodyText = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(80, 80, 80));
         setForeground(new java.awt.Color(0, 0, 0));
@@ -72,15 +57,16 @@ public class NotificationsEvent extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(215, 215, 215));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Thứ, Ngày, Tháng, Năm ");
+        HeadText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        HeadText.setForeground(new java.awt.Color(255, 255, 255));
+        HeadText.setText("Thứ, Ngày, Tháng, Năm ");
 
-        jTextArea2.setBackground(new java.awt.Color(80, 80, 80));
-        jTextArea2.setColumns(20);
-        jTextArea2.setForeground(new java.awt.Color(227, 227, 227));
-        jTextArea2.setRows(1);
-        jTextArea2.setText("Nội dung");
+        BodyText.setBackground(new java.awt.Color(80, 80, 80));
+        BodyText.setColumns(20);
+        BodyText.setForeground(new java.awt.Color(227, 227, 227));
+        BodyText.setLineWrap(true);
+        BodyText.setRows(1);
+        BodyText.setText("Nội dung");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -91,28 +77,33 @@ public class NotificationsEvent extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(HeadText)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextArea2, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
+                    .addComponent(BodyText))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jLabel1)
+                .addComponent(HeadText)
                 .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jTextArea2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(BodyText)
+                .addGap(15, 15, 15))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
     protected void paintComponent(Graphics g)
-    {
-        
+    {        
+        MinX = (float) (footer * Math.sqrt(2) + footer / 2) + 5;
+        MaxX = (float) (this.getWidth() - footer * Math.sqrt(2) - footer / 2) - 5;
+        if(pos == -1)
+            Xfooter = (MaxX + MinX) / 2;
+        else
+            Xfooter = MinX + pos * (MaxX - MinX) / 6;
         
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -127,9 +118,31 @@ public class NotificationsEvent extends javax.swing.JPanel {
         g2.fill(AreaComponent);
         g2.dispose();
         
-        this.repaint();
+//        this.repaint();
+        
+        if(parentPanel != null)
+        {    
+            parentPanel.add(this, new org.netbeans.lib.awtextra.AbsoluteConstraints(x - (int) this.getXfooter(), y - this.getHeight() + 2, -1, -1), 0);
+            parentPanel.repaint();
+            this.repaint();
+        }
         
         super.paintComponent(g);
+    }
+    
+    public void setBodyText(String Text)
+    {
+        BodyText.setText(Text);
+    }
+    
+    public void setHeadText(String Text)
+    {
+        HeadText.setText(Text);
+    }
+    
+    public void setXfooter(float Xfooter)
+    {
+        this.Xfooter = Xfooter;
     }
     
     public float getXfooter()
@@ -137,19 +150,16 @@ public class NotificationsEvent extends javax.swing.JPanel {
         return Xfooter;
     }
     
-    public int getwidth()
+    public void setparentPanel(JPanel parent, int x, int y)
     {
-        return width;
-    }
-    
-    public int getheight()
-    {
-        return height;
+        parentPanel = parent;
+        this.x = x;
+        this.y = y;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextArea BodyText;
+    private javax.swing.JLabel HeadText;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 }

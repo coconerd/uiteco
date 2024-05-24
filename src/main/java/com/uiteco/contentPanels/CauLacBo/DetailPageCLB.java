@@ -2,9 +2,15 @@ package com.uiteco.contentPanels.CauLacBo;
 
 import com.uiteco.contentPanels.CauLacBo.JTable.TableCustom;
 import com.uiteco.contentPanels.CauLacBoPanel;
+import com.uiteco.database.ConnectionManager;
 import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.swing.ScrollableContentPanel;
 import java.awt.Component;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.animation.timing.*;
@@ -31,30 +37,215 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Start();
     }
     
-    public DetailPageCLB(CauLacBoPanel MainPanelCLB, CauLacBoRightPanel RightPanelCLB) {
+    public DetailPageCLB(CauLacBoPanel MainPanelCLB) {
         this.MainPanelCLB = MainPanelCLB;
-        this.RightPanelCLB = RightPanelCLB;
         initComponents();
         Start();
-        
-        // Show RightPanel
-        this.RightPanelCLB.showDetailPageRightPanel();
     }
     
     private void Start()
     {
-//        TextArea_InfoClub.setText("asd asd asbd asjdk asjd jasjd hasjd jkasdjk asjdh jkashdj hasjd kashd ");
-        
         TableCustom.apply(jScrollTableMem, TableCustom.TableType.DEFAULT);
-        
-//        TableMembers.removeAll();
-//        AddMemToTable("Trần Vũ Bão", "22520124", "22520124@gm.uit.edu.vn", "Thành Viên");
     }
     
     private void AddMemToTable(String NameMem, String MSSVMem, String EmailMem, String PosMem)
     {
         DefaultTableModel model = (DefaultTableModel) TableMembers.getModel();
         model.addRow(new Object[]{"" + (TableMembers.getRowCount() + 1), NameMem, MSSVMem, EmailMem, PosMem});
+    }
+    
+    public void setDataToPage(int MaCLB)
+    {
+        String GioiThieu = "....", Email = "", SDT = "", Truong = "", LoaiCLB = "", ThongTinCLB = "....", DieuLe = "....";
+        int SLDanhGia = 0, SaoDanhGia = 0;
+        
+        /// BodyData
+        try {
+            Connection conn = ConnectionManager.getConnection();
+               
+            String sql = "select * from CHITIETCAULACBO where MACLB = " + MaCLB;
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+        
+            while(rs.next())
+            {
+                // ----- Get Data Start -----
+                Blob blob;
+                
+                blob = rs.getBlob("INTRODUCTION");
+                if(blob != null)
+                {
+                    byte[] bdata = blob.getBytes(1, (int) blob.length());
+                    GioiThieu = new String(bdata);
+                }
+                
+                blob = rs.getBlob("THONGTINCLB");
+                if(blob != null)
+                {
+                    byte[] bdata = blob.getBytes(1, (int) blob.length());
+                    ThongTinCLB = new String(bdata);
+                }
+                
+                blob = rs.getBlob("DIEULE");
+                if(blob != null)
+                {
+                    byte[] bdata = blob.getBytes(1, (int) blob.length());
+                    DieuLe = new String(bdata);
+                }
+                
+                Email = rs.getString("EMAIL"); 
+                SDT = rs.getString("SDT");
+                Truong = rs.getNString("TRUONG");
+                LoaiCLB = rs.getNString("LOAICLB");
+                
+                SLDanhGia = rs.getInt("SOLUONGDANHGIA");
+                SaoDanhGia = rs.getInt("SaoDanhGia");
+                // ----- Get Data End -----
+                
+                Text_Introduction.setText(GioiThieu);
+                Text_Email.setText(Email);
+                Text_SDT.setText(SDT);
+                Text_School.setText(Truong);
+                Text_Club.setText(LoaiCLB);
+                TextArea_InfoClub.setText(ThongTinCLB);
+                TextArea_LawClub.setText(DieuLe);
+                
+                if(SLDanhGia == 0)
+                    Text_Rate.setText("Chưa đánh giá (" + SLDanhGia + " đã đánh giá)");
+                else    
+                    Text_Rate.setText(SaoDanhGia + " (" + SLDanhGia + " đã đánh giá)");
+            
+            } 
+            
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        /// HeadData
+        
+        String NameCLB = "", BackgroundImageURL = null, LogoImageURL = "";
+        int SLThanhVien, SLThich, Status;
+        
+        try {
+            Connection conn = ConnectionManager.getConnection();
+               
+            String sql = "select * from CAULACBO where MACLB = " + MaCLB;
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+        
+            while(rs.next())
+            {
+                // ----- Get Data Start -----
+                Blob blob;   
+                
+                NameCLB = rs.getNString("TENCLB");
+                
+                blob = rs.getBlob("BACKGROUND");
+                if(blob != null)
+                {
+                    byte[] bdata = blob.getBytes(1, (int) blob.length());
+                    BackgroundImageURL = new String(bdata);
+                }
+                
+                blob = rs.getBlob("LOGO");
+                if(blob != null)
+                {
+                    byte[] bdata = blob.getBytes(1, (int) blob.length());
+                    LogoImageURL = new String(bdata);
+                }
+                
+                SLThanhVien = rs.getInt("SOLUONGTHANHVIEN");
+                SLThich = rs.getInt("SOLUONGTHICH");
+                Status = rs.getInt("TRANGTHAI");
+                // ----- Get Data End -----
+                
+                Text_NameClub.setText(NameCLB);
+                Text_NumLoveOfClub.setText("Số lượng lượt thích: " + SLThich);
+                Text_NumMem.setText("Số lượng thành viên: " + SLThanhVien);
+                
+                String Status_ = "Không hoạt động";
+                if(Status == 2)
+                    Status_ = "Đang có sự kiện";
+                else if(Status == 1)
+                    Status_ = "Đang hoạt động";
+                Text_Status.setText(Status_);
+                Text_StatusClub.setText(Status_);
+                
+                //set logo and background
+            } 
+            
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        /// TableData
+        
+        TableMembers.removeAll();
+        try {
+            String NameTV = "", MSSVTV = "", EmailTV = "", PosTV = "";
+            
+            Connection conn = ConnectionManager.getConnection();
+               
+            String sql = "select TK.HOTEN, SV.MSSV, TK.EMAIL, TV.CHUCVU " +
+                        "from THANHVIENCLB TV inner join TAIKHOAN TK on TV.MATK = TK.MATK " +
+                        "inner join SINHVIEN SV on TK.MATK = SV.MATK " + 
+                        "where TV.MACLB = " + MaCLB;
+            
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+        
+            while(rs.next())
+            {
+                // ----- Get Data Start -----
+                NameTV = rs.getNString(1);
+                MSSVTV = rs.getString(2);
+                EmailTV = rs.getString(3);
+                PosTV = rs.getNString(4);
+                // ----- Get Data End -----
+                
+                AddMemToTable(NameTV, MSSVTV, EmailTV, PosTV);
+            } 
+            
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        // slideShow Data
+        try {
+            String ImageUrl = "";
+            ArrayList<String> ListImageUrl = new ArrayList<String>();
+            
+            Connection conn = ConnectionManager.getConnection();
+            String sql = "select * from HINHANHCAULACBO where MACLB = " + MaCLB;
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                Blob blob;
+                
+                blob = rs.getBlob("ANH");
+                if(blob != null)
+                {
+                    byte[] bdata = blob.getBytes(1, (int) blob.length());
+                    GioiThieu = new String(bdata);
+                }
+                
+                if(!ImageUrl.equals(""))
+                {
+                    ListImageUrl.add(ImageUrl);
+                }
+            } 
+            
+            SlideShow.initSlideshow(ListImageUrl);
+            
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -76,7 +267,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
         JPanelBody = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         IntroductionPanel = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         Lock_Introduction = new javax.swing.JLabel();
-        IntroductionText = new javax.swing.JTextArea();
+        Text_Introduction = new javax.swing.JTextArea();
         Line1 = new javax.swing.JPanel();
         Text_SDT = new javax.swing.JLabel();
         Lock_SDT = new javax.swing.JLabel();
@@ -128,26 +319,21 @@ public class DetailPageCLB extends ScrollableContentPanel {
         BackgroundIcon.setBackground(new java.awt.Color(58, 58, 58));
         BackgroundIcon.setRoundBottomLeft(80);
         BackgroundIcon.setRoundTopRight(70);
-        BackgroundIcon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Text_NameClub.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Text_NameClub.setForeground(new java.awt.Color(243, 243, 243));
         Text_NameClub.setText("NAME CLUB");
-        BackgroundIcon.add(Text_NameClub, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 690, 40));
 
         Text_NumMem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Text_NumMem.setForeground(new java.awt.Color(204, 204, 204));
         Text_NumMem.setText("NumMemOfClub");
-        BackgroundIcon.add(Text_NumMem, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 100, 30));
 
         Text_NumLoveOfClub.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Text_NumLoveOfClub.setForeground(new java.awt.Color(204, 204, 204));
-        Text_NumLoveOfClub.setText("NumLoveOfClub");
-        BackgroundIcon.add(Text_NumLoveOfClub, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 100, 30));
+        Text_NumLoveOfClub.setText(" NumLoveOfClub");
 
         Text_StatusClub.setForeground(new java.awt.Color(255, 204, 51));
         Text_StatusClub.setText("StatusClub");
-        BackgroundIcon.add(Text_StatusClub, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 140, 20));
 
         JoinButton.setBackground(new java.awt.Color(0, 153, 255));
         JoinButton.setBorder(null);
@@ -164,7 +350,6 @@ public class DetailPageCLB extends ScrollableContentPanel {
                 JoinButtonActionPerformed(evt);
             }
         });
-        BackgroundIcon.add(JoinButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 80, 110, 40));
 
         LoveButton.setBackground(new java.awt.Color(255, 83, 83));
         LoveButton.setBorder(null);
@@ -176,7 +361,39 @@ public class DetailPageCLB extends ScrollableContentPanel {
         LoveButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LoveButton.setInheritsPopupMenu(true);
         LoveButton.setRadius(10);
-        BackgroundIcon.add(LoveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 80, 110, 40));
+
+        javax.swing.GroupLayout BackgroundIconLayout = new javax.swing.GroupLayout(BackgroundIcon);
+        BackgroundIcon.setLayout(BackgroundIconLayout);
+        BackgroundIconLayout.setHorizontalGroup(
+            BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BackgroundIconLayout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Text_NameClub, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(BackgroundIconLayout.createSequentialGroup()
+                        .addComponent(Text_NumMem, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(Text_NumLoveOfClub, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(BackgroundIconLayout.createSequentialGroup()
+                        .addComponent(Text_StatusClub, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(280, 280, 280)
+                        .addComponent(JoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(LoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        BackgroundIconLayout.setVerticalGroup(
+            BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BackgroundIconLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(Text_NameClub, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Text_NumMem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Text_NumLoveOfClub, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Text_StatusClub, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         JPanelHeader.add(BackgroundIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 1050, 160));
 
@@ -195,89 +412,142 @@ public class DetailPageCLB extends ScrollableContentPanel {
         IntroductionPanel.setBackground(new java.awt.Color(243, 243, 243));
         IntroductionPanel.setRoundBottomRight(53);
         IntroductionPanel.setRoundTopRight(60);
-        IntroductionPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Lock_Introduction.setBackground(new java.awt.Color(51, 51, 51));
         Lock_Introduction.setFont(new java.awt.Font("Calibri", 1, 26)); // NOI18N
         Lock_Introduction.setForeground(new java.awt.Color(51, 51, 51));
         Lock_Introduction.setText("Giới Thiệu");
-        IntroductionPanel.add(Lock_Introduction, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 13, -1, 40));
 
-        IntroductionText.setEditable(false);
-        IntroductionText.setBackground(new java.awt.Color(243, 243, 243));
-        IntroductionText.setColumns(20);
-        IntroductionText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        IntroductionText.setForeground(new java.awt.Color(51, 51, 51));
-        IntroductionText.setRows(5);
-        IntroductionText.setText("UIT GamApp Studio - CLB Lập trình Game và ứng dụng - khoa Công nghệ phần mềm - ĐHCNTT - ĐHQG TP.HCM.\nGiá trị cốt lõi:\nCHIA SẺ - QUẢNG BÁ THƯƠNG HIỆU - GIÚP ĐỠ CỘNG ĐỒNG");
-        IntroductionPanel.add(IntroductionText, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 990, 80));
+        Text_Introduction.setBackground(new java.awt.Color(243, 243, 243));
+        Text_Introduction.setColumns(20);
+        Text_Introduction.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Text_Introduction.setForeground(new java.awt.Color(51, 51, 51));
+        Text_Introduction.setRows(5);
+        Text_Introduction.setText("UIT GamApp Studio - CLB Lập trình Game và ứng dụng - khoa Công nghệ phần mềm - ĐHCNTT - ĐHQG TP.HCM.\nGiá trị cốt lõi:\nCHIA SẺ - QUẢNG BÁ THƯƠNG HIỆU - GIÚP ĐỠ CỘNG ĐỒNG");
 
         Line1.setBackground(new java.awt.Color(203, 203, 203));
         Line1.setForeground(new java.awt.Color(211, 211, 211));
-        IntroductionPanel.add(Line1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 980, 1));
 
         Text_SDT.setBackground(new java.awt.Color(37, 40, 41));
         Text_SDT.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         Text_SDT.setForeground(new java.awt.Color(130, 130, 130));
         Text_SDT.setText("0966655599");
-        IntroductionPanel.add(Text_SDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 160, -1, -1));
 
         Lock_SDT.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         Lock_SDT.setForeground(new java.awt.Color(51, 51, 51));
         Lock_SDT.setText("SĐT  ·");
-        IntroductionPanel.add(Lock_SDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 160, 40, -1));
 
         Text_Status.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         Text_Status.setForeground(new java.awt.Color(255, 153, 51));
         Text_Status.setText("Hoạt Động");
-        IntroductionPanel.add(Text_Status, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 220, -1, -1));
 
         Lock_Rate.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         Lock_Rate.setForeground(new java.awt.Color(51, 51, 51));
         Lock_Rate.setText("Đánh giá  ·");
-        IntroductionPanel.add(Lock_Rate, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
 
         Lock_Status.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         Lock_Status.setForeground(new java.awt.Color(51, 51, 51));
         Lock_Status.setText("Trạng Thái  ·");
-        IntroductionPanel.add(Lock_Status, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 220, 80, -1));
 
         Text_Rate.setBackground(new java.awt.Color(48, 50, 51));
         Text_Rate.setForeground(new java.awt.Color(181, 181, 181));
         Text_Rate.setText("(0 đã đánh giá)");
-        IntroductionPanel.add(Text_Rate, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
 
         Lock_Club.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         Lock_Club.setForeground(new java.awt.Color(51, 51, 51));
         Lock_Club.setText("CLUB  ·");
-        IntroductionPanel.add(Lock_Club, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         Text_Club.setBackground(new java.awt.Color(37, 40, 41));
         Text_Club.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         Text_Club.setForeground(new java.awt.Color(130, 130, 130));
         Text_Club.setText("Giáo dục - Giải trí");
-        IntroductionPanel.add(Text_Club, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
         Lock_School.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         Lock_School.setForeground(new java.awt.Color(51, 51, 51));
         Lock_School.setText("Trường  ·");
-        IntroductionPanel.add(Lock_School, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 60, -1));
 
         Text_School.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         Text_School.setForeground(new java.awt.Color(41, 190, 41));
         Text_School.setText("Trường Đại học Công nghệ Thông Tin, Ho Chi Minh City, Vietnam");
-        IntroductionPanel.add(Text_School, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
         Lock_Email.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         Lock_Email.setForeground(new java.awt.Color(51, 51, 51));
         Lock_Email.setText("EMAIL  ·");
-        IntroductionPanel.add(Lock_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 190, 60, -1));
 
         Text_Email.setBackground(new java.awt.Color(37, 40, 41));
         Text_Email.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         Text_Email.setForeground(new java.awt.Color(130, 130, 130));
         Text_Email.setText("gamappuit.club@gmail.com");
-        IntroductionPanel.add(Text_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(735, 190, -1, -1));
+
+        javax.swing.GroupLayout IntroductionPanelLayout = new javax.swing.GroupLayout(IntroductionPanel);
+        IntroductionPanel.setLayout(IntroductionPanelLayout);
+        IntroductionPanelLayout.setHorizontalGroup(
+            IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Lock_Introduction)
+                    .addComponent(Line1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                        .addComponent(Lock_Club)
+                        .addGap(8, 8, 8)
+                        .addComponent(Text_Club)
+                        .addGap(513, 513, 513)
+                        .addComponent(Lock_SDT, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(Text_SDT))
+                    .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                        .addComponent(Lock_School, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(Text_School)
+                        .addGap(240, 240, 240)
+                        .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Lock_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(Text_Email))))
+                    .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                        .addComponent(Lock_Rate)
+                        .addGap(5, 5, 5)
+                        .addComponent(Text_Rate)
+                        .addGap(509, 509, 509)
+                        .addComponent(Lock_Status, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(Text_Status))
+                    .addComponent(Text_Introduction, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
+        );
+        IntroductionPanelLayout.setVerticalGroup(
+            IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Lock_Introduction, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(Text_Introduction, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
+                .addGap(10, 10, 10)
+                .addComponent(Line1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Lock_Club)
+                    .addComponent(Text_Club)
+                    .addComponent(Lock_SDT)
+                    .addComponent(Text_SDT))
+                .addGap(12, 12, 12)
+                .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Lock_School)
+                    .addComponent(Text_School)
+                    .addComponent(Lock_Email)
+                    .addComponent(Text_Email))
+                .addGap(12, 12, 12)
+                .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Lock_Rate)
+                    .addComponent(Text_Rate)
+                    .addComponent(Lock_Status)
+                    .addComponent(Text_Status))
+                .addGap(22, 22, 22))
+        );
 
         BodyPanel.setBackground(new java.awt.Color(243, 243, 243));
         BodyPanel.setRoundBottomLeft(50);
@@ -602,8 +872,9 @@ public class DetailPageCLB extends ScrollableContentPanel {
         JPanelBodyLayout.setVerticalGroup(
             JPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelBodyLayout.createSequentialGroup()
-                .addComponent(IntroductionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(2, 2, 2)
+                .addComponent(IntroductionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(BodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -667,7 +938,6 @@ public class DetailPageCLB extends ScrollableContentPanel {
     private com.uiteco.contentPanels.CauLacBo.JpanelRound Icon_Lock_InfoClb;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound Icon_Lock_LawClb;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound IntroductionPanel;
-    private javax.swing.JTextArea IntroductionText;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound JPanelBody;
     private javax.swing.JPanel JPanelHeader;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound JPanelRound1;
@@ -701,6 +971,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
     private javax.swing.JTextArea TextArea_LawClub;
     private javax.swing.JLabel Text_Club;
     private javax.swing.JLabel Text_Email;
+    private javax.swing.JTextArea Text_Introduction;
     private javax.swing.JLabel Text_NameClub;
     private javax.swing.JLabel Text_NumLoveOfClub;
     private javax.swing.JLabel Text_NumMem;

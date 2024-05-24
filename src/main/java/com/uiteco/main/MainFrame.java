@@ -700,9 +700,11 @@ public class MainFrame extends javax.swing.JFrame {
         CuocThiPanel ct = new CuocThiPanel();
         contentPanel.registerComponent(ct, "cuocThiPanel");
 
-        CauLacBoPanel clb = new CauLacBoPanel(clbr);
+        CauLacBoPanel clb = new CauLacBoPanel(clbr, contentPanel);
         contentPanel.registerComponent(clb, "cauLacBoPanel");
-
+        System.out.println("Height: " + contentPanel.getHeight() + ", Width: " + contentPanel.getWidth());
+        
+        
         ForumPanel fr = new ForumPanel();
         contentPanel.registerComponent(fr, "forumPanel");
 

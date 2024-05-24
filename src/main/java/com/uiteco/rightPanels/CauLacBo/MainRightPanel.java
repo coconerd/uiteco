@@ -300,20 +300,20 @@ public class MainRightPanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addComponent(jpanelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpanelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpanelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
 
-        add(Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 793));
+        add(Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 801));
     }// </editor-fold>//GEN-END:initComponents
 
     private void filterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonActionPerformed
         String Area = "", NameBox = "", StyleBox = "", Status = "", ConditionJoin = "";
         
         if(Tick_area_InSchool.isSelected())
-            Area = "in"; 
+            Area = "0"; 
         else if(Tick_area_OutSchool.isSelected())
-            Area = "out";
+            Area = "1";
         
         if((String) NameComboBox.getSelectedItem() != null)
         {
@@ -322,16 +322,16 @@ public class MainRightPanel extends javax.swing.JPanel {
         }
         
         if(Tick_status_HasEvent.isSelected())
-            Status = "event";
+            Status = "2";
         else if(Tick_status_Online.isSelected())
-            Status = "online";
+            Status = "1";
         else if(Tick_status_Offline.isSelected())
-            Status = "offline";
+            Status = "0";
         
         if(Tick_condition_Yes.isSelected())
-            ConditionJoin = "yes";
+            ConditionJoin = "1";
         else if(Tick_condition_No.isSelected())
-            ConditionJoin = "no";
+            ConditionJoin = "0";
         
         ClubPanel.FilterListCLB(Area, NameBox, StyleBox, Status, ConditionJoin);
     }//GEN-LAST:event_filterButtonActionPerformed

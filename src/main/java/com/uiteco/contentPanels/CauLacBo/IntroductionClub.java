@@ -9,6 +9,7 @@ import com.uiteco.rightPanels.CauLacBoRightPanel;
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import static java.time.LocalDate.now;
 import java.util.ArrayList;
@@ -16,35 +17,53 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 /**
  *
- * @author Acer
+ * @author VStorm
  */
 public class IntroductionClub extends javax.swing.JPanel {
     private CauLacBoPanel MainPanelCLB;
     private CauLacBoRightPanel RightPanelCLB;
     
     private boolean IsLoving = false;
+    private int MaCLB, SLThich, DKXetTuyen;
+    // Need Use SLThich, DKXetTuyen
+    private String NameCLUB = "", CreateBy = "", HostBy = "";
+    private LocalDate DateCreate = null;
     
     public IntroductionClub() {
         Start();
     }
     
     // Status Chỉ có giá trị 2 hoặc 1 hoặc 0; 2 là đang có sự kiện hay cuộc thi,1 là đang hoạt động, 0 là không hoạt động.
-    public IntroductionClub(String NameCLB_, String BasicInfo_, ImageIcon Logo_,int NumOFMember_, LocalDateTime LastedUpdate_, String Department_, int Status_, ArrayList<String> ListImageUrl) {
+    public IntroductionClub(String NameCLB_, String BasicInfo_, String LogoUrl_,int NumOFMember_, LocalDateTime LastedUpdate_, String Department_, int Status_, ArrayList<String> ListImageUrl) {
         Start();
         NameCLB.setText(NameCLB_);
-        BasicInfo.setText(BasicInfo_);
-//        LogoCLUB.setImage(Logo_);
+        NameCLUB = NameCLB_;
 
+        BasicInfo.setText(BasicInfo_);
+
+        if(LogoUrl_ != null && !LogoUrl_.equals(""))
+        {
+            LogoCLUB.setImage(new ImageIcon(getClass().getResource(LogoUrl_)));
+        }
+        
         if(NumOFMember_ >= 2)
             NumMem.setText(NumOFMember_ + " Members");
         else
             NumMem.setText(NumOFMember_ + " Member");
         
         String TimeUpdate = "Cập nhật: ";
+
+        long Seconds = -1;
         
-        Duration duration = Duration.between(LastedUpdate_, LocalDateTime.now());
-        long Seconds = duration.getSeconds();
+        if(LastedUpdate_ != null)
+        {
+            Duration duration = Duration.between(LastedUpdate_, LocalDateTime.now());
+            Seconds = duration.getSeconds();
+        }
         
+        if(Seconds == -1)
+            TimeUpdate += "";
+        else
         if (Seconds < 60)
             TimeUpdate += Seconds + " Giây Trước";
         else
@@ -84,7 +103,6 @@ public class IntroductionClub extends javax.swing.JPanel {
         }
 
         SlideShowImage.initSlideshow(ListImageUrl);
-        
     }
 
     @Override
@@ -117,6 +135,7 @@ public class IntroductionClub extends javax.swing.JPanel {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
+        jpanelRound3 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         NumMem = new javax.swing.JLabel();
         LogoCLUB = new com.uiteco.contentPanels.CauLacBo.ImageAvatar();
         NextPanel = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
@@ -130,15 +149,16 @@ public class IntroductionClub extends javax.swing.JPanel {
         Department = new javax.swing.JLabel();
         LastUpdate = new javax.swing.JLabel();
         JoinButton = new com.uiteco.contentPanels.CauLacBo.ButtonRound();
-        Area1 = new javax.swing.JLabel();
-        jpanelRound2 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
-        NameCLB = new javax.swing.JLabel();
+        XetTuyen = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         LoveButton = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
+        jpanelRound2 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
+        NameCLB = new javax.swing.JLabel();
 
         jToolBar1.setRollover(true);
 
-        setBackground(new java.awt.Color(245, 245, 245));
+        setBackground(new java.awt.Color(238, 238, 238));
+        setForeground(new java.awt.Color(238, 238, 238));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 formMouseEntered(evt);
@@ -147,18 +167,24 @@ public class IntroductionClub extends javax.swing.JPanel {
                 formMouseExited(evt);
             }
         });
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jpanelRound3.setBackground(new java.awt.Color(245, 245, 245));
+        jpanelRound3.setRoundBottomLeft(50);
+        jpanelRound3.setRoundBottomRight(50);
+        jpanelRound3.setRoundTopLeft(50);
+        jpanelRound3.setRoundTopRight(50);
+        jpanelRound3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         NumMem.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         NumMem.setForeground(new java.awt.Color(51, 204, 0));
         NumMem.setText("NumOfMember");
         NumMem.setToolTipText("");
-        add(NumMem, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, -1, -1));
+        jpanelRound3.add(NumMem, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
 
         LogoCLUB.setBackground(new java.awt.Color(102, 102, 102));
         LogoCLUB.setBorderSize(3);
         LogoCLUB.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg"))); // NOI18N
-        add(LogoCLUB, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 120));
+        jpanelRound3.add(LogoCLUB, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 120));
 
         NextPanel.setBackground(new java.awt.Color(102, 102, 102));
         NextPanel.setAlpha(0.0F);
@@ -179,7 +205,7 @@ public class IntroductionClub extends javax.swing.JPanel {
         NextIcon.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/Next.png"))); // NOI18N
         NextPanel.add(NextIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 108, 40, 50));
 
-        add(NextPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(683, 83, 95, 264));
+        jpanelRound3.add(NextPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 80, 95, 270));
 
         BackPanel.setBackground(new java.awt.Color(102, 102, 102));
         BackPanel.setAlpha(0.0F);
@@ -200,17 +226,16 @@ public class IntroductionClub extends javax.swing.JPanel {
         BackIcon.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/Back.png"))); // NOI18N
         BackPanel.add(BackIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 108, 40, 50));
 
-        add(BackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 83, 95, 264));
+        jpanelRound3.add(BackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 95, 270));
 
         SlideShowImage.setBackground(new java.awt.Color(210, 210, 210));
-        add(SlideShowImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 750, 270));
+        jpanelRound3.add(SlideShowImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 720, 270));
 
         jpanelRound1.setBackground(new java.awt.Color(255, 255, 255));
         jpanelRound1.setRoundBottomLeft(30);
         jpanelRound1.setRoundBottomRight(30);
         jpanelRound1.setRoundTopLeft(30);
         jpanelRound1.setRoundTopRight(30);
-        jpanelRound1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BasicInfo.setEditable(false);
         BasicInfo.setBackground(new java.awt.Color(255, 255, 255));
@@ -219,22 +244,18 @@ public class IntroductionClub extends javax.swing.JPanel {
         BasicInfo.setForeground(new java.awt.Color(135, 135, 135));
         BasicInfo.setText("Basic Information \n");
         BasicInfo.setToolTipText("");
-        jpanelRound1.add(BasicInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 470, 55));
 
         Status.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         Status.setForeground(new java.awt.Color(153, 153, 153));
         Status.setText("Status");
-        jpanelRound1.add(Status, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 220, -1));
 
         Department.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         Department.setForeground(new java.awt.Color(185, 185, 185));
         Department.setText("Department");
-        jpanelRound1.add(Department, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 250, -1));
 
         LastUpdate.setFont(new java.awt.Font("Calibri Light", 0, 14)); // NOI18N
         LastUpdate.setForeground(new java.awt.Color(146, 146, 146));
         LastUpdate.setText("LastedUpdate");
-        jpanelRound1.add(LastUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, -1, -1));
 
         JoinButton.setBorder(null);
         JoinButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -252,44 +273,58 @@ public class IntroductionClub extends javax.swing.JPanel {
                 JoinButtonMousePressed(evt);
             }
         });
-        jpanelRound1.add(JoinButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 120, 40));
 
-        Area1.setFont(new java.awt.Font("Calibri", 0, 15)); // NOI18N
-        Area1.setForeground(new java.awt.Color(182, 182, 0));
-        Area1.setText("Tham gia cần xét tuyển");
-        jpanelRound1.add(Area1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 190, -1));
+        XetTuyen.setFont(new java.awt.Font("Calibri", 0, 15)); // NOI18N
+        XetTuyen.setForeground(new java.awt.Color(0, 255, 51));
+        XetTuyen.setText("Tham gia không cần xét tuyển");
 
-        add(jpanelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 750, 210));
-
-        jpanelRound2.setBackground(new java.awt.Color(75, 151, 255));
-        jpanelRound2.setForeground(new java.awt.Color(255, 255, 255));
-        jpanelRound2.setRoundTopRight(80);
-
-        NameCLB.setFont(new java.awt.Font("Calibri", 1, 32)); // NOI18N
-        NameCLB.setForeground(new java.awt.Color(235, 235, 235));
-        NameCLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        NameCLB.setText("Name CLB");
-        NameCLB.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        NameCLB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout jpanelRound2Layout = new javax.swing.GroupLayout(jpanelRound2);
-        jpanelRound2.setLayout(jpanelRound2Layout);
-        jpanelRound2Layout.setHorizontalGroup(
-            jpanelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelRound2Layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
-                .addComponent(NameCLB, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+        javax.swing.GroupLayout jpanelRound1Layout = new javax.swing.GroupLayout(jpanelRound1);
+        jpanelRound1.setLayout(jpanelRound1Layout);
+        jpanelRound1Layout.setHorizontalGroup(
+            jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelRound1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpanelRound1Layout.createSequentialGroup()
+                        .addComponent(BasicInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(XetTuyen, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(19, Short.MAX_VALUE))
+                    .addGroup(jpanelRound1Layout.createSequentialGroup()
+                        .addGroup(jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Department, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LastUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30))))
         );
-        jpanelRound2Layout.setVerticalGroup(
-            jpanelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpanelRound2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(NameCLB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+        jpanelRound1Layout.setVerticalGroup(
+            jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelRound1Layout.createSequentialGroup()
+                .addGroup(jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpanelRound1Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(BasicInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelRound1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(XetTuyen)
+                        .addGap(29, 29, 29)))
+                .addGroup(jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpanelRound1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(Department)
+                        .addGap(12, 12, 12)
+                        .addComponent(Status))
+                    .addGroup(jpanelRound1Layout.createSequentialGroup()
+                        .addComponent(LastUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        add(jpanelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 440, 90));
+        jpanelRound3.add(jpanelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 720, 210));
 
         jPanel2.setBackground(new java.awt.Color(245, 245, 245));
 
@@ -304,7 +339,7 @@ public class IntroductionClub extends javax.swing.JPanel {
             .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 520, 10, 20));
+        jpanelRound3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 520, 10, 20));
 
         LoveButton.setBackground(new java.awt.Color(255, 255, 255));
         LoveButton.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/Heart1.png"))); // NOI18N
@@ -329,7 +364,50 @@ public class IntroductionClub extends javax.swing.JPanel {
             .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        add(LoveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 30, 30, 30));
+        jpanelRound3.add(LoveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 30, 30));
+
+        jpanelRound2.setBackground(new java.awt.Color(75, 151, 255));
+        jpanelRound2.setForeground(new java.awt.Color(255, 255, 255));
+        jpanelRound2.setRoundTopRight(80);
+
+        NameCLB.setFont(new java.awt.Font("Calibri", 1, 32)); // NOI18N
+        NameCLB.setForeground(new java.awt.Color(235, 235, 235));
+        NameCLB.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        NameCLB.setText("Name CLB");
+        NameCLB.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        NameCLB.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jpanelRound2Layout = new javax.swing.GroupLayout(jpanelRound2);
+        jpanelRound2.setLayout(jpanelRound2Layout);
+        jpanelRound2Layout.setHorizontalGroup(
+            jpanelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelRound2Layout.createSequentialGroup()
+                .addGap(0, 66, Short.MAX_VALUE)
+                .addComponent(NameCLB, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpanelRound2Layout.setVerticalGroup(
+            jpanelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelRound2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(NameCLB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+
+        jpanelRound3.add(jpanelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 410, 90));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jpanelRound3, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpanelRound3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
@@ -389,8 +467,12 @@ public class IntroductionClub extends javax.swing.JPanel {
         if(MainPanelCLB == null)
             return;
         
-        DetailPageCLB DetailPage = new DetailPageCLB(MainPanelCLB, RightPanelCLB);
+        DetailPageCLB DetailPage = new DetailPageCLB(MainPanelCLB);
+        DetailPage.setDataToPage(MaCLB);
         MainPanelCLB.goToDetailPage(DetailPage);
+        
+        //ShowRightPanel
+        this.RightPanelCLB.showDetailPageRightPanel(NameCLUB, CreateBy, HostBy, DateCreate);
     }//GEN-LAST:event_JoinButtonMousePressed
 
     public void setMainPanel(CauLacBoPanel MainPanelCLB)
@@ -402,9 +484,90 @@ public class IntroductionClub extends javax.swing.JPanel {
     {
         this.RightPanelCLB = RightPanelCLB;
     }
-   
+    
+    public void setMaCLB(int MaCLB)
+    {
+        this.MaCLB = MaCLB;
+    }
+    
+    public int getMaCLB()
+    {
+        return MaCLB;
+    }
+    
+    public void setSLThich(int SLThich)
+    {
+        this.SLThich = SLThich;
+    }
+    
+    public int getSLThich()
+    {
+        return SLThich;
+    }
+    
+    public void setDKXetTuyen(int DKXetTuyen)
+    {
+        this.DKXetTuyen = DKXetTuyen;
+        
+        if(DKXetTuyen == 1)
+        {
+            XetTuyen.setText("Tham gia cần xét tuyển");
+            XetTuyen.setForeground(new Color(204,204,0));
+        }
+        else
+        {
+            XetTuyen.setText("Tham gia không cần xét tuyển");
+            XetTuyen.setForeground(new Color(0,255,51));
+        }
+        
+    }
+    
+    public int getDKXetTuyen()
+    {
+        return DKXetTuyen;
+    }
+    
+    public void setIsLoving(boolean IsLoving)
+    {
+        this.IsLoving = IsLoving;
+    }
+    
+    public boolean getIsLoving()
+    {
+        return IsLoving;
+    }
+    
+    public void setCreateBy(String CreateBy)
+    {
+        this.CreateBy = CreateBy;
+    }
+    
+    public String getCreateBy()
+    {
+        return CreateBy;
+    }
+    
+    public void setHostBy(String HostBy)
+    {
+        this.HostBy = HostBy;
+    }
+    
+    public String getHostBy()
+    {
+        return HostBy;
+    }
+    
+    public void setDateCreate(LocalDate DateCreate)
+    {
+        this.DateCreate = DateCreate;
+    }
+    
+    public LocalDate getDateCreate()
+    {
+        return DateCreate;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Area1;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound BackIcon;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound BackPanel;
     private javax.swing.JTextPane BasicInfo;
@@ -419,9 +582,11 @@ public class IntroductionClub extends javax.swing.JPanel {
     private javax.swing.JLabel NumMem;
     private com.uiteco.contentPanels.CauLacBo.SlideShow.Slideshow SlideShowImage;
     private javax.swing.JLabel Status;
+    private javax.swing.JLabel XetTuyen;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JToolBar jToolBar1;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound jpanelRound1;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound jpanelRound2;
+    private com.uiteco.contentPanels.CauLacBo.JpanelRound jpanelRound3;
     // End of variables declaration//GEN-END:variables
 }

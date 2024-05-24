@@ -131,7 +131,6 @@ public class Cell extends JButton {
         }
         else
         if(isEntered) {
-            isEntered = false;
             Graphics2D g2 = (Graphics2D) grphcs;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g2.setColor(new Color(230,230,230));

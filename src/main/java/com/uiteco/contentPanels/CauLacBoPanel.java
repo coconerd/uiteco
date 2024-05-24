@@ -3,6 +3,7 @@ package com.uiteco.contentPanels;
 import com.uiteco.contentPanels.CauLacBo.DetailPageCLB;
 import com.uiteco.contentPanels.CauLacBo.FloatingBackUI.FloatingButtonUI;
 import com.uiteco.contentPanels.CauLacBo.IntroductionClub;
+import com.uiteco.database.ConnectionManager;
 import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.swing.ContentPanel;
 import java.awt.BorderLayout;
@@ -11,8 +12,16 @@ import java.awt.GridLayout;
 import java.time.LocalDateTime;
 import javax.swing.JPanel;
 import com.uiteco.swing.ScrollableContentPanel;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JLayer;
 
 /**
@@ -25,25 +34,32 @@ public class CauLacBoPanel extends JPanel {
     private CauLacBoRightPanel RightPanelCLB;
     private java.util.ArrayList<IntroductionClub> ListCLB = new java.util.ArrayList();
     private int NumOfPageCLB = 0;
+    private ContentPanel mainContentPanel;
     private ContentPanel Interface = new ContentPanel();
     private String CurrentPage = "Tab1";
     
     private int indexLayer = 0;
     private JLayer CurrentLayer; 
     
+    private int NumberCLUB = 0, NumberEvent = 0, NumberOnline = 0, NumberOffline = 0;
+    
     public CauLacBoPanel() {
-//        initComponents();
-        ConTentPanelCauLacBo();
+        Start();
     }
     
-    public CauLacBoPanel(CauLacBoRightPanel RightPanelCLB) {
-//        initComponents();
+    public CauLacBoPanel(CauLacBoRightPanel RightPanelCLB, ContentPanel mainContentPanel) {
         this.RightPanelCLB = RightPanelCLB;
+        this.mainContentPanel = mainContentPanel;
         RightPanelCLB.setClubPanel(this);
-        
-        ConTentPanelCauLacBo();        
-//        if(this.RightPanelCLB != null)
-//            System.out.println("RightPanel __");
+               
+        Start();
+    }
+    
+    private void Start()
+    {
+//        initComponents();
+        addDatabaseToListCLB();
+        ConTentPanelCauLacBo();
     }
     
     
@@ -67,7 +83,7 @@ public class CauLacBoPanel extends JPanel {
         }
         
         //GroupCLB.setBounds(marginX, marginY, 900, 1200);      this.setLayout(null);
-        GroupCLB.setLayout(new GridLayout(Math.max(endIndex - startIndex, 3), 1, marginX, marginClb));
+        GroupCLB.setLayout(new GridLayout(Math.max(endIndex - startIndex, 3), 1, 0, marginClb));
 
         return GroupCLB;
     }
@@ -107,95 +123,174 @@ public class CauLacBoPanel extends JPanel {
         return FooterCLUB;
     }
     
+    private void addDatabaseToListCLB()
+    {
+        
+        String NameCLB = "", InfoCLB = "", BackgroundImageURL = null, LogoImageURL = "", Khoa = "", CreateBy = "", HostBy = "";
+        int MaCLB, SLThanhVien, SLThich, DKXetTuyen, Status;
+        LocalDateTime LastedDate = null;
+        LocalDate DateCreate = null;
+        
+        try {
+            Connection conn = ConnectionManager.getConnection();
+               
+            String sql = "select * from Caulacbo";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                // ----- Get Data Start -----
+                Blob blob;   
+//                System.out.println("" + rs.getString("maclb") + " , " + rs.getString("TenCLB"));
+                MaCLB = rs.getInt("maclb");
+                NameCLB = rs.getNString("TENCLB");
+                InfoCLB = rs.getNString("GIOITHIEU");
+                Khoa = rs.getNString("KHOA");
+                
+                blob = rs.getBlob("BACKGROUND");
+                if(blob != null)
+                {
+                    byte[] bdata = blob.getBytes(1, (int) blob.length());
+                    BackgroundImageURL = new String(bdata);
+                }
+                blob = rs.getBlob("LOGO");
+                if(blob != null)
+                {
+                    byte[] bdata = blob.getBytes(1, (int) blob.length());
+                    LogoImageURL = new String(bdata);
+                }
+                
+                SLThanhVien = rs.getInt("SOLUONGTHANHVIEN");
+                SLThich = rs.getInt("SOLUONGTHICH");
+                DKXetTuyen = rs.getInt("DKXETTUYEN");
+                Status = rs.getInt("TRANGTHAI");
+                
+                Timestamp timestamp= rs.getTimestamp("NGAYCAPNHAPGANNHAT");
+                if(timestamp != null)
+                    LastedDate = timestamp.toLocalDateTime();
+                
+                CreateBy = rs.getNString("NHOMNGUOITHANHLAP");
+                HostBy = rs.getInt("CHUNHIEM") + " (so): ";
+                
+                Date date = rs.getDate("NGAYTHANHLAP");
+                if(date != null)
+                    DateCreate = date.toLocalDate();
+
+                // ----- Get Data End -----
+   
+                ArrayList<String> ListImageUrl = new ArrayList();
+                    
+                if(BackgroundImageURL != null)
+                    ListImageUrl.add(BackgroundImageURL);
+                
+                IntroductionClub Clb = new IntroductionClub(NameCLB, InfoCLB, LogoImageURL, SLThanhVien, LastedDate, Khoa, Status, ListImageUrl);
+                Clb.setMainPanel(this);
+                Clb.setRightPanelCLB(RightPanelCLB);
+                Clb.setMaCLB(MaCLB);
+                Clb.setSLThich(SLThich);
+                Clb.setDKXetTuyen(DKXetTuyen);
+                Clb.setCreateBy(CreateBy);
+                Clb.setHostBy(HostBy);
+                Clb.setDateCreate(DateCreate);
+                
+                ListCLB.add(Clb);
+                
+                NumberCLUB++;
+                
+                if(Status == 0)
+                    NumberOffline++;
+                else
+                {
+                    NumberOnline++;
+                    if(Status == 2)
+                        NumberEvent++;
+                }
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private int LastedNumOfPageCLB = 0;
+    
     private void ConTentPanelCauLacBo()    
     {   
-        // Biến này ta tăng khi ta nhập dữ liệu từ database;
-        // ở đây ta thêm tạm thời vì ta tạo dữ liệu ảo
-        int NumberCLUB, NumberEvent, NumberOnline, NumberOffline;
+        System.out.println("goto content");
         
-        // dữ liệu clb lấy trong database
-        // tạm thời cho các thông tin ảo
-        
-        ArrayList<String> ListImageUrl = new ArrayList();
-        ListImageUrl.add("/CauLacBoResources/SampleCoverImage.png");
-        ListImageUrl.add("/CauLacBoResources/SampleLogoImage.jpg");
-                
-        IntroductionClub Clb1 = new IntroductionClub("UITGamAPP", "Câu Lạc Bộ dành cho người có sự đam mê khám phá về game", new ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg")), 260, LocalDateTime.of(2024,04,18,21,12,16), "Công Nghệ Phần Mềm", 2, ListImageUrl);
-        Clb1.setMainPanel(this);
-        Clb1.setRightPanelCLB(RightPanelCLB);
-        IntroductionClub Clb2 = new IntroductionClub("BadmintonCLB", "Cầu Lông là Sự sống", new ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg")), 300, LocalDateTime.of(2024,04,18,21,38,0), "Hệ Thống Thông Tin", 1, ListImageUrl);
-        Clb2.setMainPanel(this);
-        Clb2.setRightPanelCLB(RightPanelCLB);
-        IntroductionClub Clb3 = new IntroductionClub("GymCLB", "Sống với GYM ngủ với GYM", new ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg")), 230, LocalDateTime.of(2024,02,17,0,0,0), "Mạng Máy Tính", 2, ListImageUrl);
-        Clb3.setMainPanel(this);
-        Clb3.setRightPanelCLB(RightPanelCLB);
-        IntroductionClub Clb4 = new IntroductionClub("VStorm Đỉnh VL", "Có ai Pro bằng anh này", new ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg")), 1, LocalDateTime.of(2020,02,15,0,0,0), "Anh Bão PRO", 1, ListImageUrl);
-        Clb4.setMainPanel(this);
-        Clb4.setRightPanelCLB(RightPanelCLB);
-        IntroductionClub Clb5 = new IntroductionClub("VStorm Đỉnh VL", "Có ai Pro bằng anh này", new ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg")), 1, LocalDateTime.of(2024,02,15,1,1,1), "Anh Bão PRO", 0, ListImageUrl); 
-        Clb5.setMainPanel(this);
-        Clb5.setRightPanelCLB(RightPanelCLB);
-        IntroductionClub Clb6 = new IntroductionClub("VStorm Đỉnh VL", "Có ai Pro bằng anh này", new ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg")), 1, LocalDateTime.of(2018,04,15,2,2,2), "Anh Bão PRO", 0, ListImageUrl);
-        Clb6.setMainPanel(this);
-        Clb6.setRightPanelCLB(RightPanelCLB);
-        
-        // Với dữ liệu ảo ta tạm tính được
-        NumberCLUB = 6;
-        NumberEvent = 2;
-        NumberOnline = 4;
-        NumberOffline = 2;
-        
-        ListCLB.add(Clb1);
-        ListCLB.add(Clb2);
-        ListCLB.add(Clb3);
-        ListCLB.add(Clb4);
-        ListCLB.add(Clb5);
-        ListCLB.add(Clb6);
-
-        // Kết thúc tạo biến tạm cho Dữ liệu
+        boolean checkIsInit = true;
+        if(LastedNumOfPageCLB == 0)
+            checkIsInit = false;
         
         int MAXClbIn1Tab = 5;
         NumOfPageCLB = ListCLB.size() % MAXClbIn1Tab == 0 ? ListCLB.size() / MAXClbIn1Tab : ListCLB.size() / MAXClbIn1Tab + 1;
-            
+        NumOfPageCLB = Math.max(NumOfPageCLB, 1);    
+        
         for(int i = 1 ; i <= NumOfPageCLB; i++)
         {
             ScrollableContentPanel NewTab = new ScrollableContentPanel();
-            NewTab.setFocusable(false);
-            
             JPanel InterfacePanel = new JPanel();
+            
+            if(LastedNumOfPageCLB >= i)
+            {
+                NewTab = (ScrollableContentPanel) Interface.getComponent("Tab" + i);
+//                NewTab.removeAll();   
+                InterfacePanel = (JPanel) NewTab.getComponent("Interface");
+                InterfacePanel.removeAll();
+            }
+            
+            NewTab.setFocusable(false);
+
             InterfacePanel.setLayout(new java.awt.BorderLayout(0, 25));
             // HeaderInterfaceCLB
             InterfacePanel.add(ShowHeaderInterfaceCLB(NumberCLUB, NumberEvent, NumberOnline, NumberOffline), java.awt.BorderLayout.NORTH);
             // BodyInterfaceCLB
-            InterfacePanel.add(ShowBodyInterfaceCLB((i - 1) * 5 + 0, Math.min(i * 5, ListCLB.size())), java.awt.BorderLayout.CENTER);
+            InterfacePanel.add(ShowBodyInterfaceCLB((i - 1) * MAXClbIn1Tab + 0, Math.min(i * MAXClbIn1Tab, ListCLB.size())), java.awt.BorderLayout.CENTER);
             // FooterInterfaceCLB
             InterfacePanel.add(ShowFooterInterfaceCLB(i), java.awt.BorderLayout.SOUTH);
 
             // chỉnh margin phải và trái của Interface
             JPanel RightMargin = new JPanel();
             RightMargin.setBackground(this.getBackground());
-                //RightMargin.setBackground(Color.BLACK);
-                RightMargin.setPreferredSize(new java.awt.Dimension(120, 0));
-                InterfacePanel.add(RightMargin, java.awt.BorderLayout.EAST);
+            //RightMargin.setBackground(Color.BLACK);
+            RightMargin.setPreferredSize(new java.awt.Dimension(120, 0));
+//            InterfacePanel.add(RightMargin, java.awt.BorderLayout.EAST);
 
             JPanel LeftMargin = new JPanel();
             LeftMargin.setBackground(InterfacePanel.getBackground());
-                //LeftMargin.setBackground(Color.PINK);
-                LeftMargin.setPreferredSize(new java.awt.Dimension(120, 0));
-                InterfacePanel.add(LeftMargin, java.awt.BorderLayout.WEST);    
+            //LeftMargin.setBackground(Color.PINK);
+            LeftMargin.setPreferredSize(new java.awt.Dimension(120, 0));
+//            InterfacePanel.add(LeftMargin, java.awt.BorderLayout.WEST);    
                 
-            NewTab.registerComponent(InterfacePanel, "Interface");
+            if(LastedNumOfPageCLB < i)
+            {
+                NewTab.registerComponent(InterfacePanel, "Interface");
+                Interface.registerComponent(NewTab, "Tab" + i);
+                LastedNumOfPageCLB ++;
+            }
+            
             NewTab.showComponentAndTrimHistory("Interface");   
+            NewTab.ScrollToBottom();
             NewTab.ScrollToTop();
-            Interface.registerComponent(NewTab, "Tab" + i);
         }
         
         // Show Interface
         Interface.showComponentAndTrimHistory("Tab1");
         CurrentPage = "Tab1";
         
-        this.setLayout(new java.awt.BorderLayout(0, 0));
-        this.add(Interface, java.awt.BorderLayout.CENTER);
+        if(Interface != null)
+            this.remove(Interface);
+            
+        if(true)
+        {
+            this.setLayout(new java.awt.BorderLayout(0, 0));
+            this.add(Interface, java.awt.BorderLayout.CENTER);
+        }
+    
+        this.repaint();
+//        this.repaint(100, 300, 500, HEIGHT);
     }
     
     public void returnToMainPanel()
@@ -264,9 +359,149 @@ public class CauLacBoPanel extends JPanel {
         }
     }
   
-    public void FilterListCLB(String Area, String NameBox, String StyleBox, String Status, String ConditionJoin)  
+    public void FilterListCLB(String Area, String NameBox, String StyleBox, String Status_, String ConditionJoin)  
     {
-        System.out.println("Area: " + Area + ", NameBox: " + NameBox + ", StyleBox: " + StyleBox + ", Status: " + Status + ", ConditionJoin: " + ConditionJoin);
+        String Bodysql = "", Ordersql = "";
+        
+        System.out.println("Area: " + Area + ", NameBox: " + NameBox + ", StyleBox: " + StyleBox + ", Status: " + Status_ + ", ConditionJoin: " + ConditionJoin);
+    
+        if(!Area.equals(""))
+        {
+            Bodysql += "PHAMVI = " + Area + " ";
+        }
+        
+        if(!Status_.equals(""))
+        {
+            if(!Bodysql.equals(""))
+                Bodysql += "AND ";
+            
+            Bodysql += "TRANGTHAI = " + Status_ + " ";
+        }
+        
+        if(!ConditionJoin.equals(""))
+        {
+            if(!Bodysql.equals(""))
+                Bodysql += "AND ";
+            
+            Bodysql += "DKXETTUYEN = " + ConditionJoin + " ";
+        }
+        
+         if(!Bodysql.equals(""))
+            Bodysql = "WHERE " + Bodysql;
+        
+        if(!NameBox.equals(""))
+        {
+            if(NameBox.equals("Tên"))
+                Ordersql += "TENCLB ";
+            else
+                Ordersql += "SOLUONGTHANHVIEN ";
+            
+            if(StyleBox.equals("Tăng dần"))
+                Ordersql += "ASC ";
+            else
+                Ordersql += "DESC ";
+        }
+        
+        if(!Ordersql.equals(""))
+            Ordersql = "ORDER BY " + Ordersql;
+        
+        NumberCLUB = 0;
+        NumberOffline = 0;
+        NumberEvent = 0;
+        ListCLB.clear();
+        try {
+            String NameCLB = "", InfoCLB = "", BackgroundImageURL = null, LogoImageURL = "", Khoa = "", CreateBy = "", HostBy = "";
+            int MaCLB, SLThanhVien, SLThich, DKXetTuyen, Status;
+            LocalDateTime LastedDate = null;
+            LocalDate DateCreate = null;
+            String ImageUrl = "";
+            
+            Connection conn = ConnectionManager.getConnection();
+            String sql = "select * from CAULACBO " + Bodysql + Ordersql;
+            
+            System.out.println("code : " + sql);
+            
+            
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                // ----- Get Data Start -----
+                Blob blob;   
+//                System.out.println("" + rs.getString("maclb") + " , " + rs.getString("TenCLB"));
+                MaCLB = rs.getInt("maclb");
+                NameCLB = rs.getNString("TENCLB");
+                InfoCLB = rs.getNString("GIOITHIEU");
+                Khoa = rs.getNString("KHOA");
+                
+                blob = rs.getBlob("BACKGROUND");
+                if(blob != null)
+                {
+                    byte[] bdata = blob.getBytes(1, (int) blob.length());
+                    BackgroundImageURL = new String(bdata);
+                }
+                blob = rs.getBlob("LOGO");
+                if(blob != null)
+                {
+                    byte[] bdata = blob.getBytes(1, (int) blob.length());
+                    LogoImageURL = new String(bdata);
+                }
+                
+                SLThanhVien = rs.getInt("SOLUONGTHANHVIEN");
+                SLThich = rs.getInt("SOLUONGTHICH");
+                DKXetTuyen = rs.getInt("DKXETTUYEN");
+                Status = rs.getInt("TRANGTHAI");
+                
+                Timestamp timestamp= rs.getTimestamp("NGAYCAPNHAPGANNHAT");
+                if(timestamp != null)
+                    LastedDate = timestamp.toLocalDateTime();
+                
+                CreateBy = rs.getNString("NHOMNGUOITHANHLAP");
+                HostBy = rs.getInt("CHUNHIEM") + "(so)";
+                
+                Date date = rs.getDate("NGAYTHANHLAP");
+                if(date != null)
+                    DateCreate = date.toLocalDate();
+
+                // ----- Get Data End -----
+   
+                ArrayList<String> ListImageUrl = new ArrayList();
+                    
+                if(BackgroundImageURL != null)
+                    ListImageUrl.add(BackgroundImageURL);
+                
+                IntroductionClub Clb = new IntroductionClub(NameCLB, InfoCLB, LogoImageURL, SLThanhVien, LastedDate, Khoa, Status, ListImageUrl);
+                Clb.setMainPanel(this);
+                Clb.setRightPanelCLB(RightPanelCLB);
+                Clb.setMaCLB(MaCLB);
+                Clb.setSLThich(SLThich);
+                Clb.setDKXetTuyen(DKXetTuyen);
+                Clb.setCreateBy(CreateBy);
+                Clb.setHostBy(HostBy);
+                Clb.setDateCreate(DateCreate);
+                
+                ListCLB.add(Clb);
+                
+                NumberCLUB++;
+                
+                if(Status == 0)
+                    NumberOffline++;
+                else
+                {
+                    NumberOnline++;
+                    if(Status == 2)
+                        NumberEvent++;
+                }
+            }
+
+            conn.close();
+            
+            ConTentPanelCauLacBo();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

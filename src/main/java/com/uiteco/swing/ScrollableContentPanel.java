@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import javax.swing.ScrollPaneConstants;
 import com.raven.scroll.ScrollPaneWin11;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.beans.PropertyChangeEvent;
 import javax.swing.JViewport;
 
@@ -34,6 +35,13 @@ public class ScrollableContentPanel extends DynamicPanel {
     public void ScrollToTop()
     {
         scrollPane.scrollToTop();
+    }
+    
+    public void ScrollToBottom()
+    {
+//        scrollPane.scrollToBottom();
+//        scrollPane.setLocation(3, 3);
+//        scrollPane.setViewport(new JViewport());
     }
     
     private void _init() {

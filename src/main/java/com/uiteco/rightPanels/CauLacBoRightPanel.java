@@ -3,6 +3,7 @@ package com.uiteco.rightPanels;
 import com.uiteco.contentPanels.CauLacBoPanel;
 import com.uiteco.rightPanels.CauLacBo.DetailPageRightPanel;
 import com.uiteco.rightPanels.CauLacBo.MainRightPanel;
+import java.time.LocalDate;
 
 /**
  *
@@ -28,7 +29,7 @@ public class CauLacBoRightPanel extends javax.swing.JPanel {
         RightPanel.showComponentAndTrimHistory("Main");
     }
     
-    public void showDetailPageRightPanel()
+    public void showDetailPageRightPanel(String NameCLB, String CreateBy, String HostBy, LocalDate DateCreate)
     {
         indexRightPanel++;
         
@@ -39,7 +40,7 @@ public class CauLacBoRightPanel extends javax.swing.JPanel {
             LastestDetailPage.repaint();
         }
       
-        LastestDetailPage = new DetailPageRightPanel();
+        LastestDetailPage = new DetailPageRightPanel(NameCLB, CreateBy, HostBy, DateCreate);
         RightPanel.registerComponent(LastestDetailPage, "DetailPage" + indexRightPanel);
         RightPanel.showComponentAndTrimHistory("DetailPage" + indexRightPanel);
     }
