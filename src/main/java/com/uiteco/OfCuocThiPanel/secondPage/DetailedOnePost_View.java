@@ -1,8 +1,6 @@
 
 package com.uiteco.OfCuocThiPanel.secondPage;
 
-import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import static com.raven.scroll.ScrollPaneUtil.configureScrollBar;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import java.awt.Color;
@@ -13,6 +11,13 @@ import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 
 
 public class DetailedOnePost_View extends JPanel {
+
+    /**
+     * @return the scrollPaneImages
+     */
+    public com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages getScrollPaneImages() {
+        return scrollPaneImages;
+    }
 
     public DetailedOnePost_Controller getController() {
         return controller;
@@ -295,9 +300,9 @@ public class DetailedOnePost_View extends JPanel {
 
         jContent1.add(jPanel3);
 
-        scrollPaneImages.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 0, 25, 0));
-        scrollPaneImages.setOpaque(false);
-        jContent1.add(scrollPaneImages);
+        getScrollPaneImages().setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 0, 25, 0));
+        getScrollPaneImages().setOpaque(false);
+        jContent1.add(getScrollPaneImages());
 
         jPanel1.setOpaque(false);
 
@@ -683,6 +688,7 @@ public class DetailedOnePost_View extends JPanel {
         jContent1.setPreferredSize(new java.awt.Dimension(1040, 50));
         jContent1.setLayout(new javax.swing.BoxLayout(jContent1, javax.swing.BoxLayout.PAGE_AXIS));
 
+        jContent.setEditable(false);
         jContent.setColumns(20);
         jContent.setLineWrap(true);
         jContent.setWrapStyleWord(true);
@@ -690,7 +696,7 @@ public class DetailedOnePost_View extends JPanel {
         jContent1.add(jContent);
 
         jPanel3.setOpaque(false);
-        jPanel3.setPreferredSize(new java.awt.Dimension(1034, 100));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1034, 90));
 
         jLabel1.setFont(new java.awt.Font("Merriweather", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -707,27 +713,28 @@ public class DetailedOnePost_View extends JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(38, 38, 38))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53))))
+                        .addGap(22, 22, 22))))
         );
 
         jContent1.add(jPanel3);
 
-        scrollPaneImages.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 0, 25, 0));
+        scrollPaneImages.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 25, 0));
         scrollPaneImages.setOpaque(false);
+        scrollPaneImages.setPreferredSize(new java.awt.Dimension(855, 500));
         jContent1.add(scrollPaneImages);
 
         jPanel1.setOpaque(false);
@@ -787,7 +794,7 @@ public class DetailedOnePost_View extends JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLeftIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(1056, 1056, 1056)
@@ -795,9 +802,9 @@ public class DetailedOnePost_View extends JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 89, Short.MAX_VALUE)
                 .addComponent(jContent1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addGap(30, 30, 30))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -903,7 +910,7 @@ public class DetailedOnePost_View extends JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(highResolutionResize1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1193, Short.MAX_VALUE)
+                .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

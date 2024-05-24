@@ -30,6 +30,7 @@ public class DetailedOnePost_Controller {
         return baseModel.getId();
     }
 
+
     public DetailedOnePost_View setData(BriefPost_Model baseModel) {
         view.jTitle.setText(baseModel.getTitle());
         view.getjRegisterTime().setText(baseModel.getDateRange_ForDetailedPage());
@@ -47,14 +48,15 @@ public class DetailedOnePost_Controller {
         List<RoundImageUI> listImage = new ArrayList<>();
         for (ImageIcon i : imageList) {
             RoundImageUI r = new RoundImageUI();
-            r.getHighResolutionResize1().setImage(i);
+            r.getRoundedImagePanel().setImage(i);
             listImage.add(r);
         }
-
+        System.out.println(listImage.size());
+        
         for (Component c : listImage) {
-            view.sc.getjPanel().add(c);
+            view.getScrollPaneImages().getRoundedGradientPanel().add(c);
         }
-
+        
         return view;
     }
 
@@ -83,11 +85,11 @@ public class DetailedOnePost_Controller {
         // For example, you could call a method in the DetailedOnePost_Model to handle the registration
         ConfirmPopUp popUp = new ConfirmPopUp();
         GlassPanePopup.showPopup(popUp);
-        
+
         popUp.getjOk().addActionListener((e) -> {
             CuocThiDAO.insertUserRegisterCompetition(baseModel.getId(), LocalDateTime.now());
             GlassPanePopup.closePopupAll();
-            
+
             //when press Register, display unregister button 
             view.jRegister.setVisible(false);
         });
