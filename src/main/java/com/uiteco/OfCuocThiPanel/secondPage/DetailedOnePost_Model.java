@@ -1,25 +1,20 @@
 package com.uiteco.OfCuocThiPanel.secondPage;
 
+import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 
 public class DetailedOnePost_Model extends BriefPost_Model{
 
-    /**
-     * @return the urlYT
-     */
     public List<String> getUrlYT() {
         return urlYT;
     }
 
-    /**
-     * @param urlYT the urlYT to set
-     */
     public void setUrlYT(List<String> urlYT) {
         this.urlYT = urlYT;
     }
-
 
     public List<ImageIcon> getImages() {
         return images;
@@ -54,7 +49,9 @@ public class DetailedOnePost_Model extends BriefPost_Model{
     protected List<ImageIcon> images;
     protected ImageIcon thumbnailYT;
     private List<String> urlYT;
-
+    //private DefaultTableModel modelTable;
+    
+    
     public DetailedOnePost_Model() {
     }
     

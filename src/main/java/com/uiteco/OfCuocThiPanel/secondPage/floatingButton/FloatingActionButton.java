@@ -27,7 +27,7 @@ public class FloatingActionButton extends JComponent {
         setLayout(layout);
         Button button = new Button(-1);
         button.setShowButton(true);
-        button.setBackground(new Color(40, 154, 242));
+        button.setBackground(new Color(100, 150, 200));
         add(button, "pos 1al 1al, w 50, h 50, id ms");
         animator = new Animator(300);
         animator.setResolution(0);
@@ -91,7 +91,6 @@ public class FloatingActionButton extends JComponent {
 
     public void addItem(Icon icon, Color color) {
         Button item = new Button(getComponentCount() - 1);
-        System.out.println("day");
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {

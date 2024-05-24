@@ -35,8 +35,8 @@ public class NewstCompetitions extends javax.swing.JPanel {
 
         roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
         roundedImagePanel2 = new com.uiteco.components.RoundedImagePanel();
-        highResolutionResize1 = new com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize();
-        highResolutionResize2 = new com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize();
+        back = new com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize();
+        next = new com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize();
         slideShow_AutoSlide = new com.uiteco.OfCuocThiPanel.firstPage.slideShow.SlideShow_AutoSlide();
 
         roundedGradientPanel1.setColor1(new java.awt.Color(252, 225, 208));
@@ -61,37 +61,47 @@ public class NewstCompetitions extends javax.swing.JPanel {
 
         roundedGradientPanel1.add(roundedImagePanel2, java.awt.BorderLayout.CENTER);
 
-        highResolutionResize1.setImage(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
-        highResolutionResize1.setPreferredSize(new java.awt.Dimension(80, 436));
+        back.setImage(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        back.setPreferredSize(new java.awt.Dimension(80, 436));
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                backMousePressed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout highResolutionResize1Layout = new javax.swing.GroupLayout(highResolutionResize1);
-        highResolutionResize1.setLayout(highResolutionResize1Layout);
-        highResolutionResize1Layout.setHorizontalGroup(
-            highResolutionResize1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout backLayout = new javax.swing.GroupLayout(back);
+        back.setLayout(backLayout);
+        backLayout.setHorizontalGroup(
+            backLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 80, Short.MAX_VALUE)
         );
-        highResolutionResize1Layout.setVerticalGroup(
-            highResolutionResize1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        backLayout.setVerticalGroup(
+            backLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 446, Short.MAX_VALUE)
         );
 
-        roundedGradientPanel1.add(highResolutionResize1, java.awt.BorderLayout.LINE_START);
+        roundedGradientPanel1.add(back, java.awt.BorderLayout.LINE_START);
 
-        highResolutionResize2.setImage(new javax.swing.ImageIcon(getClass().getResource("/next.png"))); // NOI18N
-        highResolutionResize2.setPreferredSize(new java.awt.Dimension(80, 436));
+        next.setImage(new javax.swing.ImageIcon(getClass().getResource("/next.png"))); // NOI18N
+        next.setPreferredSize(new java.awt.Dimension(80, 436));
+        next.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                nextMousePressed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout highResolutionResize2Layout = new javax.swing.GroupLayout(highResolutionResize2);
-        highResolutionResize2.setLayout(highResolutionResize2Layout);
-        highResolutionResize2Layout.setHorizontalGroup(
-            highResolutionResize2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout nextLayout = new javax.swing.GroupLayout(next);
+        next.setLayout(nextLayout);
+        nextLayout.setHorizontalGroup(
+            nextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 80, Short.MAX_VALUE)
         );
-        highResolutionResize2Layout.setVerticalGroup(
-            highResolutionResize2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        nextLayout.setVerticalGroup(
+            nextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 446, Short.MAX_VALUE)
         );
 
-        roundedGradientPanel1.add(highResolutionResize2, java.awt.BorderLayout.LINE_END);
+        roundedGradientPanel1.add(next, java.awt.BorderLayout.LINE_END);
 
         slideShow_AutoSlide.setOpaque(false);
         roundedGradientPanel1.add(slideShow_AutoSlide, java.awt.BorderLayout.CENTER);
@@ -108,9 +118,21 @@ public class NewstCompetitions extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void backMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMousePressed
+        // TODO add your handling code here:
+        slideShow_AutoSlide.stop();
+        slideShow_AutoSlide.back();
+    }//GEN-LAST:event_backMousePressed
+
+    private void nextMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMousePressed
+        // TODO add your handling code here:
+        slideShow_AutoSlide.stop();
+        slideShow_AutoSlide.next();
+    }//GEN-LAST:event_nextMousePressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize highResolutionResize1;
-    private com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize highResolutionResize2;
+    private com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize back;
+    private com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize next;
     private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
     private com.uiteco.components.RoundedImagePanel roundedImagePanel2;
     private com.uiteco.OfCuocThiPanel.firstPage.slideShow.SlideShow_AutoSlide slideShow_AutoSlide;

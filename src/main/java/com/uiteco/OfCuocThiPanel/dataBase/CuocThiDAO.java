@@ -3,6 +3,7 @@ package com.uiteco.OfCuocThiPanel.dataBase;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.Pagination;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Model;
+import com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -54,7 +55,7 @@ public class CuocThiDAO {
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             query = "SELECT "
-                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, SOLUOTTHICH, THOIDIEMDIENRA, THUMBNAIL_YOUTUBEPLAY "
+                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA, THUMBNAIL_YOUTUBEPLAY "
                     + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
                     + "WHERE BD.MABD = BD_CT.MABD "
                     + "AND LOAIBD = 2 "
@@ -84,7 +85,7 @@ public class CuocThiDAO {
 
                 pstmt.close();
 
-                post.setCountLike(rset.getInt("SOLUOTTHICH"));
+                post.setCountLike(rset.getInt("LUOTTHICH"));
                 post.setTags(tagsString);
                 post.setContent(rset.getString("NOIDUNG"));
                 post.setTitle(rset.getString("TIEUDE"));
@@ -264,7 +265,7 @@ public class CuocThiDAO {
             }
             model.setImages(imagesList);
             model.setUrlYT(urlList);
-            
+
             rset.close();
             p.close();
             conn.close();
@@ -280,7 +281,7 @@ public class CuocThiDAO {
 
             conn = getConnection();
             PreparedStatement pstm = conn.prepareStatement(
-                    "UPDATE BAIDANG SET SOLUOTTHICH = ? WHERE MABD = ?");
+                    "UPDATE BAIDANG SET LUOTTHICH = ? WHERE MABD = ?");
             pstm.setInt(1, newCountLike);
             pstm.setInt(2, postId);
             int rowsAffected = pstm.executeUpdate();
@@ -304,7 +305,7 @@ public class CuocThiDAO {
             int limit = 1;
 
             String query1 = "SELECT "
-                    + "COUNT(*), BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, SOLUOTTHICH "
+                    + "COUNT(*), BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH "
                     + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
                     + "WHERE BD.MABD = BD_CT.MABD AND "
                     + "AND LOAIBD = 2 "
@@ -333,7 +334,7 @@ public class CuocThiDAO {
                 while (tagRset.next()) {
                     tagsString.add(tagRset.getString("TAG"));
                 }
-                post.setCountLike(rset.getInt("SOLUOTTHICH"));
+                post.setCountLike(rset.getInt("LUOTTHICH"));
                 post.setTags(tagsString);
                 post.setContent(rset.getString("NOIDUNG"));
                 post.setTitle(rset.getString("TIEUDE"));
@@ -445,22 +446,61 @@ public class CuocThiDAO {
         }
     }
 
-//    public List<String> getRegisterInfo(){
-//        try {
-//            conn = getConnection();
-//            String query = "SELECT HOTEN, USERNAME, EMAIL, MSSV "
-//                    + "FROM TAIKHOAN T, DANGKY D, SINHVIEN S "
-//                    + "WHERE T.MATK = D.MATK AND D.MATK = S.MATK";
-//            
-//            rset = stmt.executeQuery(query);
-//            List<String> registers = new ArrayList<>();
-//            
-//            while(rset.next()){
-//                
-//            }
-//        } catch (SQLException e) {
-//        }
-//    }
+    public static void getRegisterInfo_TableView(JTable table, int postID) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        try {
+            conn = getConnection();
+            query = "SELECT ANHDAIDIEN, HOTEN, USERNAME, EMAIL, MSSV "
+                    + "FROM TAIKHOAN T, DANGKY D, SINHVIEN S "
+                    + "WHERE T.MATK = D.MATK AND D.MATK = S.MATK "
+                    + "AND MABD = ?";
+
+            PreparedStatement p = conn.prepareStatement(query);
+            p.setInt(1, postID);
+            rset = p.executeQuery();
+
+            rset = stmt.executeQuery(query);
+
+            HighResolutionResize avatarPanel = new HighResolutionResize();
+
+            while (rset.next()) {
+                byte[] imageData = rset.getBytes("ANHDAIDIEN");
+                if (imageData != null) {
+                    try {
+                        //convert the byte array to an Image object
+                        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
+                        BufferedImage bufferedImage = ImageIO.read(inputStream);
+
+                        //create a scaled version of the BufferedImage
+                        Image scaledImage = bufferedImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+
+                        //set the Image object as the thumnail
+                        ImageIcon thumbnail = new ImageIcon(scaledImage);
+                        avatarPanel.setImage(thumbnail);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                String fullName = rset.getString("HOTEN");
+                String userName = rset.getString("USERNAME");
+                String email = rset.getString("EMAIL");
+
+                model.addRow(new Object[]{avatarPanel, fullName, userName, email});
+
+            }
+
+            table.setModel(model);
+            conn.close();
+            p.close();
+            rset.close();
+        } catch (SQLException e) {
+        }
+
+    }
+
     public static List<BriefPost_Model> getPostsInfo_Sort(int type, boolean dueDate, boolean hotest) {
         try {
             conn = getConnection();
@@ -473,23 +513,23 @@ public class CuocThiDAO {
             if (type == 0) {
                 if (!dueDate) {
                     query = "SELECT "
-                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, SOLUOTTHICH, THOIDIEMDIENRA "
+                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
                             + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
                             + "WHERE BD.MABD = BD_CT.MABD "
                             + "AND LOAIBD = 2 AND THOIGIANDIENRA = NGAYHETHAN_DANGKICUOCTHI"
                             + "ORDER BY THOIDIEMDANG DESC";
                 } else if (!hotest) {
                     query = "SELECT "
-                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, SOLUOTTHICH, THOIDIEMDIENRA "
+                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
                             + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
                             + "WHERE BD.MABD = BD_CT.MABD "
                             + "AND LOAIBD = 2 "
-                            + "ORDER BY SOLUOTTHICH DESC";
+                            + "ORDER BY LUOTTHICH DESC";
                 }
 
             } else if (type == 1 || type == 2) {
                 query = "SELECT "
-                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, SOLUOTTHICH, THOIDIEMDIENRA "
+                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
                         + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
                         + "WHERE BD.MABD = BD_CT.MABD "
                         + "AND LOAIBD = 2 AND HINHTHUCTG = ? "
@@ -522,7 +562,7 @@ public class CuocThiDAO {
 
                 pstmt.close();
 
-                post.setCountLike(rset.getInt("SOLUOTTHICH"));
+                post.setCountLike(rset.getInt("LUOTTHICH"));
                 post.setTags(tagsString);
                 post.setContent(rset.getString("NOIDUNG"));
                 post.setTitle(rset.getString("TIEUDE"));

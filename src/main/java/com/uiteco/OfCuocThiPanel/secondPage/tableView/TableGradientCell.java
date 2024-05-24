@@ -1,5 +1,6 @@
-package raven.table;
+package com.uiteco.OfCuocThiPanel.secondPage.tableView;
 
+import com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GradientPaint;
@@ -7,6 +8,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -17,7 +20,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class TableGradientCell extends DefaultTableCellRenderer {
 
     public TableGradientCell() {
-        this(Color.decode("#e1c8ef"), Color.decode("#a3e1e9"));
+        this(Color.decode("0x3e93fc"), Color.decode("0xefb7c0"));
     }
 
     public TableGradientCell(Color color1, Color color2) {
@@ -41,6 +44,10 @@ public class TableGradientCell extends DefaultTableCellRenderer {
         width = table.getWidth() - cellRec.x;
         this.isSelected = isSelected;
         this.row = row;
+        
+        if (value instanceof HighResolutionResize) {
+            return (HighResolutionResize) value;
+        }
         return com;
     }
 
@@ -50,10 +57,7 @@ public class TableGradientCell extends DefaultTableCellRenderer {
         if (isSelected) {
             g2.setPaint(new GradientPaint(x, 0, color1, width, 0, color2));
             g2.fill(new Rectangle2D.Double(0, 0, getWidth(), getHeight()));
-        } else if (row % 2 == 0) {
-            g2.setPaint(new GradientPaint(x, 0, Color.decode("#FFFFFF"), width, 0, Color.decode("#FFFFFF")));
-            g2.fill(new Rectangle2D.Double(0, 0, getWidth(), getHeight()));
-        }
+        } 
         g2.dispose();
         super.paintComponent(g);
     }

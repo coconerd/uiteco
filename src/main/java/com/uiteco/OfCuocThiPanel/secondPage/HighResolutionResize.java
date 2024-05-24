@@ -10,16 +10,30 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.AlphaComposite;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
-import java.util.List;
+import java.awt.image.BufferedImage;
 
 public class HighResolutionResize extends JPanel {
+
+    /**
+     * @return the arc
+     */
+    public int getArc() {
+        return arc;
+    }
+
+    /**
+     * @param arc the arc to set
+     */
+    public void setArc(int arc) {
+        this.arc = arc;
+        repaint();
+    }
 
     public HighResolutionResize(){
         setOpaque(false);
@@ -96,6 +110,7 @@ public class HighResolutionResize extends JPanel {
     private int roundBottomRight = 0;
     private float alpha = 1;
     private Icon image; 
+    private int arc;
     
      @Override
     public void paint(Graphics g){
@@ -131,6 +146,33 @@ public class HighResolutionResize extends JPanel {
         super.paint(g);
     }
     
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        
+        if(image != null){
+            int width = image.getIconWidth();
+            int height = image.getIconHeight();
+            
+            //create a buffered image with transparency
+            BufferedImage rounded = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2 = rounded.createGraphics();
+            
+            //enable anti-aliasing
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            
+            // Draw a rounded rectangle
+            g2.setClip(new RoundRectangle2D.Double(0, 0, width, height, getArc(), getArc()));
+            
+            // Draw the icon onto the buffered image
+            image.paintIcon(this, g2, 0, 0);
+            
+            g2.dispose();
+            
+            // Draw the rounded image
+            g.drawImage(rounded, 0, 0, this);
+        }
+    }
     private Rectangle getAutoSize(Icon image) {
         int w = getWidth();
         int h = getHeight();
@@ -199,5 +241,6 @@ public class HighResolutionResize extends JPanel {
         area.add(new Area(new Rectangle2D.Double(0, 0, width, height - roundY / 2)));
         return area;
     }
-
+    
+    
 }

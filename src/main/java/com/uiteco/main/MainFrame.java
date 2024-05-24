@@ -4,8 +4,6 @@
  */
 package com.uiteco.main;
 
-import com.formdev.flatlaf.FlatDarculaLaf;
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import com.uiteco.components.RoundedBorder;
@@ -19,12 +17,13 @@ import com.uiteco.contentPanels.ForumPanel;
 import com.uiteco.contentPanels.TinNhanPanel;
 import com.uiteco.contentPanels.TaiKhoanPanel;
 import com.uiteco.rightPanels.SuKienRightPanel;
-import com.uiteco.rightPanels.CuocThiRightPanel;
 import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.rightPanels.ForumRightPanel;
 import com.uiteco.rightPanels.TinNhanRightPanel;
 import com.uiteco.rightPanels.TaiKhoanRightPanel;
 import com.uiteco.ofSuKienPanel.detailed.SuKienDetailPanel;
+import com.uiteco.rightPanels.CuocThiRightPanel_FirstPage;
+import com.uiteco.rightPanels.CuocThiRightPanel_SecondPage;
 import com.uiteco.swing.ContentPanel;
 import java.awt.Cursor;
 
@@ -48,16 +47,16 @@ public class MainFrame extends javax.swing.JFrame {
         _initRightPanel();
         _additionalInit();
         GlassPanePopup.install(this);
-       
+
     }
-    
+
     /**
      * Provide contentPanel for ease of access from children components
      */
     public ContentPanel getContentPanel() {
         return this.contentPanel;
     }
-    
+
     public ContentPanel getRightPanel() {
         return this.rightPanel;
     }
@@ -701,7 +700,7 @@ public class MainFrame extends javax.swing.JFrame {
 //        SuKienPanel sk = new SuKienPanel();
         javax.swing.JPanel sk = new javax.swing.JPanel();
         contentPanel.registerComponent(sk, "suKienPanel");
-        
+
         javax.swing.JPanel skd = new javax.swing.JPanel();
         contentPanel.registerComponent(skd, SuKienDetailPanel.INSTANCE_NAME);
 
@@ -719,10 +718,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         TaiKhoanPanel tk = new TaiKhoanPanel();
         contentPanel.registerComponent(tk, "taiKhoanPanel");
-        
+
         DetailedOnePost_View post = new DetailedOnePost_View();
         contentPanel.registerComponent(post, "cuocThiDetailedPanel");
-        
+
 //        contentPanel.registerComponent(rootPane, name);
 //        contentPanel.registerComponent(rootPane, name);
 //        contentPanel.registerComponent(rootPane, name);
@@ -741,9 +740,12 @@ public class MainFrame extends javax.swing.JFrame {
         SuKienRightPanel skr = new SuKienRightPanel();
         rightPanel.registerComponent(skr, "suKienRightPanel");
 
-        CuocThiRightPanel ctr = new CuocThiRightPanel();
+        CuocThiRightPanel_FirstPage ctr = new CuocThiRightPanel_FirstPage();
         rightPanel.registerComponent(ctr, "cuocThiRightPanel");
 
+        CuocThiRightPanel_SecondPage ctr1 = new CuocThiRightPanel_SecondPage();
+        rightPanel.registerComponent(ctr1, "cuocThiRightPanel_SecondPage");
+        
         CauLacBoRightPanel clbr = new CauLacBoRightPanel();
         rightPanel.registerComponent(clbr, "cauLacBoRightPanel");
 
@@ -753,8 +755,9 @@ public class MainFrame extends javax.swing.JFrame {
         TinNhanRightPanel tnr = new TinNhanRightPanel();
         rightPanel.registerComponent(tnr, "tinNhanRightPanel");
 
-        TaiKhoanRightPanel tkr = new TaiKhoanRightPanel();
-        rightPanel.registerComponent(tkr, "taiKhoanRightPanel");
+//        TaiKhoanRightPanel tkr = new TaiKhoanRightPanel();
+//        rightPanel.registerComponent(tkr, "taiKhoanRightPanel");
+        
     }
 
     private void logOut() {

@@ -1,62 +1,42 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.uiteco.OfCuocThiPanel.secondPage;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import java.awt.Font;
-import static java.awt.Font.BOLD;
+import static com.raven.scroll.ScrollPaneUtil.configureScrollBar;
+import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
+import com.uiteco.rightPanels.CuocThiRightPanel_SecondPage;
 import javax.swing.table.JTableHeader;
-import raven.table.TableGradientCell;
 
-/**
- *
- * @author Phan Thi Thuy Hien
- */
-public class RegisterTableInfo extends javax.swing.JPanel {
+public class RegisterTableInfo extends CuocThiRightPanel_SecondPage {
 
-    /**
-     * Creates new form RegisterTableInfo
-     */
     public RegisterTableInfo() {
         initComponents();
         _init();
     }
 
-    private void _init() {
+    public void _init() {
+
+     
+        table.getColumn("Avatar").setCellRenderer(new TableImageCellRender());
+        CuocThiDAO.getRegisterInfo_TableView(table, getPostID());
         table.setBorder(null);
-        
+
         JTableHeader tableHeader = table.getTableHeader();
-        
-        table.setDefaultRenderer(Object.class, new TableGradientCell());
 
         table.getTableHeader().putClientProperty(FlatClientProperties.STYLE, ""
-                + "height:30;"
-                + "hoverBackground:null;"
-                + "pressedBackground:null;"
-                + "separatorColor:$TableHeader.background;"
-                + "font:bold;");
+                + "height:35;"
+                + "background: #B8C3EE;"
+                + "font:bold Merriweather 16;");
 
         table.putClientProperty(FlatClientProperties.STYLE, ""
-                + "rowHeight:35;"
+                + "rowHeight:42;"
                 + "showHorizontalLines:true;"
-                + "showVerticalLines:false;"
-                + "intercellSpacing:0,1;"
+                + "showVerticalLines:true;"
+                + "intercellSpacing:1,8;"
                 + "cellFocusColor:$TableHeader.hoverBackground;"
                 + "selectionBackground:$TableHeader.hoverBackground;"
                 + "selectionForeground:$Table.foreground;");
 
-        scroll.getVerticalScrollBar().putClientProperty(FlatClientProperties.STYLE, ""
-                + "trackArc:999;"
-                + "trackInsets:3,3,3,3;"
-                + "thumbInsets:3,3,3,3;"
-                + "background:$Table.background;"
-                
-        );
-        
-        scroll.putClientProperty( FlatClientProperties.SCROLL_BAR_SHOW_BUTTONS, true );
-        //table.getTableHeader().setDefaultRenderer(new TableHeaderAlignment(table));
+        configureScrollBar(scroll);
     }
 
     /**
@@ -72,7 +52,6 @@ public class RegisterTableInfo extends javax.swing.JPanel {
         tableScrollButton1 = new com.uiteco.OfCuocThiPanel.secondPage.tableView.TableScrollButton();
         scroll = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jSeparator1 = new javax.swing.JSeparator();
         highResolutionResize1 = new com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize();
         jLabel1 = new javax.swing.JLabel();
 
@@ -86,62 +65,13 @@ public class RegisterTableInfo extends javax.swing.JPanel {
 
         scroll.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
-        table.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Họ tên", "Username", "MSSV", "Email"
+                "Avatar", "Họ tên", "Username", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -152,12 +82,18 @@ public class RegisterTableInfo extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        table.setAutoscrolls(false);
+        table.setFocusable(false);
+        table.setOpaque(false);
+        table.setRowSelectionAllowed(false);
+        table.setShowGrid(false);
         table.getTableHeader().setReorderingAllowed(false);
+        table.setUpdateSelectionOnSort(false);
         scroll.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
-            table.getColumnModel().getColumn(0).setPreferredWidth(250);
-            table.getColumnModel().getColumn(1).setPreferredWidth(200);
-            table.getColumnModel().getColumn(2).setPreferredWidth(150);
+            table.getColumnModel().getColumn(0).setPreferredWidth(80);
+            table.getColumnModel().getColumn(1).setPreferredWidth(250);
+            table.getColumnModel().getColumn(2).setPreferredWidth(200);
             table.getColumnModel().getColumn(3).setPreferredWidth(250);
         }
 
@@ -174,7 +110,7 @@ public class RegisterTableInfo extends javax.swing.JPanel {
         );
         highResolutionResize1Layout.setVerticalGroup(
             highResolutionResize1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 58, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Merriweather", 1, 26)); // NOI18N
@@ -189,25 +125,22 @@ public class RegisterTableInfo extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tableScrollButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator1)
                     .addGroup(roundedPanel1Layout.createSequentialGroup()
                         .addComponent(highResolutionResize1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 371, Short.MAX_VALUE)))
+                        .addGap(0, 531, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         roundedPanel1Layout.setVerticalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(highResolutionResize1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
-                .addGap(0, 0, 0)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(tableScrollButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
+                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(highResolutionResize1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addComponent(tableScrollButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
 
@@ -223,11 +156,9 @@ public class RegisterTableInfo extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize highResolutionResize1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JSeparator jSeparator1;
     private com.uiteco.components.RoundedPanel roundedPanel1;
     private javax.swing.JScrollPane scroll;
     private javax.swing.JTable table;

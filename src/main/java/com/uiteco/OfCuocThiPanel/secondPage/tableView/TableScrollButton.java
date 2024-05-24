@@ -110,9 +110,9 @@ public class TableScrollButton extends JLayeredPane {
                 g2.setColor(new Color(10, 92, 137));
             } else {
                 if (mouseHovered) {
-                    g2.setColor(new Color(14, 122, 181));
+                    g2.setColor(new Color(79, 157, 243));
                 } else {
-                    g2.setColor(new Color(18, 149, 220));
+                    g2.setColor(new Color(79, 157, 243));
                 }
             }
             int gapx = scroll.getVerticalScrollBar().isShowing() ? scroll.getVerticalScrollBar().getWidth() : 0;
