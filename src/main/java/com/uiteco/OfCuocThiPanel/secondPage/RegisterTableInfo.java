@@ -55,8 +55,6 @@ public class RegisterTableInfo extends CuocThiRightPanel_SecondPage {
         highResolutionResize1 = new com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize();
         jLabel1 = new javax.swing.JLabel();
 
-        setOpaque(false);
-
         roundedPanel1.setBackground(new java.awt.Color(255, 255, 255));
         roundedPanel1.setRoundBottomLeft(30);
         roundedPanel1.setRoundBottomRight(30);

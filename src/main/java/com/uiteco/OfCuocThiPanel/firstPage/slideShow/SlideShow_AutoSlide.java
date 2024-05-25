@@ -13,7 +13,14 @@ import org.jdesktop.animation.timing.TimingTargetAdapter;
 
 public class SlideShow_AutoSlide extends JLayeredPane {
 
-    private final RoundedPanel panel;
+    /**
+     * @return the panel
+     */
+    public static RoundedPanel getPanel() {
+        return panel;
+    }
+
+    private static RoundedPanel panel;
     private final Pagination pagination;
     private final Animator animator;
     private Timer timer;
@@ -25,10 +32,13 @@ public class SlideShow_AutoSlide extends JLayeredPane {
     private boolean isSlideShowPlay;
 
     public SlideShow_AutoSlide() {
+        
         setOpaque(true);
         setBackground(new Color(200, 200, 200));
         layout = new MigLayout("inset 0");
         panel = new RoundedPanel();
+        
+        //panel.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()));
         panel.setRoundBottomLeft(30);
         panel.setRoundBottomRight(30);
         panel.setRoundTopLeft(30);
@@ -42,14 +52,14 @@ public class SlideShow_AutoSlide extends JLayeredPane {
                     timer.restart();
                     next = currentIndex < pageClick;
                     if (next) {
-                        componentOut = panel.getComponent(checkNext(currentIndex));
+                        componentOut = getPanel().getComponent(checkNext(currentIndex));
                         currentIndex = getNext(pageClick - 1);
-                        componentShow = panel.getComponent(currentIndex);
+                        componentShow = getPanel().getComponent(currentIndex);
                         animator.start();
                     } else {
-                        componentOut = panel.getComponent(checkBack(currentIndex));
+                        componentOut = getPanel().getComponent(checkBack(currentIndex));
                         currentIndex = getBack(pageClick + 1);
-                        componentShow = panel.getComponent(currentIndex);
+                        componentShow = getPanel().getComponent(currentIndex);
                         animator.start();
                     }
                 }
@@ -66,7 +76,7 @@ public class SlideShow_AutoSlide extends JLayeredPane {
             @Override
             public void timingEvent(float fraction) {
                 int imageGap = 0; // Gap in pixels between images
-                double width = panel.getWidth();
+                double width = getPanel().getWidth();
                 int location = (int) (width * fraction); // Calculate position based on fraction
 
                 int imageWidth = (int) (width - imageGap); // Calculate image width with gap
@@ -79,7 +89,7 @@ public class SlideShow_AutoSlide extends JLayeredPane {
                 }
                 
                 pagination.setAnimation(fraction);
-                panel.revalidate();
+                getPanel().revalidate();
             }
 
             @Override
@@ -104,14 +114,15 @@ public class SlideShow_AutoSlide extends JLayeredPane {
         if (imageList != null && imageList.size() >= 2) {
             for (Component image : imageList) {
                 image.setVisible(false);
-                panel.add(image, "pos 0 0 0 0");
+                getPanel().add(image, "pos 0 0 0 0");
             }
-            if (panel.getComponentCount() > 0) {
-                componentShow = panel.getComponent(0);
+            if (getPanel().getComponentCount() > 0) {
+                componentShow = getPanel().getComponent(0);
                 componentShow.setVisible(true);
                 layout.setComponentConstraints(componentShow, "pos 0 0 100% 100%");
+                System.out.println("done");
             }
-            pagination.setTotalPage(panel.getComponentCount());
+            pagination.setTotalPage(getPanel().getComponentCount());
             pagination.setCurrentIndex(0);
             timer.start();
         }
@@ -122,8 +133,8 @@ public class SlideShow_AutoSlide extends JLayeredPane {
             timer.restart();
             next = true;
             currentIndex = getNext(currentIndex);
-            componentShow = panel.getComponent(currentIndex);
-            componentOut = panel.getComponent(checkNext(currentIndex - 1));
+            componentShow = getPanel().getComponent(currentIndex);
+            componentOut = getPanel().getComponent(checkNext(currentIndex - 1));
             animator.start();
         }
 
@@ -134,14 +145,14 @@ public class SlideShow_AutoSlide extends JLayeredPane {
             timer.restart();
             next = false;
             currentIndex = getBack(currentIndex);
-            componentShow = panel.getComponent(currentIndex);
-            componentOut = panel.getComponent(checkBack(currentIndex + 1));
+            componentShow = getPanel().getComponent(currentIndex);
+            componentOut = getPanel().getComponent(checkBack(currentIndex + 1));
             animator.start();
         }
     }
 
     private int getNext(int index) {
-        if (index == panel.getComponentCount() - 1) {
+        if (index == getPanel().getComponentCount() - 1) {
             return 0;
         } else {
             return index + 1;
@@ -150,7 +161,7 @@ public class SlideShow_AutoSlide extends JLayeredPane {
 
     private int checkNext(int index) {
         if (index == -1) {
-            return panel.getComponentCount() - 1;
+            return getPanel().getComponentCount() - 1;
         } else {
             return index;
         }
@@ -158,14 +169,14 @@ public class SlideShow_AutoSlide extends JLayeredPane {
 
     private int getBack(int index) {
         if (index == 0) {
-            return panel.getComponentCount() - 1;
+            return getPanel().getComponentCount() - 1;
         } else {
             return index - 1;
         }
     }
 
     private int checkBack(int index) {
-        if (index == panel.getComponentCount()) {
+        if (index == getPanel().getComponentCount()) {
             return 0;
         } else {
             return index;
@@ -176,4 +187,5 @@ public class SlideShow_AutoSlide extends JLayeredPane {
         isSlideShowPlay = false;
         timer.stop();
     }
+
 }

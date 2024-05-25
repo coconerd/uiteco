@@ -60,10 +60,10 @@ public class firstPage extends javax.swing.JPanel {
         this.posts = posts;
     }
 
-    private Pagination pagination = new Pagination();
-    private Map<Integer, BriefPost_View> postMap = new HashMap<>();
-    private List<BriefPost_Model> posts = CuocThiDAO.getPostsInfo_Default();
+    private final Pagination pagination = new Pagination();
+    private final Map<Integer, BriefPost_View> postMap = new HashMap<>();
     private BriefPost_View postUI;
+    private List<BriefPost_Model> posts = CuocThiDAO.getPostsInfo_Default();
 
     public firstPage() {
         FlatMacLightLaf.setup();
@@ -156,7 +156,7 @@ public class firstPage extends javax.swing.JPanel {
 
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(newestCompetitions2, BorderLayout.NORTH);
-
+        
         setjPanel2(new javax.swing.JPanel());
         getjPanel2().setLayout(new GridBagLayout());
 

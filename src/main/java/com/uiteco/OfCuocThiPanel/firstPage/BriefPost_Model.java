@@ -11,6 +11,20 @@ import javax.swing.ImageIcon;
 public class BriefPost_Model extends javax.swing.JPanel {
 
     /**
+     * @return the thumbnailYT
+     */
+    public ImageIcon getThumbnailYT() {
+        return thumbnailYT;
+    }
+
+    /**
+     * @param thumbnailYT the thumbnailYT to set
+     */
+    public void setThumbnailYT(ImageIcon thumbnailYT) {
+        this.thumbnailYT = thumbnailYT;
+    }
+
+    /**
      * @return the dueDate
      */
     public LocalDate getDueDate() {
@@ -176,7 +190,7 @@ public class BriefPost_Model extends javax.swing.JPanel {
         this.propertyChangeSupport.removePropertyChangeListener(listener);
     }
     
-    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     protected int id;
     protected String title;
     protected LocalDate thoiDiemDang;
@@ -191,4 +205,5 @@ public class BriefPost_Model extends javax.swing.JPanel {
     protected LocalDateTime postTime;
     public int countLike;
     protected LocalDate dueDate;
+    private ImageIcon thumbnailYT;
 }

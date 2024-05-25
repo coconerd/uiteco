@@ -1,5 +1,7 @@
 package com.uiteco.OfCuocThiPanel.dataBase;
 
+import com.bulenkov.iconloader.util.Scalr;
+import com.bulenkov.iconloader.util.Scalr.Method;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.Pagination;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Model;
@@ -8,16 +10,20 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import static com.uiteco.database.ConnectionManager.getConnection;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import javax.imageio.ImageIO;
 import java.time.*;
 import java.util.*;
+import javaswingdev.chart.ModelPieChart;
+import javaswingdev.chart.PieChart;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -165,6 +171,70 @@ public class CuocThiDAO {
         }
     }
 
+    //5 khóa
+    public static void getDataForPieChart_CourseYear(PieChart chart, int postID) {
+        try {
+            conn = getConnection();
+            query = "SELECT COUNT(D.MATK) AS COUNT_MATK, "
+                    + "'K ' + (CAST(CAST((LEFT(MSSV, 2) AS INTEGER)) - 5) AS VARCHAR) AS COURSE_YEAR "
+                    + "FROM DANGKY D, SINHVIEN S "
+                    + "D.MATK = S.MATK AND MABD = ? "
+                    + "GROUP BY LEFT(MSSV, 2)";
+
+            PreparedStatement p = conn.prepareStatement(query);
+            p.setInt(1, postID);
+            rset = p.executeQuery();
+            int index = 0;
+            while (rset.next()) {
+                int count = rset.getInt("COUNT_MATK");
+                String courseYear = rset.getString("COURSE_YEAR");
+
+                chart.addData(new ModelPieChart(courseYear, count, getColor(index++)));
+
+            }
+
+        } catch (Exception e) {
+        }
+    }
+
+    //6 khoa 
+    public static void getDataForPieChart_FacultyName(PieChart chart, int postID) {
+        try {
+            conn = getConnection();
+            query = "SELECT TENKHOA, COUNT(D.MATK) AS COUNT_MATK "
+                    + "FROM DANGKY D, SINHVIEN S "
+                    + "D.MATK = S.MATK AND MABD = ? "
+                    + "GROUP BY TENKHOA";
+
+            PreparedStatement p = conn.prepareStatement(query);
+            p.setInt(1, postID);
+            rset = p.executeQuery();
+            int index = 0;
+            while (rset.next()) {
+                String tk = rset.getString("TENKHOA");
+                int count = rset.getInt("COUNT_MATK");
+
+                chart.addData(new ModelPieChart(tk, count, getColor(index++)));
+
+            }
+
+        } catch (Exception e) {
+        }
+    }
+
+    public static Color getColor(int index) {
+        Color[] color = new Color[]{
+            Color.BLUE,
+            Color.DARK_GRAY,
+            Color.GRAY,
+            Color.GREEN,
+            Color.PINK,
+            Color.MAGENTA
+
+        };
+        return color[index];
+    }
+
     public static List<ImageIcon> getImagesForSlideshow() {
         List<ImageIcon> imagesList = new ArrayList<>();
         try {
@@ -191,33 +261,35 @@ public class CuocThiDAO {
                 p.setInt(1, postID1);
                 ResultSet rset1 = p.executeQuery();
                 while (rset1.next()) {
-                    byte[] imageData = rset1.getBytes("ANH");
-                    if (imageData != null) {
+                    Blob blob = rset1.getBlob("ANH");
+                    if (blob != null) {
                         try {
-                            //convert the byte array to an Image object
+                            // Convert the Blob to a byte array
+                            byte[] imageData = blob.getBytes(1, (int) blob.length());
+                            // Convert the byte array to an Image object
                             ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
                             BufferedImage bufferedImage = ImageIO.read(inputStream);
+                            if (bufferedImage != null) {
 
-                            //create a scaled version of the BufferedImage
-                            Image scaledImage = bufferedImage.getScaledInstance(943, 436, Image.SCALE_SMOOTH);
-
-                            //set the Image object as the thumnail
-                            ImageIcon thumbnail = new ImageIcon(scaledImage);
-                            imagesList.add(thumbnail);
+                                Image scaledImg = Scalr.resize(bufferedImage, Method.ULTRA_QUALITY, 1300, 700);
+                                ImageIcon thumbnail = new ImageIcon(scaledImg);
+                                imagesList.add(thumbnail);
+                            }
 
                         } catch (IOException e) {
-                            e.printStackTrace();
                         }
+                    } else {
+                        System.out.println("Failed to read the image!");
                     }
                 }
                 p.close();
+                rset1.close();
             }
 
             rset.close();
             conn.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         return imagesList;
     }

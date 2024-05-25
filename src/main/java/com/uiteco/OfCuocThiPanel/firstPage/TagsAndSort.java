@@ -155,7 +155,11 @@ public class TagsAndSort extends JPanel {
         getTagComboBox().setPreferredSize(new Dimension(300, 27));
         leftPanel.add(searchIcon);
         leftPanel.add(getTagComboBox());
-
+        
+        tagComboBox.addActionListener((e)->{
+            List<String> itemSelected = tagComboBox.getSelectedItems();
+            
+        });
         //Add constraints to StringLayout panel
         layout.putConstraint(SpringLayout.WEST, searchIcon, 5, SpringLayout.WEST, leftPanel);
         layout.putConstraint(SpringLayout.NORTH, searchIcon, 5, SpringLayout.NORTH, leftPanel);

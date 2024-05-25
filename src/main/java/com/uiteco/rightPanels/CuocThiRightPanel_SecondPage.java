@@ -1,15 +1,15 @@
-
 package com.uiteco.rightPanels;
 
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import com.uiteco.OfCuocThiPanel.secondPage.RegisterTableInfo;
 import com.uiteco.OfCuocThiPanel.secondPage.floatingButton.EventFloatingActionButton;
+import com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChartPanel;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class CuocThiRightPanel_SecondPage extends JPanel{
+public class CuocThiRightPanel_SecondPage extends JPanel {
 
     /**
      * @param postID the postID to set
@@ -21,24 +21,24 @@ public class CuocThiRightPanel_SecondPage extends JPanel{
     public int getPostID() {
         return postID;
     }
-    
+
     public CuocThiRightPanel_SecondPage(int postID) {
         this.postID = postID;
         initComponents();
         actionPressButton();
     }
-    
-    public CuocThiRightPanel_SecondPage(){
+
+    public CuocThiRightPanel_SecondPage() {
         initComponents();
         actionPressButton();
     }
 
     public void actionPressButton() {
         ImageIcon listIcon = new ImageIcon(getClass().getResource("/note.png"));
-        //ImageIcon researchIcon = new ImageIcon(getClass().getResource("/note.png"));
+        ImageIcon researchIcon = new ImageIcon(getClass().getResource("/pie-chart.png"));
 
         floatingActionButton.addItem(listIcon, Color.white);
-        //floatingActionButton.addItem(researchIcon, Color.white);
+        floatingActionButton.addItem(researchIcon, Color.white);
 
         floatingActionButton.addEvent(new EventFloatingActionButton() {
             @Override
@@ -46,10 +46,10 @@ public class CuocThiRightPanel_SecondPage extends JPanel{
                 if (index == 0) {
                     RegisterTableInfo table = new RegisterTableInfo();
                     showForm(new RegisterTableInfo());
+
+                } else if (index == 1) {
+                    showForm(new PieChartPanel());
                 }
-//                } else if (index == 1) {
-//                    showForm(new analyzePanel());
-//                }
             }
         });
 
@@ -104,7 +104,6 @@ public class CuocThiRightPanel_SecondPage extends JPanel{
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
     private int postID;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.uiteco.OfCuocThiPanel.secondPage.floatingButton.FloatingActionButton floatingActionButton;

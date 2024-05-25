@@ -1,10 +1,8 @@
 package com.uiteco.OfCuocThiPanel.secondPage;
 
-import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import java.util.List;
 import javax.swing.ImageIcon;
-import javax.swing.table.DefaultTableModel;
 
 public class DetailedOnePost_Model extends BriefPost_Model{
 
@@ -20,18 +18,10 @@ public class DetailedOnePost_Model extends BriefPost_Model{
         return images;
     }
 
-    public ImageIcon getThumbnailYT() {
-        return thumbnailYT;
-    }
-
     public void setImages(List<ImageIcon> images) {
         this.images = images;
     }
 
-    public void setThumbnailYT(ImageIcon thumbnailYT) {
-        this.thumbnailYT = thumbnailYT;
-    }
-    
     public String getCountLike_Update(){
         return Integer.toString(getCountLike());
     }
@@ -47,7 +37,6 @@ public class DetailedOnePost_Model extends BriefPost_Model{
 
     
     protected List<ImageIcon> images;
-    protected ImageIcon thumbnailYT;
     private List<String> urlYT;
     //private DefaultTableModel modelTable;
     
