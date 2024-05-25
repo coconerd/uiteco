@@ -98,11 +98,10 @@ public class AuthModel implements Permissible {
     }
 
     private void _postLogin(TaiKhoanModel newUser) throws PermissibleNotPermittedException {
-        ImageIcon avatar = newUser.getAvatar();
-        if (avatar == null) {
-            avatar = new ImageIcon(getClass().getResource("/placeholder-avatar.png"));
+        
+        if (newUser.getAvatar() == null) {
+            newUser.setAvatar(new ImageIcon(getClass().getResource("/cat.png")));
         }
-        newUser.setAvatar(avatar);
 
         String mssv = newUser.getMssv();
         if (mssv != null) {

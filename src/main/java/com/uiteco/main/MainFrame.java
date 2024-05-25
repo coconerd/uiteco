@@ -123,7 +123,6 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
         setSize(new java.awt.Dimension(1280, 720));
 
         leftPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -154,7 +153,6 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
             }
         });
 
-        cuocThiButton.setBackground(new java.awt.Color(255, 255, 255));
         cuocThiButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cuocThiButton.setForeground(new java.awt.Color(153, 153, 153));
         cuocThiButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-ranking-17.png"))); // NOI18N
@@ -179,7 +177,6 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
             }
         });
 
-        cauLacBoButton.setBackground(new java.awt.Color(255, 255, 255));
         cauLacBoButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cauLacBoButton.setForeground(new java.awt.Color(153, 153, 153));
         cauLacBoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-group-17.png"))); // NOI18N
@@ -204,7 +201,6 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
             }
         });
 
-        forumButton.setBackground(new java.awt.Color(255, 255, 255));
         forumButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         forumButton.setForeground(new java.awt.Color(153, 153, 153));
         forumButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-forum-17.png"))); // NOI18N
@@ -229,7 +225,6 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
             }
         });
 
-        dangXuatButton.setBackground(new java.awt.Color(255, 255, 255));
         dangXuatButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         dangXuatButton.setForeground(new java.awt.Color(153, 153, 153));
         dangXuatButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-log-out-17.png"))); // NOI18N
@@ -273,7 +268,6 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
         imageAvatar13.add(imageAvatar15);
         imageAvatar15.setBounds(0, 0, 0, 0);
 
-        tinNhanButton.setBackground(new java.awt.Color(255, 255, 255));
         tinNhanButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tinNhanButton.setForeground(new java.awt.Color(153, 153, 153));
         tinNhanButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-chat-17.png"))); // NOI18N
@@ -409,7 +403,7 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
         jPanel2.setPreferredSize(new java.awt.Dimension(500, 55));
 
         avatar.setBorderSize(2);
-        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
+        avatar.setIcon(App.getSession().getUser().getAvatar());
         avatar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 avatarMouseClicked(evt);
@@ -438,7 +432,6 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
         searchPaneWrapper.setHorizontalScrollBar(null);
         searchPaneWrapper.setWheelScrollingEnabled(false);
 
-        searchPane.setBackground(new java.awt.Color(255, 255, 255));
         searchPane.setBorder(null);
         searchPane.setForeground(new java.awt.Color(102, 102, 102));
         searchPane.setToolTipText("Tìm kiếm");
