@@ -13,8 +13,10 @@ import static com.uiteco.auth.AuthDAO.register;
 public class RunMe {
 
     public static void main(String[] args) throws Exception {
-        InsertTAIKHOAN.insertTaiKhoan();
-        InsertCAULACBO.insertCAULACBO();
-        InsertBAIDANG.insertBAIDANG();
+//        InsertTAIKHOAN.insertTaiKhoan();
+//        InsertCAULACBO.insertCAULACBO();
+        InsertTHANHVIENCLB.insertTHANHVIENCLB();
+//        InsertBAIDANG.insertBAIDANG();
+        System.out.print("Finished");
     }
 }
