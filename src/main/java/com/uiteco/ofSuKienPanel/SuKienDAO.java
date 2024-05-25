@@ -535,7 +535,6 @@ public class SuKienDAO {
         if (tagCount < 1) {
             return getPageData(page, pageSize, sortOption);
         }
-        
 
         String tagParams = "";
         for (int i = 0; i < tagCount; i++) {
@@ -566,7 +565,7 @@ public class SuKienDAO {
         pstm.setInt(i + 1, pageSize);
 
         LinkedList<SuKienModel> suKienList = new LinkedList<SuKienModel>();
-        
+
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
             SuKienModel newModel = new SuKienModel();
@@ -831,24 +830,26 @@ public class SuKienDAO {
             liker.setAccountID(rs.getInt("MATK"));
 
             Blob blob = rs.getBlob("ANHDAIDIEN");
-            try {
-                InputStream is = blob.getBinaryStream(1, blob.length());
-                Image buffImage = ImageIO.read(is);
-                ImageIcon thumbnail = new ImageIcon(buffImage);
+            if (!rs.wasNull()) {
+                try {
+                    InputStream is = blob.getBinaryStream(1, blob.length());
+                    Image buffImage = ImageIO.read(is);
+                    ImageIcon thumbnail = new ImageIcon(buffImage);
 
-                // Cleanup
-                is.close();
-                blob.free();
-                is = null;
-                buffImage = null;
-                blob = null;
+                    // Cleanup
+                    is.close();
+                    blob.free();
+                    is = null;
+                    buffImage = null;
+                    blob = null;
 
-                liker.setAvatar(thumbnail);
-            } catch (Exception e) {
-                System.out.println("Encountered exception, skipping");
-            } finally {
-                likers.add(liker);
+                    liker.setAvatar(thumbnail);
+                } catch (Exception e) {
+                    System.out.println("Encountered exception, skipping");
+                }
             }
+            
+            likers.add(liker);
         }
 
         pstm.close();
@@ -880,13 +881,13 @@ public class SuKienDAO {
 
         Connection conn = ConnectionManager.getConnection();
         // Get MACLB and NOIDUNG
-        String sql = "SELECT LBD.MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH, TENCLB\n"
-                + "FROM \n"
-                + "	(SELECT MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH FROM BAIDANG BD WHERE MABD = ?) BD \n"
-                + "LEFT JOIN\n"
-                + "     (SELECT MACLB, TENCLB FROM CAULACBO) CLB ON BD.MACLBDANGBAI = CLB.MACLB "
-                + "LEFT JOIN\n"
-                + "	(SELECT MABD FROM THICH_BAIDANG WHERE MATK = ? AND MABD = ?) LBD ON LBD.MABD = BD.MABD";
+        String sql = """
+                     SELECT LBD.MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH, TENCLB
+                     FROM 
+                     \t(SELECT MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH FROM BAIDANG BD WHERE MABD = ?) BD 
+                     LEFT JOIN
+                          (SELECT MACLB, TENCLB FROM CAULACBO) CLB ON BD.MACLBDANGBAI = CLB.MACLB LEFT JOIN
+                     \t(SELECT MABD FROM THICH_BAIDANG WHERE MATK = ? AND MABD = ?) LBD ON LBD.MABD = BD.MABD""";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setInt(1, suKienModel.getPostID());
         pstm.setInt(2, getSession().getUser().getAccountID());
