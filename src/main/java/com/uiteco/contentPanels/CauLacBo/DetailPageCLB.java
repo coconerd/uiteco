@@ -261,6 +261,8 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Text_StatusClub = new javax.swing.JLabel();
         JoinButton = new com.uiteco.contentPanels.CauLacBo.ButtonRound();
         LoveButton = new com.uiteco.contentPanels.CauLacBo.ButtonRound();
+        jpanelRound1 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
+        jpanelRound2 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         CoverClub = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         JPanelRound1 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         JPanelRound2 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
@@ -305,16 +307,15 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Line6 = new javax.swing.JPanel();
         TextArea_LawClub = new javax.swing.JTextArea();
 
-        setBackground(new java.awt.Color(225, 225, 225));
+        setBackground(new java.awt.Color(255, 204, 102));
 
-        JPanelHeader.setBackground(new java.awt.Color(225, 225, 225));
-        JPanelHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        JPanelHeader.setBackground(new java.awt.Color(58, 58, 58));
+        JPanelHeader.setPreferredSize(new java.awt.Dimension(1050, 580));
 
         LogoClub.setBackground(new java.awt.Color(70, 72, 73));
         LogoClub.setBorderColor(new java.awt.Color(48, 48, 48));
         LogoClub.setBorderSize(8);
         LogoClub.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg"))); // NOI18N
-        JPanelHeader.add(LogoClub, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 200, 200));
 
         BackgroundIcon.setBackground(new java.awt.Color(58, 58, 58));
         BackgroundIcon.setRoundBottomLeft(80);
@@ -362,24 +363,56 @@ public class DetailPageCLB extends ScrollableContentPanel {
         LoveButton.setInheritsPopupMenu(true);
         LoveButton.setRadius(10);
 
+        jpanelRound1.setBackground(new java.awt.Color(225, 225, 225));
+
+        jpanelRound2.setBackground(new java.awt.Color(58, 58, 58));
+        jpanelRound2.setRoundBottomLeft(80);
+
+        javax.swing.GroupLayout jpanelRound2Layout = new javax.swing.GroupLayout(jpanelRound2);
+        jpanelRound2.setLayout(jpanelRound2Layout);
+        jpanelRound2Layout.setHorizontalGroup(
+            jpanelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 78, Short.MAX_VALUE)
+        );
+        jpanelRound2Layout.setVerticalGroup(
+            jpanelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jpanelRound1Layout = new javax.swing.GroupLayout(jpanelRound1);
+        jpanelRound1.setLayout(jpanelRound1Layout);
+        jpanelRound1Layout.setHorizontalGroup(
+            jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpanelRound2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jpanelRound1Layout.setVerticalGroup(
+            jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpanelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout BackgroundIconLayout = new javax.swing.GroupLayout(BackgroundIcon);
         BackgroundIcon.setLayout(BackgroundIconLayout);
         BackgroundIconLayout.setHorizontalGroup(
             BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundIconLayout.createSequentialGroup()
-                .addGap(300, 300, 300)
+                .addComponent(jpanelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(222, 222, 222)
                 .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Text_NameClub, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(BackgroundIconLayout.createSequentialGroup()
-                        .addComponent(Text_NumMem, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(Text_NumLoveOfClub, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(BackgroundIconLayout.createSequentialGroup()
+                                .addComponent(Text_NumMem, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(Text_NumLoveOfClub, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text_NameClub, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(BackgroundIconLayout.createSequentialGroup()
                         .addComponent(Text_StatusClub, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(280, 280, 280)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(JoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(LoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(65, 65, 65)
+                        .addComponent(LoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68))))
         );
         BackgroundIconLayout.setVerticalGroup(
             BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,24 +423,56 @@ public class DetailPageCLB extends ScrollableContentPanel {
                     .addComponent(Text_NumMem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Text_NumLoveOfClub, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Text_StatusClub, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(BackgroundIconLayout.createSequentialGroup()
+                        .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text_StatusClub, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(LoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(jpanelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        JPanelHeader.add(BackgroundIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 1050, 160));
-
         CoverClub.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/SampleCoverImage.png"))); // NOI18N
-        JPanelHeader.add(CoverClub, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 410));
 
         JPanelRound1.setBackground(new java.awt.Color(225, 225, 225));
         JPanelRound1.setRoundTopRight(80);
-        JPanelHeader.add(JPanelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 540, 110, 80));
+        JPanelRound1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         JPanelRound2.setBackground(new java.awt.Color(58, 58, 58));
-        JPanelHeader.add(JPanelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 530, 60, 70));
+        JPanelRound1.add(JPanelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 530, 60, 70));
 
-        JPanelBody.setBackground(new java.awt.Color(225, 225, 225));
+        javax.swing.GroupLayout JPanelHeaderLayout = new javax.swing.GroupLayout(JPanelHeader);
+        JPanelHeader.setLayout(JPanelHeaderLayout);
+        JPanelHeaderLayout.setHorizontalGroup(
+            JPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BackgroundIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(JPanelHeaderLayout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(LogoClub, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(JPanelRound1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1055, Short.MAX_VALUE)
+            .addComponent(CoverClub, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        JPanelHeaderLayout.setVerticalGroup(
+            JPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelHeaderLayout.createSequentialGroup()
+                .addGroup(JPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CoverClub, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(JPanelHeaderLayout.createSequentialGroup()
+                        .addGap(310, 310, 310)
+                        .addComponent(LogoClub, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JPanelHeaderLayout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addComponent(BackgroundIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(JPanelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        add(JPanelHeader, java.awt.BorderLayout.NORTH);
+
+        JPanelBody.setBackground(new java.awt.Color(255, 255, 153));
 
         IntroductionPanel.setBackground(new java.awt.Color(243, 243, 243));
         IntroductionPanel.setRoundBottomRight(53);
@@ -864,36 +929,24 @@ public class DetailPageCLB extends ScrollableContentPanel {
         JPanelBodyLayout.setHorizontalGroup(
             JPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelBodyLayout.createSequentialGroup()
-                .addGroup(JPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(JPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(IntroductionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1019, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
+                    .addGroup(JPanelBodyLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         JPanelBodyLayout.setVerticalGroup(
             JPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelBodyLayout.createSequentialGroup()
-                .addGap(2, 2, 2)
+                .addContainerGap()
                 .addComponent(IntroductionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(417, 417, 417)
                 .addComponent(BodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(JPanelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(JPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(JPanelBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-        );
+        add(JPanelBody, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackPanelMouseEntered
@@ -982,5 +1035,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
     private javax.swing.JLabel Text_StatusClub;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound ThanhVienPanel;
     private javax.swing.JScrollPane jScrollTableMem;
+    private com.uiteco.contentPanels.CauLacBo.JpanelRound jpanelRound1;
+    private com.uiteco.contentPanels.CauLacBo.JpanelRound jpanelRound2;
     // End of variables declaration//GEN-END:variables
 }
