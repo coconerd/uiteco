@@ -5,6 +5,7 @@
 package com.uiteco.ofTaiKhoanPanel;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.swing.ImageIcon;
 
 /**
@@ -25,6 +26,7 @@ public class TaiKhoanModel {
     private int accountID;
     private ImageIcon avatar;
     private LocalDate accountCreationDate;
+    private LocalDateTime lastAccess;
     private String fullname;
     private String phone;
     private String country;
@@ -79,6 +81,18 @@ public class TaiKhoanModel {
         return fullname;
     }
 
+    public String getShortName() {
+        String[] parts = fullname.split(" ");
+        StringBuilder abbreviatedName = new StringBuilder();
+
+        for (int i = 0; i < parts.length - 1; i++) {
+            abbreviatedName.append(parts[i].charAt(0)).append(". ");
+        }
+
+        abbreviatedName.append(parts[parts.length - 1]);
+        return abbreviatedName.toString();
+    }
+
     public String getPhone() {
         return this.phone;
     }
@@ -97,6 +111,10 @@ public class TaiKhoanModel {
 
     public String getIntro() {
         return intro;
+    }
+
+    public LocalDateTime getLastAccess() {
+        return lastAccess;
     }
 
     /**
@@ -162,4 +180,7 @@ public class TaiKhoanModel {
         this.mssv = mssv;
     }
 
+    public void setLastAccess(LocalDateTime lastAccess) {
+        this.lastAccess = lastAccess;
+    }
 }

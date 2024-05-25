@@ -4,21 +4,49 @@
  */
 package com.uiteco.ofSuKienPanel.detailed.rightPanel;
 
+import com.uiteco.contentPanels.TaiKhoanPanel;
+import com.uiteco.main.App;
+import com.uiteco.ofTaiKhoanPanel.TaiKhoanModel;
+import com.uiteco.swing.ContentPanel;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author nddmi
  */
-public class ProfileLineView extends javax.swing.JPanel {
-    ProfileLineModel profileLineModel;
+public class LikerLine extends javax.swing.JPanel {
+    TaiKhoanModel user;
     
     /**
      * Creates new form ProfileLine
+     * @param user
      */
-    public ProfileLineView(ProfileLineModel profileLineModel) {
-        this.profileLineModel = profileLineModel;
+    public LikerLine(TaiKhoanModel user) {
+        this.user = user;
         initComponents();
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent evt) {
+                setBackground(getBackground().brighter());
+            }
+            
+            @Override
+            public void mouseExited(MouseEvent evt) {
+                setBackground(new Color(222, 222, 222));
+            }
+            
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                ContentPanel contentPanel = App.getMainFrame().getContentPanel();
+                ((TaiKhoanPanel) contentPanel.getComponent("taiKhoanPanel")).load(user);
+                contentPanel.showComponentAndTrimHistory("taiKhoanPanel");
+                App.getMainFrame().getRightPanel().showComponentAndTrimHistory("taiKhoanRightPanel");
+            }
+        });
     }
 
     /**
@@ -34,10 +62,16 @@ public class ProfileLineView extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        imageAvatar1.setIcon(profileLineModel.getAvatar());
+        setBackground(new java.awt.Color(222, 222, 222));
+        setPreferredSize(new java.awt.Dimension(200, 70));
+
+        imageAvatar1.setBackground(new java.awt.Color(255, 204, 0));
+        Icon avatar = user.getAvatar();
+        imageAvatar1.setIcon(avatar != null ? avatar : new ImageIcon(getClass().getResource("/cat.png")));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semilight", 1, 13)); // NOI18N
-        jLabel1.setText(profileLineModel.getFullname());
+        jLabel1.setForeground(this.user.getAccountID() != App.getSession().getUser().getAccountID() ? new java.awt.Color(5, 5, 5) : new Color(255, 204, 0));
+        jLabel1.setText(user.getShortName());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-heart-30.png"))); // NOI18N
 
@@ -50,7 +84,7 @@ public class ProfileLineView extends javax.swing.JPanel {
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addContainerGap())
         );
@@ -59,10 +93,12 @@ public class ProfileLineView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel1))
-                    .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)))))
         );
     }// </editor-fold>//GEN-END:initComponents
 

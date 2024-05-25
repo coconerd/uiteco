@@ -39,7 +39,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import static com.uiteco.main.App.getSession;
-import com.uiteco.ofSuKienPanel.detailed.rightPanel.ProfileLineModel;
+import com.uiteco.ofTaiKhoanPanel.TaiKhoanModel;
 import java.sql.CallableStatement;
 
 /**
@@ -812,10 +812,10 @@ public class SuKienDAO {
         conn.close();
     }
 
-    public static ArrayList<ProfileLineModel> getLikers(SuKienModel suKienModel) throws SQLException {
+    public static ArrayList<TaiKhoanModel> getLikers(SuKienModel suKienModel) throws SQLException {
         Connection conn = ConnectionManager.getConnection();
-        String sql = "SELECT HOTEN, ANHDAIDIEN FROM "
-                + "     (SELECT MATK FROM LIKE_BAIDANG WHERE MABD = ?) LBD "
+        String sql = "SELECT TK.MATK, HOTEN, ANHDAIDIEN FROM "
+                + "     (SELECT MATK FROM THICH_BAIDANG WHERE MABD = ?) LBD "
                 + "JOIN "
                 + "     (SELECT HOTEN, ANHDAIDIEN, MATK FROM TAIKHOAN) TK ON LBD.MATK = TK.MATK "
                 + "FETCH FIRST 20 ROWS ONLY";
@@ -823,11 +823,12 @@ public class SuKienDAO {
         pstm.setInt(1, suKienModel.getPostID());
         ResultSet rs = pstm.executeQuery();
 
-        ArrayList<ProfileLineModel> likers = new ArrayList<ProfileLineModel>();
+        ArrayList<TaiKhoanModel> likers = new ArrayList<>();
 
         while (rs.next()) {
-            ProfileLineModel liker = new ProfileLineModel();
-            String fullname = rs.getString("HOTEN");
+            TaiKhoanModel liker = new TaiKhoanModel();
+            liker.setFullname(rs.getString("HOTEN"));
+            liker.setAccountID(rs.getInt("MATK"));
 
             Blob blob = rs.getBlob("ANHDAIDIEN");
             try {
@@ -842,11 +843,11 @@ public class SuKienDAO {
                 buffImage = null;
                 blob = null;
 
-                liker.setFullname(fullname);
                 liker.setAvatar(thumbnail);
-                likers.add(liker);
             } catch (Exception e) {
                 System.out.println("Encountered exception, skipping");
+            } finally {
+                likers.add(liker);
             }
         }
 
@@ -858,7 +859,7 @@ public class SuKienDAO {
 
     public static void increaseViews(SuKienModel suKienModel) throws SQLException {
         Connection conn = ConnectionManager.getConnection();
-        String sql = "{CALL PROC_TANG_LUOT_VIEW_BAIDANG(?)}";
+        String sql = "{CALL PROC_TANG_LUOT_XEM_BAIDANG(?)}";
         CallableStatement cstm = conn.prepareCall(sql);
         cstm.setInt(1, suKienModel.getPostID());
         cstm.execute();
@@ -879,13 +880,13 @@ public class SuKienDAO {
 
         Connection conn = ConnectionManager.getConnection();
         // Get MACLB and NOIDUNG
-        String sql = "SELECT LBD.MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTLIKE, TENCLB\n"
+        String sql = "SELECT LBD.MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH, TENCLB\n"
                 + "FROM \n"
-                + "	(SELECT MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTLIKE FROM BAIDANG BD WHERE MABD = ?) BD \n"
+                + "	(SELECT MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH FROM BAIDANG BD WHERE MABD = ?) BD \n"
                 + "LEFT JOIN\n"
                 + "     (SELECT MACLB, TENCLB FROM CAULACBO) CLB ON BD.MACLBDANGBAI = CLB.MACLB "
                 + "LEFT JOIN\n"
-                + "	(SELECT MABD FROM LIKE_BAIDANG WHERE MATK = ? AND MABD = ?) LBD ON LBD.MABD = BD.MABD";
+                + "	(SELECT MABD FROM THICH_BAIDANG WHERE MATK = ? AND MABD = ?) LBD ON LBD.MABD = BD.MABD";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setInt(1, suKienModel.getPostID());
         pstm.setInt(2, getSession().getUser().getAccountID());
@@ -895,7 +896,7 @@ public class SuKienDAO {
         if (rs.next()) {
             suKienModel.setClubID(rs.getInt("MACLBDANGBAI"));
             suKienModel.setViews(rs.getInt("LUOTXEM"));
-            suKienModel.setLikes(rs.getInt("LUOTLIKE"));
+            suKienModel.setLikes(rs.getInt("LUOTTHICH"));
             suKienModel.setContent(rs.getString("NOIDUNG"));
 
             // Check if user has liked the post
@@ -961,7 +962,7 @@ public class SuKienDAO {
 
     public static void likePost(SuKienModel suKienModel) throws SQLException {
         Connection conn = ConnectionManager.getConnection();
-        String sql = "{CALL PROC_LIKE_BAIDANG(?, ?, ?)}";
+        String sql = "{CALL PROC_THICH_BAIDANG(?, ?, ?)}";
         CallableStatement cstm = conn.prepareCall(sql);
         cstm.setInt(1, suKienModel.getPostID());
         cstm.setInt(2, getSession().getUser().getAccountID());

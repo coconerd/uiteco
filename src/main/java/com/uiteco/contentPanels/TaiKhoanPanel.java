@@ -10,18 +10,80 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
 
+import com.uiteco.ofTaiKhoanPanel.TaiKhoanModel.ACCOUNT_TYPE;
+import com.uiteco.ofTaiKhoanPanel.HoatDongPanel;
+import com.uiteco.ofTaiKhoanPanel.ThanhTichPanel;
+import com.uiteco.ofTaiKhoanPanel.ClbPanel;
+import com.uiteco.ofTaiKhoanPanel.TaiKhoanDAO;
+import com.uiteco.ofTaiKhoanPanel.TaiKhoanModel;
+import java.sql.SQLException;
+
 /**
  *
  * @author nddmi
  */
 public class TaiKhoanPanel extends javax.swing.JPanel {
 
+    private TaiKhoanModel user;
+    private Component currTab;
+    private final HoatDongPanel hdp = new HoatDongPanel();
+    private final ClbPanel clbp = new ClbPanel();
+    private final ThanhTichPanel ttp = new ThanhTichPanel();
+
     /**
      * Creates new form TaiKhoanPanel
      */
     public TaiKhoanPanel() {
-        initComponents();
     }
+
+    public void load() {
+        removeAll();
+        this.user = App.getSession().getUser();
+        _init();
+    }
+
+    public void load(TaiKhoanModel user) {
+        removeAll();
+        this.user = user;
+        try {
+            TaiKhoanDAO.getMissingDetail(this.user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
+        System.out.println("DEBUG: user's fullname = " + this.user.getFullname());
+        _init();
+    }
+
+    private void _init() {
+        initComponents();
+        String type = "";
+        switch (this.user.getAccountType()) {
+            case admin -> {
+                type = "Admin";
+                roundedPanel2.setVisible(false);
+            }
+            case cuusinhvien -> {
+                type = "Cựu sinh viên";
+                jLabel12.setText("K" + String.valueOf(this.user.getAccountCreationDate().getYear() - 2006 + 1));
+            }
+            case sinhvien -> {
+                type = "Sinh viên";
+                jLabel12.setText("K" + String.valueOf(this.user.getAccountCreationDate().getYear() - 2006 + 1));
+            }
+            case giangvien -> {
+                type = "Giảng viên";
+                roundedPanel2.setVisible(false);
+            }
+            default -> {
+            }
+        }
+
+        jLabel11.setText(type);
+
+        _clicked(hdBtn, HoatDongPanel.INSTANCE_NAME);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,40 +112,60 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         tagP5 = new com.uiteco.components.RoundedPanel();
         jLabel9 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        tagP6 = new com.uiteco.components.RoundedPanel();
+        jLabel16 = new javax.swing.JLabel();
+        roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
         imageAvatar1 = new com.uiteco.components.ImageAvatar();
+        jPanel1 = new javax.swing.JPanel();
+        roundedPanel4 = new com.uiteco.components.RoundedPanel();
+        jLabel11 = new javax.swing.JLabel();
+        roundedPanel2 = new com.uiteco.components.RoundedPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         rightP = new com.uiteco.components.RoundedGradientPanel();
         scrollPaneWin111 = new com.raven.scroll.ScrollPaneWin11();
         viewport = new com.uiteco.components.RoundedPanel();
-        generalInformationPanel1 = new com.uiteco.ofTaiKhoanPanel.GeneralInformationPanel();
+        generalInformationPanel1 = new com.uiteco.ofTaiKhoanPanel.GeneralInformationPanel(this.user);
         jPanel3 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        subPanel = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        ttBtn = new javax.swing.JLabel();
+        clbBtn = new javax.swing.JLabel();
+        contentPanel = new com.uiteco.swing.ContentPanel();
+        hdBtn = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 51)));
         setLayout(new java.awt.GridBagLayout());
 
+        leftP.setColor1(new java.awt.Color(255, 255, 255));
+        leftP.setColor2(new java.awt.Color(221, 221, 221));
+        leftP.setDirection(com.uiteco.components.RoundedGradientPanel.Direction.DIAGONAL);
+        leftP.setFade(false);
         leftP.setPreferredSize(new java.awt.Dimension(300, 655));
-        leftP.setRoundBottomLeft(5);
-        leftP.setRoundBottomRight(5);
-        leftP.setRoundTopLeft(5);
-        leftP.setRoundTopRight(5);
+        leftP.setRoundBottomLeft(30);
+        leftP.setRoundBottomRight(30);
+        leftP.setRoundTopLeft(30);
+        leftP.setRoundTopRight(30);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText(App.getSession().getUser().getFullname());
+        jLabel1.setText(this.user.getFullname());
 
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(247, 246, 246));
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(51, 51, 51));
         jTextArea1.setRows(5);
-        jTextArea1.setText(App.getSession().getUser().getIntro());
+        jTextArea1.setText(this.user.getIntro());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("Các chủ đề quan tâm");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
         jLabel3.setText("Giới thiệu");
 
         jPanel2.setOpaque(false);
@@ -96,7 +178,7 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
         tagP.setRoundBottomRight(33);
         tagP.setRoundTopLeft(33);
         tagP.setRoundTopRight(33);
-        tagP.setLayout(new java.awt.GridLayout());
+        tagP.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("AI/ML");
@@ -104,12 +186,12 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
 
         jPanel2.add(tagP);
 
-        tagP1.setPreferredSize(new java.awt.Dimension(110, 28));
+        tagP1.setPreferredSize(new java.awt.Dimension(140, 28));
         tagP1.setRoundBottomLeft(33);
         tagP1.setRoundBottomRight(33);
         tagP1.setRoundTopLeft(33);
         tagP1.setRoundTopRight(33);
-        tagP1.setLayout(new java.awt.GridLayout());
+        tagP1.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Máy tính lượng tử");
@@ -122,7 +204,7 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
         tagP2.setRoundBottomRight(33);
         tagP2.setRoundTopLeft(33);
         tagP2.setRoundTopRight(33);
-        tagP2.setLayout(new java.awt.GridLayout());
+        tagP2.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Âm nhạc");
@@ -135,7 +217,7 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
         tagP3.setRoundBottomRight(33);
         tagP3.setRoundTopLeft(33);
         tagP3.setRoundTopRight(33);
-        tagP3.setLayout(new java.awt.GridLayout());
+        tagP3.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Blockchain");
@@ -148,7 +230,7 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
         tagP4.setRoundBottomRight(33);
         tagP4.setRoundTopLeft(33);
         tagP4.setRoundTopRight(33);
-        tagP4.setLayout(new java.awt.GridLayout());
+        tagP4.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Thiết kế UI/UX");
@@ -156,25 +238,114 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
 
         jPanel2.add(tagP4);
 
-        tagP5.setPreferredSize(new java.awt.Dimension(100, 28));
+        tagP5.setPreferredSize(new java.awt.Dimension(130, 28));
         tagP5.setRoundBottomLeft(33);
         tagP5.setRoundBottomRight(33);
         tagP5.setRoundTopLeft(33);
         tagP5.setRoundTopRight(33);
-        tagP5.setLayout(new java.awt.GridLayout());
+        tagP5.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Nhiếp ảnh");
+        jLabel9.setText("Business Analyst");
         tagP5.add(jLabel9);
 
         jPanel2.add(tagP5);
 
-        jPanel1.setOpaque(false);
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        tagP6.setPreferredSize(new java.awt.Dimension(140, 28));
+        tagP6.setRoundBottomLeft(33);
+        tagP6.setRoundBottomRight(33);
+        tagP6.setRoundTopLeft(33);
+        tagP6.setRoundTopRight(33);
+        tagP6.setLayout(new java.awt.GridLayout(1, 0));
 
-        imageAvatar1.setIcon(App.getSession().getUser().getAvatar());
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Nhiếp ảnh nghệ thuật");
+        tagP6.add(jLabel16);
+
+        jPanel2.add(tagP6);
+
+        roundedGradientPanel1.setColor1(new java.awt.Color(0, 174, 239));
+        roundedGradientPanel1.setColor2(new java.awt.Color(0, 125, 197));
+        roundedGradientPanel1.setDirection(com.uiteco.components.RoundedGradientPanel.Direction.DIAGONAL);
+        roundedGradientPanel1.setFade(false);
+        roundedGradientPanel1.setFull(false);
+        roundedGradientPanel1.setRoundBottomLeft(14);
+        roundedGradientPanel1.setRoundBottomRight(14);
+        roundedGradientPanel1.setRoundTopLeft(14);
+        roundedGradientPanel1.setRoundTopRight(14);
+        roundedGradientPanel1.setLayout(new java.awt.GridBagLayout());
+
+        imageAvatar1.setIcon(user.getAvatar());
         imageAvatar1.setPreferredSize(new java.awt.Dimension(90, 90));
-        jPanel1.add(imageAvatar1, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.9;
+        roundedGradientPanel1.add(imageAvatar1, gridBagConstraints);
+
+        jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(190, 30));
+        jPanel1.setRequestFocusEnabled(false);
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+
+        roundedPanel4.setBackground(new java.awt.Color(255, 102, 102));
+        roundedPanel4.setMinimumSize(new java.awt.Dimension(40, 10));
+        roundedPanel4.setPreferredSize(new java.awt.Dimension(100, 25));
+        roundedPanel4.setRoundBottomLeft(5);
+        roundedPanel4.setRoundTopLeft(5);
+        roundedPanel4.setLayout(new java.awt.GridLayout(1, 0));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        roundedPanel4.add(jLabel11);
+
+        jPanel1.add(roundedPanel4);
+
+        roundedPanel2.setBackground(new java.awt.Color(222, 222, 222));
+        roundedPanel2.setPreferredSize(new java.awt.Dimension(50, 25));
+        roundedPanel2.setLayout(new java.awt.GridLayout(1, 0));
+
+        jLabel12.setFont(new java.awt.Font("Circular Std Medium", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("K18");
+        roundedPanel2.add(jLabel12);
+
+        jPanel1.add(roundedPanel2);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.9;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
+        roundedGradientPanel1.add(jPanel1, gridBagConstraints);
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-chat-bubble-30.png"))); // NOI18N
+        jLabel15.setText("Liên lạc");
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel15MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel15MouseExited(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
+        roundedGradientPanel1.add(jLabel15, gridBagConstraints);
 
         javax.swing.GroupLayout leftPLayout = new javax.swing.GroupLayout(leftP);
         leftP.setLayout(leftPLayout);
@@ -191,17 +362,17 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
                         .addGroup(leftPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(leftPLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTextArea1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                                .addGap(0, 66, Short.MAX_VALUE))
+                            .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addComponent(roundedGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
         leftPLayout.setVerticalGroup(
             leftPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(roundedGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(22, 22, 22)
@@ -211,14 +382,14 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        gridBagConstraints.insets = new java.awt.Insets(15, 15, 15, 20);
         add(leftP, gridBagConstraints);
 
         rightP.setBorder(null);
@@ -226,108 +397,136 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
         rightP.setRoundBottomRight(5);
         rightP.setRoundTopLeft(5);
         rightP.setRoundTopRight(5);
-        rightP.setLayout(new java.awt.GridLayout());
+        rightP.setLayout(new java.awt.GridLayout(1, 0));
+
+        viewport.setLayout(new java.awt.GridBagLayout());
+
+        generalInformationPanel1.setPreferredSize(new java.awt.Dimension(784, 300));
 
         javax.swing.GroupLayout generalInformationPanel1Layout = new javax.swing.GroupLayout(generalInformationPanel1);
         generalInformationPanel1.setLayout(generalInformationPanel1Layout);
         generalInformationPanel1Layout.setHorizontalGroup(
             generalInformationPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 528, Short.MAX_VALUE)
+            .addGap(0, 788, Short.MAX_VALUE)
         );
         generalInformationPanel1Layout.setVerticalGroup(
             generalInformationPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel10.setText("THÀNH TÍCH");
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 25, 0);
+        viewport.add(generalInformationPanel1, gridBagConstraints);
+
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        ttBtn.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
+        ttBtn.setForeground(new java.awt.Color(153, 153, 153));
+        ttBtn.setText("THÀNH TÍCH");
+        ttBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
+                ttBtnMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel10MouseEntered(evt);
+                ttBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel10MouseExited(evt);
+                ttBtnMouseExited(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        jPanel3.add(ttBtn, gridBagConstraints);
 
-        javax.swing.GroupLayout subPanelLayout = new javax.swing.GroupLayout(subPanel);
-        subPanel.setLayout(subPanelLayout);
-        subPanelLayout.setHorizontalGroup(
-            subPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        subPanelLayout.setVerticalGroup(
-            subPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
-        );
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel13.setText("HOẠT ĐỘNG");
-        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+        clbBtn.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
+        clbBtn.setForeground(new java.awt.Color(153, 153, 153));
+        clbBtn.setText("CÂU LẠC BỘ");
+        clbBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel13MouseClicked(evt);
+                clbBtnMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel13MouseEntered(evt);
+                clbBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel13MouseExited(evt);
+                clbBtnMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                clbBtnMousePressed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 15);
+        jPanel3.add(clbBtn, gridBagConstraints);
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel14.setText("CÂU LẠC BỘ");
+        contentPanel.registerComponent(hdp, HoatDongPanel.INSTANCE_NAME);
+        contentPanel.registerComponent(ttp, ThanhTichPanel.INSTANCE_NAME);
+        contentPanel.registerComponent(clbp, ClbPanel.INSTANCE_NAME);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.9;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 0, 0);
+        jPanel3.add(contentPanel, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(subPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(subPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        hdBtn.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
+        hdBtn.setForeground(new java.awt.Color(153, 153, 153));
+        hdBtn.setText("HOẠT ĐỘNG");
+        hdBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hdBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hdBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hdBtnMouseExited(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 25);
+        jPanel3.add(hdBtn, gridBagConstraints);
 
-        javax.swing.GroupLayout viewportLayout = new javax.swing.GroupLayout(viewport);
-        viewport.setLayout(viewportLayout);
-        viewportLayout.setHorizontalGroup(
-            viewportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(viewportLayout.createSequentialGroup()
-                .addComponent(generalInformationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 273, Short.MAX_VALUE))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        viewportLayout.setVerticalGroup(
-            viewportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(viewportLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(generalInformationPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 20);
+        jPanel3.add(jSeparator1, gridBagConstraints);
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 20);
+        jPanel3.add(jSeparator2, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.65;
+        viewport.add(jPanel3, gridBagConstraints);
 
         scrollPaneWin111.setViewportView(viewport);
 
@@ -335,71 +534,139 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.6;
+        gridBagConstraints.weightx = 0.7;
         gridBagConstraints.weighty = 1.0;
         add(rightP, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void _hili(Component comp) {
-        if (comp != currTab) {
+        if (comp != currTab || currTab == null) {
             comp.setForeground(new Color(5, 5, 5));
             comp.setCursor(new Cursor(Cursor.HAND_CURSOR));
         }
     }
 
     private void _unhili(Component comp) {
-        if (comp != currTab) {
+        if (comp != currTab || currTab == null) {
             comp.setForeground(new Color(153, 153, 153));
             comp.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
     }
 
-    private void _clicked(Component comp) {
-        if (comp != currTab) {
-            currTab.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+    private void _clicked(Component comp, String page) {
+        if (comp != currTab || currTab == null) {
             comp.setFont(new Font("Segoe UI Black", Font.BOLD, 16));
+            comp.setForeground(new Color(5, 5, 5));
+
+            if (currTab != null) {
+                currTab.setFont(new Font("Segoe UI Black", Font.PLAIN, 16));
+                currTab.setForeground(new Color(153, 153, 153));
+            }
+
+            Component subPanel = contentPanel.getComponent(page);
+            if (subPanel instanceof HoatDongPanel) {
+                ((HoatDongPanel) subPanel).load(this.user);
+            } else if (subPanel instanceof ThanhTichPanel) {
+                ((ThanhTichPanel) subPanel).load(this.user);
+            } else if (subPanel instanceof ClbPanel) {
+                ((ClbPanel) subPanel).load(this.user);
+            }
+
+            contentPanel.showComponentAndTrimHistory(page);
             currTab = comp;
         }
     }
 
-    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
+    private void ttBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ttBtnMouseEntered
         // TODO add your handling code here:
-        _hili(jLabel10);
-    }//GEN-LAST:event_jLabel10MouseEntered
+        _hili(ttBtn);
+    }//GEN-LAST:event_ttBtnMouseEntered
 
-    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
+    private void ttBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ttBtnMouseExited
         // TODO add your handling code here:
-        _unhili(jLabel10);
-    }//GEN-LAST:event_jLabel10MouseExited
+        _unhili(ttBtn);
+    }//GEN-LAST:event_ttBtnMouseExited
 
-    private void jLabel13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseEntered
+    private void hdBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hdBtnMouseEntered
         // TODO add your handling code here:
-        _hili(jLabel13);
-    }//GEN-LAST:event_jLabel13MouseEntered
+        _hili(hdBtn);
+    }//GEN-LAST:event_hdBtnMouseEntered
 
-    private void jLabel13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseExited
+    private void hdBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hdBtnMouseExited
         // TODO add your handling code here:
-        _unhili(jLabel13);
-    }//GEN-LAST:event_jLabel13MouseExited
+        _unhili(hdBtn);
+    }//GEN-LAST:event_hdBtnMouseExited
 
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+    private void hdBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hdBtnMouseClicked
         // TODO add your handling code here:
-        _clicked(jLabel13);
-    }//GEN-LAST:event_jLabel13MouseClicked
+        _clicked(hdBtn, HoatDongPanel.INSTANCE_NAME);
+    }//GEN-LAST:event_hdBtnMouseClicked
 
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+    private void ttBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ttBtnMouseClicked
         // TODO add your handling code here:
-        _clicked(jLabel10);
-    }//GEN-LAST:event_jLabel10MouseClicked
+        _clicked(ttBtn, ThanhTichPanel.INSTANCE_NAME);
+    }//GEN-LAST:event_ttBtnMouseClicked
 
+    private void jLabel15MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseEntered
+        // TODO add your handling code here:
+        jLabel15.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jLabel15MouseEntered
+
+    private void jLabel15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseExited
+        // TODO add your handling code here:
+        jLabel15.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_jLabel15MouseExited
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        // TODO add your handling code here:
+        _showChatConversation();
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void clbBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clbBtnMouseEntered
+        // TODO add your handling code here:
+        _hili(clbBtn);
+    }//GEN-LAST:event_clbBtnMouseEntered
+
+    private void clbBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clbBtnMouseExited
+        // TODO add your handling code here:
+        _unhili(clbBtn);
+    }//GEN-LAST:event_clbBtnMouseExited
+
+    private void clbBtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clbBtnMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clbBtnMousePressed
+
+    private void clbBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clbBtnMouseClicked
+        // TODO add your handling code here:
+        _clicked(clbBtn, ClbPanel.INSTANCE_NAME);
+    }//GEN-LAST:event_clbBtnMouseClicked
+
+    private void _showHoatDongPanel() {
+
+    }
+
+    private void _showThanhTichPanel() {
+
+    }
+
+    private void _showCLBPanel() {
+
+    }
+
+    private void _showChatConversation() {
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel clbBtn;
+    private com.uiteco.swing.ContentPanel contentPanel;
     private com.uiteco.ofTaiKhoanPanel.GeneralInformationPanel generalInformationPanel1;
+    private javax.swing.JLabel hdBtn;
     private com.uiteco.components.ImageAvatar imageAvatar1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -411,18 +678,23 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextArea jTextArea1;
     private com.uiteco.components.RoundedGradientPanel leftP;
     private com.uiteco.components.RoundedGradientPanel rightP;
+    private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
+    private com.uiteco.components.RoundedPanel roundedPanel2;
+    private com.uiteco.components.RoundedPanel roundedPanel4;
     private com.raven.scroll.ScrollPaneWin11 scrollPaneWin111;
-    private javax.swing.JPanel subPanel;
     private com.uiteco.components.RoundedPanel tagP;
     private com.uiteco.components.RoundedPanel tagP1;
     private com.uiteco.components.RoundedPanel tagP2;
     private com.uiteco.components.RoundedPanel tagP3;
     private com.uiteco.components.RoundedPanel tagP4;
     private com.uiteco.components.RoundedPanel tagP5;
+    private com.uiteco.components.RoundedPanel tagP6;
+    private javax.swing.JLabel ttBtn;
     private com.uiteco.components.RoundedPanel viewport;
     // End of variables declaration//GEN-END:variables
-    private Component currTab = jLabel10;
 }

@@ -13,18 +13,23 @@ import javax.swing.BoxLayout;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import com.uiteco.components.ImageAvatar;
+import com.uiteco.components.ImagePanel;
 import com.uiteco.components.RoundedPanel;
 import com.uiteco.ofSuKienPanel.SuKienDAO;
 import java.awt.Dimension;
 import com.uiteco.ofSuKienPanel.SuKienModel;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.util.Arrays;
+import static com.uiteco.ofSuKienPanel.detailed.SuKienDetail.showImageDialog;
 
 /**
  *
@@ -78,6 +83,8 @@ public class Gallery extends ScrollPaneWin11 {
 
                 for (ImageIcon img : images) {
                     RoundedImagePanel imgPanel = new RoundedImagePanel(img);
+                    _addMouseEventListenerForImgPanel(imgPanel);
+
                     imgPanel.setRoundTopLeft(10);
                     imgPanel.setRoundBottomLeft(10);
                     imgPanel.setRoundTopRight(10);
@@ -97,7 +104,10 @@ public class Gallery extends ScrollPaneWin11 {
 
             for (int i = 0; i < suKienModel.getImages().length; i++) {
                 ImageIcon img = suKienModel.getImages()[i];
+
+
                 RoundedImagePanel imgPanel = new RoundedImagePanel(img);
+                _addMouseEventListenerForImgPanel(imgPanel);
                 imgPanel.setRoundTopLeft(10);
                 imgPanel.setRoundBottomLeft(10);
                 imgPanel.setRoundTopRight(10);
@@ -108,6 +118,25 @@ public class Gallery extends ScrollPaneWin11 {
             _addDotLabel();
             imgContainer.revalidate();
         }
+    }
+
+    private void _addMouseEventListenerForImgPanel(RoundedImagePanel i) {
+        i.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent evt) {
+                i.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent evt) {
+                i.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                showImageDialog(i);
+            }
+        });
 
     }
 

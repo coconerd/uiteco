@@ -13,6 +13,7 @@ import com.uiteco.rightPanels.SuKienRightPanel;
 import com.uiteco.swing.ContentPanel;
 import java.awt.Component;
 import static com.uiteco.ofSuKienPanel.SuKienDAO.getMissingDetail;
+import com.uiteco.ofSuKienPanel.detailed.rightPanel.SuKienDetailRightPanel;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -52,6 +53,9 @@ public class SuKienDetailScrollPane extends ScrollPaneWin11 {
 
         suKienDetail = new SuKienDetail(suKienModel);
         
+        
+        ((SuKienDetailRightPanel) App.getMainFrame().getRightPanel().getComponent(SuKienDetailRightPanel.INSTANCE_NAME)).load(suKienModel);
+        
         getViewport().removeAll();
         setViewportView(suKienDetail);
     }
@@ -66,19 +70,17 @@ public class SuKienDetailScrollPane extends ScrollPaneWin11 {
 
         // Show rightPanel to fix blank right panel bug
         ContentPanel appRightPanel = (ContentPanel) mainFrame.getRightPanel();
-        appRightPanel.showComponentAndTrimHistory("suKienRightPanel");
+//        appRightPanel.showComponentAndTrimHistory("suKienRightPanel");
+        appRightPanel.showComponentAndTrimHistory(SuKienDetailRightPanel.INSTANCE_NAME);
 
         // Add to HistoryPanel
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ContentPanel appRightPanel = mainFrame.getRightPanel();
 
-                Component comp = appRightPanel.getCurrentComponent();
-                if (comp instanceof SuKienRightPanel) {
-                    SuKienRightPanel suKienRightPanel = (SuKienRightPanel) appRightPanel.getCurrentComponent();
-                    suKienRightPanel.getHistoryPanel().addHistory(suKienDetail.getSuKienModel());
-//                    System.out.println("DEBUG: a new line has been added to history panel");
-                }
+                ((SuKienRightPanel)appRightPanel.getComponent("suKienRightPanel"))
+                        .getHistoryPanel()
+                        .addHistory(suKienDetail.getSuKienModel());
 
                 getVerticalScrollBar().setValue(0);
             }

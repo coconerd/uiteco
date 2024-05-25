@@ -23,6 +23,7 @@ import com.uiteco.rightPanels.ForumRightPanel;
 import com.uiteco.rightPanels.TinNhanRightPanel;
 import com.uiteco.rightPanels.TaiKhoanRightPanel;
 import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
+import com.uiteco.ofSuKienPanel.detailed.rightPanel.SuKienDetailRightPanel;
 import com.uiteco.ofSuKienPanel.search.SuKienSearchTabPane;
 import com.uiteco.ofTaiKhoanPanel.clubManagement.ClubManagementUI;
 import com.uiteco.swing.ContentPanel;
@@ -723,6 +724,7 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
     private void avatarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avatarMouseClicked
         // TODO add your handling code here:
         unHighlightComponent(currentButton);
+        ((TaiKhoanPanel) contentPanel.getComponent("taiKhoanPanel")).load();
         contentPanel.showComponentAndTrimHistory("taiKhoanPanel");
         rightPanel.showComponentAndTrimHistory("taiKhoanRightPanel");
     }//GEN-LAST:event_avatarMouseClicked
@@ -779,6 +781,7 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
         
         ClubManagementUI cm = new ClubManagementUI();
         contentPanel.registerComponent(cm, ClubManagementUI.INSTANCE_NAME);
+        
 
 //        contentPanel.registerComponent(rootPane, name);
 //        contentPanel.registerComponent(rootPane, name);
@@ -812,6 +815,9 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
 
         TaiKhoanRightPanel tkr = new TaiKhoanRightPanel();
         rightPanel.registerComponent(tkr, "taiKhoanRightPanel");
+        
+        SuKienDetailRightPanel sdrp = new SuKienDetailRightPanel();
+        rightPanel.registerComponent(sdrp, SuKienDetailRightPanel.INSTANCE_NAME);
     }
 
     private void logOut() {

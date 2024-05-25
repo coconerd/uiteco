@@ -25,6 +25,8 @@ import static com.uiteco.main.App.getSession;
 import com.uiteco.ofTaiKhoanPanel.TaiKhoanModel;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.sql.CallableStatement;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -153,6 +155,15 @@ public class AuthDAO {
         
         // Retrieve user brief introduction
         String intro = rs.getString("GIOITHIEU");
+        
+        // Update and retrieve account last access;
+        sql = "{? = call FN_UPDATE_TRUYCAP_TAIKHOAN(?)}";
+        CallableStatement cstm = conn.prepareCall(sql);
+        cstm.registerOutParameter(1, java.sql.Types.TIMESTAMP);
+        cstm.setInt(2, accountID);
+        cstm.execute();
+        LocalDateTime lastAccess = cstm.getTimestamp(1).toLocalDateTime();
+        cstm.close();
 
         TaiKhoanModel newUser = new TaiKhoanModel();
         newUser.setUsername(username);
@@ -167,6 +178,7 @@ public class AuthDAO {
         newUser.setProvince(province);
         newUser.setTimezone(timezone);
         newUser.setIntro(intro);
+        newUser.setLastAccess(lastAccess);
 
         // Get mssv if account type is student / ex-student
         if (accountType == ACCOUNT_TYPE.sinhvien || accountType == ACCOUNT_TYPE.cuusinhvien) {
@@ -193,9 +205,9 @@ public class AuthDAO {
         return newUser;
     }
 
-    public static void updateGeneralInfo(String email, String username, String phone, String fullname, ImageIcon avatar) throws SQLException, IOException {
+    public static void updateGeneralInfo(String email, String username, String phone, String fullname, ImageIcon avatar, String intro) throws SQLException, IOException {
         Connection conn = ConnectionManager.getConnection();
-        String sql = "UPDATE TAIKHOAN SET EMAIL = ?, USERNAME = ?, SDT = ?, HOTEN = ?, ANHDAIDIEN = ? WHERE MATK = ?";
+        String sql = "UPDATE TAIKHOAN SET EMAIL = ?, USERNAME = ?, SDT = ?, HOTEN = ?, ANHDAIDIEN = ?, GIOITHIEU = ? WHERE MATK = ?";
 
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, email);
@@ -203,7 +215,8 @@ public class AuthDAO {
         pstm.setString(3, phone);
         pstm.setString(4, fullname);
         pstm.setBlob(5, new ByteArrayInputStream(DataUtils.convertImageIconToBytes(avatar)));
-        pstm.setInt(6, getSession().getUser().getAccountID());
+        pstm.setString(6, intro);
+        pstm.setInt(7, getSession().getUser().getAccountID());
 
         pstm.executeUpdate();
 
