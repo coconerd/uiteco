@@ -488,7 +488,6 @@ public class DetailedOnePost_View extends JPanel {
 
         scrollPane1 = new com.raven.scroll.ScrollPaneWin11();
         jParentPanel = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         jBodyPanel = new javax.swing.JPanel();
         jTitle = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -558,24 +557,7 @@ public class DetailedOnePost_View extends JPanel {
         jParentPanel.setBackground(new java.awt.Color(242, 243, 244));
         jParentPanel.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 102));
-        jPanel2.setOpaque(false);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1913, Short.MAX_VALUE)
-        );
-
-        jParentPanel.add(jPanel2, java.awt.BorderLayout.LINE_START);
-
-        jBodyPanel.setBackground(new java.awt.Color(242, 243, 244));
-        jBodyPanel.setOpaque(false);
+        jBodyPanel.setBackground(new java.awt.Color(255, 102, 255));
         jBodyPanel.setPreferredSize(new java.awt.Dimension(1185, 1913));
 
         jTitle.setFont(new java.awt.Font("Merriweather", 0, 46)); // NOI18N
@@ -765,7 +747,6 @@ public class DetailedOnePost_View extends JPanel {
         jContent1.add(jPanel3);
 
         scrollPaneImages.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 25, 0));
-        scrollPaneImages.setOpaque(false);
         scrollPaneImages.setPreferredSize(new java.awt.Dimension(855, 500));
         jContent1.add(scrollPaneImages);
 
@@ -855,10 +836,10 @@ public class DetailedOnePost_View extends JPanel {
             jBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jBodyPanelLayout.createSequentialGroup()
                 .addGroup(jBodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1527, Short.MAX_VALUE)
                     .addGroup(jBodyPanelLayout.createSequentialGroup()
                         .addGap(125, 125, 125)
-                        .addComponent(jTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 1040, Short.MAX_VALUE)))
+                        .addComponent(jTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 1402, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
         jBodyPanelLayout.setVerticalGroup(
@@ -871,7 +852,7 @@ public class DetailedOnePost_View extends JPanel {
                 .addGap(248, 248, 248))
         );
 
-        jParentPanel.add(jBodyPanel, java.awt.BorderLayout.PAGE_START);
+        jParentPanel.add(jBodyPanel, java.awt.BorderLayout.CENTER);
 
         scrollPane1.setViewportView(jParentPanel);
 
@@ -1137,7 +1118,6 @@ public class DetailedOnePost_View extends JPanel {
         jContent2.add(jPanel8);
 
         scrollPaneImages1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 25, 0));
-        scrollPaneImages1.setOpaque(false);
         scrollPaneImages1.setPreferredSize(new java.awt.Dimension(855, 500));
         jContent2.add(scrollPaneImages1);
 
@@ -1194,7 +1174,7 @@ public class DetailedOnePost_View extends JPanel {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
+                .addContainerGap(97, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLeftIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1206,9 +1186,9 @@ public class DetailedOnePost_View extends JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 89, Short.MAX_VALUE)
+                .addGap(0, 88, Short.MAX_VALUE)
                 .addComponent(jContent2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1270,7 +1250,7 @@ public class DetailedOnePost_View extends JPanel {
             RegisterTimePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegisterTimePanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jRegisterTime1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                .addComponent(jRegisterTime1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(16, 16, 16))
         );
         RegisterTimePanel1Layout.setVerticalGroup(
@@ -1306,7 +1286,7 @@ public class DetailedOnePost_View extends JPanel {
                 .addContainerGap()
                 .addComponent(scrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1173, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(highResolutionResize2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(highResolutionResize2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1396,12 +1376,11 @@ public class DetailedOnePost_View extends JPanel {
     protected com.uiteco.OfCuocThiPanel.secondPage.CustomButton jLike1;
     private com.uiteco.OfCuocThiPanel.secondPage.CustomButton jListRegister;
     private com.uiteco.OfCuocThiPanel.secondPage.CustomButton jListRegister1;
-    private javax.swing.JPanel jMainContainer;
+    protected javax.swing.JPanel jMainContainer;
     protected javax.swing.JPanel jMainContainer1;
     protected javax.swing.JLabel jOrganizer;
     protected javax.swing.JLabel jOrganizer1;
     private javax.swing.JPanel jPanel1;
-    protected javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     protected javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
