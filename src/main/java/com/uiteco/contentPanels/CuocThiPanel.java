@@ -8,7 +8,7 @@ import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Controller;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_View;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Controller;
-import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
+import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View_new;
 import com.uiteco.main.App;
 import static com.uiteco.main.App.getMainFrame;
 import com.uiteco.rightPanels.CuocThiRightPanel_SecondPage;
@@ -81,7 +81,7 @@ public class CuocThiPanel extends JPanel {
                                 if (post.getId() == clickedPostID) {
 
                                     Component comp = App.getMainFrame().getContentPanel().getComponent("cuocThiDetailedPanel");
-                                    if (comp instanceof DetailedOnePost_View detailedPanel) {
+                                    if (comp instanceof DetailedOnePost_View_new detailedPanel) {
                                         DetailedOnePost_Controller detailedController = detailedPanel.createController(post);
 
                                         detailedPanel = detailedController.setData(post);

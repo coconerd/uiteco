@@ -3,7 +3,6 @@ package com.uiteco.OfCuocThiPanel.secondPage;
 import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
-import java.awt.Component;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import javax.swing.ImageIcon;
 
 public class DetailedOnePost_Controller {
 
-    public DetailedOnePost_Controller(DetailedOnePost_View view, BriefPost_Model baseModel) {
+    public DetailedOnePost_Controller(DetailedOnePost_View_new view, BriefPost_Model baseModel) {
         this.view = view;
         this.baseModel = baseModel;
         this.isLiked = false;
@@ -21,8 +20,8 @@ public class DetailedOnePost_Controller {
 
     }
 
-    private final DetailedOnePost_View view;
-    private BriefPost_Model baseModel;
+    private final DetailedOnePost_View_new view;
+    private final BriefPost_Model baseModel;
     private boolean isLiked;
     private int currentLikes;
 
@@ -31,9 +30,9 @@ public class DetailedOnePost_Controller {
     }
 
 
-    public DetailedOnePost_View setData(BriefPost_Model baseModel) {
+    public DetailedOnePost_View_new setData(BriefPost_Model baseModel) {
         view.jTitle.setText(baseModel.getTitle());
-        view.getjRegisterTime().setText(baseModel.getDateRange_ForDetailedPage());
+        view.jRegisterTime.setText(baseModel.getDateRange_ForDetailedPage());
         view.jOrganizer.setText(baseModel.getOrganizer());
         view.jPostTime.setText(baseModel.getPostTime_String());
         view.jContent.setText(baseModel.getContent());
@@ -53,9 +52,9 @@ public class DetailedOnePost_Controller {
         }
         System.out.println(listImage.size());
         
-        for (Component c : listImage) {
-            view.getScrollPaneImages().getRoundedGradientPanel().add(c);
-        }
+//        for (Component c : listImage) {
+//            view.getScrollPaneImages().getRoundedGradientPanel().add(c);
+//        }
         
         return view;
     }

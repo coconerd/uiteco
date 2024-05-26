@@ -47,8 +47,8 @@ public class ScrollPaneImages extends JPanel {
         jScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         roundedGradientPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 0, 10, 0));
-        roundedGradientPanel.setColor1(new java.awt.Color(253, 189, 85));
-        roundedGradientPanel.setColor2(new java.awt.Color(249, 131, 255));
+        roundedGradientPanel.setColor1(new java.awt.Color(222, 236, 221));
+        roundedGradientPanel.setColor2(new java.awt.Color(238, 241, 245));
         roundedGradientPanel.setFull(false);
         roundedGradientPanel.setRoundBottomLeft(40);
         roundedGradientPanel.setRoundBottomRight(40);
@@ -90,7 +90,7 @@ public class ScrollPaneImages extends JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
+            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1300, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)

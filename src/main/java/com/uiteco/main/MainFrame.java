@@ -4,7 +4,7 @@
  */
 package com.uiteco.main;
 
-import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
+import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View_new;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
@@ -20,7 +20,6 @@ import com.uiteco.rightPanels.SuKienRightPanel;
 import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.rightPanels.ForumRightPanel;
 import com.uiteco.rightPanels.TinNhanRightPanel;
-import com.uiteco.rightPanels.TaiKhoanRightPanel;
 import com.uiteco.ofSuKienPanel.detailed.SuKienDetailPanel;
 import com.uiteco.rightPanels.CuocThiRightPanel_FirstPage;
 import com.uiteco.rightPanels.CuocThiRightPanel_SecondPage;
@@ -719,7 +718,7 @@ public class MainFrame extends javax.swing.JFrame {
         TaiKhoanPanel tk = new TaiKhoanPanel();
         contentPanel.registerComponent(tk, "taiKhoanPanel");
 
-        DetailedOnePost_View post = new DetailedOnePost_View();
+        DetailedOnePost_View_new post = new DetailedOnePost_View_new();
         contentPanel.registerComponent(post, "cuocThiDetailedPanel");
 
 //        contentPanel.registerComponent(rootPane, name);

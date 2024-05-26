@@ -19,7 +19,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane" alignment="0" pref="958" max="32767" attributes="0"/>
+          <Component id="jScrollPane" alignment="0" pref="1300" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -61,10 +61,10 @@
               </Border>
             </Property>
             <Property name="color1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="55" green="bd" red="fd" type="rgb"/>
+              <Color blue="dd" green="ec" red="de" type="rgb"/>
             </Property>
             <Property name="color2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="83" red="f9" type="rgb"/>
+              <Color blue="f5" green="f1" red="ee" type="rgb"/>
             </Property>
             <Property name="full" type="boolean" value="false"/>
             <Property name="roundBottomLeft" type="int" value="40"/>
