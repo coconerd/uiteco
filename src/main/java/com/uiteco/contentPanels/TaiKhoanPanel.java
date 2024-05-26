@@ -64,15 +64,15 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
                 roundedPanel2.setVisible(false);
             }
             case cuusinhvien -> {
-                type = "Cựu sinh viên";
+                type = "CSV";
                 jLabel12.setText("K" + String.valueOf(this.user.getAccountCreationDate().getYear() - 2006 + 1));
             }
             case sinhvien -> {
-                type = "Sinh viên";
+                type = "SV";
                 jLabel12.setText("K" + String.valueOf(this.user.getAccountCreationDate().getYear() - 2006 + 1));
             }
             case giangvien -> {
-                type = "Giảng viên";
+                type = "GV";
                 roundedPanel2.setVisible(false);
             }
             default -> {
@@ -80,8 +80,16 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
         }
 
         jLabel11.setText(type);
-
         _clicked(hdBtn, HoatDongPanel.INSTANCE_NAME);
+        roundedPanel2.revalidate();
+        roundedPanel2.repaint();
+        
+        roundedPanel4.revalidate();
+        roundedPanel4.repaint();
+        
+        revalidate();
+        repaint();
+        
     }
 
     /**
@@ -287,9 +295,9 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
         roundedGradientPanel1.add(imageAvatar1, gridBagConstraints);
 
         jPanel1.setOpaque(false);
-        jPanel1.setPreferredSize(new java.awt.Dimension(190, 30));
+        jPanel1.setPreferredSize(new java.awt.Dimension(150, 30));
         jPanel1.setRequestFocusEnabled(false);
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         roundedPanel4.setBackground(new java.awt.Color(255, 102, 102));
         roundedPanel4.setMinimumSize(new java.awt.Dimension(40, 10));
@@ -321,9 +329,9 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.9;
+        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 10);
         roundedGradientPanel1.add(jPanel1, gridBagConstraints);
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -344,6 +352,8 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 0);
         roundedGradientPanel1.add(jLabel15, gridBagConstraints);
 
@@ -360,13 +370,13 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(leftPLayout.createSequentialGroup()
                         .addGroup(leftPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(roundedGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(leftPLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(0, 66, Short.MAX_VALUE))
                             .addComponent(jTextArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addComponent(roundedGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         leftPLayout.setVerticalGroup(
             leftPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

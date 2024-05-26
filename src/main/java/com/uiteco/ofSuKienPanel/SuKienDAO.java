@@ -35,12 +35,12 @@ import javax.imageio.ImageIO;
 import java.sql.NClob;
 import com.uiteco.database.DataUtils;
 import java.io.InputStream;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import static com.uiteco.main.App.getSession;
 import com.uiteco.ofTaiKhoanPanel.TaiKhoanModel;
 import java.sql.CallableStatement;
+import static com.uiteco.main.App.getSession;
 
 /**
  *
@@ -848,7 +848,7 @@ public class SuKienDAO {
                     System.out.println("Encountered exception, skipping");
                 }
             }
-            
+
             likers.add(liker);
         }
 
@@ -882,9 +882,9 @@ public class SuKienDAO {
         Connection conn = ConnectionManager.getConnection();
         // Get MACLB and NOIDUNG
         String sql = """
-                     SELECT LBD.MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH, TENCLB
+                     SELECT LBD.MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH, TENCLB, LUOTDANGKY, COTHEDANGKY, NGAYBD_DANGKY, NGAYHH_DANGKY, SL_DANGKY_TOIDA
                      FROM 
-                     \t(SELECT MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH FROM BAIDANG BD WHERE MABD = ?) BD 
+                     \t(SELECT MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH, LUOTDANGKY, COTHEDANGKY, NGAYBD_DANGKY, NGAYHH_DANGKY, SL_DANGKY_TOIDA FROM BAIDANG BD WHERE MABD = ?) BD 
                      LEFT JOIN
                           (SELECT MACLB, TENCLB FROM CAULACBO) CLB ON BD.MACLBDANGBAI = CLB.MACLB LEFT JOIN
                      \t(SELECT MABD FROM THICH_BAIDANG WHERE MATK = ? AND MABD = ?) LBD ON LBD.MABD = BD.MABD""";
@@ -899,6 +899,16 @@ public class SuKienDAO {
             suKienModel.setViews(rs.getInt("LUOTXEM"));
             suKienModel.setLikes(rs.getInt("LUOTTHICH"));
             suKienModel.setContent(rs.getString("NOIDUNG"));
+            suKienModel.setEnrollCount(rs.getInt("LUOTDANGKY"));
+            suKienModel.setEnrollable(rs.getInt("COTHEDANGKY") == 1 ? true : false);
+            if (suKienModel.isEnrollable()) {
+                suKienModel.setEnrollStart(rs.getDate("NGAYBD_DANGKY").toLocalDate());
+                suKienModel.setEnrollEnd(rs.getDate("NGAYHH_DANGKY").toLocalDate());
+                Integer enrollLimit = rs.getInt("SL_DANGKY_TOIDA");
+                if (!rs.wasNull()) {
+                    suKienModel.setEnrollLimit(enrollLimit);
+                }
+            }
 
             // Check if user has liked the post
             rs.getInt("MABD");
@@ -921,9 +931,7 @@ public class SuKienDAO {
         while (rs.next()) {
             tags.add(rs.getString("TAG"));
         }
-        if (!tags.isEmpty()) {
-            suKienModel.setTags(tags);
-        }
+        suKienModel.setTags(tags);
 
         // Get images
         pstm.close();
@@ -972,6 +980,66 @@ public class SuKienDAO {
 
         int likes = cstm.getInt(3);
         suKienModel.setLikes(likes);
+    }
+
+    public static LinkedList<TaiKhoanModel> getParticipants(SuKienModel suKienModel) throws SQLException {
+        LinkedList<TaiKhoanModel> result = new LinkedList<>();
+        String sql = """
+                     SELECT TK.MATK, HOTEN, ANHDAIDIEN, TENKHOA
+                     FROM\t
+                     \t(SELECT MATK, HOTEN, ANHDAIDIEN FROM TAIKHOAN WHERE MATK IN (SELECT MATK FROM DANGKY DK WHERE DK.MABD = ?)) TK
+                     \tJOIN
+                     \t(SELECT TENKHOA, MATK FROM SINHVIEN) SV ON SV.MATK = TK.MATK""";
+        Connection conn = ConnectionManager.getConnection();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, suKienModel.getPostID());
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            TaiKhoanModel user = new TaiKhoanModel();
+            user.setAccountID(rs.getInt("MATK"));
+            user.setFullname(rs.getString("HOTEN"));
+            user.setFaculty(rs.getString("TENKHOA"));
+            Blob blob = rs.getBlob("ANHDAIDIEN");
+            if (!rs.wasNull()) {
+                try {
+                    InputStream is = blob.getBinaryStream(1, blob.length());
+                    Image buffImage = ImageIO.read(is);
+                    ImageIcon thumbnail = new ImageIcon(buffImage);
+
+                    // Cleanup
+                    is.close();
+                    blob.free();
+                    is = null;
+                    buffImage = null;
+                    blob = null;
+
+                    user.setAvatar(thumbnail);
+                } catch (Exception e) {
+                    System.out.println("Encountered exception when parsing avatar of user " + user.getAccountID());
+                }
+            }
+            result.add(user);
+        }
+        
+        rs.close();
+        pstm.close();
+        conn.close();
+        return result;
+    }
+    
+    public static void enrollInSuKien(SuKienModel suKienModel) throws SQLException {
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "{CALL PROC_DANGKY_SUKIEN(?, ?, ?)}";
+        CallableStatement cstm = conn.prepareCall(sql);
+        cstm.setInt(1, getSession().getUser().getAccountID());
+        cstm.setInt(2, suKienModel.getPostID());
+        cstm.registerOutParameter(3, java.sql.Types.INTEGER);
+        cstm.execute();
+        suKienModel.setEnrollCount(cstm.getInt(3));
+        
+        cstm.close();
+        conn.close();
     }
 
     /**

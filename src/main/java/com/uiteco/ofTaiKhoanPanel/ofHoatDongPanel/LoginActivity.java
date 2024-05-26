@@ -93,21 +93,18 @@ public class LoginActivity extends RoundedPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setRoundBottomLeft(10);
-        setRoundBottomRight(10);
-        setRoundTopLeft(10);
-        setRoundTopRight(10);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(5, 5, 5));
-        jLabel1.setText("Hoạt động đăng nhập");
+        setRoundBottomLeft(15);
+        setRoundBottomRight(15);
+        setRoundTopLeft(15);
+        setRoundTopRight(15);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(5, 5, 5));
@@ -125,6 +122,20 @@ public class LoginActivity extends RoundedPanel {
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("jLabel4");
 
+        roundedGradientPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 9, 0, 0));
+        roundedGradientPanel1.setColor1(new java.awt.Color(240, 251, 255));
+        roundedGradientPanel1.setColor2(new java.awt.Color(230, 244, 241));
+        roundedGradientPanel1.setRoundBottomLeft(7);
+        roundedGradientPanel1.setRoundBottomRight(44);
+        roundedGradientPanel1.setRoundTopLeft(7);
+        roundedGradientPanel1.setRoundTopRight(44);
+        roundedGradientPanel1.setLayout(new java.awt.GridLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(5, 5, 5));
+        jLabel1.setText("Hoạt động đăng nhập");
+        roundedGradientPanel1.add(jLabel1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,28 +144,34 @@ public class LoginActivity extends RoundedPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(0, 608, Short.MAX_VALUE))
+                        .addComponent(roundedGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(0, 398, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(322, 322, 322)))))
+                        .addGap(238, 238, 238))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(roundedGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
@@ -169,5 +186,6 @@ public class LoginActivity extends RoundedPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
     // End of variables declaration//GEN-END:variables
 }

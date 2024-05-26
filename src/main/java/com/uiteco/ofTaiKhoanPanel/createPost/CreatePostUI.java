@@ -684,11 +684,11 @@ public class CreatePostUI extends javax.swing.JPanel {
     }
 
     private void _showTagSelector() {
-        _createDialog("Tag", tagSelector);
+        createDialog("Tag", tagSelector);
     }
 
     private void _showImageSelector() {
-        _createDialog("Hình ảnh", imageSelector);
+        createDialog("Hình ảnh", imageSelector);
     }
 
     private void _showPreview() {
@@ -708,10 +708,10 @@ public class CreatePostUI extends javax.swing.JPanel {
         } catch (NullSuKienModelException | IOException | SQLException e) {
             e.printStackTrace();
         }
-        _createDialog("Xem trước bài viết", preview);
+        createDialog("Xem trước bài viết", preview);
     }
 
-    private void _createDialog(String dialogName, Component child) {
+    public static void createDialog(String dialogName, Component child) {
         JDialog dialog = new JDialog(App.getMainFrame(), dialogName, false);
         dialog.setLayout(new GridLayout(1, 1, 0, 0));
         dialog.setSize(child.getPreferredSize());

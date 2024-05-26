@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.util.Set;
+import java.time.LocalDate;
 
 /**
  *
@@ -28,6 +29,11 @@ public class SuKienModel {
     private ImageIcon[] images;
     private int views;
     private int likes;
+    private boolean enrollable;
+    private int enrollCount;
+    private LocalDate enrollStart;
+    private LocalDate enrollEnd;
+    private Integer enrollLimit;
     
     private boolean liked;
     private String clubName;
@@ -65,6 +71,19 @@ public class SuKienModel {
         
         this.liked = false;
     }
+
+    public void setEnrollStart(LocalDate enrollStart) {
+        this.enrollStart = enrollStart;
+    }
+
+    public void setEnrollEnd(LocalDate enrollEnd) {
+        this.enrollEnd = enrollEnd;
+    }
+    
+    public void setEnrollLimit(Integer enrollLimit) {
+        this.enrollLimit = enrollLimit;
+    }
+    
 
     public void setTitle(String title) {
         this.title = title;
@@ -134,8 +153,28 @@ public class SuKienModel {
         this.liked= liked;
     }
 
+    public void setEnrollable(boolean enrollable) {
+        this.enrollable = enrollable;
+    }
+
+    public void setEnrollCount(int enrollCount) {
+        this.enrollCount = enrollCount;
+    }
+    
+    public Integer getEnrollLimit() {
+        return enrollLimit;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public LocalDate getEnrollStart() {
+        return enrollStart;
+    }
+
+    public LocalDate getEnrollEnd() {
+        return enrollEnd;
     }
 
     public Set<String> getTags() {
@@ -200,6 +239,14 @@ public class SuKienModel {
     
     public boolean isLiked() {
         return this.liked;
+    }
+
+    public boolean isEnrollable() {
+        return enrollable;
+    }
+
+    public int getEnrollCount() {
+        return enrollCount;
     }
     
     public LocalDateTime getLastLoaded() {

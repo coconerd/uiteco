@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import static com.uiteco.ofTaiKhoanPanel.TaiKhoanModel.ACCOUNT_TYPE;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -85,10 +86,13 @@ public class TaiKhoanDAO {
         user.setPhone(rs.getString("SDT"));
         user.setIntro(rs.getString("GIOITHIEU"));
         user.setAccountCreationDate(rs.getDate("NGAYTAO").toLocalDate());
-        user.setLastAccess(rs.getTimestamp("TRUYCAP").toLocalDateTime());
         user.setCountry(rs.getString("QUOCGIA"));
         user.setProvince(rs.getString("TINHTHANHPHO"));
         user.setTimezone(rs.getString("MUIGIO"));
+        java.sql.Timestamp ts = rs.getTimestamp("TRUYCAP");
+        if (!rs.wasNull()) {
+            user.setLastAccess(ts.toLocalDateTime());
+        }
 
         // Retrieve student ID and faculty of account type is student
         if (user.getAccountType() == ACCOUNT_TYPE.sinhvien || user.getAccountType() == ACCOUNT_TYPE.cuusinhvien) {
