@@ -155,7 +155,7 @@ public class BriefPost_View extends RoundedPanel {
         jDateRange.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jDateRange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-calendar-28.png"))); // NOI18N
         jDateRange.setText("gewrgwrg");
-        jDateRange.setIconTextGap(15);
+        jDateRange.setIconTextGap(19);
 
         jTagsIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-tag-29.png"))); // NOI18N
         jTagsIcon.setText("jLabel1");
@@ -193,7 +193,7 @@ public class BriefPost_View extends RoundedPanel {
         jDueDate.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jDueDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-time-28.png"))); // NOI18N
         jDueDate.setText("jLabel1");
-        jDueDate.setIconTextGap(15);
+        jDueDate.setIconTextGap(19);
 
         jImage.setMinimumSize(new java.awt.Dimension(200, 200));
         jImage.setPreferredSize(new java.awt.Dimension(200, 200));

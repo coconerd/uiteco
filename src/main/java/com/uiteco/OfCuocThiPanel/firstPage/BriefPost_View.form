@@ -177,7 +177,7 @@
               <Image iconType="3" name="/2_files/icons8-calendar-28.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="gewrgwrg"/>
-            <Property name="iconTextGap" type="int" value="15"/>
+            <Property name="iconTextGap" type="int" value="19"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
@@ -270,7 +270,7 @@
               <Image iconType="3" name="/2_files/icons8-time-28.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
-            <Property name="iconTextGap" type="int" value="15"/>
+            <Property name="iconTextGap" type="int" value="19"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>

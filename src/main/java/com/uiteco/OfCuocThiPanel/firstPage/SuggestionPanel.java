@@ -28,12 +28,12 @@ public class SuggestionPanel extends javax.swing.JPanel {
 
         roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
 
-        roundedGradientPanel1.setColor1(new java.awt.Color(161, 255, 255));
-        roundedGradientPanel1.setColor2(new java.awt.Color(194, 255, 239));
-        roundedGradientPanel1.setRoundBottomLeft(35);
-        roundedGradientPanel1.setRoundBottomRight(35);
-        roundedGradientPanel1.setRoundTopLeft(35);
-        roundedGradientPanel1.setRoundTopRight(35);
+        roundedGradientPanel1.setColor1(new java.awt.Color(255, 254, 255));
+        roundedGradientPanel1.setColor2(new java.awt.Color(215, 255, 254));
+        roundedGradientPanel1.setRoundBottomLeft(45);
+        roundedGradientPanel1.setRoundBottomRight(45);
+        roundedGradientPanel1.setRoundTopLeft(45);
+        roundedGradientPanel1.setRoundTopRight(45);
 
         javax.swing.GroupLayout roundedGradientPanel1Layout = new javax.swing.GroupLayout(roundedGradientPanel1);
         roundedGradientPanel1.setLayout(roundedGradientPanel1Layout);

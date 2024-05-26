@@ -333,30 +333,32 @@ public class CuocThiPanel extends JPanel {
         slideShowAndPosts.setBackground(new java.awt.Color(242, 243, 244));
         slideShowAndPosts.setLayout(new java.awt.GridBagLayout());
 
-        newestCompetitions_new.setPreferredSize(new java.awt.Dimension(1500, 850));
+        newestCompetitions_new.setPreferredSize(new java.awt.Dimension(600, 850));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(30, 50, 30, 1250);
+        gridBagConstraints.insets = new java.awt.Insets(30, 22, 30, 50);
         slideShowAndPosts.add(newestCompetitions_new, gridBagConstraints);
 
         postList.setBackground(new java.awt.Color(242, 243, 244));
         postList.setLayout(new java.awt.GridLayout(0, 1, 0, 35));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 30, 0);
+        gridBagConstraints.insets = new java.awt.Insets(22, 24, 35, 0);
         slideShowAndPosts.add(postList, gridBagConstraints);
+
+        suggestionPanel.setPreferredSize(new java.awt.Dimension(782, 788));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 1000);
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.insets = new java.awt.Insets(25, 23, 30, 57);
         slideShowAndPosts.add(suggestionPanel, gridBagConstraints);
 
         jScrollPane.setViewportView(slideShowAndPosts);

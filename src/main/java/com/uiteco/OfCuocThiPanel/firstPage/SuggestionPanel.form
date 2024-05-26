@@ -29,15 +29,15 @@
     <Container class="com.uiteco.components.RoundedGradientPanel" name="roundedGradientPanel1">
       <Properties>
         <Property name="color1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="a1" type="rgb"/>
+          <Color blue="ff" green="fe" red="ff" type="rgb"/>
         </Property>
         <Property name="color2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ef" green="ff" red="c2" type="rgb"/>
+          <Color blue="fe" green="ff" red="d7" type="rgb"/>
         </Property>
-        <Property name="roundBottomLeft" type="int" value="35"/>
-        <Property name="roundBottomRight" type="int" value="35"/>
-        <Property name="roundTopLeft" type="int" value="35"/>
-        <Property name="roundTopRight" type="int" value="35"/>
+        <Property name="roundBottomLeft" type="int" value="45"/>
+        <Property name="roundBottomRight" type="int" value="45"/>
+        <Property name="roundTopLeft" type="int" value="45"/>
+        <Property name="roundTopRight" type="int" value="45"/>
       </Properties>
 
       <Layout>
