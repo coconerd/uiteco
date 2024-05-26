@@ -4,6 +4,7 @@ import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -14,7 +15,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
-import java.awt.geom.RoundRectangle2D;
 import javax.swing.JButton;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
@@ -65,6 +65,7 @@ public class Button extends JButton {
         this.index = index;
         setContentAreaFilled(false);
         setForeground(new Color(242, 242, 242));
+        setSize(new Dimension(50, 50));
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         addMouseListener(new MouseAdapter() {
             @Override
@@ -93,34 +94,41 @@ public class Button extends JButton {
         animator.setResolution(0);
     }
 
-protected void paintComponent(Graphics grphcs) {
-    Graphics2D g2 = (Graphics2D) grphcs.create();
-    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-    int width = getWidth();
-    int height = getHeight();
-    int diameter = Math.min(width, height);
-    g2.setColor(getBackground());
-    g2.fillOval((width - diameter) / 2, (height - diameter) / 2, diameter, diameter);
-    if (pressedPoint != null) {
-        Area area = new Area(new Ellipse2D.Double((width - diameter) / 2, (height - diameter) / 2, diameter, diameter));
-        g2.setColor(effectColor);
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
-        area.intersect(new Area(new Ellipse2D.Double((pressedPoint.x - animatSize / 2), (pressedPoint.y - animatSize / 2), animatSize, animatSize)));
-        g2.fill(area);
+    public void setButtonSize(int width, int height) {
+        setPreferredSize(new Dimension(width, height));
+        setSize(width, height);
+        revalidate();
+        repaint();
     }
-    if (showButton) {
-        g2.setComposite(AlphaComposite.SrcOver);
-        g2.setColor(getForeground());
-        int x = width / 2;
-        int y = height / 2;
-        Line2D line1 = new Line2D.Double(x, y - 6, x, y + 6);
-        Line2D line2 = new Line2D.Double(x - 6, y, x + 6, y);
-        AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(buttonAngle), line1.getX1(), line2.getY1());
-        g2.setStroke(new BasicStroke(3f));
-        g2.draw(at.createTransformedShape(line1));
-        g2.draw(at.createTransformedShape(line2));
+
+    protected void paintComponent(Graphics grphcs) {
+        Graphics2D g2 = (Graphics2D) grphcs.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        int width = getWidth();
+        int height = getHeight();
+        int diameter = Math.min(width, height);
+        g2.setColor(getBackground());
+        g2.fillOval((width - diameter) / 2, (height - diameter) / 2, diameter, diameter);
+        if (pressedPoint != null) {
+            Area area = new Area(new Ellipse2D.Double((width - diameter) / 2, (height - diameter) / 2, diameter, diameter));
+            g2.setColor(effectColor);
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
+            area.intersect(new Area(new Ellipse2D.Double((pressedPoint.x - animatSize / 2), (pressedPoint.y - animatSize / 2), animatSize, animatSize)));
+            g2.fill(area);
+        }
+        if (showButton) {
+            g2.setComposite(AlphaComposite.SrcOver);
+            g2.setColor(getForeground());
+            int x = width / 2;
+            int y = height / 2;
+            Line2D line1 = new Line2D.Double(x, y - 6, x, y + 6);
+            Line2D line2 = new Line2D.Double(x - 6, y, x + 6, y);
+            AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(buttonAngle), line1.getX1(), line2.getY1());
+            g2.setStroke(new BasicStroke(3f));
+            g2.draw(at.createTransformedShape(line1));
+            g2.draw(at.createTransformedShape(line2));
+        } 
+        g2.dispose();
+        super.paintComponent(grphcs);
     }
-    g2.dispose();
-    super.paintComponent(grphcs);
-}
 }

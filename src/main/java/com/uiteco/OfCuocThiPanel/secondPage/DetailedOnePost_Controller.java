@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 
 public class DetailedOnePost_Controller {
 
-    public DetailedOnePost_Controller(DetailedOnePost_View_new view, BriefPost_Model baseModel) {
+    public DetailedOnePost_Controller(DetailedOnePost_View view, BriefPost_Model baseModel) {
         this.view = view;
         this.baseModel = baseModel;
         this.isLiked = false;
@@ -20,7 +20,7 @@ public class DetailedOnePost_Controller {
 
     }
 
-    private final DetailedOnePost_View_new view;
+    private final DetailedOnePost_View view;
     private final BriefPost_Model baseModel;
     private boolean isLiked;
     private int currentLikes;
@@ -30,7 +30,7 @@ public class DetailedOnePost_Controller {
     }
 
 
-    public DetailedOnePost_View_new setData(BriefPost_Model baseModel) {
+    public DetailedOnePost_View setData(BriefPost_Model baseModel) {
         view.jTitle.setText(baseModel.getTitle());
         view.jRegisterTime.setText(baseModel.getDateRange_ForDetailedPage());
         view.jOrganizer.setText(baseModel.getOrganizer());

@@ -2,9 +2,9 @@ package com.uiteco.OfCuocThiPanel.secondPage;
 
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 
-public class DetailedOnePost_View_new extends javax.swing.JPanel {
+public class DetailedOnePost_View extends javax.swing.JPanel {
 
-    public DetailedOnePost_View_new() {
+    public DetailedOnePost_View() {
         initComponents();
     }
     
@@ -46,6 +46,7 @@ public class DetailedOnePost_View_new extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         youtubePlay = new com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay();
         scrollPaneImages2 = new com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages();
+        roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setOpaque(false);
@@ -306,6 +307,28 @@ public class DetailedOnePost_View_new extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(50, 200, 70, 50);
         jBody.add(scrollPaneImages2, gridBagConstraints);
 
+        roundedGradientPanel1.setPreferredSize(new java.awt.Dimension(600, 380));
+        roundedGradientPanel1.setRoundBottomLeft(35);
+        roundedGradientPanel1.setRoundBottomRight(35);
+        roundedGradientPanel1.setRoundTopLeft(35);
+        roundedGradientPanel1.setRoundTopRight(35);
+
+        javax.swing.GroupLayout roundedGradientPanel1Layout = new javax.swing.GroupLayout(roundedGradientPanel1);
+        roundedGradientPanel1.setLayout(roundedGradientPanel1Layout);
+        roundedGradientPanel1Layout.setHorizontalGroup(
+            roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 536, Short.MAX_VALUE)
+        );
+        roundedGradientPanel1Layout.setVerticalGroup(
+            roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 316, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        jBody.add(roundedGradientPanel1, gridBagConstraints);
+
         jScrollPane.setViewportView(jBody);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -354,6 +377,7 @@ public class DetailedOnePost_View_new extends javax.swing.JPanel {
     protected javax.swing.JLabel jTitle;
     private javax.swing.JPanel jTop;
     private javax.swing.JLabel like;
+    private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
     private com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages scrollPaneImages2;
     private com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay youtubePlay;
     // End of variables declaration//GEN-END:variables

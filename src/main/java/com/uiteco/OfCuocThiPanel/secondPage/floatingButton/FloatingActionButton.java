@@ -2,6 +2,7 @@ package com.uiteco.OfCuocThiPanel.secondPage.floatingButton;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,9 +27,10 @@ public class FloatingActionButton extends JComponent {
         layout = new MigLayout();
         setLayout(layout);
         Button button = new Button(-1);
+        button.setButtonSize(70, 70);
         button.setShowButton(true);
         button.setBackground(new Color(100, 150, 200));
-        add(button, "pos 1al 1al, w 50, h 50, id ms");
+        add(button, "pos 1al 1al, w 75, h 75, id ms");
         animator = new Animator(300);
         animator.setResolution(0);
         button.addActionListener(new ActionListener() {
@@ -101,7 +103,7 @@ public class FloatingActionButton extends JComponent {
         item.setBackground(color);
         //  ms is id of button
         item.setVisible(false);
-        add(item, "pos ms.x+3 ms.y+3, w 70!, h 70!");
+        add(item, "pos ms.x+3 ms.y+3, w 85!, h 85!");
     }
 
     public void addEvent(EventFloatingActionButton event) {

@@ -6,7 +6,7 @@ import com.uiteco.OfCuocThiPanel.firstPage.slideShow.NewstCompetitions;
 import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Controller;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
-import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View_new;
+import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
 import com.uiteco.main.App;
 import static com.uiteco.main.App.getMainFrame;
 import com.uiteco.rightPanels.CuocThiRightPanel_SecondPage;
@@ -110,7 +110,7 @@ public class firstPage extends javax.swing.JPanel {
 
                                     Component comp = App.getMainFrame().getContentPanel().getComponent("cuocThiDetailedPanel");
                                     if (comp instanceof DetailedOnePost_View) {
-                                        DetailedOnePost_View_new detailedPanel = (DetailedOnePost_View_new) comp;
+                                        DetailedOnePost_View detailedPanel = (DetailedOnePost_View) comp;
                                         DetailedOnePost_Controller detailedController = detailedPanel.createController(post);
 
                                         detailedPanel = detailedController.setData(post);
@@ -200,7 +200,7 @@ public class firstPage extends javax.swing.JPanel {
 
                                     Component comp = App.getMainFrame().getContentPanel().getComponent("cuocThiDetailedPanel");
                                     if (comp instanceof DetailedOnePost_View) {
-                                        DetailedOnePost_View_new detailedPanel = (DetailedOnePost_View_new) comp;
+                                        DetailedOnePost_View detailedPanel = (DetailedOnePost_View) comp;
                                         DetailedOnePost_Controller detailedController = detailedPanel.createController(post);
 
                                         detailedPanel = detailedController.setData(post);

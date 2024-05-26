@@ -52,8 +52,8 @@ public class RegisterTableInfo extends CuocThiRightPanel_SecondPage {
         tableScrollButton1 = new com.uiteco.OfCuocThiPanel.secondPage.tableView.TableScrollButton();
         scroll = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        highResolutionResize1 = new com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         roundedPanel1.setBackground(new java.awt.Color(255, 255, 255));
         roundedPanel1.setRoundBottomLeft(30);
@@ -97,23 +97,11 @@ public class RegisterTableInfo extends CuocThiRightPanel_SecondPage {
 
         tableScrollButton1.add(scroll, java.awt.BorderLayout.CENTER);
 
-        highResolutionResize1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        highResolutionResize1.setImage(new javax.swing.ImageIcon(getClass().getResource("/participant.png"))); // NOI18N
-
-        javax.swing.GroupLayout highResolutionResize1Layout = new javax.swing.GroupLayout(highResolutionResize1);
-        highResolutionResize1.setLayout(highResolutionResize1Layout);
-        highResolutionResize1Layout.setHorizontalGroup(
-            highResolutionResize1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 86, Short.MAX_VALUE)
-        );
-        highResolutionResize1Layout.setVerticalGroup(
-            highResolutionResize1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 58, Short.MAX_VALUE)
-        );
-
         jLabel1.setFont(new java.awt.Font("Merriweather", 1, 26)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Danh sách sinh viên đăng kí tham gia");
+
+        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
         roundedPanel1.setLayout(roundedPanel1Layout);
@@ -124,21 +112,22 @@ public class RegisterTableInfo extends CuocThiRightPanel_SecondPage {
                 .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tableScrollButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(roundedPanel1Layout.createSequentialGroup()
-                        .addComponent(highResolutionResize1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 531, Short.MAX_VALUE)))
+                        .addGap(0, 796, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         roundedPanel1Layout.setVerticalGroup(
             roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(highResolutionResize1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addComponent(tableScrollButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
+                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addComponent(tableScrollButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
 
@@ -155,8 +144,8 @@ public class RegisterTableInfo extends CuocThiRightPanel_SecondPage {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize highResolutionResize1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private com.uiteco.components.RoundedPanel roundedPanel1;
     private javax.swing.JScrollPane scroll;
     private javax.swing.JTable table;

@@ -8,7 +8,7 @@ import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Controller;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_View;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Controller;
-import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View_new;
+import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
 import com.uiteco.main.App;
 import static com.uiteco.main.App.getMainFrame;
 import com.uiteco.rightPanels.CuocThiRightPanel_SecondPage;
@@ -81,7 +81,7 @@ public class CuocThiPanel extends JPanel {
                                 if (post.getId() == clickedPostID) {
 
                                     Component comp = App.getMainFrame().getContentPanel().getComponent("cuocThiDetailedPanel");
-                                    if (comp instanceof DetailedOnePost_View_new detailedPanel) {
+                                    if (comp instanceof DetailedOnePost_View detailedPanel) {
                                         DetailedOnePost_Controller detailedController = detailedPanel.createController(post);
 
                                         detailedPanel = detailedController.setData(post);
@@ -332,14 +332,15 @@ public class CuocThiPanel extends JPanel {
         slideShowAndPosts.setBackground(new java.awt.Color(242, 243, 244));
         slideShowAndPosts.setLayout(new java.awt.GridBagLayout());
 
-        newestCompetitions_new.setPreferredSize(new java.awt.Dimension(1500, 750));
+        newestCompetitions_new.setPreferredSize(new java.awt.Dimension(1500, 850));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
         gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.insets = new java.awt.Insets(40, 0, 30, 0);
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 30, 0);
         slideShowAndPosts.add(newestCompetitions_new, gridBagConstraints);
 
         postList.setBackground(new java.awt.Color(242, 243, 244));
@@ -347,6 +348,7 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 30, 0);
         slideShowAndPosts.add(postList, gridBagConstraints);

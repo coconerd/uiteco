@@ -4,7 +4,7 @@
  */
 package com.uiteco.main;
 
-import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View_new;
+import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import com.uiteco.components.RoundedBorder;
 import java.awt.Color;
@@ -718,7 +718,7 @@ public class MainFrame extends javax.swing.JFrame {
         TaiKhoanPanel tk = new TaiKhoanPanel();
         contentPanel.registerComponent(tk, "taiKhoanPanel");
 
-        DetailedOnePost_View_new post = new DetailedOnePost_View_new();
+        DetailedOnePost_View post = new DetailedOnePost_View();
         contentPanel.registerComponent(post, "cuocThiDetailedPanel");
 
 //        contentPanel.registerComponent(rootPane, name);

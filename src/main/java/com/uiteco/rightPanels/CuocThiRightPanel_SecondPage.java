@@ -6,6 +6,7 @@ import com.uiteco.OfCuocThiPanel.secondPage.floatingButton.EventFloatingActionBu
 import com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChartPanel;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -36,10 +37,10 @@ public class CuocThiRightPanel_SecondPage extends JPanel {
     public void actionPressButton() {
         ImageIcon listIcon = new ImageIcon(getClass().getResource("/note.png"));
         ImageIcon researchIcon = new ImageIcon(getClass().getResource("/pie-chart.png"));
-
+        
         floatingActionButton.addItem(listIcon, Color.white);
         floatingActionButton.addItem(researchIcon, Color.white);
-
+        
         floatingActionButton.addEvent(new EventFloatingActionButton() {
             @Override
             public void selected(int index) {
@@ -73,17 +74,23 @@ public class CuocThiRightPanel_SecondPage extends JPanel {
         setBackground(new java.awt.Color(242, 243, 244));
         setOpaque(false);
 
+        floatingActionButton.setPreferredSize(new java.awt.Dimension(30, 20));
+
         floatingActionPanel.setLayer(floatingActionButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout floatingActionPanelLayout = new javax.swing.GroupLayout(floatingActionPanel);
         floatingActionPanel.setLayout(floatingActionPanelLayout);
         floatingActionPanelLayout.setHorizontalGroup(
             floatingActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(floatingActionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(floatingActionPanelLayout.createSequentialGroup()
+                .addComponent(floatingActionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 14, Short.MAX_VALUE))
         );
         floatingActionPanelLayout.setVerticalGroup(
             floatingActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(floatingActionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(floatingActionPanelLayout.createSequentialGroup()
+                .addComponent(floatingActionButton, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -91,14 +98,14 @@ public class CuocThiRightPanel_SecondPage extends JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
+                .addContainerGap(77, Short.MAX_VALUE)
                 .addComponent(floatingActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(427, Short.MAX_VALUE)
+                .addContainerGap(312, Short.MAX_VALUE)
                 .addComponent(floatingActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
