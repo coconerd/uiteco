@@ -188,6 +188,7 @@ public class CuocThiPanel extends JPanel {
         slideShowAndPosts = new javax.swing.JPanel();
         newestCompetitions_new = new com.uiteco.OfCuocThiPanel.firstPage.slideShow.NewestCompetitions_new();
         postList = new javax.swing.JPanel();
+        suggestionPanel = new com.uiteco.OfCuocThiPanel.firstPage.SuggestionPanel();
         jHello = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(242, 243, 244));
@@ -336,11 +337,10 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.insets = new java.awt.Insets(30, 0, 30, 0);
+        gridBagConstraints.insets = new java.awt.Insets(30, 50, 30, 1250);
         slideShowAndPosts.add(newestCompetitions_new, gridBagConstraints);
 
         postList.setBackground(new java.awt.Color(242, 243, 244));
@@ -352,6 +352,12 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 30, 0);
         slideShowAndPosts.add(postList, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 1000);
+        slideShowAndPosts.add(suggestionPanel, gridBagConstraints);
 
         jScrollPane.setViewportView(slideShowAndPosts);
 
@@ -400,6 +406,7 @@ public class CuocThiPanel extends JPanel {
     private com.uiteco.OfCuocThiPanel.secondPage.CustomButton solo;
     private javax.swing.JLabel soloIcon;
     private javax.swing.JLabel sort;
+    private com.uiteco.OfCuocThiPanel.firstPage.SuggestionPanel suggestionPanel;
     private javax.swing.JLabel tagIcon;
     private com.uiteco.OfCuocThiPanel.secondPage.CustomButton team;
     private javax.swing.JLabel teamIcon;
