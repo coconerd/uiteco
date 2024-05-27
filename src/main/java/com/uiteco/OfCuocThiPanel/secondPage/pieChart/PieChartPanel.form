@@ -131,7 +131,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Merriweather" size="22" style="2"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Theo khoa"/>
+            <Property name="text" type="java.lang.String" value="Theo ni&#xea;n kh&#xf3;a"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -144,7 +144,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Merriweather" size="22" style="2"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Theo ni&#xea;n kh&#xf3;a"/>
+            <Property name="text" type="java.lang.String" value="Theo khoa"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

@@ -91,7 +91,7 @@ public class PieChartPanel extends CuocThiRightPanel_SecondPage {
         roundedPanel1.add(pieChart2, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Merriweather", 2, 22)); // NOI18N
-        jLabel3.setText("Theo khoa");
+        jLabel3.setText("Theo niên khóa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -100,7 +100,7 @@ public class PieChartPanel extends CuocThiRightPanel_SecondPage {
         roundedPanel1.add(jLabel3, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Merriweather", 2, 22)); // NOI18N
-        jLabel4.setText("Theo niên khóa");
+        jLabel4.setText("Theo khoa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;

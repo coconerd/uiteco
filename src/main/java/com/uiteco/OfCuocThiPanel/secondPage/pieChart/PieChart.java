@@ -31,7 +31,9 @@ public class PieChart extends JComponent {
     private int hoverIndex = -1;
     private float borderHover = 0.05f;
     private float padding = 0.2f;
-
+    private final float labelFontSize = 16f; // Default font size for the labels
+    private final float valueFontSize = 14f; // Default font size for the values
+    
     public PieChart() {
         models = new ArrayList<>();
         setForeground(new Color(60, 60, 60));
@@ -117,6 +119,7 @@ public class PieChart extends JComponent {
             double cosX = Math.cos(Math.toRadians(textAngle));
             double sinY = Math.sin(Math.toRadians(textAngle));
             String text = getPercentage(data.getValues()) + "%";
+            g2.setFont(getFont().deriveFont(valueFontSize));
             g2.setFont(getFont().deriveFont(fontSize));
             FontMetrics fm = g2.getFontMetrics();
             Rectangle2D r = fm.getStringBounds(text, g2);
@@ -140,13 +143,13 @@ public class PieChart extends JComponent {
     }
 
     private void drawPopupLabel(Graphics2D g2, double size, double angle, double labelX, double labelY, String text, String detail) {
-        float fontSize = (float) (getFont().getSize() * size * 0.0035f);
+        //float fontSize = (float) (getFont().getSize() * size * 0.0035f);
         boolean up = !(angle > 0 && angle < 180);
         double space = size * 0.03f;
         double spaceV = size * 0.01f;
         double paceH = size * 0.01f;
-        FontMetrics fm1 = g2.getFontMetrics(getFont().deriveFont(Font.PLAIN, fontSize));
-        FontMetrics fm2 = g2.getFontMetrics(getFont().deriveFont(Font.BOLD, fontSize));
+        FontMetrics fm1 = g2.getFontMetrics(getFont().deriveFont(Font.PLAIN, labelFontSize));
+        FontMetrics fm2 = g2.getFontMetrics(getFont().deriveFont(Font.BOLD, labelFontSize));
         Rectangle2D r1 = fm1.getStringBounds(text, g2);
         Rectangle2D r2 = fm1.getStringBounds(detail, g2);
         double width = Math.max(r1.getWidth() + paceH * 2, r2.getWidth() + paceH * 2);
@@ -160,9 +163,10 @@ public class PieChart extends JComponent {
         g2.draw(rec);
         g2.setColor(getForeground());
         recX += paceH;
-        g2.setFont(getFont().deriveFont(Font.PLAIN, fontSize));
+        
+        g2.setFont(getFont().deriveFont(Font.PLAIN, labelFontSize));
         g2.drawString(text, (float) recX, (float) (recY + fm1.getAscent() + spaceV));
-        g2.setFont(getFont().deriveFont(Font.BOLD, fontSize));
+        g2.setFont(getFont().deriveFont(Font.BOLD, labelFontSize));
         g2.drawString(detail, (float) recX, (float) (recY + height - r2.getHeight() + fm2.getAscent() - spaceV));
 
     }
