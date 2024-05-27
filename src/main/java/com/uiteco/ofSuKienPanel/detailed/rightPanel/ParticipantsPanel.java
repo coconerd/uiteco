@@ -495,12 +495,6 @@ public class ParticipantsPanel extends GradientPanel {
                     myEnrollIndex = i;
                 }
                 ParticipantLine line = new ParticipantLine(participant, i + 1, isMe);
-                line.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent evt) {
-
-                    }
-                });
                 viewport.add(line, "growx");
             }
         } catch (SQLException e) {

@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import net.miginfocom.swing.MigLayout;
 import static com.uiteco.ofTaiKhoanPanel.createPost.CreatePostUI.createDialog;
+import static com.uiteco.main.App.getSession;
 
 /**
  *
@@ -22,7 +23,7 @@ public class SuKienDetailRightPanel extends GradientPanel {
 
     public static final String INSTANCE_NAME = "suKienDetailRightPanel";
     private SuKienModel suKienModel;
-    
+
     /**
      * Creates new form DetailedRightPanel
      */
@@ -36,7 +37,7 @@ public class SuKienDetailRightPanel extends GradientPanel {
 
     public void load(SuKienModel suKienModel) {
         this.suKienModel = suKienModel;
-        
+
         try {
             likesPanel.removeAll();
             ArrayList<TaiKhoanModel> list = SuKienDAO.getLikers(suKienModel);
@@ -52,12 +53,19 @@ public class SuKienDetailRightPanel extends GradientPanel {
             }
             likesPanel.revalidate();
             likesPanel.repaint();
-            enrollBtn.setVisible(suKienModel.isEnrollable());
+            // Only show enroll button for student accounts
+
+            if (getSession().getUser().getAccountType() == TaiKhoanModel.ACCOUNT_TYPE.sinhvien
+                    || getSession().getUser().getAccountType() == TaiKhoanModel.ACCOUNT_TYPE.cuusinhvien) {
+                enrollBtn.setVisible(suKienModel.isEnrollable());
+            } else {
+                enrollBtn.setVisible(false);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
+
     private void _showParticipantPanel() {
         createDialog("Danh sách sinh viên tham gia", new ParticipantsPanel(suKienModel));
     }
@@ -152,13 +160,16 @@ public class SuKienDetailRightPanel extends GradientPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-join-48.png"))); // NOI18N
-        jLabel1.setToolTipText("THAM GIA CUỘC THI");
+        jLabel1.setToolTipText("THAM GIA SỰ KIỆN");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
             }
         });
         enrollBtn.add(jLabel1);
@@ -205,12 +216,18 @@ public class SuKienDetailRightPanel extends GradientPanel {
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
         // TODO add your handling code here:
+        enrollBtn.setColor1(enrollBtn.getColor1().brighter());
     }//GEN-LAST:event_jLabel1MouseEntered
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         _showParticipantPanel();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        // TODO add your handling code here:
+        enrollBtn.setColor1(new Color(204, 255, 170));
+    }//GEN-LAST:event_jLabel1MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
