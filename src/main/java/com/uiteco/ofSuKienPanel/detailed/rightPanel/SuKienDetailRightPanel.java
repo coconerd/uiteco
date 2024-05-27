@@ -38,6 +38,14 @@ public class SuKienDetailRightPanel extends GradientPanel {
     public void load(SuKienModel suKienModel) {
         this.suKienModel = suKienModel;
 
+        // Only show enroll button  for student accounts
+        if (getSession().getUser().getAccountType() == TaiKhoanModel.ACCOUNT_TYPE.sinhvien
+                || getSession().getUser().getAccountType() == TaiKhoanModel.ACCOUNT_TYPE.cuusinhvien) {
+            enrollBtn.setVisible(suKienModel.isEnrollable());
+        } else {
+            enrollBtn.setVisible(false);
+        }
+
         try {
             likesPanel.removeAll();
             ArrayList<TaiKhoanModel> list = SuKienDAO.getLikers(suKienModel);
@@ -53,15 +61,10 @@ public class SuKienDetailRightPanel extends GradientPanel {
             }
             likesPanel.revalidate();
             likesPanel.repaint();
-            // Only show enroll button for student accounts
 
-            if (getSession().getUser().getAccountType() == TaiKhoanModel.ACCOUNT_TYPE.sinhvien
-                    || getSession().getUser().getAccountType() == TaiKhoanModel.ACCOUNT_TYPE.cuusinhvien) {
-                enrollBtn.setVisible(suKienModel.isEnrollable());
-            } else {
-                enrollBtn.setVisible(false);
-            }
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
