@@ -35,7 +35,7 @@ public class SuggestionPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 25, 0);
         roundedGradientPanel1.add(jLabel1, gridBagConstraints);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-light-45.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-light-45.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;

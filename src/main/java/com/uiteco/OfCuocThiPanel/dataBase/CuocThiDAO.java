@@ -5,6 +5,8 @@ import com.bulenkov.iconloader.util.Scalr.Method;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.Pagination;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Model;
+import com.uiteco.OfCuocThiPanel.secondPage.pieChart.ModelPieChart;
+import com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChart;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -21,8 +23,6 @@ import java.sql.Timestamp;
 import javax.imageio.ImageIO;
 import java.time.*;
 import java.util.*;
-import javaswingdev.chart.ModelPieChart;
-import javaswingdev.chart.PieChart;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -169,14 +169,16 @@ public class CuocThiDAO {
     }
 
     //5 khóa
-    public static void getDataForPieChart_CourseYear(PieChart chart, int postID) {
+    public static List<ModelPieChart> getDataForPieChart_CourseYear(int postID) {
+        List<ModelPieChart> modelList = new ArrayList<>();
         try {
             conn = getConnection();
             query = "SELECT COUNT(D.MATK) AS COUNT_MATK, "
-                    + "'K ' + (CAST(CAST((LEFT(MSSV, 2) AS INTEGER)) - 5) AS VARCHAR) AS COURSE_YEAR "
-                    + "FROM DANGKY D, SINHVIEN S "
-                    + "D.MATK = S.MATK AND MABD = ? "
-                    + "GROUP BY LEFT(MSSV, 2)";
+                    + "'K' || (TO_CHAR(TO_NUMBER(SUBSTR(S.MSSV, 1, 2)) - 5)) AS COURSE_YEAR "
+                    + "FROM DANGKY D "
+                    + "JOIN SINHVIEN S ON D.MATK = S.MATK "
+                    + "WHERE D.MABD = ? "
+                    + "GROUP BY SUBSTR(S.MSSV, 1, 2)";
 
             PreparedStatement p = conn.prepareStatement(query);
             p.setInt(1, postID);
@@ -186,21 +188,25 @@ public class CuocThiDAO {
                 int count = rset.getInt("COUNT_MATK");
                 String courseYear = rset.getString("COURSE_YEAR");
 
-                chart.addData(new ModelPieChart(courseYear, count, getColor(index++)));
+                ModelPieChart model = new ModelPieChart(courseYear, count, getColor(index++));
+                modelList.add(model);
 
             }
 
         } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return modelList;
     }
 
     //6 khoa 
-    public static void getDataForPieChart_FacultyName(PieChart chart, int postID) {
+    public static List<ModelPieChart> getDataForPieChart_FacultyName(int postID) {
+        List<ModelPieChart> modelList = new ArrayList<>();
         try {
             conn = getConnection();
             query = "SELECT TENKHOA, COUNT(D.MATK) AS COUNT_MATK "
                     + "FROM DANGKY D, SINHVIEN S "
-                    + "D.MATK = S.MATK AND MABD = ? "
+                    + "WHERE D.MATK = S.MATK AND D.MABD = ? "
                     + "GROUP BY TENKHOA";
 
             PreparedStatement p = conn.prepareStatement(query);
@@ -211,25 +217,26 @@ public class CuocThiDAO {
                 String tk = rset.getString("TENKHOA");
                 int count = rset.getInt("COUNT_MATK");
 
-                chart.addData(new ModelPieChart(tk, count, getColor(index++)));
-
+                ModelPieChart model = new ModelPieChart(tk, count, getColor(index++));
+                modelList.add(model);
             }
 
         } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return modelList;
     }
 
     public static Color getColor(int index) {
         Color[] color = new Color[]{
-            Color.BLUE,
-            Color.DARK_GRAY,
-            Color.GRAY,
-            Color.GREEN,
-            Color.PINK,
-            Color.MAGENTA
-
+            new Color(211, 223, 122),
+            new Color(223, 122, 130),
+            new Color(226, 248, 143),
+            new Color(64, 70, 40),
+            new Color(114, 79, 243),
+            new Color(253, 235, 243)
         };
-        return color[index];
+        return color[index % color.length];
     }
 
     public static List<ImageIcon> getImagesForSlideshow() {
@@ -539,41 +546,40 @@ public class CuocThiDAO {
 
     }
 
-    public static List<BriefPost_Model> getPostsInfo_ComboBox(List<String> tags) {
-        List<BriefPost_Model> models = new ArrayList<>();
-        try {
-            conn = getConnection();
-            StringBuilder queryBuilder = new StringBuilder("SELECT DISTINCT MABD FROM TAGS_BAIDANG WHERE TAG IN (");
-            for (int i = 0; i < tags.size(); i++) {
-                queryBuilder.append("?");
-                if (i < tags.size() - 1) {
-                    queryBuilder.append(",");
-                }
-            }
-            queryBuilder.append(")");
-            query = queryBuilder.toString();
-            PreparedStatement p = conn.prepareStatement(query);
-
-            for (int i = 0; i < tags.size(); i++) {
-                p.setString(i + 1, tags.get(i));
-            }
-
-            rset = p.executeQuery();
-            while (rset.next()) {
-                int postID = rset.getInt("MABD");
-                models.add(getInfoPost_BaseMethod(postID));
-            }
-
-            conn.close();
-            rset.close();
-            p.close();
-
-        } catch (SQLException e) {
-            return new ArrayList<>();
-        }
-        return models;
-    }
-
+//    public static List<BriefPost_Model> getPostsInfo_ComboBox(List<String> tags) {
+//        List<BriefPost_Model> models = new ArrayList<>();
+//        try {
+//            conn = getConnection();
+//            StringBuilder queryBuilder = new StringBuilder("SELECT DISTINCT MABD FROM TAGS_BAIDANG WHERE TAG IN (");
+//            for (int i = 0; i < tags.size(); i++) {
+//                queryBuilder.append("?");
+//                if (i < tags.size() - 1) {
+//                    queryBuilder.append(",");
+//                }
+//            }
+//            queryBuilder.append(")");
+//            query = queryBuilder.toString();
+//            PreparedStatement p = conn.prepareStatement(query);
+//
+//            for (int i = 0; i < tags.size(); i++) {
+//                p.setString(i + 1, tags.get(i));
+//            }
+//
+//            rset = p.executeQuery();
+//            while (rset.next()) {
+//                int postID = rset.getInt("MABD");
+//                models.add(getInfoPost_BaseMethod(postID));
+//            }
+//
+//            conn.close();
+//            rset.close();
+//            p.close();
+//
+//        } catch (SQLException e) {
+//            return new ArrayList<>();
+//        }
+//        return models;
+//    }
     public static List<BriefPost_Model> getPostsInfo_Sort(int type, boolean dueDate, boolean hottest) {
         try {
             conn = getConnection();
@@ -689,92 +695,6 @@ public class CuocThiDAO {
         } catch (SQLException e) {
             return new ArrayList<>();
         }
-    }
-
-    public static BriefPost_Model getInfoPost_BaseMethod(int postID) {
-        BriefPost_Model post = new BriefPost_Model();
-        try {
-            conn = getConnection();
-            query = "SELECT DISTINCT "
-                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
-                    + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                    + "WHERE BD.MABD = BD_CT.MABD "
-                    + "AND LOAIBD = 2 AND MABD = ? "
-                    + " ORDER BY THOIDIEMDANG DESC ";
-
-            PreparedStatement p = conn.prepareStatement(query);
-            p.setInt(1, postID);
-            rset = p.executeQuery();
-            while (rset.next()) {
-                post.setId(postID);
-
-                String tagQuery = "SELECT TAG FROM TAGS_BAIDANG WHERE MABD = ?";
-                PreparedStatement pstmt = conn.prepareStatement(tagQuery);
-                pstmt.setInt(1, postID);
-                ResultSet tagRset = pstmt.executeQuery();
-
-                List<String> tagsString = new ArrayList<>();
-
-                while (tagRset.next()) {
-                    tagsString.add(tagRset.getString("TAG"));
-                }
-
-                pstmt.close();
-
-                post.setCountLike(rset.getInt("LUOTTHICH"));
-                post.setTags(tagsString);
-                post.setContent(rset.getString("NOIDUNG"));
-                post.setTitle(rset.getString("TIEUDE"));
-                post.setType(rset.getInt("HINHTHUCTG"));
-
-                byte[] imageData = rset.getBytes("THUMBNAIL");
-                if (imageData != null) {
-                    try {
-                        //convert the byte array to an Image object
-                        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
-                        BufferedImage bufferedImage = ImageIO.read(inputStream);
-
-                        //create a scaled version of the BufferedImage
-                        Image scaledImage = bufferedImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-
-                        //set the Image object as the thumnail
-                        ImageIcon thumbnail = new ImageIcon(scaledImage);
-                        post.setImage(thumbnail);
-
-                    } catch (IOException e) {
-                    }
-                }
-
-                post.setOrganizer(rset.getString("DONVITOCHUC"));
-
-                LocalDate timeBegin = rset.getDate("THOIDIEMDIENRA").toLocalDate();
-                post.setDueDate(timeBegin);
-
-                Timestamp timeStampPost = rset.getTimestamp("THOIDIEMDANG");
-                if (timeStampPost != null) {
-                    LocalDateTime localDateTimePost = timeStampPost.toLocalDateTime();
-                    post.setPostTime(localDateTimePost);
-                }
-
-                LocalDate timeStart = rset.getDate("NGAYBD_DANGKICUOCTHI").toLocalDate();
-                if (timeStart != null) {
-
-                    post.setStartDate(timeStart);
-                }
-                LocalDate timeEnd = rset.getDate("NGAYHETHAN_DANGKICUOCTHI").toLocalDate();
-                if (timeEnd != null) {
-
-                    post.setEndDate(timeEnd);
-                }
-            }
-
-            conn.close();
-            rset.close();
-            p.close();
-
-        } catch (SQLException e) {
-        }
-        return post;
     }
 
     static Connection conn;

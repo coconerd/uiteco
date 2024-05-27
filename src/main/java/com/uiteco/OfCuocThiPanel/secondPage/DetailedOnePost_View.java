@@ -118,7 +118,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jBelowTitle.setPreferredSize(new java.awt.Dimension(1160, 100));
         jBelowTitle.setLayout(new java.awt.GridBagLayout());
 
-        iconOrganization.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-company-64.png"))); // NOI18N
+        iconOrganization.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-company-80.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -136,6 +136,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jBelowTitle.add(jPostTime, gridBagConstraints);
 
         jLike.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 0, 1, 1));
+        jLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-like-50.png"))); // NOI18N
         jLike.setText("LIKE");
         jLike.setColor(new java.awt.Color(242, 243, 245));
         jLike.setFont(new java.awt.Font("Merriweather", 1, 18)); // NOI18N
@@ -195,8 +196,6 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 45);
         jBelowTitle.add(jRegister, gridBagConstraints);
-
-        like.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-like-50.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
@@ -205,7 +204,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         jBelowTitle.add(like, gridBagConstraints);
 
-        bookmark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/bookmark_10969413.png"))); // NOI18N
+        bookmark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/bookmark_10969413.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;

@@ -50,7 +50,6 @@ public class DetailedOnePost_Controller {
             r.getRoundedImagePanel().setImage(i);
             listImage.add(r);
         }
-        System.out.println(listImage.size());
 
         for (Component c : listImage) {
 

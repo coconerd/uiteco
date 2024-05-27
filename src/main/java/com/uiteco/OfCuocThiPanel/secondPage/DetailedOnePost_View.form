@@ -144,7 +144,7 @@
                 <Component class="javax.swing.JLabel" name="iconOrganization">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/2_files/icons8-company-64.png"/>
+                      <Image iconType="3" name="/CuocThiPanel_resources/icons8-company-80.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -172,6 +172,9 @@
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder bottom="1" left="0" right="1" top="1"/>
                       </Border>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/CuocThiPanel_resources/icons8-like-50.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="LIKE"/>
                     <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -258,11 +261,6 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JLabel" name="like">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/2_files/icons8-like-50.png"/>
-                    </Property>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                       <GridBagConstraints gridX="5" gridY="0" gridWidth="1" gridHeight="3" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="5" insetsRight="0" anchor="22" weightX="0.0" weightY="0.0"/>
@@ -272,7 +270,7 @@
                 <Component class="javax.swing.JLabel" name="bookmark">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/2_files/bookmark_10969413.png"/>
+                      <Image iconType="3" name="/CuocThiPanel_resources/bookmark_10969413.png"/>
                     </Property>
                   </Properties>
                   <Constraints>

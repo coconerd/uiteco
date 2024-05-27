@@ -251,35 +251,35 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 41);
         roundedPanel1.add(due, gridBagConstraints);
 
-        tagIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-tag-28.png"))); // NOI18N
+        tagIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-tag-29.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 32, 0, 25);
         roundedPanel1.add(tagIcon, gridBagConstraints);
 
-        soloIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-person-24.png"))); // NOI18N
+        soloIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-person-24.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 12);
         roundedPanel1.add(soloIcon, gridBagConstraints);
 
-        teamIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-team-25.png"))); // NOI18N
+        teamIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-team-25.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 15);
         roundedPanel1.add(teamIcon, gridBagConstraints);
 
-        hotestIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-hot-24.png"))); // NOI18N
+        hotestIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-hot-24.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         roundedPanel1.add(hotestIcon, gridBagConstraints);
 
-        dueIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-time-24.png"))); // NOI18N
+        dueIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-time-24.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
         gridBagConstraints.gridy = 1;
@@ -351,7 +351,7 @@ public class CuocThiPanel extends JPanel {
         add(jScrollPane, gridBagConstraints);
 
         jHello.setFont(new java.awt.Font("Merriweather", 2, 26)); // NOI18N
-        jHello.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/waving-hand_9837221.png"))); // NOI18N
+        jHello.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/waving-hand_9837221.png"))); // NOI18N
         jHello.setText("Xin chào cahoivuotthac!");
         jHello.setIconTextGap(12);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -398,7 +398,7 @@ public class CuocThiPanel extends JPanel {
 
         postList.removeAll();
         List<String> selectedTags = comboBox.getSelectedItems();
-        posts = CuocThiDAO.getPostsInfo_ComboBox(selectedTags);
+        //posts = CuocThiDAO.getPostsInfo_ComboBox(selectedTags);
 
     }//GEN-LAST:event_comboBoxMousePressed
 

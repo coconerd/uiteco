@@ -1,4 +1,4 @@
-package javaswingdev.chart;
+package com.uiteco.OfCuocThiPanel.secondPage.pieChart;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;

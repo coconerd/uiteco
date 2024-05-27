@@ -1,12 +1,8 @@
 package com.uiteco.OfCuocThiPanel.secondPage;
 
-import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
-import java.awt.Color;
-import java.awt.Insets;
+import com.uiteco.OfCuocThiPanel.secondPage.scrollBar.ScrollBarCustom;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.plaf.ColorUIResource;
+import javax.swing.JScrollBar;
 
 public class ScrollPaneImages extends JPanel {
 
@@ -16,17 +12,24 @@ public class ScrollPaneImages extends JPanel {
 
     public ScrollPaneImages() {
         initComponents();
+        
+        jScrollPane.setHorizontalScrollBar(new ScrollBarCustom());
         jScrollPane.setBorder(null);
-        jScrollPane.setOpaque(false);
-        UIManager.put("ScrollBar.showButtons", false);
-        jScrollPane.getVerticalScrollBar().putClientProperty(FlatClientProperties.STYLE, ""
-                + "trackArc:999;"
-                + "trackInsets:3,3,3,3;"
-                + "thumbInsets:3,3,3,3;"
-        );
-        UIManager.put("ScrollBar.track", new Color(0xe0e0e0));
-        UIManager.put("ScrollBar.thumb", new ColorUIResource(100, 150, 200)); // Change thumb color
-        FlatMacLightLaf.setup();
+        
+        ScrollBarCustom sp = new ScrollBarCustom();
+        sp.setOrientation(JScrollBar.HORIZONTAL);
+        jScrollPane.setHorizontalScrollBar(sp);
+        
+        jScrollPane.setViewportView(roundedGradientPanel);
+        //UIManager.put("ScrollBar.showButtons", false);
+//        jScrollPane.getVerticalScrollBar().putClientProperty(FlatClientProperties.STYLE, ""
+//                + "trackArc:999;"
+//                + "trackInsets:3,3,3,3;"
+//                + "thumbInsets:3,3,3,3;"
+//        );
+//        UIManager.put("ScrollBar.track", new Color(0xe0e0e0));
+//        UIManager.put("ScrollBar.thumb", new ColorUIResource(100, 150, 200)); // Change thumb color
+//        FlatMacLightLaf.setup();
     }
 
     @SuppressWarnings("unchecked")
@@ -39,6 +42,7 @@ public class ScrollPaneImages extends JPanel {
         setOpaque(false);
 
         jScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane.setViewportView(null);
 
         roundedGradientPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(45, 0, 10, 0));
         roundedGradientPanel.setColor1(new java.awt.Color(222, 236, 221));
@@ -49,7 +53,7 @@ public class ScrollPaneImages extends JPanel {
         roundedGradientPanel.setRoundBottomRight(40);
         roundedGradientPanel.setRoundTopLeft(40);
         roundedGradientPanel.setRoundTopRight(40);
-        roundedGradientPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 55, 10));
+        roundedGradientPanel.setLayout(new java.awt.GridLayout(1, 0, 30, 0));
         jScrollPane.setViewportView(roundedGradientPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -65,7 +69,7 @@ public class ScrollPaneImages extends JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane;
     private com.uiteco.components.RoundedGradientPanel roundedGradientPanel;

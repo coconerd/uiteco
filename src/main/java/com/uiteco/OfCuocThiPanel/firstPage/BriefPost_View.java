@@ -145,7 +145,7 @@ public class BriefPost_View extends RoundedPanel {
         roundPanel_Parent.setRoundTopRight(25);
 
         jOrganizer.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jOrganizer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-organization-28.png"))); // NOI18N
+        jOrganizer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-organization-28.png"))); // NOI18N
         jOrganizer.setText("fefe");
 
         jSeparator.setForeground(new java.awt.Color(153, 153, 153));
@@ -153,15 +153,15 @@ public class BriefPost_View extends RoundedPanel {
         jSeparator.setPreferredSize(new java.awt.Dimension(240, 9));
 
         jDateRange.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jDateRange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-calendar-28.png"))); // NOI18N
+        jDateRange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-calendar-28.png"))); // NOI18N
         jDateRange.setText("gewrgwrg");
         jDateRange.setIconTextGap(19);
 
-        jTagsIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-tag-29.png"))); // NOI18N
+        jTagsIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-tag-29.png"))); // NOI18N
         jTagsIcon.setText("jLabel1");
 
         jType.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jType.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-global-28.png"))); // NOI18N
+        jType.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-global-28.png"))); // NOI18N
         jType.setText("fvsdf");
 
         jPanelContainTags.setBackground(new java.awt.Color(204, 204, 0));
@@ -169,7 +169,7 @@ public class BriefPost_View extends RoundedPanel {
         jPanelContainTags.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING, 10, 12));
 
         jCountLike.setForeground(new java.awt.Color(51, 51, 51));
-        jCountLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-heart-28.png"))); // NOI18N
+        jCountLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-heart-28.png"))); // NOI18N
         jCountLike.setIconTextGap(6);
 
         jTitle.setFont(new java.awt.Font("Merriweather", 1, 25)); // NOI18N
@@ -191,7 +191,7 @@ public class BriefPost_View extends RoundedPanel {
         });
 
         jDueDate.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jDueDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/2_files/icons8-time-28.png"))); // NOI18N
+        jDueDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-time-28.png"))); // NOI18N
         jDueDate.setText("jLabel1");
         jDueDate.setIconTextGap(19);
 

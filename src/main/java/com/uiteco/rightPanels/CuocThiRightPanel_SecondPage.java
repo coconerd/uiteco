@@ -5,9 +5,11 @@ import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import com.uiteco.OfCuocThiPanel.secondPage.RegisterTableInfo;
 import com.uiteco.OfCuocThiPanel.secondPage.TableImageCellRender;
 import com.uiteco.OfCuocThiPanel.secondPage.floatingButton.EventFloatingActionButton;
+import com.uiteco.OfCuocThiPanel.secondPage.pieChart.ModelPieChart;
 import com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChartPanel;
 import java.awt.Color;
 import java.awt.Component;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -52,7 +54,20 @@ public class CuocThiRightPanel_SecondPage extends JPanel {
                     showForm(table);
 
                 } else if (index == 1) {
-                    showForm(new PieChartPanel());
+                    PieChartPanel chartPanel = new PieChartPanel();
+                    List<ModelPieChart> models1 = CuocThiDAO.getDataForPieChart_CourseYear(getPostID());
+                    for (ModelPieChart m : models1) {
+                        chartPanel.getPieChart1().addData(m);
+                        System.out.println(m.getName());
+                        System.out.println(m.getValues());
+                    }
+
+                    List<ModelPieChart> models2 = CuocThiDAO.getDataForPieChart_FacultyName(getPostID());
+                    for (ModelPieChart m : models2) {
+                        chartPanel.getPieChart2().addData(m);
+                    }
+                    
+                    showForm(chartPanel);
                 }
             }
         });

@@ -1,5 +1,4 @@
-package javaswingdev.chart;
-
+package com.uiteco.OfCuocThiPanel.secondPage.pieChart;
 import java.awt.Color;
 
 public class ModelPieChart {
