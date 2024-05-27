@@ -17,7 +17,7 @@ public class DetailedOnePost_Controller {
         this.isLiked = false;
         currentLikes = baseModel.countLike;
         view.jLike.addActionListener(e -> jLikeActionPerformed());
-        view.jRegister.addActionListener(e -> jRegisterActionPerformed());
+        //view.jRegister.addActionListener(e -> jRegisterActionPerformed());
 
     }
 
@@ -80,24 +80,24 @@ public class DetailedOnePost_Controller {
 
     }
 
-    private void jRegisterActionPerformed() {
-        // Add your logic for the "Register" button here
-        // For example, you could call a method in the DetailedOnePost_Model to handle the registration
-        ConfirmPopUp popUp = new ConfirmPopUp();
-        GlassPanePopup.showPopup(popUp);
-
-        popUp.getjOk().addActionListener((e) -> {
-            CuocThiDAO.insertUserRegisterCompetition(baseModel.getId(), LocalDateTime.now());
-            GlassPanePopup.closePopupAll();
-
-            //when press Register, display unregister button 
-            view.jRegister.setVisible(false);
-        });
-
-        popUp.getjNo().addActionListener((e) -> {
-            popUp.removeAll();
-            GlassPanePopup.closePopupAll();
-        });
-
-    }
+//    private void jRegisterActionPerformed() {
+//        // Add your logic for the "Register" button here
+//        // For example, you could call a method in the DetailedOnePost_Model to handle the registration
+//        ConfirmPopUp popUp = new ConfirmPopUp();
+//        GlassPanePopup.showPopup(popUp);
+//
+//        popUp.getjOk().addActionListener((e) -> {
+//            CuocThiDAO.insertUserRegisterCompetition(baseModel.getId());
+//            GlassPanePopup.closePopupAll();
+//
+//            //when press Register, display unregister button 
+//            view.jRegister.setVisible(false);
+//        });
+//
+//        popUp.getjNo().addActionListener((e) -> {
+//            popUp.removeAll();
+//            GlassPanePopup.closePopupAll();
+//        });
+//
+//    }
 }

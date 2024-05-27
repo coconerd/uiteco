@@ -143,6 +143,7 @@ public class CuocThiPanel extends JPanel {
         newestCompetitions_new = new com.uiteco.OfCuocThiPanel.firstPage.slideShow.NewestCompetitions_new();
         postList = new javax.swing.JPanel();
         suggestionPanel = new com.uiteco.OfCuocThiPanel.firstPage.SuggestionPanel();
+        pagination1 = new com.uiteco.OfCuocThiPanel.firstPage.Pagination();
         jHello = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(242, 243, 244));
@@ -310,7 +311,6 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(30, 22, 30, 50);
         slideShowAndPosts.add(newestCompetitions_new, gridBagConstraints);
@@ -319,19 +319,25 @@ public class CuocThiPanel extends JPanel {
         postList.setLayout(new java.awt.GridLayout(0, 1, 0, 35));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(22, 24, 35, 0);
         slideShowAndPosts.add(postList, gridBagConstraints);
 
         suggestionPanel.setPreferredSize(new java.awt.Dimension(782, 798));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.insets = new java.awt.Insets(25, 24, 44, 57);
         slideShowAndPosts.add(suggestionPanel, gridBagConstraints);
+
+        pagination1.setPreferredSize(new java.awt.Dimension(200, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        slideShowAndPosts.add(pagination1, gridBagConstraints);
 
         jScrollPane.setViewportView(slideShowAndPosts);
 
@@ -410,6 +416,7 @@ public class CuocThiPanel extends JPanel {
     private javax.swing.JLabel jHello;
     private javax.swing.JScrollPane jScrollPane;
     private com.uiteco.OfCuocThiPanel.firstPage.slideShow.NewestCompetitions_new newestCompetitions_new;
+    private com.uiteco.OfCuocThiPanel.firstPage.Pagination pagination1;
     private javax.swing.JPanel postList;
     private com.uiteco.components.RoundedPanel roundedPanel1;
     private javax.swing.JPanel slideShowAndPosts;

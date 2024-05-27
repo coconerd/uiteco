@@ -1,14 +1,16 @@
 package com.uiteco.rightPanels;
 
+import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import com.uiteco.OfCuocThiPanel.secondPage.RegisterTableInfo;
+import com.uiteco.OfCuocThiPanel.secondPage.TableImageCellRender;
 import com.uiteco.OfCuocThiPanel.secondPage.floatingButton.EventFloatingActionButton;
 import com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChartPanel;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 public class CuocThiRightPanel_SecondPage extends JPanel {
 
@@ -37,16 +39,17 @@ public class CuocThiRightPanel_SecondPage extends JPanel {
     public void actionPressButton() {
         ImageIcon listIcon = new ImageIcon(getClass().getResource("/note.png"));
         ImageIcon researchIcon = new ImageIcon(getClass().getResource("/pie-chart.png"));
-        
+
         floatingActionButton.addItem(listIcon, Color.white);
         floatingActionButton.addItem(researchIcon, Color.white);
-        
+
         floatingActionButton.addEvent(new EventFloatingActionButton() {
             @Override
             public void selected(int index) {
                 if (index == 0) {
                     RegisterTableInfo table = new RegisterTableInfo();
-                    showForm(new RegisterTableInfo());
+                    CuocThiDAO.getRegisterInfo_TableView(table.getTable(), getPostID());
+                    showForm(table);
 
                 } else if (index == 1) {
                     showForm(new PieChartPanel());

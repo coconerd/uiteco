@@ -5,7 +5,6 @@ import com.bulenkov.iconloader.util.Scalr.Method;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.Pagination;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Model;
-import com.uiteco.OfCuocThiPanel.secondPage.HighResolutionResize;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -25,7 +24,9 @@ import java.util.*;
 import javaswingdev.chart.ModelPieChart;
 import javaswingdev.chart.PieChart;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class CuocThiDAO {
@@ -43,7 +44,6 @@ public class CuocThiDAO {
             while (rset.next()) {
                 tags.add(rset.getString("TAG"));
             }
-
             rset.close();
             conn.close();
 
@@ -460,53 +460,27 @@ public class CuocThiDAO {
         return postList;
     }
 
-    public static void insertUserRegisterCompetition(int postId, LocalDateTime timeLCT) {
+    public static void insertUserRegisterCompetition(int postId) {
         try {
             conn = getConnection();
-            String query = "INSERT INTO DANGKY (MATK, MABD, THOIDIEMDK) VALUES (?, ?, ?)";
+            query = "INSERT INTO DANGKY (MATK, MABD, THOIDIEMDK) VALUES (?, ?, ?)";
             PreparedStatement p = conn.prepareStatement(query);
 
             p.setInt(1, 1);
             p.setInt(2, postId);
-            Timestamp time = Timestamp.valueOf(timeLCT);
+            Timestamp time = Timestamp.valueOf(LocalDateTime.now());
             p.setTimestamp(3, time);
 
             rset = p.executeQuery();
 
+            conn.commit();
             rset.close();
             conn.close();
 
         } catch (SQLException e) {
+            e.printStackTrace();
         }
-    }
-
-    public static void getDataForRegisterTable(JTable table, int postID) {
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        String query = "SELECT HOTEN, USERNAME, EMAIL, MSSV "
-                + "FROM TAIKHOAN T, DANGKY D, SINHVIEN S "
-                + "WHERE T.MATK = D.MATK AND D.MATK = S.MATK "
-                + "AND MABD = ?";
-
-        try {
-            conn = getConnection();
-            PreparedStatement p = conn.prepareStatement(query);
-
-            p.setInt(1, postID);
-            rset = p.executeQuery();
-
-            while (rset.next()) {
-                String name = rset.getString("HOTEN");
-                String userName = rset.getString("USERNAME");
-                String email = rset.getString("EMAIL");
-                String mssv = rset.getString("MSSV");
-
-                model.addRow(new Object[]{name, userName, email, mssv});
-
-                rset.close();
-                p.close();
-            }
-        } catch (SQLException e) {
-        }
+        System.out.println("Insert succesfully");
     }
 
     public static void getRegisterInfo_TableView(JTable table, int postID) {
@@ -517,15 +491,13 @@ public class CuocThiDAO {
             query = "SELECT ANHDAIDIEN, HOTEN, USERNAME, EMAIL, MSSV "
                     + "FROM TAIKHOAN T, DANGKY D, SINHVIEN S "
                     + "WHERE T.MATK = D.MATK AND D.MATK = S.MATK "
-                    + "AND MABD = ?";
+                    + "AND D.MABD = ?";
 
             PreparedStatement p = conn.prepareStatement(query);
             p.setInt(1, postID);
             rset = p.executeQuery();
 
-            rset = stmt.executeQuery(query);
-
-            HighResolutionResize avatarPanel = new HighResolutionResize();
+            JLabel avatar = new JLabel();
 
             while (rset.next()) {
                 byte[] imageData = rset.getBytes("ANHDAIDIEN");
@@ -536,21 +508,24 @@ public class CuocThiDAO {
                         BufferedImage bufferedImage = ImageIO.read(inputStream);
 
                         //create a scaled version of the BufferedImage
-                        Image scaledImage = bufferedImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+                        Image scaledImage = bufferedImage.getScaledInstance(47, 47, Image.SCALE_SMOOTH);
 
                         //set the Image object as the thumnail
                         ImageIcon thumbnail = new ImageIcon(scaledImage);
-                        avatarPanel.setImage(thumbnail);
-
+                        avatar.setIcon(thumbnail);
+                        avatar.setHorizontalAlignment(SwingConstants.CENTER); // Center the image horizontally
+                        avatar.setVerticalAlignment(SwingConstants.CENTER);
+                        avatar.setBorder(null);
                     } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
 
                 String fullName = rset.getString("HOTEN");
                 String userName = rset.getString("USERNAME");
                 String email = rset.getString("EMAIL");
-
-                model.addRow(new Object[]{avatarPanel, fullName, userName, email});
+                String mssv = rset.getString("MSSV");
+                model.addRow(new Object[]{avatar, fullName, userName, email, mssv});
 
             }
 
@@ -559,6 +534,7 @@ public class CuocThiDAO {
             p.close();
             rset.close();
         } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }

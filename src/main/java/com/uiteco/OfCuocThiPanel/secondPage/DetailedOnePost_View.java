@@ -1,6 +1,8 @@
 package com.uiteco.OfCuocThiPanel.secondPage;
 
+import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
+import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 
 public class DetailedOnePost_View extends javax.swing.JPanel {
 
@@ -358,6 +360,23 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
 
     private void jRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterActionPerformed
         // TODO add your handling code here:
+        //if(getController().get)
+        ConfirmPopUp popUp = new ConfirmPopUp();
+        GlassPanePopup.showPopup(popUp);
+        
+        popUp.getjOk().addActionListener((e) -> {
+            CuocThiDAO.insertUserRegisterCompetition(getController().getPostID());
+            GlassPanePopup.closePopupAll();
+
+            //when press Register, display unregister button 
+            jRegister.setVisible(false);
+        });
+
+        popUp.getjNo().addActionListener((e) -> {
+            popUp.removeAll();
+            GlassPanePopup.closePopupAll();
+        });
+        
     }//GEN-LAST:event_jRegisterActionPerformed
 
     private void bookmarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookmarkButtonActionPerformed
