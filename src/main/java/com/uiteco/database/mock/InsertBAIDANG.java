@@ -21,6 +21,8 @@ import static com.uiteco.database.mock.InsertTAIKHOAN.getRandomAccountID;
 import static com.uiteco.database.mock.InsertTAIKHOAN.getAllAccountIDs;
 import static com.uiteco.database.mock.InsertCAULACBO.getAllClubIDs;
 import static com.uiteco.database.mock.InsertCAULACBO.getRandomClubID;
+import static com.uiteco.database.mock.InsertCAULACBO.getRandomDateInPast;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
@@ -44,13 +46,19 @@ public class InsertBAIDANG {
         for (int i = 0; i < 300; i++) {
             String title = "Đây là sự kiện thứ " + String.valueOf(i + 1);
             createSuKien(
+                    1,
                     title,
                     getRandomContent(fileContents),
                     getRandomAccountID(accountIDs),
                     getRandomTags(tags),
                     getRandomImages(images),
                     getRandomThumbnail(images),
-                    getRandomClubID(clubIDs)
+                    getRandomClubID(clubIDs),
+                    i % 2 == 0,
+                    i % 2 == 0 ? i : null,
+                    i % 2 == 0 ? getRandomDateInPast() : null,
+                    i % 2 == 0 ? LocalDate.now().plusDays(7) : null,
+                    null
             );
         }
     }
