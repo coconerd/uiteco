@@ -2,10 +2,13 @@ package com.uiteco.contentPanels.CauLacBo;
 
 import com.uiteco.contentPanels.CauLacBo.JTable.TableCustom;
 import com.uiteco.contentPanels.CauLacBoPanel;
+import com.uiteco.contentPanels.CauLacBoPanel;
 import com.uiteco.database.ConnectionManager;
 import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.swing.ScrollableContentPanel;
 import java.awt.Component;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,6 +51,11 @@ public class DetailPageCLB extends ScrollableContentPanel {
         TableCustom.apply(jScrollTableMem, TableCustom.TableType.DEFAULT);
     }
     
+    private void RemoveAllDataTable()
+    {
+        DefaultTableModel model = (DefaultTableModel) TableMembers.getModel();
+    }
+    
     private void AddMemToTable(String NameMem, String MSSVMem, String EmailMem, String PosMem)
     {
         DefaultTableModel model = (DefaultTableModel) TableMembers.getModel();
@@ -59,6 +67,9 @@ public class DetailPageCLB extends ScrollableContentPanel {
         String GioiThieu = "....", Email = "", SDT = "", Truong = "", LoaiCLB = "", ThongTinCLB = "....", DieuLe = "....";
         int SLDanhGia = 0, SaoDanhGia = 0;
         
+        System.out.println("MaCLB: " + MaCLB);
+        
+        
         /// BodyData
         try {
             Connection conn = ConnectionManager.getConnection();
@@ -67,8 +78,12 @@ public class DetailPageCLB extends ScrollableContentPanel {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
         
+            System.out.println("sql: " + sql);
+            
             while(rs.next())
             {
+                System.out.println(sql);
+                
                 // ----- Get Data Start -----
                 Blob blob;
                 
@@ -78,6 +93,10 @@ public class DetailPageCLB extends ScrollableContentPanel {
                     byte[] bdata = blob.getBytes(1, (int) blob.length());
                     GioiThieu = new String(bdata);
                 }
+                
+                
+                
+                System.out.println("GioiThieu: " + GioiThieu);
                 
                 blob = rs.getBlob("THONGTINCLB");
                 if(blob != null)
@@ -183,6 +202,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
         /// TableData
         
         TableMembers.removeAll();
+        
         try {
             String NameTV = "", MSSVTV = "", EmailTV = "", PosTV = "";
             
@@ -252,7 +272,12 @@ public class DetailPageCLB extends ScrollableContentPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         JPanelHeader = new javax.swing.JPanel();
+        jpanelRound1 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
+        JPanelRound1 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
+        JPanelRound2 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         LogoClub = new com.uiteco.contentPanels.CauLacBo.ImageAvatar();
         BackgroundIcon = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         Text_NameClub = new javax.swing.JLabel();
@@ -261,11 +286,9 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Text_StatusClub = new javax.swing.JLabel();
         JoinButton = new com.uiteco.contentPanels.CauLacBo.ButtonRound();
         LoveButton = new com.uiteco.contentPanels.CauLacBo.ButtonRound();
-        jpanelRound1 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
+        jPanel1 = new javax.swing.JPanel();
         jpanelRound2 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         CoverClub = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
-        JPanelRound1 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
-        JPanelRound2 = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         JPanelBody = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         IntroductionPanel = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         Lock_Introduction = new javax.swing.JLabel();
@@ -285,10 +308,10 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Text_Email = new javax.swing.JLabel();
         BodyPanel = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         SlideShowPanel = new javax.swing.JPanel();
-        NextPanel = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
-        NextIcon = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         BackPanel = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         BackIcon = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
+        NextPanel = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
+        NextIcon = new com.uiteco.contentPanels.CauLacBo.JpanelRound();
         SlideShow = new com.uiteco.contentPanels.CauLacBo.SlideShow.Slideshow();
         TextArea_InfoClub = new javax.swing.JTextArea();
         Lock_SuKien = new javax.swing.JLabel();
@@ -307,10 +330,25 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Line6 = new javax.swing.JPanel();
         TextArea_LawClub = new javax.swing.JTextArea();
 
-        setBackground(new java.awt.Color(255, 204, 102));
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
 
-        JPanelHeader.setBackground(new java.awt.Color(58, 58, 58));
-        JPanelHeader.setPreferredSize(new java.awt.Dimension(1050, 580));
+        setBackground(new java.awt.Color(225, 225, 225));
+
+        JPanelHeader.setBackground(new java.awt.Color(225, 225, 225));
+        JPanelHeader.setPreferredSize(new java.awt.Dimension(810, 575));
+
+        jpanelRound1.setBackground(new java.awt.Color(153, 0, 153));
+        jpanelRound1.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/Tran.png"))); // NOI18N
+
+        JPanelRound1.setBackground(new java.awt.Color(225, 225, 225));
+        JPanelRound1.setRoundTopRight(80);
+
+        JPanelRound2.setBackground(new java.awt.Color(58, 58, 58));
 
         LogoClub.setBackground(new java.awt.Color(70, 72, 73));
         LogoClub.setBorderColor(new java.awt.Color(48, 48, 48));
@@ -321,7 +359,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
         BackgroundIcon.setRoundBottomLeft(80);
         BackgroundIcon.setRoundTopRight(70);
 
-        Text_NameClub.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        Text_NameClub.setFont(new java.awt.Font("Segoe UI", 1, 33)); // NOI18N
         Text_NameClub.setForeground(new java.awt.Color(243, 243, 243));
         Text_NameClub.setText("NAME CLUB");
 
@@ -331,7 +369,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
 
         Text_NumLoveOfClub.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Text_NumLoveOfClub.setForeground(new java.awt.Color(204, 204, 204));
-        Text_NumLoveOfClub.setText(" NumLoveOfClub");
+        Text_NumLoveOfClub.setText("NumLoveOfClub");
 
         Text_StatusClub.setForeground(new java.awt.Color(255, 204, 51));
         Text_StatusClub.setText("StatusClub");
@@ -363,31 +401,17 @@ public class DetailPageCLB extends ScrollableContentPanel {
         LoveButton.setInheritsPopupMenu(true);
         LoveButton.setRadius(10);
 
-        jpanelRound1.setBackground(new java.awt.Color(225, 225, 225));
+        jPanel1.setBackground(new java.awt.Color(58, 58, 58));
 
-        jpanelRound2.setBackground(new java.awt.Color(58, 58, 58));
-        jpanelRound2.setRoundBottomLeft(80);
-
-        javax.swing.GroupLayout jpanelRound2Layout = new javax.swing.GroupLayout(jpanelRound2);
-        jpanelRound2.setLayout(jpanelRound2Layout);
-        jpanelRound2Layout.setHorizontalGroup(
-            jpanelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
-        jpanelRound2Layout.setVerticalGroup(
-            jpanelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jpanelRound1Layout = new javax.swing.GroupLayout(jpanelRound1);
-        jpanelRound1.setLayout(jpanelRound1Layout);
-        jpanelRound1Layout.setHorizontalGroup(
-            jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpanelRound2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jpanelRound1Layout.setVerticalGroup(
-            jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpanelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout BackgroundIconLayout = new javax.swing.GroupLayout(BackgroundIcon);
@@ -395,24 +419,26 @@ public class DetailPageCLB extends ScrollableContentPanel {
         BackgroundIconLayout.setHorizontalGroup(
             BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundIconLayout.createSequentialGroup()
-                .addComponent(jpanelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(222, 222, 222)
                 .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BackgroundIconLayout.createSequentialGroup()
-                        .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(BackgroundIconLayout.createSequentialGroup()
-                                .addComponent(Text_NumMem, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(Text_NumLoveOfClub, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Text_NameClub, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(460, 460, 460)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(BackgroundIconLayout.createSequentialGroup()
-                        .addComponent(Text_StatusClub, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(LoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68))))
+                        .addGap(300, 300, 300)
+                        .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text_NameClub, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(BackgroundIconLayout.createSequentialGroup()
+                                .addComponent(Text_NumMem, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(Text_NumLoveOfClub, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(BackgroundIconLayout.createSequentialGroup()
+                                .addComponent(Text_StatusClub, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                                .addComponent(JoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)
+                                .addComponent(LoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         BackgroundIconLayout.setVerticalGroup(
             BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,56 +449,85 @@ public class DetailPageCLB extends ScrollableContentPanel {
                     .addComponent(Text_NumMem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Text_NumLoveOfClub, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(BackgroundIconLayout.createSequentialGroup()
-                        .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Text_StatusClub, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(LoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(40, Short.MAX_VALUE))
-                    .addComponent(jpanelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(Text_StatusClub, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(BackgroundIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(LoveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JoinButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        javax.swing.GroupLayout jpanelRound1Layout = new javax.swing.GroupLayout(jpanelRound1);
+        jpanelRound1.setLayout(jpanelRound1Layout);
+        jpanelRound1Layout.setHorizontalGroup(
+            jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelRound1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(JPanelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jpanelRound1Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(LogoClub, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JPanelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(BackgroundIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jpanelRound1Layout.setVerticalGroup(
+            jpanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelRound1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(BackgroundIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(JPanelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(LogoClub, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jpanelRound1Layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(JPanelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jpanelRound2.setBackground(new java.awt.Color(255, 0, 51));
 
         CoverClub.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/SampleCoverImage.png"))); // NOI18N
 
-        JPanelRound1.setBackground(new java.awt.Color(225, 225, 225));
-        JPanelRound1.setRoundTopRight(80);
-        JPanelRound1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        javax.swing.GroupLayout CoverClubLayout = new javax.swing.GroupLayout(CoverClub);
+        CoverClub.setLayout(CoverClubLayout);
+        CoverClubLayout.setHorizontalGroup(
+            CoverClubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        CoverClubLayout.setVerticalGroup(
+            CoverClubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 410, Short.MAX_VALUE)
+        );
 
-        JPanelRound2.setBackground(new java.awt.Color(58, 58, 58));
-        JPanelRound1.add(JPanelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 530, 60, 70));
+        javax.swing.GroupLayout jpanelRound2Layout = new javax.swing.GroupLayout(jpanelRound2);
+        jpanelRound2.setLayout(jpanelRound2Layout);
+        jpanelRound2Layout.setHorizontalGroup(
+            jpanelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(CoverClub, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jpanelRound2Layout.setVerticalGroup(
+            jpanelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(CoverClub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         javax.swing.GroupLayout JPanelHeaderLayout = new javax.swing.GroupLayout(JPanelHeader);
         JPanelHeader.setLayout(JPanelHeaderLayout);
         JPanelHeaderLayout.setHorizontalGroup(
             JPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BackgroundIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(JPanelHeaderLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(LogoClub, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(JPanelRound1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1055, Short.MAX_VALUE)
-            .addComponent(CoverClub, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpanelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpanelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         JPanelHeaderLayout.setVerticalGroup(
             JPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelHeaderLayout.createSequentialGroup()
-                .addGroup(JPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CoverClub, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(JPanelHeaderLayout.createSequentialGroup()
-                        .addGap(310, 310, 310)
-                        .addComponent(LogoClub, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JPanelHeaderLayout.createSequentialGroup()
-                        .addGap(380, 380, 380)
-                        .addComponent(BackgroundIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(JPanelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(330, 330, 330)
+                .addComponent(jpanelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jpanelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         add(JPanelHeader, java.awt.BorderLayout.NORTH);
 
-        JPanelBody.setBackground(new java.awt.Color(255, 255, 153));
+        JPanelBody.setBackground(new java.awt.Color(225, 225, 225));
 
         IntroductionPanel.setBackground(new java.awt.Color(243, 243, 243));
         IntroductionPanel.setRoundBottomRight(53);
@@ -487,8 +542,10 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Text_Introduction.setColumns(20);
         Text_Introduction.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Text_Introduction.setForeground(new java.awt.Color(51, 51, 51));
-        Text_Introduction.setRows(5);
-        Text_Introduction.setText("UIT GamApp Studio - CLB Lập trình Game và ứng dụng - khoa Công nghệ phần mềm - ĐHCNTT - ĐHQG TP.HCM.\nGiá trị cốt lõi:\nCHIA SẺ - QUẢNG BÁ THƯƠNG HIỆU - GIÚP ĐỠ CỘNG ĐỒNG");
+        Text_Introduction.setLineWrap(true);
+        Text_Introduction.setRows(1);
+        Text_Introduction.setText("...");
+        Text_Introduction.setWrapStyleWord(true);
 
         Line1.setBackground(new java.awt.Color(203, 203, 203));
         Line1.setForeground(new java.awt.Color(211, 211, 211));
@@ -496,7 +553,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Text_SDT.setBackground(new java.awt.Color(37, 40, 41));
         Text_SDT.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         Text_SDT.setForeground(new java.awt.Color(130, 130, 130));
-        Text_SDT.setText("0966655599");
+        Text_SDT.setText("...");
 
         Lock_SDT.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         Lock_SDT.setForeground(new java.awt.Color(51, 51, 51));
@@ -516,7 +573,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
 
         Text_Rate.setBackground(new java.awt.Color(48, 50, 51));
         Text_Rate.setForeground(new java.awt.Color(181, 181, 181));
-        Text_Rate.setText("(0 đã đánh giá)");
+        Text_Rate.setText("★★★☆☆ (0 đã đánh giá)");
 
         Lock_Club.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         Lock_Club.setForeground(new java.awt.Color(51, 51, 51));
@@ -525,7 +582,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Text_Club.setBackground(new java.awt.Color(37, 40, 41));
         Text_Club.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         Text_Club.setForeground(new java.awt.Color(130, 130, 130));
-        Text_Club.setText("Giáo dục - Giải trí");
+        Text_Club.setText("...");
 
         Lock_School.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         Lock_School.setForeground(new java.awt.Color(51, 51, 51));
@@ -533,7 +590,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
 
         Text_School.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         Text_School.setForeground(new java.awt.Color(41, 190, 41));
-        Text_School.setText("Trường Đại học Công nghệ Thông Tin, Ho Chi Minh City, Vietnam");
+        Text_School.setText("...");
 
         Lock_Email.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         Lock_Email.setForeground(new java.awt.Color(51, 51, 51));
@@ -542,7 +599,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Text_Email.setBackground(new java.awt.Color(37, 40, 41));
         Text_Email.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         Text_Email.setForeground(new java.awt.Color(130, 130, 130));
-        Text_Email.setText("gamappuit.club@gmail.com");
+        Text_Email.setText("...");
 
         javax.swing.GroupLayout IntroductionPanelLayout = new javax.swing.GroupLayout(IntroductionPanel);
         IntroductionPanel.setLayout(IntroductionPanelLayout);
@@ -550,37 +607,42 @@ public class DetailPageCLB extends ScrollableContentPanel {
             IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IntroductionPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Lock_Introduction)
-                    .addComponent(Line1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(IntroductionPanelLayout.createSequentialGroup()
-                        .addComponent(Lock_Club)
-                        .addGap(8, 8, 8)
-                        .addComponent(Text_Club)
-                        .addGap(513, 513, 513)
-                        .addComponent(Lock_SDT, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(Text_SDT))
-                    .addGroup(IntroductionPanelLayout.createSequentialGroup()
-                        .addComponent(Lock_School, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(Text_School)
-                        .addGap(240, 240, 240)
                         .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Lock_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                                .addComponent(Lock_School, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(Text_School))
+                            .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                                .addComponent(Lock_Rate)
+                                .addGap(5, 5, 5)
+                                .addComponent(Text_Rate))
+                            .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                                .addComponent(Lock_Club)
+                                .addGap(8, 8, 8)
+                                .addComponent(Text_Club)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                                .addComponent(Lock_SDT, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(Text_SDT))
+                            .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                                .addComponent(Lock_Status, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Text_Status))
                             .addGroup(IntroductionPanelLayout.createSequentialGroup()
                                 .addGap(55, 55, 55)
-                                .addComponent(Text_Email))))
+                                .addComponent(Text_Email))
+                            .addComponent(Lock_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(215, 215, 215))
                     .addGroup(IntroductionPanelLayout.createSequentialGroup()
-                        .addComponent(Lock_Rate)
-                        .addGap(5, 5, 5)
-                        .addComponent(Text_Rate)
-                        .addGap(509, 509, 509)
-                        .addComponent(Lock_Status, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(Text_Status))
-                    .addComponent(Text_Introduction, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                        .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Line1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Lock_Introduction, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text_Introduction, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(60, 60, 60))))
         );
         IntroductionPanelLayout.setVerticalGroup(
             IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -590,28 +652,37 @@ public class DetailPageCLB extends ScrollableContentPanel {
                     .addComponent(Lock_Introduction, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(IntroductionPanelLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(Text_Introduction, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
-                .addGap(10, 10, 10)
+                        .addComponent(Text_Introduction)))
+                .addGap(12, 12, 12)
                 .addComponent(Line1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
                 .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Lock_Club)
-                    .addComponent(Text_Club)
-                    .addComponent(Lock_SDT)
-                    .addComponent(Text_SDT))
-                .addGap(12, 12, 12)
-                .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Lock_School)
-                    .addComponent(Text_School)
-                    .addComponent(Lock_Email)
-                    .addComponent(Text_Email))
-                .addGap(12, 12, 12)
-                .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Lock_Rate)
-                    .addComponent(Text_Rate)
-                    .addComponent(Lock_Status)
-                    .addComponent(Text_Status))
-                .addGap(22, 22, 22))
+                    .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Lock_Club)
+                            .addComponent(Text_Club))
+                        .addGap(12, 12, 12)
+                        .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Lock_School)
+                            .addComponent(Text_School))
+                        .addGap(12, 12, 12)
+                        .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Lock_Rate)
+                            .addComponent(Text_Rate)))
+                    .addGroup(IntroductionPanelLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Text_SDT)
+                            .addComponent(Lock_SDT))
+                        .addGap(12, 12, 12)
+                        .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text_Email)
+                            .addComponent(Lock_Email))
+                        .addGap(12, 12, 12)
+                        .addGroup(IntroductionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Lock_Status)
+                            .addComponent(Text_Status))))
+                .addGap(35, 35, 35))
         );
 
         BodyPanel.setBackground(new java.awt.Color(243, 243, 243));
@@ -619,29 +690,6 @@ public class DetailPageCLB extends ScrollableContentPanel {
         BodyPanel.setRoundBottomRight(50);
         BodyPanel.setRoundTopLeft(50);
         BodyPanel.setRoundTopRight(50);
-
-        SlideShowPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        NextPanel.setBackground(new java.awt.Color(102, 102, 102));
-        NextPanel.setAlpha(0.0F);
-        NextPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                NextPanelMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                NextPanelMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                NextPanelMouseExited(evt);
-            }
-        });
-        NextPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        NextIcon.setAlpha(0.15F);
-        NextIcon.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/Next.png"))); // NOI18N
-        NextPanel.add(NextIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 150, 50, 60));
-
-        SlideShowPanel.add(NextPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, 120, 360));
 
         BackPanel.setBackground(new java.awt.Color(102, 102, 102));
         BackPanel.setAlpha(0.0F);
@@ -662,16 +710,50 @@ public class DetailPageCLB extends ScrollableContentPanel {
         BackIcon.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/Back.png"))); // NOI18N
         BackPanel.add(BackIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 150, 50, 60));
 
-        SlideShowPanel.add(BackPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 360));
-        SlideShowPanel.add(SlideShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 360));
+        NextPanel.setBackground(new java.awt.Color(102, 102, 102));
+        NextPanel.setAlpha(0.0F);
+        NextPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NextPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                NextPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                NextPanelMouseExited(evt);
+            }
+        });
+        NextPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        NextIcon.setAlpha(0.15F);
+        NextIcon.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/Next.png"))); // NOI18N
+        NextPanel.add(NextIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 150, 50, 60));
+
+        javax.swing.GroupLayout SlideShowPanelLayout = new javax.swing.GroupLayout(SlideShowPanel);
+        SlideShowPanel.setLayout(SlideShowPanelLayout);
+        SlideShowPanelLayout.setHorizontalGroup(
+            SlideShowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SlideShowPanelLayout.createSequentialGroup()
+                .addComponent(BackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(NextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(SlideShow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        SlideShowPanelLayout.setVerticalGroup(
+            SlideShowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(NextPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(SlideShow, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(BackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         TextArea_InfoClub.setBackground(new java.awt.Color(243, 243, 243));
         TextArea_InfoClub.setColumns(20);
-        TextArea_InfoClub.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TextArea_InfoClub.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         TextArea_InfoClub.setForeground(new java.awt.Color(44, 44, 44));
         TextArea_InfoClub.setLineWrap(true);
         TextArea_InfoClub.setRows(1);
         TextArea_InfoClub.setText("...");
+        TextArea_InfoClub.setWrapStyleWord(true);
 
         Lock_SuKien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Lock_SuKien.setForeground(new java.awt.Color(100, 124, 214));
@@ -690,9 +772,9 @@ public class DetailPageCLB extends ScrollableContentPanel {
         ThanhVienPanelLayout.setHorizontalGroup(
             ThanhVienPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ThanhVienPanelLayout.createSequentialGroup()
-                .addGap(390, 390, 390)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Lock_ThanhVien)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ThanhVienPanelLayout.setVerticalGroup(
             ThanhVienPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -704,14 +786,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
 
         TableMembers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "STT", "Họ Và Tên", "MSSV", "Email", "Chức Vụ"
@@ -736,7 +811,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
         jScrollTableMem.setViewportView(TableMembers);
         if (TableMembers.getColumnModel().getColumnCount() > 0) {
             TableMembers.getColumnModel().getColumn(0).setResizable(false);
-            TableMembers.getColumnModel().getColumn(0).setPreferredWidth(15);
+            TableMembers.getColumnModel().getColumn(0).setPreferredWidth(30);
             TableMembers.getColumnModel().getColumn(1).setResizable(false);
             TableMembers.getColumnModel().getColumn(1).setPreferredWidth(170);
             TableMembers.getColumnModel().getColumn(2).setResizable(false);
@@ -804,6 +879,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
         );
 
         Line5.setBackground(new java.awt.Color(203, 203, 203));
+        Line5.setPreferredSize(new java.awt.Dimension(669, 1));
 
         javax.swing.GroupLayout Line5Layout = new javax.swing.GroupLayout(Line5);
         Line5.setLayout(Line5Layout);
@@ -834,6 +910,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Lock_LawClb.setText("Điều Lệ");
 
         Line6.setBackground(new java.awt.Color(203, 203, 203));
+        Line6.setPreferredSize(new java.awt.Dimension(669, 1));
 
         javax.swing.GroupLayout Line6Layout = new javax.swing.GroupLayout(Line6);
         Line6.setLayout(Line6Layout);
@@ -849,11 +926,12 @@ public class DetailPageCLB extends ScrollableContentPanel {
         TextArea_LawClub.setEditable(false);
         TextArea_LawClub.setBackground(new java.awt.Color(243, 243, 243));
         TextArea_LawClub.setColumns(20);
-        TextArea_LawClub.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TextArea_LawClub.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         TextArea_LawClub.setForeground(new java.awt.Color(44, 44, 44));
         TextArea_LawClub.setLineWrap(true);
         TextArea_LawClub.setRows(1);
         TextArea_LawClub.setText("...");
+        TextArea_LawClub.setWrapStyleWord(true);
 
         javax.swing.GroupLayout BodyPanelLayout = new javax.swing.GroupLayout(BodyPanel);
         BodyPanel.setLayout(BodyPanelLayout);
@@ -861,8 +939,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
             BodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BodyPanelLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(BodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Line4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(BodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BodyPanelLayout.createSequentialGroup()
                         .addComponent(Icon_Lock_LawClb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -871,17 +948,18 @@ public class DetailPageCLB extends ScrollableContentPanel {
                         .addComponent(Icon_Lock_InfoClb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(Lock_InfoClb))
-                    .addComponent(Line3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Line2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Lock_SuKien)
-                    .addComponent(ThanhVienPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SlideShowPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Line2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Line3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Line6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+                    .addComponent(Line5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+                    .addComponent(Line4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollTableMem)
-                    .addComponent(Line5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Line6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ThanhVienPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(TextArea_InfoClub)
                     .addComponent(TextArea_LawClub))
-                .addGap(38, 38, 38))
+                .addGap(31, 31, 31))
         );
         BodyPanelLayout.setVerticalGroup(
             BodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -889,16 +967,16 @@ public class DetailPageCLB extends ScrollableContentPanel {
                 .addGap(29, 29, 29)
                 .addComponent(Lock_SuKien)
                 .addGap(18, 18, 18)
-                .addComponent(SlideShowPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SlideShowPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(Line2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(37, 37, 37)
                 .addComponent(ThanhVienPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jScrollTableMem, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(36, 36, 36)
                 .addComponent(Line3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(17, 17, 17)
                 .addGroup(BodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Icon_Lock_InfoClb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(BodyPanelLayout.createSequentialGroup()
@@ -906,20 +984,20 @@ public class DetailPageCLB extends ScrollableContentPanel {
                         .addComponent(Lock_InfoClb)))
                 .addGap(15, 15, 15)
                 .addComponent(Line4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TextArea_InfoClub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(Line5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(BodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BodyPanelLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(16, 16, 16)
                         .addComponent(Icon_Lock_LawClb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(BodyPanelLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addGap(27, 27, 27)
                         .addComponent(Lock_LawClb)))
-                .addGap(15, 15, 15)
+                .addGap(16, 16, 16)
                 .addComponent(Line6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(12, 12, 12)
                 .addComponent(TextArea_LawClub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
@@ -930,20 +1008,20 @@ public class DetailPageCLB extends ScrollableContentPanel {
             JPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelBodyLayout.createSequentialGroup()
                 .addGroup(JPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(IntroductionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1019, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IntroductionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(JPanelBodyLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(36, 36, 36)
+                        .addComponent(BodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(38, 38, 38))
         );
         JPanelBodyLayout.setVerticalGroup(
             JPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelBodyLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(IntroductionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(417, 417, 417)
+                .addGap(35, 35, 35)
                 .addComponent(BodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         add(JPanelBody, java.awt.BorderLayout.SOUTH);
@@ -1034,6 +1112,9 @@ public class DetailPageCLB extends ScrollableContentPanel {
     private javax.swing.JLabel Text_Status;
     private javax.swing.JLabel Text_StatusClub;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound ThanhVienPanel;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollTableMem;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound jpanelRound1;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound jpanelRound2;

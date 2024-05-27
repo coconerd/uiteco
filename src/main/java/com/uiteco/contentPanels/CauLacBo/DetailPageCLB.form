@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="jList1">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+                <StringItem index="4" value="Item 5"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="66" green="cc" red="ff" type="rgb"/>
+      <Color blue="e1" green="e1" red="e1" type="rgb"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -16,7 +43,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,9,-88,0,0,4,31"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,8,56,0,0,3,60"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -24,10 +51,10 @@
     <Container class="javax.swing.JPanel" name="JPanelHeader">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="3a" green="3a" red="3a" type="rgb"/>
+          <Color blue="e1" green="e1" red="e1" type="rgb"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1050, 580]"/>
+          <Dimension value="[810, 575]"/>
         </Property>
       </Properties>
       <Constraints>
@@ -39,255 +66,278 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="BackgroundIcon" max="32767" attributes="0"/>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
-                  <Component id="LogoClub" min="-2" pref="200" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Component id="JPanelRound1" alignment="1" pref="1055" max="32767" attributes="0"/>
-              <Component id="CoverClub" alignment="0" max="32767" attributes="0"/>
+              <Component id="jpanelRound1" max="32767" attributes="0"/>
+              <Component id="jpanelRound2" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="CoverClub" min="-2" pref="410" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="310" pref="310" max="-2" attributes="0"/>
-                          <Component id="LogoClub" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="380" max="-2" attributes="0"/>
-                          <Component id="BackgroundIcon" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="JPanelRound1" min="-2" pref="80" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="330" pref="330" max="-2" attributes="0"/>
+                  <Component id="jpanelRound1" min="-2" pref="250" max="-2" attributes="0"/>
               </Group>
+              <Component id="jpanelRound2" min="-2" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="com.uiteco.contentPanels.CauLacBo.ImageAvatar" name="LogoClub">
+        <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="jpanelRound1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="49" green="48" red="46" type="rgb"/>
+              <Color blue="99" green="0" red="99" type="rgb"/>
             </Property>
-            <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="30" green="30" red="30" type="rgb"/>
-            </Property>
-            <Property name="borderSize" type="int" value="8"/>
             <Property name="image" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/CauLacBoResources/SampleLogoImage.jpg"/>
+              <Image iconType="3" name="/CauLacBoResources/Tran.png"/>
             </Property>
-          </Properties>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-            <Property name="useNullLayout" type="boolean" value="true"/>
-          </Layout>
-        </Container>
-        <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="BackgroundIcon">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="3a" green="3a" red="3a" type="rgb"/>
-            </Property>
-            <Property name="roundBottomLeft" type="int" value="80"/>
-            <Property name="roundTopRight" type="int" value="70"/>
           </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jpanelRound1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="Text_NumMem" min="-2" pref="160" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="Text_NumLoveOfClub" min="-2" pref="180" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="Text_NameClub" alignment="0" min="-2" pref="482" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="Text_StatusClub" min="-2" pref="140" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="JoinButton" min="-2" pref="110" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="LoveButton" min="-2" pref="110" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="JPanelRound1" min="-2" pref="113" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="90" pref="90" max="-2" attributes="0"/>
+                      <Component id="LogoClub" min="-2" pref="200" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="JPanelRound2" min="-2" pref="75" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="BackgroundIcon" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="Text_NameClub" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Text_NumMem" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="Text_NumLoveOfClub" min="-2" pref="30" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Text_StatusClub" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="LoveButton" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="JoinButton" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace pref="40" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jpanelRound1" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
+                      <Component id="BackgroundIcon" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="JPanelRound1" min="-2" pref="80" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="LogoClub" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="190" pref="190" max="-2" attributes="0"/>
+                      <Component id="JPanelRound2" min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="Text_NameClub">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="36" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="f3" green="f3" red="f3" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="NAME CLUB"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Text_NumMem">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="12" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="NumMemOfClub"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Text_NumLoveOfClub">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="12" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value=" NumLoveOfClub"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Text_StatusClub">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="33" green="cc" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="StatusClub"/>
-              </Properties>
-            </Component>
-            <Component class="com.uiteco.contentPanels.CauLacBo.ButtonRound" name="JoinButton">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="99" red="0" type="rgb"/>
-                </Property>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Tham Gia"/>
-                <Property name="boderSize" type="int" value="4"/>
-                <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fa" green="95" red="0" type="rgb"/>
-                </Property>
-                <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="99" red="0" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="1"/>
-                </Property>
-                <Property name="inheritsPopupMenu" type="boolean" value="true"/>
-                <Property name="radius" type="int" value="10"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JoinButtonActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="com.uiteco.contentPanels.CauLacBo.ButtonRound" name="LoveButton">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="53" green="53" red="ff" type="rgb"/>
-                </Property>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Y&#xea;u Th&#xed;ch"/>
-                <Property name="boderSize" type="int" value="4"/>
-                <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="4f" green="4f" red="ff" type="rgb"/>
-                </Property>
-                <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="53" green="53" red="ff" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="1"/>
-                </Property>
-                <Property name="inheritsPopupMenu" type="boolean" value="true"/>
-                <Property name="radius" type="int" value="10"/>
-              </Properties>
-            </Component>
-            <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="jpanelRound1">
+            <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="JPanelRound1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="e1" green="e1" red="e1" type="rgb"/>
                 </Property>
+                <Property name="roundTopRight" type="int" value="80"/>
+              </Properties>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+            </Container>
+            <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="JPanelRound2">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="3a" green="3a" red="3a" type="rgb"/>
+                </Property>
+              </Properties>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+            </Container>
+            <Container class="com.uiteco.contentPanels.CauLacBo.ImageAvatar" name="LogoClub">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="49" green="48" red="46" type="rgb"/>
+                </Property>
+                <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="30" green="30" red="30" type="rgb"/>
+                </Property>
+                <Property name="borderSize" type="int" value="8"/>
+                <Property name="image" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/CauLacBoResources/SampleLogoImage.jpg"/>
+                </Property>
+              </Properties>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                <Property name="useNullLayout" type="boolean" value="true"/>
+              </Layout>
+            </Container>
+            <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="BackgroundIcon">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="3a" green="3a" red="3a" type="rgb"/>
+                </Property>
+                <Property name="roundBottomLeft" type="int" value="80"/>
+                <Property name="roundTopRight" type="int" value="70"/>
               </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jpanelRound2" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="460" pref="460" max="-2" attributes="0"/>
+                                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="300" pref="300" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="Text_NameClub" min="-2" pref="490" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="Text_NumMem" min="-2" pref="140" max="-2" attributes="0"/>
+                                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                          <Component id="Text_NumLoveOfClub" min="-2" pref="140" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="Text_StatusClub" min="-2" pref="140" max="-2" attributes="0"/>
+                                          <EmptySpace pref="91" max="32767" attributes="0"/>
+                                          <Component id="JoinButton" min="-2" pref="110" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                          <Component id="LoveButton" min="-2" pref="110" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="23" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jpanelRound2" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="Text_NameClub" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="Text_NumMem" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="Text_NumLoveOfClub" min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="Text_StatusClub" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="LoveButton" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="JoinButton" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="jpanelRound2">
+                <Component class="javax.swing.JLabel" name="Text_NameClub">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="33" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="f3" green="f3" red="f3" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="NAME CLUB"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="Text_NumMem">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="NumMemOfClub"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="Text_NumLoveOfClub">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="12" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="NumLoveOfClub"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="Text_StatusClub">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="cc" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="StatusClub"/>
+                  </Properties>
+                </Component>
+                <Component class="com.uiteco.contentPanels.CauLacBo.ButtonRound" name="JoinButton">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Tham Gia"/>
+                    <Property name="boderSize" type="int" value="4"/>
+                    <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="fa" green="95" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="14" style="1"/>
+                    </Property>
+                    <Property name="inheritsPopupMenu" type="boolean" value="true"/>
+                    <Property name="radius" type="int" value="10"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JoinButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="com.uiteco.contentPanels.CauLacBo.ButtonRound" name="LoveButton">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="53" green="53" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Y&#xea;u Th&#xed;ch"/>
+                    <Property name="boderSize" type="int" value="4"/>
+                    <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="4f" green="4f" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="53" green="53" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="14" style="1"/>
+                    </Property>
+                    <Property name="inheritsPopupMenu" type="boolean" value="true"/>
+                    <Property name="radius" type="int" value="10"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JPanel" name="jPanel1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="3a" green="3a" red="3a" type="rgb"/>
                     </Property>
-                    <Property name="roundBottomLeft" type="int" value="80"/>
                   </Properties>
 
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="78" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -296,40 +346,45 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="CoverClub">
-          <Properties>
-            <Property name="image" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/CauLacBoResources/SampleCoverImage.png"/>
-            </Property>
-          </Properties>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
-        </Container>
-        <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="JPanelRound1">
+        <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="jpanelRound2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="e1" green="e1" red="e1" type="rgb"/>
+              <Color blue="33" green="0" red="ff" type="rgb"/>
             </Property>
-            <Property name="roundTopRight" type="int" value="80"/>
           </Properties>
 
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-            <Property name="useNullLayout" type="boolean" value="false"/>
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="CoverClub" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="CoverClub" min="-2" max="-2" attributes="0"/>
+              </Group>
+            </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="JPanelRound2">
+            <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="CoverClub">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="3a" green="3a" red="3a" type="rgb"/>
+                <Property name="image" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/CauLacBoResources/SampleCoverImage.png"/>
                 </Property>
               </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="990" y="530" width="60" height="70"/>
-                </Constraint>
-              </Constraints>
 
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="410" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
             </Container>
           </SubComponents>
         </Container>
@@ -338,7 +393,7 @@
     <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="JPanelBody">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="ff" red="ff" type="rgb"/>
+          <Color blue="e1" green="e1" red="e1" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -352,24 +407,24 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="IntroductionPanel" alignment="0" min="-2" pref="1019" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="BodyPanel" min="-2" max="-2" attributes="0"/>
+                      <Component id="IntroductionPanel" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="BodyPanel" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="IntroductionPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="417" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="BodyPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -387,45 +442,56 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="Lock_Introduction" min="-2" max="-2" attributes="0"/>
-                          <Component id="Line1" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="Lock_Club" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                              <Component id="Text_Club" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="513" pref="513" max="-2" attributes="0"/>
-                              <Component id="Lock_SDT" min="-2" pref="40" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="Text_SDT" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="Lock_School" min="-2" pref="60" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="Text_School" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="240" pref="240" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Lock_Email" min="-2" pref="60" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Lock_School" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="Text_School" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Lock_Rate" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                                      <Component id="Text_Rate" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Lock_Club" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                                      <Component id="Text_Club" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Lock_SDT" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="Text_SDT" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Lock_Status" min="-2" pref="82" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="Text_Status" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="55" pref="55" max="-2" attributes="0"/>
                                       <Component id="Text_Email" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="Lock_Email" min="-2" pref="60" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="Lock_Rate" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                              <Component id="Text_Rate" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="509" pref="509" max="-2" attributes="0"/>
-                              <Component id="Lock_Status" min="-2" pref="80" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="Text_Status" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="Line1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="Lock_Introduction" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Text_Introduction" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="Text_Introduction" alignment="0" pref="980" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -437,33 +503,48 @@
                           <Component id="Lock_Introduction" min="-2" pref="40" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace min="37" pref="37" max="-2" attributes="0"/>
-                              <Component id="Text_Introduction" pref="80" max="32767" attributes="0"/>
+                              <Component id="Text_Introduction" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="Line1" min="-2" pref="1" max="-2" attributes="0"/>
-                      <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Lock_Club" min="-2" max="-2" attributes="0"/>
-                          <Component id="Text_Club" min="-2" max="-2" attributes="0"/>
-                          <Component id="Lock_SDT" min="-2" max="-2" attributes="0"/>
-                          <Component id="Text_SDT" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="Lock_Club" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Text_Club" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="Lock_School" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Text_School" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="Lock_Rate" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Text_Rate" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="Text_SDT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Lock_SDT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="Text_Email" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Lock_Email" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="Lock_Status" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Text_Status" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Lock_School" min="-2" max="-2" attributes="0"/>
-                          <Component id="Text_School" min="-2" max="-2" attributes="0"/>
-                          <Component id="Lock_Email" min="-2" max="-2" attributes="0"/>
-                          <Component id="Text_Email" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Lock_Rate" min="-2" max="-2" attributes="0"/>
-                          <Component id="Text_Rate" min="-2" max="-2" attributes="0"/>
-                          <Component id="Lock_Status" min="-2" max="-2" attributes="0"/>
-                          <Component id="Text_Status" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -495,8 +576,10 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
-                <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="UIT GamApp Studio - CLB L&#x1ead;p tr&#xec;nh Game v&#xe0; &#x1ee9;ng d&#x1ee5;ng - khoa C&#xf4;ng ngh&#x1ec7; ph&#x1ea7;n m&#x1ec1;m - &#x110;HCNTT - &#x110;HQG TP.HCM.&#xa;Gi&#xe1; tr&#x1ecb; c&#x1ed1;t l&#xf5;i:&#xa;CHIA S&#x1eba; - QU&#x1ea2;NG B&#xc1; TH&#x1af;&#x1a0;NG HI&#x1ec6;U - GI&#xda;P &#x110;&#x1ee0; C&#x1ed8;NG &#x110;&#x1ed2;NG"/>
+                <Property name="lineWrap" type="boolean" value="true"/>
+                <Property name="rows" type="int" value="1"/>
+                <Property name="text" type="java.lang.String" value="..."/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="Line1">
@@ -522,7 +605,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="82" green="82" red="82" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="0966655599"/>
+                <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Lock_SDT">
@@ -577,7 +660,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b5" green="b5" red="b5" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="(0 &#x111;&#xe3; &#x111;&#xe1;nh gi&#xe1;)"/>
+                <Property name="text" type="java.lang.String" value="&#x2605;&#x2605;&#x2605;&#x2606;&#x2606; (0 &#x111;&#xe3; &#x111;&#xe1;nh gi&#xe1;)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Lock_Club">
@@ -602,7 +685,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="82" green="82" red="82" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Gi&#xe1;o d&#x1ee5;c - Gi&#x1ea3;i tr&#xed;"/>
+                <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Lock_School">
@@ -624,7 +707,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="29" green="be" red="29" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Tr&#x1b0;&#x1edd;ng &#x110;&#x1ea1;i h&#x1ecd;c C&#xf4;ng ngh&#x1ec7; Th&#xf4;ng Tin, Ho Chi Minh City, Vietnam"/>
+                <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Lock_Email">
@@ -649,7 +732,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="82" green="82" red="82" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="gamappuit.club@gmail.com"/>
+                <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
             </Component>
           </SubComponents>
@@ -668,32 +751,32 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="Line4" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="Icon_Lock_LawClb" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="Lock_LawClb" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="Icon_Lock_InfoClb" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="Lock_InfoClb" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="Line3" max="32767" attributes="0"/>
-                          <Component id="Line2" max="32767" attributes="0"/>
-                          <Component id="Lock_SuKien" min="-2" max="-2" attributes="0"/>
-                          <Component id="ThanhVienPanel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Lock_SuKien" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="SlideShowPanel" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Line2" alignment="1" max="32767" attributes="0"/>
+                          <Component id="Line3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Line6" alignment="1" pref="682" max="32767" attributes="0"/>
+                          <Component id="Line5" alignment="1" pref="682" max="32767" attributes="0"/>
+                          <Component id="Line4" alignment="1" max="32767" attributes="0"/>
                           <Component id="jScrollTableMem" alignment="0" max="32767" attributes="0"/>
-                          <Component id="Line5" max="32767" attributes="0"/>
-                          <Component id="Line6" max="32767" attributes="0"/>
+                          <Component id="ThanhVienPanel" alignment="0" max="32767" attributes="0"/>
                           <Component id="TextArea_InfoClub" alignment="0" max="32767" attributes="0"/>
                           <Component id="TextArea_LawClub" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -703,16 +786,16 @@
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="Lock_SuKien" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="SlideShowPanel" min="-2" pref="360" max="-2" attributes="0"/>
+                      <Component id="SlideShowPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="Line2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="ThanhVienPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="jScrollTableMem" min="-2" pref="226" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="Line3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="Icon_Lock_InfoClb" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
@@ -722,23 +805,23 @@
                       </Group>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="Line4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="TextArea_InfoClub" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="Line5" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                               <Component id="Icon_Lock_LawClb" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="Lock_LawClb" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Component id="Line6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="TextArea_LawClub" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
@@ -748,49 +831,26 @@
           <SubComponents>
             <Container class="javax.swing.JPanel" name="SlideShowPanel">
 
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                <Property name="useNullLayout" type="boolean" value="false"/>
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="BackPanel" min="-2" pref="120" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="NextPanel" min="-2" pref="120" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="SlideShow" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="NextPanel" min="-2" pref="360" max="-2" attributes="0"/>
+                      <Component id="SlideShow" min="-2" pref="360" max="-2" attributes="0"/>
+                      <Component id="BackPanel" min="-2" pref="360" max="-2" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="NextPanel">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="66" green="66" red="66" type="rgb"/>
-                    </Property>
-                    <Property name="alpha" type="float" value="0.0"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NextPanelMouseClicked"/>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NextPanelMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NextPanelMouseExited"/>
-                  </Events>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="790" y="0" width="120" height="360"/>
-                    </Constraint>
-                  </Constraints>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                    <Property name="useNullLayout" type="boolean" value="false"/>
-                  </Layout>
-                  <SubComponents>
-                    <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="NextIcon">
-                      <Properties>
-                        <Property name="alpha" type="float" value="0.15"/>
-                        <Property name="image" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/CauLacBoResources/Next.png"/>
-                        </Property>
-                      </Properties>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="36" y="150" width="50" height="60"/>
-                        </Constraint>
-                      </Constraints>
-
-                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
-                    </Container>
-                  </SubComponents>
-                </Container>
                 <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="BackPanel">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -803,11 +863,6 @@
                     <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BackPanelMouseEntered"/>
                     <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BackPanelMouseExited"/>
                   </Events>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="0" y="0" width="120" height="360"/>
-                    </Constraint>
-                  </Constraints>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
                     <Property name="useNullLayout" type="boolean" value="false"/>
@@ -830,12 +885,41 @@
                     </Container>
                   </SubComponents>
                 </Container>
+                <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="NextPanel">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="66" green="66" red="66" type="rgb"/>
+                    </Property>
+                    <Property name="alpha" type="float" value="0.0"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NextPanelMouseClicked"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NextPanelMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="NextPanelMouseExited"/>
+                  </Events>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                    <Property name="useNullLayout" type="boolean" value="false"/>
+                  </Layout>
+                  <SubComponents>
+                    <Container class="com.uiteco.contentPanels.CauLacBo.JpanelRound" name="NextIcon">
+                      <Properties>
+                        <Property name="alpha" type="float" value="0.15"/>
+                        <Property name="image" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/CauLacBoResources/Next.png"/>
+                        </Property>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="36" y="150" width="50" height="60"/>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+                    </Container>
+                  </SubComponents>
+                </Container>
                 <Component class="com.uiteco.contentPanels.CauLacBo.SlideShow.Slideshow" name="SlideShow">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="0" y="0" width="910" height="360"/>
-                    </Constraint>
-                  </Constraints>
                 </Component>
               </SubComponents>
             </Container>
@@ -846,7 +930,7 @@
                 </Property>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
+                  <Font name="Segoe UI" size="16" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="2c" green="2c" red="2c" type="rgb"/>
@@ -854,6 +938,7 @@
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="1"/>
                 <Property name="text" type="java.lang.String" value="..."/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="Lock_SuKien">
@@ -880,9 +965,9 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="390" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="Lock_ThanhVien" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -920,7 +1005,7 @@
                 <Component class="javax.swing.JTable" name="TableMembers">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="8">
+                      <Table columnCount="5" rowCount="0">
                         <Column editable="false" title="STT" type="java.lang.String"/>
                         <Column editable="false" title="H&#x1ecd; V&#xe0; T&#xea;n" type="java.lang.String"/>
                         <Column editable="false" title="MSSV" type="java.lang.String"/>
@@ -930,7 +1015,7 @@
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="15" resizable="false">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="30" resizable="false">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -1060,6 +1145,9 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cb" green="cb" red="cb" type="rgb"/>
                 </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[669, 1]"/>
+                </Property>
               </Properties>
 
               <Layout>
@@ -1111,6 +1199,9 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cb" green="cb" red="cb" type="rgb"/>
                 </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[669, 1]"/>
+                </Property>
               </Properties>
 
               <Layout>
@@ -1134,7 +1225,7 @@
                 </Property>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
+                  <Font name="Segoe UI" size="16" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="2c" green="2c" red="2c" type="rgb"/>
@@ -1142,6 +1233,7 @@
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="1"/>
                 <Property name="text" type="java.lang.String" value="..."/>
+                <Property name="wrapStyleWord" type="boolean" value="true"/>
               </Properties>
             </Component>
           </SubComponents>
