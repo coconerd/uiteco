@@ -50,7 +50,6 @@ public class CuocThiDAO {
             return tags;
 
         } catch (SQLException e) {
-            e.printStackTrace();
             return new ArrayList<>();
         }
     }
@@ -112,7 +111,6 @@ public class CuocThiDAO {
                         post.setImage(thumbnail);
 
                     } catch (IOException e) {
-                        e.printStackTrace();
                     }
                 }
 
@@ -131,7 +129,6 @@ public class CuocThiDAO {
                         post.setImage(thumbnail);
 
                     } catch (IOException e) {
-                        e.printStackTrace();
                     }
                 }
 
@@ -193,7 +190,7 @@ public class CuocThiDAO {
 
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
 
@@ -218,7 +215,7 @@ public class CuocThiDAO {
 
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
 
@@ -343,7 +340,6 @@ public class CuocThiDAO {
             conn.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         return model;
     }
@@ -363,7 +359,6 @@ public class CuocThiDAO {
 
             return rowsAffected == 1;
         } catch (SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }
@@ -427,7 +422,6 @@ public class CuocThiDAO {
                         post.setImage(thumbnail);
 
                     } catch (IOException e) {
-                        e.printStackTrace();
                     }
                 }
 
@@ -460,7 +454,6 @@ public class CuocThiDAO {
             p1.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
             return new ArrayList<>();
         }
 
@@ -484,7 +477,6 @@ public class CuocThiDAO {
             conn.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -514,7 +506,6 @@ public class CuocThiDAO {
                 p.close();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -552,7 +543,6 @@ public class CuocThiDAO {
                         avatarPanel.setImage(thumbnail);
 
                     } catch (IOException e) {
-                        e.printStackTrace();
                     }
                 }
 
@@ -573,24 +563,55 @@ public class CuocThiDAO {
 
     }
 
-    public static List<BriefPost_Model> getPostsInfo_Sort(int type, boolean dueDate, boolean hotest) {
+    public static List<BriefPost_Model> getPostsInfo_ComboBox(List<String> tags) {
+        List<BriefPost_Model> models = new ArrayList<>();
         try {
             conn = getConnection();
+            StringBuilder queryBuilder = new StringBuilder("SELECT DISTINCT MABD FROM TAGS_BAIDANG WHERE TAG IN (");
+            for (int i = 0; i < tags.size(); i++) {
+                queryBuilder.append("?");
+                if (i < tags.size() - 1) {
+                    queryBuilder.append(",");
+                }
+            }
+            queryBuilder.append(")");
+            query = queryBuilder.toString();
+            PreparedStatement p = conn.prepareStatement(query);
 
-            dueDate = false;
-            hotest = false;
+            for (int i = 0; i < tags.size(); i++) {
+                p.setString(i + 1, tags.get(i));
+            }
 
+            rset = p.executeQuery();
+            while (rset.next()) {
+                int postID = rset.getInt("MABD");
+                models.add(getInfoPost_BaseMethod(postID));
+            }
+
+            conn.close();
+            rset.close();
+            p.close();
+
+        } catch (SQLException e) {
+            return new ArrayList<>();
+        }
+        return models;
+    }
+
+    public static List<BriefPost_Model> getPostsInfo_Sort(int type, boolean dueDate, boolean hottest) {
+        try {
+            conn = getConnection();
             //type = 0: not in a specific type
             //meet 1 requirment once time
             if (type == 0) {
-                if (!dueDate) {
+                if (dueDate == true) {
                     query = "SELECT "
                             + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
                             + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
                             + "WHERE BD.MABD = BD_CT.MABD "
-                            + "AND LOAIBD = 2 AND THOIGIANDIENRA = NGAYHETHAN_DANGKICUOCTHI"
+                            + "AND LOAIBD = 2 AND THOIDIEMDIENRA = NGAYHETHAN_DANGKICUOCTHI"
                             + "ORDER BY THOIDIEMDANG DESC";
-                } else if (!hotest) {
+                } else if (hottest == true) {
                     query = "SELECT "
                             + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
                             + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
@@ -598,7 +619,6 @@ public class CuocThiDAO {
                             + "AND LOAIBD = 2 "
                             + "ORDER BY LUOTTHICH DESC";
                 }
-
             } else if (type == 1 || type == 2) {
                 query = "SELECT "
                         + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
@@ -607,9 +627,11 @@ public class CuocThiDAO {
                         + "AND LOAIBD = 2 AND HINHTHUCTG = ? "
                         + " ORDER BY THOIDIEMDANG DESC ";
             }
-            PreparedStatement p = conn.prepareStatement(query);
 
-            p.setInt(1, type);
+            PreparedStatement p = conn.prepareStatement(query);
+            if (type == 1 || type == 2) {
+                p.setInt(1, type);
+            }
             rset = p.executeQuery();
 
             List<BriefPost_Model> postList = new ArrayList<>();
@@ -620,7 +642,6 @@ public class CuocThiDAO {
                 int postID = rset.getInt("MABD");
                 post.setId(postID);
 
-                // SQL query with named parameters
                 String tagQuery = "SELECT TAG FROM TAGS_BAIDANG WHERE MABD = ?";
                 PreparedStatement pstmt = conn.prepareStatement(tagQuery);
                 pstmt.setInt(1, postID);
@@ -655,7 +676,6 @@ public class CuocThiDAO {
                         post.setImage(thumbnail);
 
                     } catch (IOException e) {
-                        e.printStackTrace();
                     }
                 }
 
@@ -686,13 +706,99 @@ public class CuocThiDAO {
 
             conn.close();
             rset.close();
-            p.close();
+            //p.close();
 
             return postList;
 
         } catch (SQLException e) {
             return new ArrayList<>();
         }
+    }
+
+    public static BriefPost_Model getInfoPost_BaseMethod(int postID) {
+        BriefPost_Model post = new BriefPost_Model();
+        try {
+            conn = getConnection();
+            query = "SELECT DISTINCT "
+                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
+                    + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
+                    + "WHERE BD.MABD = BD_CT.MABD "
+                    + "AND LOAIBD = 2 AND MABD = ? "
+                    + " ORDER BY THOIDIEMDANG DESC ";
+
+            PreparedStatement p = conn.prepareStatement(query);
+            p.setInt(1, postID);
+            rset = p.executeQuery();
+            while (rset.next()) {
+                post.setId(postID);
+
+                String tagQuery = "SELECT TAG FROM TAGS_BAIDANG WHERE MABD = ?";
+                PreparedStatement pstmt = conn.prepareStatement(tagQuery);
+                pstmt.setInt(1, postID);
+                ResultSet tagRset = pstmt.executeQuery();
+
+                List<String> tagsString = new ArrayList<>();
+
+                while (tagRset.next()) {
+                    tagsString.add(tagRset.getString("TAG"));
+                }
+
+                pstmt.close();
+
+                post.setCountLike(rset.getInt("LUOTTHICH"));
+                post.setTags(tagsString);
+                post.setContent(rset.getString("NOIDUNG"));
+                post.setTitle(rset.getString("TIEUDE"));
+                post.setType(rset.getInt("HINHTHUCTG"));
+
+                byte[] imageData = rset.getBytes("THUMBNAIL");
+                if (imageData != null) {
+                    try {
+                        //convert the byte array to an Image object
+                        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
+                        BufferedImage bufferedImage = ImageIO.read(inputStream);
+
+                        //create a scaled version of the BufferedImage
+                        Image scaledImage = bufferedImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+
+                        //set the Image object as the thumnail
+                        ImageIcon thumbnail = new ImageIcon(scaledImage);
+                        post.setImage(thumbnail);
+
+                    } catch (IOException e) {
+                    }
+                }
+
+                post.setOrganizer(rset.getString("DONVITOCHUC"));
+
+                LocalDate timeBegin = rset.getDate("THOIDIEMDIENRA").toLocalDate();
+                post.setDueDate(timeBegin);
+
+                Timestamp timeStampPost = rset.getTimestamp("THOIDIEMDANG");
+                if (timeStampPost != null) {
+                    LocalDateTime localDateTimePost = timeStampPost.toLocalDateTime();
+                    post.setPostTime(localDateTimePost);
+                }
+
+                LocalDate timeStart = rset.getDate("NGAYBD_DANGKICUOCTHI").toLocalDate();
+                if (timeStart != null) {
+
+                    post.setStartDate(timeStart);
+                }
+                LocalDate timeEnd = rset.getDate("NGAYHETHAN_DANGKICUOCTHI").toLocalDate();
+                if (timeEnd != null) {
+
+                    post.setEndDate(timeEnd);
+                }
+            }
+
+            conn.close();
+            rset.close();
+            p.close();
+
+        } catch (SQLException e) {
+        }
+        return post;
     }
 
     static Connection conn;

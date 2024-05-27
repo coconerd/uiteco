@@ -3,6 +3,7 @@ package com.uiteco.OfCuocThiPanel.secondPage;
 import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
+import java.awt.Component;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,6 @@ public class DetailedOnePost_Controller {
         return baseModel.getId();
     }
 
-
     public DetailedOnePost_View setData(BriefPost_Model baseModel) {
         view.jTitle.setText(baseModel.getTitle());
         view.jRegisterTime.setText(baseModel.getDateRange_ForDetailedPage());
@@ -51,11 +51,12 @@ public class DetailedOnePost_Controller {
             listImage.add(r);
         }
         System.out.println(listImage.size());
-        
-//        for (Component c : listImage) {
-//            view.getScrollPaneImages().getRoundedGradientPanel().add(c);
-//        }
-        
+
+        for (Component c : listImage) {
+
+            view.scrollPaneImages.getRoundedGradientPanel().add(c);
+        }
+
         return view;
     }
 

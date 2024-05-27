@@ -4,6 +4,13 @@ import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 
 public class DetailedOnePost_View extends javax.swing.JPanel {
 
+    /**
+     * @return the scrollPaneImages
+     */
+    public com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages getScrollPaneImages() {
+        return scrollPaneImages;
+    }
+
     public DetailedOnePost_View() {
         initComponents();
     }
@@ -45,8 +52,8 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         youtubePlay = new com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay();
-        scrollPaneImages2 = new com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages();
-        roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
+        scrollPaneImages = new com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages();
+        roundedGradientPanel = new com.uiteco.components.RoundedGradientPanel();
 
         setBackground(new java.awt.Color(204, 255, 204));
         setOpaque(false);
@@ -95,7 +102,8 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jBody.setOpaque(false);
         jBody.setLayout(new java.awt.GridBagLayout());
 
-        jTitle.setFont(new java.awt.Font("Merriweather", 1, 32)); // NOI18N
+        jTitle.setFont(new java.awt.Font("Merriweather", 1, 40)); // NOI18N
+        jTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTitle.setText("jLabel2");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -167,6 +175,11 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jRegister.setText("ĐĂNG KÍ");
         jRegister.setFont(new java.awt.Font("Merriweather", 1, 19)); // NOI18N
         jRegister.setPreferredSize(new java.awt.Dimension(160, 55));
+        jRegister.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jRegisterMousePressed(evt);
+            }
+        });
         jRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRegisterActionPerformed(evt);
@@ -216,8 +229,8 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jBody.add(jBelowTitle, gridBagConstraints);
 
         jContent.setEditable(false);
-        jContent.setColumns(20);
-        jContent.setFont(new java.awt.Font("Segoe UI", 0, 28)); // NOI18N
+        jContent.setColumns(1);
+        jContent.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
         jContent.setLineWrap(true);
         jContent.setWrapStyleWord(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -226,7 +239,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(3, 204, 50, 167);
+        gridBagConstraints.insets = new java.awt.Insets(20, 237, 167, 152);
         jBody.add(jContent, gridBagConstraints);
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -238,15 +251,16 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(11, 165, 11, 0);
+        gridBagConstraints.insets = new java.awt.Insets(11, 155, 11, 0);
         jPanel1.add(jLabel2, gridBagConstraints);
 
         jSeparator2.setForeground(new java.awt.Color(199, 204, 242));
+        jSeparator2.setPreferredSize(new java.awt.Dimension(0, 7));
         jSeparator2.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.weightx = 2.5;
+        gridBagConstraints.weightx = 2.8;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 65);
         jPanel1.add(jSeparator2, gridBagConstraints);
 
@@ -255,7 +269,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 44, 0, 44);
+        gridBagConstraints.insets = new java.awt.Insets(0, 23, 0, 44);
         jBody.add(jPanel1, gridBagConstraints);
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -268,10 +282,11 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 165, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 155, 0, 0);
         jPanel2.add(jLabel1, gridBagConstraints);
 
         jSeparator3.setForeground(new java.awt.Color(199, 204, 242));
+        jSeparator3.setPreferredSize(new java.awt.Dimension(0, 7));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -285,7 +300,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 44, 0, 44);
+        gridBagConstraints.insets = new java.awt.Insets(0, 24, 0, 44);
         jBody.add(jPanel2, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -297,37 +312,37 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(70, 0, 70, 1160);
         jBody.add(youtubePlay, gridBagConstraints);
 
-        scrollPaneImages2.setPreferredSize(new java.awt.Dimension(1600, 530));
+        scrollPaneImages.setPreferredSize(new java.awt.Dimension(1600, 530));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(50, 200, 70, 50);
-        jBody.add(scrollPaneImages2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(50, 172, 70, 50);
+        jBody.add(scrollPaneImages, gridBagConstraints);
 
-        roundedGradientPanel1.setPreferredSize(new java.awt.Dimension(600, 380));
-        roundedGradientPanel1.setRoundBottomLeft(35);
-        roundedGradientPanel1.setRoundBottomRight(35);
-        roundedGradientPanel1.setRoundTopLeft(35);
-        roundedGradientPanel1.setRoundTopRight(35);
+        roundedGradientPanel.setPreferredSize(new java.awt.Dimension(600, 380));
+        roundedGradientPanel.setRoundBottomLeft(35);
+        roundedGradientPanel.setRoundBottomRight(35);
+        roundedGradientPanel.setRoundTopLeft(35);
+        roundedGradientPanel.setRoundTopRight(35);
 
-        javax.swing.GroupLayout roundedGradientPanel1Layout = new javax.swing.GroupLayout(roundedGradientPanel1);
-        roundedGradientPanel1.setLayout(roundedGradientPanel1Layout);
-        roundedGradientPanel1Layout.setHorizontalGroup(
-            roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout roundedGradientPanelLayout = new javax.swing.GroupLayout(roundedGradientPanel);
+        roundedGradientPanel.setLayout(roundedGradientPanelLayout);
+        roundedGradientPanelLayout.setHorizontalGroup(
+            roundedGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 536, Short.MAX_VALUE)
         );
-        roundedGradientPanel1Layout.setVerticalGroup(
-            roundedGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        roundedGradientPanelLayout.setVerticalGroup(
+            roundedGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 316, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        jBody.add(roundedGradientPanel1, gridBagConstraints);
+        jBody.add(roundedGradientPanel, gridBagConstraints);
 
         jScrollPane.setViewportView(jBody);
 
@@ -353,6 +368,10 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLikeActionPerformed
 
+    private void jRegisterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRegisterMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.uiteco.components.RoundedPanel RegisterTimePanel;
@@ -377,8 +396,8 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
     protected javax.swing.JLabel jTitle;
     private javax.swing.JPanel jTop;
     private javax.swing.JLabel like;
-    private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
-    private com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages scrollPaneImages2;
+    private com.uiteco.components.RoundedGradientPanel roundedGradientPanel;
+    protected com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages scrollPaneImages;
     private com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay youtubePlay;
     // End of variables declaration//GEN-END:variables
 }

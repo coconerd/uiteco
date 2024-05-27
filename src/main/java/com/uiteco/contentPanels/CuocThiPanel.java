@@ -1,6 +1,5 @@
 package com.uiteco.contentPanels;
 
-// Import the necessary package
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.raven.scroll.ScrollPaneUtil;
 import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
@@ -18,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 
 public class CuocThiPanel extends JPanel {
@@ -37,27 +37,35 @@ public class CuocThiPanel extends JPanel {
     public void setPosts(List<BriefPost_Model> posts) {
         this.posts = posts;
     }
-//action handler
 
-    //private firstPage body = new firstPage();
-    //private List<BriefPost_Model> list = new ArrayList<>();
-    //private TagsAndSort_new header = new TagsAndSort_new();
+    private List<BriefPost_Model> posts = CuocThiDAO.getPostsInfo_Default();
+    private BriefPost_View postUI;
+    private final Map<Integer, BriefPost_View> postMap = new HashMap<>();
+
     public CuocThiPanel() {
         FlatMacLightLaf.setup();
         initComponents();
         jScrollPane.setBorder(null);
         jScrollPane.setOpaque(false);
         ScrollPaneUtil.configureScrollBar(jScrollPane);
-        _initPostsList();
+
+        _initPostsList(posts);
+        comboBoxInit();
     }
 
-    private List<BriefPost_Model> posts = CuocThiDAO.getPostsInfo_Default();
-    private BriefPost_View postUI;
-    private final Map<Integer, BriefPost_View> postMap = new HashMap<>();
+    private void comboBoxInit() {
+        List<String> tagsList = CuocThiDAO.getAllTags();
+        String[] tags = tagsList.toArray(String[]::new);
+        comboBox.setModel(new DefaultComboBoxModel(tags));
 
-    private void _initPostsList() {
+        
+    }
 
-        setPosts(CuocThiDAO.getPostsInfo_Default());
+    private void _initPostsList(List<BriefPost_Model> posts) {
+        
+        postList.removeAll();
+        setPosts(posts);
+
         for (BriefPost_Model post : getPosts()) {
             setPostUI(new BriefPost_View());
 
@@ -107,65 +115,11 @@ public class CuocThiPanel extends JPanel {
 
             postList.revalidate();
             postList.repaint();
+
         }
     }
 
-//    public TagsAndSort_new getHeader() {
-//        return header;
-//    }
-//
-//    public CuocThiPanel() {
-//        _init();
-//        this.add(header);
-//
-//        this.add(body);
-//
-//        if (true) {
-//            //CuocThiPanel listens to the change of button date of header 
-//            header.getTeam()._addPropertyChangeListener((evt) -> {
-//                if (evt.getPropertyName().equals("selected")) {
-//
-//                    list = CuocThiDAO.getPostsInfo_Sort(2, false, false);
-//                    body.updateContent(list);
-//                }
-//            });
-//            header.getSolo()._addPropertyChangeListener((evt) -> {
-//                if (evt.getPropertyName().equals("selected")) {
-//
-//                    list = CuocThiDAO.getPostsInfo_Sort(1, false, false);
-//                    body.updateContent(list);
-//                }
-//            });
-//            header.getHotest()._addPropertyChangeListener((evt) -> {
-//                if (evt.getPropertyName().equals("selected")) {
-//
-//                    list = CuocThiDAO.getPostsInfo_Sort(0, false, true);
-//                    body.updateContent(list);
-//                }
-//            });
-//            header.getDate()._addPropertyChangeListener((evt) -> {
-//                if (evt.getPropertyName().equals("selected")) {
-//
-//                    list = CuocThiDAO.getPostsInfo_Sort(0, true, false);
-//                    body.updateContent(list);
-//                }
-//            });
-//            
-//            //header.getTagComboBox().
-//        }
-//
-//    }
-//    public void sortButtons() {
-//
-//        Component component = App.getMainFrame().getContentPanel().getComponent("cuocThiPanel");
-//
-//        if (component instanceof CuocThiPanel competition) {
-//            System.out.println("hi");
-//            body = competition.body;
-//
-//        }
-//
-//    }
+   
     @SuppressWarnings("unchecked")
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -204,7 +158,15 @@ public class CuocThiPanel extends JPanel {
         roundedPanel1.setRoundTopRight(45);
         roundedPanel1.setLayout(new java.awt.GridBagLayout());
 
-        comboBox.setPreferredSize(new java.awt.Dimension(600, 45));
+        comboBox.setPreferredSize(new java.awt.Dimension(500, 42));
+        comboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                comboBoxMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                comboBoxMousePressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -227,6 +189,11 @@ public class CuocThiPanel extends JPanel {
         solo.setIconTextGap(6);
         solo.setLabel("Cá nhân");
         solo.setPreferredSize(new java.awt.Dimension(140, 54));
+        solo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                soloMousePressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -256,6 +223,11 @@ public class CuocThiPanel extends JPanel {
         hottest.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         hottest.setPreferredSize(new java.awt.Dimension(140, 54));
         hottest.setVerifyInputWhenFocusTarget(false);
+        hottest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                hottestMousePressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 1;
@@ -353,12 +325,12 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.insets = new java.awt.Insets(22, 24, 35, 0);
         slideShowAndPosts.add(postList, gridBagConstraints);
 
-        suggestionPanel.setPreferredSize(new java.awt.Dimension(782, 788));
+        suggestionPanel.setPreferredSize(new java.awt.Dimension(782, 798));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.insets = new java.awt.Insets(25, 23, 30, 57);
+        gridBagConstraints.insets = new java.awt.Insets(25, 24, 44, 57);
         slideShowAndPosts.add(suggestionPanel, gridBagConstraints);
 
         jScrollPane.setViewportView(slideShowAndPosts);
@@ -385,12 +357,48 @@ public class CuocThiPanel extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void teamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:\
+        
+        posts = CuocThiDAO.getPostsInfo_Sort(2, false, false);
+        _initPostsList(posts);
+
     }//GEN-LAST:event_teamActionPerformed
 
     private void dueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dueActionPerformed
         // TODO add your handling code here:
+        posts = CuocThiDAO.getPostsInfo_Sort(0, true, false);
+        _initPostsList(posts);
+        System.out.println(posts.size());
+
     }//GEN-LAST:event_dueActionPerformed
+
+    private void soloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_soloMousePressed
+        // TODO add your handling code here:
+        posts = CuocThiDAO.getPostsInfo_Sort(1, false, false);
+        _initPostsList(posts);
+
+
+    }//GEN-LAST:event_soloMousePressed
+
+    private void hottestMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hottestMousePressed
+        // TODO add your handling code here:
+        posts = CuocThiDAO.getPostsInfo_Sort(0, false, true);
+        _initPostsList(posts);
+        System.out.println(posts.size());
+    }//GEN-LAST:event_hottestMousePressed
+
+    private void comboBoxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxMousePressed
+        // TODO add your handling code here:
+
+        postList.removeAll();
+        List<String> selectedTags = comboBox.getSelectedItems();
+        posts = CuocThiDAO.getPostsInfo_ComboBox(selectedTags);
+
+    }//GEN-LAST:event_comboBoxMousePressed
+
+    private void comboBoxMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

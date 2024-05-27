@@ -10,9 +10,6 @@ import javax.swing.plaf.ColorUIResource;
 
 public class ScrollPaneImages extends JPanel {
 
-    /**
-     * @return the roundedGradientPanel
-     */
     public com.uiteco.components.RoundedGradientPanel getRoundedGradientPanel() {
         return roundedGradientPanel;
     }
@@ -38,83 +35,39 @@ public class ScrollPaneImages extends JPanel {
 
         jScrollPane = new javax.swing.JScrollPane();
         roundedGradientPanel = new com.uiteco.components.RoundedGradientPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        roundedGradientPanel1 = new com.uiteco.components.RoundedGradientPanel();
 
         setOpaque(false);
 
         jScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        roundedGradientPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        roundedGradientPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(45, 0, 10, 0));
         roundedGradientPanel.setColor1(new java.awt.Color(222, 236, 221));
         roundedGradientPanel.setColor2(new java.awt.Color(238, 241, 245));
         roundedGradientPanel.setFull(false);
+        roundedGradientPanel.setPreferredSize(new java.awt.Dimension(110, 100));
         roundedGradientPanel.setRoundBottomLeft(40);
         roundedGradientPanel.setRoundBottomRight(40);
         roundedGradientPanel.setRoundTopLeft(40);
         roundedGradientPanel.setRoundTopRight(40);
-        roundedGradientPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING, 50, 10));
+        roundedGradientPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 55, 10));
         jScrollPane.setViewportView(roundedGradientPanel);
-
-        jPanel1.setOpaque(false);
-
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        jScrollPane1.setOpaque(true);
-
-        roundedGradientPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 0, 10, 0));
-        roundedGradientPanel1.setColor1(new java.awt.Color(253, 189, 85));
-        roundedGradientPanel1.setColor2(new java.awt.Color(249, 131, 255));
-        roundedGradientPanel1.setFull(false);
-        roundedGradientPanel1.setRoundBottomLeft(40);
-        roundedGradientPanel1.setRoundBottomRight(40);
-        roundedGradientPanel1.setRoundTopLeft(40);
-        roundedGradientPanel1.setRoundTopRight(40);
-        roundedGradientPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING, 50, 40));
-        jScrollPane1.setViewportView(roundedGradientPanel1);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane;
-    private javax.swing.JScrollPane jScrollPane1;
     private com.uiteco.components.RoundedGradientPanel roundedGradientPanel;
-    private com.uiteco.components.RoundedGradientPanel roundedGradientPanel1;
     // End of variables declaration//GEN-END:variables
 }
