@@ -307,7 +307,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="com.uiteco.OfCuocThiPanel.firstPage.Pagination" name="pagination1">
+            <Component class="com.uiteco.OfCuocThiPanel.firstPage.Pagination" name="pagination">
               <Properties>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 100]"/>

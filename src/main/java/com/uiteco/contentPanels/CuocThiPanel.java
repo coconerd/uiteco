@@ -6,6 +6,9 @@ import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Controller;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_View;
+import com.uiteco.OfCuocThiPanel.firstPage.EventPagination;
+import com.uiteco.OfCuocThiPanel.firstPage.Pagination;
+import com.uiteco.OfCuocThiPanel.firstPage.PaginationItemRenderStyle1;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Controller;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
 import com.uiteco.main.App;
@@ -49,8 +52,9 @@ public class CuocThiPanel extends JPanel {
         jScrollPane.setOpaque(false);
         ScrollPaneUtil.configureScrollBar(jScrollPane);
 
-        _initPostsList(posts);
+        //_initPostsList(posts);
         comboBoxInit();
+        paginationInit();
     }
 
     private void comboBoxInit() {
@@ -58,17 +62,32 @@ public class CuocThiPanel extends JPanel {
         String[] tags = tagsList.toArray(String[]::new);
         comboBox.setModel(new DefaultComboBoxModel(tags));
 
-        
+    }
+
+    private void paginationInit() {
+        pagination = new Pagination();
+        pagination.addEventPagination(new EventPagination() {
+            @Override
+            public void pageChanged(int page) {
+                System.out.println("Page changed to: " + page); // Debug logging
+                List<BriefPost_Model> posts = CuocThiDAO.getPostsInfo_Offset(pagination, page);
+                System.out.println(posts.size());
+                _initPostsList(posts);
+            }
+        });
+
+        pagination.setPaginationItemRender(new PaginationItemRenderStyle1());
+
     }
 
     private void _initPostsList(List<BriefPost_Model> posts) {
-        
+
         postList.removeAll();
         setPosts(posts);
 
         for (BriefPost_Model post : getPosts()) {
             setPostUI(new BriefPost_View());
-
+            System.out.println("one post");
             BriefPost_Controller postController = new BriefPost_Controller(post, getPostUI());
 
             setPostUI(postController.setData());
@@ -119,7 +138,6 @@ public class CuocThiPanel extends JPanel {
         }
     }
 
-   
     @SuppressWarnings("unchecked")
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -143,7 +161,7 @@ public class CuocThiPanel extends JPanel {
         newestCompetitions_new = new com.uiteco.OfCuocThiPanel.firstPage.slideShow.NewestCompetitions_new();
         postList = new javax.swing.JPanel();
         suggestionPanel = new com.uiteco.OfCuocThiPanel.firstPage.SuggestionPanel();
-        pagination1 = new com.uiteco.OfCuocThiPanel.firstPage.Pagination();
+        pagination = new com.uiteco.OfCuocThiPanel.firstPage.Pagination();
         jHello = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(242, 243, 244));
@@ -333,11 +351,11 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.insets = new java.awt.Insets(25, 24, 44, 57);
         slideShowAndPosts.add(suggestionPanel, gridBagConstraints);
 
-        pagination1.setPreferredSize(new java.awt.Dimension(200, 100));
+        pagination.setPreferredSize(new java.awt.Dimension(200, 100));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        slideShowAndPosts.add(pagination1, gridBagConstraints);
+        slideShowAndPosts.add(pagination, gridBagConstraints);
 
         jScrollPane.setViewportView(slideShowAndPosts);
 
@@ -364,7 +382,7 @@ public class CuocThiPanel extends JPanel {
 
     private void teamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamActionPerformed
         // TODO add your handling code here:\
-        
+
         posts = CuocThiDAO.getPostsInfo_Sort(2, false, false);
         _initPostsList(posts);
 
@@ -416,7 +434,7 @@ public class CuocThiPanel extends JPanel {
     private javax.swing.JLabel jHello;
     private javax.swing.JScrollPane jScrollPane;
     private com.uiteco.OfCuocThiPanel.firstPage.slideShow.NewestCompetitions_new newestCompetitions_new;
-    private com.uiteco.OfCuocThiPanel.firstPage.Pagination pagination1;
+    private com.uiteco.OfCuocThiPanel.firstPage.Pagination pagination;
     private javax.swing.JPanel postList;
     private com.uiteco.components.RoundedPanel roundedPanel1;
     private javax.swing.JPanel slideShowAndPosts;

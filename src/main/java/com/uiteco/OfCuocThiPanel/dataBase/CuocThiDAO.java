@@ -373,21 +373,30 @@ public class CuocThiDAO {
     public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page) {
 
         List<BriefPost_Model> postList = new ArrayList<>();
-
+        int limit = 1;
+        int offset = (page - 1) * limit;
         try {
+            conn = getConnection();
 
-            int limit = 1;
+            String query1 = "SELECT COUNT(*) FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2";
+            ResultSet rset1 = stmt.executeQuery(query1);
+            int count = 0;
+            if (rset1.first()) {
+                count = rset1.getInt(1);
+            }
 
-            String query1 = "SELECT "
-                    + "COUNT(*), BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH "
+            query = "SELECT "
+                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
                     + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                    + "WHERE BD.MABD = BD_CT.MABD AND "
-                    + "AND LOAIBD = 2 "
+                    + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 "
                     + "ORDER BY THOIDIEMDANG DESC "
-                    + "OFFSET " + (page - 1) * limit + " ROWS FETCH NEXT " + limit + " ROWS ONLY";
+                    + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
-            PreparedStatement p1 = conn.prepareStatement(query1);
+            PreparedStatement p1 = conn.prepareStatement(query);
+            p1.setInt(1, offset);
+            p1.setInt(2, limit);
             rset = p1.executeQuery();
+            int totalPages = (int) Math.ceil((double) count / limit);
 
             while (rset.next()) {
 
@@ -396,7 +405,6 @@ public class CuocThiDAO {
                 int postID = rset.getInt("MABD");
                 post.setId(postID);
 
-                // SQL query with named parameters
                 String tagQuery = "SELECT TAG FROM TAGS_BAIDANG WHERE MABD = ?";
                 PreparedStatement pstmt = conn.prepareStatement(tagQuery);
                 pstmt.setInt(1, postID);
@@ -408,6 +416,7 @@ public class CuocThiDAO {
                 while (tagRset.next()) {
                     tagsString.add(tagRset.getString("TAG"));
                 }
+
                 post.setCountLike(rset.getInt("LUOTTHICH"));
                 post.setTags(tagsString);
                 post.setContent(rset.getString("NOIDUNG"));
@@ -429,10 +438,14 @@ public class CuocThiDAO {
                         post.setImage(thumbnail);
 
                     } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
 
                 post.setOrganizer(rset.getString("DONVITOCHUC"));
+
+                LocalDate timeBegin = rset.getDate("THOIDIEMDIENRA").toLocalDate();
+                post.setDueDate(timeBegin);
 
                 Timestamp timeStampPost = rset.getTimestamp("THOIDIEMDANG");
                 if (timeStampPost != null) {
@@ -455,12 +468,13 @@ public class CuocThiDAO {
                 postList.add(post);
 
             }
-            //pagination 
+            p.setPagegination(page, totalPages);
             rset.close();
             conn.close();
             p1.close();
 
         } catch (SQLException e) {
+            e.printStackTrace();
             return new ArrayList<>();
         }
 
