@@ -72,7 +72,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Semibold" size="14" style="1"/>
+          <Font name="Segoe UI Semibold" size="16" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Thumbnail"/>
       </Properties>
@@ -80,7 +80,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Semibold" size="14" style="1"/>
+          <Font name="Segoe UI Semibold" size="16" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Th&#xea;m &#x1ea3;nh cho s&#x1ef1; ki&#x1ec7;n"/>
       </Properties>
@@ -188,6 +188,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Th&#xea;m &#x1ea3;nh "/>
               </Properties>
@@ -242,7 +245,7 @@
     <Component class="javax.swing.JLabel" name="imageCountLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI Semibold" size="12" style="1"/>
+          <Font name="Segoe UI Semibold" size="14" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="6d" green="6d" id="Text Inactive Text" palette="2" red="6d" type="palette"/>

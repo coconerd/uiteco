@@ -23,24 +23,76 @@ import net.miginfocom.swing.MigLayout;
  */
 public class ImageSelector extends RoundedPanel {
 
-    private HashMap<Component, Integer> compToIndex;
     private int imageCount;
 
     /**
      * Creates new form ImageSelector
      */
     public ImageSelector() {
-        compToIndex = new HashMap<Component, Integer>();
         imageCount = 0;
         thumbnailPlaceHolderChanged = false;
         initComponents();
+    }
+
+    public void clear() {
+        imgContainer.removeAll();
+        imgContainer.revalidate();
+        imgContainer.repaint();
+        _updateImageCount(0);
     }
 
     public ImageIcon getThumbnail() {
         return thumbnailPlaceHolderChanged ? (ImageIcon) thumbnail.getImage() : null;
     }
 
+    public void setThumbnail(ImageIcon thumbnailImg) {
+        if (thumbnailImg == null) {
+            thumbnail.setImage(null);
+            thumbnail.revalidate();
+            thumbnail.repaint();
+            return;
+        }
+
+        thumbnail.setImage(thumbnailImg);
+        thumbnail.revalidate();
+        thumbnail.repaint();
+        addThumbnail.setIcon(new ImageIcon(getClass().getResource("/icons8-minus-30.png")));
+        thumbnailPlaceHolderChanged = true;
+    }
+
+    public void setSelectedImages(List<ImageIcon> images) {
+        imgContainer.removeAll();
+
+        if (images == null) {
+            imgContainer.revalidate();
+            imgContainer.repaint();
+            return;
+        }
+
+        int count = 0;
+        for (ImageIcon img : images) {
+            ImageContainerComp comp = new ImageContainerComp(img);
+            imgContainer.add(comp);
+            comp.getCross().addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    imgContainer.remove(comp);
+                    imgContainer.revalidate();
+                    imgContainer.repaint();
+                    _updateImageCount(imageCount - 1);
+                }
+            });
+            comp.setVisible(true);
+
+            count++;
+        }
+        _updateImageCount(count);
+
+        imgContainer.revalidate();
+        imgContainer.repaint();
+    }
+
     public List<ImageIcon> getSelectedImages() {
+
         List<ImageIcon> images = new ArrayList<ImageIcon>();
         for (Component comp : imgContainer.getComponents()) {
             if (comp instanceof ImageContainerComp) {
@@ -76,10 +128,10 @@ public class ImageSelector extends RoundedPanel {
 
         setPreferredSize(new java.awt.Dimension(1150, 850));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel1.setText("Thumbnail");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel2.setText("Thêm ảnh cho sự kiện");
 
         addThumbnailBtn.setBackground(new java.awt.Color(255, 255, 255));
@@ -138,9 +190,10 @@ public class ImageSelector extends RoundedPanel {
         addBtn.setRoundBottomRight(11);
         addBtn.setRoundTopLeft(11);
         addBtn.setRoundTopRight(11);
-        addBtn.setLayout(new java.awt.GridLayout());
+        addBtn.setLayout(new java.awt.GridLayout(1, 0));
 
         addLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addLabel.setForeground(new java.awt.Color(255, 255, 255));
         addLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addLabel.setText("Thêm ảnh ");
         addLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -191,7 +244,7 @@ public class ImageSelector extends RoundedPanel {
         gridBagConstraints.weighty = 1.0;
         roundedGradientPanel1.add(scrollPaneWin111, gridBagConstraints);
 
-        imageCountLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        imageCountLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         imageCountLabel.setForeground(java.awt.SystemColor.textInactiveText);
         imageCountLabel.setText("( " + String.valueOf(imageCount) + " ảnh )");
 
@@ -297,7 +350,7 @@ public class ImageSelector extends RoundedPanel {
         ImageContainerComp comp = new ImageContainerComp(image);
         comp.getCross().addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                imgContainer.remove(compToIndex.get(comp));
+                imgContainer.remove(comp);
                 imgContainer.revalidate();
                 imgContainer.repaint();
                 _updateImageCount(imageCount - 1);
@@ -308,7 +361,6 @@ public class ImageSelector extends RoundedPanel {
         imgContainer.add(comp);
         imgContainer.revalidate();
         imgContainer.repaint();
-        compToIndex.put(comp, imgContainer.getComponentCount() - 1);
         _updateImageCount(imageCount + 1);
     }//GEN-LAST:event_addLabelMouseClicked
 

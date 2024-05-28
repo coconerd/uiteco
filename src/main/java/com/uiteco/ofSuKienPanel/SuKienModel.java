@@ -19,7 +19,7 @@ public class SuKienModel {
     private String title;
     private Set<String> tags;
     private int postID;
-    private String type;
+    private int type;
     private String content;
     private String postedBy;
     private LocalDateTime postedAt;
@@ -34,6 +34,7 @@ public class SuKienModel {
     private LocalDate enrollStart;
     private LocalDate enrollEnd;
     private Integer enrollLimit;
+    private LocalDateTime lastUpdated;
     
     private boolean liked;
     private String clubName;
@@ -46,7 +47,7 @@ public class SuKienModel {
             String title,
             Set<String> tags,
             int postID,
-            String type,
+            int type,
             String content,
             String postedBy,
             LocalDateTime postedAt,
@@ -84,7 +85,10 @@ public class SuKienModel {
         this.enrollLimit = enrollLimit;
     }
     
-
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+    
     public void setTitle(String title) {
         this.title = title;
     }
@@ -97,7 +101,7 @@ public class SuKienModel {
         this.postID = postID;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -161,6 +165,10 @@ public class SuKienModel {
         this.enrollCount = enrollCount;
     }
     
+    public LocalDateTime getLastUpdated() {
+        return this.lastUpdated;
+    }
+    
     public Integer getEnrollLimit() {
         return enrollLimit;
     }
@@ -189,7 +197,7 @@ public class SuKienModel {
         return postID;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 

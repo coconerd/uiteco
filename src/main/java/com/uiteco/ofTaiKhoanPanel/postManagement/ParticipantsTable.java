@@ -1,0 +1,251 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
+package com.uiteco.ofTaiKhoanPanel.postManagement;
+
+import com.uiteco.ofSuKienPanel.SuKienModel;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+import static com.uiteco.ofSuKienPanel.SuKienDAO.getParticipantsManagement;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableColumnModel;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
+import com.uiteco.components.jnafilechooser.api.JnaFileChooser;
+import static com.uiteco.main.App.getMainFrame;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import javax.swing.ImageIcon;
+
+/**
+ *
+ * @author nddmi
+ */
+public class ParticipantsTable extends javax.swing.JPanel {
+
+    protected class ParticipantTableModel extends AbstractTableModel {
+
+        DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("dd.MM.yy");
+        DateTimeFormatter timeFmt = DateTimeFormatter.ofPattern("HH:mm");
+
+        private List<TaiKhoanModelParticipant> persons;
+        private final String[] columnNames = {"Mã tài khoản", "Họ tên", "MSSV", "Khoa", "Thời điểm đăng ký", "Số thứ tự"};
+
+        public ParticipantTableModel(List<TaiKhoanModelParticipant> persons) {
+            this.persons = persons;
+        }
+
+        @Override
+        public int getRowCount() {
+            return persons.size();
+        }
+
+        @Override
+        public int getColumnCount() {
+            return columnNames.length;
+        }
+
+        @Override
+        public String getColumnName(int column) {
+            return columnNames[column];
+        }
+
+        @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            TaiKhoanModelParticipant person = persons.get(rowIndex);
+            return switch (columnIndex) {
+                case 0 ->
+                    person.getAccountID();
+                case 1 ->
+                    person.getFullname();
+                case 2 ->
+                    person.getMssv();
+                case 3 ->
+                    person.getFaculty();
+                case 4 ->
+                    person.getEnrolledAt().format(dateFmt) + " - " + person.getEnrolledAt().format(timeFmt);
+                case 5 ->
+                    "'" + String.valueOf((rowIndex + 1)) + " / " + String.valueOf(persons.size());  // Prevents Excel from interpreting as date
+                default ->
+                    null;
+            };
+        }
+
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return false; // false by default
+        }
+    }
+
+    private SuKienModel suKienModel;
+
+    /**
+     * Creates new form ParticipantsTable
+     */
+    public ParticipantsTable(SuKienModel suKienModel) {
+        this.suKienModel = suKienModel;
+        initComponents();
+        TableColumnModel colModel = table.getColumnModel();
+        try {
+            List<TaiKhoanModelParticipant> participants = getParticipantsManagement(suKienModel);
+            table.setModel(new ParticipantTableModel(participants));
+            colModel.getColumn(0).setPreferredWidth(50);
+            colModel.getColumn(1).setPreferredWidth(200);
+            colModel.getColumn(2).setPreferredWidth(90);
+            colModel.getColumn(3).setPreferredWidth(250);
+            colModel.getColumn(4).setPreferredWidth(200);
+            colModel.getColumn(5).setPreferredWidth(50);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Không thể lây danh sách sinh viên tham gia", "Đã có lỗi xảy ra", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }
+
+    public static void exportTableToCSV(JTable table, File file) throws IOException {
+        TableModel model = table.getModel();
+        try (Writer csv = new OutputStreamWriter(new FileOutputStream(file), "UTF-8")) {
+            // Write column headers
+            for (int i = 0; i < model.getColumnCount(); i++) {
+                csv.write(model.getColumnName(i) + (i < model.getColumnCount() - 1 ? "," : ""));
+            }
+            csv.write("\n");
+
+            // Write row data
+            for (int i = 0; i < model.getRowCount(); i++) {
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    csv.write(model.getValueAt(i, j).toString() + (j < model.getColumnCount() - 1 ? "," : ""));
+                }
+                csv.write("\n");
+            }
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        scrollPane = new com.raven.scroll.ScrollPaneWin11();
+        table = new javax.swing.JTable();
+        roundedPanel1 = new com.uiteco.components.RoundedPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(916, 850));
+
+        scrollPane.setBorder(null);
+
+        table.setModel(new javax.swing.table.DefaultTableModel(
+        ));
+        table.setColumnSelectionAllowed(true);
+        scrollPane.setViewportView(table);
+        table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+        roundedPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        roundedPanel1.setOpaque(true);
+        roundedPanel1.setRoundBottomLeft(22);
+        roundedPanel1.setRoundBottomRight(22);
+        roundedPanel1.setRoundTopLeft(22);
+        roundedPanel1.setRoundTopRight(22);
+        roundedPanel1.setLayout(new java.awt.GridLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(5, 5, 5));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Integer limit = suKienModel.getEnrollLimit();
+        jLabel1.setText("Số lượng tham gia: " + String.valueOf(suKienModel.getEnrollCount()) + " / " + (limit != null ? String.valueOf(limit) : "NA"));
+        roundedPanel1.add(jLabel1);
+
+        jButton1.setBackground(new java.awt.Color(16, 124, 65));
+        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Xuất file CSV");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(800, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+            .addComponent(roundedPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(roundedPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        JnaFileChooser fileChooser = new JnaFileChooser();
+        fileChooser.setTitle("");
+        fileChooser.setMode(JnaFileChooser.Mode.Files);
+        fileChooser.setCurrentDirectory(System.getProperty("user.home"));
+        fileChooser.setOpenButtonText("Tải lên");
+
+        boolean isOk = fileChooser.showSaveDialog(getMainFrame());
+
+        if (!isOk) {
+            return;
+        }
+
+        File file = fileChooser.getSelectedFile();
+
+        // Ensure the file has a .csv extension
+        if (!file.getAbsolutePath().endsWith(".csv")) {
+            file = new File(file.getAbsolutePath() + ".csv");
+        }
+
+        try {
+            exportTableToCSV(table, file);
+            JOptionPane.showMessageDialog(getMainFrame(), "Dữ liệu đã được lưu tới đường dẫn: " + file.getAbsolutePath(), "Xuất dữ liệu thành công", JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getResource("/icons8-tick-24.png")));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(getMainFrame(), "Lỗi khi xuất dữ liệu: " + ex.getMessage(), "Lỗi hệ thống", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private com.uiteco.components.RoundedPanel roundedPanel1;
+    private com.raven.scroll.ScrollPaneWin11 scrollPane;
+    private javax.swing.JTable table;
+    // End of variables declaration//GEN-END:variables
+}

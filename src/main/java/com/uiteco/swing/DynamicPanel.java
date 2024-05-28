@@ -122,7 +122,6 @@ public abstract class DynamicPanel extends JPanel {
             removePageHistory(i);
             i--;
         }
-
     }
 
     public void previousComponent() {
@@ -166,6 +165,13 @@ public abstract class DynamicPanel extends JPanel {
         } else {
             System.err.printf("Error: component with name %s already exist", name);
         }
+    }
+    
+    public void clear() {
+        pageHistory.clear();
+        pageHolder.removeAll();
+        nameToComp.clear();
+        historyIndex = 0;
     }
 
     public abstract void _propertyChangeHandler(PropertyChangeEvent evt);

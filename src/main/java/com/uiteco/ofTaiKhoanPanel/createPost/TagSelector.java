@@ -19,6 +19,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 /**
  *
@@ -52,6 +54,21 @@ public class TagSelector extends RoundedPanel implements PropertyChangeListener 
         return new HashSet<String>(combo.getSelectedItems());
     }
     
+    public void clear() {
+        combo.setSelectedItems(new ArrayList());
+    }
+
+    public void setSelectedTags(Set<String> selectedTags) {
+        if (selectedTags == null) {
+            return;
+        }
+        
+        List<Object> selItems = selectedTags.stream().collect(
+                Collectors.toCollection(ArrayList::new)
+        );
+        combo.setSelectedItems(selItems);
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 //        if (evt.getPropertyName().equals("selectedItems")) {

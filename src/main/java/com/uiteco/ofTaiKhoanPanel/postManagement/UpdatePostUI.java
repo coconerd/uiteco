@@ -2,11 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.uiteco.ofTaiKhoanPanel.createPost;
+package com.uiteco.ofTaiKhoanPanel.postManagement;
 
-import static com.uiteco.ofSuKienPanel.SuKienDAO.createSuKien;
+import com.uiteco.ofTaiKhoanPanel.createPost.*;
+import static com.uiteco.ofSuKienPanel.SuKienDAO.updateSuKien;
 import java.sql.SQLException;
 import com.uiteco.main.App;
+import com.uiteco.ofSuKienPanel.SuKienDAO;
 import com.uiteco.ofSuKienPanel.SuKienModel;
 import com.uiteco.ofSuKienPanel.detailed.NullSuKienModelException;
 import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
@@ -34,13 +36,16 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.text.BadLocationException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author nddmi
  */
-public class CreatePostUI extends javax.swing.JPanel {
-
+public class UpdatePostUI extends javax.swing.JPanel {
+    private int postID;
+    
     /**
      *
      */
@@ -87,7 +92,7 @@ public class CreatePostUI extends javax.swing.JPanel {
     /**
      * Variables of CreatePostUI
      */
-    public static final String INSTANCE_NAME = "createPostUI";
+    public static final String INSTANCE_NAME = "updatePostUI";
 
     private TagSelector tagSelector;
     private ImageSelector imageSelector;
@@ -96,7 +101,7 @@ public class CreatePostUI extends javax.swing.JPanel {
     /**
      * Creates new form CreatePost
      */
-    public CreatePostUI() {
+    public UpdatePostUI() {
         initComponents();
 
         try {
@@ -114,6 +119,22 @@ public class CreatePostUI extends javax.swing.JPanel {
             jLabel8.setText(currentTime);
         });
         timer.start();
+    }
+
+    public void load(SuKienModel suKienModel) {
+        this.postID = suKienModel.getPostID();
+        try {
+            SuKienDAO.getMissingDetail(suKienModel);
+            content.setText(suKienModel.getContent());
+            title.setText(suKienModel.getTitle());
+            imageSelector.setSelectedImages(suKienModel.getImages() != null ? List.of(suKienModel.getImages()) : null);
+            imageSelector.setThumbnail(suKienModel.getThumbnail());
+            tagSelector.setSelectedTags(suKienModel.getTags());
+            eventSetting.restoreState(suKienModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi load bài đăng " + e.getMessage(), "Lỗi hệ thống", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -564,8 +585,8 @@ public class CreatePostUI extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         utilPanel.add(previewBtn, gridBagConstraints);
 
-        submitBtn.setToolTipText("Đăng tải bài viết");
-        submitBtn.setImage(new javax.swing.ImageIcon(getClass().getResource("/icons8-paper-plane-48.png"))); // NOI18N
+        submitBtn.setToolTipText("Cập nhật bài viết");
+        submitBtn.setImage(new javax.swing.ImageIcon(getClass().getResource("/icons8-save-48.png"))); // NOI18N
         submitBtn.setMinimumSize(new java.awt.Dimension(40, 40));
         submitBtn.setPreferredSize(new java.awt.Dimension(35, 35));
         submitBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -604,7 +625,7 @@ public class CreatePostUI extends javax.swing.JPanel {
 
     private void submitBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitBtnMouseClicked
         // TODO add your handling code here:
-        _createPost();
+        _updatePost();
     }//GEN-LAST:event_submitBtnMouseClicked
 
     private void imgBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgBtnMouseEntered
@@ -676,7 +697,7 @@ public class CreatePostUI extends javax.swing.JPanel {
         // TODO add your handling code here:
         eventSettingBtn.setBorder(null);
     }//GEN-LAST:event_eventSettingBtnMouseExited
-
+    
     private void _clear() {
         title.setText("");
         content.setText("");
@@ -690,13 +711,13 @@ public class CreatePostUI extends javax.swing.JPanel {
     }
 
     private void _exit() {
-        App.getMainFrame().getContentPanel().showComponentAndTrimHistory("taiKhoanPanel");
+        App.getMainFrame().getContentPanel().showComponentAndTrimHistory(PostManagement.INSTANCE_NAME);
         App.getMainFrame().getRightPanel().showComponentAndTrimHistory("taiKhoanRightPanel");
         masterScrollPane.scrollToTop();
         contentScrollPane.scrollToTop();
     }
 
-    private void _createPost() {
+    private void _updatePost() {
         try {
             String title = this.title.getText();
             String content = this.content.getText();
@@ -715,7 +736,7 @@ public class CreatePostUI extends javax.swing.JPanel {
             if (thumbnail == null) {
                 if (JOptionPane.showConfirmDialog(
                         App.getMainFrame(),
-                        "Bạn có muốn tiếp tục đăng bài?",
+                        "Bạn có muốn tiếp tục cập nhật?",
                         "Bài đăng chưa có thumbnail",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.WARNING_MESSAGE
@@ -731,9 +752,9 @@ public class CreatePostUI extends javax.swing.JPanel {
             Integer enrollLimit = eventSetting.getEnrollLimit();
             LocalDate enrollStart = eventSetting.getEnrollStart();
             LocalDate enrollEnd = eventSetting.getEnrollEnd();
-            String organization = eventSetting.getOrganization();
 
-            createSuKien(
+            updateSuKien(
+                    this.postID,
                     postType,
                     title,
                     content,
@@ -741,26 +762,24 @@ public class CreatePostUI extends javax.swing.JPanel {
                     tags,
                     images,
                     thumbnail,
-                    null,
                     enrollable,
                     enrollLimit,
                     enrollStart,
-                    enrollEnd,
-                    organization
+                    enrollEnd
             );
 
-            if (!(JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn đăng tải bài viết", "Xác nhận", JOptionPane.OK_CANCEL_OPTION)
+            if (!(JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn cập nhật bài viết", "Xác nhận cập nhật", JOptionPane.OK_CANCEL_OPTION)
                     == JOptionPane.OK_OPTION)) {
                 return;
             }
 
-            JOptionPane.showMessageDialog(this, "Đăng bài viết thành công", "Thành công", JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getResource("/icons8-tick-24.png")));
+            JOptionPane.showMessageDialog(this, "Cập nhật bài viết thành công", "Thành công", JOptionPane.PLAIN_MESSAGE, new ImageIcon(getClass().getResource("/icons8-tick-24.png")));
             _clear();
             _exit();
         } catch (SQLException | IOException e) {
             e.printStackTrace();
             String errMsg = e.getMessage();
-            JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra khi đăng bài " + errMsg, "Lỗi hệ thống",  JOptionPane.ERROR_MESSAGE, new ImageIcon(getClass().getResource("/icons8-cross-24.png")));
+            JOptionPane.showMessageDialog(this, errMsg, "Đã có lỗi xảy ra khi cập nhật bài viết " + errMsg, JOptionPane.ERROR_MESSAGE, new ImageIcon(getClass().getResource("/icons8-cross-24.png")));
             _exit();
         }
     }

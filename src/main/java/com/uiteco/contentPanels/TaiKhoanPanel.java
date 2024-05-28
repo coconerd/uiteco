@@ -17,6 +17,8 @@ import com.uiteco.ofTaiKhoanPanel.ClbPanel;
 import com.uiteco.ofTaiKhoanPanel.TaiKhoanDAO;
 import com.uiteco.ofTaiKhoanPanel.TaiKhoanModel;
 import java.sql.SQLException;
+import static com.uiteco.main.App.getMainFrame;
+import com.uiteco.ofTaiKhoanPanel.postManagement.PostManagement;
 
 /**
  *

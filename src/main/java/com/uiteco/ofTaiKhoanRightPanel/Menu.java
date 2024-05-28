@@ -19,6 +19,7 @@ import com.uiteco.ofTaiKhoanPanel.clubManagement.ClubManagementUI;
 import com.uiteco.ofTaiKhoanPanel.introduction.IntroductionUI;
 import com.uiteco.ofTaiKhoanPanel.security.SecurityUI;
 import com.uiteco.ofTaiKhoanPanel.createPost.CreatePostUI;
+import com.uiteco.ofTaiKhoanPanel.postManagement.PostManagement;
 import com.uiteco.swing.ContentPanel;
 
 /**
@@ -59,18 +60,18 @@ public class Menu extends JComponent {
                 if (App.getSession().getUser().getAccountType() == ACCOUNT_TYPE.admin) {
                     menuNames = new String[][]{
                         {"Thông tin cá nhân", "Chỉnh sửa", "Bảo mật"},
-                        {"Admin", "Đăng bài"},
+                        {"Admin", "Đăng bài", "Quản lý bài đăng"},
                         {"Quản lý câu lạc bộ"}
                     };
 
                     pagePairs = new PagePair[][]{
                         {null, new PagePair(IntroductionUI.INSTANCE_NAME, "taiKhoanRightPanel"), new PagePair(SecurityUI.INSTANCE_NAME, "taiKhoanRightPanel")},
-                        {null, new PagePair(CreatePostUI.INSTANCE_NAME, "taiKhoanRightPanel")},
+                        {null, new PagePair(CreatePostUI.INSTANCE_NAME, "taiKhoanRightPanel"), new PagePair(PostManagement.INSTANCE_NAME, "taiKhoanRightPanel")},
                         {new PagePair(ClubManagementUI.INSTANCE_NAME, "taiKhoanRightPanel")},};
 
                     menuImageNames = new String[][]{
                         {"icons8-settings-24.png", "icons8-edit-24.png", "icons8-lock-24.png"},
-                        {"icons8-user-shield-24.png", "icons8-edit-row-24.png"},
+                        {"icons8-user-shield-24.png", "icons8-edit-row-24.png", "icons8-goodnotes-24.png"},
                         {"icons8-club-24.png"}
                     };
 
@@ -254,6 +255,9 @@ public class Menu extends JComponent {
             return;
         }
 
+        if (pagePair.contentPanelName.equals(PostManagement.INSTANCE_NAME)) {
+            ((PostManagement) contentPanel.getComponent(PostManagement.INSTANCE_NAME)).load();
+        }
         
         contentPanel.showComponentAndTrimHistory(pagePair.contentPanelName);
         App.getMainFrame().getRightPanel().showComponentAndTrimHistory(pagePair.rightPanelName);

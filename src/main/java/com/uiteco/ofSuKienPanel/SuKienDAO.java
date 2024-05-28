@@ -36,11 +36,14 @@ import java.sql.NClob;
 import com.uiteco.database.DataUtils;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Arrays;
 import static com.uiteco.main.App.getSession;
 import com.uiteco.ofTaiKhoanPanel.TaiKhoanModel;
 import java.sql.CallableStatement;
 import static com.uiteco.main.App.getSession;
+import com.uiteco.ofTaiKhoanPanel.postManagement.TaiKhoanModelParticipant;
+import java.sql.Date;
 
 /**
  *
@@ -74,7 +77,7 @@ public class SuKienDAO {
         // mock
         for (int i = 0; i < 100; i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
-            String type = "Event";
+            int type = 1;
 //            HashSet<String> tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
 //            try {
             Set<String> tags = getRandomTags(getAllTags());
@@ -203,7 +206,7 @@ public class SuKienDAO {
         // mock
         for (int i = 0; i < N; i++) {
             String title = String.format("Day la su kien thu %d", i + 1);
-            String type = "Event";
+            int type = 1;
 //            HashSet<String> tags = new HashSet<>(java.util.Arrays.asList("Beginner Friendly", "Social Good", "Low/No Code"));
 //            try {
             Set<String> tags = getRandomTags(getAllTags());
@@ -742,18 +745,25 @@ public class SuKienDAO {
     }
 
     public static void createSuKien(
+            int postType,
             String title,
             String content,
             int accountID,
             Set<String> tags,
             List<ImageIcon> images,
             ImageIcon thumbnail,
-            Integer clubID
+            Integer clubID,
+            boolean enrollable,
+            Integer enrollLimit,
+            LocalDate enrollStart,
+            LocalDate enrollEnd,
+            String organization
     ) throws IOException, SQLException {
         Connection conn = ConnectionManager.getConnection();
 
         // Insert BAIDANG
-        String sql = "INSERT INTO BAIDANG (TIEUDE, NOIDUNG, NGUOIDANG, THUMBNAIL, MACLBDANGBAI, LOAIBD) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO BAIDANG (TIEUDE, NOIDUNG, NGUOIDANG, THUMBNAIL, MACLBDANGBAI, LOAIBD, COTHEDANGKY, SL_DANGKY_TOIDA, NGAYBD_DANGKY, NGAYHH_DANGKY)"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstm = conn.prepareStatement(sql, new String[]{"MABD"});
 
         NClob nclob = conn.createNClob();
@@ -776,7 +786,23 @@ public class SuKienDAO {
             pstm.setInt(5, clubID);
         }
 
-        pstm.setInt(6, 1); // 1 value is for SuKien
+        pstm.setInt(6, postType); // 1 for Su kien, 2 for Cuoc thi
+
+        if (enrollable) {
+            pstm.setInt(7, 1);
+            if (enrollLimit != null) {
+                pstm.setInt(8, enrollLimit);
+            } else {
+                pstm.setNull(8, java.sql.Types.INTEGER);
+            }
+            pstm.setDate(9, Date.valueOf(enrollStart));
+            pstm.setDate(10, Date.valueOf(enrollEnd));
+        } else {
+            pstm.setInt(7, 0);
+            pstm.setNull(8, java.sql.Types.INTEGER);
+            pstm.setNull(9, java.sql.Types.DATE);
+            pstm.setNull(10, java.sql.Types.DATE);
+        }
 
         pstm.executeUpdate();
         ResultSet genKeys = pstm.getGeneratedKeys();
@@ -804,6 +830,115 @@ public class SuKienDAO {
                 }
                 pstm.executeBatch();
             }
+            if (organization != null) {
+                sql = "INSERT INTO BAIDANG_CUOCTHI (MABD, DONVITOCHUC) VALUES (?, ?)";
+                pstm = conn.prepareStatement(sql);
+                pstm.setInt(1, postID);
+                pstm.setNString(2, organization);
+                pstm.executeUpdate();
+            }
+
+        }
+
+        if (genKeys != null) {
+            genKeys.close();
+        }
+        conn.commit();
+        pstm.close();
+        conn.close();
+    }
+
+    public static void updateSuKien(
+            int postID,
+            int postType,
+            String title,
+            String content,
+            int accountID,
+            Set<String> tags,
+            List<ImageIcon> images,
+            ImageIcon thumbnail,
+            boolean enrollable,
+            Integer enrollLimit,
+            LocalDate enrollStart,
+            LocalDate enrollEnd
+    ) throws IOException, SQLException {
+        Connection conn = ConnectionManager.getConnection();
+
+        // Insert BAIDANG
+        String sql = """
+                     UPDATE BAIDANG
+                     SET TIEUDE = ?,
+                     \tNOIDUNG = ?,
+                     \tTHUMBNAIL = ?,
+                     \tLOAIBD = ?,
+                     \tCOTHEDANGKY = ?,
+                     \tSL_DANGKY_TOIDA = ?,
+                     \tNGAYBD_DANGKY = ?,
+                     \tNGAYHH_DANGKY = ?
+                     WHERE MABD = ?""";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+
+        pstm.setString(1, title);
+
+        NClob nclob = conn.createNClob();
+        nclob.setString(1, content);
+        pstm.setNClob(2, nclob);
+
+        if (thumbnail == null) {
+            pstm.setNull(3, java.sql.Types.BLOB);
+        } else {
+            pstm.setBlob(3, new ByteArrayInputStream(DataUtils.convertImageIconToBytes(thumbnail)));
+        }
+
+        pstm.setInt(4, postType);
+
+        if (enrollable) {
+            pstm.setInt(5, 1);
+            if (enrollLimit != null) {
+                pstm.setInt(6, enrollLimit);
+            } else {
+                pstm.setNull(6, java.sql.Types.INTEGER);
+            }
+            pstm.setDate(7, Date.valueOf(enrollStart));
+            pstm.setDate(8, Date.valueOf(enrollEnd));
+        } else {
+            pstm.setInt(5, 0);
+            pstm.setNull(6, java.sql.Types.INTEGER);
+            pstm.setNull(7, java.sql.Types.DATE);
+            pstm.setNull(8, java.sql.Types.DATE);
+        }
+        pstm.setInt(9, postID);
+
+        pstm.executeUpdate();
+
+        sql = "DELETE FROM TAGS_BAIDANG WHERE MABD = ?";
+        pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, postID);
+        pstm.executeUpdate();
+        if (tags != null && tags.size() > 0) {
+            // Insert TAGS_BAIDANG
+            sql = "INSERT INTO TAGS_BAIDANG (MABD, TAG) VALUES (?, ?)";
+            pstm = conn.prepareStatement(sql);
+            for (String tag : tags) {
+                pstm.setInt(1, postID);
+                pstm.setString(2, tag);
+                pstm.addBatch();
+            }
+            pstm.executeBatch();
+        }
+        sql = "DELETE FROM HINHANH WHERE MABD = ?";
+        pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, postID);
+        pstm.executeUpdate();
+        if (images != null && images.size() > 0) {
+            sql = "INSERT INTO HINHANH (MABD, ANH) VALUES (?, ?)";
+            pstm = conn.prepareStatement(sql);
+            for (ImageIcon image : images) {
+                pstm.setInt(1, postID);
+                pstm.setBlob(2, new ByteArrayInputStream(DataUtils.convertImageIconToBytes(image)));
+                pstm.addBatch();
+            }
+            pstm.executeBatch();
         }
 
         conn.commit();
@@ -882,9 +1017,9 @@ public class SuKienDAO {
         Connection conn = ConnectionManager.getConnection();
         // Get MACLB and NOIDUNG
         String sql = """
-                     SELECT LBD.MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH, TENCLB, LUOTDANGKY, COTHEDANGKY, NGAYBD_DANGKY, NGAYHH_DANGKY, SL_DANGKY_TOIDA
+                     SELECT LBD.MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH, TENCLB, LUOTDANGKY, COTHEDANGKY, NGAYBD_DANGKY, NGAYHH_DANGKY, SL_DANGKY_TOIDA, LOAIBD
                      FROM 
-                     \t(SELECT MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH, LUOTDANGKY, COTHEDANGKY, NGAYBD_DANGKY, NGAYHH_DANGKY, SL_DANGKY_TOIDA FROM BAIDANG BD WHERE MABD = ?) BD 
+                     \t(SELECT MABD, NOIDUNG, MACLBDANGBAI, LUOTXEM, LUOTTHICH, LUOTDANGKY, COTHEDANGKY, NGAYBD_DANGKY, NGAYHH_DANGKY, SL_DANGKY_TOIDA, LOAIBD FROM BAIDANG BD WHERE MABD = ?) BD 
                      LEFT JOIN
                           (SELECT MACLB, TENCLB FROM CAULACBO) CLB ON BD.MACLBDANGBAI = CLB.MACLB LEFT JOIN
                      \t(SELECT MABD FROM THICH_BAIDANG WHERE MATK = ? AND MABD = ?) LBD ON LBD.MABD = BD.MABD""";
@@ -900,6 +1035,7 @@ public class SuKienDAO {
             suKienModel.setLikes(rs.getInt("LUOTTHICH"));
             suKienModel.setContent(rs.getString("NOIDUNG"));
             suKienModel.setEnrollCount(rs.getInt("LUOTDANGKY"));
+            suKienModel.setType(rs.getInt("LOAIBD"));
             suKienModel.setEnrollable(rs.getInt("COTHEDANGKY") == 1 ? true : false);
             if (suKienModel.isEnrollable()) {
                 suKienModel.setEnrollStart(rs.getDate("NGAYBD_DANGKY").toLocalDate());
@@ -1021,13 +1157,43 @@ public class SuKienDAO {
             }
             result.add(user);
         }
-        
+
         rs.close();
         pstm.close();
         conn.close();
         return result;
     }
-    
+
+    public static LinkedList<TaiKhoanModelParticipant> getParticipantsManagement(SuKienModel suKienModel) throws SQLException {
+        Connection conn = ConnectionManager.getConnection();
+        String sql = """
+                     SELECT TK.MATK, HOTEN, MSSV, TENKHOA, DK.THOIDIEMDK
+                     FROM
+                     \t(SELECT MATK, HOTEN FROM TAIKHOAN WHERE LOAITK = 2 OR LOAITK = 3) TK
+                     \tJOIN
+                     \t(SELECT MATK, MSSV, TENKHOA FROM SINHVIEN) SV ON SV.MATK = TK.MATK
+                     \tJOIN
+                     \t(SELECT MATK, THOIDIEMDK FROM DANGKY WHERE MABD = ?) DK ON DK.MATK = TK.MATK""";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, suKienModel.getPostID());
+        ResultSet rs = pstm.executeQuery();
+
+        LinkedList<TaiKhoanModelParticipant> result = new LinkedList<>();
+        while (rs.next()) {
+            TaiKhoanModelParticipant user = new TaiKhoanModelParticipant();
+            user.setAccountID(rs.getInt("MATK"));
+            user.setFullname(rs.getString("HOTEN"));
+            user.setMssv(rs.getString("MSSV"));
+            user.setFaculty(rs.getString("TENKHOA"));
+            user.setEnrolledAt(rs.getTimestamp("THOIDIEMDK").toLocalDateTime());
+            result.add(user);
+        }
+
+        pstm.close();
+        conn.close();
+        return result;
+    }
+
     public static void enrollInSuKien(SuKienModel suKienModel) throws SQLException {
         Connection conn = ConnectionManager.getConnection();
         String sql = "{CALL PROC_DANGKY_SUKIEN(?, ?, ?)}";
@@ -1037,7 +1203,69 @@ public class SuKienDAO {
         cstm.registerOutParameter(3, java.sql.Types.INTEGER);
         cstm.execute();
         suKienModel.setEnrollCount(cstm.getInt(3));
-        
+
+        cstm.close();
+        conn.close();
+    }
+
+    public static ArrayList<SuKienModel> getPostsOfUser(TaiKhoanModel user) throws SQLException {
+        ArrayList<SuKienModel> result = new ArrayList<>();
+
+        Connection conn = ConnectionManager.getConnection();
+        String sql = "SELECT MABD, TIEUDE, THUMBNAIL, LUOTXEM, LUOTTHICH, THOIDIEMDANG, COTHEDANGKY, LUOTDANGKY, SL_DANGKY_TOIDA, CAPNHATLANCUOI FROM BAIDANG WHERE NGUOIDANG = ? ORDER BY CAPNHATLANCUOI DESC";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, user.getAccountID());
+        ResultSet rs = pstm.executeQuery();
+
+        while (rs.next()) {
+            SuKienModel post = new SuKienModel();
+            post.setPostID(rs.getInt("MABD"));
+            post.setTitle(rs.getString("TIEUDE"));
+            post.setViews(rs.getInt("LUOTXEM"));
+            post.setLikes(rs.getInt("LUOTTHICH"));
+            post.setPostedAt(rs.getTimestamp("THOIDIEMDANG").toLocalDateTime());
+            post.setEnrollable(rs.getInt("COTHEDANGKY") == 1 ? true : false);
+            post.setEnrollCount(rs.getInt("LUOTDANGKY"));
+            post.setLastUpdated(rs.getTimestamp("CAPNHATLANCUOI").toLocalDateTime());
+
+            Integer enrollLimit = rs.getInt("SL_DANGKY_TOIDA");
+            post.setEnrollLimit(!rs.wasNull() ? enrollLimit : null);
+
+            Blob blob = rs.getBlob("THUMBNAIL");
+            if (!rs.wasNull()) {
+                try {
+                    InputStream is = blob.getBinaryStream(1, blob.length());
+                    Image buffImage = ImageIO.read(is);
+                    ImageIcon thumbnail = new ImageIcon(buffImage);
+
+                    // Cleanup
+                    is.close();
+                    blob.free();
+                    is = null;
+                    buffImage = null;
+                    blob = null;
+
+                    post.setThumbnail(thumbnail);
+                } catch (Exception e) {
+                    System.out.println("Encouterend exception when parsing thumbnail of post");
+                }
+            }
+
+            result.add(post);
+        }
+
+        rs.close();
+        pstm.close();
+        return result;
+    }
+
+    public static void deletePost(SuKienModel suKienModel) throws SQLException {
+        String sql = "{CALL PROC_XOA_BAIDANG(?)}";
+        Connection conn = ConnectionManager.getConnection();
+        CallableStatement cstm = conn.prepareCall(sql);
+        cstm.setInt(1, suKienModel.getPostID());
+        cstm.execute();
+
         cstm.close();
         conn.close();
     }

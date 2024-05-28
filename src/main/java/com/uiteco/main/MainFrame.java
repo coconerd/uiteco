@@ -16,6 +16,7 @@ import com.uiteco.contentPanels.CauLacBoPanel;
 import com.uiteco.contentPanels.ForumPanel;
 import com.uiteco.contentPanels.TinNhanPanel;
 import com.uiteco.contentPanels.TaiKhoanPanel;
+import static com.uiteco.main.App.getMainFrame;
 import com.uiteco.rightPanels.SuKienRightPanel;
 import com.uiteco.rightPanels.CuocThiRightPanel;
 import com.uiteco.rightPanels.CauLacBoRightPanel;
@@ -30,6 +31,8 @@ import com.uiteco.swing.ContentPanel;
 import java.awt.Cursor;
 import com.uiteco.ofTaiKhoanPanel.createPost.CreatePostUI;
 import com.uiteco.ofTaiKhoanPanel.introduction.IntroductionUI;
+import com.uiteco.ofTaiKhoanPanel.postManagement.PostManagement;
+import com.uiteco.ofTaiKhoanPanel.postManagement.UpdatePostUI;
 import com.uiteco.ofTaiKhoanPanel.security.SecurityUI;
 
 /**
@@ -765,17 +768,22 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
 
         CreatePostUI cp = new CreatePostUI();
         contentPanel.registerComponent(cp, CreatePostUI.INSTANCE_NAME);
-        
+
         IntroductionUI id = new IntroductionUI();
         contentPanel.registerComponent(id, IntroductionUI.INSTANCE_NAME);
-        
+
         SecurityUI sc = new SecurityUI();
         contentPanel.registerComponent(sc, SecurityUI.INSTANCE_NAME);
-        
+
         ClubManagementUI cm = new ClubManagementUI();
         contentPanel.registerComponent(cm, ClubManagementUI.INSTANCE_NAME);
-        
 
+        PostManagement pm = new PostManagement();
+        contentPanel.registerComponent(pm, PostManagement.INSTANCE_NAME);
+        
+        UpdatePostUI up = new UpdatePostUI();
+        contentPanel.registerComponent(up, UpdatePostUI.INSTANCE_NAME);
+        
 //        contentPanel.registerComponent(rootPane, name);
 //        contentPanel.registerComponent(rootPane, name);
 //        contentPanel.registerComponent(rootPane, name);
@@ -808,7 +816,7 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
 
         TaiKhoanRightPanel tkr = new TaiKhoanRightPanel();
         rightPanel.registerComponent(tkr, "taiKhoanRightPanel");
-        
+
         SuKienDetailRightPanel sdrp = new SuKienDetailRightPanel();
         rightPanel.registerComponent(sdrp, SuKienDetailRightPanel.INSTANCE_NAME);
     }
