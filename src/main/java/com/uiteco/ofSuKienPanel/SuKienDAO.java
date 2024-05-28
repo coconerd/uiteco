@@ -541,7 +541,7 @@ public class SuKienDAO {
         String tagParams = "(";
         int i = 0;
         for (String tag : selectedTags) {
-            tagParams += "'" + tag +"'";
+            tagParams += "'" + tag + "'";
             if (i < tagCount - 1) {
                 tagParams += ", ";
             }
@@ -557,7 +557,7 @@ public class SuKienDAO {
                 + "	(SELECT HOTEN, MATK FROM TAIKHOAN) TK ON BD.NGUOIDANG = TK.MATK\n"
                 + "ORDER BY " + (sortOption == SORT_OPTION.NEWEST ? "BD.THOIDIEMDANG DESC" : "BD.LUOTXEM DESC, BD.LUOTTHICH DESC, BD.LUOTXEM DESC") + "\n"
                 + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-        
+
         Connection conn = ConnectionManager.getConnection();
         PreparedStatement pstm = conn.prepareStatement(sql);
 //
@@ -628,6 +628,58 @@ public class SuKienDAO {
         }
 
         return suKienList;
+
+
+        /*
+        Real function
+//         */
+//        ArrayList<SuKienModel> suKienList = new ArrayList();
+//
+//        Connection conn = ConnectionManager.getConnection();
+//
+//        String sql = "SELECT BD.MABD, BD.TIEUDE, BD.THUMBNAIL, BD.THOIDIEMDANG, TK.HOTEN "
+//                + "FROM "
+//                + "     (SELECT MABD, NGUOIDANG, TIEUDE, THUMBNAIL, THOIDIEMDANG, LUOTDANGKY, LUOTTHICH, LUOTXEM FROM BAIDANG WHERE LOAIBD = 1) BD\n"
+//                + "JOIN\n"
+//                + "     (SELECT HOTEN, MATK FROM TAIKHOAN) TK ON BD.NGUOIDANG = TK.MATK\n"
+//                + "ORDER BY THOIDIEMDANG DESC, LUOTDANGKY DESC, LUOTTHICH DESC, LUOTXEM DESC\n"
+//                + "FETCH FIRST ? ROWS ONLY";
+//
+//        PreparedStatement pstm = conn.prepareStatement(sql);
+//        pstm.setInt(1, slides);
+//        ResultSet rs = pstm.executeQuery();
+//
+//        while (rs.next()) {
+//            SuKienModel post = new SuKienModel();
+//            post.setPostID(rs.getInt("MABD"));
+//            post.setTitle(rs.getString("TIEUDE"));
+//            post.setPostedAt(rs.getTimestamp("THOIDIEMDANG").toLocalDateTime());
+//            post.setPostedBy(rs.getString("HOTEN"));
+//            Blob blob = rs.getBlob("THUMBNAIL");
+//
+//            if (!rs.wasNull()) {
+//                try {
+//                    InputStream is = blob.getBinaryStream(1, blob.length());
+//                    Image buffImage = ImageIO.read(is);
+//                    ImageIcon thumbnail = new ImageIcon(buffImage);
+//
+//                    // Cleanup
+//                    is.close();
+//                    blob.free();
+//                    is = null;
+//                    buffImage = null;
+//                    blob = null;
+//
+//                    post.setThumbnail(thumbnail);
+//                } catch (Exception e) {
+//                    System.out.println("Encountered exception, skipping");
+//                }
+//
+//            }
+//
+//            suKienList.add(post);
+//        }
+//        return suKienList;
     }
 
     public static int getSlideShowPageCount() {

@@ -29,6 +29,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.SQLException;
+import javax.swing.Icon;
 
 /**
  *
@@ -132,10 +133,14 @@ public class SlideShowView extends GradientPanel implements PropertyChangeListen
         if (suKienList.size() >= 1) {
             for (SuKienModel suKienModel : suKienList) {
                 ImageIcon image = suKienModel.getThumbnail();
+                if (image == null) {
+                    image = new ImageIcon(getClass().getResource("/image-placeholder.png"));
+                }
+                
                 RoundedImagePanel imgPanel = RoundedImagePanel.getRoundedImagePanel(getImageRadius());
                 imgPanel.setMaximumSize(new Dimension(image.getIconWidth(), image.getIconHeight()));
 
-                imgPanel.setImage(suKienModel.getThumbnail());
+                imgPanel.setImage(image);
                 imgPanel.setVisible(false);
                 imageContainer.add(imgPanel, "pos 0 0 0 0");
 
