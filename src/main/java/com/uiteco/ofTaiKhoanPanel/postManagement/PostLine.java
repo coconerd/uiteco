@@ -162,7 +162,7 @@ public class PostLine extends RoundedPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        delBtn.setToolTipText("Xóa sự kiện");
+        delBtn.setToolTipText("Xóa bài viết");
         delBtn.setImage(new javax.swing.ImageIcon(getClass().getResource("/icons8-trash-30.png"))); // NOI18N
         delBtn.setInheritsPopupMenu(true);
         delBtn.setPreferredSize(new java.awt.Dimension(28, 28));

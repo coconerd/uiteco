@@ -56,7 +56,7 @@ public class PostManagement extends javax.swing.JPanel {
                 line.getDelBtn().addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent evt) {
-                        int option = JOptionPane.showConfirmDialog(viewport, "Bạn có chắc muốn xóa bài viết", "Xác nhận xóa", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+                        int option = JOptionPane.showConfirmDialog(getMainFrame(), "Bạn có chắc muốn xóa bài viết", "Xác nhận xóa", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
                         if (option != JOptionPane.YES_OPTION) {
                             return;
                         }

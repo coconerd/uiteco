@@ -286,7 +286,7 @@
     </Container>
     <Container class="com.uiteco.components.RoundedImagePanel" name="delBtn">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="X&#xf3;a s&#x1ef1; ki&#x1ec7;n"/>
+        <Property name="toolTipText" type="java.lang.String" value="X&#xf3;a b&#xe0;i vi&#x1ebf;t"/>
         <Property name="image" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/icons8-trash-30.png"/>
         </Property>
