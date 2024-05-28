@@ -354,6 +354,7 @@ public class CuocThiDAO {
         return model;
     }
 
+    //use store procedure
     public static void getCountLikePost(BriefPost_Model model) {
         try {
             conn = getConnection();
@@ -382,7 +383,7 @@ public class CuocThiDAO {
         int offset = (page - 1) * limit;
         try {
             conn = getConnection();
-            
+
             String query1 = "SELECT COUNT(*) FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2";
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
@@ -395,7 +396,7 @@ public class CuocThiDAO {
             stmt.close();
 
             int totalPages = (int) Math.ceil((double) count / limit);
-            
+
             if (type == 0) {
                 if (dueDate == true) {
                     query = "SELECT "
@@ -428,7 +429,7 @@ public class CuocThiDAO {
                         + "ORDER BY THOIDIEMDANG DESC "
                         + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             }
-            
+
             PreparedStatement pstm = conn.prepareStatement(query);
 
             if (type == 1 || type == 2) {
@@ -439,7 +440,7 @@ public class CuocThiDAO {
                 pstm.setInt(1, offset);
                 pstm.setInt(2, limit);
             }
-            
+
             rset = pstm.executeQuery();
 
             while (rset.next()) {
@@ -604,46 +605,44 @@ public class CuocThiDAO {
     }
 
     public static List<BriefPost_Model> getPostsInfo_ByTags(Pagination p, int page, int limit, List<Object> selectedTags) {
-
-        int offset = (page - 1) * limit;
-
-        String tagFilter = selectedTags.stream()
-                .map(tag -> "'" + tag + "'")
-                .collect(Collectors.joining(", "));
-        query = "SELECT BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA, THUMBNAIL_YOUTUBEPLAY "
-                + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                + "WHERE BD.MABD = BD_CT.MABD "
-                + "AND LOAIBD = 2 "
-                + "AND BD.MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + ")) "
-                + "ORDER BY THOIDIEMDANG DESC";
-
+        List<BriefPost_Model> postList = new ArrayList<>();
         try {
             conn = getConnection();
 
-            //add pagination logic
-            String query1 = "SELECT COUNT(*) FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2";
-            ResultSet rset1 = stmt.executeQuery(query1);
-            int count = 0;
-            if (rset1.first()) {
-                count = rset1.getInt(1);
-            }
+            String tagFilter = selectedTags.stream()
+                    .map(tag -> "'" + tag + "'")
+                    .collect(Collectors.joining(", "));
 
-            String query2 = "SELECT "
+            String countQuery = "SELECT COUNT(*) "
+                    + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
+                    + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 "
+                    + "AND BD.MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + "))";
+
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            ResultSet rsetCount = stmt.executeQuery(countQuery);
+            int count = 0;
+            if (rsetCount.first()) {
+                count = rsetCount.getInt(1);
+            }
+            rsetCount.close();
+            stmt.close();
+
+            int offset = (page - 1) * limit;
+            int totalPages = (int) Math.ceil((double) count / limit);
+
+            String offsetQuery = "SELECT "
                     + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
                     + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
                     + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 "
+                    + "AND BD.MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + ")) "
                     + "ORDER BY THOIDIEMDANG DESC "
                     + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
-            PreparedStatement p1 = conn.prepareStatement(query2);
-            p1.setInt(1, offset);
-            p1.setInt(2, limit);
-            ResultSet rset = p1.executeQuery();
-            int totalPages = (int) Math.ceil((double) count / limit);
-
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            rset = stmt.executeQuery(query);
-            List<BriefPost_Model> postList = new ArrayList<>();
+            PreparedStatement pOffset = conn.prepareStatement(offsetQuery);
+            pOffset.setInt(1, offset);
+            pOffset.setInt(2, limit);
+            rset = pOffset.executeQuery();
 
             while (rset.next()) {
                 BriefPost_Model post = new BriefPost_Model();
@@ -682,18 +681,6 @@ public class CuocThiDAO {
                     }
                 }
 
-                byte[] imageData1 = rset.getBytes("THUMBNAIL_YOUTUBEPLAY");
-                if (imageData1 != null) {
-                    try (ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData1)) {
-                        BufferedImage bufferedImage = ImageIO.read(inputStream);
-                        Image scaledImage = bufferedImage.getScaledInstance(480, 360, Image.SCALE_SMOOTH);
-                        ImageIcon thumbnail = new ImageIcon(scaledImage);
-                        post.setImage(thumbnail);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
                 post.setOrganizer(rset.getString("DONVITOCHUC"));
                 post.setPostTime(rset.getTimestamp("THOIDIEMDANG").toLocalDateTime());
                 post.setDueDate(rset.getDate("THOIDIEMDIENRA").toLocalDate());
@@ -702,13 +689,16 @@ public class CuocThiDAO {
 
                 postList.add(post);
             }
+            conn.close();
+            rset.close();
+            pOffset.close();
 
-            return postList;
+            p.setPagegination(page, totalPages);
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return new ArrayList<>();
         }
+        return postList;
     }
 
     static Connection conn;

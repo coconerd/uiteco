@@ -89,7 +89,7 @@ public class CuocThiPanel extends JPanel {
             JLabel placeholder = new JLabel("No posts available");
             Font placeholderFont = new Font("Merriweather", Font.PLAIN, 24);
             placeholder.setFont(placeholderFont);
-            
+
             placeholder.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 118));
 
             placeholder.setHorizontalAlignment(SwingConstants.CENTER);
@@ -159,7 +159,7 @@ public class CuocThiPanel extends JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         roundedPanel1 = new com.uiteco.components.RoundedPanel();
-        comboBox = new com.uiteco.OfCuocThiPanel.Components.comboBox.ComboBoxMultiSelection();
+        comboBox = new com.uiteco.OfCuocThiPanel.firstPage.comboBox.ComboBoxMultiSelection();
         sort = new javax.swing.JLabel();
         solo = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
         team = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
@@ -170,6 +170,7 @@ public class CuocThiPanel extends JPanel {
         teamIcon = new javax.swing.JLabel();
         hotestIcon = new javax.swing.JLabel();
         dueIcon = new javax.swing.JLabel();
+        filterIcon = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
         jScrollPane = new javax.swing.JScrollPane();
         slideShowAndPosts = new javax.swing.JPanel();
         newestCompetitions_new = new com.uiteco.OfCuocThiPanel.firstPage.slideShow.NewestCompetitions_new();
@@ -193,26 +194,22 @@ public class CuocThiPanel extends JPanel {
 
         comboBox.setPreferredSize(new java.awt.Dimension(500, 42));
         comboBox.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                comboBoxMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                comboBoxMousePressed(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                comboBoxMouseReleased(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        gridBagConstraints.weightx = 0.2;
         roundedPanel1.add(comboBox, gridBagConstraints);
 
         sort.setFont(new java.awt.Font("Merriweather", 1, 24)); // NOI18N
         sort.setText("SORT:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
         roundedPanel1.add(sort, gridBagConstraints);
@@ -228,8 +225,8 @@ public class CuocThiPanel extends JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 35);
         roundedPanel1.add(solo, gridBagConstraints);
 
@@ -245,8 +242,8 @@ public class CuocThiPanel extends JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         roundedPanel1.add(team, gridBagConstraints);
 
@@ -262,8 +259,8 @@ public class CuocThiPanel extends JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 32);
         roundedPanel1.add(hottest, gridBagConstraints);
 
@@ -278,45 +275,61 @@ public class CuocThiPanel extends JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 41);
         roundedPanel1.add(due, gridBagConstraints);
 
         tagIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-tag-29.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 32, 0, 25);
         roundedPanel1.add(tagIcon, gridBagConstraints);
 
         soloIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-person-24.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 12);
         roundedPanel1.add(soloIcon, gridBagConstraints);
 
         teamIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-team-25.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 15);
         roundedPanel1.add(teamIcon, gridBagConstraints);
 
         hotestIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-hot-24.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         roundedPanel1.add(hotestIcon, gridBagConstraints);
 
         dueIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-time-24.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 11);
         roundedPanel1.add(dueIcon, gridBagConstraints);
+
+        filterIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-filter-32.png"))); // NOI18N
+        filterIcon.setColor(new java.awt.Color(255, 255, 255));
+        filterIcon.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        filterIcon.setPreferredSize(new java.awt.Dimension(70, 50));
+        filterIcon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterIconActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 7.0;
+        roundedPanel1.add(filterIcon, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -398,8 +411,7 @@ public class CuocThiPanel extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void teamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamActionPerformed
-        // TODO add your handling code here:
-        //removeAll();
+
         posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1, 2, false, false);
         _initPostsList(posts);
 
@@ -411,15 +423,10 @@ public class CuocThiPanel extends JPanel {
             }
         });
 
-        System.out.println("team: " + posts.size());
-//        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 2, false, false);
-//        _initPostsList(posts);
-
     }//GEN-LAST:event_teamActionPerformed
 
     private void dueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dueActionPerformed
         // TODO add your handling code here:
-        //removeAll();
         posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1, 0, true, false);
         _initPostsList(posts);
 
@@ -430,10 +437,6 @@ public class CuocThiPanel extends JPanel {
                 _initPostsList(posts);
             }
         });
-
-//        posts = CuocThiDAO.getPostsInfo_Sort(0, true, false);
-//        _initPostsList(posts);
-        System.out.println("Den han: " + posts.size());
 
     }//GEN-LAST:event_dueActionPerformed
 
@@ -451,9 +454,6 @@ public class CuocThiPanel extends JPanel {
             }
         });
 
-//        posts = CuocThiDAO.getPostsInfo_Sort(1, false, false);
-//        _initPostsList(posts);
-
     }//GEN-LAST:event_soloMousePressed
 
     private void hottestMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hottestMousePressed
@@ -469,28 +469,36 @@ public class CuocThiPanel extends JPanel {
                 _initPostsList(posts);
             }
         });
-//        posts = CuocThiDAO.getPostsInfo_Sort(0, false, true);
-//        _initPostsList(posts);
-//        System.out.println(posts.size());
+
     }//GEN-LAST:event_hottestMousePressed
 
-    private void comboBoxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxMousePressed
+    private void comboBoxMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxMouseReleased
         // TODO add your handling code here:
-//        postList.removeAll();
-//        List<String> selectedTags = comboBox.getSelectedItems();
-        //posts = CuocThiDAO.getPostsInfo_ComboBox(selectedTags);
+        List<Object> tags = comboBox.getSelectedItems();
+        System.out.println(tags.size());
+    }//GEN-LAST:event_comboBoxMouseReleased
 
-    }//GEN-LAST:event_comboBoxMousePressed
-
-    private void comboBoxMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxMouseExited
+    private void filterIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterIconActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxMouseExited
+        List<Object> tags = comboBox.getSelectedItems();
+        posts = CuocThiDAO.getPostsInfo_ByTags(pagination, 1, 1, tags);
+        _initPostsList(posts);
+
+        pagination.addEventPagination(new EventPagination() {
+            @Override
+            public void pageChanged(int page) {
+                posts = CuocThiDAO.getPostsInfo_ByTags(pagination, page, 1, tags);
+                _initPostsList(posts);
+            }
+        });
+    }//GEN-LAST:event_filterIconActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.OfCuocThiPanel.Components.comboBox.ComboBoxMultiSelection comboBox;
+    private com.uiteco.OfCuocThiPanel.firstPage.comboBox.ComboBoxMultiSelection comboBox;
     private com.uiteco.OfCuocThiPanel.secondPage.CustomButton due;
     private javax.swing.JLabel dueIcon;
+    private com.uiteco.OfCuocThiPanel.secondPage.CustomButton filterIcon;
     private javax.swing.JLabel hotestIcon;
     private com.uiteco.OfCuocThiPanel.secondPage.CustomButton hottest;
     private javax.swing.JLabel jHello;

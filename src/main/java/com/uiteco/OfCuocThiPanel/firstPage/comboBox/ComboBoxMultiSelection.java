@@ -1,4 +1,4 @@
-package com.uiteco.OfCuocThiPanel.Components.comboBox;
+package com.uiteco.OfCuocThiPanel.firstPage.comboBox;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
@@ -11,8 +11,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
@@ -45,7 +43,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
             }
         }
         comboItem.clear();
-        fireTagSelectionChanged(); // Notify listeners
+        //fireTagSelectionChanged(); // Notify listeners
     }
 
     public void clearSelectedItems() {
@@ -70,7 +68,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         if (comboList != null) {
             comboList.repaint();
         }
-        fireTagSelectionChanged(); // Notify listeners
+        //fireTagSelectionChanged(); // Notify listeners
     }
 
     private void addItemObject(Object obj) {
@@ -79,7 +77,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         if (comboList != null && selectedItems.size() <= 3) {
             comboList.repaint();
         }
-        fireTagSelectionChanged(); // Notify listeners
+        //fireTagSelectionChanged(); // Notify listeners
     }
 
     public ComboBoxMultiSelection() {
@@ -89,14 +87,6 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         setEditor(comboBoxMultiCellEditor);
         setEditable(true);
 
-        // Add focus listener to detect when the combo box loses focus
-        getEditor().getEditorComponent().addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                setPopupVisible(false); // Close the popup
-            }
-        });
-        
         addActionListener((e) -> {
             if (e.getModifiers() == ActionEvent.MOUSE_EVENT_MASK) {
                 JComboBox combo = (JComboBox) e.getSource();
@@ -113,7 +103,6 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
 
     @Override
     public void setPopupVisible(boolean v) {
-        super.setPopupVisible(v);
 
     }
     
@@ -259,7 +248,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
             putClientProperty(FlatClientProperties.STYLE, ""
                     + "border:0,5,0,20;"
                     + "background:darken($ComboBox.background,10%)");
-            JButton cmd = new JButton(new FlatSVGIcon("raven/combobox/close.svg", 0.6f));
+            JButton cmd = new JButton(new FlatSVGIcon("/CuocThiPanel_resources/close.svg", 0.6f));
             cmd.putClientProperty(FlatClientProperties.STYLE, ""
                     + "arc:999;"
                     + "margin:1,1,1,1;"
