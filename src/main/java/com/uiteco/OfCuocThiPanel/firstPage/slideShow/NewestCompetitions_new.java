@@ -73,11 +73,6 @@ public class NewestCompetitions_new extends javax.swing.JPanel {
                 roundedGradientPanelMouseMoved(evt);
             }
         });
-        roundedGradientPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                roundedGradientPanelMouseExited(evt);
-            }
-        });
         roundedGradientPanel.setLayout(new java.awt.GridBagLayout());
 
         slideShow_AutoSlide.setOpaque(false);
@@ -92,12 +87,7 @@ public class NewestCompetitions_new extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(40, 50, 40, 50);
         roundedGradientPanel.add(slideShow_AutoSlide, gridBagConstraints);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/back_disable.png"))); // NOI18N
-        jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jLabel1MouseMoved(evt);
-            }
-        });
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/back_dis.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel1MouseExited(evt);
@@ -112,11 +102,6 @@ public class NewestCompetitions_new extends javax.swing.JPanel {
         roundedGradientPanel.add(jLabel1, gridBagConstraints);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/next_dis.png"))); // NOI18N
-        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jLabel2MouseMoved(evt);
-            }
-        });
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel2MouseExited(evt);
@@ -137,52 +122,40 @@ public class NewestCompetitions_new extends javax.swing.JPanel {
         add(roundedGradientPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void roundedGradientPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedGradientPanelMouseMoved
+        // TODO add your handling code here:
+        jLabel1.setVisible(true);
+        jLabel2.setVisible(true);
+        roundedGradientPanel.repaint();
+    }//GEN-LAST:event_roundedGradientPanelMouseMoved
+
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
         // TODO add your handling code here:
         jLabel1.setIcon(new ImageIcon(getClass().getResource("/CuocThiPanel_resources/back_en.png")));
         slideShow_AutoSlide.stop();
         slideShow_AutoSlide.back();
+        jLabel1.repaint();
     }//GEN-LAST:event_jLabel1MousePressed
 
-    private void roundedGradientPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedGradientPanelMouseMoved
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
         // TODO add your handling code here:
-        jLabel1.setVisible(true);
-        jLabel2.setVisible(true);
-
-    }//GEN-LAST:event_roundedGradientPanelMouseMoved
-
-    private void jLabel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseMoved
-        // TODO add your handling code here:
-        jLabel1.setIcon(new ImageIcon(getClass().getResource("/CuocThiPanel_resources/back_dis.png")));
-    }//GEN-LAST:event_jLabel1MouseMoved
-
-    private void jLabel2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseMoved
-        // TODO add your handling code here:
-        jLabel2.setIcon(new ImageIcon(getClass().getResource("/CuocThiPanel_resources/next_dis.png")));
-    }//GEN-LAST:event_jLabel2MouseMoved
+        jLabel2.setIcon(new ImageIcon(getClass().getResource("/CuocThiPanel_resources/next_en.png")));
+        slideShow_AutoSlide.stop();
+        slideShow_AutoSlide.next();
+        jLabel2.repaint();
+    }//GEN-LAST:event_jLabel2MousePressed
 
     private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
         // TODO add your handling code here:
-        jLabel1.setVisible(false);
+        jLabel1.setIcon(new ImageIcon(getClass().getResource("/CuocThiPanel_resources/back_dis.png")));
+        jLabel1.repaint();
     }//GEN-LAST:event_jLabel1MouseExited
 
     private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
         // TODO add your handling code here:
-        jLabel2.setVisible(false);
+        jLabel2.setIcon(new ImageIcon(getClass().getResource("/CuocThiPanel_resources/next_dis.png")));
+        jLabel2.repaint();
     }//GEN-LAST:event_jLabel2MouseExited
-
-    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
-        // TODO add your handling code here:
-        jLabel2.setIcon(new ImageIcon(getClass().getResource("/CuocThiPanel_resources/back_en.png")));
-        slideShow_AutoSlide.stop();
-        slideShow_AutoSlide.next();
-    }//GEN-LAST:event_jLabel2MousePressed
-
-    private void roundedGradientPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roundedGradientPanelMouseExited
-        // TODO add your handling code here:
-        jLabel1.setVisible(false);
-        jLabel2.setVisible(false);
-    }//GEN-LAST:event_roundedGradientPanelMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
