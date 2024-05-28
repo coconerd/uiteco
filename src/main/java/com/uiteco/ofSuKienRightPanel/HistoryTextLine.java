@@ -104,7 +104,12 @@ public class HistoryTextLine extends RoundedPanel {
         title.setBackground(java.awt.Color.darkGray);
         title.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         title.setForeground(java.awt.Color.darkGray);
-        title.setText(suKienModel.getTitle());
+        String txt = suKienModel.getTitle();
+        int lim = 22;
+        if (lim > txt.length()) {
+            lim = txt.length();
+        }
+        title.setText(txt.substring(0, lim));
         title.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 titleMouseClicked(evt);
