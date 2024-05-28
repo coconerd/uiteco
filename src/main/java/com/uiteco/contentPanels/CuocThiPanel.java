@@ -6,8 +6,8 @@ import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Controller;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_View;
-import com.uiteco.OfCuocThiPanel.firstPage.EventPagination;
-import com.uiteco.OfCuocThiPanel.firstPage.PaginationItemRenderStyle1;
+import com.uiteco.OfCuocThiPanel.firstPage.pagination.EventPagination;
+import com.uiteco.OfCuocThiPanel.firstPage.pagination.PaginationItemRenderStyle1;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Controller;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
 import com.uiteco.main.App;
@@ -157,7 +157,7 @@ public class CuocThiPanel extends JPanel {
         newestCompetitions_new = new com.uiteco.OfCuocThiPanel.firstPage.slideShow.NewestCompetitions_new();
         postList = new javax.swing.JPanel();
         suggestionPanel = new com.uiteco.OfCuocThiPanel.firstPage.SuggestionPanel();
-        pagination = new com.uiteco.OfCuocThiPanel.firstPage.Pagination();
+        pagination = new com.uiteco.OfCuocThiPanel.firstPage.pagination.Pagination();
         jHello = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(242, 243, 244));
@@ -433,7 +433,7 @@ public class CuocThiPanel extends JPanel {
     private javax.swing.JLabel jHello;
     private javax.swing.JScrollPane jScrollPane;
     private com.uiteco.OfCuocThiPanel.firstPage.slideShow.NewestCompetitions_new newestCompetitions_new;
-    private com.uiteco.OfCuocThiPanel.firstPage.Pagination pagination;
+    private com.uiteco.OfCuocThiPanel.firstPage.pagination.Pagination pagination;
     private javax.swing.JPanel postList;
     private com.uiteco.components.RoundedPanel roundedPanel1;
     private javax.swing.JPanel slideShowAndPosts;

@@ -1,4 +1,4 @@
-package com.uiteco.OfCuocThiPanel.firstPage;
+package com.uiteco.OfCuocThiPanel.firstPage.pagination;
 
 public interface EventPagination {
 

@@ -307,7 +307,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="com.uiteco.OfCuocThiPanel.firstPage.Pagination" name="pagination">
+            <Component class="com.uiteco.OfCuocThiPanel.firstPage.pagination.Pagination" name="pagination">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Merriweather" size="26" style="0"/>

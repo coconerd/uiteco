@@ -139,6 +139,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-like-50.png"))); // NOI18N
         jLike.setText("LIKE");
         jLike.setColor(new java.awt.Color(242, 243, 245));
+        jLike.setColorClick(new java.awt.Color(242, 243, 244));
         jLike.setFont(new java.awt.Font("Merriweather", 1, 18)); // NOI18N
         jLike.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +158,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         bookmarkButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 0, 1, 1));
         bookmarkButton.setText("BOOKMARK");
         bookmarkButton.setColor(new java.awt.Color(242, 243, 244));
+        bookmarkButton.setColorOver(new java.awt.Color(242, 243, 244));
         bookmarkButton.setFont(new java.awt.Font("Merriweather", 1, 18)); // NOI18N
         bookmarkButton.setPreferredSize(new java.awt.Dimension(145, 45));
         bookmarkButton.addActionListener(new java.awt.event.ActionListener() {
@@ -176,6 +178,9 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jRegister.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 0, 1, 1));
         jRegister.setForeground(new java.awt.Color(255, 255, 255));
         jRegister.setText("ĐĂNG KÍ");
+        jRegister.setColor(new java.awt.Color(85, 146, 213));
+        jRegister.setColorClick(new java.awt.Color(68, 185, 225));
+        jRegister.setColorOver(new java.awt.Color(85, 146, 213));
         jRegister.setFont(new java.awt.Font("Merriweather", 1, 19)); // NOI18N
         jRegister.setPreferredSize(new java.awt.Dimension(160, 55));
         jRegister.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -382,13 +387,18 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bookmarkButtonActionPerformed
 
-    private void jLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLikeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLikeActionPerformed
-
     private void jRegisterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRegisterMousePressed
+
+    private void jLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLikeActionPerformed
+        // TODO add your handling code here:
+        CuocThiDAO.getCountLikePost(controller.getBaseModel());
+        System.out.println(controller.getBaseModel().countLike);
+        jLike.setText(Integer.toString(controller.getBaseModel().countLike));
+        jLike.revalidate();
+        jLike.repaint();
+    }//GEN-LAST:event_jLikeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

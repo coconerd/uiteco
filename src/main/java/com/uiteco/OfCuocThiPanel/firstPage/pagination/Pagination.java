@@ -1,4 +1,4 @@
-package com.uiteco.OfCuocThiPanel.firstPage;
+package com.uiteco.OfCuocThiPanel.firstPage.pagination;
 
 import java.awt.Dimension;
 import java.awt.Font;

@@ -3,20 +3,21 @@ package com.uiteco.OfCuocThiPanel.dataBase;
 import com.bulenkov.iconloader.util.Scalr;
 import com.bulenkov.iconloader.util.Scalr.Method;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
-import com.uiteco.OfCuocThiPanel.firstPage.Pagination;
+import com.uiteco.OfCuocThiPanel.firstPage.pagination.Pagination;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Model;
 import com.uiteco.OfCuocThiPanel.secondPage.pieChart.ModelPieChart;
-import com.uiteco.contentPanels.CuocThiPanel;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import static com.uiteco.database.ConnectionManager.getConnection;
+import static com.uiteco.main.App.getSession;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.Blob;
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -25,7 +26,6 @@ import java.time.*;
 import java.util.*;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -227,7 +227,8 @@ public class CuocThiDAO {
         }
         return modelList;
     }
-
+    
+    //color for pie chart
     public static Color getColor(int index) {
         Color[] color = new Color[]{
             new Color(211, 223, 122),
@@ -352,26 +353,49 @@ public class CuocThiDAO {
         return model;
     }
 
-    public static boolean updateCountLikeDB(int postId, int newCountLike) {
+//    public static boolean updateCountLikeDB(int postId, int newCountLike) {
+//        try {
+//
+//            conn = getConnection();
+//            PreparedStatement pstm = conn.prepareStatement(
+//                    "UPDATE BAIDANG SET LUOTTHICH = ? WHERE MABD = ?");
+//            pstm.setInt(1, newCountLike);
+//            pstm.setInt(2, postId);
+//            int rowsAffected = pstm.executeUpdate();
+//
+//            pstm.close();
+//            conn.close();
+//
+//            return rowsAffected == 1;
+//        } catch (SQLException e) {
+//            return false;
+//        }
+//    }
+    
+    public static void getCountLikePost(BriefPost_Model model){
         try {
-
             conn = getConnection();
-            PreparedStatement pstm = conn.prepareStatement(
-                    "UPDATE BAIDANG SET LUOTTHICH = ? WHERE MABD = ?");
-            pstm.setInt(1, newCountLike);
-            pstm.setInt(2, postId);
-            int rowsAffected = pstm.executeUpdate();
-
-            pstm.close();
+            query = "{CALL PROC_THICH_BAIDANG(?, ?, ?)}";
+            CallableStatement cstm = conn.prepareCall(query);
+            cstm.setInt(1, model.getId());
+            cstm.setInt(2, getSession().getAccountID());
+            cstm.registerOutParameter(3, java.sql.Types.INTEGER);
+            cstm.execute();
+            
+            int likes = cstm.getInt(3);
+            
+            model.countLike = likes;
+            
             conn.close();
-
-            return rowsAffected == 1;
+            cstm.close();
+            
         } catch (SQLException e) {
-            return false;
+            e.printStackTrace();
         }
     }
-
-    public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page, int limit) {
+    
+    //for pagination
+    public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page, int limit) { 
         List<BriefPost_Model> postList = new ArrayList<>();
         int offset = (page - 1) * limit;
         try {
@@ -486,7 +510,7 @@ public class CuocThiDAO {
             query = "INSERT INTO DANGKY (MATK, MABD, THOIDIEMDK) VALUES (?, ?, ?)";
             PreparedStatement p = conn.prepareStatement(query);
 
-            p.setInt(1, 1);
+            p.setInt(1, getSession().getAccountID());
             p.setInt(2, postId);
             Timestamp time = Timestamp.valueOf(LocalDateTime.now());
             p.setTimestamp(3, time);

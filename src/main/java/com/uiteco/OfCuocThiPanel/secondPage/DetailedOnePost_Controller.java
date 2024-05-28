@@ -2,21 +2,26 @@ package com.uiteco.OfCuocThiPanel.secondPage;
 
 import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
-import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import java.awt.Component;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 
 public class DetailedOnePost_Controller {
 
+    /**
+     * @return the baseModel
+     */
+    public BriefPost_Model getBaseModel() {
+        return baseModel;
+    }
+
     public DetailedOnePost_Controller(DetailedOnePost_View view, BriefPost_Model baseModel) {
         this.view = view;
         this.baseModel = baseModel;
         this.isLiked = false;
         currentLikes = baseModel.countLike;
-        view.jLike.addActionListener(e -> jLikeActionPerformed());
+        //view.jLike.addActionListener(e -> jLikeActionPerformed());
         //view.jRegister.addActionListener(e -> jRegisterActionPerformed());
 
     }
@@ -27,7 +32,7 @@ public class DetailedOnePost_Controller {
     private int currentLikes;
 
     public int getPostID() {
-        return baseModel.getId();
+        return getBaseModel().getId();
     }
 
     public DetailedOnePost_View setData(BriefPost_Model baseModel) {
@@ -59,21 +64,21 @@ public class DetailedOnePost_Controller {
         return view;
     }
 
-    private void jLikeActionPerformed() {
-        // TODO add your handling code here:
-        //first press + 1, second press - 1 
-        isLiked = !isLiked;
-
-        int newCountLike = currentLikes + (isLiked ? 1 : -1);
-
-        newCountLike = Math.max(newCountLike, 0);
-        baseModel.setCountLike(newCountLike);
-
-        view.jLike.setText(String.valueOf(newCountLike));
-        CuocThiDAO.updateCountLikeDB(baseModel.getId(), newCountLike);
-
-        currentLikes = newCountLike;
-    }
+//    private void jLikeActionPerformed() {
+//        // TODO add your handling code here:
+//        //first press + 1, second press - 1 
+//        isLiked = !isLiked;
+//
+//        int newCountLike = currentLikes + (isLiked ? 1 : -1);
+//
+//        newCountLike = Math.max(newCountLike, 0);
+//        baseModel.setCountLike(newCountLike);
+//
+//        view.jLike.setText(String.valueOf(newCountLike));
+//        CuocThiDAO.updateCountLikeDB(baseModel.getId(), newCountLike);
+//
+//        currentLikes = newCountLike;
+//    }
 
     private static void showConfirmationDialog() {
 

@@ -1,5 +1,6 @@
-package com.uiteco.OfCuocThiPanel.firstPage;
+package com.uiteco.OfCuocThiPanel.firstPage.pagination;
 
+import com.uiteco.OfCuocThiPanel.firstPage.pagination.PaginationItemRender;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
