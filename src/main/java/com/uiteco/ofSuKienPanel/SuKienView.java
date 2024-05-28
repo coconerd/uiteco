@@ -79,10 +79,10 @@ public class SuKienView extends RoundedGradientPanel {
         roundedImagePanel1.setImage(suKienModel.getThumbnail());
         roundedImagePanel1.setMinimumSize(new java.awt.Dimension(100, 100));
         roundedImagePanel1.setPreferredSize(new java.awt.Dimension(100, 400));
-        roundedImagePanel1.setRoundBottomLeft(20);
-        roundedImagePanel1.setRoundBottomRight(20);
-        roundedImagePanel1.setRoundTopLeft(60);
-        roundedImagePanel1.setRoundTopRight(60);
+        roundedImagePanel1.setRoundBottomLeft(40);
+        roundedImagePanel1.setRoundBottomRight(40);
+        roundedImagePanel1.setRoundTopLeft(40);
+        roundedImagePanel1.setRoundTopRight(40);
 
         title.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         title.setForeground(new java.awt.Color(51, 51, 51));

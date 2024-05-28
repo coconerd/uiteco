@@ -129,10 +129,10 @@
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[100, 400]"/>
         </Property>
-        <Property name="roundBottomLeft" type="int" value="20"/>
-        <Property name="roundBottomRight" type="int" value="20"/>
-        <Property name="roundTopLeft" type="int" value="60"/>
-        <Property name="roundTopRight" type="int" value="60"/>
+        <Property name="roundBottomLeft" type="int" value="40"/>
+        <Property name="roundBottomRight" type="int" value="40"/>
+        <Property name="roundTopLeft" type="int" value="40"/>
+        <Property name="roundTopRight" type="int" value="40"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
