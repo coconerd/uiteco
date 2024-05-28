@@ -70,7 +70,7 @@ public class SuKienListModelWithTagSort extends SuKienListModel {
     public void loadData() {
         try {
             setEntries(SuKienDAO.getCount(tags));
-            setPageCount((int) Math.ceil((double) getEntries()) / getEntriesPerPage());
+            setPageCount((int) Math.ceil((double) getEntries() / getEntriesPerPage()));
             setSuKienList(SuKienDAO.getPageData(getCurrentPage(), getEntriesPerPage(), tags, sortOption));
             fireSuKienList();
         } catch (SQLException e) {

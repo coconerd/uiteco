@@ -534,36 +534,38 @@ public class SuKienDAO {
     public static LinkedList<SuKienModel> getPageData(int page, int pageSize, Set<String> selectedTags, SORT_OPTION sortOption) throws SQLException {
         int tagCount = selectedTags.size();
 
-        System.err.println("DEBUG: selected tags: " + selectedTags.toString());
         if (tagCount < 1) {
             return getPageData(page, pageSize, sortOption);
         }
 
-        String tagParams = "";
-        for (int i = 0; i < tagCount; i++) {
-            tagParams += "?";
+        String tagParams = "(";
+        int i = 0;
+        for (String tag : selectedTags) {
+            tagParams += "'" + tag +"'";
             if (i < tagCount - 1) {
                 tagParams += ", ";
             }
-        }
-        String sql = "SELECT BD.MABD, BD.TIEUDE, BD.THUMBNAIL, BD.THOIDIEMDANG, TK.HOTEN "
-                + "FROM "
-                + "  (SELECT B.MABD, B.NGUOIDANG, B.TIEUDE, B.THUMBNAIL, B.THOIDIEMDANG FROM BAIDANG B WHERE "
-                + "    B.LOAIBD = 1 AND "
-                + "    EXISTS (SELECT 1 FROM TAGS_BAIDANG TBD WHERE TBD.MABD = B.MABD AND TBD.TAG IN (" + tagParams + "))"
-                + "    ORDER BY " + (sortOption == SORT_OPTION.HOTTEST ? "B.LUOTXEM" : "B.THOIDIEMDANG") + " DESC) BD "
-                + "JOIN "
-                + "  (SELECT HOTEN, MATK FROM TAIKHOAN) TK ON BD.NGUOIDANG = TK.MATK "
-                + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-
-        Connection conn = ConnectionManager.getConnection();
-        PreparedStatement pstm = conn.prepareStatement(sql);
-
-        int i = 1;
-        for (String tag : selectedTags) {
-            pstm.setNString(i, tag);
             i++;
         }
+        tagParams += ")";
+
+        String sql = "SELECT BD.MABD, BD.TIEUDE, BD.THUMBNAIL, BD.THOIDIEMDANG, TK.HOTEN\n"
+                + "FROM\n"
+                + "	(SELECT B.MABD, B.NGUOIDANG, B.TIEUDE, B.THUMBNAIL, B.THOIDIEMDANG, B.LUOTDANGKY, B.LUOTTHICH, B.LUOTXEM  FROM BAIDANG B WHERE B.LOAIBD = 1 \n"
+                + "		AND EXISTS (SELECT 1 FROM TAGS_BAIDANG TBD WHERE TBD.MABD = B.MABD AND TBD.TAG IN " + tagParams + ")) BD \n"
+                + "JOIN\n"
+                + "	(SELECT HOTEN, MATK FROM TAIKHOAN) TK ON BD.NGUOIDANG = TK.MATK\n"
+                + "ORDER BY " + (sortOption == SORT_OPTION.NEWEST ? "BD.THOIDIEMDANG DESC" : "BD.LUOTXEM DESC, BD.LUOTTHICH DESC, BD.LUOTXEM DESC") + "\n"
+                + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        
+        Connection conn = ConnectionManager.getConnection();
+        PreparedStatement pstm = conn.prepareStatement(sql);
+//
+//        int i = 1;
+//        for (String tag : selectedTags) {
+//            pstm.setString(i, tag);
+//            i++;
+//        }
         pstm.setInt(i, (page - 1) * pageSize);
         pstm.setInt(i + 1, pageSize);
 
