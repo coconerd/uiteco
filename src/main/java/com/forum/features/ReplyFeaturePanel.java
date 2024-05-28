@@ -1,0 +1,355 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
+package com.forum.features;
+
+import com.forum.database.BaiDangForumDAO;
+
+public class ReplyFeaturePanel extends javax.swing.JPanel {
+    private int postID;
+    
+    public int getPostID(){
+        return postID;
+    }
+    public void setPostID(int postID){
+        this.postID = postID;
+    }
+    public ReplyFeaturePanel(int mabaidang) {
+        _initComponents(mabaidang);
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        titleLabel = new javax.swing.JLabel();
+        uitImageLabel = new javax.swing.JLabel();
+        forumImageLabel = new javax.swing.JLabel();
+        ecoLabel = new javax.swing.JLabel();
+        jScrollPaneOfContentReply = new javax.swing.JScrollPane();
+        jTextAreaOfContentReply = new javax.swing.JTextArea();
+        replyButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        jTextFieldOfMABLPHANHOI = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(248, 242, 242));
+
+        titleLabel.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(0, 51, 51));
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("REPLY BÀI ĐĂNG FORUM");
+
+        uitImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        uitImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uit(3).png"))); // NOI18N
+
+        forumImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        forumImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communication-85.png"))); // NOI18N
+
+        ecoLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ecoLabel.setForeground(new java.awt.Color(80, 80, 181));
+        ecoLabel.setText("ECO-FORUM");
+
+        jTextAreaOfContentReply.setBackground(new java.awt.Color(255, 255, 255));
+        jTextAreaOfContentReply.setColumns(20);
+        jTextAreaOfContentReply.setForeground(new java.awt.Color(0, 0, 0));
+        jTextAreaOfContentReply.setLineWrap(true);
+        jTextAreaOfContentReply.setRows(5);
+        jTextAreaOfContentReply.setText("<Nhập nội dung phản hồi của bạn tại đây>");
+        jTextAreaOfContentReply.setToolTipText("Nhập nội dung phản hồi của bạn tại đây");
+        jTextAreaOfContentReply.setWrapStyleWord(true);
+        jScrollPaneOfContentReply.setViewportView(jTextAreaOfContentReply);
+
+        replyButton.setBackground(new java.awt.Color(172, 172, 172));
+        replyButton.setForeground(new java.awt.Color(0, 0, 0));
+        replyButton.setText("Reply");
+        replyButton.setFocusable(false);
+
+        cancelButton.setBackground(new java.awt.Color(172, 172, 172));
+        cancelButton.setForeground(new java.awt.Color(0, 0, 0));
+        cancelButton.setText("Cancel");
+        cancelButton.setFocusable(false);
+
+        jTextFieldOfMABLPHANHOI.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldOfMABLPHANHOI.setForeground(new java.awt.Color(0, 0, 0));
+        jTextFieldOfMABLPHANHOI.setText("Nhập Reply ID mà bạn muốn phản hồi");
+        jTextFieldOfMABLPHANHOI.setToolTipText("Nhập Reply ID mà bạn muốn phản hồi");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(uitImageLabel)
+                        .addGap(131, 131, 131)
+                        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ecoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jScrollPaneOfContentReply)
+                        .addGap(69, 69, 69))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(cancelButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(replyButton)
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextFieldOfMABLPHANHOI)
+                        .addGap(142, 142, 142))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ecoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(uitImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(titleLabel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldOfMABLPHANHOI, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jScrollPaneOfContentReply, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(replyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+        
+        private void _initComponents(int mabaidang) {
+            this.postID = mabaidang;
+            titleLabel = new javax.swing.JLabel();
+            uitImageLabel = new javax.swing.JLabel();
+            forumImageLabel = new javax.swing.JLabel();
+            ecoLabel = new javax.swing.JLabel();
+            jScrollPaneOfContentReply = new javax.swing.JScrollPane();
+            jTextAreaOfContentReply = new javax.swing.JTextArea();
+            replyButton = new javax.swing.JButton();
+            cancelButton = new javax.swing.JButton();
+            jTextFieldOfMABLPHANHOI = new javax.swing.JTextField();
+
+            setBackground(new java.awt.Color(248, 242, 242));
+
+            titleLabel.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+            titleLabel.setForeground(new java.awt.Color(0, 51, 51));
+            titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            titleLabel.setText("REPLY BÀI ĐĂNG FORUM");
+
+            uitImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            uitImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uit(3).png"))); // NOI18N
+
+            forumImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            forumImageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-communication-85.png"))); // NOI18N
+
+            ecoLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+            ecoLabel.setForeground(new java.awt.Color(80, 80, 181));
+            ecoLabel.setText("ECO-FORUM");
+
+            jTextAreaOfContentReply.setBackground(new java.awt.Color(255, 255, 255));
+            jTextAreaOfContentReply.setColumns(20);
+            jTextAreaOfContentReply.setForeground(new java.awt.Color(0, 0, 0));
+            jTextAreaOfContentReply.setLineWrap(true);
+            jTextAreaOfContentReply.setRows(5);
+            jTextAreaOfContentReply.setText("<Nhập nội dung phản hồi của bạn tại đây>");
+            jTextAreaOfContentReply.setToolTipText("Nhập nội dung phản hồi của bạn tại đây");
+            jTextAreaOfContentReply.setWrapStyleWord(true);
+            jTextAreaOfContentReply.addFocusListener(new java.awt.event.FocusAdapter() {
+                public void focusGained(java.awt.event.FocusEvent evt) {
+                     jTextAreaOfContentReply.getCaret().setVisible(true);
+                }
+                public void focusLost(java.awt.event.FocusEvent evt) {
+                    if(jTextAreaOfContentReply.getText().isEmpty()){
+                        jTextAreaOfContentReply.setText("<Nhập nội dung phản hồi của bạn tại đây>");
+                    }
+                }
+            });
+            jTextAreaOfContentReply.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    if(jTextAreaOfContentReply.getText().equals("<Nhập nội dung phản hồi của bạn tại đây>")){
+                        jTextAreaOfContentReply.setText("");
+                    }
+                }
+            });            
+            jScrollPaneOfContentReply.setViewportView(jTextAreaOfContentReply);
+
+            replyButton.setBackground(new java.awt.Color(172, 172, 172));
+            replyButton.setForeground(new java.awt.Color(0, 0, 0));
+            replyButton.setText("Reply");
+            replyButton.setFocusable(false);
+            replyButton.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
+            replyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                System.out.println("Reply button in ReplyFeaturePanel.java (the replying interface)is clicked!");
+                /*lưu thông tin bình luận phản hồi vào csdl*/
+                String replyContent = jTextAreaOfContentReply.getText();
+                String replyPerson = com.uiteco.main.App.getSession().getUser().getUsername();
+                String MABLPHANHOI = jTextFieldOfMABLPHANHOI.getText();
+                int postIDForum = getPostID();
+
+                if(replyContent.equals("<Nhập nội dung phản hồi của bạn tại đây>")  || replyContent.isEmpty()){
+                    /*hiển thị dialog thông báo cho người dùng*/ 
+                    javax.swing.JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ nội dung bình luận phản hồi hoặc nhấn Cancel để thoát khỏi màn hình bình luận", "Thông báo", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("ban chua nhap noi dung binh luan vao vung soan thao cua jTextAreaOfContentReply");
+                }
+                else{
+                    /*người dùng không nhập gì vào, tức là không reply cho bình luận nào cả, chỉ nhập nội dung bình luận rồi click button Reply*/
+                    if(MABLPHANHOI.equals("Nhập Reply ID mà bạn muốn phản hồi") || MABLPHANHOI.isEmpty()){
+                        BaiDangForumDAO.insertIntoDatabaseWhenClickReply(replyPerson, replyContent, postIDForum,"");
+                        /*cập nhật lượt phản hồi cho bài đăng này ở trường LUOTPHANHOI của table BAIDANGFORUM*/
+                        BaiDangForumDAO.increaseReplyNumber(postIDForum);
+                        /*hiển thị lại giao diện chi tiết bài đăng kèm với những phản hồi của bài đăng này*/
+                        com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
+                        panel1.showPostDetailAndReplyView(getPostID()); 
+                    }
+                    /*người dùng nhập đầy đủ thông tin mã bình luận mà họ muốn phản hồi kèm với nội dung phản hồi*/
+                    else{
+                        try{
+                            int mabinhluanphanhoi = Integer.parseInt(MABLPHANHOI);
+                            if(mabinhluanphanhoi <= 0){
+                                javax.swing.JOptionPane.showMessageDialog(null, "Reply ID phải là số nguyên dương lớn hơn 0", "Thông báo", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                            }
+                            else{
+                                if(BaiDangForumDAO.checkReplyIDIsExitsInPostID(mabinhluanphanhoi, getPostID()) == 0){
+                                    javax.swing.JOptionPane.showMessageDialog(null, "Reply ID bạn nhập không thuộc bài đăng này", "Thông báo", javax.swing.JOptionPane.WARNING_MESSAGE);
+                                }
+                                else{
+                                    BaiDangForumDAO.insertIntoDatabaseWhenClickReply(replyPerson, replyContent, postIDForum, MABLPHANHOI);
+                                    /*cập nhật lượt phản hồi cho bài đăng này ở trường LUOTPHANHOI của table BAIDANGFORUM*/
+                                    BaiDangForumDAO.increaseReplyNumber(postIDForum);
+                                    /*hiển thị lại giao diện chi tiết bài đăng kèm với những phản hồi của bài đăng này*/
+                                    com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
+                                    panel1.showPostDetailAndReplyView(getPostID());  
+                                }
+                            }
+          
+                        }
+                        catch(NumberFormatException e){
+                            javax.swing.JOptionPane.showMessageDialog(null, "Reply ID phải là số nguyên, reply ID bạn vừa nhập có chứa ký tự", "Thông báo", javax.swing.JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
+                }
+            }
+        });
+            
+            cancelButton.setBackground(new java.awt.Color(172, 172, 172));
+            cancelButton.setForeground(new java.awt.Color(0, 0, 0));
+            cancelButton.setText("Cancel");
+            cancelButton.setFocusable(false);
+            cancelButton.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
+            cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                //thoát khỏi giao diện reply bài đăng, về giao diện chi tiết bài đăng kèm với những phản hồi của bài đăng đó
+                System.out.println("Cancel button in ReplyFeaturePanel.java (the reply interface)is clicked!");
+                com.uiteco.contentPanels.ForumPanel panel1 = (com.uiteco.contentPanels.ForumPanel)getParent(); 
+                panel1.showPostDetailAndReplyView(getPostID());
+            }
+        });
+            
+
+            jTextFieldOfMABLPHANHOI.setBackground(new java.awt.Color(255, 255, 255));
+            jTextFieldOfMABLPHANHOI.setForeground(new java.awt.Color(0, 0, 0));
+            jTextFieldOfMABLPHANHOI.setText("Nhập Reply ID mà bạn muốn phản hồi");
+            jTextFieldOfMABLPHANHOI.setToolTipText("Đây là trường thông tin KHÔNG BẮT BUỘC nhập nếu bạn không muốn phản hồi cho bất kỳ bình luận nào");
+            jTextFieldOfMABLPHANHOI.addFocusListener(new java.awt.event.FocusAdapter() {
+                public void focusGained(java.awt.event.FocusEvent evt) {
+                     jTextFieldOfMABLPHANHOI.getCaret().setVisible(true);
+                }
+                public void focusLost(java.awt.event.FocusEvent evt) {
+                    if(jTextFieldOfMABLPHANHOI.getText().isEmpty()){
+                        jTextFieldOfMABLPHANHOI.setText("Nhập Reply ID mà bạn muốn phản hồi");
+                    }
+                }
+            });
+            jTextFieldOfMABLPHANHOI.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    if(jTextFieldOfMABLPHANHOI.getText().equals("Nhập Reply ID mà bạn muốn phản hồi")){
+                        jTextFieldOfMABLPHANHOI.setText("");
+                    }
+                }
+            });
+
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+            this.setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(14, 14, 14)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(uitImageLabel)
+                            .addGap(131, 131, 131)
+                            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                            .addGap(43, 43, 43)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(ecoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(56, 56, 56)
+                            .addComponent(jScrollPaneOfContentReply)
+                            .addGap(69, 69, 69))))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(140, 140, 140)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(cancelButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(replyButton)
+                            .addGap(41, 41, 41))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jTextFieldOfMABLPHANHOI)
+                            .addGap(142, 142, 142))))
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(ecoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(forumImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(uitImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(25, 25, 25)
+                            .addComponent(titleLabel)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTextFieldOfMABLPHANHOI, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(58, 58, 58)
+                    .addComponent(jScrollPaneOfContentReply, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addGap(24, 24, 24)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(replyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(17, 17, 17))
+            );                    
+    }  
+        
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel ecoLabel;
+    private javax.swing.JLabel forumImageLabel;
+    private javax.swing.JScrollPane jScrollPaneOfContentReply;
+    private javax.swing.JTextArea jTextAreaOfContentReply;
+    private javax.swing.JTextField jTextFieldOfMABLPHANHOI;
+    private javax.swing.JButton replyButton;
+    private javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel uitImageLabel;
+    // End of variables declaration//GEN-END:variables
+}

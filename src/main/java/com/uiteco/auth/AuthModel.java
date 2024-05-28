@@ -35,7 +35,7 @@ public class AuthModel implements Permissible {
     public static final int MIN_PASSWORD_LEN = 8;
     public static final int MAX_PASSWORD_LEN = 32;
     public static final String EMAIL_POSTFIX = "uit.edu.vn";
-
+    
     private String email;
     private String username;
     private String password;

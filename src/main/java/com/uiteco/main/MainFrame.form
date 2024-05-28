@@ -35,7 +35,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Component id="leftPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="leftPanel" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="headerPanel" max="32767" attributes="0"/>
                   <Component id="contentPanel" pref="810" max="32767" attributes="0"/>
@@ -118,7 +118,7 @@
                   <Component id="forumButton" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="tinNhanButton" min="-2" pref="36" max="-2" attributes="0"/>
-                  <EmptySpace pref="294" max="32767" attributes="0"/>
+                  <EmptySpace pref="654" max="32767" attributes="0"/>
                   <Component id="imageAvatar2" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="dangXuatButton" min="-2" pref="36" max="-2" attributes="0"/>

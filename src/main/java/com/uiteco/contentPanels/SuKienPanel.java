@@ -27,6 +27,9 @@ public class SuKienPanel extends javax.swing.JPanel {
     public static final String INSTANCE_NAME = "suKienPanel";
     
 
+    /**
+     * Creates new form Feed
+     */
     public SuKienPanel() {
         initComponents();
     }

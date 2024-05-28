@@ -12,6 +12,7 @@ import java.beans.PropertyChangeListener;
  *
  * @author nddmi
  */
+
 public class App {
 
     private static Session session;
@@ -108,6 +109,9 @@ public class App {
 
                 running = true;
             }
+            
         });
+//        mainFrame = new MainFrame();
+//        mainFrame.setVisible(true);
     }
 }
