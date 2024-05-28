@@ -354,24 +354,6 @@ public class CuocThiDAO {
         return model;
     }
 
-//    public static boolean updateCountLikeDB(int postId, int newCountLike) {
-//        try {
-//
-//            conn = getConnection();
-//            PreparedStatement pstm = conn.prepareStatement(
-//                    "UPDATE BAIDANG SET LUOTTHICH = ? WHERE MABD = ?");
-//            pstm.setInt(1, newCountLike);
-//            pstm.setInt(2, postId);
-//            int rowsAffected = pstm.executeUpdate();
-//
-//            pstm.close();
-//            conn.close();
-//
-//            return rowsAffected == 1;
-//        } catch (SQLException e) {
-//            return false;
-//        }
-//    }
     public static void getCountLikePost(BriefPost_Model model) {
         try {
             conn = getConnection();
@@ -395,32 +377,70 @@ public class CuocThiDAO {
     }
 
     //for pagination
-    public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page, int limit) {
+    public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page, int limit, int type, boolean dueDate, boolean hottest) {
         List<BriefPost_Model> postList = new ArrayList<>();
         int offset = (page - 1) * limit;
         try {
             conn = getConnection();
+            
+            String query1 = "SELECT COUNT(*) FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2";
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
-            String query1 = "SELECT COUNT(*) FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2";
             ResultSet rset1 = stmt.executeQuery(query1);
             int count = 0;
             if (rset1.first()) {
                 count = rset1.getInt(1);
             }
+            rset1.close();
+            stmt.close();
 
-            query = "SELECT "
-                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
-                    + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                    + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 "
-                    + "ORDER BY THOIDIEMDANG DESC "
-                    + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-
-            PreparedStatement p1 = conn.prepareStatement(query);
-            p1.setInt(1, offset);
-            p1.setInt(2, limit);
-            rset = p1.executeQuery();
             int totalPages = (int) Math.ceil((double) count / limit);
+            
+            if (type == 0) {
+                if (dueDate == true) {
+                    query = "SELECT "
+                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
+                            + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
+                            + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 AND THOIDIEMDIENRA = NGAYHETHAN_DANGKICUOCTHI "
+                            + "ORDER BY THOIDIEMDANG DESC "
+                            + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+                } else if (hottest == true) {
+                    query = "SELECT "
+                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
+                            + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
+                            + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 "
+                            + "ORDER BY LUOTTHICH DESC "
+                            + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+                }
+            } else if (type == 1 || type == 2) {
+                query = "SELECT "
+                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
+                        + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
+                        + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 AND HINHTHUCTG = ? "
+                        + "ORDER BY LUOTTHICH DESC "
+                        + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+
+            } else if (type == 3) {
+                query = "SELECT "
+                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
+                        + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
+                        + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 "
+                        + "ORDER BY THOIDIEMDANG DESC "
+                        + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+            }
+            
+            PreparedStatement pstm = conn.prepareStatement(query);
+
+            if (type == 1 || type == 2) {
+                pstm.setInt(1, type);
+                pstm.setInt(2, offset);
+                pstm.setInt(3, limit);
+            } else {
+                pstm.setInt(1, offset);
+                pstm.setInt(2, limit);
+            }
+            
+            rset = pstm.executeQuery();
 
             while (rset.next()) {
 
@@ -495,7 +515,7 @@ public class CuocThiDAO {
             p.setPagegination(page, totalPages);
             rset.close();
             conn.close();
-            p1.close();
+            pstm.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -583,24 +603,46 @@ public class CuocThiDAO {
 
     }
 
-    public static List<BriefPost_Model> getPostsInfo_ByTags(List<Object> selectedTags, int page, int limit) {
-        //perform pagination logic
+    public static List<BriefPost_Model> getPostsInfo_ByTags(Pagination p, int page, int limit, List<Object> selectedTags) {
+
         int offset = (page - 1) * limit;
-        
+
         String tagFilter = selectedTags.stream()
-                                       .map(tag -> "'" + tag + "'")
-                                       .collect(Collectors.joining(", "));
-        String query = "SELECT BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA, THUMBNAIL_YOUTUBEPLAY " +
-                       "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT " +
-                       "WHERE BD.MABD = BD_CT.MABD " +
-                       "AND LOAIBD = 2 " +
-                       "AND BD.MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + ")) " +
-                       "ORDER BY THOIDIEMDANG DESC";
+                .map(tag -> "'" + tag + "'")
+                .collect(Collectors.joining(", "));
+        query = "SELECT BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA, THUMBNAIL_YOUTUBEPLAY "
+                + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
+                + "WHERE BD.MABD = BD_CT.MABD "
+                + "AND LOAIBD = 2 "
+                + "AND BD.MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + ")) "
+                + "ORDER BY THOIDIEMDANG DESC";
 
-        try {conn = getConnection();
-             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-             ResultSet rset = stmt.executeQuery(query)) {
+        try {
+            conn = getConnection();
 
+            //add pagination logic
+            String query1 = "SELECT COUNT(*) FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2";
+            ResultSet rset1 = stmt.executeQuery(query1);
+            int count = 0;
+            if (rset1.first()) {
+                count = rset1.getInt(1);
+            }
+
+            String query2 = "SELECT "
+                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
+                    + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
+                    + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 "
+                    + "ORDER BY THOIDIEMDANG DESC "
+                    + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+
+            PreparedStatement p1 = conn.prepareStatement(query2);
+            p1.setInt(1, offset);
+            p1.setInt(2, limit);
+            ResultSet rset = p1.executeQuery();
+            int totalPages = (int) Math.ceil((double) count / limit);
+
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rset = stmt.executeQuery(query);
             List<BriefPost_Model> postList = new ArrayList<>();
 
             while (rset.next()) {
@@ -665,158 +707,6 @@ public class CuocThiDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }
-    
-//    public static List<BriefPost_Model> getPostsInfo_ComboBox(List<String> tags) {
-//        List<BriefPost_Model> models = new ArrayList<>();
-//        try {
-//            conn = getConnection();
-//            StringBuilder queryBuilder = new StringBuilder("SELECT DISTINCT MABD FROM TAGS_BAIDANG WHERE TAG IN (");
-//            for (int i = 0; i < tags.size(); i++) {
-//                queryBuilder.append("?");
-//                if (i < tags.size() - 1) {
-//                    queryBuilder.append(",");
-//                }
-//            }
-//            queryBuilder.append(")");
-//            query = queryBuilder.toString();
-//            PreparedStatement p = conn.prepareStatement(query);
-//
-//            for (int i = 0; i < tags.size(); i++) {
-//                p.setString(i + 1, tags.get(i));
-//            }
-//
-//            rset = p.executeQuery();
-//            while (rset.next()) {
-//                int postID = rset.getInt("MABD");
-//                models.add(getInfoPost_BaseMethod(postID));
-//            }
-//
-//            conn.close();
-//            rset.close();
-//            p.close();
-//
-//        } catch (SQLException e) {
-//            return new ArrayList<>();
-//        }
-//        return models;
-//    }
-
-    public static List<BriefPost_Model> getPostsInfo_Sort(int type, boolean dueDate, boolean hottest) {
-        try {
-            conn = getConnection();
-            //type = 0: not in a specific type
-            //meet 1 requirment once time
-            if (type == 0) {
-                if (dueDate == true) {
-                    query = "SELECT "
-                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
-                            + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                            + "WHERE BD.MABD = BD_CT.MABD "
-                            + "AND LOAIBD = 2 AND THOIDIEMDIENRA = NGAYHETHAN_DANGKICUOCTHI"
-                            + "ORDER BY THOIDIEMDANG DESC";
-                } else if (hottest == true) {
-                    query = "SELECT "
-                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
-                            + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                            + "WHERE BD.MABD = BD_CT.MABD "
-                            + "AND LOAIBD = 2 "
-                            + "ORDER BY LUOTTHICH DESC";
-                }
-            } else if (type == 1 || type == 2) {
-                query = "SELECT "
-                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
-                        + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                        + "WHERE BD.MABD = BD_CT.MABD "
-                        + "AND LOAIBD = 2 AND HINHTHUCTG = ? "
-                        + " ORDER BY THOIDIEMDANG DESC ";
-            }
-
-            PreparedStatement p = conn.prepareStatement(query);
-            if (type == 1 || type == 2) {
-                p.setInt(1, type);
-            }
-            rset = p.executeQuery();
-
-            List<BriefPost_Model> postList = new ArrayList<>();
-
-            while (rset.next()) {
-                BriefPost_Model post = new BriefPost_Model();
-
-                int postID = rset.getInt("MABD");
-                post.setId(postID);
-
-                String tagQuery = "SELECT TAG FROM TAGS_BAIDANG WHERE MABD = ?";
-                PreparedStatement pstmt = conn.prepareStatement(tagQuery);
-                pstmt.setInt(1, postID);
-                ResultSet tagRset = pstmt.executeQuery();
-
-                List<String> tagsString = new ArrayList<>();
-
-                while (tagRset.next()) {
-                    tagsString.add(tagRset.getString("TAG"));
-                }
-
-                pstmt.close();
-
-                post.setCountLike(rset.getInt("LUOTTHICH"));
-                post.setTags(tagsString);
-                post.setContent(rset.getString("NOIDUNG"));
-                post.setTitle(rset.getString("TIEUDE"));
-                post.setType(rset.getInt("HINHTHUCTG"));
-
-                byte[] imageData = rset.getBytes("THUMBNAIL");
-                if (imageData != null) {
-                    try {
-                        //convert the byte array to an Image object
-                        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
-                        BufferedImage bufferedImage = ImageIO.read(inputStream);
-
-                        //create a scaled version of the BufferedImage
-                        Image scaledImage = bufferedImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-
-                        //set the Image object as the thumnail
-                        ImageIcon thumbnail = new ImageIcon(scaledImage);
-                        post.setImage(thumbnail);
-
-                    } catch (IOException e) {
-                    }
-                }
-
-                post.setOrganizer(rset.getString("DONVITOCHUC"));
-
-                LocalDate timeBegin = rset.getDate("THOIDIEMDIENRA").toLocalDate();
-                post.setDueDate(timeBegin);
-
-                Timestamp timeStampPost = rset.getTimestamp("THOIDIEMDANG");
-                if (timeStampPost != null) {
-                    LocalDateTime localDateTimePost = timeStampPost.toLocalDateTime();
-                    post.setPostTime(localDateTimePost);
-                }
-
-                LocalDate timeStart = rset.getDate("NGAYBD_DANGKICUOCTHI").toLocalDate();
-                if (timeStart != null) {
-
-                    post.setStartDate(timeStart);
-                }
-                LocalDate timeEnd = rset.getDate("NGAYHETHAN_DANGKICUOCTHI").toLocalDate();
-                if (timeEnd != null) {
-
-                    post.setEndDate(timeEnd);
-                }
-
-                postList.add(post);
-            }
-
-            conn.close();
-            rset.close();
-            //p.close();
-
-            return postList;
-
-        } catch (SQLException e) {
             return new ArrayList<>();
         }
     }

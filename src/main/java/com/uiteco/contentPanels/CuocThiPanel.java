@@ -16,6 +16,7 @@ import com.uiteco.rightPanels.CuocThiRightPanel_SecondPage;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import static java.time.zone.ZoneRulesProvider.refresh;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,22 +64,22 @@ public class CuocThiPanel extends JPanel {
     }
 
     private void _initPagination() {
-        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1);
+        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1,3, false, false);
         _initPostsList(posts);
 
         pagination.addEventPagination(new EventPagination() {
             @Override
             public void pageChanged(int page) {
-                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1);
+                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1, 3, false, false);
                 _initPostsList(posts);
             }
         });
 
-        pagination.setPaginationItemRender(new PaginationItemRenderStyle1());
     }
 
     private void _initPostsList(List<BriefPost_Model> posts) {
-
+        
+        pagination.setPaginationItemRender(new PaginationItemRenderStyle1());
         postList.removeAll();
         setPosts(posts);
 
@@ -380,41 +381,87 @@ public class CuocThiPanel extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void teamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamActionPerformed
-        // TODO add your handling code here:\
-
-        posts = CuocThiDAO.getPostsInfo_Sort(2, false, false);
+        // TODO add your handling code here:
+        //removeAll();
+        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1,2, false, false);
         _initPostsList(posts);
+        
+        pagination.addEventPagination(new EventPagination() {
+            @Override
+            public void pageChanged(int page) {
+                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1, 2, false, false);
+                _initPostsList(posts);
+            }
+        });
+        
+        System.out.println("team: " + posts.size());
+//        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 2, false, false);
+//        _initPostsList(posts);
 
     }//GEN-LAST:event_teamActionPerformed
 
     private void dueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dueActionPerformed
         // TODO add your handling code here:
-        posts = CuocThiDAO.getPostsInfo_Sort(0, true, false);
+        //removeAll();
+        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1,0, true, false);
         _initPostsList(posts);
-        System.out.println(posts.size());
+        
+        pagination.addEventPagination(new EventPagination() {
+            @Override
+            public void pageChanged(int page) {
+                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1, 0, true, false);
+                _initPostsList(posts);
+            }
+        });
+
+//        posts = CuocThiDAO.getPostsInfo_Sort(0, true, false);
+//        _initPostsList(posts);
+//        System.out.println(posts.size());
 
     }//GEN-LAST:event_dueActionPerformed
 
     private void soloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_soloMousePressed
         // TODO add your handling code here:
-        posts = CuocThiDAO.getPostsInfo_Sort(1, false, false);
+        //removeAll();
+        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1,0, true, false);
         _initPostsList(posts);
+        
+        pagination.addEventPagination(new EventPagination() {
+            @Override
+            public void pageChanged(int page) {
+                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1, 0, true, false);
+                _initPostsList(posts);
+            }
+        });
+        
+//        posts = CuocThiDAO.getPostsInfo_Sort(1, false, false);
+//        _initPostsList(posts);
 
 
     }//GEN-LAST:event_soloMousePressed
 
     private void hottestMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hottestMousePressed
         // TODO add your handling code here:
-        posts = CuocThiDAO.getPostsInfo_Sort(0, false, true);
+        //removeAll();
+        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1,0, false, true);
         _initPostsList(posts);
-        System.out.println(posts.size());
+        
+        pagination.addEventPagination(new EventPagination() {
+            @Override
+            public void pageChanged(int page) {
+                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1, 0, false, true);
+                _initPostsList(posts);
+            }
+        });
+//        posts = CuocThiDAO.getPostsInfo_Sort(0, false, true);
+//        _initPostsList(posts);
+//        System.out.println(posts.size());
     }//GEN-LAST:event_hottestMousePressed
 
     private void comboBoxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxMousePressed
         // TODO add your handling code here:
-
-        postList.removeAll();
-        List<String> selectedTags = comboBox.getSelectedItems();
+//        postList.removeAll();
+//        List<String> selectedTags = comboBox.getSelectedItems();
         //posts = CuocThiDAO.getPostsInfo_ComboBox(selectedTags);
 
     }//GEN-LAST:event_comboBoxMousePressed
