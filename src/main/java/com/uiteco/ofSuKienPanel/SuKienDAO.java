@@ -480,7 +480,7 @@ public class SuKienDAO {
     public static LinkedList<SuKienModel> getPageData(int page, int pageSize, SORT_OPTION sortOption) throws SQLException {
         String sql = "SELECT BD.MABD, BD.TIEUDE, BD.THUMBNAIL, BD.THOIDIEMDANG, TK.HOTEN "
                 + "FROM "
-                + "     (SELECT MABD, NGUOIDANG, TIEUDE, THUMBNAIL, THOIDIEMDANG FROM BAIDANG WHERE LOAIBD = 1 ORDER BY " + (sortOption == SORT_OPTION.HOTTEST ? "LUOTXEM" : "THOIDIEMDANG") + " DESC) BD "
+                + "     (SELECT MABD, NGUOIDANG, TIEUDE, THUMBNAIL, THOIDIEMDANG FROM BAIDANG WHERE LOAIBD = 1 ORDER BY " + (sortOption == SORT_OPTION.HOTTEST ? "LUOTDANGKY DESC, LUOTTHICH DESC, LUOTXEM DESC" : "THOIDIEMDANG DESC") + ") BD "
                 + "JOIN "
                 + "     (SELECT HOTEN, MATK FROM TAIKHOAN) TK ON BD.NGUOIDANG = TK.MATK "
                 + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
