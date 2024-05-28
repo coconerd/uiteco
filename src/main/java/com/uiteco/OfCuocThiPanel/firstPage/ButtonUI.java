@@ -2,6 +2,8 @@ package com.uiteco.OfCuocThiPanel.firstPage;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
+import static java.awt.Font.PLAIN;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -36,9 +38,10 @@ public class ButtonUI extends BasicButtonUI {
         });
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         button.setOpaque(false);
-        button.setForeground(Color.WHITE);
-        button.setBackground(new Color(24, 89, 179));
-        button.setBorder(new EmptyBorder(5, 10, 5, 10));
+        button.setForeground(Color.BLACK);
+        button.setBackground(Color.decode("#DFEBF8"));
+        button.setFont(new Font("Merriweather", PLAIN, 20));
+        button.setBorder(new EmptyBorder(8, 10, 8, 10));
     }
 
     @Override
@@ -47,7 +50,7 @@ public class ButtonUI extends BasicButtonUI {
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             if (hover) {
-                g2.setColor(new Color(15, 69, 143));
+                g2.setColor(Color.decode("#83D1EC"));
             } else {
                 g2.setColor(c.getBackground());
             }

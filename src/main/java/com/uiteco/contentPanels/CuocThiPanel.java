@@ -7,7 +7,6 @@ import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Controller;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_View;
 import com.uiteco.OfCuocThiPanel.firstPage.EventPagination;
-import com.uiteco.OfCuocThiPanel.firstPage.Pagination;
 import com.uiteco.OfCuocThiPanel.firstPage.PaginationItemRenderStyle1;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Controller;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
@@ -52,32 +51,30 @@ public class CuocThiPanel extends JPanel {
         jScrollPane.setOpaque(false);
         ScrollPaneUtil.configureScrollBar(jScrollPane);
 
-        //_initPostsList(posts);
-        comboBoxInit();
-        paginationInit();
+        _initComboBox();
+        _initPagination();
+
     }
 
-    private void comboBoxInit() {
+    private void _initComboBox() {
         List<String> tagsList = CuocThiDAO.getAllTags();
         String[] tags = tagsList.toArray(String[]::new);
         comboBox.setModel(new DefaultComboBoxModel(tags));
-
     }
 
-    private void paginationInit() {
-        pagination = new Pagination();
+    private void _initPagination() {
+        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1);
+        _initPostsList(posts);
+
         pagination.addEventPagination(new EventPagination() {
             @Override
             public void pageChanged(int page) {
-                System.out.println("Page changed to: " + page); // Debug logging
-                List<BriefPost_Model> posts = CuocThiDAO.getPostsInfo_Offset(pagination, page);
-                System.out.println(posts.size());
+                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1);
                 _initPostsList(posts);
             }
         });
 
         pagination.setPaginationItemRender(new PaginationItemRenderStyle1());
-
     }
 
     private void _initPostsList(List<BriefPost_Model> posts) {
@@ -87,7 +84,6 @@ public class CuocThiPanel extends JPanel {
 
         for (BriefPost_Model post : getPosts()) {
             setPostUI(new BriefPost_View());
-            System.out.println("one post");
             BriefPost_Controller postController = new BriefPost_Controller(post, getPostUI());
 
             setPostUI(postController.setData());
@@ -351,10 +347,13 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.insets = new java.awt.Insets(25, 24, 44, 57);
         slideShowAndPosts.add(suggestionPanel, gridBagConstraints);
 
-        pagination.setPreferredSize(new java.awt.Dimension(200, 100));
+        pagination.setFont(new java.awt.Font("Merriweather", 0, 26)); // NOI18N
+        pagination.setOpaque(false);
+        pagination.setPreferredSize(new java.awt.Dimension(300, 80));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 36);
         slideShowAndPosts.add(pagination, gridBagConstraints);
 
         jScrollPane.setViewportView(slideShowAndPosts);
@@ -446,4 +445,5 @@ public class CuocThiPanel extends JPanel {
     private com.uiteco.OfCuocThiPanel.secondPage.CustomButton team;
     private javax.swing.JLabel teamIcon;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -6,7 +6,7 @@ import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.firstPage.Pagination;
 import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_Model;
 import com.uiteco.OfCuocThiPanel.secondPage.pieChart.ModelPieChart;
-import com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChart;
+import com.uiteco.contentPanels.CuocThiPanel;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -25,6 +25,7 @@ import java.time.*;
 import java.util.*;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -370,14 +371,13 @@ public class CuocThiDAO {
         }
     }
 
-    public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page) {
-
+    public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page, int limit) {
         List<BriefPost_Model> postList = new ArrayList<>();
-        int limit = 1;
         int offset = (page - 1) * limit;
         try {
             conn = getConnection();
-
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
             String query1 = "SELECT COUNT(*) FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2";
             ResultSet rset1 = stmt.executeQuery(query1);
             int count = 0;
@@ -475,9 +475,8 @@ public class CuocThiDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return new ArrayList<>();
         }
-
+        
         return postList;
     }
 

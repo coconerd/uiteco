@@ -42,7 +42,7 @@ public class ScrollPaneImages extends JPanel {
         setOpaque(false);
 
         jScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        jScrollPane.setViewportView(null);
+        jScrollPane.setViewportView(roundedGradientPanel);
 
         roundedGradientPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(45, 0, 10, 0));
         roundedGradientPanel.setColor1(new java.awt.Color(222, 236, 221));
@@ -53,7 +53,7 @@ public class ScrollPaneImages extends JPanel {
         roundedGradientPanel.setRoundBottomRight(40);
         roundedGradientPanel.setRoundTopLeft(40);
         roundedGradientPanel.setRoundTopRight(40);
-        roundedGradientPanel.setLayout(new java.awt.GridLayout(1, 0, 30, 0));
+        roundedGradientPanel.setLayout(new javax.swing.BoxLayout(roundedGradientPanel, javax.swing.BoxLayout.X_AXIS));
         jScrollPane.setViewportView(roundedGradientPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

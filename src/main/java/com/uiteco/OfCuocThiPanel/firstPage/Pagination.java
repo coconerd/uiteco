@@ -1,10 +1,13 @@
 package com.uiteco.OfCuocThiPanel.firstPage;
 
 import java.awt.Dimension;
+import java.awt.Font;
+import static java.awt.Font.PLAIN;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -38,6 +41,7 @@ public class Pagination extends JPanel {
     private void runEvent() {
         for (EventPagination event : events) {
             event.pageChanged(page.getCurrent());
+            System.out.println(page.getCurrent());
         }
     }
 
@@ -63,6 +67,7 @@ public class Pagination extends JPanel {
         removeAll();
         refresh();
         JButton cmdPrev = paginationItemRender.createPaginationItem("Previous", true, false, page.isPrevious());
+        cmdPrev.setFont(new Font("Merriweather", PLAIN, 20));
         cmdPrev.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,7 +81,7 @@ public class Pagination extends JPanel {
         for (Object item : page.getItems()) {
             JButton cmd = paginationItemRender.createPaginationItem(item, false, false, isEnable(item));
             if (item instanceof Integer) {
-                if (Integer.valueOf(item.toString()) == page.getCurrent()) {
+                if (Integer.parseInt(item.toString()) == page.getCurrent()) {
                     cmd.setSelected(true);
                 }
             }
@@ -88,7 +93,7 @@ public class Pagination extends JPanel {
                             Page.BreakLabel pb = (Page.BreakLabel) item;
                             setPagegination(pb.getPage(), totalPage);
                         } else {
-                            setPagegination(Integer.valueOf(item.toString()), totalPage);
+                            setPagegination(Integer.parseInt(item.toString()), totalPage);
                         }
                         runEvent();
                     }
@@ -96,7 +101,9 @@ public class Pagination extends JPanel {
             });
             add(cmd);
         }
+        ImageIcon next = new ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-next-page-26.png"));
         JButton cmdNext = paginationItemRender.createPaginationItem("Next", false, true, page.isNext());
+        cmdNext.setFont(new Font("Merriweather", PLAIN, 20));
         cmdNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
