@@ -11,6 +11,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
@@ -43,6 +45,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
             }
         }
         comboItem.clear();
+        fireTagSelectionChanged(); // Notify listeners
     }
 
     public void clearSelectedItems() {
@@ -67,6 +70,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         if (comboList != null) {
             comboList.repaint();
         }
+        fireTagSelectionChanged(); // Notify listeners
     }
 
     private void addItemObject(Object obj) {
@@ -75,6 +79,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         if (comboList != null && selectedItems.size() <= 3) {
             comboList.repaint();
         }
+        fireTagSelectionChanged(); // Notify listeners
     }
 
     public ComboBoxMultiSelection() {
@@ -83,6 +88,15 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
         setRenderer(new ComboBoxMultiCellRenderer());
         setEditor(comboBoxMultiCellEditor);
         setEditable(true);
+
+        // Add focus listener to detect when the combo box loses focus
+        getEditor().getEditorComponent().addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                setPopupVisible(false); // Close the popup
+            }
+        });
+        
         addActionListener((e) -> {
             if (e.getModifiers() == ActionEvent.MOUSE_EVENT_MASK) {
                 JComboBox combo = (JComboBox) e.getSource();
@@ -94,13 +108,21 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
                 }
             }
         });
+
     }
 
     @Override
     public void setPopupVisible(boolean v) {
+        super.setPopupVisible(v);
 
     }
-
+    
+    private void fireTagSelectionChanged() {
+        firePropertyChange("tagSelectionChanged", null, getSelectedItems());
+    }
+    
+  
+    
     private class ComboBoxMultiUI extends FlatComboBoxUI {
 
         @Override
@@ -195,7 +217,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
 
         private final boolean selected;
         private int countTimes = 0;
-        private boolean isEnabled;
+
         public CheckBoxIcon(boolean selected) {
             if (countTimes <= 3) {
                 countTimes++;
@@ -211,7 +233,7 @@ public class ComboBoxMultiSelection<E> extends JComboBox<E> {
             if (countTimes <= 3) {
                 return selected;
             } else {
-             
+
                 return !selected;
             }
 

@@ -24,6 +24,7 @@ import java.sql.Timestamp;
 import javax.imageio.ImageIO;
 import java.time.*;
 import java.util.*;
+import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -227,7 +228,7 @@ public class CuocThiDAO {
         }
         return modelList;
     }
-    
+
     //color for pie chart
     public static Color getColor(int index) {
         Color[] color = new Color[]{
@@ -371,8 +372,7 @@ public class CuocThiDAO {
 //            return false;
 //        }
 //    }
-    
-    public static void getCountLikePost(BriefPost_Model model){
+    public static void getCountLikePost(BriefPost_Model model) {
         try {
             conn = getConnection();
             query = "{CALL PROC_THICH_BAIDANG(?, ?, ?)}";
@@ -381,21 +381,21 @@ public class CuocThiDAO {
             cstm.setInt(2, getSession().getAccountID());
             cstm.registerOutParameter(3, java.sql.Types.INTEGER);
             cstm.execute();
-            
+
             int likes = cstm.getInt(3);
-            
+
             model.countLike = likes;
-            
+
             conn.close();
             cstm.close();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
+
     //for pagination
-    public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page, int limit) { 
+    public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page, int limit) {
         List<BriefPost_Model> postList = new ArrayList<>();
         int offset = (page - 1) * limit;
         try {
@@ -500,7 +500,7 @@ public class CuocThiDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return postList;
     }
 
@@ -583,6 +583,92 @@ public class CuocThiDAO {
 
     }
 
+    public static List<BriefPost_Model> getPostsInfo_ByTags(List<Object> selectedTags, int page, int limit) {
+        //perform pagination logic
+        int offset = (page - 1) * limit;
+        
+        String tagFilter = selectedTags.stream()
+                                       .map(tag -> "'" + tag + "'")
+                                       .collect(Collectors.joining(", "));
+        String query = "SELECT BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA, THUMBNAIL_YOUTUBEPLAY " +
+                       "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT " +
+                       "WHERE BD.MABD = BD_CT.MABD " +
+                       "AND LOAIBD = 2 " +
+                       "AND BD.MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + ")) " +
+                       "ORDER BY THOIDIEMDANG DESC";
+
+        try {conn = getConnection();
+             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+             ResultSet rset = stmt.executeQuery(query)) {
+
+            List<BriefPost_Model> postList = new ArrayList<>();
+
+            while (rset.next()) {
+                BriefPost_Model post = new BriefPost_Model();
+
+                int postID = rset.getInt("MABD");
+                post.setId(postID);
+
+                String tagQuery = "SELECT TAG FROM TAGS_BAIDANG WHERE MABD = ?";
+                PreparedStatement pstmt = conn.prepareStatement(tagQuery);
+                pstmt.setInt(1, postID);
+                ResultSet tagRset = pstmt.executeQuery();
+
+                List<String> tagsString = new ArrayList<>();
+
+                while (tagRset.next()) {
+                    tagsString.add(tagRset.getString("TAG"));
+                }
+
+                pstmt.close();
+
+                post.setCountLike(rset.getInt("LUOTTHICH"));
+                post.setTags(tagsString);
+                post.setContent(rset.getString("NOIDUNG"));
+                post.setTitle(rset.getString("TIEUDE"));
+                post.setType(rset.getInt("HINHTHUCTG"));
+
+                byte[] imageData = rset.getBytes("THUMBNAIL");
+                if (imageData != null) {
+                    try (ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData)) {
+                        BufferedImage bufferedImage = ImageIO.read(inputStream);
+                        Image scaledImage = bufferedImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                        ImageIcon thumbnail = new ImageIcon(scaledImage);
+                        post.setImage(thumbnail);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                byte[] imageData1 = rset.getBytes("THUMBNAIL_YOUTUBEPLAY");
+                if (imageData1 != null) {
+                    try (ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData1)) {
+                        BufferedImage bufferedImage = ImageIO.read(inputStream);
+                        Image scaledImage = bufferedImage.getScaledInstance(480, 360, Image.SCALE_SMOOTH);
+                        ImageIcon thumbnail = new ImageIcon(scaledImage);
+                        post.setImage(thumbnail);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                post.setOrganizer(rset.getString("DONVITOCHUC"));
+                post.setPostTime(rset.getTimestamp("THOIDIEMDANG").toLocalDateTime());
+                post.setDueDate(rset.getDate("THOIDIEMDIENRA").toLocalDate());
+                post.setStartDate(rset.getDate("NGAYBD_DANGKICUOCTHI").toLocalDate());
+                post.setEndDate(rset.getDate("NGAYHETHAN_DANGKICUOCTHI").toLocalDate());
+
+                postList.add(post);
+            }
+
+            return postList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+    
 //    public static List<BriefPost_Model> getPostsInfo_ComboBox(List<String> tags) {
 //        List<BriefPost_Model> models = new ArrayList<>();
 //        try {
@@ -617,6 +703,7 @@ public class CuocThiDAO {
 //        }
 //        return models;
 //    }
+
     public static List<BriefPost_Model> getPostsInfo_Sort(int type, boolean dueDate, boolean hottest) {
         try {
             conn = getConnection();

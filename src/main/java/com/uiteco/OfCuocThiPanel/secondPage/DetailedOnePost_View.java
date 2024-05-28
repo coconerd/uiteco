@@ -183,11 +183,6 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jRegister.setColorOver(new java.awt.Color(85, 146, 213));
         jRegister.setFont(new java.awt.Font("Merriweather", 1, 19)); // NOI18N
         jRegister.setPreferredSize(new java.awt.Dimension(160, 55));
-        jRegister.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jRegisterMousePressed(evt);
-            }
-        });
         jRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRegisterActionPerformed(evt);
@@ -364,7 +359,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
 
     private void jRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterActionPerformed
         // TODO add your handling code here:
-        //if(getController().get)
+        
         ConfirmPopUp popUp = new ConfirmPopUp();
         GlassPanePopup.showPopup(popUp);
         
@@ -385,11 +380,8 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
 
     private void bookmarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookmarkButtonActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_bookmarkButtonActionPerformed
-
-    private void jRegisterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRegisterMousePressed
 
     private void jLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLikeActionPerformed
         // TODO add your handling code here:
