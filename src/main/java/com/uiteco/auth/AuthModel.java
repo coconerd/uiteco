@@ -125,13 +125,20 @@ public class AuthModel implements Permissible {
 
         // Email must ends with 'uit.edu.vn'
         if (len <= EMAIL_POSTFIX.length()) {
+
+        // Email must ends with 'uit.edu.vn'
+        if (len <= EMAIL_POSTFIX.length()) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.EMAIL);
         }
 
         String postfix = inputEmail.substring(len - EMAIL_POSTFIX.length(), len);
         if (!postfix.equals("uit.edu.vn")) {
+
+        String postfix = inputEmail.substring(len - EMAIL_POSTFIX.length(), len);
+        if (!postfix.equals("uit.edu.vn")) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.EMAIL);
         }
+
 
         this.email = inputEmail;
     }
@@ -139,13 +146,17 @@ public class AuthModel implements Permissible {
     private void setUsernameOrThrow(String inputUsername) throws BadCredentialsFormatException {
         int len = inputUsername.length();
         if (!(len >= MIN_USERNAME_LEN && len <= MAX_USERNAME_LEN)) {
+        if (!(len >= MIN_USERNAME_LEN && len <= MAX_USERNAME_LEN)) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.USERNAME);
         }
+
+        String regex = "^[a-zA-Z0-9]*$";
 
         String regex = "^[a-zA-Z0-9]*$";
         if (!Pattern.matches(regex, inputUsername)) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.USERNAME);
         }
+
 
         this.username = inputUsername;
     }
@@ -153,8 +164,10 @@ public class AuthModel implements Permissible {
     private void setPasswordOrThrow(String inputPassword) throws BadCredentialsFormatException {
         int len = inputPassword.length();
         if (!(len >= MIN_PASSWORD_LEN && len <= MAX_PASSWORD_LEN)) {
+        if (!(len >= MIN_PASSWORD_LEN && len <= MAX_PASSWORD_LEN)) {
             throw new BadCredentialsFormatException(BadCredentialsFormatException.BAD.PASSWORD);
         }
+
 
         this.password = inputPassword;
     }

@@ -1,6 +1,5 @@
 package com.raven.scroll;
 
-import com.raven.scroll.ScrollBarWin11UI;
 import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.Insets;
@@ -8,7 +7,6 @@ import java.awt.Rectangle;
 import java.util.Objects;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
-import javax.swing.JScrollBar;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

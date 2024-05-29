@@ -42,6 +42,10 @@ public class AuthDAO {
 
     }
 
+    public static class LoginResult {
+
+    }
+
     /**
      *
      * @param username

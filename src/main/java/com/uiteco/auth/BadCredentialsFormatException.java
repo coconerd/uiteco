@@ -26,6 +26,7 @@ public class BadCredentialsFormatException extends Exception {
         String error;
         if (getCreds() == BAD.EMAIL) {
             error = "Email phải có định dạng *@*uit.edu.vn";
+            error = "Email phải có định dạng *@*uit.edu.vn";
         } else if (getCreds() == BAD.USERNAME) {
             error = "Username phải có độ dài " + String.valueOf(AuthModel.MIN_USERNAME_LEN) + " - " + String.valueOf(AuthModel.MAX_USERNAME_LEN) + " ký tự và chỉ có chữ/số";
         } else if (getCreds() == BAD.PASSWORD) {

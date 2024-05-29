@@ -108,10 +108,11 @@ public class App {
                 });
 
                 running = true;
+                //GenerateAndInsertMockData.insertAccountData();
             }
             
         });
 //        mainFrame = new MainFrame();
 //        mainFrame.setVisible(true);
     }
-}
+}   

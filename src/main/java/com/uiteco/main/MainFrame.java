@@ -4,6 +4,8 @@
  */
 package com.uiteco.main;
 
+import com.uiteco.OfCuocThiPanel.secondPage.DetailedOnePost_View;
+import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import com.uiteco.auth.Permissible;
 import com.uiteco.auth.PermissibleNotPermittedException;
 import com.uiteco.components.RoundedBorder;
@@ -18,15 +20,15 @@ import com.uiteco.contentPanels.TinNhanPanel;
 import com.uiteco.contentPanels.TaiKhoanPanel;
 import static com.uiteco.main.App.getMainFrame;
 import com.uiteco.rightPanels.SuKienRightPanel;
-import com.uiteco.rightPanels.CuocThiRightPanel;
 import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.rightPanels.ForumRightPanel;
 import com.uiteco.rightPanels.TinNhanRightPanel;
-import com.uiteco.rightPanels.TaiKhoanRightPanel;
 import com.uiteco.ofSuKienPanel.detailed.SuKienDetailScrollPane;
 import com.uiteco.ofSuKienPanel.detailed.rightPanel.SuKienDetailRightPanel;
 import com.uiteco.ofSuKienPanel.search.SuKienSearchTabPane;
 import com.uiteco.ofTaiKhoanPanel.clubManagement.ClubManagementUI;
+import com.uiteco.rightPanels.CuocThiRightPanel_FirstPage;
+import com.uiteco.rightPanels.CuocThiRightPanel_SecondPage;
 import com.uiteco.swing.ContentPanel;
 import java.awt.Cursor;
 import com.uiteco.ofTaiKhoanPanel.createPost.CreatePostUI;
@@ -34,6 +36,7 @@ import com.uiteco.ofTaiKhoanPanel.introduction.IntroductionUI;
 import com.uiteco.ofTaiKhoanPanel.postManagement.PostManagement;
 import com.uiteco.ofTaiKhoanPanel.postManagement.UpdatePostUI;
 import com.uiteco.ofTaiKhoanPanel.security.SecurityUI;
+
 
 /**
  *
@@ -69,13 +72,20 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
         _initContentPanel();
         _initRightPanel();
         _additionalInit();
+        GlassPanePopup.install(this);
+
     }
+
 
     /**
      * Provide contentPanel for ease of access from children components
      */
     public ContentPanel getContentPanel() {
         return this.contentPanel;
+    }
+
+    public ContentPanel getRightPanel() {
+        return this.rightPanel;
     }
 
     public ContentPanel getRightPanel() {
@@ -784,6 +794,9 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
         UpdatePostUI up = new UpdatePostUI();
         contentPanel.registerComponent(up, UpdatePostUI.INSTANCE_NAME);
         
+        DetailedOnePost_View post = new DetailedOnePost_View();
+        contentPanel.registerComponent(post, "cuocThiDetailedPanel");
+
 //        contentPanel.registerComponent(rootPane, name);
 //        contentPanel.registerComponent(rootPane, name);
 //        contentPanel.registerComponent(rootPane, name);
@@ -802,9 +815,12 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
         SuKienRightPanel skr = new SuKienRightPanel();
         rightPanel.registerComponent(skr, "suKienRightPanel");
 
-        CuocThiRightPanel ctr = new CuocThiRightPanel();
+        CuocThiRightPanel_FirstPage ctr = new CuocThiRightPanel_FirstPage();
         rightPanel.registerComponent(ctr, "cuocThiRightPanel");
 
+        CuocThiRightPanel_SecondPage ctr1 = new CuocThiRightPanel_SecondPage();
+        rightPanel.registerComponent(ctr1, "cuocThiRightPanel_SecondPage");
+        
         CauLacBoRightPanel clbr = new CauLacBoRightPanel();
         rightPanel.registerComponent(clbr, "cauLacBoRightPanel");
 
