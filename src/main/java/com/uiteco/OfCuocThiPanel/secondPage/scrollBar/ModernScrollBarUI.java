@@ -14,8 +14,9 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 
 public class ModernScrollBarUI extends BasicScrollBarUI {
 
-    private final int THUMB_SIZE = 20;
-
+    private final int THUMB_SIZE = 90;
+    private final int THUMB_WIDTH = 30;
+    
     @Override
     protected Dimension getMaximumThumbSize() {
         if (scrollbar.getOrientation() == JScrollBar.VERTICAL) {
@@ -82,9 +83,11 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
         if (scrollbar.getOrientation() == JScrollBar.VERTICAL) {
             y += 8;
             height -= 16;
+            width = THUMB_WIDTH;
         } else {
             x += 8;
             width -= 16;
+            height = THUMB_WIDTH;
         }
         g2.setColor(scrollbar.getForeground());
         g2.fillRoundRect(x, y, width, height, 10, 10);

@@ -310,17 +310,18 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(70, 0, 70, 1160);
+        gridBagConstraints.insets = new java.awt.Insets(70, 0, 70, 1170);
         jBody.add(youtubePlay, gridBagConstraints);
 
-        scrollPaneImages.setPreferredSize(new java.awt.Dimension(1600, 530));
+        scrollPaneImages.setPreferredSize(new java.awt.Dimension(1400, 620));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(50, 172, 70, 50);
+        gridBagConstraints.weighty = 2.0;
+        gridBagConstraints.insets = new java.awt.Insets(30, 150, 80, 50);
         jBody.add(scrollPaneImages, gridBagConstraints);
 
         roundedGradientPanel.setPreferredSize(new java.awt.Dimension(600, 380));
@@ -364,7 +365,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         GlassPanePopup.showPopup(popUp);
         
         popUp.getjOk().addActionListener((e) -> {
-            CuocThiDAO.insertUserRegisterCompetition(getController().getPostID());
+            CuocThiDAO.registerCompetition(getController().getBaseModel());
             GlassPanePopup.closePopupAll();
 
             //when press Register, display unregister button 

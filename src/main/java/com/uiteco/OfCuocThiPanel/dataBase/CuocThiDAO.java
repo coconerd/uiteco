@@ -377,6 +377,28 @@ public class CuocThiDAO {
         }
     }
 
+    public static void registerCompetition(BriefPost_Model model) {
+        try {
+            conn = getConnection();
+            query = "{CALL PROC_DANGKY_SUKIEN(?, ?, ?)}";
+            CallableStatement cstm = conn.prepareCall(query);
+
+            cstm.setInt(1, model.getId());
+            cstm.setInt(2, getSession().getAccountID());
+            cstm.registerOutParameter(3, java.sql.Types.INTEGER);
+            cstm.execute();
+            int likes = cstm.getInt(3);
+
+            model.countLike = likes;
+
+            conn.close();
+            cstm.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     //for pagination
     public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page, int limit, int type, boolean dueDate, boolean hottest) {
         List<BriefPost_Model> postList = new ArrayList<>();
