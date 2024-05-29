@@ -57,7 +57,7 @@ public class RegisterTableInfo extends CuocThiRightPanel_SecondPage {
 
         scroll.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
-        table.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
+        table.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -76,7 +76,7 @@ public class RegisterTableInfo extends CuocThiRightPanel_SecondPage {
         });
         table.setAutoscrolls(false);
         table.setFocusable(false);
-        table.setRowHeight(55);
+        table.setRowHeight(67);
         table.setRowMargin(10);
         table.setRowSelectionAllowed(false);
         table.setShowGrid(false);
