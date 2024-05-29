@@ -38,6 +38,9 @@ public class ImageSelector extends RoundedPanel {
         imgContainer.removeAll();
         imgContainer.revalidate();
         imgContainer.repaint();
+        thumbnail.setImage(new ImageIcon("/image-placeholder.png"));
+        thumbnail.repaint();
+        addThumbnail.setIcon(new ImageIcon(getClass().getResource("/icons8-plus-30.png")));
         _updateImageCount(0);
     }
 

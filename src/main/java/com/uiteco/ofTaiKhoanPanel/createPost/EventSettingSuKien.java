@@ -128,12 +128,14 @@ public class EventSettingSuKien extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         startChooser.setForeground(new java.awt.Color(153, 204, 255));
+        startChooser.setEnabled(false);
 
         enrollableCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        enrollableCheck.setForeground(new java.awt.Color(51, 51, 51));
+        enrollableCheck.setForeground(textDisableColor);
         enrollableCheck.setSelected(true);
         enrollableCheck.setText("Cho phép đăng ký tham gia");
         enrollableCheck.setToolTipText("");
+        enrollableCheck.setEnabled(false);
         enrollableCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enrollableCheckActionPerformed(evt);
@@ -143,13 +145,17 @@ public class EventSettingSuKien extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(this.textDisableColor);
         jLabel1.setText("Số lượng tham gia tối đa");
+        jLabel1.setEnabled(false);
+        jLabel1.setFocusable(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setLabelFor(endChooser);
         jLabel2.setText("Ngày hết hạn đăng ký");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setLabelFor(startChooser);
         jLabel3.setText("Ngày bắt đầu đăng ký");
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
@@ -161,11 +167,14 @@ public class EventSettingSuKien extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         endChooser.setForeground(new java.awt.Color(153, 204, 255));
+        endChooser.setEnabled(false);
 
         limitCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        limitCheck.setForeground(java.awt.Color.darkGray);
+        limitCheck.setForeground(this.textDisableColor);
         limitCheck.setText("Giới hạn số lượng sinh viên tham gia");
         limitCheck.setToolTipText("");
+        limitCheck.setEnabled(false);
+        limitCheck.setFocusable(false);
         limitCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 limitCheckActionPerformed(evt);

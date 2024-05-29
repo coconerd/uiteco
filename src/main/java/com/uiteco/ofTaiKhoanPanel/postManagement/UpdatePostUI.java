@@ -123,7 +123,7 @@ public class UpdatePostUI extends javax.swing.JPanel {
 
     public void load(SuKienModel suKienModel) {
         this.postID = suKienModel.getPostID();
-        try {
+        try {            
             SuKienDAO.getMissingDetail(suKienModel);
             content.setText(suKienModel.getContent());
             title.setText(suKienModel.getTitle());

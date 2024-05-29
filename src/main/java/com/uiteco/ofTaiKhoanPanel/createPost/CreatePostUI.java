@@ -760,7 +760,7 @@ public class CreatePostUI extends javax.swing.JPanel {
         } catch (SQLException | IOException e) {
             e.printStackTrace();
             String errMsg = e.getMessage();
-            JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra khi đăng bài " + errMsg, "Lỗi hệ thống",  JOptionPane.ERROR_MESSAGE, new ImageIcon(getClass().getResource("/icons8-cross-24.png")));
+            JOptionPane.showMessageDialog(this, "Đã có lỗi xảy ra khi đăng bài " + errMsg, "Lỗi hệ thống", JOptionPane.ERROR_MESSAGE, new ImageIcon(getClass().getResource("/icons8-cross-24.png")));
             _exit();
         }
     }
