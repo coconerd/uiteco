@@ -171,7 +171,7 @@ public class CauLacBoPanel extends JPanel {
                     LastedDate = timestamp.toLocalDateTime();
                 
                 CreateBy = rs.getNString("NHOMNGUOITHANHLAP");
-                HostBy = rs.getInt("CHUNHIEM") + " (so): ";
+                HostBy = rs.getInt("CHUNHIEM") + "";
                 
                 Date date = rs.getDate("NGAYTHANHLAP");
                 if(date != null)
@@ -182,9 +182,43 @@ public class CauLacBoPanel extends JPanel {
                 ArrayList<String> ListImageUrl = new ArrayList();
                     
                 if(BackgroundImageURL != null)
+                {
                     ListImageUrl.add(BackgroundImageURL);
+                }
+                
+                {
+                    String FirstBackgroundImageURL = "";
+                    
+                    try {
+                        Connection conn1 = ConnectionManager.getConnection();
+
+                        String sql1 = "select * from HINHANHCAULACBO where MACLB = " + MaCLB;
+                        PreparedStatement ps1 = conn1.prepareStatement(sql1);
+                        ResultSet rs1 = ps1.executeQuery();
+                        
+                        while(rs1.next())
+                        {
+                            blob = rs1.getBlob("ANH");
+                            if(blob != null)
+                            {
+                                byte[] bdata = blob.getBytes(1, (int) blob.length());
+                                FirstBackgroundImageURL = new String(bdata);
+                            }
+                            
+                            break;
+                        }
+                        
+                        conn1.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    
+                    if(!FirstBackgroundImageURL.equals(""))
+                        ListImageUrl.add(FirstBackgroundImageURL);
+                }
                 
                 IntroductionClub Clb = new IntroductionClub(NameCLB, InfoCLB, LogoImageURL, SLThanhVien, LastedDate, Khoa, Status, ListImageUrl);
+                
                 Clb.setMainPanel(this);
                 Clb.setRightPanelCLB(RightPanelCLB);
                 Clb.setMaCLB(MaCLB);
@@ -408,6 +442,7 @@ public class CauLacBoPanel extends JPanel {
         NumberCLUB = 0;
         NumberOffline = 0;
         NumberEvent = 0;
+        NumberOnline = 0;
         ListCLB.clear();
         try {
             String NameCLB = "", InfoCLB = "", BackgroundImageURL = null, LogoImageURL = "", Khoa = "", CreateBy = "", HostBy = "";
@@ -448,6 +483,8 @@ public class CauLacBoPanel extends JPanel {
                     LogoImageURL = new String(bdata);
                 }
                 
+//                System.out.println("LOGO: " + LogoImageURL);
+                
                 SLThanhVien = rs.getInt("SOLUONGTHANHVIEN");
                 SLThich = rs.getInt("SOLUONGTHICH");
                 DKXetTuyen = rs.getInt("DKXETTUYEN");
@@ -458,7 +495,7 @@ public class CauLacBoPanel extends JPanel {
                     LastedDate = timestamp.toLocalDateTime();
                 
                 CreateBy = rs.getNString("NHOMNGUOITHANHLAP");
-                HostBy = rs.getInt("CHUNHIEM") + "(so)";
+                HostBy = rs.getInt("CHUNHIEM") + "";
                 
                 Date date = rs.getDate("NGAYTHANHLAP");
                 if(date != null)

@@ -67,6 +67,7 @@ public class NotificationsEvent extends javax.swing.JPanel {
         BodyText.setLineWrap(true);
         BodyText.setRows(1);
         BodyText.setText("Nội dung");
+        BodyText.setWrapStyleWord(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -91,7 +92,7 @@ public class NotificationsEvent extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(BodyText)
-                .addGap(15, 15, 15))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

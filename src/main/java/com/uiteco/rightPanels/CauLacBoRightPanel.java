@@ -14,6 +14,7 @@ public class CauLacBoRightPanel extends javax.swing.JPanel {
     
     private DetailPageRightPanel LastestDetailPage;
     private MainRightPanel MainPanel;
+    private int MaCLB = -1;
     private int indexRightPanel = 0;
     
     public CauLacBoRightPanel() {
@@ -29,7 +30,7 @@ public class CauLacBoRightPanel extends javax.swing.JPanel {
         RightPanel.showComponentAndTrimHistory("Main");
     }
     
-    public void showDetailPageRightPanel(String NameCLB, String CreateBy, String HostBy, LocalDate DateCreate)
+    public void showDetailPageRightPanel(int MaCLB, String NameCLB, String CreateBy, String HostBy, LocalDate DateCreate)
     {
         indexRightPanel++;
         
@@ -40,7 +41,7 @@ public class CauLacBoRightPanel extends javax.swing.JPanel {
             LastestDetailPage.repaint();
         }
       
-        LastestDetailPage = new DetailPageRightPanel(NameCLB, CreateBy, HostBy, DateCreate);
+        LastestDetailPage = new DetailPageRightPanel(MaCLB, NameCLB, CreateBy, HostBy, DateCreate);
         RightPanel.registerComponent(LastestDetailPage, "DetailPage" + indexRightPanel);
         RightPanel.showComponentAndTrimHistory("DetailPage" + indexRightPanel);
     }

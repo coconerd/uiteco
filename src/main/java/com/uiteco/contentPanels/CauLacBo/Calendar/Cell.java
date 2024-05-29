@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,12 +14,13 @@ import javax.swing.JLabel;
 public class Cell extends JButton {
 
     private Date date;
+    private LocalDate localDate;
     private boolean title = false;
     private boolean isToDay = false;
     private boolean isEntered = false;
     private boolean isEvent = false;
     private CalendarCustom ParentCalender;
-    
+    private String TextNote = "";
     private float PoxX;
     
     public Cell() {
@@ -54,15 +56,19 @@ public class Cell extends JButton {
     {
         isEntered = true;
         
-        if(ParentCalender != null)
-            ParentCalender.ShowNotificationsEvent(this, true);
+        System.out.println("Text1: " + TextNote);
+        
+        if(ParentCalender != null && isEvent)
+            ParentCalender.ShowNotificationsEvent(this, true, localDate, TextNote);
     }
     
     private void Entered(MouseEvent evt) { 
         isEntered = true;
         
-        if(ParentCalender != null)
-            ParentCalender.ShowNotificationsEvent(this, false);
+        System.out.println("Text2: " + TextNote);
+        
+        if(ParentCalender != null && isEvent)
+            ParentCalender.ShowNotificationsEvent(this, false, localDate, TextNote);
     } 
     
     private void Exited(MouseEvent evt) {                                                
@@ -150,5 +156,20 @@ public class Cell extends JButton {
     public float getPoxX()
     {
         return PoxX;
+    }
+    
+    public void setIsEvent(boolean isEvent)
+    {
+        this.isEvent = isEvent;
+    }
+    
+    public void setLocalDate(LocalDate localDate)
+    {
+        this.localDate = localDate;
+    }
+    
+    public void addTextNote(String text)
+    {
+        this.TextNote += text;
     }
 }

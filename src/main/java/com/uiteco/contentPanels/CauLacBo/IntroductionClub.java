@@ -36,6 +36,7 @@ public class IntroductionClub extends javax.swing.JPanel {
     // Status Chỉ có giá trị 2 hoặc 1 hoặc 0; 2 là đang có sự kiện hay cuộc thi,1 là đang hoạt động, 0 là không hoạt động.
     public IntroductionClub(String NameCLB_, String BasicInfo_, String LogoUrl_,int NumOFMember_, LocalDateTime LastedUpdate_, String Department_, int Status_, ArrayList<String> ListImageUrl) {
         Start();
+        
         NameCLB.setText(NameCLB_);
         NameCLUB = NameCLB_;
 
@@ -103,6 +104,12 @@ public class IntroductionClub extends javax.swing.JPanel {
         }
 
         SlideShowImage.initSlideshow(ListImageUrl);
+        
+        if(ListImageUrl.size() <= 1)
+        {
+            jpanelRound3.remove(BackPanel);
+            jpanelRound3.remove(NextPanel);
+        }
     }
 
     @Override
@@ -125,9 +132,6 @@ public class IntroductionClub extends javax.swing.JPanel {
         this.setVisible(true);
         this.setOpaque(false);
         this.setBorder(new javax.swing.border.EmptyBorder(7, 5 ,7 ,5));
-
-//        System.out.println(this.getPreferredSize().height + " " + this.getPreferredSize().width);
-//        System.out.println(this.getSize().height + " " + this.getSize().width);
     }
     
     @SuppressWarnings("unchecked")
@@ -179,11 +183,11 @@ public class IntroductionClub extends javax.swing.JPanel {
         NumMem.setForeground(new java.awt.Color(51, 204, 0));
         NumMem.setText("NumOfMember");
         NumMem.setToolTipText("");
-        jpanelRound3.add(NumMem, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
+        jpanelRound3.add(NumMem, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 170, -1));
 
         LogoCLUB.setBackground(new java.awt.Color(102, 102, 102));
         LogoCLUB.setBorderSize(3);
-        LogoCLUB.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg"))); // NOI18N
+        LogoCLUB.setImage(new javax.swing.ImageIcon(getClass().getResource("/uit.png"))); // NOI18N
         jpanelRound3.add(LogoCLUB, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 120));
 
         NextPanel.setBackground(new java.awt.Color(102, 102, 102));
@@ -472,7 +476,7 @@ public class IntroductionClub extends javax.swing.JPanel {
         MainPanelCLB.goToDetailPage(DetailPage);
         
         //ShowRightPanel
-        this.RightPanelCLB.showDetailPageRightPanel(NameCLUB, CreateBy, HostBy, DateCreate);
+        this.RightPanelCLB.showDetailPageRightPanel(MaCLB, NameCLUB, CreateBy, HostBy, DateCreate);
     }//GEN-LAST:event_JoinButtonMousePressed
 
     public void setMainPanel(CauLacBoPanel MainPanelCLB)

@@ -1,11 +1,13 @@
 package com.uiteco.contentPanels.CauLacBo.Calendar;
 
 import java.awt.Component;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Calendar;
 import java.util.Date;
 
 public class PanelDate extends javax.swing.JLayeredPane {
-
+    private List_DateEvent ListDE = new List_DateEvent();
     private int month;
     private int year;
     private CalendarCustom ParentCalender;
@@ -14,11 +16,15 @@ public class PanelDate extends javax.swing.JLayeredPane {
         Start(month, year);
     }
     
-    public PanelDate(int month, int year, CalendarCustom parent) {
+    public PanelDate(int month, int year, CalendarCustom parent, List_DateEvent ListDE) {
+        this.ListDE = ListDE;
+        
         ParentCalender = parent;
         Start(month, year);
+//        filterDateEvent();
     }
-
+   
+    
     private void Start(int month, int year)
     {
         initComponents();
@@ -43,16 +49,75 @@ public class PanelDate extends javax.swing.JLayeredPane {
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month - 1);  //  month jan as 0 so start from 0
         calendar.set(Calendar.DATE, 1);
+        
         int startDay = calendar.get(Calendar.DAY_OF_WEEK) - 1;  //  get day of week -1 to index
         calendar.add(Calendar.DATE, -startDay);
+        
+        int PosDate = -1;
+        
+        System.out.println("Date: " + calendar.get(Calendar.DAY_OF_MONTH) + ", Month: " + (calendar.get(Calendar.MONTH) + 1) + ", Year: " + calendar.get(Calendar.YEAR));     
+        {
+            int Day = calendar.get(Calendar.DAY_OF_MONTH);
+            int Month = calendar.get(Calendar.MONTH) + 1;
+            int Year = calendar.get(Calendar.YEAR);
+            
+            for(int i = 0; i < ListDE.size(); i++)
+            { 
+                if(ListDE.get(i).date.getYear() > Year)
+                {
+                    PosDate = i;
+                    break;
+                }
+                
+                if(ListDE.get(i).date.getYear() == Year && ListDE.get(i).date.getMonthValue() > Month)
+                {
+                    PosDate = i;
+                    break;
+                }
+                
+                if(ListDE.get(i).date.getYear() == Year && ListDE.get(i).date.getMonthValue() == Month && ListDE.get(i).date.getDayOfMonth() >= Day)
+                {
+                    PosDate = i;
+                    break;
+                }
+            }
+        }
+        
         ToDay toDay = getToDay();
         for (Component com : getComponents()) {
             Cell cell = (Cell) com;
             if (!cell.isTitle()) {
                 cell.setParent(ParentCalender);
                 
+                if(PosDate != -1 && ListDE.get(PosDate).date.getYear() == calendar.get(Calendar.YEAR) && ListDE.get(PosDate).date.getMonthValue() == calendar.get(Calendar.MONTH) + 1 && ListDE.get(PosDate).date.getDayOfMonth() == calendar.get(Calendar.DAY_OF_MONTH))
+                {
+                    
+                    while(PosDate != -1 && ListDE.get(PosDate).date.getYear() == calendar.get(Calendar.YEAR) && ListDE.get(PosDate).date.getMonthValue() == calendar.get(Calendar.MONTH) + 1 && ListDE.get(PosDate).date.getDayOfMonth() == calendar.get(Calendar.DAY_OF_MONTH))
+                    {
+                        String textNote = ListDE.get(PosDate).title;
+                        cell.setIsEvent(true);
+                        if(ListDE.get(PosDate).typeDate == "startDK")
+                            textNote = "Bắt đầu đăng ký " + textNote;
+                        else if(ListDE.get(PosDate).typeDate == "endDK")
+                            textNote = "Kết thúc đăng ký " + textNote;
+                        else if(ListDE.get(PosDate).typeDate == "startDR")
+                            textNote = "Bắt đầu diễn ra " + textNote;
+                        else if(ListDE.get(PosDate).typeDate == "endDR")
+                            textNote = "Kết thúc " + textNote;
+
+                        cell.addTextNote("•  " + textNote + "\n");
+
+                        if(PosDate < ListDE.size() - 1)
+                            PosDate++;
+                        else
+                            PosDate = -1;
+                    }
+                }
+                
                 cell.setText(calendar.get(Calendar.DATE) + "");
                 cell.setDate(calendar.getTime());
+                LocalDate localDate = LocalDate.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
+                cell.setLocalDate(localDate);
                 cell.currentMonth(calendar.get(Calendar.MONTH) == month - 1);
                 if (toDay.isToDay(new ToDay(calendar.get(Calendar.DATE), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR)))) {
                     cell.setAsToDay();

@@ -22,6 +22,7 @@ public class ImageAvatar extends JComponent {
     }
 
     public void setImage(Icon image) {
+        this.repaint();
         this.image = image;
     }
 

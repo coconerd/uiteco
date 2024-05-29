@@ -108,6 +108,9 @@
       </Layout>
       <SubComponents>
         <Component class="com.uiteco.contentPanels.CauLacBo.Calendar.CalendarCustom" name="calendarCustom2">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.uiteco.contentPanels.CauLacBo.Calendar.CalendarCustom(ListDE)"/>
+          </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="0" width="-1" height="490"/>

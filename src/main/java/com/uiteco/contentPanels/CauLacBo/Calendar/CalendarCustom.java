@@ -3,6 +3,7 @@ package com.uiteco.contentPanels.CauLacBo.Calendar;
 import java.awt.Color;
 import java.awt.Point;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JPanel;
@@ -12,7 +13,7 @@ public class CalendarCustom extends javax.swing.JPanel {
 
     private int month;
     private int year;
-    
+    private List_DateEvent ListDE = new List_DateEvent();
     private NotificationsEvent CurrentNoEvent;
     
     private JPanel parentPanel;
@@ -26,12 +27,18 @@ public class CalendarCustom extends javax.swing.JPanel {
         Start();
     }
     
+    public CalendarCustom(List_DateEvent ListDE) {
+        this.ListDE = ListDE;
+        
+        Start();
+    }
+    
     private void Start()
     {   
        
        initComponents();
         thisMonth();
-        slide.show(new PanelDate(month, year, this));
+        slide.show(new PanelDate(month, year, this, ListDE));
         showMonthYear();
         
         new Thread(new Runnable() {
@@ -282,7 +289,7 @@ public class CalendarCustom extends javax.swing.JPanel {
             month++;
         }
         
-        slide.show(new PanelDate(month, year, this));
+        slide.show(new PanelDate(month, year, this, ListDE));
         showMonthYear();
     }//GEN-LAST:event_NextButtonMousePressed
 
@@ -294,11 +301,11 @@ public class CalendarCustom extends javax.swing.JPanel {
             month--;
         }
         
-        slide.show(new PanelDate(month, year, this));
+        slide.show(new PanelDate(month, year, this, ListDE));
         showMonthYear();
     }//GEN-LAST:event_BackButtonMousePressed
 
-    public void ShowNotificationsEvent(Cell CellButton, boolean BreakFunc)
+    public void ShowNotificationsEvent(Cell CellButton, boolean BreakFunc, LocalDate date, String TextNote)
     {            
         Point bl = CellButton.getLocationOnScreen();
         Point pl = parentPanel.getLocationOnScreen();
@@ -324,8 +331,22 @@ public class CalendarCustom extends javax.swing.JPanel {
         CurrentNoEvent = new NotificationsEvent(CellButton.getPoxX());
             CurrentNoEvent.setXfooter(CellButton.getPoxX());
             
-            CurrentNoEvent.setHeadText("Thứ Hai, 27 tháng 11 năm 2004");
-            CurrentNoEvent.setBodyText("15621\n 16512165\n 516196416516\n 5165151\nbao");
+            String DOW = "Thứ 2";
+            if(date.getDayOfWeek() == date.getDayOfWeek().TUESDAY)
+                DOW = "Thứ 3";
+            else if(date.getDayOfWeek() == date.getDayOfWeek().WEDNESDAY)
+                DOW = "Thứ 4";
+            else if(date.getDayOfWeek() == date.getDayOfWeek().THURSDAY)
+                DOW = "Thứ 5";
+            else if(date.getDayOfWeek() == date.getDayOfWeek().FRIDAY)
+                DOW = "Thứ 6";
+            else if(date.getDayOfWeek() == date.getDayOfWeek().SATURDAY)
+                DOW = "Thứ 7";
+            else if(date.getDayOfWeek() == date.getDayOfWeek().SUNDAY)
+                DOW = "Chủ Nhật";
+            
+            CurrentNoEvent.setHeadText(DOW + ", " + date.getDayOfMonth() + " Tháng " + date.getMonthValue() + " Năm " + date.getYear());
+            CurrentNoEvent.setBodyText(TextNote);
             
             parentPanel.add(CurrentNoEvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(-223, 0, -1, -1), 0);
             CurrentNoEvent.setparentPanel(parentPanel, x + CellButton.getWidth() / 2, y);

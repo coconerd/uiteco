@@ -4,7 +4,19 @@
  */
 package com.uiteco.rightPanels.CauLacBo;
 
+import com.uiteco.contentPanels.CauLacBo.Calendar.InfoDateEvent;
+import com.uiteco.contentPanels.CauLacBo.Calendar.List_DateEvent;
+import com.uiteco.contentPanels.CauLacBo.IntroductionClub;
+import com.uiteco.database.ConnectionManager;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,18 +24,55 @@ import java.time.LocalDate;
  */
 public class DetailPageRightPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form DetailPageRightPanel
-     */
+    private int MaCLB = -1;
+    private List_DateEvent ListDE = new List_DateEvent();
+    
     public DetailPageRightPanel() {
         initComponents();
         
         calendarCustom2.setparentPanel(jPanel1);
     }
 
-    public DetailPageRightPanel(String NameCLB, String CreateBy, String HostBy, LocalDate DateCreate) {
+    public DetailPageRightPanel(int MaCLB, String NameCLB, String CreateBy, String HostBy, LocalDate DateCreate) {
+        this.MaCLB = MaCLB;
+        
+        try {
+            LocalDate startDateDK = null, endDateDK = null;
+            LocalDateTime startDateDR = null, endDateDR = null;
+            String title = null;
+            
+            Connection conn = ConnectionManager.getConnection();
+            String sql = "select * from BAIDANG Where MACLBDANGBAI = " + MaCLB;
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next())
+            {
+                startDateDK = rs.getDate("NGAYBD_DANGKY").toLocalDate();
+                endDateDK = rs.getDate("NGAYHH_DANGKY").toLocalDate();
+                
+                title = rs.getNString("TIEUDE");
+                
+                startDateDR = rs.getTimestamp("THOIDIEMDIENRA").toLocalDateTime();
+                endDateDR = rs.getTimestamp("THOIDIEMKETTHUC").toLocalDateTime();
+                
+                ListDE.add(new InfoDateEvent(startDateDK, title, "startDK"));
+                ListDE.add(new InfoDateEvent(endDateDK, title, "endDK"));
+                ListDE.add(new InfoDateEvent(startDateDR.toLocalDate(), title, "startDR"));
+                ListDE.add(new InfoDateEvent(endDateDR.toLocalDate(), title, "endDR"));
+            }
+
+//            System.out.println("Size: " + ListDE.size());
+            
+            ListDE.SortDate();
+            
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         initComponents();
-     
+
         calendarCustom2.setparentPanel(jPanel1);
         
         this.NameCLB.setText(NameCLB);
@@ -35,7 +84,32 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
             
         this.CreateBy.setText("Thành Lập Bởi: " + CreateBy);
         
-        this.HostBy.setText("Người Chủ trì: " + HostBy);
+        
+        String NameHost = "";
+        
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            String sql = "select * from TAIKHOAN Where MATK = " + HostBy;
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+           
+            while(rs.next())
+            {
+                NameHost = rs.getNString("HOTEN");  
+                break;
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        this.HostBy.setText("Chủ nhiệm: " + NameHost);
+        
+        // Connect Data calendar
+        
+        
     }
     
     /**
@@ -48,7 +122,7 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        calendarCustom2 = new com.uiteco.contentPanels.CauLacBo.Calendar.CalendarCustom();
+        calendarCustom2 = new com.uiteco.contentPanels.CauLacBo.Calendar.CalendarCustom(ListDE);
         NameCLB = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         DateCreate = new javax.swing.JLabel();
@@ -164,6 +238,18 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setMaCLB(int MaCLB)
+    {
+        MaCLB = this.MaCLB;
+        
+        
+        
+    }
+    
+    public int getMaCLB()
+    {
+       return MaCLB;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CreateBy;

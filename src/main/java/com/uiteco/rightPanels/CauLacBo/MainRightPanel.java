@@ -68,7 +68,7 @@ public class MainRightPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 51, 51));
+        setBackground(new java.awt.Color(232, 232, 232));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel.setBackground(new java.awt.Color(232, 232, 232));
