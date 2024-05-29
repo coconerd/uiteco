@@ -15,6 +15,7 @@ import static com.uiteco.main.App.getMainFrame;
 import com.uiteco.rightPanels.CuocThiRightPanel_SecondPage;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
@@ -60,6 +61,14 @@ public class CuocThiPanel extends JPanel {
 
     }
 
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        newestCompetitions_new.repaint();
+        roundedPanel1.repaint();
+        
+    }
+    
     private void _initComboBox() {
         List<String> tagsList = CuocThiDAO.getAllTags();
         String[] tags = tagsList.toArray(String[]::new);
@@ -443,13 +452,13 @@ public class CuocThiPanel extends JPanel {
     private void soloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_soloMousePressed
         // TODO add your handling code here:
         //removeAll();
-        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1, 0, true, false);
+        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1, 1, true, false);
         _initPostsList(posts);
 
         pagination.addEventPagination(new EventPagination() {
             @Override
             public void pageChanged(int page) {
-                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1, 0, true, false);
+                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1, 1, true, false);
                 _initPostsList(posts);
             }
         });
@@ -475,7 +484,6 @@ public class CuocThiPanel extends JPanel {
     private void comboBoxMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxMouseReleased
         // TODO add your handling code here:
         List<Object> tags = comboBox.getSelectedItems();
-        System.out.println(tags.size());
     }//GEN-LAST:event_comboBoxMouseReleased
 
     private void filterIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterIconActionPerformed

@@ -80,7 +80,6 @@ public class CuocThiRightPanel_SecondPage extends JPanel {
                     
                     for (ModelPieChart m : models1) {
                         chartPanel.getPieChart1().addData(m);
-                        System.out.println("chart1");
                     }
 
                     chartPanel.updateLegend1(models1);
@@ -89,7 +88,6 @@ public class CuocThiRightPanel_SecondPage extends JPanel {
                     List<ModelPieChart> models2 = CuocThiDAO.getDataForPieChart_FacultyName(getPostID());
                     for (ModelPieChart m : models2) {
                         chartPanel.getPieChart2().addData(m);
-                        System.out.println("chart2");
                     }
 
                     chartPanel.updateLegend2(models2);

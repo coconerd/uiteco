@@ -1,5 +1,6 @@
 package com.uiteco.OfCuocThiPanel.secondPage;
 
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
@@ -14,19 +15,22 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
     }
 
     public DetailedOnePost_View() {
+        FlatMacLightLaf.setup();
         initComponents();
+        jScrollPane.setBorder(null);
     }
-    
+
     public DetailedOnePost_Controller createController(BriefPost_Model model) {
         this.controller = new DetailedOnePost_Controller(this, model);
         return getController();
     }
+
     public DetailedOnePost_Controller getController() {
         return controller;
     }
 
     private DetailedOnePost_Controller controller;
-    
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
@@ -41,10 +45,8 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         iconOrganization = new javax.swing.JLabel();
         jPostTime = new javax.swing.JLabel();
         jLike = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
-        bookmarkButton = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
         jRegister = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
         like = new javax.swing.JLabel();
-        bookmark = new javax.swing.JLabel();
         jOrganizer = new javax.swing.JLabel();
         jContent = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
@@ -57,7 +59,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         scrollPaneImages = new com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages();
         roundedGradientPanel = new com.uiteco.components.RoundedGradientPanel();
 
-        setBackground(new java.awt.Color(204, 255, 204));
+        setBackground(new java.awt.Color(242, 243, 244));
         setOpaque(false);
         setLayout(new java.awt.GridBagLayout());
 
@@ -100,7 +102,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane.setPreferredSize(new java.awt.Dimension(1190, 630));
 
-        jBody.setBackground(new java.awt.Color(102, 255, 102));
+        jBody.setBackground(new java.awt.Color(242, 243, 244));
         jBody.setOpaque(false);
         jBody.setLayout(new java.awt.GridBagLayout());
 
@@ -147,32 +149,12 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(3, 0, 8, 6);
         jBelowTitle.add(jLike, gridBagConstraints);
-
-        bookmarkButton.setBackground(new java.awt.Color(242, 243, 244));
-        bookmarkButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 0, 1, 1));
-        bookmarkButton.setText("BOOKMARK");
-        bookmarkButton.setColor(new java.awt.Color(242, 243, 244));
-        bookmarkButton.setColorOver(new java.awt.Color(242, 243, 244));
-        bookmarkButton.setFont(new java.awt.Font("Merriweather", 1, 18)); // NOI18N
-        bookmarkButton.setPreferredSize(new java.awt.Dimension(145, 45));
-        bookmarkButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookmarkButtonActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 25);
-        jBelowTitle.add(bookmarkButton, gridBagConstraints);
 
         jRegister.setBackground(new java.awt.Color(85, 146, 213));
         jRegister.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 0, 1, 1));
@@ -197,20 +179,12 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 45);
         jBelowTitle.add(jRegister, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         jBelowTitle.add(like, gridBagConstraints);
-
-        bookmark.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/bookmark_10969413.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        jBelowTitle.add(bookmark, gridBagConstraints);
 
         jOrganizer.setText("jLabel1");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -310,7 +284,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(70, 0, 70, 1230);
+        gridBagConstraints.insets = new java.awt.Insets(75, 0, 80, 1230);
         jBody.add(youtubePlay, gridBagConstraints);
 
         scrollPaneImages.setPreferredSize(new java.awt.Dimension(1600, 600));
@@ -321,7 +295,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 3.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 168, 58, 79);
+        gridBagConstraints.insets = new java.awt.Insets(45, 168, 80, 79);
         jBody.add(scrollPaneImages, gridBagConstraints);
 
         roundedGradientPanel.setPreferredSize(new java.awt.Dimension(600, 380));
@@ -360,10 +334,10 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
 
     private void jRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterActionPerformed
         // TODO add your handling code here:
-        
+
         ConfirmPopUp popUp = new ConfirmPopUp();
         GlassPanePopup.showPopup(popUp);
-        
+
         popUp.getjOk().addActionListener((e) -> {
             //CuocThiDAO.registerCompetition(getController().getBaseModel());
             CuocThiDAO.insertUserRegisterCompetition(getController().getPostID());
@@ -377,13 +351,8 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
             popUp.removeAll();
             GlassPanePopup.closePopupAll();
         });
-        
-    }//GEN-LAST:event_jRegisterActionPerformed
 
-    private void bookmarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookmarkButtonActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_bookmarkButtonActionPerformed
+    }//GEN-LAST:event_jRegisterActionPerformed
 
     private void jLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLikeActionPerformed
         // TODO add your handling code here:
@@ -391,15 +360,12 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jLike.setText(Integer.toString(controller.getBaseModel().countLike));
         jLike.revalidate();
         jLike.repaint();
-        
-        
+
     }//GEN-LAST:event_jLikeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.uiteco.components.RoundedPanel RegisterTimePanel;
-    private javax.swing.JLabel bookmark;
-    private com.uiteco.OfCuocThiPanel.secondPage.CustomButton bookmarkButton;
     private javax.swing.JLabel iconOrganization;
     private javax.swing.JPanel jBelowTitle;
     private javax.swing.JPanel jBody;

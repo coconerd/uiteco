@@ -2,10 +2,15 @@ package com.uiteco.OfCuocThiPanel.secondPage;
 
 import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
+import com.uiteco.main.App;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 
 public class DetailedOnePost_Controller {
 
@@ -59,7 +64,19 @@ public class DetailedOnePost_Controller {
         view.repaint();
         return view;
     }
+    
+    public static void createDialog(String dialogName, Component child) {
+        JDialog dialog = new JDialog(App.getMainFrame(), dialogName, false);
+        dialog.setLayout(new GridLayout(1, 1, 0, 0));
+        dialog.setSize(child.getPreferredSize());
+        dialog.add(child);
+        dialog.setVisible(true);
 
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension dialogSize = dialog.getSize();
+        dialog.setLocation((screenSize.width - dialogSize.width) / 2, (screenSize.height - dialogSize.height) / 2);
+    }
+    
 
     private static void showConfirmationDialog() {
 
