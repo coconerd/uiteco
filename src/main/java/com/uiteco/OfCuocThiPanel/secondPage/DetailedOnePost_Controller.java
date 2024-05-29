@@ -7,6 +7,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -33,7 +35,7 @@ public class DetailedOnePost_Controller {
 
     public DetailedOnePost_View setData(BriefPost_Model baseModel) {
         view.jTitle.setText(baseModel.getTitle());
-        view.jRegisterTime.setText(baseModel.getDateRange_ForDetailedPage());
+        view.getjRegisterTime().setText(baseModel.getDateRange_ForDetailedPage());
         view.jOrganizer.setText(baseModel.getOrganizer());
         view.jPostTime.setText(baseModel.getPostTime_String());
         view.jContent.setText(baseModel.getContent());
@@ -48,38 +50,58 @@ public class DetailedOnePost_Controller {
         List<RoundImageUI> listImage = new ArrayList<>();
         for (ImageIcon i : imageList) {
             RoundImageUI r = new RoundImageUI();
-            r.getjLabel().setIcon(i);
+            r.getjLabel1().setIcon(i);
             listImage.add(r);
         }
 
         for (Component c : listImage) {
             view.scrollPaneImages.getRoundedGradientPanel().add(c);
+
+            view.scrollPaneImages.getRoundedGradientPanel().add(c);
+            c.addMouseListener(new MouseListener() {
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    createDialog("Ảnh sự kiện", c);
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                }
+            });
+
         }
-        
+
 //        DetailedOnePost_Model dModel = CuocThiDAO.getAllImagesAndUrls(baseModel.getId());
 //        view.youtubePlay.setUri_String(dModel.getUrlYT());
 //        view.youtubePlay.setThumbnail(baseModel.getThumbnailYT());
-        
         view.revalidate();
         view.repaint();
         return view;
     }
-    
+
     public static void createDialog(String dialogName, Component child) {
         JDialog dialog = new JDialog(App.getMainFrame(), dialogName, false);
         dialog.setLayout(new GridLayout(1, 1, 0, 0));
         dialog.setSize(child.getPreferredSize());
         dialog.add(child);
         dialog.setVisible(true);
-
+        
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension dialogSize = dialog.getSize();
         dialog.setLocation((screenSize.width - dialogSize.width) / 2, (screenSize.height - dialogSize.height) / 2);
-    }
-    
-
-    private static void showConfirmationDialog() {
-
     }
 
 //    private void jRegisterActionPerformed() {

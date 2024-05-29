@@ -6,6 +6,7 @@ import com.uiteco.OfCuocThiPanel.secondPage.RegisterTableInfo;
 import com.uiteco.OfCuocThiPanel.secondPage.floatingButton.EventFloatingActionButton;
 import com.uiteco.OfCuocThiPanel.secondPage.pieChart.ModelPieChart;
 import com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChartPanel;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -41,8 +42,8 @@ public class CuocThiRightPanel_SecondPage extends JPanel {
     }
 
     public void actionPressButton() {
-        ImageIcon listIcon = new ImageIcon(getClass().getResource("/note.png"));
-        ImageIcon researchIcon = new ImageIcon(getClass().getResource("/pie-chart.png"));
+        ImageIcon listIcon = new ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-list-60.png"));
+        ImageIcon researchIcon = new ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-pie-chart-60.png"));
 
         floatingActionButton.addItem(listIcon, Color.white);
         floatingActionButton.addItem(researchIcon, Color.white);
@@ -54,47 +55,40 @@ public class CuocThiRightPanel_SecondPage extends JPanel {
                     RegisterTableInfo table = new RegisterTableInfo();
                     CuocThiDAO.getRegisterInfo_TableView(table.getTable(), getPostID());
                     showForm(table);
+                    table.repaint();
 
                 } else if (index == 1) {
-                    PieChartPanel chartPanel = new PieChartPanel();
 
                     List<ModelPieChart> models1 = CuocThiDAO.getDataForPieChart_CourseYear(getPostID());
 
+                    PieChartPanel chartPanel = new PieChartPanel();
                     if (models1 == null || models1.isEmpty()) {
-                        chartPanel.removeAll();
-                        
-                        JLabel placeholder = new JLabel("No posts available");
-                        Font placeholderFont = new Font("Merriweather", Font.PLAIN, 24);
-                        placeholder.setFont(placeholderFont);
 
-                        placeholder.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 118));
+                        chartPanel.getjFalcuty().setVisible(false);
+                        chartPanel.getjCourse().setVisible(false);
 
-                        placeholder.setHorizontalAlignment( SwingConstants.CENTER);
-                        placeholder.setPreferredSize(new java.awt.Dimension(1160, 805)); // Adjust dimensions as needed
-
-                        chartPanel.add(placeholder);
-                        
                         chartPanel.revalidate();
                         chartPanel.repaint();
-                    }
-                    
-                    for (ModelPieChart m : models1) {
-                        chartPanel.getPieChart1().addData(m);
+                        showForm(chartPanel);
+                    } else {
+                        for (ModelPieChart m : models1) {
+                            chartPanel.getPieChart1().addData(m);
+                        }
+
+                        chartPanel.updateLegend1(models1);
+
+                        List<ModelPieChart> models2 = CuocThiDAO.getDataForPieChart_FacultyName(getPostID());
+                        for (ModelPieChart m : models2) {
+                            chartPanel.getPieChart2().addData(m);
+                        }
+
+                        chartPanel.updateLegend2(models2);
+
+                        chartPanel.revalidate();
+                        chartPanel.repaint();
+                        showForm(chartPanel);
                     }
 
-                    chartPanel.updateLegend1(models1);
-                    
-                    
-                    List<ModelPieChart> models2 = CuocThiDAO.getDataForPieChart_FacultyName(getPostID());
-                    for (ModelPieChart m : models2) {
-                        chartPanel.getPieChart2().addData(m);
-                    }
-
-                    chartPanel.updateLegend2(models2);
-
-                    chartPanel.revalidate();
-                    chartPanel.repaint();
-                    showForm(chartPanel);
                 }
             }
         });

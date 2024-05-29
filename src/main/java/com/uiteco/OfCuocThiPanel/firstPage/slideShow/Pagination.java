@@ -3,6 +3,7 @@ package com.uiteco.OfCuocThiPanel.firstPage.slideShow;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -66,8 +67,9 @@ public class Pagination extends JComponent {
         }
 
         public Item(int index, EventPagination event) {
+            setPreferredSize(new Dimension(19, 19));
             setContentAreaFilled(false);
-            setBorder(new EmptyBorder(5, 5, 5, 5));
+            setBorder(new EmptyBorder(8, 8, 8, 8));
             setBackground(Color.WHITE);
             setCursor(new Cursor(Cursor.HAND_CURSOR));
             addActionListener(new ActionListener() {
@@ -85,11 +87,11 @@ public class Pagination extends JComponent {
             int height = getHeight();
             Graphics2D g2 = (Graphics2D) grphcs.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.2f));
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f));
             g2.setColor(getBackground());
             g2.fillOval(0, 0, width, height);
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-            g2.setColor(new Color(11, 124, 173));
+            g2.setColor(new Color(66, 128, 207));
             g2.fillOval(0, 0, width, height);
             g2.dispose();
         }

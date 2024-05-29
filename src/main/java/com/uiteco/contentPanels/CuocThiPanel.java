@@ -65,7 +65,10 @@ public class CuocThiPanel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         newestCompetitions_new.repaint();
+        roundedPanel1.revalidate();
+        postList.revalidate();
         roundedPanel1.repaint();
+        postList.repaint();
         
     }
     
@@ -358,15 +361,16 @@ public class CuocThiPanel extends JPanel {
         jScrollPane.setPreferredSize(new java.awt.Dimension(1160, 1300));
 
         slideShowAndPosts.setBackground(new java.awt.Color(242, 243, 244));
+        slideShowAndPosts.setPreferredSize(new java.awt.Dimension(950, 1857));
         slideShowAndPosts.setLayout(new java.awt.GridBagLayout());
 
-        newestCompetitions_new.setPreferredSize(new java.awt.Dimension(600, 850));
+        newestCompetitions_new.setPreferredSize(new java.awt.Dimension(700, 850));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(30, 22, 30, 50);
+        gridBagConstraints.insets = new java.awt.Insets(30, 25, 30, 25);
         slideShowAndPosts.add(newestCompetitions_new, gridBagConstraints);
 
         postList.setBackground(new java.awt.Color(242, 243, 244));

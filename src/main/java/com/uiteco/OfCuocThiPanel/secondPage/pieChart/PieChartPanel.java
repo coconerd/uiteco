@@ -6,6 +6,27 @@ import java.util.List;
 public class PieChartPanel extends CuocThiRightPanel_SecondPage {
 
     /**
+     * @return the jCourse
+     */
+    public javax.swing.JLabel getjCourse() {
+        return jCourse;
+    }
+
+    /**
+     * @return the jFalcuty
+     */
+    public javax.swing.JLabel getjFalcuty() {
+        return jFalcuty;
+    }
+
+    /**
+     * @param jCourse the jCourse to set
+     */
+    public void setjCourse(javax.swing.JLabel jCourse) {
+        this.jCourse = jCourse;
+    }
+
+    /**
      * @return the pieChart1
      */
     public com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChart getPieChart1() {
@@ -25,12 +46,10 @@ public class PieChartPanel extends CuocThiRightPanel_SecondPage {
     
     public void updateLegend1(List<ModelPieChart> pieCharts) {
         legendPanel1.updateData(pieCharts);
-        System.out.println("legend1");
     }
 
     public void updateLegend2(List<ModelPieChart> pieCharts) {
         legendPanel2.updateData(pieCharts);
-        System.out.println("legend2");
     }
     
     @SuppressWarnings("unchecked")
@@ -42,8 +61,8 @@ public class PieChartPanel extends CuocThiRightPanel_SecondPage {
         jLabel2 = new javax.swing.JLabel();
         pieChart1 = new com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChart();
         pieChart2 = new com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChart();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jCourse = new javax.swing.JLabel();
+        jFalcuty = new javax.swing.JLabel();
         legendPanel1 = new com.uiteco.OfCuocThiPanel.secondPage.pieChart.LegendPanel();
         legendPanel2 = new com.uiteco.OfCuocThiPanel.secondPage.pieChart.LegendPanel();
 
@@ -76,13 +95,13 @@ public class PieChartPanel extends CuocThiRightPanel_SecondPage {
         pieChart2.setPreferredSize(new java.awt.Dimension(450, 450));
         roundedPanel1.add(pieChart2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 230, 480, 440));
 
-        jLabel3.setFont(new java.awt.Font("Merriweather", 2, 24)); // NOI18N
-        jLabel3.setText("Theo niên khóa");
-        roundedPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 690, -1, -1));
+        jCourse.setFont(new java.awt.Font("Merriweather", 2, 24)); // NOI18N
+        jCourse.setText("Theo niên khóa");
+        roundedPanel1.add(jCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 690, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Merriweather", 2, 24)); // NOI18N
-        jLabel4.setText("Theo khoa");
-        roundedPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 690, -1, -1));
+        jFalcuty.setFont(new java.awt.Font("Merriweather", 2, 24)); // NOI18N
+        jFalcuty.setText("Theo khoa");
+        roundedPanel1.add(jFalcuty, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 690, -1, -1));
 
         legendPanel1.setBackground(new java.awt.Color(255, 255, 0));
         legendPanel1.setOpaque(false);
@@ -135,10 +154,10 @@ public class PieChartPanel extends CuocThiRightPanel_SecondPage {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jCourse;
+    private javax.swing.JLabel jFalcuty;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private com.uiteco.OfCuocThiPanel.secondPage.pieChart.LegendPanel legendPanel1;
     private com.uiteco.OfCuocThiPanel.secondPage.pieChart.LegendPanel legendPanel2;
     private com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChart pieChart1;

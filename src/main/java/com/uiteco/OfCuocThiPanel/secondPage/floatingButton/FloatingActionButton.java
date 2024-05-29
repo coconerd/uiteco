@@ -92,6 +92,10 @@ public class FloatingActionButton extends JComponent {
     }
 
     public void addItem(Icon icon, Color color) {
+        // Increase the button size by adjusting the width and height
+        int buttonWidth = 100;  // New width
+        int buttonHeight = 100; // New height
+
         Button item = new Button(getComponentCount() - 1);
         item.addActionListener(new ActionListener() {
             @Override
@@ -101,9 +105,9 @@ public class FloatingActionButton extends JComponent {
         });
         item.setIcon(icon);
         item.setBackground(color);
-        //  ms is id of button
+        // ms is the id of the button
         item.setVisible(false);
-        add(item, "pos ms.x+3 ms.y+3, w 85!, h 85!");
+        add(item, String.format("pos ms.x+3 ms.y+3, w %d!, h %d!", buttonWidth, buttonHeight));
     }
 
     public void addEvent(EventFloatingActionButton event) {

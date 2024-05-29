@@ -20,7 +20,7 @@ public class ScrollPaneImages extends JPanel {
         
         jScrollPane.setHorizontalScrollBar(new ScrollBarCustom());
         jScrollPane.setBorder(null);
-        
+        jScrollPane.setOpaque(false);
         ScrollBarCustom sp = new ScrollBarCustom();
         
         sp.setOrientation(JScrollBar.HORIZONTAL);
@@ -29,7 +29,7 @@ public class ScrollPaneImages extends JPanel {
         jScrollPane.setViewportView(roundedGradientPanel);
         UIManager.put("ScrollBar.showButtons", false);
         
-        UIManager.put("ScrollBar.track", new Color(0xe0e0e0));
+        UIManager.put("ScrollBar.track", Color.WHITE);
         UIManager.put("ScrollBar.thumb", new ColorUIResource(100, 150, 200)); // Change thumb color
         FlatMacLightLaf.setup();
         
@@ -73,7 +73,7 @@ public class ScrollPaneImages extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane;
+    protected javax.swing.JScrollPane jScrollPane;
     private com.uiteco.components.RoundedGradientPanel roundedGradientPanel;
     // End of variables declaration//GEN-END:variables
 }

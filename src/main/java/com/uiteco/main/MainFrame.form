@@ -38,7 +38,7 @@
               <Component id="leftPanel" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="headerPanel" max="32767" attributes="0"/>
-                  <Component id="contentPanel" pref="810" max="32767" attributes="0"/>
+                  <Component id="contentPanel" pref="808" max="32767" attributes="0"/>
               </Group>
               <Component id="rightPanel" min="-2" pref="300" max="-2" attributes="0"/>
           </Group>
@@ -85,7 +85,7 @@
                           <Component id="imageAvatar13" min="-2" pref="90" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="ecoLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Component id="cauLacBoButton" alignment="0" max="32767" attributes="0"/>
                       <Component id="forumButton" alignment="0" max="32767" attributes="0"/>
@@ -142,7 +142,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/icons8-home-17.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="S&#x1ef1; ki&#x1ec7;n"/>
+            <Property name="text" type="java.lang.String" value="B&#x1ea3;ng feed"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="iconTextGap" type="int" value="20"/>
