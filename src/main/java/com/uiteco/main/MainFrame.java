@@ -36,6 +36,7 @@ import com.uiteco.ofTaiKhoanPanel.introduction.IntroductionUI;
 import com.uiteco.ofTaiKhoanPanel.postManagement.PostManagement;
 import com.uiteco.ofTaiKhoanPanel.postManagement.UpdatePostUI;
 import com.uiteco.ofTaiKhoanPanel.security.SecurityUI;
+import com.uiteco.rightPanels.TaiKhoanRightPanel;
 
 
 /**
@@ -82,10 +83,6 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
      */
     public ContentPanel getContentPanel() {
         return this.contentPanel;
-    }
-
-    public ContentPanel getRightPanel() {
-        return this.rightPanel;
     }
 
     public ContentPanel getRightPanel() {

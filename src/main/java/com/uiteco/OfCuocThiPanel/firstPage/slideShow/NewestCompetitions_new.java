@@ -63,7 +63,7 @@ public class NewestCompetitions_new extends javax.swing.JPanel {
 
         roundedGradientPanel.setColor1(new java.awt.Color(252, 225, 208));
         roundedGradientPanel.setColor2(new java.awt.Color(221, 108, 214));
-        roundedGradientPanel.setPreferredSize(new java.awt.Dimension(1370, 730));
+        roundedGradientPanel.setPreferredSize(new java.awt.Dimension(810, 665));
         roundedGradientPanel.setRoundBottomLeft(55);
         roundedGradientPanel.setRoundBottomRight(55);
         roundedGradientPanel.setRoundTopLeft(55);

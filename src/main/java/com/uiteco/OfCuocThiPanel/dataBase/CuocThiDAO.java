@@ -382,7 +382,7 @@ public class CuocThiDAO {
             query = "{CALL PROC_THICH_BAIDANG(?, ?, ?)}";
             CallableStatement cstm = conn.prepareCall(query);
             cstm.setInt(1, model.getId());
-            cstm.setInt(2, getSession().getAccountID());
+            cstm.setInt(2, getSession().getUser().getAccountID());
             cstm.registerOutParameter(3, java.sql.Types.INTEGER);
             cstm.execute();
             
@@ -405,7 +405,7 @@ public class CuocThiDAO {
             CallableStatement cstm = conn.prepareCall(query);
             
             cstm.setInt(1, model.getId());
-            cstm.setInt(2, getSession().getAccountID());
+            cstm.setInt(2, getSession().getUser().getAccountID());
             cstm.registerOutParameter(3, java.sql.Types.INTEGER);
             cstm.execute();
             int likes = cstm.getInt(3);
@@ -574,7 +574,7 @@ public class CuocThiDAO {
             query = "INSERT INTO DANGKY (MATK, MABD, THOIDIEMDK) VALUES (?, ?, ?)";
             PreparedStatement p = conn.prepareStatement(query);
             
-            p.setInt(1, getSession().getAccountID());
+            p.setInt(1, getSession().getUser().getAccountID());
             p.setInt(2, postId);
             Timestamp time = Timestamp.valueOf(LocalDateTime.now());
             p.setTimestamp(3, time);

@@ -31,7 +31,7 @@
           <Color blue="d6" green="6c" red="dd" type="rgb"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1370, 730]"/>
+          <Dimension value="[810, 665]"/>
         </Property>
         <Property name="roundBottomLeft" type="int" value="55"/>
         <Property name="roundBottomRight" type="int" value="55"/>
