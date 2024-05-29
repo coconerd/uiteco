@@ -4,20 +4,30 @@ package com.uiteco.OfCuocThiPanel.secondPage;
 public class RoundImageUI extends javax.swing.JPanel {
 
     /**
-     * @return the roundedImagePanel
+     * @return the jLabel
      */
-    public com.uiteco.components.RoundedImagePanel getRoundedImagePanel() {
-        return roundedImagePanel;
+    public javax.swing.JLabel getjLabel() {
+        return jLabel;
     }
 
-
     /**
-     * Creates new form RoundImageUI
+     * @return the roundedImagePanel2
      */
+    public com.uiteco.components.RoundedImagePanel getRoundedImagePanel2() {
+        return roundedImagePanel2;
+    }
+
+    public com.uiteco.components.RoundedImagePanel getRoundedImagePanel1() {
+        return roundedImagePanel1;
+    }
+
+//    public javax.swing.JLabel getjLabel() {
+//        return jLabel;
+//    }
+
     public RoundImageUI() {
         initComponents();
         roundedImagePanel1.setBorder(null);
-        
     }
     
     
@@ -26,7 +36,8 @@ public class RoundImageUI extends javax.swing.JPanel {
     private void initComponents() {
 
         roundedImagePanel1 = new com.uiteco.components.RoundedImagePanel();
-        roundedImagePanel = new com.uiteco.components.RoundedImagePanel();
+        roundedImagePanel2 = new com.uiteco.components.RoundedImagePanel();
+        jLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout roundedImagePanel1Layout = new javax.swing.GroupLayout(roundedImagePanel1);
         roundedImagePanel1.setLayout(roundedImagePanel1Layout);
@@ -41,37 +52,33 @@ public class RoundImageUI extends javax.swing.JPanel {
 
         setOpaque(false);
 
-        roundedImagePanel.setRoundBottomLeft(30);
-        roundedImagePanel.setRoundBottomRight(30);
-        roundedImagePanel.setRoundTopLeft(30);
-        roundedImagePanel.setRoundTopRight(30);
-
-        javax.swing.GroupLayout roundedImagePanelLayout = new javax.swing.GroupLayout(roundedImagePanel);
-        roundedImagePanel.setLayout(roundedImagePanelLayout);
-        roundedImagePanelLayout.setHorizontalGroup(
-            roundedImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+        javax.swing.GroupLayout roundedImagePanel2Layout = new javax.swing.GroupLayout(roundedImagePanel2);
+        roundedImagePanel2.setLayout(roundedImagePanel2Layout);
+        roundedImagePanel2Layout.setHorizontalGroup(
+            roundedImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
         );
-        roundedImagePanelLayout.setVerticalGroup(
-            roundedImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+        roundedImagePanel2Layout.setVerticalGroup(
+            roundedImagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundedImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+            .addComponent(roundedImagePanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundedImagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+            .addComponent(roundedImagePanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.components.RoundedImagePanel roundedImagePanel;
+    private javax.swing.JLabel jLabel;
     private com.uiteco.components.RoundedImagePanel roundedImagePanel1;
+    private com.uiteco.components.RoundedImagePanel roundedImagePanel2;
     // End of variables declaration//GEN-END:variables
 }

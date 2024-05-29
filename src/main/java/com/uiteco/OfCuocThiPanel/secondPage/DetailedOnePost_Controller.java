@@ -3,6 +3,7 @@ package com.uiteco.OfCuocThiPanel.secondPage;
 import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -21,8 +22,6 @@ public class DetailedOnePost_Controller {
         this.baseModel = baseModel;
         this.isLiked = false;
         currentLikes = baseModel.countLike;
-        //view.jLike.addActionListener(e -> jLikeActionPerformed());
-        //view.jRegister.addActionListener(e -> jRegisterActionPerformed());
 
     }
 
@@ -52,33 +51,19 @@ public class DetailedOnePost_Controller {
         List<RoundImageUI> listImage = new ArrayList<>();
         for (ImageIcon i : imageList) {
             RoundImageUI r = new RoundImageUI();
-            r.getRoundedImagePanel().setImage(i);
+            r.getjLabel().setIcon(i);
             listImage.add(r);
         }
 
         for (Component c : listImage) {
-
             view.scrollPaneImages.getRoundedGradientPanel().add(c);
         }
-
+        
+        view.revalidate();
+        view.repaint();
         return view;
     }
 
-//    private void jLikeActionPerformed() {
-//        // TODO add your handling code here:
-//        //first press + 1, second press - 1 
-//        isLiked = !isLiked;
-//
-//        int newCountLike = currentLikes + (isLiked ? 1 : -1);
-//
-//        newCountLike = Math.max(newCountLike, 0);
-//        baseModel.setCountLike(newCountLike);
-//
-//        view.jLike.setText(String.valueOf(newCountLike));
-//        CuocThiDAO.updateCountLikeDB(baseModel.getId(), newCountLike);
-//
-//        currentLikes = newCountLike;
-//    }
 
     private static void showConfirmationDialog() {
 

@@ -37,6 +37,9 @@ public class ScrollPaneImages extends JPanel {
         UIManager.put("ScrollBar.track", new Color(0xe0e0e0));
         UIManager.put("ScrollBar.thumb", new ColorUIResource(100, 150, 200)); // Change thumb color
         FlatMacLightLaf.setup();
+        
+        roundedGradientPanel.revalidate();
+        roundedGradientPanel.repaint();
     }
 
     @SuppressWarnings("unchecked")
@@ -52,19 +55,25 @@ public class ScrollPaneImages extends JPanel {
         jScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane.setViewportView(roundedGradientPanel);
 
+        roundedGradientPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 30, 20, 30));
+        roundedGradientPanel.setColor1(new java.awt.Color(233, 222, 250));
         roundedGradientPanel.setDirection(com.uiteco.components.RoundedGradientPanel.Direction.HORIZONTAL);
-        roundedGradientPanel.setLayout(new java.awt.GridLayout(1, 0, 38, 0));
+        roundedGradientPanel.setRoundBottomLeft(60);
+        roundedGradientPanel.setRoundBottomRight(60);
+        roundedGradientPanel.setRoundTopLeft(60);
+        roundedGradientPanel.setRoundTopRight(60);
+        roundedGradientPanel.setLayout(new java.awt.GridLayout(1, 0, 65, 0));
         jScrollPane.setViewportView(roundedGradientPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane)
+            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1300, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+            .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     
