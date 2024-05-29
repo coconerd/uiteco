@@ -24,6 +24,13 @@ import javax.swing.SwingUtilities;
 
 public class PieChart extends JComponent {
 
+    /**
+     * @return the models
+     */
+    public List<ModelPieChart> getModels() {
+        return models;
+    }
+
     private final List<ModelPieChart> models;
     private final DecimalFormat format = new DecimalFormat("#,##0.#");
     private PeiChartType chartType = PeiChartType.DEFAULT;
@@ -83,18 +90,18 @@ public class PieChart extends JComponent {
         double drawAngle = 90;
         float fontSize = (float) (getFont().getSize() * size * 0.0045f);
         if (hoverIndex >= 0) {
-            g2.setColor(models.get(hoverIndex).getColor());
+            g2.setColor(getModels().get(hoverIndex).getColor());
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
             g2.fill(createShape(hoverIndex, 0, borderHover));
         }
         if (selectedIndex >= 0) {
-            g2.setColor(models.get(selectedIndex).getColor());
+            g2.setColor(getModels().get(selectedIndex).getColor());
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
             g2.fill(createShape(selectedIndex, 0.018f, borderHover));
         }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-        for (int i = 0; i < models.size(); i++) {
-            ModelPieChart data = models.get(i);
+        for (int i = 0; i < getModels().size(); i++) {
+            ModelPieChart data = getModels().get(i);
             double angle = data.getValues() * 360 / totalValue;
             Area area = new Area(new Arc2D.Double(x, y, size, size, drawAngle, -angle, Arc2D.PIE));
             if (chartType == PeiChartType.DONUT_CHART) {
@@ -110,8 +117,8 @@ public class PieChart extends JComponent {
             drawAngle -= angle;
         }
         drawAngle = 90;
-        for (int i = 0; i < models.size(); i++) {
-            ModelPieChart data = models.get(i);
+        for (int i = 0; i < getModels().size(); i++) {
+            ModelPieChart data = getModels().get(i);
             double angle = data.getValues() * 360 / totalValue;
             //  Draw Text
             double textSize = size / 2 * 0.75f;
@@ -181,8 +188,8 @@ public class PieChart extends JComponent {
         double y = (height - size) / 2;
         double totalValue = getTotalvalue();
         double drawAngle = 90;
-        for (int i = 0; i < models.size(); i++) {
-            double angle = models.get(i).getValues() * 360 / totalValue;
+        for (int i = 0; i < getModels().size(); i++) {
+            double angle = getModels().get(i).getValues() * 360 / totalValue;
             if (index == i) {
                 Area area = new Area(new Arc2D.Double(x, y, size, size, drawAngle, -angle, Arc2D.PIE));
                 size -= size * p - size * a * 2;
@@ -213,8 +220,8 @@ public class PieChart extends JComponent {
         double y = (height - size) / 2;
         double totalValue = getTotalvalue();
         double drawAngle = 90;
-        for (int i = 0; i < models.size(); i++) {
-            ModelPieChart data = models.get(i);
+        for (int i = 0; i < getModels().size(); i++) {
+            ModelPieChart data = getModels().get(i);
             double angle = data.getValues() * 360 / totalValue;
             Area area = new Area(new Arc2D.Double(x, y, size, size, drawAngle, -angle, Arc2D.PIE));
             if (chartType == PeiChartType.DONUT_CHART) {
@@ -234,7 +241,7 @@ public class PieChart extends JComponent {
 
     private double getTotalvalue() {
         double max = 0;
-        for (ModelPieChart data : models) {
+        for (ModelPieChart data : getModels()) {
                 max += data.getValues();
         }
         return max;
@@ -245,7 +252,7 @@ public class PieChart extends JComponent {
     }
 
     public void setSelectedIndex(int selectedIndex) {
-        if (selectedIndex >= -1 && selectedIndex < models.size()) {
+        if (selectedIndex >= -1 && selectedIndex < getModels().size()) {
             this.selectedIndex = selectedIndex;
             repaint();
         }
@@ -283,12 +290,12 @@ public class PieChart extends JComponent {
     }
 
     public void clearData() {
-        models.clear();
+        getModels().clear();
         repaint();
     }
 
     public void addData(ModelPieChart data) {
-        models.add(data);
+        getModels().add(data);
     }
 
     public static enum PeiChartType {

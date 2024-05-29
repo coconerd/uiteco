@@ -3,16 +3,12 @@ package com.uiteco.OfCuocThiPanel.secondPage;
 import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 
 public class DetailedOnePost_Controller {
 
-    /**
-     * @return the baseModel
-     */
     public BriefPost_Model getBaseModel() {
         return baseModel;
     }
@@ -20,15 +16,11 @@ public class DetailedOnePost_Controller {
     public DetailedOnePost_Controller(DetailedOnePost_View view, BriefPost_Model baseModel) {
         this.view = view;
         this.baseModel = baseModel;
-        this.isLiked = false;
-        currentLikes = baseModel.countLike;
 
     }
 
     private final DetailedOnePost_View view;
     private final BriefPost_Model baseModel;
-    private boolean isLiked;
-    private int currentLikes;
 
     public int getPostID() {
         return getBaseModel().getId();
@@ -58,6 +50,10 @@ public class DetailedOnePost_Controller {
         for (Component c : listImage) {
             view.scrollPaneImages.getRoundedGradientPanel().add(c);
         }
+        
+//        DetailedOnePost_Model dModel = CuocThiDAO.getAllImagesAndUrls(baseModel.getId());
+//        view.youtubePlay.setUri_String(dModel.getUrlYT());
+//        view.youtubePlay.setThumbnail(baseModel.getThumbnailYT());
         
         view.revalidate();
         view.repaint();

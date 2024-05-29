@@ -27,7 +27,15 @@ public class YoutubePlay extends JPanel {
     public void setUri(URI uri) {
         this.uri = uri;
     }
-
+    
+    public void setUri_String(String uriString) {
+        try {
+            this.uri = new URI(uriString);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+    
     private static void open(URI uri) throws IOException {
         if (Desktop.isDesktopSupported()) {
             Desktop.getDesktop().browse(uri);

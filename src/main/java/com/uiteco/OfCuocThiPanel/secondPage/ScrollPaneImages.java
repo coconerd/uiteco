@@ -28,11 +28,6 @@ public class ScrollPaneImages extends JPanel {
         
         jScrollPane.setViewportView(roundedGradientPanel);
         UIManager.put("ScrollBar.showButtons", false);
-        jScrollPane.getVerticalScrollBar().putClientProperty(FlatClientProperties.STYLE, ""
-                + "trackArc:999;"
-                + "trackInsets:3,3,3,3;"
-                + "thumbInsets:3,3,3,3;"
-        );
         
         UIManager.put("ScrollBar.track", new Color(0xe0e0e0));
         UIManager.put("ScrollBar.thumb", new ColorUIResource(100, 150, 200)); // Change thumb color

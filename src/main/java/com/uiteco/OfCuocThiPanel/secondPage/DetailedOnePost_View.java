@@ -310,7 +310,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(70, 0, 70, 1170);
+        gridBagConstraints.insets = new java.awt.Insets(70, 0, 70, 1230);
         jBody.add(youtubePlay, gridBagConstraints);
 
         scrollPaneImages.setPreferredSize(new java.awt.Dimension(1600, 600));
@@ -365,7 +365,8 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         GlassPanePopup.showPopup(popUp);
         
         popUp.getjOk().addActionListener((e) -> {
-            CuocThiDAO.registerCompetition(getController().getBaseModel());
+            //CuocThiDAO.registerCompetition(getController().getBaseModel());
+            CuocThiDAO.insertUserRegisterCompetition(getController().getPostID());
             GlassPanePopup.closePopupAll();
 
             //when press Register, display unregister button 
@@ -387,10 +388,11 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
     private void jLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLikeActionPerformed
         // TODO add your handling code here:
         CuocThiDAO.getCountLikePost(controller.getBaseModel());
-        System.out.println(controller.getBaseModel().countLike);
         jLike.setText(Integer.toString(controller.getBaseModel().countLike));
         jLike.revalidate();
         jLike.repaint();
+        
+        
     }//GEN-LAST:event_jLikeActionPerformed
 
 
@@ -419,6 +421,6 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
     private javax.swing.JLabel like;
     private com.uiteco.components.RoundedGradientPanel roundedGradientPanel;
     protected com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages scrollPaneImages;
-    private com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay youtubePlay;
+    protected com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay youtubePlay;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,16 +3,18 @@ package com.uiteco.rightPanels;
 import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import com.uiteco.OfCuocThiPanel.secondPage.RegisterTableInfo;
-import com.uiteco.OfCuocThiPanel.secondPage.TableImageCellRender;
 import com.uiteco.OfCuocThiPanel.secondPage.floatingButton.EventFloatingActionButton;
 import com.uiteco.OfCuocThiPanel.secondPage.pieChart.ModelPieChart;
 import com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChartPanel;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
+import javax.swing.SwingConstants;
 
 public class CuocThiRightPanel_SecondPage extends JPanel {
 
@@ -55,18 +57,45 @@ public class CuocThiRightPanel_SecondPage extends JPanel {
 
                 } else if (index == 1) {
                     PieChartPanel chartPanel = new PieChartPanel();
+
                     List<ModelPieChart> models1 = CuocThiDAO.getDataForPieChart_CourseYear(getPostID());
+
+                    if (models1 == null || models1.isEmpty()) {
+                        chartPanel.removeAll();
+                        
+                        JLabel placeholder = new JLabel("No posts available");
+                        Font placeholderFont = new Font("Merriweather", Font.PLAIN, 24);
+                        placeholder.setFont(placeholderFont);
+
+                        placeholder.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 118));
+
+                        placeholder.setHorizontalAlignment( SwingConstants.CENTER);
+                        placeholder.setPreferredSize(new java.awt.Dimension(1160, 805)); // Adjust dimensions as needed
+
+                        chartPanel.add(placeholder);
+                        
+                        chartPanel.revalidate();
+                        chartPanel.repaint();
+                    }
+                    
                     for (ModelPieChart m : models1) {
                         chartPanel.getPieChart1().addData(m);
-                        System.out.println(m.getName());
-                        System.out.println(m.getValues());
+                        System.out.println("chart1");
                     }
 
+                    chartPanel.updateLegend1(models1);
+                    
+                    
                     List<ModelPieChart> models2 = CuocThiDAO.getDataForPieChart_FacultyName(getPostID());
                     for (ModelPieChart m : models2) {
                         chartPanel.getPieChart2().addData(m);
+                        System.out.println("chart2");
                     }
-                    
+
+                    chartPanel.updateLegend2(models2);
+
+                    chartPanel.revalidate();
+                    chartPanel.repaint();
                     showForm(chartPanel);
                 }
             }

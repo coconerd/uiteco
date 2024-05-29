@@ -164,14 +164,6 @@ public class CustomButton extends JButton {
         super.paintComponent(grphcs);
     }
 
-    @Override
-    public void setSelected(boolean b) { //b is true if button is pressed
-        super.setSelected(b);
-        if (isSelected != b) {
-            isSelected = b;
-            listenerChange.firePropertyChange("selected", !isSelected, isSelected);
-        }
-    }
 
     //override
     public boolean isSelected() {

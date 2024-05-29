@@ -169,7 +169,29 @@ public class CuocThiDAO {
             return new ArrayList<>();
         }
     }
-
+//    public static void insertUserRegisterCompetition(int postId) {
+//        try {
+//            conn = getConnection();
+//            query = "INSERT INTO DANGKY (MATK, MABD, THOIDIEMDK) VALUES (?, ?, ?)";
+//            PreparedStatement p = conn.prepareStatement(query);
+//
+//            p.setInt(1, 1);
+//            p.setInt(2, postId);
+//            Timestamp time = Timestamp.valueOf(LocalDateTime.now());
+//            p.setTimestamp(3, time);
+//
+//            rset = p.executeQuery();
+//
+//            conn.commit();
+//            rset.close();
+//            conn.close();
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("Insert succesfully");
+//    }
+    
     //5 khóa
     public static List<ModelPieChart> getDataForPieChart_CourseYear(int postID) {
         List<ModelPieChart> modelList = new ArrayList<>();
@@ -304,7 +326,7 @@ public class CuocThiDAO {
     public static DetailedOnePost_Model getAllImagesAndUrls(int postID) {
         DetailedOnePost_Model model = new DetailedOnePost_Model();
         List<ImageIcon> imagesList = new ArrayList<>();
-        List<String> urlList = new ArrayList<>();
+        String url = null;
 
         query = "SELECT ANH, URL "
                 + "FROM HINHANH "
@@ -320,8 +342,7 @@ public class CuocThiDAO {
             while (rset.next()) {
 
                 if (rset.getString("URL") != null) {
-                    String url = rset.getString("URL");
-                    urlList.add(url);
+                    url = rset.getString("URL");
                 }
 
                 byte[] imageData = rset.getBytes("ANH");
@@ -342,8 +363,9 @@ public class CuocThiDAO {
                     }
                 }
             }
+            
             model.setImages(imagesList);
-            model.setUrlYT(urlList);
+            model.setUrlYT(url);
 
             rset.close();
             p.close();

@@ -6,11 +6,11 @@ import javax.swing.ImageIcon;
 
 public class DetailedOnePost_Model extends BriefPost_Model{
 
-    public List<String> getUrlYT() {
+    public String getUrlYT() {
         return urlYT;
     }
 
-    public void setUrlYT(List<String> urlYT) {
+    public void setUrlYT(String urlYT) {
         this.urlYT = urlYT;
     }
 
@@ -26,19 +26,18 @@ public class DetailedOnePost_Model extends BriefPost_Model{
         return Integer.toString(getCountLike());
     }
 
-    public DetailedOnePost_Model(List<String> urlYT) {
+    public DetailedOnePost_Model(String urlYT) {
         this.urlYT = urlYT;
     }
 
-    public DetailedOnePost_Model(List<ImageIcon> images, List<String> urlYT) {
+    public DetailedOnePost_Model(List<ImageIcon> images, String urlYT) {
         this.images = images;
         this.urlYT = urlYT;
     }
 
     
     protected List<ImageIcon> images;
-    private List<String> urlYT;
-    //private DefaultTableModel modelTable;
+    private String urlYT;
     
     
     public DetailedOnePost_Model() {
