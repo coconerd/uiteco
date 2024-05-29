@@ -65,7 +65,10 @@ public class CuocThiPanel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         newestCompetitions_new.repaint();
+        roundedPanel1.revalidate();
+        postList.revalidate();
         roundedPanel1.repaint();
+        postList.repaint();
         
     }
     

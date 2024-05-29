@@ -41,8 +41,8 @@ public class CuocThiRightPanel_SecondPage extends JPanel {
     }
 
     public void actionPressButton() {
-        ImageIcon listIcon = new ImageIcon(getClass().getResource("/note.png"));
-        ImageIcon researchIcon = new ImageIcon(getClass().getResource("/pie-chart.png"));
+        ImageIcon listIcon = new ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-list-60.png"));
+        ImageIcon researchIcon = new ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-pie-chart-60.png"));
 
         floatingActionButton.addItem(listIcon, Color.white);
         floatingActionButton.addItem(researchIcon, Color.white);

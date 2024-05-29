@@ -65,7 +65,8 @@ public class Button extends JButton {
         this.index = index;
         setContentAreaFilled(false);
         setForeground(new Color(242, 242, 242));
-        setSize(new Dimension(50, 50));
+        setPreferredSize(new Dimension(60, 60));  // Fixed size
+        setSize(new Dimension(60, 60));
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         addMouseListener(new MouseAdapter() {
             @Override
@@ -127,8 +128,23 @@ public class Button extends JButton {
             g2.setStroke(new BasicStroke(3f));
             g2.draw(at.createTransformedShape(line1));
             g2.draw(at.createTransformedShape(line2));
-        } 
+        }
         g2.dispose();
         super.paintComponent(grphcs);
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(80, 80);  // Fixed size
+    }
+
+    @Override
+    public Dimension getMinimumSize() {
+        return new Dimension(80, 80);  // Fixed size
+    }
+
+    @Override
+    public Dimension getMaximumSize() {
+        return new Dimension(80, 80);  // Fixed size
     }
 }

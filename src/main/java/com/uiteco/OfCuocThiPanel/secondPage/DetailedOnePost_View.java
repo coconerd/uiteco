@@ -4,8 +4,16 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
+import javax.swing.ImageIcon;
 
 public class DetailedOnePost_View extends javax.swing.JPanel {
+
+    /**
+     * @return the jRegisterTime
+     */
+    public javax.swing.JLabel getjRegisterTime() {
+        return jRegisterTime;
+    }
 
     /**
      * @return the scrollPaneImages
@@ -30,6 +38,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
     }
 
     private DetailedOnePost_Controller controller;
+    private boolean isLiked = false;
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -48,6 +57,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jRegister = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
         like = new javax.swing.JLabel();
         jOrganizer = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jContent = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -57,7 +67,6 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         youtubePlay = new com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay();
         scrollPaneImages = new com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages();
-        roundedGradientPanel = new com.uiteco.components.RoundedGradientPanel();
 
         setBackground(new java.awt.Color(242, 243, 244));
         setOpaque(false);
@@ -118,46 +127,25 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jBelowTitle.setBackground(new java.awt.Color(242, 243, 244));
         jBelowTitle.setOpaque(false);
         jBelowTitle.setPreferredSize(new java.awt.Dimension(1160, 100));
-        jBelowTitle.setLayout(new java.awt.GridBagLayout());
 
         iconOrganization.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-company-80.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 0);
-        jBelowTitle.add(iconOrganization, gridBagConstraints);
 
         jPostTime.setText("jLabel2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 27, 5, 30);
-        jBelowTitle.add(jPostTime, gridBagConstraints);
 
         jLike.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 0, 1, 1));
-        jLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-like-50.png"))); // NOI18N
-        jLike.setText("LIKE");
-        jLike.setColor(new java.awt.Color(242, 243, 245));
+        jLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-facebook-like-35.png"))); // NOI18N
+        jLike.setColor(new java.awt.Color(242, 243, 244));
         jLike.setColorClick(new java.awt.Color(242, 243, 244));
         jLike.setFont(new java.awt.Font("Merriweather", 1, 18)); // NOI18N
+        jLike.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jLike.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jLikeActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(3, 0, 8, 6);
-        jBelowTitle.add(jLike, gridBagConstraints);
 
         jRegister.setBackground(new java.awt.Color(85, 146, 213));
-        jRegister.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 0, 1, 1));
+        jRegister.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 0, 1, 1));
         jRegister.setForeground(new java.awt.Color(255, 255, 255));
         jRegister.setText("ĐĂNG KÍ");
         jRegister.setColor(new java.awt.Color(85, 146, 213));
@@ -170,30 +158,60 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
                 jRegisterActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipady = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 45);
-        jBelowTitle.add(jRegister, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        jBelowTitle.add(like, gridBagConstraints);
 
         jOrganizer.setText("jLabel1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(12, 27, 12, 30);
-        jBelowTitle.add(jOrganizer, gridBagConstraints);
+
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(199, 182, 241));
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator1.setPreferredSize(new java.awt.Dimension(52, 6));
+
+        javax.swing.GroupLayout jBelowTitleLayout = new javax.swing.GroupLayout(jBelowTitle);
+        jBelowTitle.setLayout(jBelowTitleLayout);
+        jBelowTitleLayout.setHorizontalGroup(
+            jBelowTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jBelowTitleLayout.createSequentialGroup()
+                .addComponent(like)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jBelowTitleLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(iconOrganization)
+                .addGap(27, 27, 27)
+                .addGroup(jBelowTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jOrganizer)
+                    .addComponent(jPostTime))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1155, Short.MAX_VALUE)
+                .addComponent(jRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jLike, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+        jBelowTitleLayout.setVerticalGroup(
+            jBelowTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jBelowTitleLayout.createSequentialGroup()
+                .addComponent(like)
+                .addGroup(jBelowTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jBelowTitleLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jBelowTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(iconOrganization)
+                            .addGroup(jBelowTitleLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jOrganizer)
+                                .addGap(19, 19, 19)
+                                .addComponent(jPostTime))))
+                    .addGroup(jBelowTitleLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jBelowTitleLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jBelowTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLike, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -277,14 +295,15 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(0, 24, 0, 44);
         jBody.add(jPanel2, gridBagConstraints);
+
+        youtubePlay.setPreferredSize(new java.awt.Dimension(500, 380));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(75, 0, 80, 1230);
+        gridBagConstraints.insets = new java.awt.Insets(75, 0, 80, 0);
         jBody.add(youtubePlay, gridBagConstraints);
 
         scrollPaneImages.setPreferredSize(new java.awt.Dimension(1600, 600));
@@ -295,30 +314,8 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 3.0;
-        gridBagConstraints.insets = new java.awt.Insets(45, 168, 80, 79);
+        gridBagConstraints.insets = new java.awt.Insets(49, 168, 82, 79);
         jBody.add(scrollPaneImages, gridBagConstraints);
-
-        roundedGradientPanel.setPreferredSize(new java.awt.Dimension(600, 380));
-        roundedGradientPanel.setRoundBottomLeft(35);
-        roundedGradientPanel.setRoundBottomRight(35);
-        roundedGradientPanel.setRoundTopLeft(35);
-        roundedGradientPanel.setRoundTopRight(35);
-
-        javax.swing.GroupLayout roundedGradientPanelLayout = new javax.swing.GroupLayout(roundedGradientPanel);
-        roundedGradientPanel.setLayout(roundedGradientPanelLayout);
-        roundedGradientPanelLayout.setHorizontalGroup(
-            roundedGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
-        );
-        roundedGradientPanelLayout.setVerticalGroup(
-            roundedGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 316, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        jBody.add(roundedGradientPanel, gridBagConstraints);
 
         jScrollPane.setViewportView(jBody);
 
@@ -356,6 +353,13 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
 
     private void jLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLikeActionPerformed
         // TODO add your handling code here:
+        isLiked = !isLiked;
+        if (isLiked) {
+            jLike.setIcon(new ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-facebook-like-35 (1).png")));
+        } else {
+            jLike.setIcon(new ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-facebook-like-35.png")));
+
+        }
         CuocThiDAO.getCountLikePost(controller.getBaseModel());
         jLike.setText(Integer.toString(controller.getBaseModel().countLike));
         jLike.revalidate();
@@ -365,7 +369,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.uiteco.components.RoundedPanel RegisterTimePanel;
+    protected com.uiteco.components.RoundedPanel RegisterTimePanel;
     private javax.swing.JLabel iconOrganization;
     private javax.swing.JPanel jBelowTitle;
     private javax.swing.JPanel jBody;
@@ -378,14 +382,14 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     protected javax.swing.JLabel jPostTime;
     protected com.uiteco.OfCuocThiPanel.secondPage.CustomButton jRegister;
-    protected javax.swing.JLabel jRegisterTime;
+    private javax.swing.JLabel jRegisterTime;
     private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     protected javax.swing.JLabel jTitle;
     private javax.swing.JPanel jTop;
     private javax.swing.JLabel like;
-    private com.uiteco.components.RoundedGradientPanel roundedGradientPanel;
     protected com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages scrollPaneImages;
     protected com.uiteco.OfCuocThiPanel.secondPage.YoutubePlay youtubePlay;
     // End of variables declaration//GEN-END:variables
