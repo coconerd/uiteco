@@ -55,7 +55,7 @@ public class PanelDate extends javax.swing.JLayeredPane {
         
         int PosDate = -1;
         
-        System.out.println("Date: " + calendar.get(Calendar.DAY_OF_MONTH) + ", Month: " + (calendar.get(Calendar.MONTH) + 1) + ", Year: " + calendar.get(Calendar.YEAR));     
+//        System.out.println("Date: " + calendar.get(Calendar.DAY_OF_MONTH) + ", Month: " + (calendar.get(Calendar.MONTH) + 1) + ", Year: " + calendar.get(Calendar.YEAR));     
         {
             int Day = calendar.get(Calendar.DAY_OF_MONTH);
             int Month = calendar.get(Calendar.MONTH) + 1;
@@ -137,7 +137,7 @@ public class PanelDate extends javax.swing.JLayeredPane {
     {
         this.ParentCalender = parent;
         
-        System.out.println("insert complete Parentcalender");
+//        System.out.println("insert complete Parentcalender");
     }
     
     public CalendarCustom getCalendarCustom()

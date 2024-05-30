@@ -145,8 +145,8 @@ public class CauLacBoPanel extends JPanel {
 //                System.out.println("" + rs.getString("maclb") + " , " + rs.getString("TenCLB"));
                 MaCLB = rs.getInt("maclb");
                 NameCLB = rs.getNString("TENCLB");
-                InfoCLB = rs.getNString("GIOITHIEU");
-                Khoa = rs.getNString("KHOA");
+                InfoCLB = rs.getNString("GIOITHIEUSOLUOC");
+                    Khoa = rs.getNString("DONVITRUCTHUOC");
                 
                 blob = rs.getBlob("BACKGROUND");
                 if(blob != null)
@@ -163,7 +163,7 @@ public class CauLacBoPanel extends JPanel {
                 
                 SLThanhVien = rs.getInt("SOLUONGTHANHVIEN");
                 SLThich = rs.getInt("SOLUONGTHICH");
-                DKXetTuyen = rs.getInt("DKXETTUYEN");
+                DKXetTuyen = rs.getInt("TRANGTHAITUYENTHANHVIEN");
                 Status = rs.getInt("TRANGTHAI");
                 
                 Timestamp timestamp= rs.getTimestamp("NGAYCAPNHAPGANNHAT");
@@ -171,7 +171,7 @@ public class CauLacBoPanel extends JPanel {
                     LastedDate = timestamp.toLocalDateTime();
                 
 //                CreateBy = rs.getNString("NHOMNGUOITHANHLAP");
-                CreateBy = "UIT";
+                CreateBy = "Nhóm người thuộc " + Khoa;
                 HostBy = rs.getInt("CHUNHIEM") + "";
                 
                 Date date = rs.getDate("NGAYTHANHLAP");
@@ -253,8 +253,6 @@ public class CauLacBoPanel extends JPanel {
     
     private void ConTentPanelCauLacBo()    
     {   
-        System.out.println("goto content");
-        
         boolean checkIsInit = true;
         if(LastedNumOfPageCLB == 0)
             checkIsInit = false;
@@ -397,9 +395,6 @@ public class CauLacBoPanel extends JPanel {
     public void FilterListCLB(String Area, String NameBox, String StyleBox, String Status_, String ConditionJoin)  
     {
         String Bodysql = "", Ordersql = "";
-        
-        System.out.println("Area: " + Area + ", NameBox: " + NameBox + ", StyleBox: " + StyleBox + ", Status: " + Status_ + ", ConditionJoin: " + ConditionJoin);
-    
         if(!Area.equals(""))
         {
             Bodysql += "PHAMVI = " + Area + " ";
@@ -453,10 +448,7 @@ public class CauLacBoPanel extends JPanel {
             String ImageUrl = "";
             
             Connection conn = ConnectionManager.getConnection();
-            String sql = "select * from CAULACBO " + Bodysql + Ordersql;
-            
-            System.out.println("code : " + sql);
-            
+            String sql = "select * from CAULACBO " + Bodysql + Ordersql;         
             
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();

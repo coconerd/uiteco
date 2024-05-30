@@ -56,7 +56,7 @@ public class Cell extends JButton {
     {
         isEntered = true;
         
-        System.out.println("Text1: " + TextNote);
+//        System.out.println("Text1: " + TextNote);
         
         if(ParentCalender != null && isEvent)
             ParentCalender.ShowNotificationsEvent(this, true, localDate, TextNote);
@@ -65,7 +65,7 @@ public class Cell extends JButton {
     private void Entered(MouseEvent evt) { 
         isEntered = true;
         
-        System.out.println("Text2: " + TextNote);
+//        System.out.println("Text2: " + TextNote);
         
         if(ParentCalender != null && isEvent)
             ParentCalender.ShowNotificationsEvent(this, false, localDate, TextNote);

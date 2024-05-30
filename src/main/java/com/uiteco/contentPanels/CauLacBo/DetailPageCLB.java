@@ -6,6 +6,7 @@ import com.uiteco.contentPanels.CauLacBoPanel;
 import com.uiteco.database.ConnectionManager;
 import com.uiteco.rightPanels.CauLacBoRightPanel;
 import com.uiteco.swing.ScrollableContentPanel;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
@@ -27,7 +28,13 @@ import org.jdesktop.animation.timing.*;
 public class DetailPageCLB extends ScrollableContentPanel {
     private CauLacBoPanel MainPanelCLB;
     private CauLacBoRightPanel RightPanelCLB;
+    private int StatusJoinBu = 0;
+    private boolean IsJoining = false, IsLoving = false, IsRequesting = false;
     
+    private int matk = -1;
+    private int maclb = -1;
+    
+//    new ImageIcon("C:\\Users\\Asus\\Downloads\\VuBao\\code\\uiteco-swing\\src\\main\\resources\\CauLacBoResources\\SampleCoverImage.png")
     public DetailPageCLB() {
         initComponents();
         
@@ -59,8 +66,6 @@ public class DetailPageCLB extends ScrollableContentPanel {
     private void RemoveAllDataTable()
     {
         DefaultTableModel model = (DefaultTableModel) TableMembers.getModel();
-        
-        
     }
     
     private void AddMemToTable(String NameMem, String MSSVMem, String EmailMem, String PosMem)
@@ -69,14 +74,18 @@ public class DetailPageCLB extends ScrollableContentPanel {
         model.addRow(new Object[]{"" + (TableMembers.getRowCount() + 1), NameMem, MSSVMem, EmailMem, PosMem});
     }
     
+    
     public void setDataToPage(int MaCLB)
-    {
+    { 
+        maclb = MaCLB;
+        
         String GioiThieu = "....", Email = "", SDT = "", Truong = "", LoaiCLB = "", ThongTinCLB = "....", DieuLe = "....";
+        int DKXetTuyen = 0;
         int SLDanhGia = 0, SaoDanhGia = 0;
         
 //        System.out.println("MaCLB: " + MaCLB);
  
-        System.out.println("W: " + MainPanelCLB.getPreferredSize().width + ", H: " + MainPanelCLB.getPreferredSize().getHeight());
+//        System.out.println("W: " + MainPanelCLB.getPreferredSize().width + ", H: " + MainPanelCLB.getPreferredSize().getHeight());
         
 //        textPaneVSCustom1.setPreferredSize(new Dimension(400,(int) textPaneVSCustom1.getPreferredSize().getHeight()));
 
@@ -95,15 +104,6 @@ public class DetailPageCLB extends ScrollableContentPanel {
                 // ----- Get Data Start -----
                 Blob blob;
                 
-//                blob = rs.getBlob("GIOITHIEUCHITIET");
-//                if(blob != null)
-//                {
-//                    byte[] bdata = blob.getBytes(1, (int) blob.length());
-//                    GioiThieu = new String(bdata);
-//                }
-                
-//                System.out.println("GioiThieu: " + GioiThieu);
-                
                 blob = rs.getBlob("GIOITHIEUCHITIET");
                 if(blob != null)
                 {
@@ -120,14 +120,14 @@ public class DetailPageCLB extends ScrollableContentPanel {
                 
                 Email = rs.getString("EMAIL"); 
                 SDT = rs.getString("SDT");
-                Truong = "UIT";
+                Truong = "UIT - Trường đại học công nghệ thông tin";
                 LoaiCLB = rs.getNString("LOAICLB");
                 
                 SLDanhGia = rs.getInt("SOLUONGDANHGIA");
                 SaoDanhGia = rs.getInt("SaoDanhGia");
                 // ----- Get Data End -----
                 
-                Text_Introduction.setText(GioiThieu);
+                
                 Text_Email.setText(Email);
                 Text_SDT.setText(SDT);
                 Text_School.setText(Truong);
@@ -176,6 +176,12 @@ public class DetailPageCLB extends ScrollableContentPanel {
                 
                 NameCLB = rs.getNString("TENCLB");
                 
+                GioiThieu = rs.getNString("GIOITHIEUSOLUOC");
+                Text_Introduction.setText(GioiThieu);
+                
+                DKXetTuyen = rs.getInt("TRANGTHAITUYENTHANHVIEN");
+                SetJoinButtonStatus(DKXetTuyen);
+                
                 blob = rs.getBlob("BACKGROUND");
                 if(blob != null)
                 {
@@ -210,10 +216,10 @@ public class DetailPageCLB extends ScrollableContentPanel {
                 //set logo and background
                 
                 if(!LogoImageURL.equals(""))
-                    LogoClub.setImage(new ImageIcon(getClass().getResource(LogoImageURL)));
+                    LogoClub.setImage(new ImageIcon(LogoImageURL));
                 
                 if(!BackgroundImageURL.equals(""))
-                    CoverClub.setImage(new ImageIcon(getClass().getResource(BackgroundImageURL)));
+                    CoverClub.setImage(new ImageIcon(BackgroundImageURL));
             } 
             
             conn.close();
@@ -295,8 +301,95 @@ public class DetailPageCLB extends ScrollableContentPanel {
             e.printStackTrace();
         }
         
-        System.out.println("Weight: " + (TextArea_InfoClub1.getPreferredSize().width ) + ", " + TextArea_InfoClub1.getSize().width);
+        initJoinButton();
+        initLoveButton();
+//        System.out.println("Weight: " + (TextArea_InfoClub1.getPreferredSize().width ) + ", " + TextArea_InfoClub1.getSize().width);
     }
+    
+    private void initJoinButton()
+    {
+        if(matk == -1)
+            return;
+        
+        IsJoining = false;
+        
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            String sql = "select * from THANHVIENCLB where MATK = ? AND MACLB = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, matk);
+            ps.setInt(2, maclb);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {            
+                IsJoining = true;
+                JoinButton.setText("Đã Tham Gia");
+                break;
+            } 
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void initLoveButton()
+    {
+        if(matk == -1)
+            return;
+        
+        LoveButton.setText("Yêu Thích");
+        IsLoving = false;
+        
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            String sql = "select * from YEUTHICHCLB where MATK = ? AND MACLB = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, matk);
+            ps.setInt(2, maclb);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {            
+                LoveButton.setText("Đã Yêu Thích");
+                IsLoving = true;
+                break;
+            } 
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void EnableButtonStatus()
+    {
+        JoinButton.setBorderColor(new Color(0,149,250));
+        JoinButton.setColor(new Color(0,153,255));
+        JoinButton.setColorClick(new Color(0,130,217));
+        JoinButton.setColorOver(new Color(0,140,235)); 
+    }
+    
+    private void DisableButtonStatus()
+    {
+        JoinButton.setBorderColor(new Color(190,190,190));
+        JoinButton.setColor(new Color(204,204,204));
+        JoinButton.setColorClick(new Color(204,204,204));
+        JoinButton.setColorOver(new Color(204,204,204)); 
+    }
+    
+//     StatusJoinBu = 0, StatusJoinLo = 0;
+    
+    private void SetJoinButtonStatus(int status)
+    {
+        // 0 là không cần xt, 1 là cần xt
+        StatusJoinBu = status;
+        
+        if(status == 0)
+            EnableButtonStatus();
+        else
+            DisableButtonStatus();
+    }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -360,7 +453,6 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Line6 = new javax.swing.JPanel();
         TextArea_LawClub = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
-        textPaneVSCustom1 = new com.uiteco.contentPanels.CauLacBo.TextPaneVSCustom();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -385,7 +477,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
         LogoClub.setBackground(new java.awt.Color(70, 72, 73));
         LogoClub.setBorderColor(new java.awt.Color(48, 48, 48));
         LogoClub.setBorderSize(8);
-        LogoClub.setImage(new javax.swing.ImageIcon(getClass().getResource("/uit.jpg"))); // NOI18N
+        LogoClub.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg"))); // NOI18N
 
         BackgroundIcon.setBackground(new java.awt.Color(58, 58, 58));
         BackgroundIcon.setRoundBottomLeft(80);
@@ -406,7 +498,6 @@ public class DetailPageCLB extends ScrollableContentPanel {
         Text_StatusClub.setForeground(new java.awt.Color(255, 204, 51));
         Text_StatusClub.setText("StatusClub");
 
-        JoinButton.setBackground(new java.awt.Color(0, 153, 255));
         JoinButton.setBorder(null);
         JoinButton.setForeground(new java.awt.Color(255, 255, 255));
         JoinButton.setText("Tham Gia");
@@ -438,6 +529,11 @@ public class DetailPageCLB extends ScrollableContentPanel {
         LoveButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LoveButton.setInheritsPopupMenu(true);
         LoveButton.setRadius(10);
+        LoveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoveButtonActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(58, 58, 58));
 
@@ -525,7 +621,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
         jpanelRound2.setBackground(new java.awt.Color(204, 204, 204));
 
         CoverClub.setBackground(new java.awt.Color(204, 204, 204));
-        CoverClub.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg"))); // NOI18N
+        CoverClub.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/SampleCoverImage.png"))); // NOI18N
 
         javax.swing.GroupLayout CoverClubLayout = new javax.swing.GroupLayout(CoverClub);
         CoverClub.setLayout(CoverClubLayout);
@@ -901,7 +997,6 @@ public class DetailPageCLB extends ScrollableContentPanel {
         );
 
         Lock_InfoClb.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        Lock_InfoClb.setForeground(new java.awt.Color(0, 0, 0));
         Lock_InfoClb.setText("Thông tin CLB ");
 
         Line4.setBackground(new java.awt.Color(203, 203, 203));
@@ -945,7 +1040,6 @@ public class DetailPageCLB extends ScrollableContentPanel {
         );
 
         Lock_LawClb.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        Lock_LawClb.setForeground(new java.awt.Color(0, 0, 0));
         Lock_LawClb.setText("Điều Lệ");
 
         Line6.setBackground(new java.awt.Color(203, 203, 203));
@@ -1005,8 +1099,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
                                 .addComponent(Icon_Lock_InfoClb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
                                 .addComponent(Lock_InfoClb))
-                            .addComponent(Lock_SuKien)
-                            .addComponent(textPaneVSCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Lock_SuKien))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         BodyPanelLayout.setVerticalGroup(
@@ -1034,11 +1127,9 @@ public class DetailPageCLB extends ScrollableContentPanel {
                 .addComponent(Line4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(TextArea_InfoClub1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(textPaneVSCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(49, 49, 49)
+                .addGap(0, 0, 0)
                 .addComponent(Line5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addGroup(BodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1105,8 +1196,97 @@ public class DetailPageCLB extends ScrollableContentPanel {
     }//GEN-LAST:event_NextPanelMouseClicked
 
     private void JoinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JoinButtonActionPerformed
-        // TODO add your handling code here:
+        if(StatusJoinBu == 0 && IsJoining == false )
+        {            
+            if(IsRequesting)
+            {
+                if(matk != -1)
+                {
+                    try {  
+                    Connection conn = ConnectionManager.getConnection();
+                    String sql = "DELETE FROM YEUCAUTHAMGIACLB WHERE MATK = ? AND MACLB = ?";
+                    PreparedStatement ps = conn.prepareStatement(sql);
+                    ps.setInt(1, matk);
+                    ps.setInt(2, maclb);
+                    ps.executeUpdate();
+
+                    conn.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                
+                JoinButton.setText("Tham Gia");
+                IsRequesting = false;
+            }
+            else
+            {
+                if(matk != -1)
+                {
+                    try {  
+                    Connection conn = ConnectionManager.getConnection();
+                    String sql = "INSERT INTO YEUCAUTHAMGIACLB (MATK, MACLB) VALUES (?, ?)";
+                    PreparedStatement ps = conn.prepareStatement(sql);
+                    ps.setInt(1, matk);
+                    ps.setInt(2, maclb);
+                    ps.executeUpdate();
+
+                    conn.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                
+                JoinButton.setText("Đang Yêu Cầu");
+                IsRequesting = true;
+            }
+        }
     }//GEN-LAST:event_JoinButtonActionPerformed
+
+    private void LoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoveButtonActionPerformed
+        if(IsLoving)
+        {
+            if(matk != -1)
+            {
+                try {  
+                Connection conn = ConnectionManager.getConnection();
+                String sql = "DELETE FROM YEUTHICHCLB WHERE MATK = ? AND MACLB = ?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, matk);
+                ps.setInt(2, maclb);
+                ps.executeUpdate();
+
+                conn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            
+            LoveButton.setText("Yêu Thích");
+            IsLoving = false;
+        }
+        else
+        {
+            if(matk != -1)
+            {
+                try {  
+                Connection conn = ConnectionManager.getConnection();
+                String sql = "INSERT INTO YEUTHICHCLB (MATK, MACLB) VALUES (?, ?)";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, matk);
+                ps.setInt(2, maclb);
+                ps.executeUpdate();
+
+                conn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            
+            LoveButton.setText("Đã Yêu Thích");
+            IsLoving = true;
+        }
+    }//GEN-LAST:event_LoveButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1168,6 +1348,5 @@ public class DetailPageCLB extends ScrollableContentPanel {
     private javax.swing.JScrollPane jScrollTableMem;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound jpanelRound1;
     private com.uiteco.contentPanels.CauLacBo.JpanelRound jpanelRound2;
-    private com.uiteco.contentPanels.CauLacBo.TextPaneVSCustom textPaneVSCustom1;
     // End of variables declaration//GEN-END:variables
 }

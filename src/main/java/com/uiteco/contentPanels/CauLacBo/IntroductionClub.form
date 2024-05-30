@@ -90,7 +90,7 @@
             </Property>
             <Property name="borderSize" type="int" value="3"/>
             <Property name="image" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/CauLacBoResources/SampleCoverImage.png"/>
+              <Image iconType="3" name="/CauLacBoResources/SampleLogoImage.jpg"/>
             </Property>
           </Properties>
           <Constraints>
