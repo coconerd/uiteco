@@ -38,7 +38,7 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
         
         try {
             LocalDate startDateDK = null, endDateDK = null;
-            LocalDateTime startDateDR = null, endDateDR = null;
+            LocalDate startDateDR = null, endDateDR = null;
             String title = null;
             
             Connection conn = ConnectionManager.getConnection();
@@ -53,13 +53,13 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
                 
                 title = rs.getNString("TIEUDE");
                 
-                startDateDR = rs.getTimestamp("THOIDIEMDIENRA").toLocalDateTime();
-                endDateDR = rs.getTimestamp("THOIDIEMKETTHUC").toLocalDateTime();
+                startDateDR = rs.getDate("THOIDIEMBD_DIENRA").toLocalDate();
+                endDateDR = rs.getDate("THOIDIEMKT_DIENRA").toLocalDate();
                 
                 ListDE.add(new InfoDateEvent(startDateDK, title, "startDK"));
                 ListDE.add(new InfoDateEvent(endDateDK, title, "endDK"));
-                ListDE.add(new InfoDateEvent(startDateDR.toLocalDate(), title, "startDR"));
-                ListDE.add(new InfoDateEvent(endDateDR.toLocalDate(), title, "endDR"));
+                ListDE.add(new InfoDateEvent(startDateDR, title, "startDR"));
+                ListDE.add(new InfoDateEvent(endDateDR, title, "endDR"));
             }
 
 //            System.out.println("Size: " + ListDE.size());

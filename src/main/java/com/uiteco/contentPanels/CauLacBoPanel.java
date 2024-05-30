@@ -170,7 +170,8 @@ public class CauLacBoPanel extends JPanel {
                 if(timestamp != null)
                     LastedDate = timestamp.toLocalDateTime();
                 
-                CreateBy = rs.getNString("NHOMNGUOITHANHLAP");
+//                CreateBy = rs.getNString("NHOMNGUOITHANHLAP");
+                CreateBy = "UIT";
                 HostBy = rs.getInt("CHUNHIEM") + "";
                 
                 Date date = rs.getDate("NGAYTHANHLAP");
@@ -192,7 +193,7 @@ public class CauLacBoPanel extends JPanel {
                     try {
                         Connection conn1 = ConnectionManager.getConnection();
 
-                        String sql1 = "select * from HINHANHCAULACBO where MACLB = " + MaCLB;
+                        String sql1 = "select * from HINHANH where MACLB = " + MaCLB;
                         PreparedStatement ps1 = conn1.prepareStatement(sql1);
                         ResultSet rs1 = ps1.executeQuery();
                         
@@ -494,7 +495,7 @@ public class CauLacBoPanel extends JPanel {
                 if(timestamp != null)
                     LastedDate = timestamp.toLocalDateTime();
                 
-                CreateBy = rs.getNString("NHOMNGUOITHANHLAP");
+                CreateBy = "UIT";
                 HostBy = rs.getInt("CHUNHIEM") + "";
                 
                 Date date = rs.getDate("NGAYTHANHLAP");

@@ -187,7 +187,7 @@ public class IntroductionClub extends javax.swing.JPanel {
 
         LogoCLUB.setBackground(new java.awt.Color(102, 102, 102));
         LogoCLUB.setBorderSize(3);
-        LogoCLUB.setImage(new javax.swing.ImageIcon(getClass().getResource("/uit.png"))); // NOI18N
+        LogoCLUB.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/SampleCoverImage.png"))); // NOI18N
         jpanelRound3.add(LogoCLUB, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 120));
 
         NextPanel.setBackground(new java.awt.Color(102, 102, 102));

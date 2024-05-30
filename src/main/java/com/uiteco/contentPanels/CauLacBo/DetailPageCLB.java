@@ -95,16 +95,16 @@ public class DetailPageCLB extends ScrollableContentPanel {
                 // ----- Get Data Start -----
                 Blob blob;
                 
-                blob = rs.getBlob("INTRODUCTION");
-                if(blob != null)
-                {
-                    byte[] bdata = blob.getBytes(1, (int) blob.length());
-                    GioiThieu = new String(bdata);
-                }
+//                blob = rs.getBlob("GIOITHIEUCHITIET");
+//                if(blob != null)
+//                {
+//                    byte[] bdata = blob.getBytes(1, (int) blob.length());
+//                    GioiThieu = new String(bdata);
+//                }
                 
 //                System.out.println("GioiThieu: " + GioiThieu);
                 
-                blob = rs.getBlob("THONGTINCLB");
+                blob = rs.getBlob("GIOITHIEUCHITIET");
                 if(blob != null)
                 {
                     byte[] bdata = blob.getBytes(1, (int) blob.length());
@@ -120,7 +120,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
                 
                 Email = rs.getString("EMAIL"); 
                 SDT = rs.getString("SDT");
-                Truong = rs.getNString("TRUONG");
+                Truong = "UIT";
                 LoaiCLB = rs.getNString("LOAICLB");
                 
                 SLDanhGia = rs.getInt("SOLUONGDANHGIA");
@@ -261,7 +261,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
             ArrayList<String> ListImageUrl = new ArrayList<String>();
             
             Connection conn = ConnectionManager.getConnection();
-            String sql = "select * from HINHANHCAULACBO where MACLB = " + MaCLB;
+            String sql = "select * from HINHANH where MACLB = " + MaCLB;
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             
