@@ -4,7 +4,9 @@ package com.uiteco.database;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.Date;
@@ -21,55 +23,33 @@ public class TestConnection {
         Connection conn2;
 
         try {
-                conn = ConnectionManager.getConnection();
-                conn2 = ConnectionManager.getConnection();
-                
-                if (conn != null) {
-                    System.out.println("Connected (conn1)");
-                } else {
-                    System.out.println("We're doomed");
-                }
-                
-                if (conn2 != null) {
-                    System.out.println("Connected (conn2)");
-                } else {
-                    System.out.println("We're doomed");
-                }
-
-                Statement stm = conn.createStatement();
-                Statement stm2 = conn2.createStatement();
-                String query = "SELECT * FROM TAIKHOAN";
-
-                ResultSet rs = stm.executeQuery(query);
-                ResultSet rs2 = stm2.executeQuery(query);
-                while (rs.next() && rs2.next()) {
-                    String _accountId = rs.getString("MATK");
-                    String _email = rs.getString("EMAIL");
-                    String _username = rs.getString("USERNAME");
-                    Date _createdDate = rs.getDate("NGAYTAO");
-                    String _accountId2 = rs.getString("MATK");
-                    String _email2 = rs.getString("EMAIL");
-                    String _username2 = rs.getString("USERNAME");
-                    Date _createdDate2 = rs.getDate("NGAYTAO");
-                    
-                    
-                    System.out.println("Connection 1 details: ");
-                    System.out.println(_accountId);
-                    System.out.println(_email);
-                    System.out.println(_username);
-                    System.out.println(_createdDate);
-                    
-                    System.out.println("Connection 2 details: ");
-                    System.out.println(_accountId2);
-                    System.out.println(_email2);
-                    System.out.println(_username2);
-                    System.out.println(_createdDate2);
-                }
+            conn = ConnectionManager.getConnection();
+               
+            int MaCLB = 0;
             
+            String sql = "select * from CAULACBO where MACLB = " + MaCLB;
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            boolean IsNull = true;
+                
+//                System.out.println(rs.)
+            while(rs.next())
+            {
+                IsNull = false;
 
-
-        } catch (SQLException e) {
-            throw e;
+               System.out.println("TenCLb: " + rs.getString("TENCLB"));
+            }
+                
+                
+            if(IsNull)
+                System.out.println("Null");
+            else
+                System.out.println("Not Null");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
