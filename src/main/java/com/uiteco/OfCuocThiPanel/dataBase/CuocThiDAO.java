@@ -58,122 +58,7 @@ public class CuocThiDAO {
         }
     }
 
-    public static List<BriefPost_Model> getPostsInfo_Default() {
-        try {
-            conn = getConnection();
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY);
-            query = "SELECT "
-                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
-                    + "FROM BAIDANG "
-                    + "WHERE LOAIBD = 2 "
-                    + "ORDER BY THOIDIEMDANG DESC";
-
-            rset = stmt.executeQuery(query);
-
-            List<BriefPost_Model> postList = new ArrayList<>();
-
-            while (rset.next()) {
-                BriefPost_Model post = new BriefPost_Model();
-
-                int postID = rset.getInt("MABD");
-                post.setId(postID);
-
-                // SQL query with named parameters
-                String tagQuery = "SELECT TAG FROM TAGS_BAIDANG WHERE MABD = ?";
-                PreparedStatement pstmt = conn.prepareStatement(tagQuery);
-                pstmt.setInt(1, postID);
-                ResultSet tagRset = pstmt.executeQuery();
-
-                List<String> tagsString = new ArrayList<>();
-
-                while (tagRset.next()) {
-                    tagsString.add(tagRset.getString("TAG"));
-                }
-
-                pstmt.close();
-
-                post.setCountLike(rset.getInt("LUOTTHICH"));
-                post.setTags(tagsString);
-                post.setContent(rset.getString("NOIDUNG"));
-                post.setTitle(rset.getString("TIEUDE"));
-                post.setType(rset.getInt("HINHTHUCTG"));
-
-                byte[] imageData = rset.getBytes("THUMBNAIL");
-                if (imageData != null) {
-                    try {
-                        //convert the byte array to an Image object
-                        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
-                        BufferedImage bufferedImage = ImageIO.read(inputStream);
-
-                        //create a scaled version of the BufferedImage
-                        Image scaledImage = bufferedImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-
-                        //set the Image object as the thumnail
-                        ImageIcon thumbnail = new ImageIcon(scaledImage);
-                        post.setImage(thumbnail);
-
-                    } catch (IOException e) {
-                    }
-                }
-
-//                byte[] imageData1 = rset.getBytes("THUMBNAIL_YOUTUBEPLAY");
-//                if (imageData1 != null) {
-//                    try {
-//                        //convert the byte array to an Image object
-//                        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData1);
-//                        BufferedImage bufferedImage = ImageIO.read(inputStream);
-//
-//                        //create a scaled version of the BufferedImage
-//                        Image scaledImage = bufferedImage.getScaledInstance(480, 360, Image.SCALE_SMOOTH);
-//
-//                        //set the Image object as the thumnail
-//                        ImageIcon thumbnail = new ImageIcon(scaledImage);
-//                        post.setImage(thumbnail);
-//
-//                    } catch (IOException e) {
-//                    }
-//                }
-
-                post.setOrganizer(rset.getString("DONVITOCHUC"));
-
-                Timestamp timeStampPost = rset.getTimestamp("THOIDIEMDANG");
-                if (timeStampPost != null) {
-                    LocalDateTime localDateTimePost = timeStampPost.toLocalDateTime();
-                    post.setPostTime(localDateTimePost);
-                }
-                
-                Timestamp _timeStampPost = rset.getTimestamp("THOIDIEMBD_DIENRA");
-                if (_timeStampPost != null) {
-                    LocalDateTime localDateBegin = _timeStampPost.toLocalDateTime();
-                    post.setPostTime(localDateBegin);
-                }
-                
-                LocalDate timeStart = rset.getDate("NGAYBD_DANGKY").toLocalDate();
-                if (timeStart != null) {
-
-                    post.setStartDate(timeStart);
-                }
-
-                LocalDate timeEnd = rset.getDate("NGAYHH_DANGKY").toLocalDate();
-                if (timeStart != null) {
-
-                    post.setEndDate(timeEnd);
-                }
-
-                postList.add(post);
-            }
-
-            conn.close();
-            rset.close();
-
-            return postList;
-
-        } catch (SQLException e) {
-            return new ArrayList<>();
-        }
-    }
-//    public static void insertUserRegisterCompetition(int postId) {
+    //    public static void insertUserRegisterCompetition(int postId) {
 //        try {
 //            conn = getConnection();
 //            query = "INSERT INTO DANGKY (MATK, MABD, THOIDIEMDK) VALUES (?, ?, ?)";
@@ -268,63 +153,120 @@ public class CuocThiDAO {
         return color[index % color.length];
     }
 
-    public static List<ImageIcon> getImagesForSlideshow() {
-        List<ImageIcon> imagesList = new ArrayList<>();
+    public static List<BriefPost_Model> getPostsInfo_Default() {
         try {
             conn = getConnection();
-            query = "SELECT B.MABD "
-                    + "FROM HINHANH H, BAIDANG B "
-                    + "WHERE H.MABD = B.MABD AND LOAIBD = 2 "
-                    + "ORDER BY THOIDIEMBD_DIENRA DESC";
-
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
+            query = "SELECT "
+                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMDANG, LUOTTHICH, THOIDIEMBD_DIENRA "
+                    + "FROM BAIDANG "
+                    + "WHERE LOAIBD = 2 "
+                    + "ORDER BY THOIDIEMDANG DESC";
+            
             rset = stmt.executeQuery(query);
-
+            
+            List<BriefPost_Model> postList = new ArrayList<>();
+            
             while (rset.next()) {
-                String query1 = "SELECT ANH "
-                        + "FROM HINHANH "
-                        + "WHERE MABD = ? "
-                        + "ORDER BY MAHINHANH "
-                        + "FETCH FIRST 1 ROW ONLY"; //choose first image in list to show in slideshow
+                BriefPost_Model post = new BriefPost_Model();
+                
+                int postID = rset.getInt("MABD");
+                post.setId(postID);
 
-                PreparedStatement p = conn.prepareStatement(query1);
+                // SQL query with named parameters
+                String tagQuery = "SELECT TAG FROM TAGS_BAIDANG WHERE MABD = ?";
+                PreparedStatement pstmt = conn.prepareStatement(tagQuery);
+                pstmt.setInt(1, postID);
+                ResultSet tagRset = pstmt.executeQuery();
+                
+                List<String> tagsString = new ArrayList<>();
+                
+                while (tagRset.next()) {
+                    tagsString.add(tagRset.getString("TAG"));
+                }
+                
+                pstmt.close();
+                
+                post.setCountLike(rset.getInt("LUOTTHICH"));
+                post.setTags(tagsString);
+                post.setContent(rset.getString("NOIDUNG"));
+                post.setTitle(rset.getString("TIEUDE"));
+                post.setType(rset.getInt("HINHTHUCTG"));
+                
+                byte[] imageData = rset.getBytes("THUMBNAIL");
+                if (imageData != null) {
+                    try {
+                        //convert the byte array to an Image object
+                        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
+                        BufferedImage bufferedImage = ImageIO.read(inputStream);
 
-                int postID1 = rset.getInt("MABD");
-                p.setInt(1, postID1);
-                ResultSet rset1 = p.executeQuery();
-                while (rset1.next()) {
-                    Blob blob = rset1.getBlob("ANH");
-                    if (blob != null) {
-                        try {
-                            // Convert the Blob to a byte array
-                            byte[] imageData = blob.getBytes(1, (int) blob.length());
-                            // Convert the byte array to an Image object
-                            ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
-                            BufferedImage bufferedImage = ImageIO.read(inputStream);
-                            if (bufferedImage != null) {
+                        //create a scaled version of the BufferedImage
+                        Image scaledImage = bufferedImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 
-                                Image scaledImg = Scalr.resize(bufferedImage, Method.ULTRA_QUALITY, 1300, 700);
-                                ImageIcon thumbnail = new ImageIcon(scaledImg);
-                                imagesList.add(thumbnail);
-                            }
-
-                        } catch (IOException e) {
-                        }
-                    } else {
-                        System.out.println("Failed to read the image!");
+                        //set the Image object as the thumnail
+                        ImageIcon thumbnail = new ImageIcon(scaledImage);
+                        post.setImage(thumbnail);
+                        
+                    } catch (IOException e) {
                     }
                 }
-                p.close();
-                rset1.close();
+                
+//                byte[] imageData1 = rset.getBytes("THUMBNAIL_YOUTUBEPLAY");
+//                if (imageData1 != null) {
+//                    try {
+//                        //convert the byte array to an Image object
+//                        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData1);
+//                        BufferedImage bufferedImage = ImageIO.read(inputStream);
+//
+//                        //create a scaled version of the BufferedImage
+//                        Image scaledImage = bufferedImage.getScaledInstance(480, 360, Image.SCALE_SMOOTH);
+//
+//                        //set the Image object as the thumnail
+//                        ImageIcon thumbnail = new ImageIcon(scaledImage);
+//                        post.setImage(thumbnail);
+//                        
+//                    } catch (IOException e) {
+//                    }
+//                }
+//                
+                post.setOrganizer(rset.getString("DONVITOCHUC"));
+                
+                Timestamp timeStampPost = rset.getTimestamp("THOIDIEMDANG");
+                if (timeStampPost != null) {
+                    LocalDateTime localDateTimePost = timeStampPost.toLocalDateTime();
+                    post.setPostTime(localDateTimePost);
+                }
+                
+                Timestamp _timeStampPost = rset.getTimestamp("THOIDIEMBD_DIENRA");
+                if (_timeStampPost != null) {
+                    LocalDateTime localDateTimePost = _timeStampPost.toLocalDateTime();
+                    post.setDueDate(localDateTimePost);
+                }
+                
+                LocalDate timeStart = rset.getDate("NGAYBD_DANGKY").toLocalDate();
+                if (timeStart != null) {
+                    
+                    post.setStartDate(timeStart);
+                }
+                
+                LocalDate timeEnd = rset.getDate("NGAYHH_DANGKY").toLocalDate();
+                if (timeStart != null) {
+                    
+                    post.setEndDate(timeEnd);
+                }
+                
+                postList.add(post);
             }
-
-            rset.close();
+            
             conn.close();
-
+            rset.close();
+            
+            return postList;
+            
         } catch (SQLException e) {
+            return new ArrayList<>();
         }
-        return imagesList;
     }
 
     public static DetailedOnePost_Model getAllImagesAndUrls(int postID) {
@@ -431,7 +373,7 @@ public class CuocThiDAO {
         int offset = (page - 1) * limit;
         try {
             conn = getConnection();
-
+            
             String query1 = "SELECT COUNT(*) FROM BAIDANG WHERE LOAIBD = 2";
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
@@ -442,20 +384,20 @@ public class CuocThiDAO {
             }
             rset1.close();
             stmt.close();
-
+            
             int totalPages = (int) Math.ceil((double) count / limit);
-
+            
             if (type == 0) {
                 if (dueDate == true) {
                     query = "SELECT "
-                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
+                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMDANG, LUOTTHICH, THOIDIEMBD_DIENRA "
                             + "FROM BAIDANG "
                             + "WHERE LOAIBD = 2 AND THOIDIEMBD_DIENRA = NGAYHH_DANGKY "
                             + "ORDER BY THOIDIEMDANG DESC "
                             + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
                 } else if (hottest == true) {
                     query = "SELECT "
-                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
+                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMDANG, LUOTTHICH, THOIDIEMBD_DIENRA "
                             + "FROM BAIDANG "
                             + "WHERE LOAIBD = 2 "
                             + "ORDER BY LUOTTHICH DESC "
@@ -463,23 +405,23 @@ public class CuocThiDAO {
                 }
             } else if (type == 1 || type == 2) {
                 query = "SELECT "
-                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
+                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMDANG, LUOTTHICH, THOIDIEMBD_DIENRA "
                         + "FROM BAIDANG "
                         + "WHERE LOAIBD = 2 AND HINHTHUCTG = ? "
                         + "ORDER BY LUOTTHICH DESC "
                         + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-
+                
             } else if (type == 3) {
                 query = "SELECT "
-                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
+                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMDANG, LUOTTHICH, THOIDIEMBD_DIENRA "
                         + "FROM BAIDANG "
                         + "WHERE LOAIBD = 2 "
                         + "ORDER BY THOIDIEMDANG DESC "
                         + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             }
-
+            
             PreparedStatement pstm = conn.prepareStatement(query);
-
+            
             if (type == 1 || type == 2) {
                 pstm.setInt(1, type);
                 pstm.setInt(2, offset);
@@ -488,34 +430,34 @@ public class CuocThiDAO {
                 pstm.setInt(1, offset);
                 pstm.setInt(2, limit);
             }
-
+            
             rset = pstm.executeQuery();
-
+            
             while (rset.next()) {
-
+                
                 BriefPost_Model post = new BriefPost_Model();
-
+                
                 int postID = rset.getInt("MABD");
                 post.setId(postID);
-
+                
                 String tagQuery = "SELECT TAG FROM TAGS_BAIDANG WHERE MABD = ?";
                 PreparedStatement pstmt = conn.prepareStatement(tagQuery);
                 pstmt.setInt(1, postID);
-
+                
                 ResultSet tagRset = pstmt.executeQuery();
-
+                
                 List<String> tagsString = new ArrayList<>();
-
+                
                 while (tagRset.next()) {
                     tagsString.add(tagRset.getString("TAG"));
                 }
-
+                
                 post.setCountLike(rset.getInt("LUOTTHICH"));
                 post.setTags(tagsString);
                 post.setContent(rset.getString("NOIDUNG"));
                 post.setTitle(rset.getString("TIEUDE"));
                 post.setType(rset.getInt("HINHTHUCTG"));
-
+                
                 byte[] imageData = rset.getBytes("THUMBNAIL");
                 if (imageData != null) {
                     try {
@@ -529,55 +471,53 @@ public class CuocThiDAO {
                         //set the Image object as the thumnail
                         ImageIcon thumbnail = new ImageIcon(scaledImage);
                         post.setImage(thumbnail);
-
+                        
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-
+                
                 post.setOrganizer(rset.getString("DONVITOCHUC"));
-
-                LocalDate timeBegin = rset.getDate("THOIDIEMBD_DIENRA").toLocalDate();
-                post.setDueDate(timeBegin);
-
-                Timestamp timeStampPost = rset.getTimestamp("THOIDIEMDANG");
-                if (timeStampPost != null) {
-                    LocalDateTime localDateTimePost = timeStampPost.toLocalDateTime();
-                    post.setPostTime(localDateTimePost);
-                }
                 
                 Timestamp _timeStampPost = rset.getTimestamp("THOIDIEMBD_DIENRA");
                 if (_timeStampPost != null) {
                     LocalDateTime localDateTimePost = _timeStampPost.toLocalDateTime();
                     post.setDueDate(localDateTimePost);
                 }
-
+                
+                Timestamp timeStampPost = rset.getTimestamp("THOIDIEMDANG");
+                if (timeStampPost != null) {
+                    LocalDateTime localDateTimePost = timeStampPost.toLocalDateTime();
+                    post.setPostTime(localDateTimePost);
+                }
+                
                 LocalDate timeStart = rset.getDate("NGAYBD_DANGKY").toLocalDate();
                 if (timeStart != null) {
-
+                    
                     post.setStartDate(timeStart);
                 }
-
+                
                 LocalDate timeEnd = rset.getDate("NGAYHH_DANGKY").toLocalDate();
                 if (timeStart != null) {
-
+                    
                     post.setEndDate(timeEnd);
                 }
-
+                
                 postList.add(post);
-
+                
             }
             p.setPagegination(page, totalPages);
             rset.close();
             conn.close();
             pstm.close();
-
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        
         return postList;
     }
+    
 
     public static void insertUserRegisterCompetition(int postId) {
         try {
@@ -708,16 +648,16 @@ public class CuocThiDAO {
         List<BriefPost_Model> postList = new ArrayList<>();
         try {
             conn = getConnection();
-
+            
             String tagFilter = selectedTags.stream()
                     .map(tag -> "'" + tag + "'")
                     .collect(Collectors.joining(", "));
-
+            
             String countQuery = "SELECT COUNT(*) "
                     + "FROM BAIDANG "
                     + "WHERE LOAIBD = 2 "
-                    + "AND MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + "))";
-
+                    + "AND BD.MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + "))";
+            
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             ResultSet rsetCount = stmt.executeQuery(countQuery);
@@ -727,48 +667,54 @@ public class CuocThiDAO {
             }
             rsetCount.close();
             stmt.close();
-
+            
             int offset = (page - 1) * limit;
             int totalPages = (int) Math.ceil((double) count / limit);
-
+            
             String offsetQuery = "SELECT "
-                    + "MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
+                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMDANG, LUOTTHICH, THOIDIEMBD_DIENRA "
                     + "FROM BAIDANG "
                     + "WHERE LOAIBD = 2 "
                     + "AND MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + ")) "
                     + "ORDER BY THOIDIEMDANG DESC "
                     + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-
+            
             PreparedStatement pOffset = conn.prepareStatement(offsetQuery);
             pOffset.setInt(1, offset);
             pOffset.setInt(2, limit);
             rset = pOffset.executeQuery();
-
+            
             while (rset.next()) {
                 BriefPost_Model post = new BriefPost_Model();
-
+                
                 int postID = rset.getInt("MABD");
                 post.setId(postID);
-
+                
                 String tagQuery = "SELECT TAG FROM TAGS_BAIDANG WHERE MABD = ?";
                 PreparedStatement pstmt = conn.prepareStatement(tagQuery);
                 pstmt.setInt(1, postID);
                 ResultSet tagRset = pstmt.executeQuery();
-
+                
                 List<String> tagsString = new ArrayList<>();
-
+                
                 while (tagRset.next()) {
                     tagsString.add(tagRset.getString("TAG"));
                 }
-
+                
                 pstmt.close();
-
+                
+                Timestamp _timeStampPost = rset.getTimestamp("THOIDIEMBD_DIENRA");
+                if (_timeStampPost != null) {
+                    LocalDateTime localDateTimePost = _timeStampPost.toLocalDateTime();
+                    post.setDueDate(localDateTimePost);
+                }
+                
                 post.setCountLike(rset.getInt("LUOTTHICH"));
                 post.setTags(tagsString);
                 post.setContent(rset.getString("NOIDUNG"));
                 post.setTitle(rset.getString("TIEUDE"));
                 post.setType(rset.getInt("HINHTHUCTG"));
-
+                
                 byte[] imageData = rset.getBytes("THUMBNAIL");
                 if (imageData != null) {
                     try (ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData)) {
@@ -780,27 +726,85 @@ public class CuocThiDAO {
                         e.printStackTrace();
                     }
                 }
-
+                
                 post.setOrganizer(rset.getString("DONVITOCHUC"));
                 post.setPostTime(rset.getTimestamp("THOIDIEMDANG").toLocalDateTime());
-                post.setDueDate(rset.getDate("THOIDIEMDIENRA").toLocalDate());
                 post.setStartDate(rset.getDate("NGAYBD_DANGKY").toLocalDate());
                 post.setEndDate(rset.getDate("NGAYHH_DANGKY").toLocalDate());
-
+                
                 postList.add(post);
             }
             conn.close();
             rset.close();
             pOffset.close();
-
+            
             p.setPagegination(page, totalPages);
-
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return postList;
     }
-
+    
+    public static List<ImageIcon> getImagesForSlideshow() {
+        List<ImageIcon> imagesList = new ArrayList<>();
+        try {
+            conn = getConnection();
+            query = "SELECT B.MABD "
+                    + "FROM HINHANH H, BAIDANG B "
+                    + "WHERE H.MABD = B.MABD AND LOAIBD = 2 "
+                    + "ORDER BY THOIDIEMDANG DESC";
+            
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            rset = stmt.executeQuery(query);
+            
+            while (rset.next()) {
+                String query1 = "SELECT ANH "
+                        + "FROM HINHANH "
+                        + "WHERE MABD = ? "
+                        + "ORDER BY MAHINHANH "
+                        + "FETCH FIRST 1 ROW ONLY";
+                
+                PreparedStatement p = conn.prepareStatement(query1);
+                
+                int postID1 = rset.getInt("MABD");
+                p.setInt(1, postID1);
+                ResultSet rset1 = p.executeQuery();
+                while (rset1.next()) {
+                    Blob blob = rset1.getBlob("ANH");
+                    if (blob != null) {
+                        try {
+                            // Convert the Blob to a byte array
+                            byte[] imageData = blob.getBytes(1, (int) blob.length());
+                            // Convert the byte array to an Image object
+                            ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
+                            BufferedImage bufferedImage = ImageIO.read(inputStream);
+                            if (bufferedImage != null) {
+                                
+                                Image scaledImg = Scalr.resize(bufferedImage, Method.ULTRA_QUALITY, 1300, 700);
+                                ImageIcon thumbnail = new ImageIcon(scaledImg);
+                                imagesList.add(thumbnail);
+                            }
+                            
+                        } catch (IOException e) {
+                        }
+                    } else {
+                        System.out.println("Failed to read the image!");
+                    }
+                }
+                p.close();
+                rset1.close();
+            }
+            
+            rset.close();
+            conn.close();
+            
+        } catch (SQLException e) {
+        }
+        return imagesList;
+    }
+    
     static Connection conn;
     static Statement stmt;
     static ResultSet rset;
