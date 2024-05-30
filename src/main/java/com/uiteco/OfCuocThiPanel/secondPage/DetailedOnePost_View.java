@@ -4,20 +4,21 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
+import static com.uiteco.main.App.getSession;
+import java.awt.Color;
+import java.util.List;
 import javax.swing.ImageIcon;
 
 public class DetailedOnePost_View extends javax.swing.JPanel {
 
-    /**
-     * @return the jRegisterTime
-     */
+    private DetailedOnePost_Controller controller;
+    private boolean isLiked = false;
+    private boolean isRegistered = false;
+
     public javax.swing.JLabel getjRegisterTime() {
         return jRegisterTime;
     }
 
-    /**
-     * @return the scrollPaneImages
-     */
     public com.uiteco.OfCuocThiPanel.secondPage.ScrollPaneImages getScrollPaneImages() {
         return scrollPaneImages;
     }
@@ -25,20 +26,24 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
     public DetailedOnePost_View() {
         FlatMacLightLaf.setup();
         initComponents();
+
+        if (controller != null) {
+            __checkUserAlreadyRegistered();
+        }
+
         jScrollPane.setBorder(null);
+
     }
 
     public DetailedOnePost_Controller createController(BriefPost_Model model) {
         this.controller = new DetailedOnePost_Controller(this, model);
+        __checkUserAlreadyRegistered();
         return getController();
     }
 
     public DetailedOnePost_Controller getController() {
         return controller;
     }
-
-    private DetailedOnePost_Controller controller;
-    private boolean isLiked = false;
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -329,25 +334,62 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         add(jScrollPane, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void __checkUserAlreadyRegistered() {
+        List<Integer> idList = CuocThiDAO.checkAlreadyRegisteredUser(controller.getPostID());
+        for (int id : idList) {
+            if (id == getSession().getAccountID()) {
+                jRegister.setText("Hủy đăng kí");
+                jRegister.setColor(new Color(223, 122, 130));
+                jRegister.revalidate();
+                jRegister.repaint();
+                
+                isRegistered = true;
+                return;
+            }
+
+        }
+        isRegistered = false;
+    }
+
+    private void _jRegisterActionPerformed() {
+        CancelPopUp popUp_cancel = new CancelPopUp();
+        GlassPanePopup.showPopup(popUp_cancel);
+
+        popUp_cancel.getjOk().addActionListener((e) -> {
+            //CuocThiDAO.registerCompetition(getController().getBaseModel());
+            //CuocThiDAO.insertUserRegisterCompetition(getController().getPostID());
+            GlassPanePopup.closePopupAll();
+
+            jRegister.setVisible(true);
+        });
+
+        popUp_cancel.getjCancel().addActionListener((e) -> {
+            popUp_cancel.removeAll();
+            GlassPanePopup.closePopupAll();
+        });
+    }
+
     private void jRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegisterActionPerformed
         // TODO add your handling code here:
+        if (isRegistered) { //true
+            _jRegisterActionPerformed();
+        } else {
+            ConfirmPopUp popUp = new ConfirmPopUp();
+            GlassPanePopup.showPopup(popUp);
 
-        ConfirmPopUp popUp = new ConfirmPopUp();
-        GlassPanePopup.showPopup(popUp);
+            popUp.getjOk().addActionListener((e) -> {
+                //CuocThiDAO.registerCompetition(getController().getBaseModel());
+                //CuocThiDAO.insertUserRegisterCompetition(getController().getPostID());
+                GlassPanePopup.closePopupAll();
 
-        popUp.getjOk().addActionListener((e) -> {
-            //CuocThiDAO.registerCompetition(getController().getBaseModel());
-            CuocThiDAO.insertUserRegisterCompetition(getController().getPostID());
-            GlassPanePopup.closePopupAll();
+                jRegister.setVisible(false);
+            });
 
-            //when press Register, display unregister button 
-            jRegister.setVisible(false);
-        });
-
-        popUp.getjNo().addActionListener((e) -> {
-            popUp.removeAll();
-            GlassPanePopup.closePopupAll();
-        });
+            popUp.getjNo().addActionListener((e) -> {
+                popUp.removeAll();
+                GlassPanePopup.closePopupAll();
+            });
+        }
 
     }//GEN-LAST:event_jRegisterActionPerformed
 

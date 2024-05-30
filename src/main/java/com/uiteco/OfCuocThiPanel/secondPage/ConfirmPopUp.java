@@ -8,6 +8,48 @@ import java.awt.geom.RoundRectangle2D;
 public class ConfirmPopUp extends javax.swing.JPanel {
 
     /**
+     * @return the jTitle
+     */
+    public javax.swing.JLabel getjTitle() {
+        return jTitle;
+    }
+
+    /**
+     * @param jTitle the jTitle to set
+     */
+    public void setjTitle(javax.swing.JLabel jTitle) {
+        this.jTitle = jTitle;
+    }
+
+    /**
+     * @return the jContent
+     */
+    public javax.swing.JLabel getjContent() {
+        return jContent;
+    }
+
+    /**
+     * @return the jIcon
+     */
+    public javax.swing.JLabel getjIcon() {
+        return jIcon;
+    }
+
+    /**
+     * @param jContent the jContent to set
+     */
+    public void setjContent(javax.swing.JLabel jContent) {
+        this.jContent = jContent;
+    }
+
+    /**
+     * @param jIcon the jIcon to set
+     */
+    public void setjIcon(javax.swing.JLabel jIcon) {
+        this.jIcon = jIcon;
+    }
+
+    /**
      * @return the jNo
      */
     public com.uiteco.OfCuocThiPanel.secondPage.CustomButton getjNo() {
@@ -46,11 +88,11 @@ public class ConfirmPopUp extends javax.swing.JPanel {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         roundedPanel1 = new com.uiteco.components.RoundedPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jContent = new javax.swing.JLabel();
+        jTitle = new javax.swing.JLabel();
         jNo = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
         jOk = new com.uiteco.OfCuocThiPanel.secondPage.CustomButton();
-        jLabel3 = new javax.swing.JLabel();
+        jIcon = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setOpaque(false);
@@ -60,16 +102,19 @@ public class ConfirmPopUp extends javax.swing.JPanel {
         roundedPanel1.setRoundBottomRight(55);
         roundedPanel1.setRoundTopLeft(55);
         roundedPanel1.setRoundTopRight(55);
+        roundedPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 22)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("<html>Sau khi nhấn xác nhận đăng kí tham gia, sinh viên có thể nhấn hủy tham gia (nếu muốn) trong thời gian qui định của ban tổ chức. </html>");
+        jContent.setFont(new java.awt.Font("Segoe UI", 2, 22)); // NOI18N
+        jContent.setForeground(new java.awt.Color(102, 102, 102));
+        jContent.setText("<html>Sau khi nhấn xác nhận đăng kí tham gia, sinh viên có thể nhấn hủy tham gia (nếu muốn) trong thời gian qui định của ban tổ chức. </html>");
+        roundedPanel1.add(jContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 166, 908, 63));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Xác nhận đăng kí tham gia cuộc thi");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jTitle.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        jTitle.setForeground(new java.awt.Color(51, 51, 51));
+        jTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jTitle.setText("Xác nhận đăng kí tham gia cuộc thi");
+        jTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        roundedPanel1.add(jTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 532, -1));
 
         jNo.setText("Hủy");
         jNo.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
@@ -80,6 +125,7 @@ public class ConfirmPopUp extends javax.swing.JPanel {
                 jNoActionPerformed(evt);
             }
         });
+        roundedPanel1.add(jNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(597, 251, 147, -1));
 
         jOk.setText("Xác nhận");
         jOk.setColor(new java.awt.Color(247, 182, 255));
@@ -87,45 +133,10 @@ public class ConfirmPopUp extends javax.swing.JPanel {
         jOk.setColorOver(new java.awt.Color(203, 163, 233));
         jOk.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jOk.setPreferredSize(new java.awt.Dimension(90, 50));
+        roundedPanel1.add(jOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(756, 251, 156, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/check_9068676.png"))); // NOI18N
-
-        javax.swing.GroupLayout roundedPanel1Layout = new javax.swing.GroupLayout(roundedPanel1);
-        roundedPanel1.setLayout(roundedPanel1Layout);
-        roundedPanel1Layout.setHorizontalGroup(
-            roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jNo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jOk, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
-            .addGroup(roundedPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-            .addGroup(roundedPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(408, Short.MAX_VALUE))
-            .addGroup(roundedPanel1Layout.createSequentialGroup()
-                .addGap(426, 426, 426)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        roundedPanel1Layout.setVerticalGroup(
-            roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(roundedPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
-        );
+        jIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/check_9068676.png"))); // NOI18N
+        roundedPanel1.add(jIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(426, 14, 78, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -150,12 +161,12 @@ public class ConfirmPopUp extends javax.swing.JPanel {
     }//GEN-LAST:event_jNoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jContent;
+    private javax.swing.JLabel jIcon;
     protected com.uiteco.OfCuocThiPanel.secondPage.CustomButton jNo;
     protected com.uiteco.OfCuocThiPanel.secondPage.CustomButton jOk;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JLabel jTitle;
     protected com.uiteco.components.RoundedPanel roundedPanel1;
     // End of variables declaration//GEN-END:variables
 }

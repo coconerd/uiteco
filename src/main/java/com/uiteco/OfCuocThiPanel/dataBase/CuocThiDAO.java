@@ -64,10 +64,9 @@ public class CuocThiDAO {
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             query = "SELECT "
-                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA, THUMBNAIL_YOUTUBEPLAY "
-                    + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                    + "WHERE BD.MABD = BD_CT.MABD "
-                    + "AND LOAIBD = 2 "
+                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
+                    + "FROM BAIDANG "
+                    + "WHERE LOAIBD = 2 "
                     + "ORDER BY THOIDIEMDANG DESC";
 
             rset = stmt.executeQuery(query);
@@ -118,23 +117,23 @@ public class CuocThiDAO {
                     }
                 }
 
-                byte[] imageData1 = rset.getBytes("THUMBNAIL_YOUTUBEPLAY");
-                if (imageData1 != null) {
-                    try {
-                        //convert the byte array to an Image object
-                        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData1);
-                        BufferedImage bufferedImage = ImageIO.read(inputStream);
-
-                        //create a scaled version of the BufferedImage
-                        Image scaledImage = bufferedImage.getScaledInstance(480, 360, Image.SCALE_SMOOTH);
-
-                        //set the Image object as the thumnail
-                        ImageIcon thumbnail = new ImageIcon(scaledImage);
-                        post.setImage(thumbnail);
-
-                    } catch (IOException e) {
-                    }
-                }
+//                byte[] imageData1 = rset.getBytes("THUMBNAIL_YOUTUBEPLAY");
+//                if (imageData1 != null) {
+//                    try {
+//                        //convert the byte array to an Image object
+//                        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData1);
+//                        BufferedImage bufferedImage = ImageIO.read(inputStream);
+//
+//                        //create a scaled version of the BufferedImage
+//                        Image scaledImage = bufferedImage.getScaledInstance(480, 360, Image.SCALE_SMOOTH);
+//
+//                        //set the Image object as the thumnail
+//                        ImageIcon thumbnail = new ImageIcon(scaledImage);
+//                        post.setImage(thumbnail);
+//
+//                    } catch (IOException e) {
+//                    }
+//                }
 
                 post.setOrganizer(rset.getString("DONVITOCHUC"));
 
@@ -143,17 +142,20 @@ public class CuocThiDAO {
                     LocalDateTime localDateTimePost = timeStampPost.toLocalDateTime();
                     post.setPostTime(localDateTimePost);
                 }
-
-                LocalDate timeBegin = rset.getDate("THOIDIEMDIENRA").toLocalDate();
-                post.setDueDate(timeBegin);
-
-                LocalDate timeStart = rset.getDate("NGAYBD_DANGKICUOCTHI").toLocalDate();
+                
+                Timestamp _timeStampPost = rset.getTimestamp("THOIDIEMBD_DIENRA");
+                if (_timeStampPost != null) {
+                    LocalDateTime localDateBegin = _timeStampPost.toLocalDateTime();
+                    post.setPostTime(localDateBegin);
+                }
+                
+                LocalDate timeStart = rset.getDate("NGAYBD_DANGKY").toLocalDate();
                 if (timeStart != null) {
 
                     post.setStartDate(timeStart);
                 }
 
-                LocalDate timeEnd = rset.getDate("NGAYHETHAN_DANGKICUOCTHI").toLocalDate();
+                LocalDate timeEnd = rset.getDate("NGAYHH_DANGKY").toLocalDate();
                 if (timeStart != null) {
 
                     post.setEndDate(timeEnd);
@@ -273,7 +275,7 @@ public class CuocThiDAO {
             query = "SELECT B.MABD "
                     + "FROM HINHANH H, BAIDANG B "
                     + "WHERE H.MABD = B.MABD AND LOAIBD = 2 "
-                    + "ORDER BY THOIDIEMDANG DESC";
+                    + "ORDER BY THOIDIEMBD_DIENRA DESC";
 
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
@@ -284,7 +286,7 @@ public class CuocThiDAO {
                         + "FROM HINHANH "
                         + "WHERE MABD = ? "
                         + "ORDER BY MAHINHANH "
-                        + "FETCH FIRST 1 ROW ONLY";
+                        + "FETCH FIRST 1 ROW ONLY"; //choose first image in list to show in slideshow
 
                 PreparedStatement p = conn.prepareStatement(query1);
 
@@ -401,27 +403,27 @@ public class CuocThiDAO {
         }
     }
 
-    public static void registerCompetition(BriefPost_Model model) {
-        try {
-            conn = getConnection();
-            query = "{CALL PROC_DANGKY_SUKIEN(?, ?, ?)}";
-            CallableStatement cstm = conn.prepareCall(query);
-
-            cstm.setInt(1, model.getId());
-            cstm.setInt(2, getSession().getAccountID());
-            cstm.registerOutParameter(3, java.sql.Types.INTEGER);
-            cstm.execute();
-            int likes = cstm.getInt(3);
-
-            model.countLike = likes;
-
-            conn.close();
-            cstm.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void registerCompetition(BriefPost_Model model) {
+//        try {
+//            conn = getConnection();
+//            query = "{CALL PROC_DANGKY_SUKIEN(?, ?, ?)}";
+//            CallableStatement cstm = conn.prepareCall(query);
+//
+//            cstm.setInt(1, model.getId());
+//            cstm.setInt(2, getSession().getAccountID());
+//            cstm.registerOutParameter(3, java.sql.Types.INTEGER);
+//            cstm.execute();
+//            int likes = cstm.getInt(3);
+//
+//            model.countLike = likes;
+//
+//            conn.close();
+//            cstm.close();
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     //for pagination
     public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page, int limit, int type, boolean dueDate, boolean hottest) {
@@ -430,7 +432,7 @@ public class CuocThiDAO {
         try {
             conn = getConnection();
 
-            String query1 = "SELECT COUNT(*) FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2";
+            String query1 = "SELECT COUNT(*) FROM BAIDANG WHERE LOAIBD = 2";
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             ResultSet rset1 = stmt.executeQuery(query1);
@@ -446,32 +448,32 @@ public class CuocThiDAO {
             if (type == 0) {
                 if (dueDate == true) {
                     query = "SELECT "
-                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
-                            + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                            + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 AND THOIDIEMDIENRA = NGAYHETHAN_DANGKICUOCTHI "
+                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
+                            + "FROM BAIDANG "
+                            + "WHERE LOAIBD = 2 AND THOIDIEMBD_DIENRA = NGAYHH_DANGKY "
                             + "ORDER BY THOIDIEMDANG DESC "
                             + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
                 } else if (hottest == true) {
                     query = "SELECT "
-                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
-                            + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                            + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 "
+                            + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
+                            + "FROM BAIDANG "
+                            + "WHERE LOAIBD = 2 "
                             + "ORDER BY LUOTTHICH DESC "
                             + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
                 }
             } else if (type == 1 || type == 2) {
                 query = "SELECT "
-                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
-                        + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                        + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 AND HINHTHUCTG = ? "
+                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
+                        + "FROM BAIDANG "
+                        + "WHERE LOAIBD = 2 AND HINHTHUCTG = ? "
                         + "ORDER BY LUOTTHICH DESC "
                         + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
             } else if (type == 3) {
                 query = "SELECT "
-                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
-                        + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                        + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 "
+                        + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
+                        + "FROM BAIDANG "
+                        + "WHERE LOAIBD = 2 "
                         + "ORDER BY THOIDIEMDANG DESC "
                         + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
             }
@@ -535,7 +537,7 @@ public class CuocThiDAO {
 
                 post.setOrganizer(rset.getString("DONVITOCHUC"));
 
-                LocalDate timeBegin = rset.getDate("THOIDIEMDIENRA").toLocalDate();
+                LocalDate timeBegin = rset.getDate("THOIDIEMBD_DIENRA").toLocalDate();
                 post.setDueDate(timeBegin);
 
                 Timestamp timeStampPost = rset.getTimestamp("THOIDIEMDANG");
@@ -543,14 +545,20 @@ public class CuocThiDAO {
                     LocalDateTime localDateTimePost = timeStampPost.toLocalDateTime();
                     post.setPostTime(localDateTimePost);
                 }
+                
+                Timestamp _timeStampPost = rset.getTimestamp("THOIDIEMBD_DIENRA");
+                if (_timeStampPost != null) {
+                    LocalDateTime localDateTimePost = _timeStampPost.toLocalDateTime();
+                    post.setDueDate(localDateTimePost);
+                }
 
-                LocalDate timeStart = rset.getDate("NGAYBD_DANGKICUOCTHI").toLocalDate();
+                LocalDate timeStart = rset.getDate("NGAYBD_DANGKY").toLocalDate();
                 if (timeStart != null) {
 
                     post.setStartDate(timeStart);
                 }
 
-                LocalDate timeEnd = rset.getDate("NGAYHETHAN_DANGKICUOCTHI").toLocalDate();
+                LocalDate timeEnd = rset.getDate("NGAYHH_DANGKY").toLocalDate();
                 if (timeStart != null) {
 
                     post.setEndDate(timeEnd);
@@ -610,7 +618,6 @@ public class CuocThiDAO {
 
             // Load images from the folder
             ArrayList<String> avatars = loadImagesFromFolder("src/main/resources/CuocThiPanel_resources/avatars/");
-            System.out.println("Loaded avatars: " + avatars);
             Random random = new Random();
 
             while (rset.next()) {
@@ -623,10 +630,8 @@ public class CuocThiDAO {
                 String selectedAvatar;
                 if (!avatars.isEmpty()) {
                     selectedAvatar = avatars.get(random.nextInt(avatars.size()));
-                    System.out.println("Randomly selected avatar: " + selectedAvatar);
                 } else {
                     selectedAvatar = "src/main/resources/CuocThiPanel_resources/avatars/icons8-octocat-48.png"; // Default avatar image
-                    System.out.println("Using default avatar");
                 }
 
                 ImageIcon avatarIcon = new ImageIcon(selectedAvatar);
@@ -648,13 +653,34 @@ public class CuocThiDAO {
 
     }
 
+    public static List<Integer> checkAlreadyRegisteredUser(int postID) {
+        List<Integer> idList = new ArrayList<>();
+        try {
+            conn = getConnection();
+            query = "SELECT MATK FROM DANGKY WHERE MABD = ?";
+            PreparedStatement p = conn.prepareCall(query);
+            p.setInt(1, postID);
+            rset = p.executeQuery();
+            while (rset.next()) {
+                int id = rset.getInt("MATK");
+                idList.add(id);
+            }
+
+            conn.close();
+            p.close();
+            rset.close();
+
+        } catch (SQLException e) {
+        }
+        return idList;
+    }
+
     // Method to load images from a folder
     private static ArrayList<String> loadImagesFromFolder(String folderPath) {
         ArrayList<String> imagePaths = new ArrayList<>();
         File folder = new File(folderPath);
 
         if (!folder.exists()) {
-            System.out.println("Folder does not exist: " + folderPath);
             return imagePaths;
         }
 
@@ -672,10 +698,7 @@ public class CuocThiDAO {
         if (files != null) {
             for (File file : files) {
                 imagePaths.add(file.getAbsolutePath());
-                System.out.println("Loaded image: " + file.getAbsolutePath());
             }
-        } else {
-            System.out.println("No files found in folder: " + folderPath);
         }
 
         return imagePaths;
@@ -691,9 +714,9 @@ public class CuocThiDAO {
                     .collect(Collectors.joining(", "));
 
             String countQuery = "SELECT COUNT(*) "
-                    + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                    + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 "
-                    + "AND BD.MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + "))";
+                    + "FROM BAIDANG "
+                    + "WHERE LOAIBD = 2 "
+                    + "AND MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + "))";
 
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
@@ -709,10 +732,10 @@ public class CuocThiDAO {
             int totalPages = (int) Math.ceil((double) count / limit);
 
             String offsetQuery = "SELECT "
-                    + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKICUOCTHI, NGAYHETHAN_DANGKICUOCTHI, THOIDIEMDANG, LUOTTHICH, THOIDIEMDIENRA "
-                    + "FROM BAIDANG BD, BAIDANG_CUOCTHI BD_CT "
-                    + "WHERE BD.MABD = BD_CT.MABD AND LOAIBD = 2 "
-                    + "AND BD.MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + ")) "
+                    + "MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
+                    + "FROM BAIDANG "
+                    + "WHERE LOAIBD = 2 "
+                    + "AND MABD IN (SELECT MABD FROM TAGS_BAIDANG WHERE TAG IN (" + tagFilter + ")) "
                     + "ORDER BY THOIDIEMDANG DESC "
                     + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
@@ -761,8 +784,8 @@ public class CuocThiDAO {
                 post.setOrganizer(rset.getString("DONVITOCHUC"));
                 post.setPostTime(rset.getTimestamp("THOIDIEMDANG").toLocalDateTime());
                 post.setDueDate(rset.getDate("THOIDIEMDIENRA").toLocalDate());
-                post.setStartDate(rset.getDate("NGAYBD_DANGKICUOCTHI").toLocalDate());
-                post.setEndDate(rset.getDate("NGAYHETHAN_DANGKICUOCTHI").toLocalDate());
+                post.setStartDate(rset.getDate("NGAYBD_DANGKY").toLocalDate());
+                post.setEndDate(rset.getDate("NGAYHH_DANGKY").toLocalDate());
 
                 postList.add(post);
             }
