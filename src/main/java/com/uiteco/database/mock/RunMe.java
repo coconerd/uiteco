@@ -15,8 +15,9 @@ public class RunMe {
     public static void main(String[] args) throws Exception {
 //        InsertTAIKHOAN.insertTaiKhoan();
 //        InsertCAULACBO.insertCAULACBO();
-        InsertTHANHVIENCLB.insertTHANHVIENCLB();
+//        InsertTHANHVIENCLB.insertTHANHVIENCLB();
 //        InsertBAIDANG.insertBAIDANG();
+        InsertBAIDANG_CUOCTHI.insertBAIDANG_CUOCTHI();
         System.out.print("Finished");
     }
 }

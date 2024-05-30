@@ -798,7 +798,7 @@ public class SuKienDAO {
         return tags;
     }
 
-    public static void createSuKien(
+    public static Integer createSuKien(
             int postType,
             String title,
             String content,
@@ -816,8 +816,8 @@ public class SuKienDAO {
         Connection conn = ConnectionManager.getConnection();
 
         // Insert BAIDANG
-        String sql = "INSERT INTO BAIDANG (TIEUDE, NOIDUNG, NGUOIDANG, THUMBNAIL, MACLBDANGBAI, LOAIBD, COTHEDANGKY, SL_DANGKY_TOIDA, NGAYBD_DANGKY, NGAYHH_DANGKY)"
-                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO BAIDANG (TIEUDE, NOIDUNG, NGUOIDANG, THUMBNAIL, MACLBDANGBAI, LOAIBD, COTHEDANGKY, SL_DANGKY_TOIDA, NGAYBD_DANGKY, NGAYHH_DANGKY, DONVITOCHUC)"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstm = conn.prepareStatement(sql, new String[]{"MABD"});
 
         NClob nclob = conn.createNClob();
@@ -857,12 +857,19 @@ public class SuKienDAO {
             pstm.setNull(9, java.sql.Types.DATE);
             pstm.setNull(10, java.sql.Types.DATE);
         }
+        
+        if (organization != null) {
+            pstm.setNString(11, organization);
+        } else {
+            pstm.setNull(11, java.sql.Types.NVARCHAR);
+        }
 
         pstm.executeUpdate();
         ResultSet genKeys = pstm.getGeneratedKeys();
 
+        Integer postID = null;
         if (genKeys.next()) {
-            int postID = genKeys.getInt(1);
+            postID = genKeys.getInt(1);
             if (tags != null && tags.size() > 0) {
                 // Insert TAGS_BAIDANG
                 sql = "INSERT INTO TAGS_BAIDANG (MABD, TAG) VALUES (?, ?)";
@@ -884,22 +891,22 @@ public class SuKienDAO {
                 }
                 pstm.executeBatch();
             }
-            if (organization != null) {
-                sql = "INSERT INTO BAIDANG_CUOCTHI (MABD, DONVITOCHUC) VALUES (?, ?)";
-                pstm = conn.prepareStatement(sql);
-                pstm.setInt(1, postID);
-                pstm.setNString(2, organization);
-                pstm.executeUpdate();
-            }
 
-        }
-
-        if (genKeys != null) {
             genKeys.close();
+
+        } else {
+            conn.rollback();
+            pstm.close();
+            conn.close();
+            return null;
         }
+
+   
         conn.commit();
         pstm.close();
         conn.close();
+
+        return postID;
     }
 
     public static void updateSuKien(

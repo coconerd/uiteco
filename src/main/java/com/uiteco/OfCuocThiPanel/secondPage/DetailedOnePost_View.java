@@ -5,7 +5,10 @@ import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import static com.uiteco.main.App.getSession;
+import com.uiteco.ofSuKienPanel.SuKienDAO;
+import com.uiteco.ofSuKienPanel.SuKienModel;
 import java.awt.Color;
+import java.sql.SQLException;
 import java.util.List;
 import javax.swing.ImageIcon;
 
@@ -75,10 +78,11 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(242, 243, 244));
         setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(810, 1010));
         setLayout(new java.awt.GridBagLayout());
 
         jTop.setBackground(new java.awt.Color(255, 153, 153));
-        jTop.setPreferredSize(new java.awt.Dimension(1190, 370));
+        jTop.setPreferredSize(new java.awt.Dimension(810, 370));
         jTop.setLayout(new java.awt.GridBagLayout());
 
         RegisterTimePanel.setPreferredSize(new java.awt.Dimension(1000, 100));
@@ -88,7 +92,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         RegisterTimePanel.setRoundTopRight(50);
         RegisterTimePanel.setLayout(new java.awt.GridBagLayout());
 
-        jRegisterTime.setFont(new java.awt.Font("Merriweather", 1, 34)); // NOI18N
+        jRegisterTime.setFont(new java.awt.Font("Merriweather", 1, 20)); // NOI18N
         jRegisterTime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRegisterTime.setText("<code>");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -114,13 +118,14 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
 
         jScrollPane.setBackground(new java.awt.Color(242, 243, 244));
         jScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane.setPreferredSize(new java.awt.Dimension(1190, 630));
+        jScrollPane.setPreferredSize(new java.awt.Dimension(810, 630));
 
         jBody.setBackground(new java.awt.Color(242, 243, 244));
         jBody.setOpaque(false);
+        jBody.setPreferredSize(new java.awt.Dimension(810, 1923));
         jBody.setLayout(new java.awt.GridBagLayout());
 
-        jTitle.setFont(new java.awt.Font("Merriweather", 1, 40)); // NOI18N
+        jTitle.setFont(new java.awt.Font("Merriweather", 1, 25)); // NOI18N
         jTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTitle.setText("jLabel2");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -156,7 +161,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         jRegister.setColor(new java.awt.Color(85, 146, 213));
         jRegister.setColorClick(new java.awt.Color(68, 185, 225));
         jRegister.setColorOver(new java.awt.Color(85, 146, 213));
-        jRegister.setFont(new java.awt.Font("Merriweather", 1, 19)); // NOI18N
+        jRegister.setFont(new java.awt.Font("Merriweather", 1, 16)); // NOI18N
         jRegister.setPreferredSize(new java.awt.Dimension(160, 55));
         jRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,13 +190,12 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
                 .addGroup(jBelowTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jOrganizer)
                     .addComponent(jPostTime))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1155, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 504, Short.MAX_VALUE)
                 .addComponent(jRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(jLike, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(jLike, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jBelowTitleLayout.setVerticalGroup(
             jBelowTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +232,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
 
         jContent.setEditable(false);
         jContent.setColumns(1);
-        jContent.setFont(new java.awt.Font("Segoe UI", 0, 29)); // NOI18N
+        jContent.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
         jContent.setLineWrap(true);
         jContent.setWrapStyleWord(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -242,7 +246,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setFont(new java.awt.Font("Merriweather", 1, 31)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Merriweather", 1, 22)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(85, 99, 213));
         jLabel2.setText("H  Ì  N  H    Ả  N  H    N  Ổ  I    B  Ậ  T");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -272,7 +276,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Merriweather", 1, 31)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Merriweather", 1, 22)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(85, 99, 213));
         jLabel1.setText("T  Ì  M   H  I  Ể  U   T  H  Ê  M   V Ề   C  U  Ộ  C    T  H  I");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
@@ -301,7 +305,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 24, 0, 44);
         jBody.add(jPanel2, gridBagConstraints);
 
-        youtubePlay.setPreferredSize(new java.awt.Dimension(500, 380));
+        youtubePlay.setPreferredSize(new java.awt.Dimension(400, 380));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -311,7 +315,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(75, 0, 80, 0);
         jBody.add(youtubePlay, gridBagConstraints);
 
-        scrollPaneImages.setPreferredSize(new java.awt.Dimension(1600, 600));
+        scrollPaneImages.setPreferredSize(new java.awt.Dimension(600, 600));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -337,12 +341,12 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
     private void __checkUserAlreadyRegistered() {
         List<Integer> idList = CuocThiDAO.checkAlreadyRegisteredUser(controller.getPostID());
         for (int id : idList) {
-            if (id == getSession().getAccountID()) {
+            if (id == getSession().getUser().getAccountID()) {
                 jRegister.setText("Hủy đăng kí");
                 jRegister.setColor(new Color(223, 122, 130));
                 jRegister.revalidate();
                 jRegister.repaint();
-                
+
                 isRegistered = true;
                 return;
             }
@@ -381,7 +385,14 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
                 //CuocThiDAO.registerCompetition(getController().getBaseModel());
                 //CuocThiDAO.insertUserRegisterCompetition(getController().getPostID());
                 GlassPanePopup.closePopupAll();
-
+                SuKienModel newModel = new SuKienModel();
+                newModel.setPostID(controller.getPostID());
+                try {
+                    SuKienDAO.enrollInSuKien(newModel);
+                } catch (SQLException sqle) {
+                    System.err.println("Error enrolling in cuocthi");
+                    sqle.printStackTrace();
+                }
                 jRegister.setVisible(false);
             });
 
@@ -424,7 +435,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     protected javax.swing.JLabel jPostTime;
     protected com.uiteco.OfCuocThiPanel.secondPage.CustomButton jRegister;
-    private javax.swing.JLabel jRegisterTime;
+    protected javax.swing.JLabel jRegisterTime;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

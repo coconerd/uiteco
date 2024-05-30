@@ -26,7 +26,7 @@ public class SuggestionPanel extends javax.swing.JPanel {
         roundedGradientPanel1.setRoundTopRight(45);
         roundedGradientPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Merriweather", 0, 30)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Merriweather", 0, 18)); // NOI18N
         jLabel1.setText("Competitions suggestion to you");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -44,7 +44,7 @@ public class SuggestionPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 24, 10);
         roundedGradientPanel1.add(jLabel3, gridBagConstraints);
 
-        jLabel4.setFont(new java.awt.Font("Merriweather", 2, 22)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Merriweather", 2, 16)); // NOI18N
         jLabel4.setText("Coming soon ...");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;

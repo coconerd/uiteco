@@ -89,6 +89,9 @@ public class TaiKhoanPanel extends javax.swing.JPanel {
         roundedPanel4.revalidate();
         roundedPanel4.repaint();
         
+        leftP.revalidate();
+        leftP.repaint();
+        
         revalidate();
         repaint();
         

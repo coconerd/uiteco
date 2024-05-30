@@ -200,6 +200,7 @@ public class CuocThiDAO {
 //        }
 //        System.out.println("Insert succesfully");
 //    }
+    
 
     //5 khóa
     public static List<ModelPieChart> getDataForPieChart_CourseYear(int postID) {
@@ -552,11 +553,11 @@ public class CuocThiDAO {
                     post.setPostTime(localDateTimePost);
                 }
                 
-                Timestamp _timeStampPost = rset.getTimestamp("THOIDIEMBD_DIENRA");
-                if (_timeStampPost != null) {
-                    LocalDateTime localDateTimePost = _timeStampPost.toLocalDateTime();
-                    post.setDueDate(localDateTimePost.toLocalDate());
-                }
+//                Timestamp _timeStampPost = rset.getTimestamp("THOIDIEMBD_DIENRA");
+//                if (_timeStampPost != null) {
+//                    LocalDateTime localDateTimePost = _timeStampPost.toLocalDateTime();
+//                    post.setDueDate(localDateTimePost.toLocalDate());
+//                }
 
                 LocalDate timeStart = rset.getDate("NGAYBD_DANGKY").toLocalDate();
                 if (timeStart != null) {

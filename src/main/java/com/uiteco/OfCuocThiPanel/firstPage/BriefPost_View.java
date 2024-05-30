@@ -115,7 +115,6 @@ public class BriefPost_View extends RoundedPanel {
 
         roundPanel_Parent = new com.uiteco.components.RoundedPanel();
         jOrganizer = new javax.swing.JLabel();
-        jSeparator = new javax.swing.JSeparator();
         jDateRange = new javax.swing.JLabel();
         jTagsIcon = new javax.swing.JLabel();
         jType = new javax.swing.JLabel();
@@ -125,6 +124,7 @@ public class BriefPost_View extends RoundedPanel {
         jDueDate = new javax.swing.JLabel();
         jImage = new com.uiteco.components.RoundedImagePanel();
         labelDaysLeft = new com.uiteco.OfCuocThiPanel.firstPage.LabelDaysLeft();
+        jSeparator = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setFocusable(false);
@@ -148,11 +148,7 @@ public class BriefPost_View extends RoundedPanel {
         jOrganizer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-organization-28.png"))); // NOI18N
         jOrganizer.setText("fefe");
 
-        jSeparator.setForeground(new java.awt.Color(153, 153, 153));
-        jSeparator.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator.setPreferredSize(new java.awt.Dimension(240, 9));
-
-        jDateRange.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jDateRange.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jDateRange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-calendar-28.png"))); // NOI18N
         jDateRange.setText("gewrgwrg");
         jDateRange.setIconTextGap(19);
@@ -160,7 +156,7 @@ public class BriefPost_View extends RoundedPanel {
         jTagsIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-tag-29.png"))); // NOI18N
         jTagsIcon.setText("jLabel1");
 
-        jType.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jType.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jType.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-global-28.png"))); // NOI18N
         jType.setText("fvsdf");
 
@@ -172,7 +168,7 @@ public class BriefPost_View extends RoundedPanel {
         jCountLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-heart-28.png"))); // NOI18N
         jCountLike.setIconTextGap(6);
 
-        jTitle.setFont(new java.awt.Font("Merriweather", 1, 25)); // NOI18N
+        jTitle.setFont(new java.awt.Font("Merriweather", 1, 16)); // NOI18N
         jTitle.setText("jLabel1");
         jTitle.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 2, 1, 1));
         jTitle.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +186,7 @@ public class BriefPost_View extends RoundedPanel {
             }
         });
 
-        jDueDate.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jDueDate.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jDueDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CuocThiPanel_resources/icons8-time-28.png"))); // NOI18N
         jDueDate.setText("jLabel1");
         jDueDate.setIconTextGap(19);
@@ -215,6 +211,8 @@ public class BriefPost_View extends RoundedPanel {
 
         labelDaysLeft.setPreferredSize(new java.awt.Dimension(114, 32));
 
+        jSeparator.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
         javax.swing.GroupLayout roundPanel_ParentLayout = new javax.swing.GroupLayout(roundPanel_Parent);
         roundPanel_Parent.setLayout(roundPanel_ParentLayout);
         roundPanel_ParentLayout.setHorizontalGroup(
@@ -222,65 +220,62 @@ public class BriefPost_View extends RoundedPanel {
             .addGroup(roundPanel_ParentLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jImage, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel_ParentLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(labelDaysLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
-                        .addComponent(jCountLike)
-                        .addGap(296, 296, 296))
+                .addGap(18, 18, 18)
+                .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jOrganizer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(roundPanel_ParentLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jType, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jOrganizer, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateRange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDueDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(roundPanel_ParentLayout.createSequentialGroup()
-                        .addComponent(jTagsIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(roundPanel_ParentLayout.createSequentialGroup()
+                                    .addComponent(labelDaysLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jCountLike)
+                                    .addGap(83, 83, 83))
+                                .addComponent(jTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(119, 119, 119)
+                        .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelContainTags, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateRange, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                            .addComponent(jTagsIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanelContainTags, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(116, 116, 116)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         roundPanel_ParentLayout.setVerticalGroup(
             roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel_ParentLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel_ParentLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jDateRange, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addComponent(jDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelContainTags, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(roundPanel_ParentLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jTagsIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(roundPanel_ParentLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(73, 73, 73)
+                                .addComponent(labelDaysLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(jType))
+                            .addGroup(roundPanel_ParentLayout.createSequentialGroup()
+                                .addComponent(jDateRange, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTagsIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanelContainTags, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(roundPanel_ParentLayout.createSequentialGroup()
                                 .addComponent(jTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(roundPanel_ParentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelDaysLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCountLike, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addComponent(jType)
-                                .addGap(18, 18, 18)
-                                .addComponent(jOrganizer, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jImage, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(10, 10, 10)
+                                .addComponent(jCountLike, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(302, 302, 302)
+                        .addComponent(jOrganizer, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jImage, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        add(roundPanel_Parent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 240));
+        add(roundPanel_Parent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 240));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTitleMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTitleMouseEntered
@@ -309,7 +304,7 @@ public class BriefPost_View extends RoundedPanel {
     protected com.uiteco.components.RoundedImagePanel jImage;
     protected javax.swing.JLabel jOrganizer;
     protected javax.swing.JPanel jPanelContainTags;
-    protected javax.swing.JSeparator jSeparator;
+    private javax.swing.JSeparator jSeparator;
     protected javax.swing.JLabel jTagsIcon;
     protected javax.swing.JLabel jTitle;
     protected javax.swing.JLabel jType;
