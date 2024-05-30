@@ -1,5 +1,6 @@
 package com.uiteco.OfCuocThiPanel.dataBase;
 
+import com.bulenkov.iconloader.util.Pair;
 import com.bulenkov.iconloader.util.Scalr;
 import com.bulenkov.iconloader.util.Scalr.Method;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
@@ -16,8 +17,13 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.Blob;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -26,12 +32,19 @@ import java.sql.Timestamp;
 import javax.imageio.ImageIO;
 import java.time.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 
 public class CuocThiDAO {
 
@@ -58,28 +71,6 @@ public class CuocThiDAO {
         }
     }
 
-    //    public static void insertUserRegisterCompetition(int postId) {
-//        try {
-//            conn = getConnection();
-//            query = "INSERT INTO DANGKY (MATK, MABD, THOIDIEMDK) VALUES (?, ?, ?)";
-//            PreparedStatement p = conn.prepareStatement(query);
-//
-//            p.setInt(1, 1);
-//            p.setInt(2, postId);
-//            Timestamp time = Timestamp.valueOf(LocalDateTime.now());
-//            p.setTimestamp(3, time);
-//
-//            rset = p.executeQuery();
-//
-//            conn.commit();
-//            rset.close();
-//            conn.close();
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("Insert succesfully");
-//    }
 
     //5 khóa
     public static List<ModelPieChart> getDataForPieChart_CourseYear(int postID) {
@@ -269,12 +260,11 @@ public class CuocThiDAO {
         }
     }
 
-    public static DetailedOnePost_Model getAllImagesAndUrls(int postID) {
+    public static DetailedOnePost_Model getAllImagesForPosts(int postID) {
         DetailedOnePost_Model model = new DetailedOnePost_Model();
         List<ImageIcon> imagesList = new ArrayList<>();
-        String url = null;
 
-        query = "SELECT ANH, URL "
+        query = "SELECT ANH "
                 + "FROM HINHANH "
                 + "WHERE MABD = ?";
 
@@ -286,10 +276,6 @@ public class CuocThiDAO {
             rset = p.executeQuery();
 
             while (rset.next()) {
-
-                if (rset.getString("URL") != null) {
-                    url = rset.getString("URL");
-                }
 
                 byte[] imageData = rset.getBytes("ANH");
 
@@ -311,7 +297,6 @@ public class CuocThiDAO {
             }
 
             model.setImages(imagesList);
-            model.setUrlYT(url);
 
             rset.close();
             p.close();
@@ -345,27 +330,113 @@ public class CuocThiDAO {
         }
     }
 
-//    public static void registerCompetition(BriefPost_Model model) {
-//        try {
-//            conn = getConnection();
-//            query = "{CALL PROC_DANGKY_SUKIEN(?, ?, ?)}";
-//            CallableStatement cstm = conn.prepareCall(query);
-//
-//            cstm.setInt(1, model.getId());
-//            cstm.setInt(2, getSession().getAccountID());
-//            cstm.registerOutParameter(3, java.sql.Types.INTEGER);
-//            cstm.execute();
-//            int likes = cstm.getInt(3);
-//
-//            model.countLike = likes;
-//
-//            conn.close();
-//            cstm.close();
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public static void registerCompetition(BriefPost_Model model) {
+        try {
+            conn = getConnection();
+            query = "{CALL PROC_DANGKY_SUKIEN(?, ?, ?)}";
+            CallableStatement cstm = conn.prepareCall(query);
+
+            cstm.setInt(1, getSession().getAccountID());
+            cstm.setInt(2, model.getId());
+            cstm.registerOutParameter(3, java.sql.Types.INTEGER);
+            cstm.execute();
+
+            conn.close();
+            cstm.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static List<Pair<URI, String>> getvideoAndThumbnailYoutubeUrl(int postID){
+        List<Pair<URI, String>> listUrls = new ArrayList<>();
+        
+        try{
+            conn = getConnection();
+            query = "SELECT URL FROM HINHANH WHERE MABD = ? AND URL LIKE '%youtube.com%'";
+            
+            PreparedStatement p = conn.prepareCall(query);
+            p.setInt(1, postID);
+            rset = p.executeQuery();
+            
+            while(rset.next()){
+                String ytVideoUrl = rset.getString("URL");
+                URI ytVideoURI = stringToURI(ytVideoUrl);
+                String ytThumbnailUrl = getYouTubeThumbnailUrl(ytVideoUrl);
+                
+                Pair<URI, String> urls = new Pair<>(ytVideoURI, ytThumbnailUrl);
+                listUrls.add(urls);
+                
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return listUrls;
+    }
+    
+    public static URI stringToURI(String uriString) {
+        try {
+            return new URI(uriString);
+        } catch (URISyntaxException e) {
+            System.err.println("Invalid URI: " + uriString);
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    private static String extractYouTubeVideoId(String videoUrl) {
+        String videoId = null;
+        String pattern = "^(?:https?:\\/\\/)?(?:www\\.)?(?:youtube\\.com\\/.*(?:\\bv=|\\/v\\/|\\/embed\\/|\\/watch\\/|\\/v\\/|\\/e\\/|\\/user\\/[^#]*?\\/[^#]*?\\/|youtu\\.be\\/|\\/embed\\/|\\/v\\/|\\/e\\/|watch\\?.*?&?v=)|youtu\\.be\\/)([^#\\&\\?\\n]*)";
+        Pattern compiledPattern = Pattern.compile(pattern);
+        Matcher matcher = compiledPattern.matcher(videoUrl);
+
+        if (matcher.find()) {
+            videoId = matcher.group(1);
+        }
+        return videoId;
+    }
+    
+    private static String getYouTubeThumbnailUrl(String videoUrl) {
+        String videoId = extractYouTubeVideoId(videoUrl);
+        if (videoId != null) {
+            return "https://img.youtube.com/vi/" + videoId + "/hqdefault.jpg";
+        }
+        return null;
+    }
+    
+    public static void downloadFile(String fileURL, String saveDir) {
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet httpGet = new HttpGet(fileURL);
+
+        try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
+            HttpEntity entity = httpResponse.getEntity();
+
+            if (entity != null) {
+                // Extracts the content and saves it to a file
+                try (InputStream inputStream = entity.getContent();
+                     FileOutputStream outputStream = new FileOutputStream(saveDir)) {
+
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+                }
+
+                System.out.println("File downloaded to " + saveDir);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                httpClient.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
 
     //for pagination
     public static List<BriefPost_Model> getPostsInfo_Offset(Pagination p, int page, int limit, int type, boolean dueDate, boolean hottest) {

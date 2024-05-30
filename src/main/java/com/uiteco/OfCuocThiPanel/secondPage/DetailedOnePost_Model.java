@@ -4,14 +4,34 @@ import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import java.util.List;
 import javax.swing.ImageIcon;
 
-public class DetailedOnePost_Model extends BriefPost_Model{
+public class DetailedOnePost_Model extends BriefPost_Model {
 
-    public String getUrlYT() {
-        return urlYT;
+    /**
+     * @return the urlThumbnailYT
+     */
+    public List<String> getUrlThumbnailYT() {
+        return urlThumbnailYT;
     }
 
-    public void setUrlYT(String urlYT) {
-        this.urlYT = urlYT;
+    /**
+     * @return the urlVideoYT
+     */
+    public List<String> getUrlVideoYT() {
+        return urlVideoYT;
+    }
+
+    /**
+     * @param urlThumbnailYT the urlThumbnailYT to set
+     */
+    public void setUrlThumbnailYT(List<String> urlThumbnailYT) {
+        this.urlThumbnailYT = urlThumbnailYT;
+    }
+
+    /**
+     * @param urlVideoYT the urlVideoYT to set
+     */
+    public void setUrlVideoYT(List<String> urlVideoYT) {
+        this.urlVideoYT = urlVideoYT;
     }
 
     public List<ImageIcon> getImages() {
@@ -22,25 +42,21 @@ public class DetailedOnePost_Model extends BriefPost_Model{
         this.images = images;
     }
 
-    public String getCountLike_Update(){
+    public String getCountLike_Update() {
         return Integer.toString(getCountLike());
     }
 
-    public DetailedOnePost_Model(String urlYT) {
-        this.urlYT = urlYT;
-    }
-
-    public DetailedOnePost_Model(List<ImageIcon> images, String urlYT) {
+    public DetailedOnePost_Model(List<ImageIcon> images, List<String> urlVideoYT, List<String> urlThumbnailYT) {
         this.images = images;
-        this.urlYT = urlYT;
+        this.urlVideoYT = urlVideoYT;
+        this.urlThumbnailYT = urlThumbnailYT;
     }
 
-    
-    protected List<ImageIcon> images;
-    private String urlYT;
-    
-    
+    private List<ImageIcon> images;
+    private List<String> urlVideoYT;
+    private List<String> urlThumbnailYT;
+
     public DetailedOnePost_Model() {
     }
-    
+
 }

@@ -356,8 +356,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         GlassPanePopup.showPopup(popUp_cancel);
 
         popUp_cancel.getjOk().addActionListener((e) -> {
-            //CuocThiDAO.registerCompetition(getController().getBaseModel());
-            //CuocThiDAO.insertUserRegisterCompetition(getController().getPostID());
+            CuocThiDAO.registerCompetition(getController().getBaseModel());
             GlassPanePopup.closePopupAll();
 
             jRegister.setVisible(true);
@@ -378,7 +377,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
             GlassPanePopup.showPopup(popUp);
 
             popUp.getjOk().addActionListener((e) -> {
-                //CuocThiDAO.registerCompetition(getController().getBaseModel());
+                CuocThiDAO.registerCompetition(getController().getBaseModel());
                 //CuocThiDAO.insertUserRegisterCompetition(getController().getPostID());
                 GlassPanePopup.closePopupAll();
 
