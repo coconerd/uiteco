@@ -68,7 +68,7 @@ public class CuocThiDAO {
                     ResultSet.CONCUR_READ_ONLY);
             query = "SELECT "
                     + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
-                    + "FROM BAIDANG "
+                    + "FROM BAIDANG BD "
                     + "WHERE LOAIBD = 2 "
                     + "ORDER BY THOIDIEMDANG DESC";
 
@@ -455,14 +455,14 @@ public class CuocThiDAO {
                 if (dueDate == true) {
                     query = "SELECT "
                             + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
-                            + "FROM BAIDANG "
+                            + "FROM BAIDANG BD "
                             + "WHERE LOAIBD = 2 AND THOIDIEMBD_DIENRA = NGAYHH_DANGKY "
                             + "ORDER BY THOIDIEMDANG DESC "
                             + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
                 } else if (hottest == true) {
                     query = "SELECT "
                             + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
-                            + "FROM BAIDANG "
+                            + "FROM BAIDANG BD "
                             + "WHERE LOAIBD = 2 "
                             + "ORDER BY LUOTTHICH DESC "
                             + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
@@ -470,7 +470,7 @@ public class CuocThiDAO {
             } else if (type == 1 || type == 2) {
                 query = "SELECT "
                         + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
-                        + "FROM BAIDANG "
+                        + "FROM BAIDANG BD "
                         + "WHERE LOAIBD = 2 AND HINHTHUCTG = ? "
                         + "ORDER BY LUOTTHICH DESC "
                         + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
@@ -478,7 +478,7 @@ public class CuocThiDAO {
             } else if (type == 3) {
                 query = "SELECT "
                         + "BD.MABD, NOIDUNG, HINHTHUCTG, TIEUDE, THUMBNAIL, DONVITOCHUC, NGAYBD_DANGKY, NGAYHH_DANGKY, THOIDIEMBD_DIENRA, LUOTTHICH, THOIDIEMDANG "
-                        + "FROM BAIDANG "
+                        + "FROM BAIDANG BD "
                         + "WHERE LOAIBD = 2 "
                         + "ORDER BY THOIDIEMDANG DESC "
                         + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
