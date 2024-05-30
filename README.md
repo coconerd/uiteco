@@ -73,7 +73,7 @@
 - Giao diện trang cuộc thi
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/70d57331-18ed-47f8-8bb9-8606f5fc2144)
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/0f176478-19aa-4fd5-855d-be9db8aa1fb5)
-![image](https://github.com/coconerd/uiteco-swing/assets/118596936/fafc70bb-2e76-4164-bba3-7e6556585ab9)
+![image](https://github.com/coconerd/uiteco-swing/assets/118596936/c2c54b68-95b4-4c5e-a3c9-f940fbd4a8f5)
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/94b62670-8eec-434e-81ec-11e52af421b7)
 - Giao diện trang forum
  ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/ab9a0b5b-c0cd-4e06-937e-b5a30818159b)
