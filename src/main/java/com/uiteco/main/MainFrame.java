@@ -98,7 +98,6 @@ public class MainFrame extends javax.swing.JFrame {
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
         setSize(new java.awt.Dimension(1280, 720));
 
         leftPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -108,7 +107,7 @@ public class MainFrame extends javax.swing.JFrame {
         suKienButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         suKienButton.setForeground(new java.awt.Color(255, 255, 255));
         suKienButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-home-17.png"))); // NOI18N
-        suKienButton.setText("Sự kiện");
+        suKienButton.setText("Bảng Feed");
         suKienButton.setBorderPainted(false);
         suKienButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         suKienButton.setIconTextGap(20);
