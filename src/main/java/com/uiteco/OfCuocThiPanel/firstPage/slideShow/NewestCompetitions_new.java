@@ -117,7 +117,7 @@ public class NewestCompetitions_new extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.1;
         add(roundedGradientPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents

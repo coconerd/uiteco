@@ -226,6 +226,7 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
         roundedPanel1.add(sort, gridBagConstraints);
 
+        solo.setBorder(javax.swing.BorderFactory.createEmptyBorder(11, 11, 11, 11));
         solo.setFont(new java.awt.Font("Merriweather", 1, 18)); // NOI18N
         solo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         solo.setIconTextGap(6);
@@ -242,10 +243,9 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 35);
         roundedPanel1.add(solo, gridBagConstraints);
 
-        team.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 28, 1, 1));
+        team.setBorder(javax.swing.BorderFactory.createEmptyBorder(11, 11, 11, 11));
         team.setText("Đội nhóm");
         team.setFont(new java.awt.Font("Merriweather", 1, 18)); // NOI18N
-        team.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         team.setIconTextGap(6);
         team.setPreferredSize(new java.awt.Dimension(140, 54));
         team.addActionListener(new java.awt.event.ActionListener() {
@@ -259,10 +259,9 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         roundedPanel1.add(team, gridBagConstraints);
 
-        hottest.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 1));
+        hottest.setBorder(javax.swing.BorderFactory.createEmptyBorder(11, 11, 11, 11));
         hottest.setText("Hot nhất");
         hottest.setFont(new java.awt.Font("Merriweather", 1, 18)); // NOI18N
-        hottest.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         hottest.setPreferredSize(new java.awt.Dimension(140, 54));
         hottest.setVerifyInputWhenFocusTarget(false);
         hottest.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -276,9 +275,8 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 32);
         roundedPanel1.add(hottest, gridBagConstraints);
 
-        due.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 1));
+        due.setBorder(javax.swing.BorderFactory.createEmptyBorder(11, 11, 11, 11));
         due.setFont(new java.awt.Font("Merriweather", 1, 18)); // NOI18N
-        due.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         due.setLabel("Đến hạn");
         due.setPreferredSize(new java.awt.Dimension(140, 54));
         due.addActionListener(new java.awt.event.ActionListener() {
@@ -370,6 +368,7 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(30, 25, 30, 25);
         slideShowAndPosts.add(newestCompetitions_new, gridBagConstraints);
 
@@ -379,6 +378,7 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(22, 24, 35, 0);
         slideShowAndPosts.add(postList, gridBagConstraints);
 
@@ -387,7 +387,8 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(25, 24, 44, 57);
         slideShowAndPosts.add(suggestionPanel, gridBagConstraints);
 
@@ -407,6 +408,7 @@ public class CuocThiPanel extends JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 35, 40, 35);
         add(jScrollPane, gridBagConstraints);
