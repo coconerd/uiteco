@@ -66,7 +66,5 @@
 # Giao diện
 - Giao diện trang sự kiện:
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/96295c21-e376-49cd-9c14-d5ca9944a4af)
-![image](https://github.com/coconerd/uiteco-swing/assets/118596936/94069944-0c37-4753-b993-cd06a501bf3f)
-![image](https://github.com/coconerd/uiteco-swing/assets/118596936/aef610dd-04b4-46c2-8aaf-7c9f176d05b3)
 - Giao diện trang cuộc thi:
   
