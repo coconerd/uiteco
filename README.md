@@ -64,21 +64,21 @@
 - Source code: [Link github source code UITeco app maked by CocoNerd](https://github.com/coconerd/uiteco-swing)
 - Website CocoNerd: [Website nhóm CocoNerd (Nước Code Dừa)](https://sites.google.com/view/cococode/trang-ch%E1%BB%A7)  
 # Giao diện
-- Giao diện trang đăng nhập:
+- Giao diện trang đăng nhập
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/dc3162ae-29f6-48c6-930c-7bcbd6e631de)
-- Giao diện trang sự kiện:
+- Giao diện trang sự kiện
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/96295c21-e376-49cd-9c14-d5ca9944a4af)
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/31d58c53-b70b-439b-af6c-be45fe18ba2b)
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/24e7aeae-eb44-41cb-8844-8637312094b3)
-- Giao diện trang cuộc thi:
+- Giao diện trang cuộc thi
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/70d57331-18ed-47f8-8bb9-8606f5fc2144)
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/0f176478-19aa-4fd5-855d-be9db8aa1fb5)
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/fafc70bb-2e76-4164-bba3-7e6556585ab9)
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/94b62670-8eec-434e-81ec-11e52af421b7)
-- Giao diện trang forum:
+- Giao diện trang forum
  ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/ab9a0b5b-c0cd-4e06-937e-b5a30818159b)
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/0549dea2-dd5b-45cf-a8c1-69bd56f497e1)
-- Giao diện trang Admin:
+- Giao diện trang Admin
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/a37217c3-b576-4b42-b6f7-398c2e8beec8)
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/e7e2be78-1f87-4ba1-8f75-b61b81743e2d)
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/ce139e00-35c0-43bb-8f4a-ae40e7bf4e0b)
