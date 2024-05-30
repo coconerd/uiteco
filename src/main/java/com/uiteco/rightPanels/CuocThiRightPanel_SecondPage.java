@@ -6,16 +6,11 @@ import com.uiteco.OfCuocThiPanel.secondPage.RegisterTableInfo;
 import com.uiteco.OfCuocThiPanel.secondPage.floatingButton.EventFloatingActionButton;
 import com.uiteco.OfCuocThiPanel.secondPage.pieChart.ModelPieChart;
 import com.uiteco.OfCuocThiPanel.secondPage.pieChart.PieChartPanel;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
 import java.util.List;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public class CuocThiRightPanel_SecondPage extends JPanel {
 
@@ -75,14 +70,14 @@ public class CuocThiRightPanel_SecondPage extends JPanel {
                             chartPanel.getPieChart1().addData(m);
                         }
 
-                        chartPanel.updateLegend1(models1);
+                        chartPanel.updateLegend2(models1);
 
                         List<ModelPieChart> models2 = CuocThiDAO.getDataForPieChart_FacultyName(getPostID());
                         for (ModelPieChart m : models2) {
                             chartPanel.getPieChart2().addData(m);
                         }
 
-                        chartPanel.updateLegend2(models2);
+                        chartPanel.updateLegend1(models2);
 
                         chartPanel.revalidate();
                         chartPanel.repaint();

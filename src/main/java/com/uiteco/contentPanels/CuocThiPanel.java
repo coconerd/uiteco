@@ -79,13 +79,13 @@ public class CuocThiPanel extends JPanel {
     }
 
     private void _initPagination() {
-        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 2, 3, false, false);
+        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 3, 3, false, false);
         _initPostsList(posts);
 
         pagination.addEventPagination(new EventPagination() {
             @Override
             public void pageChanged(int page) {
-                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1, 3, false, false);
+                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 3, 3, false, false);
                 _initPostsList(posts);
             }
         });
@@ -107,11 +107,11 @@ public class CuocThiPanel extends JPanel {
             placeholder.setHorizontalAlignment(SwingConstants.CENTER);
             placeholder.setPreferredSize(new java.awt.Dimension(1160, 805)); // Adjust dimensions as needed
 
-            postList.add(placeholder);
+            
         }
 
         setPosts(posts);
-
+        
         for (BriefPost_Model post : getPosts()) {
             setPostUI(new BriefPost_View());
             BriefPost_Controller postController = new BriefPost_Controller(post, getPostUI());
@@ -121,7 +121,7 @@ public class CuocThiPanel extends JPanel {
             postMap.put(post.getId(), getPostUI());
 
             postList.add(getPostUI());
-
+            postList.repaint();
             getPostUI().getjTitle().addMouseListener(new MouseAdapter() {
                 public void mousePressed(MouseEvent e) {
 
@@ -416,13 +416,13 @@ public class CuocThiPanel extends JPanel {
 
     private void teamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamActionPerformed
 
-        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1, 2, false, false);
+        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 3, 2, false, false);
         _initPostsList(posts);
 
         pagination.addEventPagination(new EventPagination() {
             @Override
             public void pageChanged(int page) {
-                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1, 2, false, false);
+                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 3, 2, false, false);
                 _initPostsList(posts);
             }
         });
@@ -431,13 +431,13 @@ public class CuocThiPanel extends JPanel {
 
     private void dueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dueActionPerformed
         // TODO add your handling code here:
-        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1, 0, true, false);
+        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 3, 0, true, false);
         _initPostsList(posts);
 
         pagination.addEventPagination(new EventPagination() {
             @Override
             public void pageChanged(int page) {
-                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1, 0, true, false);
+                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 3, 0, true, false);
                 _initPostsList(posts);
             }
         });
@@ -447,13 +447,13 @@ public class CuocThiPanel extends JPanel {
     private void soloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_soloMousePressed
         // TODO add your handling code here:
         //removeAll();
-        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1, 1, true, false);
+        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 3, 1, true, false);
         _initPostsList(posts);
 
         pagination.addEventPagination(new EventPagination() {
             @Override
             public void pageChanged(int page) {
-                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1, 1, true, false);
+                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 3, 1, true, false);
                 _initPostsList(posts);
             }
         });
@@ -463,13 +463,13 @@ public class CuocThiPanel extends JPanel {
     private void hottestMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hottestMousePressed
         // TODO add your handling code here:
         //removeAll();
-        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 1, 0, false, true);
+        posts = CuocThiDAO.getPostsInfo_Offset(pagination, 1, 3, 0, false, true);
         _initPostsList(posts);
 
         pagination.addEventPagination(new EventPagination() {
             @Override
             public void pageChanged(int page) {
-                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 1, 0, false, true);
+                posts = CuocThiDAO.getPostsInfo_Offset(pagination, page, 3, 0, false, true);
                 _initPostsList(posts);
             }
         });
@@ -484,13 +484,13 @@ public class CuocThiPanel extends JPanel {
     private void filterIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterIconActionPerformed
         // TODO add your handling code here:
         List<Object> tags = comboBox.getSelectedItems();
-        posts = CuocThiDAO.getPostsInfo_ByTags(pagination, 1, 1, tags);
+        posts = CuocThiDAO.getPostsInfo_ByTags(pagination, 1, 3, tags);
         _initPostsList(posts);
 
         pagination.addEventPagination(new EventPagination() {
             @Override
             public void pageChanged(int page) {
-                posts = CuocThiDAO.getPostsInfo_ByTags(pagination, page, 1, tags);
+                posts = CuocThiDAO.getPostsInfo_ByTags(pagination, page, 3, tags);
                 _initPostsList(posts);
             }
         });

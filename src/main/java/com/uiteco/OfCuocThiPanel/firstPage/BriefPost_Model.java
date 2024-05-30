@@ -27,14 +27,14 @@ public class BriefPost_Model extends javax.swing.JPanel {
     /**
      * @return the dueDate
      */
-    public LocalDate getDueDate() {
+    public LocalDateTime getDueDate() {
         return dueDate;
     }
 
     /**
      * @param dueDate the dueDate to set
      */
-    public void setDueDate(LocalDate dueDate) {
+    public void setDueDate(LocalDateTime dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -204,6 +204,6 @@ public class BriefPost_Model extends javax.swing.JPanel {
     protected String content;
     protected LocalDateTime postTime;
     public int countLike;
-    protected LocalDate dueDate;
+    protected LocalDateTime dueDate;
     private ImageIcon thumbnailYT;
 }

@@ -5,10 +5,7 @@ import com.uiteco.OfCuocThiPanel.dataBase.CuocThiDAO;
 import com.uiteco.OfCuocThiPanel.firstPage.BriefPost_Model;
 import com.uiteco.OfCuocThiPanel.secondPage.GlassPanePopup.GlassPanePopup;
 import static com.uiteco.main.App.getSession;
-import com.uiteco.ofSuKienPanel.SuKienDAO;
-import com.uiteco.ofSuKienPanel.SuKienModel;
 import java.awt.Color;
-import java.sql.SQLException;
 import java.util.List;
 import javax.swing.ImageIcon;
 
@@ -82,10 +79,11 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         jTop.setBackground(new java.awt.Color(255, 153, 153));
-        jTop.setPreferredSize(new java.awt.Dimension(810, 370));
+        jTop.setPreferredSize(new java.awt.Dimension(700, 370));
         jTop.setLayout(new java.awt.GridBagLayout());
 
-        RegisterTimePanel.setPreferredSize(new java.awt.Dimension(1000, 100));
+        RegisterTimePanel.setAutoscrolls(true);
+        RegisterTimePanel.setPreferredSize(new java.awt.Dimension(770, 100));
         RegisterTimePanel.setRoundBottomLeft(50);
         RegisterTimePanel.setRoundBottomRight(50);
         RegisterTimePanel.setRoundTopLeft(50);
@@ -122,7 +120,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
 
         jBody.setBackground(new java.awt.Color(242, 243, 244));
         jBody.setOpaque(false);
-        jBody.setPreferredSize(new java.awt.Dimension(810, 1923));
+        jBody.setPreferredSize(new java.awt.Dimension(500, 1923));
         jBody.setLayout(new java.awt.GridBagLayout());
 
         jTitle.setFont(new java.awt.Font("Merriweather", 1, 25)); // NOI18N
@@ -315,7 +313,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(75, 0, 80, 0);
         jBody.add(youtubePlay, gridBagConstraints);
 
-        scrollPaneImages.setPreferredSize(new java.awt.Dimension(600, 600));
+        scrollPaneImages.setPreferredSize(new java.awt.Dimension(600, 700));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -346,7 +344,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
                 jRegister.setColor(new Color(223, 122, 130));
                 jRegister.revalidate();
                 jRegister.repaint();
-
+                
                 isRegistered = true;
                 return;
             }
@@ -360,8 +358,7 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
         GlassPanePopup.showPopup(popUp_cancel);
 
         popUp_cancel.getjOk().addActionListener((e) -> {
-            //CuocThiDAO.registerCompetition(getController().getBaseModel());
-            //CuocThiDAO.insertUserRegisterCompetition(getController().getPostID());
+            CuocThiDAO.registerCompetition(getController().getBaseModel());
             GlassPanePopup.closePopupAll();
 
             jRegister.setVisible(true);
@@ -382,17 +379,10 @@ public class DetailedOnePost_View extends javax.swing.JPanel {
             GlassPanePopup.showPopup(popUp);
 
             popUp.getjOk().addActionListener((e) -> {
-                //CuocThiDAO.registerCompetition(getController().getBaseModel());
+                CuocThiDAO.registerCompetition(getController().getBaseModel());
                 //CuocThiDAO.insertUserRegisterCompetition(getController().getPostID());
                 GlassPanePopup.closePopupAll();
-                SuKienModel newModel = new SuKienModel();
-                newModel.setPostID(controller.getPostID());
-                try {
-                    SuKienDAO.enrollInSuKien(newModel);
-                } catch (SQLException sqle) {
-                    System.err.println("Error enrolling in cuocthi");
-                    sqle.printStackTrace();
-                }
+
                 jRegister.setVisible(false);
             });
 

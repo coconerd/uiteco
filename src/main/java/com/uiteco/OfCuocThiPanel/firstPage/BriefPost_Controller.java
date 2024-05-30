@@ -22,7 +22,7 @@ public class BriefPost_Controller {
         view.jOrganizer.setText(model.getOrganizer());
         view.jType.setText(model.convertType());
         view.jCountLike.setText(model.getCountLike_String());
-        view.jDueDate.setText(model.getDate_String(model.dueDate));
+        //view.jDueDate.setText(model.getDate_String(model.dueDate));
         
         String customStatus = model.getCustomStatus();
         setDaysLeft(customStatus);

@@ -4,11 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 
 public class YoutubePlay extends JPanel {
 
@@ -27,15 +37,7 @@ public class YoutubePlay extends JPanel {
     public void setUri(URI uri) {
         this.uri = uri;
     }
-    
-    public void setUri_String(String uriString) {
-        try {
-            this.uri = new URI(uriString);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
-    
+
     private static void open(URI uri) throws IOException {
         if (Desktop.isDesktopSupported()) {
             Desktop.getDesktop().browse(uri);
@@ -103,6 +105,55 @@ public class YoutubePlay extends JPanel {
                 }
             }
         });
+    }
+    
+    
+    
+    public static void downloadFile(String fileURL, String saveDir) {
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet httpGet = new HttpGet(fileURL);
+
+        try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
+            HttpEntity entity = httpResponse.getEntity();
+
+            if (entity != null) {
+                // Extracts the content and saves it to a file
+                try (InputStream inputStream = entity.getContent();
+                     FileOutputStream outputStream = new FileOutputStream(saveDir)) {
+
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+                }
+
+                System.out.println("File downloaded to " + saveDir);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                httpClient.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public static ImageIcon downloadImageAndCreateIcon(String imageUrl) {
+        try {
+            // Download the image file to a temporary location
+            String tempFilePath = "temp_image.jpg";
+            downloadFile(imageUrl, tempFilePath);
+
+            // Read the downloaded image file and create an ImageIcon
+            Image image = ImageIO.read(new URL("file://" + tempFilePath));
+            return new ImageIcon(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
     private ImageIcon thumbnail;
