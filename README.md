@@ -15,12 +15,12 @@
 Ứng dụng UIT-Eco được hình thành nhằm giúp sinh viên dễ dàng nắm bắt và tiếp cận với các sự kiện được đăng tải bởi Trường và các bên liên quan một cách nhanh chóng, đầy đủ. Là nền tảng đa người dùng, UIT-Eco mang lại trải nghiệm tuyệt vời. Ngoài việc thu thập, cập nhật thường xuyên và hiển thị thông tin các sự kiện được đăng tải bởi Trường, ứng dụng còn cho phép người dùng (sinh viên, cựu sinh viên, giảng viên,...) đăng bài với các chủ đề thú vị và bổ ích như trao đổi về việc học tập, ôn thi, chia sẻ kinh nghiệm, cơ hội việc làm, học bổng, nghiên cứu khoa học,...Thông qua đây sinh viên có thêm cơ hội để nhận được nhiều lời giải đáp, tư vấn hữu ích cũng như học hỏi và tích luỹ cho bản thân các kinh nghiệm bổ ích được chia sẻ từ các thế hệ đi trước. Các cựu sinh viên có thể kết nối đến các sinh viên tại trường, giảng viên thông qua quá trình đăng bài cũng có thể tìm kiếm được những cộng sự tham gia vào công tác nghiên cứu khoa học. Một tính năng đặc biệt mà ứng dụng UIT-Eco mang lại đó là cho phép sinh viên tìm kiếm được đồng đội cùng tham gia các sự kiện, cũng như có thể tự động đăng ký tham gia sự kiện ngay thời điểm sử dụng ứng dụng mà không cần phải điền thông tin đăng ký như cách thức vẫn hay được sử dụng như hiện tại.  
 # Kế hoạch dự án  
 -  ***Công tác chuẩn bị (7 Ngày) 1/3/2024 → 7/3/2024***  
--     Xác định đề tài(2 Ngày): 1/3/2024 → 2/3/2024  
--     Khảo sát hiện trạng(3 Ngày): 3/3/2024 → 5/3/2024  
--     Xác định yêu cầu(2 Ngày): 6/3/2024 → 7/3/2024  
+  Xác định đề tài(2 Ngày): 1/3/2024 → 2/3/2024  
+  Khảo sát hiện trạng(3 Ngày): 3/3/2024 → 5/3/2024  
+  Xác định yêu cầu(2 Ngày): 6/3/2024 → 7/3/2024  
 - ***Phân tích yêu cầu(7 Ngày): 8/3/2024 → 14/3/2024***  
--     Viết tài liệu đặc tả yêu cầu(3 Ngày): 8/3/2024 → 10/3/2024  
--     Mô hình hóa yêu cầu thành sơ đồ(4 Ngày): 11/3/2024 → 14/3/2024  
+  Viết tài liệu đặc tả yêu cầu(3 Ngày): 8/3/2024 → 10/3/2024  
+  Mô hình hóa yêu cầu thành sơ đồ(4 Ngày): 11/3/2024 → 14/3/2024  
 - ***Thiết kế hệ thống(7 Ngày): 15/3/2024 → 21/3/2024***  
 -     Thiết kế cơ sở dữ liệu(3 Ngày): 15/3/2024 → 17/3/2024  
 -     Thiết kế giao diện phần mềm(4 Ngày): 18/3/2024 → 21/3/2024  
