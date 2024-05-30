@@ -253,9 +253,6 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
     public void setMaCLB(int MaCLB)
     {
         MaCLB = this.MaCLB;
-        
-        
-        
     }
     
     public int getMaCLB()

@@ -477,7 +477,7 @@ public class DetailPageCLB extends ScrollableContentPanel {
         LogoClub.setBackground(new java.awt.Color(70, 72, 73));
         LogoClub.setBorderColor(new java.awt.Color(48, 48, 48));
         LogoClub.setBorderSize(8);
-        LogoClub.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg"))); // NOI18N
+        LogoClub.setImage(new javax.swing.ImageIcon("C:\\Users\\Asus\\Downloads\\VuBao\\code\\uiteco-swing\\src\\main\\resources\\CauLacBoResources\\SampleLogoImage.jpg")); // NOI18N
 
         BackgroundIcon.setBackground(new java.awt.Color(58, 58, 58));
         BackgroundIcon.setRoundBottomLeft(80);

@@ -413,7 +413,7 @@ public class CauLacBoPanel extends JPanel {
             if(!Bodysql.equals(""))
                 Bodysql += "AND ";
             
-            Bodysql += "DKXETTUYEN = " + ConditionJoin + " ";
+            Bodysql += "TRANGTHAITUYENTHANHVIEN = " + ConditionJoin + " ";
         }
         
          if(!Bodysql.equals(""))
@@ -458,10 +458,10 @@ public class CauLacBoPanel extends JPanel {
                 // ----- Get Data Start -----
                 Blob blob;   
 //                System.out.println("" + rs.getString("maclb") + " , " + rs.getString("TenCLB"));
-                MaCLB = rs.getInt("maclb");
+                MaCLB = rs.getInt("MACLB");
                 NameCLB = rs.getNString("TENCLB");
-                InfoCLB = rs.getNString("GIOITHIEU");
-                Khoa = rs.getNString("KHOA");
+                InfoCLB = rs.getNString("GIOITHIEUSOLUOC");
+                Khoa = rs.getNString("DONVITRUCTHUOC");
                 
                 blob = rs.getBlob("BACKGROUND");
                 if(blob != null)
@@ -480,7 +480,7 @@ public class CauLacBoPanel extends JPanel {
                 
                 SLThanhVien = rs.getInt("SOLUONGTHANHVIEN");
                 SLThich = rs.getInt("SOLUONGTHICH");
-                DKXetTuyen = rs.getInt("DKXETTUYEN");
+                DKXetTuyen = rs.getInt("TRANGTHAITUYENTHANHVIEN");
                 Status = rs.getInt("TRANGTHAI");
                 
                 Timestamp timestamp= rs.getTimestamp("NGAYCAPNHAPGANNHAT");
