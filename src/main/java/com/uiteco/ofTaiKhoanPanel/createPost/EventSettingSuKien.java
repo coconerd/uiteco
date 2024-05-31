@@ -128,14 +128,14 @@ public class EventSettingSuKien extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         startChooser.setForeground(new java.awt.Color(153, 204, 255));
-        startChooser.setEnabled(false);
+        startChooser.setEnabled(true);
 
         enrollableCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         enrollableCheck.setForeground(textDisableColor);
         enrollableCheck.setSelected(true);
         enrollableCheck.setText("Cho phép đăng ký tham gia");
         enrollableCheck.setToolTipText("");
-        enrollableCheck.setEnabled(false);
+        enrollableCheck.setEnabled(true);
         enrollableCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enrollableCheckActionPerformed(evt);
@@ -167,13 +167,14 @@ public class EventSettingSuKien extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         endChooser.setForeground(new java.awt.Color(153, 204, 255));
-        endChooser.setEnabled(false);
+        endChooser.setEnabled(true);
 
         limitCheck.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         limitCheck.setForeground(this.textDisableColor);
         limitCheck.setText("Giới hạn số lượng sinh viên tham gia");
         limitCheck.setToolTipText("");
-        limitCheck.setEnabled(false);
+        limitCheck.setEnabled(true);
+        limitCheck.setSelected(false);
         limitCheck.setFocusable(false);
         limitCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
