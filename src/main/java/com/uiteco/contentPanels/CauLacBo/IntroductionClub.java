@@ -51,7 +51,7 @@ public class IntroductionClub extends javax.swing.JPanel {
 
         if(LogoUrl_ != null && !LogoUrl_.equals(""))
         {
-            LogoCLUB.setImage(new ImageIcon(getClass().getResource(LogoUrl_)));
+            LogoCLUB.setImage(new ImageIcon(LogoUrl_));
         }
         
         if(NumOFMember_ >= 2)

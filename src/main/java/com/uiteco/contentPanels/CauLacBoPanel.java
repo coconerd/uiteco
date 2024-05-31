@@ -44,6 +44,8 @@ public class CauLacBoPanel extends JPanel {
     private int NumberCLUB = 0, NumberEvent = 0, NumberOnline = 0, NumberOffline = 0;
     
     public CauLacBoPanel() {
+        this.RightPanelCLB = new CauLacBoRightPanel(this);
+        RightPanelCLB.setClubPanel(this);
         Start();
     }
     
@@ -166,7 +168,7 @@ public class CauLacBoPanel extends JPanel {
                 DKXetTuyen = rs.getInt("TRANGTHAITUYENTHANHVIEN");
                 Status = rs.getInt("TRANGTHAI");
                 
-                Timestamp timestamp= rs.getTimestamp("NGAYCAPNHAPGANNHAT");
+                Timestamp timestamp= rs.getTimestamp("NGAYCAPNHATGANNHAT");
                 if(timestamp != null)
                     LastedDate = timestamp.toLocalDateTime();
                 
@@ -209,6 +211,8 @@ public class CauLacBoPanel extends JPanel {
                             break;
                         }
                         
+                        rs1.close();
+                        ps1.close();;
                         conn1.close();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -217,6 +221,7 @@ public class CauLacBoPanel extends JPanel {
                     if(!FirstBackgroundImageURL.equals(""))
                         ListImageUrl.add(FirstBackgroundImageURL);
                 }
+                System.err.println(LogoImageURL);
                 
                 IntroductionClub Clb = new IntroductionClub(NameCLB, InfoCLB, LogoImageURL, SLThanhVien, LastedDate, Khoa, Status, ListImageUrl);
                 
@@ -243,10 +248,12 @@ public class CauLacBoPanel extends JPanel {
                 }
             }
             
+            ps.close();
+            rs.close();
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        } 
     }
     
     private int LastedNumOfPageCLB = 0;
@@ -483,7 +490,7 @@ public class CauLacBoPanel extends JPanel {
                 DKXetTuyen = rs.getInt("TRANGTHAITUYENTHANHVIEN");
                 Status = rs.getInt("TRANGTHAI");
                 
-                Timestamp timestamp= rs.getTimestamp("NGAYCAPNHAPGANNHAT");
+                Timestamp timestamp= rs.getTimestamp("NGAYCAPNHATGANNHAT");
                 if(timestamp != null)
                     LastedDate = timestamp.toLocalDateTime();
                 
@@ -524,7 +531,9 @@ public class CauLacBoPanel extends JPanel {
                         NumberEvent++;
                 }
             }
-
+            
+            rs.close();
+            ps.close();
             conn.close();
             
             ConTentPanelCauLacBo();
