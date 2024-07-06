@@ -516,7 +516,9 @@ public class IntroductionClub extends javax.swing.JPanel {
         DetailPageCLB DetailPage = new DetailPageCLB(MainPanelCLB);
         DetailPage.setDataToPage(MaCLB);
         MainPanelCLB.goToDetailPage(DetailPage);
-        
+        if (RightPanelCLB == null) {
+            System.out.println("Right panel clb is null");
+        }
         //ShowRightPanel
         this.RightPanelCLB.showDetailPageRightPanel(MaCLB, NameCLUB, CreateBy, HostBy, DateCreate);
     }//GEN-LAST:event_JoinButtonMousePressed

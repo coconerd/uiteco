@@ -70,8 +70,8 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
      */
     public MainFrame() {
         initComponents();
-        _initContentPanel();
         _initRightPanel();
+        _initContentPanel();
         _additionalInit();
         GlassPanePopup.install(this);
 
@@ -761,7 +761,7 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
         CuocThiPanel ct = new CuocThiPanel();
         contentPanel.registerComponent(ct, "cuocThiPanel");
 
-        CauLacBoPanel clb = new CauLacBoPanel();
+        CauLacBoPanel clb = new CauLacBoPanel(globalClbr, contentPanel);
         contentPanel.registerComponent(clb, "cauLacBoPanel");
 
         ForumPanel fr = new ForumPanel();
@@ -784,7 +784,7 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
 
         ClubManagementUI cm = new ClubManagementUI();
         contentPanel.registerComponent(cm, ClubManagementUI.INSTANCE_NAME);
-
+        
         PostManagement pm = new PostManagement();
         contentPanel.registerComponent(pm, PostManagement.INSTANCE_NAME);
         
@@ -793,19 +793,6 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
         
         DetailedOnePost_View post = new DetailedOnePost_View();
         contentPanel.registerComponent(post, "cuocThiDetailedPanel");
-
-//        contentPanel.registerComponent(rootPane, name);
-//        contentPanel.registerComponent(rootPane, name);
-//        contentPanel.registerComponent(rootPane, name);
-//        Random random = new Random();
-//        for (String labelText : contentPanelNames) {
-//            JLabel label = new JLabel(labelText, SwingConstants.CENTER);
-//            label.setPreferredSize(contentPanelSize);
-//            label.setOpaque(true);
-//            label.setBackground(new Color(random.nextInt(170) + 85, random
-//                    .nextInt(170) + 85, random.nextInt(170) + 85));
-//            contentPanel.registerComponent(label, labelText);
-//        }
     }
 
     private void _initRightPanel() {
@@ -818,8 +805,7 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
         CuocThiRightPanel_SecondPage ctr1 = new CuocThiRightPanel_SecondPage();
         rightPanel.registerComponent(ctr1, "cuocThiRightPanel_SecondPage");
         
-        CauLacBoRightPanel clbr = new CauLacBoRightPanel();
-        rightPanel.registerComponent(clbr, "cauLacBoRightPanel");
+        rightPanel.registerComponent(globalClbr, "cauLacBoRightPanel");
 
         ForumRightPanel frr = new ForumRightPanel();
         rightPanel.registerComponent(frr, "forumRightPanel");
@@ -892,4 +878,5 @@ public class MainFrame extends javax.swing.JFrame implements Permissible {
     private javax.swing.JButton tinNhanButton;
     // End of variables declaration//GEN-END:variables
 
+    private CauLacBoRightPanel globalClbr = new CauLacBoRightPanel();
 }

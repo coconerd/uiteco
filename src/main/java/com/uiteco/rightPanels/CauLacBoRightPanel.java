@@ -42,7 +42,7 @@ public class CauLacBoRightPanel extends javax.swing.JPanel {
         indexRightPanel++;
 
         if (LastestDetailPage != null) {
-//            RightPanel.remove(LastestDetailPage);
+            RightPanel.remove(LastestDetailPage);
             LastestDetailPage.removeAll();
             LastestDetailPage.repaint();
         }
@@ -51,8 +51,8 @@ public class CauLacBoRightPanel extends javax.swing.JPanel {
         RightPanel.registerComponent(LastestDetailPage, "DetailPage" + indexRightPanel);
         RightPanel.showComponentAndTrimHistory("DetailPage" + indexRightPanel);
         System.out.println("Why is detail right panel not showing");
-        revalidate();
-        repaint();
+//        revalidate();
+//        repaint();
     }
 
     @SuppressWarnings("unchecked")
