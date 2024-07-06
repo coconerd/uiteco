@@ -311,9 +311,9 @@ public class MainRightPanel extends javax.swing.JPanel {
         String Area = "", NameBox = "", StyleBox = "", Status = "", ConditionJoin = "";
         
         if(Tick_area_InSchool.isSelected())
-            Area = "0"; 
+            Area = "TRONGTRUONG"; 
         else if(Tick_area_OutSchool.isSelected())
-            Area = "1";
+            Area = "NGOAITRUONG";
         
         if((String) NameComboBox.getSelectedItem() != null)
         {

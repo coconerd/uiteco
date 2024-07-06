@@ -29,7 +29,7 @@ public class JpanelRound extends JPanel {
     
     public JpanelRound(String imageurl){
         setOpaque(false);
-        this.setImage(new ImageIcon(getClass().getResource(imageurl)));
+        this.setImage(new ImageIcon(imageurl));
     }
     
     public int getRoundTopLeft() {

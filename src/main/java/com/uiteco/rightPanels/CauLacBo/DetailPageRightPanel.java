@@ -38,7 +38,7 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
         
         try {
             LocalDate startDateDK = null, endDateDK = null;
-            LocalDateTime startDateDR = null, endDateDR = null;
+            LocalDate startDateDR = null, endDateDR = null;
             String title = null;
             
             Connection conn = ConnectionManager.getConnection();
@@ -48,23 +48,35 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
 
             while(rs.next())
             {
-                startDateDK = rs.getDate("NGAYBD_DANGKY").toLocalDate();
-                endDateDK = rs.getDate("NGAYHH_DANGKY").toLocalDate();
+                if(rs.getDate("NGAYBD_DANGKY") != null)
+                {
+                    startDateDK = rs.getDate("NGAYBD_DANGKY").toLocalDate();
+                    ListDE.add(new InfoDateEvent(startDateDK, title, "startDK"));
+                }
+                
+                if(rs.getDate("NGAYHH_DANGKY") != null)
+                {
+                    endDateDK = rs.getDate("NGAYHH_DANGKY").toLocalDate();
+                    ListDE.add(new InfoDateEvent(endDateDK, title, "endDK"));
+                }
+                
+                if(rs.getDate("THOIDIEMBD_DIENRA") != null)
+                {
+                    startDateDR = rs.getDate("THOIDIEMBD_DIENRA").toLocalDate();
+                    ListDE.add(new InfoDateEvent(startDateDR, title, "startDR"));
+                }
+                
+                if(rs.getDate("THOIDIEMKT_DIENRA") != null)
+                {
+                    endDateDR = rs.getDate("THOIDIEMKT_DIENRA").toLocalDate();
+                    ListDE.add(new InfoDateEvent(endDateDR, title, "endDR"));
+                }
                 
                 title = rs.getNString("TIEUDE");
-                
-                startDateDR = rs.getTimestamp("THOIDIEMDIENRA").toLocalDateTime();
-                endDateDR = rs.getTimestamp("THOIDIEMKETTHUC").toLocalDateTime();
-                
-                ListDE.add(new InfoDateEvent(startDateDK, title, "startDK"));
-                ListDE.add(new InfoDateEvent(endDateDK, title, "endDK"));
-                ListDE.add(new InfoDateEvent(startDateDR.toLocalDate(), title, "startDR"));
-                ListDE.add(new InfoDateEvent(endDateDR.toLocalDate(), title, "endDR"));
             }
 
-//            System.out.println("Size: " + ListDE.size());
-            
-            ListDE.SortDate();
+            if(ListDE.size() >= 2)
+                ListDE.SortDate();
             
             conn.close();
         } catch (Exception e) {
@@ -241,9 +253,6 @@ public class DetailPageRightPanel extends javax.swing.JPanel {
     public void setMaCLB(int MaCLB)
     {
         MaCLB = this.MaCLB;
-        
-        
-        
     }
     
     public int getMaCLB()

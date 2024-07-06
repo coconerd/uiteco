@@ -5,9 +5,14 @@
 package com.uiteco.contentPanels.CauLacBo;
 
 import com.uiteco.contentPanels.CauLacBoPanel;
+import com.uiteco.database.ConnectionManager;
 import com.uiteco.rightPanels.CauLacBoRightPanel;
 import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,6 +27,8 @@ import javax.swing.JPanel;
 public class IntroductionClub extends javax.swing.JPanel {
     private CauLacBoPanel MainPanelCLB;
     private CauLacBoRightPanel RightPanelCLB;
+    
+    private int matk = -1;
     
     private boolean IsLoving = false;
     private int MaCLB, SLThich, DKXetTuyen;
@@ -109,7 +116,7 @@ public class IntroductionClub extends javax.swing.JPanel {
         {
             jpanelRound3.remove(BackPanel);
             jpanelRound3.remove(NextPanel);
-        }
+        }       
     }
 
     @Override
@@ -187,7 +194,7 @@ public class IntroductionClub extends javax.swing.JPanel {
 
         LogoCLUB.setBackground(new java.awt.Color(102, 102, 102));
         LogoCLUB.setBorderSize(3);
-        LogoCLUB.setImage(new javax.swing.ImageIcon(getClass().getResource("/uit.png"))); // NOI18N
+        LogoCLUB.setImage(new javax.swing.ImageIcon(getClass().getResource("/CauLacBoResources/SampleLogoImage.jpg"))); // NOI18N
         jpanelRound3.add(LogoCLUB, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 120));
 
         NextPanel.setBackground(new java.awt.Color(102, 102, 102));
@@ -452,19 +459,54 @@ public class IntroductionClub extends javax.swing.JPanel {
         SlideShowImage.back();
     }//GEN-LAST:event_BackPanelMouseClicked
 
+    private void DisableLoveButton()
+    {
+        LoveButton.setImage(new ImageIcon(getClass().getResource("/CauLacBoResources/Heart1.png")));
+        LoveButton.repaint();
+        IsLoving = false;
+    }
+    
+    private void EnableLoveButton()
+    {
+        LoveButton.setImage(new ImageIcon(getClass().getResource("/CauLacBoResources/Heart2.png")));
+        LoveButton.repaint();
+        IsLoving = true;
+    }
+    
     private void LoveButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoveButtonMousePressed
         if (IsLoving)
-        {
-            LoveButton.setImage(new ImageIcon(getClass().getResource("/CauLacBoResources/Heart1.png")));
-            LoveButton.repaint();
-            IsLoving = false;
-        }
+            DisableLoveButton();
         else
-        {
-            LoveButton.setImage(new ImageIcon(getClass().getResource("/CauLacBoResources/Heart2.png")));
-            LoveButton.repaint();
-            IsLoving = true;
-        } 
+            EnableLoveButton();
+        
+        if(matk != -1)
+            return;
+            
+        try {  
+            Connection conn = ConnectionManager.getConnection();
+            
+            if (IsLoving)
+            {
+                String sql = "DELETE FROM YEUTHICHCLB WHERE MATK = ? AND MACLB = ?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, matk);
+                ps.setInt(2, MaCLB);
+                ps.executeUpdate();
+            }
+            else
+            {
+                String sql = "INSERT INTO YEUTHICHCLB (MATK, MACLB) VALUES (?, ?)";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, matk);
+                ps.setInt(2, MaCLB);
+                ps.executeUpdate();
+            }
+            
+
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_LoveButtonMousePressed
 
     private void JoinButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JoinButtonMousePressed
@@ -492,6 +534,29 @@ public class IntroductionClub extends javax.swing.JPanel {
     public void setMaCLB(int MaCLB)
     {
         this.MaCLB = MaCLB;
+        
+        //----
+        
+        if(matk == -1)
+            return;
+        
+        try {
+            Connection conn = ConnectionManager.getConnection();
+            String sql = "select * from YEUTHICHCLB where MATK = ? AND MACLB = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, matk);
+            ps.setInt(2, MaCLB);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next())
+            {            
+                EnableLoveButton();
+                break;
+            } 
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     public int getMaCLB()
