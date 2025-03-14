@@ -48,7 +48,7 @@
 - ***Cài đặt theo thiết kế(35 Ngày): 22/3/2024 → 25/4/2024***
     ```
     Xây dựng trang web giới thiệu đề tài(10 Ngày): 22/3/2024 → 31/3/2024
-    ``` 
+    ```
     ```
     Triển khai cơ sở dữ liệu(10 Ngày): 22/3/2024 → 31/3/2024
         Thu thập dữ liệu(4 Ngày): 22/3/2024 → 25/3/2024
@@ -73,7 +73,7 @@
     ```
     ``` 
     Phân tích và sửa lỗi(4 Ngày): 3/5/2024 → 6/5/2024
-    ``` 
+    ```  
     ``` 
     Kiểm thử sự chấp nhận của người dùng(3 Ngày): 7/5/2024 → 9/5/2024
     ``` 
