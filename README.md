@@ -2,7 +2,7 @@
 - 22520872  Nguyễn Đỗ Đức Minh (nhóm trưởng)  
 - 22520170 	Phan Thành Công  
 - 22520124	Trần Vũ Bão  
-- 22520423	Phan Thị Thuỷ Hiền
+- 22520423	Phan Thị Thuỷ Hiền 
 # Động lực hình thành dự án  
 - Hiểu được băn khoăn từ sinh viên khi không thể nắm bắt được đầy đủ và nhanh chóng các thông tin, sự kiện được đăng tải bởi Trường và các trang liên quan (câu lạc bộ, khoa, đoàn, hội,...)
 - Hiểu được tâm lý e ngại của sinh viên khi muốn tham gia nhưng không tìm được người cùng tham gia sự kiện, đặc biệt là các sự kiện có yêu cầu tham gia theo hình thức đội nhóm thay vì cá nhân.
