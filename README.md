@@ -1,7 +1,7 @@
 # DANH SÁCH THÀNH VIÊN - NƯỚC CODE DỪA  
 - 22520872  Nguyễn Đỗ Đức Minh (nhóm trưởng)  
-- 22520170 	Phan Thành Công  
-- 22520124	Trần Vũ Bão  
+- 22520170 	Phan Thành Công   
+- 22520124	Trần Vũ Bão   
 - 22520423	Phan Thị Thuỷ Hiền 
 # Động lực hình thành dự án  
 - Hiểu được băn khoăn từ sinh viên khi không thể nắm bắt được đầy đủ và nhanh chóng các thông tin, sự kiện được đăng tải bởi Trường và các trang liên quan (câu lạc bộ, khoa, đoàn, hội,...)
