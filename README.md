@@ -1,17 +1,17 @@
 # DANH SÁCH THÀNH VIÊN - NƯỚC CODE DỪA  
 - 22520872  Nguyễn Đỗ Đức Minh (nhóm trưởng)  
-- 22520170 	Phan Thành Công   
-- 22520124	Trần Vũ Bão   
-- 22520423	Phan Thị Thuỷ Hiền 
-# Động lực hình thành dự án  
+- 22520170 	Phan Thành Công
+- 22520124	Trần Vũ Bão
+- 22520423	Phan Thị Thuỷ Hiền
+# Động lực hình thành dự án
 - Hiểu được băn khoăn từ sinh viên khi không thể nắm bắt được đầy đủ và nhanh chóng các thông tin, sự kiện được đăng tải bởi Trường và các trang liên quan (câu lạc bộ, khoa, đoàn, hội,...)
 - Hiểu được tâm lý e ngại của sinh viên khi muốn tham gia nhưng không tìm được người cùng tham gia sự kiện, đặc biệt là các sự kiện có yêu cầu tham gia theo hình thức đội nhóm thay vì cá nhân.
 - Hiểu được tâm lý của nhiều cựu sinh viên sau khi đã tốt nghiệp nhưng vẫn muốn nắm bắt đầy đủ các thông tin từ Trường cũng như kết nối đến các bạn sinh viên đang học tại Trường. Về thực trạng thì Trường chúng ta chưa đẩy mạnh công tác này.
 - Hiểu được tâm lý chung của hầu hết sinh viên trước việc truy cập vào Forum UIT không thường xuyên, bởi nguyên nhân chủ yếu sau khi đã khảo sát đông đảo sinh viên của Trường là do giao diện Forum UIT hiện tại chưa thu hút được nhiều người dùng sử dụng, bố cục các phần trong Forum khá nhiều và gây khó khăn cho trải nghiệm người dùng.
 - Ngoài việc kết nối giữa những sinh viên thì giảng viên cũng có thể kết nối thông qua việc đăng bài tìm kiếm cộng sự tham gia nghiên cứu khoa học. Điều đó không những có ý nghĩa kết nối giữa giảng viên-sinh viên mà còn thúc đẩy, nâng cao tinh thần, công tác nghiên cứu khoa học của Trường chúng ta trước xu hướng phát triển của thời đại cũng như sự năng động, sáng tạo, không ngừng nâng cao vị thế của UIT trong khu vực và cả nước.
-  
+
 ***Với động lực đó, CocoNerd chúng em quyết định sẽ xây dựng một nền tảng kết nối chuyên biệt cho UIT và trong tương lai mong muốn mở rộng quy mô sử dụng cho toàn hệ thống Đại học Quốc gia TP HCM.***  
-# Mục tiêu dự án  
+# Mục tiêu dự án
 - Ứng dụng UIT-Eco giúp sinh viên dễ dàng nắm bắt và tiếp cận với các sự kiện được đăng tải bởi Trường và các bên liên quan một cách nhanh chóng, đầy đủ.
 - Là nền tảng đa người dùng: sinh viên, cựu sinh viên, giảng viên, Admin
 - Cho phép người dùng đăng bài với các chủ đề thú vị và bổ ích như trao đổi về việc học tập, ôn thi, chia sẻ kinh nghiệm, cơ hội việc làm, học bổng, nghiên cứu khoa học,...Thông qua đây sinh viên có thêm cơ hội để nhận được nhiều lời giải đáp, tư vấn hữu ích cũng như học hỏi và tích luỹ cho bản thân các kinh nghiệm bổ ích được chia sẻ từ các thế hệ đi trước.
