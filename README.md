@@ -44,11 +44,11 @@
     Thiết kế giao diện phần mềm(4 Ngày): 18/3/2024 → 21/3/2024
         Thiết kế Wireframes(2 Ngày): 18/3/2024 → 19/3/2024
         Thiết kế chi tiết(2 Ngày): 20/3/2024 → 21/3/2024
-    ```
+    ```  
 - ***Cài đặt theo thiết kế(35 Ngày): 22/3/2024 → 25/4/2024***
     ```
     Xây dựng trang web giới thiệu đề tài(10 Ngày): 22/3/2024 → 31/3/2024
-    ```
+    ``` 
     ```
     Triển khai cơ sở dữ liệu(10 Ngày): 22/3/2024 → 31/3/2024
         Thu thập dữ liệu(4 Ngày): 22/3/2024 → 25/3/2024
@@ -71,12 +71,12 @@
         Performance Test(2 Ngày): 30/4/2024 → 1/5/2024
         Sử dụng phần mềm để rà soát lỗi(1 Ngày): 2/5/2024 → 2/5/2024
     ```
-    ```
+    ``` 
     Phân tích và sửa lỗi(4 Ngày): 3/5/2024 → 6/5/2024
-    ```
-    ```
+    ``` 
+    ``` 
     Kiểm thử sự chấp nhận của người dùng(3 Ngày): 7/5/2024 → 9/5/2024
-    ```
+    ``` 
 - ***Vận hành(14 Ngày): 10/5/2024 → 23/5/2024***
     ```
     Bàn giao(7 Ngày): 10/5/2024 → 16/5/2024
