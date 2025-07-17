@@ -1,11 +1,21 @@
 ![454533403_785974327069115_7132314954376762176_n](https://github.com/user-attachments/assets/3db4749a-228d-4bd1-a89d-bb7e35dbcd18)
 
-# DANH SÁCH THÀNH VIÊN - NƯỚC CODE DỪA  
-- 22520872  Nguyễn Đỗ Đức Minh (nhóm trưởng)  
-- 22520170 	Phan Thành Công
-- 22520124	Trần Vũ Bão
-- 22520423	Phan Thị Thuỷ Hiền
-# Động lực hình thành dự án
+## 1. Giới thiệu đồ án môn học 
+- **Tên môn học**: Lập trình Java
+- **Mã lớp**: IS216.O23
+- **Tên đồ án**: XÂY DỰNG NỀN TẢNG KẾT NỐI CỘNG ĐỒNG SINH VIÊN VÀ CỰU SINH VIÊN TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÔNG TIN - ĐHQG HCM
+
+## 2. Nhóm thực hiện
+**Tên nhóm: Coconerd** 🥥
+
+| Họ và tên          | MSSV     | Vai trò     | Liên hệ                     |
+|--------------------|----------|-------------|-----------------------------|
+|🌱  Nguyễn Đỗ Đức Minh | 22520872 | Team leader   | nddminh2021@gmail.com          |
+|🌱  Phan Thị Thủy Hiền | 22520423 | Team member | thuyhienphanthi2004@gmail.com |
+|🌱  Trần Vũ Bão   | 22520124 | Team member | tranvubao2004@gmail.com          |
+|🌱  Phan Thành Công       | 22520170 | Team member | phanthanhcong982004@gmail.com          |
+
+## 3. Động lực hình thành dự án
 - Hiểu được băn khoăn từ sinh viên khi không thể nắm bắt được đầy đủ và nhanh chóng các thông tin, sự kiện được đăng tải bởi Trường và các trang liên quan (câu lạc bộ, khoa, đoàn, hội,...)
 - Hiểu được tâm lý e ngại của sinh viên khi muốn tham gia nhưng không tìm được người cùng tham gia sự kiện, đặc biệt là các sự kiện có yêu cầu tham gia theo hình thức đội nhóm thay vì cá nhân.
 - Hiểu được tâm lý của nhiều cựu sinh viên sau khi đã tốt nghiệp nhưng vẫn muốn nắm bắt đầy đủ các thông tin từ Trường cũng như kết nối đến các bạn sinh viên đang học tại Trường. Về thực trạng thì Trường chúng ta chưa đẩy mạnh công tác này.
@@ -20,7 +30,7 @@
 - Cựu sinh viên có thể kết nối đến các sinh viên tại trường, giảng viên thông qua quá trình đăng bài cũng có thể tìm kiếm được những cộng sự tham gia vào công tác nghiên cứu khoa học.
 - **Một tính năng đặc biệt mà ứng dụng UIT-Eco mang lại đó là cho phép sinh viên tìm kiếm được đồng đội cùng tham gia các sự kiện, cũng như có thể tự động đăng ký tham gia sự kiện ngay thời điểm sử dụng ứng dụng mà không cần phải điền thông tin đăng ký như cách thức vẫn hay được sử dụng như hiện tại.**
   
-# Kế hoạch dự án  
+## 4. Kế hoạch dự án  
 - ***Công tác chuẩn bị (7 Ngày) 1/3/2024 → 7/3/2024***
     ```
     Xác định đề tài(2 Ngày): 1/3/2024 → 2/3/2024
@@ -96,7 +106,7 @@
     Rút kết kinh nghiệm(2 Ngày): 31/5/2024 → 1/6/2024
     ```
     
-# Công nghệ  
+## 5. Công nghệ sử dụng 
 - Ngôn ngữ lập trình: Java, PL/SQL  
 - Hệ quản trị cơ sở dữ liệu: Oracle  
 - IDE: Netbeans, Oracle  
@@ -105,7 +115,7 @@
 - Quản lý dự án: Microsoft Project, Notion  
 - Hệ điều hành: Window
 
-# Giao diện
+## 6. Giao diện
 - Giao diện trang đăng nhập
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/dc3162ae-29f6-48c6-930c-7bcbd6e631de)
 - Giao diện trang sự kiện
