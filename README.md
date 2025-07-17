@@ -23,14 +23,14 @@
 - Ngoài việc kết nối giữa những sinh viên thì giảng viên cũng có thể kết nối thông qua việc đăng bài tìm kiếm cộng sự tham gia nghiên cứu khoa học. Điều đó không những có ý nghĩa kết nối giữa giảng viên-sinh viên mà còn thúc đẩy, nâng cao tinh thần, công tác nghiên cứu khoa học của Trường chúng ta trước xu hướng phát triển của thời đại cũng như sự năng động, sáng tạo, không ngừng nâng cao vị thế của UIT trong khu vực và cả nước.
 
 ***Với động lực đó, CocoNerd chúng em quyết định sẽ xây dựng một nền tảng kết nối chuyên biệt cho UIT và trong tương lai mong muốn mở rộng quy mô sử dụng cho toàn hệ thống Đại học Quốc gia TP HCM.***  
-# Mục tiêu dự án
+## 4. Mục tiêu dự án
 - Ứng dụng UIT-Eco giúp sinh viên dễ dàng nắm bắt và tiếp cận với các sự kiện được đăng tải bởi Trường và các bên liên quan một cách nhanh chóng, đầy đủ.
 - Là nền tảng đa người dùng: sinh viên, cựu sinh viên, giảng viên, Admin
 - Cho phép người dùng đăng bài với các chủ đề thú vị và bổ ích như trao đổi về việc học tập, ôn thi, chia sẻ kinh nghiệm, cơ hội việc làm, học bổng, nghiên cứu khoa học,...Thông qua đây sinh viên có thêm cơ hội để nhận được nhiều lời giải đáp, tư vấn hữu ích cũng như học hỏi và tích luỹ cho bản thân các kinh nghiệm bổ ích được chia sẻ từ các thế hệ đi trước.
 - Cựu sinh viên có thể kết nối đến các sinh viên tại trường, giảng viên thông qua quá trình đăng bài cũng có thể tìm kiếm được những cộng sự tham gia vào công tác nghiên cứu khoa học.
 - **Một tính năng đặc biệt mà ứng dụng UIT-Eco mang lại đó là cho phép sinh viên tìm kiếm được đồng đội cùng tham gia các sự kiện, cũng như có thể tự động đăng ký tham gia sự kiện ngay thời điểm sử dụng ứng dụng mà không cần phải điền thông tin đăng ký như cách thức vẫn hay được sử dụng như hiện tại.**
   
-## 4. Kế hoạch dự án  
+## 5. Kế hoạch dự án  
 - ***Công tác chuẩn bị (7 Ngày) 1/3/2024 → 7/3/2024***
     ```
     Xác định đề tài(2 Ngày): 1/3/2024 → 2/3/2024
@@ -106,7 +106,7 @@
     Rút kết kinh nghiệm(2 Ngày): 31/5/2024 → 1/6/2024
     ```
     
-## 5. Công nghệ sử dụng 
+## 6. Công nghệ sử dụng 
 - Ngôn ngữ lập trình: Java, PL/SQL  
 - Hệ quản trị cơ sở dữ liệu: Oracle  
 - IDE: Netbeans, Oracle  
@@ -115,7 +115,7 @@
 - Quản lý dự án: Microsoft Project, Notion  
 - Hệ điều hành: Window
 
-## 6. Giao diện
+## 7. Giao diện
 - Giao diện trang đăng nhập
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/dc3162ae-29f6-48c6-930c-7bcbd6e631de)
 - Giao diện trang sự kiện
@@ -136,6 +136,6 @@
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/ce139e00-35c0-43bb-8f4a-ae40e7bf4e0b)
 ![image](https://github.com/coconerd/uiteco-swing/assets/118596936/a463c732-9737-4019-8698-1d676433b1a3)
 
-# Tham khảo  
+## 8. Tham khảo  
 - Source code: [Link github source code UITeco app maked by CocoNerd](https://github.com/coconerd/uiteco-swing)
 - Website CocoNerd: [Website nhóm CocoNerd (Nước Code Dừa)](https://sites.google.com/view/cococode/trang-ch%E1%BB%A7)  
