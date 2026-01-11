@@ -13,7 +13,7 @@
 |🌱  Nguyễn Đỗ Đức Minh | 22520872 | Team leader   | nddminh2021@gmail.com          |
 |🌱  Phan Thị Thủy Hiền | 22520423 | Team member | thuyhienphanthi2004@gmail.com |
 |🌱  Trần Vũ Bão   | 22520124 | Team member | tranvubao2004@gmail.com          |
-|🌱  Phan Thành Công       | 22520170 | Team member | phanthanhcong982004@gmail.com          |
+|🌱  Phan Thành Công       | 22520170 | Team member | ptcong.data@gmail.com          |
 
 ## 3. Động lực hình thành dự án
 - Hiểu được băn khoăn từ sinh viên khi không thể nắm bắt được đầy đủ và nhanh chóng các thông tin, sự kiện được đăng tải bởi Trường và các trang liên quan (câu lạc bộ, khoa, đoàn, hội,...)
